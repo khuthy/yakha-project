@@ -28,7 +28,7 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
 
     OnboardingPage,
     AccountSetupPage,
@@ -50,7 +50,7 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
     OnboardingPage,
     AccountSetupPage,
     HomeOwnerProfilePage,
