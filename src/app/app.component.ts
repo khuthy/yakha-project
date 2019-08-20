@@ -23,11 +23,8 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-<<<<<<< HEAD
   rootPage: any = RegisterPage;
-=======
 
->>>>>>> ae244bab89d8e2e3e97634034407e1478fb73350
 
   pages: Array<{title: string, component: any}>;
 
