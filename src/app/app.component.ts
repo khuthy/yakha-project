@@ -23,7 +23,11 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+<<<<<<< HEAD
   rootPage: any = RegisterPage;
+=======
+
+>>>>>>> ae244bab89d8e2e3e97634034407e1478fb73350
 
   pages: Array<{title: string, component: any}>;
 
@@ -46,6 +50,7 @@ firebase.initializeApp(firebaseConfig);
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
