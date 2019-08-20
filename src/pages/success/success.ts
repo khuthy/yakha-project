@@ -1,9 +1,8 @@
-import { QuotationFormPage } from './../quotation-form/quotation-form';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the BuilderProfileviewPage page.
+ * Generated class for the SuccessPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,18 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-builder-profileview',
-  templateUrl: 'builder-profileview.html',
+  selector: 'page-success',
+  templateUrl: 'success.html',
 })
-export class BuilderProfileviewPage {
+export class SuccessPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuilderProfileviewPage');
+    console.log('ionViewDidLoad SuccessPage');
   }
-next(){
-  this.navCtrl.push(QuotationFormPage);
-}
+
 }
