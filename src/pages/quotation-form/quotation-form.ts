@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SuccessPage } from '../success/success';
 
 /**
  * Generated class for the QuotationFormPage page.
@@ -21,5 +22,7 @@ export class QuotationFormPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuotationFormPage');
   }
-
+next(){
+  this.navCtrl.push(SuccessPage);
+}
 }

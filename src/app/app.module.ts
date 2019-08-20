@@ -24,6 +24,7 @@ import { UserProvider } from '../providers/user/user';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
+import { SuccessPage } from '../pages/success/success';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
     BuilderProfileviewPage,
     QuotationFormPage,
     ProfileHomeOwnerPage,
-    BaccountSetupPage
+    BaccountSetupPage,
+    SuccessPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,9 @@ import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
     BuilderProfileviewPage,
     QuotationFormPage,
     ProfileHomeOwnerPage,
-    BaccountSetupPage
+    BaccountSetupPage,
+    SuccessPage
+
 
   ],
   providers: [
