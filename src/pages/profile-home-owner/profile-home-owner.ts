@@ -1,9 +1,8 @@
-import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the OnboardingPage page.
+ * Generated class for the ProfileHomeOwnerPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,21 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-onboarding',
-  templateUrl: 'onboarding.html',
+  selector: 'page-profile-home-owner',
+  templateUrl: 'profile-home-owner.html',
 })
-export class OnboardingPage {
+export class ProfileHomeOwnerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OnboardingPage');
-  }
-
-  /* navigate page  */
-  goLogin(){
-    this.navCtrl.push(LoginPage);
+    console.log('ionViewDidLoad ProfileHomeOwnerPage');
   }
 
 }

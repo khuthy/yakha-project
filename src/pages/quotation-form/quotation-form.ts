@@ -1,9 +1,9 @@
-import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SuccessPage } from '../success/success';
 
 /**
- * Generated class for the OnboardingPage page.
+ * Generated class for the QuotationFormPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,21 +11,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-onboarding',
-  templateUrl: 'onboarding.html',
+  selector: 'page-quotation-form',
+  templateUrl: 'quotation-form.html',
 })
-export class OnboardingPage {
+export class QuotationFormPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OnboardingPage');
+    console.log('ionViewDidLoad QuotationFormPage');
   }
-
-  /* navigate page  */
-  goLogin(){
-    this.navCtrl.push(LoginPage);
-  }
-
+next(){
+  this.navCtrl.push(SuccessPage);
+}
 }

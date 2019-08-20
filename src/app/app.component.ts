@@ -1,3 +1,9 @@
+import { VersionPage } from './../pages/version/version';
+import { SharePage } from './../pages/share/share';
+import { FeedbackPage } from './../pages/feedback/feedback';
+import { HelpPage } from './../pages/help/help';
+import { MessagesPage } from './../pages/messages/messages';
+import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,6 +14,8 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,6 +32,13 @@ firebase.initializeApp(firebaseConfig);
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'View profile', component: ProfileHomeOwnerPage },
+      { title: 'Messages', component:MessagesPage },
+      { title: 'Help', component: HelpPage },
+      { title: 'Feedback', component: FeedbackPage},
+      { title: 'Share', component: SharePage },
+      { title: 'Version', component: VersionPage},
+      { title: 'Signout', component: HomePage }
     ];
 
   }
