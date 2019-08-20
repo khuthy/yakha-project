@@ -14,6 +14,7 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = RegisterPage;
+
 
   pages: Array<{title: string, component: any}>;
 
