@@ -1,3 +1,6 @@
+import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
+import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
+import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
 import { SharePage } from './../pages/share/share';
@@ -20,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserProvider } from '../providers/user/user';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
 
 
 @NgModule({
@@ -38,7 +42,11 @@ import { RegisterPage } from '../pages/register/register';
     FeedbackPage,
     SharePage,
     VersionPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    BuilderProfileviewPage,
+    QuotationFormPage,
+    ProfileHomeOwnerPage,
+    BaccountSetupPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,12 @@ import { RegisterPage } from '../pages/register/register';
     FeedbackPage,
     SharePage,
     VersionPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    BuilderProfileviewPage,
+    QuotationFormPage,
+    ProfileHomeOwnerPage,
+    BaccountSetupPage
+
   ],
   providers: [
     StatusBar,

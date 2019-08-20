@@ -1,0 +1,73 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>quotation-form</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<h1>Quotation form</h1>
+<ion-list>
+
+    <ion-item>
+      <ion-label floating>Preffered start date</ion-label>
+      <ion-input type="date"></ion-input>
+    </ion-item>
+
+    
+    <ion-item>
+        <ion-label floating>Preffered end date</ion-label>
+        <ion-input type="date"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label> Select Wall type</ion-label>
+          <ion-select>
+            <ion-option value="nes">Single wall</ion-option>
+            <ion-option value="n64">Double wall</ion-option>
+           </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label> Select brick type</ion-label>
+            <ion-select multiple="true">
+              <ion-option value="nes">Common burnt clay bricks</ion-option>
+              <ion-option value="n64">Sand lime Bricks</ion-option>
+              <ion-option value="n64">Engineering Bricks</ion-option>
+              <ion-option value="n64">Concrete bricks</ion-option>
+              <ion-option value="n64">Fly ash clay bricks</ion-option>
+             
+             </ion-select>
+          </ion-item>
+
+
+    <ion-item>
+        <ion-label floating>Height in meter</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label floating>Length in meter</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Width in meter</ion-label>
+            <ion-input type="number"></ion-input>
+          </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Upload photo of house plan</ion-label>
+       <button ion-fab mini><ion-icon name="camera"></ion-icon></button>
+     </ion-item>
+
+     <ion-item>
+        <ion-label position="floating">Additional comments</ion-label>
+        <ion-textarea rows="6" cols="20"></ion-textarea>
+      </ion-item>
+  
+  </ion-list>
+
+  <button ion-button block primary>Submit Quote</button>
+</ion-content>
