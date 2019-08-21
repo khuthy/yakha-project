@@ -29,7 +29,7 @@ export class AccountSetupPage {
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
-    uid: null,
+    uid: '',
     ownerImage:null,
     fullName:null,
     personalNumber: null,
