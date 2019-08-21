@@ -29,11 +29,12 @@ export class AccountSetupPage {
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
-    ownerImage: '',
-    fullName: '',
+    uid: null,
+    ownerImage:null,
+    fullName:null,
    
-    personalNumber: '',
-    About: ''
+    personalNumber: null,
+    About:null
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -142,8 +143,9 @@ export class AccountSetupPage {
       spinner: 'bubbles'
     });
     load.present();
-    // create a reference to the collection of users...
-    let users = this.db.collection('users');
+    // create a reference to the collection of HomeOwnerProfile...
+    let users = this.db.collection('HomeOwnerProfile');
+    
     // ...query the profile that contains the uid of the currently logged in user...
     let query = users.where("uid", "==", this.authUser.getUser().uid);
     query.get().then(querySnapshot => {

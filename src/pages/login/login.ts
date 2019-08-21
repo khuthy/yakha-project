@@ -11,6 +11,7 @@ import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -29,10 +30,13 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
-  constructor(public navCtrl: NavController, public navParams: NavParams,   private formBuilder: FormBuilder,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,  
+     private formBuilder: FormBuilder,
     private userProvider:UserProvider,
      public loadingCtrl: LoadingController,
-     public alertCtrl: AlertController) {
+     public alertCtrl: AlertController,
+     private authService:AuthServiceProvider) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: [
@@ -49,7 +53,7 @@ export class LoginPage {
       if (user){
         // send the user's data if they're still loggedin
         this.userProvider.setUser(user);
-        this.db.collection('users').where('uid', '==', this.userProvider.getUser().uid).get().then(snapshot => {
+        this.db.collection('users').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
           if (snapshot.empty){
             this.navCtrl.push(AccountSetupPage);
           } else {
@@ -74,7 +78,7 @@ this.navCtrl.push(RegisterPage)
     } else {
 
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-      .then( userProvider => {
+      .then( authService => {
 
         this.navCtrl.setRoot(HomePage);
       }, error => {

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import * as firebase from 'firebase'
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ProfileHomeOwnerPage page.
@@ -14,12 +16,67 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile-home-owner.html',
 })
 export class ProfileHomeOwnerPage {
+  isProfile = false;
+  db = firebase.firestore();
+  storage = firebase.storage().ref();
+  displayProfile;
+  profileImage
+  HomeOwnerProfile = {
+    ownerImage: '',
+    fullName: '',
+   
+    personalNumber: '',
+    About: ''
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileHomeOwnerPage');
   }
+  getProfile(){
+    // load the process
+    let load = this.loadingCtlr.create({
+      content: 'Just a sec...',
+      spinner: 'bubbles'
+    });
+    load.present();
+    // create a reference to the collection of users...
+    let users = this.db.collection('HomeOwnerProfile');
+    // ...query the profile that contains the uid of the currently logged in user...
+    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    query.get().then(querySnapshot => {
+      // ...log the results of the document exists...
+      if (querySnapshot.empty !== true){
+        console.log('Got data', querySnapshot);
+        querySnapshot.forEach(doc => {
+          console.log('Profile Document: ', doc.data())
+          this.displayProfile = doc.data();
+          this.HomeOwnerProfile.About  = doc.data().About;
+          // this.HomeOwnerProfile.email = doc.data().email
+          this.profileImage.image  = doc.data().image
+          this.HomeOwnerProfile. fullName  = doc.data(). fullName;
+          this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
+          
+        })
+        this.isProfile = true;
+      } else {
+        console.log('No data');
+        this.isProfile = false;
+      }
+      // dismiss the loading
+      load.dismiss();
+    }).catch(err => {
+      // catch any errors that occur with the query.
+      console.log("Query Results: ", err);
+      // dismiss the loading
+      load.dismiss();
+    })
+  }
+  editProfile(){
+    this.isProfile = false;
+  }
+
 
 }

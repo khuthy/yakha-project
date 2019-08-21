@@ -11,15 +11,38 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngIf="isProfile">
 
-    <img src="../../assets/img/img/nin-live.png"/>
+      <img src="{{HomeOwnerProfile.image}}">
     <ion-card-content>
       <ion-card-title>
-       homeowner-name: khutty muenda
+          <h4> HomeOwner FullName: {{HomeOwnerProfile.fullName}}  </h4>
+          <button (click)="editProfile()" ion-button small color="dark" icon-right >
+              Edit
+              <ion-icon name="create"></ion-icon>
+            </button>
         </ion-card-title>
-      <p> cell phone : 0825103130  </p>
-        <p>bio</p>
+      <p> {{HomeOwnerProfile.personalNumber}} </p>
+        <p>{{HomeOwnerProfile.About}}</p>
     </ion-card-content>
   </ion-card>
+  <!-- <div *ngIf="isProfile">
+      <div class="Profimage">
+           <img src="{{HomeOwnerProfile.image}}">
+          
+           <div class="displayName">
+
+              <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
+               <button (click)="editProfile()" ion-button small color="dark" icon-right >
+                  Edit
+                  <ion-icon name="create"></ion-icon>
+                </button> 
+           </div>
+        </div>
+        <div class="contact">
+          <div class="number"><p>{{HomeOwnerProfile.personalNumber}</p></div>
+          <div class="line"></div>
+          <div class="email"><p>{{HomeOwnerProfile.About}}</p></div>
+        </div>
+  </div> -->
 </ion-content>
