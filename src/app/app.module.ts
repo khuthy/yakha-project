@@ -1,3 +1,4 @@
+import { GoogleMapComponent } from './../components/google-map/google-map';
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
@@ -33,10 +34,8 @@ import { SignoutPage } from '../pages/signout/signout';
 
 import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
 import { SuccessPage } from '../pages/success/success';
-/* import { Geolocation } from '@ionic-native/geolocation'; */
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PlacesProvider } from '../providers/places/places';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 
@@ -65,7 +64,7 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     AddBricklayerPage,
     NewPlacesPage,
     PlacePage,
-   /*  GoogleMapsComponent */
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule,
