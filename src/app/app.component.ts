@@ -1,3 +1,9 @@
+import { VersionPage } from './../pages/version/version';
+import { SharePage } from './../pages/share/share';
+import { FeedbackPage } from './../pages/feedback/feedback';
+import { HelpPage } from './../pages/help/help';
+import { MessagesPage } from './../pages/messages/messages';
+import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -8,13 +14,7 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
-import { SharePage } from '../pages/share/share';
-import { VersionPage } from '../pages/version/version';
-import { MessagesPage } from '../pages/messages/messages';
-import { HelpPage } from '../pages/help/help';
-import { FeedbackPage } from '../pages/feedback/feedback';
-import { HomeOwnerProfilePage } from '../pages/home-owner-profile/home-owner-profile';
-import { SignoutPage } from '../pages/signout/signout';
+import { RegisterPage } from '../pages/register/register';
 
 
 @Component({
@@ -23,9 +23,12 @@ import { SignoutPage } from '../pages/signout/signout';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = RegisterPage;
+
 
   pages: Array<{title: string, component: any}>;
+
+
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -33,19 +36,20 @@ firebase.initializeApp(firebaseConfig);
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'View profile', component:HomeOwnerProfilePage},
-      { title: 'Messages', component: MessagesPage },
+      { title: 'View profile', component: ProfileHomeOwnerPage },
+      { title: 'Messages', component:MessagesPage },
       { title: 'Help', component: HelpPage },
       { title: 'Feedback', component: FeedbackPage},
       { title: 'Share', component: SharePage },
-      { title: 'Version', component: VersionPage },
-      { title: 'Signout', component: SignoutPage }
+      { title: 'Version', component: VersionPage},
+      { title: 'Signout', component: HomePage }
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -57,5 +61,15 @@ firebase.initializeApp(firebaseConfig);
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  SignOut() {
+    firebase.auth().signOut().then(() => {
+      console.log('Signed Out');
+      this.rootPage = LoginPage;
+      
+    }).catch((err) => {
+      console.log('error occured while signing out');
+      
+    })
   }
 }

@@ -1,0 +1,28 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SuccessPage } from '../success/success';
+
+/**
+ * Generated class for the QuotationFormPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-quotation-form',
+  templateUrl: 'quotation-form.html',
+})
+export class QuotationFormPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad QuotationFormPage');
+  }
+next(){
+  this.navCtrl.push(SuccessPage);
+}
+}

@@ -1,3 +1,10 @@
+/* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
+import { HttpClient } from '@angular/common/http';
+import { PlacePage } from './../pages/place/place';
+import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
+import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
+import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
+import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
 import { SharePage } from './../pages/share/share';
@@ -24,6 +31,14 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Camera } from '@ionic-native/camera';
 import { SignoutPage } from '../pages/signout/signout';
 
+import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
+import { SuccessPage } from '../pages/success/success';
+/* import { Geolocation } from '@ionic-native/geolocation'; */
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { PlacesProvider } from '../providers/places/places';
+import { NewPlacesPage } from '../pages/new-places/new-places';
+import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -41,11 +56,23 @@ import { SignoutPage } from '../pages/signout/signout';
     FeedbackPage,
     SharePage,
     VersionPage,
-    ForgotPasswordPage
+    ForgotPasswordPage,
+    BuilderProfileviewPage,
+    QuotationFormPage,
+    ProfileHomeOwnerPage,
+    BaccountSetupPage,
+    SuccessPage,
+    AddBricklayerPage,
+    NewPlacesPage,
+    PlacePage,
+   /*  GoogleMapsComponent */
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +90,17 @@ import { SignoutPage } from '../pages/signout/signout';
     SharePage,
     VersionPage,
     ForgotPasswordPage,
-    SignoutPage
+    SignoutPage,
+    BuilderProfileviewPage,
+    QuotationFormPage,
+    ProfileHomeOwnerPage,
+    BaccountSetupPage,
+    SuccessPage,
+    AddBricklayerPage,
+    NewPlacesPage,
+    PlacePage
+
+
   ],
   providers: [
     StatusBar,

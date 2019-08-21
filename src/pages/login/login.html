@@ -1,43 +1,66 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>loginPage</ion-title>
-  </ion-navbar>
-</ion-header>
+
 ​
-<ion-content padding>
-  <form [formGroup]="loginForm">
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
-      loginForm.controls['email'].touched">
-      </ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls['email'].valid &&
-       loginForm.controls['email'].touched">
-      <ion-label>Please enter a valid email address.</ion-label>
-    </ion-item>
-​
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input formControlName="password" type="password" placeholder="Your password"
-        [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
-      </ion-input>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls['password'].valid
-      && loginForm.controls['password'].touched">
-      <ion-label>Your password needs more than 6 characters.</ion-label>
-    </ion-item>
-​
-    <button ion-button (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">
-      Log In
-    </button>
-  </form>
-​
-  <button ion-button expand="block" fill="clear"  (click)="createAcc()">
-    Create a new account
-  </button>
-​
-  <button ion-button expand="block" fill="clear" (click)="forgotpassword()">
-    I forgot my password 
-  </button>
+<ion-content >
+
+ 
+    <div class="container">
+        <!-- header -->
+        <div class="logo">
+        
+        <div class="logoholder">
+           <img src="../../assets/imgs/logo.png" width="100%" height="100%" > 
+        </div>
+        <!-- <div class="slogan">
+          <p>Connecting reliable builders with hardworking communities</p>
+        </div -->
+        </div>
+
+
+    <!-- inputs -->
+    <div class="inputs">
+
+      <form [formGroup]="loginForm">
+        <ion-item style="background: transparent">
+          <ion-label floating style="color: white; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email</ion-label>
+          <ion-input  style="color: white; letter-spacing: 1px; font-weight:300;border-bottom:1px solid white" formControlName="email" type="email" [class.invalid]="!loginForm.controls['email'].valid &&
+          loginForm.controls['email'].touched">
+          </ion-input>
+    
+        </ion-item>
+        <p style="background: transparent; color: rgb(246, 22, 22); font-size: 3vw" class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+           loginForm.controls['email'].touched">
+          <ion-label>Please enter a valid email address.</ion-label>
+      </p>
+    ​
+        <ion-item style="background: transparent">
+          <ion-label floating style="color: white; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
+          <ion-input style="color: white; letter-spacing: 1px; font-weight:300;border-bottom:1px solid white" formControlName="password" type="password" 
+            [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+          </ion-input>
+        </ion-item>
+    
+        <p style="background: transparent; color: rgb(246, 22, 22); font-size: 3vw" class="error-message" *ngIf="!loginForm.controls['password'].valid
+          && loginForm.controls['password'].touched">
+          <ion-label>Your password needs more than 6 characters.</ion-label>
+      </p>
+    ​
+        <button ion-button (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">
+          Log In
+        </button>
+      </form>
+    ​</div>
+    <!-- buttons -->
+    <div class="btn">
+        <button ion-button expand="block" fill="clear"  (click)="createAcc()">
+        Create a new account
+      </button>
+    ​
+      <button ion-button expand="block" fill="clear" (click)="forgotpassword()">
+        I forgot my password 
+      </button>
+    </div>
+    
+ </div>
+
 </ion-content>
+
