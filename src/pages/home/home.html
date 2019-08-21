@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Our map will take up the whole screen</h1>
-  <div>
-
-  </div>
+    <google-maps></google-maps>
+  <!-- <ion-list>
+    <ion-item *ngFor="let place of places" (click)="next()">{{place.title}}</ion-item>
+  </ion-list> -->
  <ion-card>
 
-      <img src="img/advance-card-map-madison.png">
+      <img src="../../assets/img/advance-card-map-madison.png">
       <ion-fab right top>
         <button ion-fab>
           <ion-icon name="pin"></ion-icon>
@@ -44,10 +44,25 @@
 
     </ion-card>
 
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <!-- <p>Your Location:{{ location?.coords.latitude }} / {{ location?.coords.longitude }} </p> -->
+        </ion-col>
+      </ion-row>
+
+          <ion-row>
+              <ion-col>
+            <!-- <button ion-button block (click)="onLocateUser()">Locate me</button> -->
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
    card for builders information chosen by the map
     <ion-card>
 
-        <img src="img/nin-live.png"/>
+        <img src="../../assets/img/img/nin-live.png"/>
         <ion-card-content>
           <ion-card-title>
            buidler-name: khutty muenda
@@ -57,4 +72,5 @@
 
         </ion-card-content>
       </ion-card>
+
 </ion-content>

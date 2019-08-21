@@ -1,3 +1,7 @@
+import { GoogleMapsComponent } from './../components/google-maps/google-maps';
+import { HttpClient } from '@angular/common/http';
+import { PlacePage } from './../pages/place/place';
+import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
@@ -25,7 +29,12 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
 import { SuccessPage } from '../pages/success/success';
-
+import { Geolocation } from '@ionic-native/geolocation';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { PlacesProvider } from '../providers/places/places';
+import { NewPlacesPage } from '../pages/new-places/new-places';
+import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -48,11 +57,18 @@ import { SuccessPage } from '../pages/success/success';
     QuotationFormPage,
     ProfileHomeOwnerPage,
     BaccountSetupPage,
-    SuccessPage
+    SuccessPage,
+    AddBricklayerPage,
+    NewPlacesPage,
+    PlacePage,
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,7 +90,10 @@ import { SuccessPage } from '../pages/success/success';
     QuotationFormPage,
     ProfileHomeOwnerPage,
     BaccountSetupPage,
-    SuccessPage
+    SuccessPage,
+    AddBricklayerPage,
+    NewPlacesPage,
+    PlacePage
 
 
   ],
@@ -82,7 +101,9 @@ import { SuccessPage } from '../pages/success/success';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    Geolocation,
+    PlacesProvider
   ]
 })
 export class AppModule {}
