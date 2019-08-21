@@ -21,7 +21,6 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@google/maps": "^0.5.5",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "~4.20.0",
     "@ionic-native/geolocation": "^4.20.0",
@@ -51,7 +50,9 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},

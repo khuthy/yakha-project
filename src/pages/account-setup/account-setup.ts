@@ -32,7 +32,6 @@ export class AccountSetupPage {
     uid: null,
     ownerImage:null,
     fullName:null,
-   
     personalNumber: null,
     About:null
   }
@@ -44,6 +43,7 @@ export class AccountSetupPage {
     private formBuilder: FormBuilder) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
+    this.HomeOwnerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
      

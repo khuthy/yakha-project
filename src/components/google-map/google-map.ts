@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-
+import { google } from "google-maps";
 
 
 @Component({
@@ -11,6 +11,7 @@ export class GoogleMapComponent {
 
   @ViewChild("map") mapElement;
   map: any;
+  google: google;
 
   constructor() {
 
@@ -21,7 +22,7 @@ ngOnInit(){
  // console.log('wffergfefe');
 }
 initMap(){
-  let coords = new google.maps.LatLng(-22.777, 23.533)
+  let coords = new google.maps.LatLng(12,12)
   let mapOptions: google.maps.MapOptions = {
     center: coords,
     zoom: 11,
