@@ -21,12 +21,32 @@ ngOnInit(){
   this.initMap();
  // console.log('wffergfefe');
 }
-initMap(){
-  let coords = new google.maps.LatLng(12,12)
-  let mapOptions: google.maps.MapOptions = {
-    center: coords,
-    zoom: 11,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+  initMap(){
+    navigator.geolocation.getCurrentPosition((position)=> {
+      let geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      console.log(geolocation);
+
+      // var circle = new google.maps.Circle(
+      //     {center: geolocation, radius: position.coords.accuracy});
+
+    let coords = new google.maps.LatLng(geolocation.lat, geolocation.lng)
+    let mapOptions: google.maps.MapOptions = {
+      center: coords,
+      zoom: 11,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+
+
+    let marker: google.maps.Marker = new google.maps.Marker({
+      map: this.map,
+      position: coords
+    })
+  });
   }
   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
   let marker: google.maps.Marker = new google.maps.Marker({
@@ -35,5 +55,17 @@ initMap(){
   })
 }
 
+  // geolocate() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       let geolocation = {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude
+  //       };
+  //       var circle = new google.maps.Circle(
+  //           {center: geolocation, radius: position.coords.accuracy});
+  //     });
+  //   }
+  // }
 
 }
