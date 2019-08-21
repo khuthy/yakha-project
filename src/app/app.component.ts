@@ -23,7 +23,7 @@ import { RegisterPage } from '../pages/register/register';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = RegisterPage;
+  rootPage: any = HomePage;
 
 
   pages: Array<{title: string, component: any}>;
@@ -59,5 +59,15 @@ firebase.initializeApp(firebaseConfig);
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  SignOut() {
+    firebase.auth().signOut().then(() => {
+      console.log('Signed Out');
+      this.rootPage = LoginPage;
+      
+    }).catch((err) => {
+      console.log('error occured while signing out');
+      
+    })
   }
 }
