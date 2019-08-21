@@ -33,7 +33,7 @@ ngOnInit(){
     let coords = new google.maps.LatLng(geolocation.lat, geolocation.lng)
     let mapOptions: google.maps.MapOptions = {
       center: coords,
-      zoom: 8,
+      zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
@@ -47,17 +47,17 @@ ngOnInit(){
   });
   }
 
-  geolocate() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let geolocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        var circle = new google.maps.Circle(
-            {center: geolocation, radius: position.coords.accuracy});
-      });
-    }
-  }
+  // geolocate() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       let geolocation = {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude
+  //       };
+  //       var circle = new google.maps.Circle(
+  //           {center: geolocation, radius: position.coords.accuracy});
+  //     });
+  //   }
+  // }
 
 }
