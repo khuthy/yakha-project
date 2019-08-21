@@ -8,6 +8,14 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
+import { SharePage } from '../pages/share/share';
+import { VersionPage } from '../pages/version/version';
+import { MessagesPage } from '../pages/messages/messages';
+import { HelpPage } from '../pages/help/help';
+import { FeedbackPage } from '../pages/feedback/feedback';
+import { HomeOwnerProfilePage } from '../pages/home-owner-profile/home-owner-profile';
+import { SignoutPage } from '../pages/signout/signout';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -25,13 +33,13 @@ firebase.initializeApp(firebaseConfig);
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'View profile', component: ProfileViewPage },
+      { title: 'View profile', component:HomeOwnerProfilePage},
       { title: 'Messages', component: MessagesPage },
       { title: 'Help', component: HelpPage },
       { title: 'Feedback', component: FeedbackPage},
       { title: 'Share', component: SharePage },
       { title: 'Version', component: VersionPage },
-      { title: 'Signout', component: HomePage }
+      { title: 'Signout', component: SignoutPage }
     ];
 
   }
