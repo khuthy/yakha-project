@@ -6,13 +6,7 @@
     <div class="container">
       <!-- header -->
       <div class="logo">
-       
-            
-       
-     
-      <!-- <div class="slogan">
-        <p>Connecting reliable builders with hardworking communities</p>
-      </div -->
+       <img src="../../assets/imgs/log.png" width=40%>
       </div>
 
       <!-- inputs -->
@@ -51,8 +45,8 @@
             </form>
      </div><!-- end inputs -->
     <div class="btn">
-        <button ion-button  color="button2" block (click)="signupUser(signupForm)" [disabled]="!signupForm.valid" style="letter-spacing: 1px; width: 100%">Register</button>
-        <p>Already have an account? <span>Login</span> </p>
+        <button ion-button  color="button2" block (click)="signupUser(signupForm)" [disabled]="!signupForm.valid" style="letter-spacing: 1px; width: 100%; border-radius: 5px;">Register</button>
+        <p>Already have an account? <span (click)="goLogin()">Login</span> </p>
     </div>
       
       
