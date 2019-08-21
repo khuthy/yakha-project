@@ -15,6 +15,7 @@ import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { SignoutPage } from '../pages/signout/signout';
 
 
 @Component({
@@ -42,7 +43,8 @@ firebase.initializeApp(firebaseConfig);
       { title: 'Feedback', component: FeedbackPage},
       { title: 'Share', component: SharePage },
       { title: 'Version', component: VersionPage},
-      { title: 'Signout', component: HomePage }
+      { title: 'Signout', component: SignoutPage },
+    
     ];
 
   }

@@ -25,8 +25,8 @@ export class RegisterPage {
 
   public signupForm: FormGroup;
   public loading: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private userProvider: UserProvider,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
     private authService:AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
