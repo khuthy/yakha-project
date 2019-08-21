@@ -9,7 +9,8 @@ import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
-// import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { AccountSetupPage } from '../account-setup/account-setup';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -25,6 +26,7 @@ import * as firebase from 'firebase';
 })
 export class LoginPage {
   db = firebase.firestore();
+  firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
   constructor(public navCtrl: NavController, public navParams: NavParams,   private formBuilder: FormBuilder,
@@ -35,29 +37,45 @@ export class LoginPage {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: [
         '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
+        Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(16)])
       ]
     });
   }
 
 ​
   ionViewDidLoad() {
-
+    console.log('ionViewDidLoad LoginOwnerPage');
+    this.firebase.auth().onAuthStateChanged( user => {
+      if (user){
+        // send the user's data if they're still loggedin
+        this.userProvider.setUser(user);
+        this.db.collection('users').where('uid', '==', this.userProvider.getUser().uid).get().then(snapshot => {
+          if (snapshot.empty){
+            this.navCtrl.push(AccountSetupPage);
+          } else {
+            this.navCtrl.setRoot(HomePage);
+            
+          }
+        });
+      }
+    })
   }
 ​
   //Create
   createAcc(){
 this.navCtrl.push(RegisterPage)
   }
-  // forgotpassword(){
-  //   this.navCtrl.push(ForgotPasswordPage)
-  // }
+  forgotpassword(){
+    this.navCtrl.push(ForgotPasswordPage)
+  }
   loginUser(){
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
+
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( userProvider => {
+
         this.navCtrl.setRoot(HomePage);
       }, error => {
         this.loading.dismiss().then( () => {

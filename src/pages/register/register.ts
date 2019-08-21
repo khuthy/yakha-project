@@ -1,10 +1,12 @@
 import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+
 import { UserProvider } from '../../providers/user/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { AccountSetupPage } from '../account-setup/account-setup';
+import { AccountSetupPage } from '../account-setup/account-setup';
 import * as firebase from 'firebase';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
 /**
@@ -26,6 +28,7 @@ export class RegisterPage {
   public loading: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private userProvider: UserProvider,
+    private authService:AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,) {
@@ -55,11 +58,12 @@ export class RegisterPage {
       const email: string = signupForm.value.email;
       const password: string = signupForm.value.password;
 ​
-      this.userProvider.signupUser(email, password).then(
+      this.authService.signupUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-            
-          // this.navCtrl.setRoot(AccountSetupPage)
+            console.log();
+            let key=firebase.auth().currentUser.uid;
+           this.navCtrl.setRoot(AccountSetupPage, key)
           });
         },
         error => {

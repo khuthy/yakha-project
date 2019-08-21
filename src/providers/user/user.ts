@@ -10,11 +10,19 @@ import * as firebase from 'firebase';
 */
 @Injectable()
 export class UserProvider {
-  setUser(res: any) {
-    throw new Error("Method not implemented.");
+  user;
+  db = firebase.firestore();
+  storage = firebase.storage().ref();
+  profileImage ='';
+  setUser(val){
+    this.user = val;
+    console.log('User form Provider', this.user);
+  }
+  getUser(){
+    return this.user;
   }
 
-  db = firebase.firestore();
+ 
   auth: any;
   constructor() {}
   
