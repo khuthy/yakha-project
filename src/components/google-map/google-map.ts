@@ -21,7 +21,7 @@ ngOnInit(){
 }
   initMap(){
 
-    let coords = new google.maps.LatLng(23,23)
+    let coords = new google.maps.LatLng(-12,12);
     let mapOptions: google.maps.MapOptions = {
       center: coords,
       zoom: 11,
