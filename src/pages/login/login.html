@@ -7,12 +7,10 @@
         <!-- header -->
         <div class="logo">
         
-        <div class="logoholder">
-           <img src="../../assets/imgs/logo.png" width="100%" height="100%" > 
-        </div>
-        <!-- <div class="slogan">
-          <p>Connecting reliable builders with hardworking communities</p>
-        </div -->
+    
+           <img src="../../assets/imgs/log.png" width="40%" > 
+       
+       
         </div>
 
 
@@ -20,6 +18,7 @@
     <div class="inputs">
 
       <form [formGroup]="loginForm">
+          <ion-list no-lines>
         <ion-item style="background: transparent">
           <ion-label floating style="color: white; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email</ion-label>
           <ion-input  style="color: white; letter-spacing: 1px; font-weight:300;border-bottom:1px solid white" formControlName="email" type="email" [class.invalid]="!loginForm.controls['email'].valid &&
@@ -43,21 +42,17 @@
           && loginForm.controls['password'].touched">
           <ion-label>Your password needs more than 6 characters.</ion-label>
       </p>
-    ​
-        <button ion-button (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">
-          Log In
-        </button>
+    ​</ion-list>         
+      
       </form>
     ​</div>
+
     <!-- buttons -->
     <div class="btn">
-        <button ion-button expand="block" fill="clear"  (click)="createAcc()">
-        Create a new account
-      </button>
-    ​
-      <button ion-button expand="block" fill="clear" (click)="forgotpassword()">
-        I forgot my password 
-      </button>
+        <button ion-button  color="button2" block (click)="loginUser(loginForm)" style="letter-spacing: 1px; width: 100%; border-radius: 5px;background: #0071BC">Login</button>
+
+        <p (click)="forgotpassword()">Forgot password ?</p>
+ 
     </div>
     
  </div>

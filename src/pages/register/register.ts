@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
@@ -39,6 +40,10 @@ export class RegisterPage {
 ​
   ionViewDidLoad() {
    
+  }
+
+  goLogin(){
+    this.navCtrl.push(LoginPage);
   }
   async signupUser(signupForm: FormGroup): Promise<void> {
     if (!signupForm.valid) {
