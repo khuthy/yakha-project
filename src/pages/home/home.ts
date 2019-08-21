@@ -5,7 +5,7 @@ import { AddBricklayerPage } from './../add-bricklayer/add-bricklayer';
 import { BuilderProfileviewPage } from './../builder-profileview/builder-profileview';
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+/* import { Geolocation } from '@ionic-native/geolocation'; */
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,9 +16,8 @@ export class HomePage {
   places;
 
   constructor(public navCtrl: NavController,
-    private geolocation: Geolocation,
     private modalCtrl : ModalController,
-    private placeProvider: PlacesProvider) {
+ ) {
 
   }
   ionViewWillEnter() {

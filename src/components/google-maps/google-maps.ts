@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { google } from '@google/maps';
+
 /**
  * Generated class for the GoogleMapsComponent component.
  *
@@ -12,32 +12,32 @@ import { google } from '@google/maps';
 })
 export class GoogleMapsComponent {
 
-  @ViewChild("map") mapElement;
-  map: any;
+  // @ViewChild("map") mapElement;
+  // map: any;
   constructor() {
 
   }
 
 
-  ionViewDidLoad(){
-    this.initMap();
-  }
+  // ionViewDidLoad(){
+  //   this.initMap();
+  // }
 
-  initMap(){
+  // initMap(){
 
-    let coords = new google.maps.LatLng(25,80);
-    let mapOptions: google.maps.MapOptions = {
-      center: coords,
-      zoom: 11,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+  //   let coords = new google.maps.LatLng(25,80);
+  //   let mapOptions: google.maps.MapOptions = {
+  //     center: coords,
+  //     zoom: 11,
+  //     mapTypeId: google.maps.MapTypeId.ROADMAP
+  //   }
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+  //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
 
-    let marker: google.maps.Marker = new google.maps.Marker({
-      map: this.map,
-      position: coords
-    })
+  //   let marker: google.maps.Marker = new google.maps.Marker({
+  //     map: this.map,
+  //     position: coords
+  //   })
 
-  }
+  // }
 }

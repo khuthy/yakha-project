@@ -1,4 +1,4 @@
-import { GoogleMapsComponent } from './../components/google-maps/google-maps';
+/* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
 import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
@@ -29,7 +29,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { QuotationFormPage } from '../pages/quotation-form/quotation-form';
 import { SuccessPage } from '../pages/success/success';
-import { Geolocation } from '@ionic-native/geolocation';
+/* import { Geolocation } from '@ionic-native/geolocation'; */
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PlacesProvider } from '../providers/places/places';
@@ -61,7 +61,7 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     AddBricklayerPage,
     NewPlacesPage,
     PlacePage,
-    GoogleMapsComponent
+   /*  GoogleMapsComponent */
   ],
   imports: [
     BrowserModule,
@@ -102,7 +102,7 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    Geolocation,
+    /* Geolocation, */
     PlacesProvider
   ]
 })
