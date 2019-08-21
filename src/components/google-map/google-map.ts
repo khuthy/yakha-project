@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { google } from "google-maps";
+// import { google } from "google-maps";
 
 
 @Component({
@@ -11,7 +11,7 @@ export class GoogleMapComponent {
 
   @ViewChild("map") mapElement;
   map: any;
-  google: google;
+  // google: google;
 
   constructor() {
 
