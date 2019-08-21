@@ -20,11 +20,20 @@ ngOnInit(){
  // console.log('wffergfefe');
 }
   initMap(){
+    navigator.geolocation.getCurrentPosition((position)=> {
+      let geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      console.log(geolocation);
 
-    let coords = new google.maps.LatLng(23,23)
+      // var circle = new google.maps.Circle(
+      //     {center: geolocation, radius: position.coords.accuracy});
+
+    let coords = new google.maps.LatLng(geolocation.lat, geolocation.lng)
     let mapOptions: google.maps.MapOptions = {
       center: coords,
-      zoom: 11,
+      zoom: 8,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
@@ -35,8 +44,20 @@ ngOnInit(){
       map: this.map,
       position: coords
     })
-
+  });
   }
 
+  geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        let geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle(
+            {center: geolocation, radius: position.coords.accuracy});
+      });
+    }
+  }
 
 }
