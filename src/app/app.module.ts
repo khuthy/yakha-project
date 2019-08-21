@@ -38,6 +38,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
+import { CoordsProvider } from '../providers/coords/coords';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     AuthServiceProvider,
-    Camera
+    Camera,
+    CoordsProvider
   ]
 })
 export class AppModule {}
