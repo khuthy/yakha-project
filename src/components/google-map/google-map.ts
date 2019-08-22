@@ -37,6 +37,7 @@ ngOnInit(){
       center: coords,
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP
+      
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
