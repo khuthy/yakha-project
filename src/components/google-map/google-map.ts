@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-// import { google } from "google-maps";
+import { google } from "google-maps";
 
 declare var google
 @Component({
@@ -47,14 +47,14 @@ let marker: google.maps.Marker = new google.maps.Marker({
       title: 'Click to view details'
 
     })
-    let infoWindow = new google.maps.InfoWindow({
+   /*  let infoWindow = new google.maps.InfoWindow({
       content: "wdfuwej sdkljerf ekjrg ekljg klgrj rgljr</b>"
     });
     google.maps.event.addListener(marker, 'click', (resp)=>{
       infoWindow.open(this.map, marker)
     })
 
-    console.log(marker);
+    console.log(marker); */
 
 
 
