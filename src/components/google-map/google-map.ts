@@ -13,7 +13,7 @@ export class GoogleMapComponent {
   map: any;
   infoWindow;
   constructor() {
-
+    
   }
 
 ngOnInit(){
@@ -41,9 +41,7 @@ ngOnInit(){
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-
-
-    let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
+let marker: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coords,
       title: 'Click to view details'
@@ -66,13 +64,13 @@ ngOnInit(){
     // })
   });
 
-
+  
   }
-  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-  // let marker: google.maps.Marker = new google.maps.Marker({
-  //   map: this.map,
-  //   position: coords
-  // })
+//     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+//  let marker: google.maps.Marker = new google.maps.Marker({
+//     map: this.map,
+//     position: coords
+//    })  
 
 
   // geolocate() {
