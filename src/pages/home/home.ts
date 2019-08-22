@@ -4,10 +4,10 @@ import { NewPlacesPage } from './../new-places/new-places';
 import { AddBricklayerPage } from './../add-bricklayer/add-bricklayer';
 import { BuilderProfileviewPage } from './../builder-profileview/builder-profileview';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 declare var google;
-/* import { Geolocation } from '@ionic-native/geolocation'; */
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -19,7 +19,7 @@ export class HomePage {
   @ViewChild("map") mapElement;
   map: any;
   constructor(public navCtrl: NavController,
-    private modalCtrl : ModalController,
+    private modalCtrl : ModalController, public loader : LoadingController
  ) {
   this.initMap();
   }
@@ -27,7 +27,10 @@ export class HomePage {
   ionViewDidLoad() {
   // this.places = this.placeProvider.getPlaces();
    // console.log(this.places);
-
+    this.loader.create({
+      content:"Loading..",
+      duration: 2000
+    }).present();
   }
 //viewmore
 next(){
@@ -69,12 +72,12 @@ initMap(){
       lng: position.coords.longitude
     };
 
-    // let NEW_ZEALAND_BOUNDS = {
-    //   north: 16.3449768409,
-    //   south: -34.8191663551,
-    //   west: 32.830120477,
-    //   east: -22.0913127581,
-    // };
+    let NEW_ZEALAND_BOUNDS = {
+      north: -22.0913127581,
+      south: -34.8191663551,
+      west: 10.830120477,
+      east: 32.830120477,
+    };
 
     // var circle = new google.maps.Circle(
     //     {center: geolocation, radius: position.coords.accuracy});
@@ -85,10 +88,11 @@ initMap(){
     center: coords,
     zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    // restriction: {
-    //   latLngBounds: NEW_ZEALAND_BOUNDS,
-    //   strictBounds: false,
-    // },
+
+    restriction: {
+      latLngBounds: NEW_ZEALAND_BOUNDS,
+      strictBounds: false,
+    },
 
 
   }
@@ -114,21 +118,23 @@ initMap(){
   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
 
   firebase.firestore().collection('location').get().then((resp)=>{
+
     resp.forEach((doc)=> {
       // doc.data() is never undefined for query doc snapshots
-      console.log(/*doc.id, */ doc.data());
+      console.log(doc.id,  doc.data().lat);
+      let lat = doc.id +"<br>Latitude: "+ doc.data().lat+ "<br>Longitude: " + doc.data().lng;
       let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
       let marker: google.maps.Marker = new google.maps.Marker({
            map: this.map,
            position: coord,
            title: 'Click to view details',
          })
-             //  let infoWindow = new google.maps.InfoWindow({
-    //    content:    resp.data().username + "<br>" + "from: " + resp.data().place + "<br>Costs: " + resp.data().price
-    //  });
-    //  google.maps.event.addListener(marker, 'click', (resp)=>{
-    //    infoWindow.open(this.map, marker)
-    //  })
+              let infoWindow = new google.maps.InfoWindow({
+          content: lat
+     });
+    google.maps.event.addListener(marker, 'click', (resp)=>{
+      infoWindow.open(this.map, marker)
+      })
 
     // // console.log(marker);
     // } else {
