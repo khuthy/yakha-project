@@ -1,19 +1,6 @@
-<ion-content padding>
-  <h1>Create your account here</h1>
-  <ion-list>
-
-    <ion-item>
-      <ion-label floating>Full names</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label floating>Cell phone</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-
-   <ion-content padding>
+ <ion-content padding>
+      <div *ngIf="!isProfile">
+          <h1>Manage Profile</h1>
       <div *ngIf="profileImage" class="image">
            <img  src="{{profileImage}}">
         </div>
@@ -53,4 +40,25 @@
          <button id="skip" (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button clear  large >Create my Profile </button>
     </div>
      </form>
+     </div>
+     <div *ngIf="isProfile">
+        <div class="Profimage">
+             <img src="{{HomeOwnerProfile.image}}">
+            
+             <div class="displayName">
+  
+                <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
+                <button (click)="editProfile()" ion-button small color="dark" icon-right >
+                    Edit
+                    <ion-icon name="create"></ion-icon>
+                  </button> 
+             </div>
+          </div>
+          <div class="contact">
+            <div class="number"><p>{{HomeOwnerProfile.personalNumber}</p></div>
+            <div class="line"></div>
+            <div class="email"><p>{{HomeOwnerProfile.About}}</p></div>
+          </div>
+    </div>
+  
    </ion-content>

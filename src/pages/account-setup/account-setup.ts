@@ -29,11 +29,11 @@ export class AccountSetupPage {
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
-    ownerImage: '',
-    fullName: '',
-   
-    personalNumber: '',
-    About: ''
+    uid: null,
+    ownerImage:null,
+    fullName:null,
+    personalNumber: null,
+    About:null
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,6 +43,7 @@ export class AccountSetupPage {
     private formBuilder: FormBuilder) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
+    this.HomeOwnerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
      
@@ -142,8 +143,9 @@ export class AccountSetupPage {
       spinner: 'bubbles'
     });
     load.present();
-    // create a reference to the collection of users...
-    let users = this.db.collection('users');
+    // create a reference to the collection of HomeOwnerProfile...
+    let users = this.db.collection('HomeOwnerProfile');
+    
     // ...query the profile that contains the uid of the currently logged in user...
     let query = users.where("uid", "==", this.authUser.getUser().uid);
     query.get().then(querySnapshot => {
