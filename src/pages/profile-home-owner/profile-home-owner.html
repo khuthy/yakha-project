@@ -13,14 +13,14 @@
 <ion-content padding>
   <ion-card *ngIf="isProfile">
 
-      <img src="{{HomeOwnerProfile.image}}">
+      <img src="{{HomeOwnerProfile.ownerImage}}">
     <ion-card-content>
       <ion-card-title>
           <h4> HomeOwner FullName: {{HomeOwnerProfile.fullName}}  </h4>
-          <button (click)="editProfile()" ion-button small color="dark" icon-right >
+          <!-- <button (click)="editProfile()" ion-button small color="dark" icon-right >
               Edit
               <ion-icon name="create"></ion-icon>
-            </button>
+            </button> -->
         </ion-card-title>
       <p> {{HomeOwnerProfile.personalNumber}} </p>
         <p>{{HomeOwnerProfile.About}}</p>

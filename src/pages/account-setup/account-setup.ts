@@ -29,7 +29,7 @@ export class AccountSetupPage {
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
-    uid: null,
+    uid: '',
     ownerImage:null,
     fullName:null,
     personalNumber: null,
@@ -39,7 +39,9 @@ export class AccountSetupPage {
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
     public camera: Camera,
-    public toastCtrl: ToastController, public loadingCtrl: LoadingController, public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     private formBuilder: FormBuilder) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);

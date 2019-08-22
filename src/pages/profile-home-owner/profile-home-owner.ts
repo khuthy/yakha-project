@@ -21,6 +21,7 @@ export class ProfileHomeOwnerPage {
   storage = firebase.storage().ref();
   displayProfile;
   profileImage
+  uid
   HomeOwnerProfile = {
     ownerImage: '',
     fullName: '',
@@ -30,10 +31,14 @@ export class ProfileHomeOwnerPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
+this.uid = firebase.auth().currentUser.uid;
+this.authUser.setUser(this.uid);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfileHomeOwnerPage');
+    this.getProfile();
+    console.log(this.uid);
+    
   }
   getProfile(){
     // load the process
@@ -45,7 +50,7 @@ export class ProfileHomeOwnerPage {
     // create a reference to the collection of users...
     let users = this.db.collection('HomeOwnerProfile');
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
@@ -53,9 +58,9 @@ export class ProfileHomeOwnerPage {
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
-          this.HomeOwnerProfile.About  = doc.data().About;
+          this. HomeOwnerProfile.About  = doc.data().About;
           // this.HomeOwnerProfile.email = doc.data().email
-          this.profileImage.image  = doc.data().image
+          this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
           this.HomeOwnerProfile. fullName  = doc.data(). fullName;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
