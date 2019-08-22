@@ -54,8 +54,8 @@ export class AccountSetupPage {
     });
   }
   ionViewDidLoad() {
-    console.log('hai', this.uid)
-    console.log('masibone', this.authUser.getUser())
+    console.log( this.uid)
+    console.log( this.authUser.getUser())
   }
   //select image for the salon
   async selectImage() {

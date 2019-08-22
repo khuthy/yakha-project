@@ -30,6 +30,7 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
+ 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,  
      private formBuilder: FormBuilder,
@@ -44,6 +45,9 @@ export class LoginPage {
         Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(16)])
       ]
     });
+    
+   
+    
   }
 
 ​
@@ -66,8 +70,8 @@ export class LoginPage {
   }
 ​
   //Create
-  createAcc(){
-this.navCtrl.push(RegisterPage)
+  createAcc(data){
+this.navCtrl.push(RegisterPage, data)
   }
   forgotpassword(){
     this.navCtrl.push(ForgotPasswordPage)

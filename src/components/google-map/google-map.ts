@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-// import { google } from "google-maps";
+ import { google } from "google-maps";
 
 declare var google;
 
@@ -24,7 +24,7 @@ ngOnInit(){
   initMap(){
 
     navigator.geolocation.getCurrentPosition((position)=> {
-      let geolocation = {
+       let geolocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -42,7 +42,7 @@ ngOnInit(){
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-let marker: google.maps.Marker = new google.maps.Marker({
+    let marker: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coords,
       title: 'Click to view details'
