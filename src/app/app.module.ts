@@ -1,4 +1,4 @@
-import { GoogleMapComponent } from './../components/google-map/google-map';
+
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
@@ -64,8 +64,7 @@ import { CoordsProvider } from '../providers/coords/coords';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage,
-    GoogleMapComponent
+    PlacePage
   ],
   imports: [
     BrowserModule,

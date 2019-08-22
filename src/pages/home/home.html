@@ -7,8 +7,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <google-map> </google-map>
+<ion-content>
+  <div id="map" #map>
+  </div>
+
   <!-- <ion-list>
     <ion-item *ngFor="let place of places" (click)="next()">{{place.title}}</ion-item>
   </ion-list> -->
@@ -16,8 +18,8 @@
 
       <img src="../../assets/img/advance-card-map-madison.png">
       <ion-fab left bottom>
-        <button ion-fab>
-          <ion-icon name="pin"></ion-icon>
+        <button ion-fab (click)="addLocation()">
+          <ion-icon name="pin" ></ion-icon>
         </button>
       </ion-fab>
 
