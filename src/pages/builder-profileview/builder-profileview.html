@@ -6,5 +6,28 @@
 </ion-header>
 
 <ion-content padding>
-    
+    <ion-card *ngIf="isProfile">
+        <img src="{{HomeOwnerProfile.ownerImage}}"/>
+        <ion-card-content>
+         
+            <h1> Bricklayer FullName: {{HomeOwnerProfile.fullName}}</h1>
+            <p>Physical Address : {{bricklayerProfile.address}}</p>
+            <p>Price  : {{bricklayerProfile.price}}p/m2</p>
+            <p>Location:{{bricklayerProfile.Location}}</p> <br>
+           <!-- <div class="bio">
+             <h4>Bio</h4>
+             <p>
+            The most popular guy ever, and largely
+            responsible for bringing the code to a njabulos audience.
+          </p>
+           </div> -->
+           <br>
+           <p>Experience : {{bricklayerProfile.experiences}}</p>
+           <p>Certified :{{bricklayerProfile.certified}}</p>
+           
+            
+           <!--   -->
+          
+        </ion-card-content>
+      </ion-card>
 </ion-content>

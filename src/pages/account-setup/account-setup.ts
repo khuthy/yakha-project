@@ -29,7 +29,7 @@ export class AccountSetupPage {
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
-    uid: null,
+    uid: '',
     ownerImage:null,
     fullName:null,
     personalNumber: null,
@@ -39,7 +39,9 @@ export class AccountSetupPage {
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
     public camera: Camera,
-    public toastCtrl: ToastController, public loadingCtrl: LoadingController, public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     private formBuilder: FormBuilder) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -52,8 +54,8 @@ export class AccountSetupPage {
     });
   }
   ionViewDidLoad() {
-    console.log('hai', this.uid)
-    console.log('masibone', this.authUser.getUser())
+    console.log( this.uid)
+    console.log( this.authUser.getUser())
   }
   //select image for the salon
   async selectImage() {

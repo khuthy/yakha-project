@@ -16,6 +16,7 @@ import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SignoutPage } from '../pages/signout/signout';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 
 @Component({
@@ -24,7 +25,7 @@ import { SignoutPage } from '../pages/signout/signout';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = RegisterPage;
+  rootPage: any = OnboardingPage;
 
 
   pages: Array<{title: string, component: any, icon: string}>;
