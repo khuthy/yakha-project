@@ -109,7 +109,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     UserProvider,
     AuthServiceProvider,
     Camera,
-    CoordsProvider
+    CoordsProvider 
+
   ]
 })
 export class AppModule {}
