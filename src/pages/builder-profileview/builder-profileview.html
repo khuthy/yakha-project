@@ -6,26 +6,27 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
-        <img src="img/nin-live.png"/>
+    <ion-card *ngIf="isProfile">
+        <img src="{{HomeOwnerProfile.ownerImage}}"/>
         <ion-card-content>
          
-            <h1>khutty muenda</h1>
-            <p>Price  : R450.00 p/m2</p>
-            <p>Ratings</p> <br>
-           <div class="bio">
+            <h1> Bricklayer FullName: {{HomeOwnerProfile.fullName}}</h1>
+            <p>Physical Address : {{bricklayerProfile.address}}</p>
+            <p>Price  : {{bricklayerProfile.price}}p/m2</p>
+            <p>Location:{{bricklayerProfile.Location}}</p> <br>
+           <!-- <div class="bio">
              <h4>Bio</h4>
              <p>
             The most popular guy ever, and largely
             responsible for bringing the code to a njabulos audience.
           </p>
-           </div>
+           </div> -->
            <br>
-           <p>Experience : 15 years</p>
-           <p>Certified</p>
-           <p>registration number: 123456789</p>
+           <p>Experience : {{bricklayerProfile.experiences}}</p>
+           <p>Certified :{{bricklayerProfile.certified}}</p>
+           
             
-           <button (click)="next()" ion-button block secondary>Request quote</button>
+           <!--   -->
           
         </ion-card-content>
       </ion-card>

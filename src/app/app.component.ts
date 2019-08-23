@@ -14,8 +14,9 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
+
 import { SignoutPage } from '../pages/signout/signout';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 
 @Component({
@@ -24,10 +25,10 @@ import { SignoutPage } from '../pages/signout/signout';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = RegisterPage;
+  rootPage: any = OnboardingPage;
 
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
 
 
@@ -36,14 +37,14 @@ export class MyApp {
 firebase.initializeApp(firebaseConfig);
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'View profile', component: ProfileHomeOwnerPage },
-      { title: 'Messages', component:MessagesPage },
-      { title: 'Help', component: HelpPage },
-      { title: 'Feedback', component: FeedbackPage},
-      { title: 'Share', component: SharePage },
-      { title: 'Version', component: VersionPage},
-      { title: 'Signout', component: SignoutPage },
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
+      { title: 'Messages', component:MessagesPage, icon: 'mail' },
+      { title: 'Help', component: HelpPage, icon: 'help-circle-outline' },
+      { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+      { title: 'Share', component: SharePage, icon: 'share' },
+      { title: 'Version', component: VersionPage, icon: ''},
+      { title: 'Signout', component: SignoutPage, icon: 'log-out' },
     
     ];
 
@@ -51,7 +52,7 @@ firebase.initializeApp(firebaseConfig);
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = HomePage;
+     
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

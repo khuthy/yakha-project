@@ -14,6 +14,42 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.signout {
-    background: red;
+.error {
+    color: red;
+
+.container1 {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), url('../assets/imgs/splash.png');
+    background-size: cover;
+    background-position: center right;
+}
+.profile {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.157);
+   
+    
+    align-content: center;
+    align-items: center;
+    
+  
+    .thumb {
+        height: 10vh;
+        width: 10vh;
+        border-radius: 50%;
+        border: 7px solid #313131;
+        object-fit: cover;
+    }
+    .item {
+        background-color: transparent;
+        color: #fff;
+    }
+    .text-btn {
+        text-align: center;
+    }
+    .title > * {
+       line-height: 0.6;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+}
 }

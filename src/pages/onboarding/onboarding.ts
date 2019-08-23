@@ -1,6 +1,6 @@
 import { LoginPage } from './../login/login';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 
 /**
  * Generated class for the OnboardingPage page.
@@ -15,17 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
-
+@ViewChild('sub') slides:Slides
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OnboardingPage');
   }
+  nextSlide() {
+    this.slides.slideNext();
+}
 
   /* navigate page  */
   goLogin(){
     this.navCtrl.push(LoginPage);
   }
 
+ 
 }

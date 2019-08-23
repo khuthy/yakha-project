@@ -44,6 +44,7 @@ export class HomePage {
       duration: 2000
     }).present();
   }
+ 
 //viewmore
 next(){
   this.modalCtrl.create(AddBricklayerPage).present();
