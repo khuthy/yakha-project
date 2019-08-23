@@ -1,5 +1,45 @@
 page-home {
-  #map {
+  .container {
     height: 100%;
+    width: 100%;
+    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .builder {
+      position: absolute;
+      bottom: 3%;
+      right: 0;
+      left: 0;
+      top: 70%;
+    
+      .sliders {
+        padding: 20px;
+        .cards {
+          padding: 1%;
+          //border: 2px solid red;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        .top-cards {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          height: 100%;
+          .image-builder {
+            //border: solid;
+            flex: 1;
+          }
+          article {
+            text-align: left;
+            flex: 1;
+            justify-self: flex-start;
+            // border: solid;
+            line-height: 0;
+          }
+        }
+      }
+      }
+      
+    }
   }
+ 
 }
