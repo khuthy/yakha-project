@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
  import { google } from "google-maps";
 
-declare var google;
 
 declare var google
 @Component({
@@ -9,7 +8,6 @@ declare var google
   templateUrl: 'google-map.html'
 })
 export class GoogleMapComponent {
-
 
 
   constructor() {
