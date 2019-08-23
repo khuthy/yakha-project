@@ -1,7 +1,8 @@
 
 import { Component, ViewChild } from '@angular/core';
-// import { google } from "google-maps";
+ import { google } from "google-maps";
 
+ 
 
 @Component({
   selector: 'google-map',
@@ -11,8 +12,7 @@ export class GoogleMapComponent {
 
   @ViewChild("map") mapElement;
   map: any;
-  // google: google;
-
+  infoWindow;
   constructor() {
 
   }
@@ -22,17 +22,19 @@ ngOnInit(){
  // console.log('wffergfefe');
 }
   initMap(){
+
     navigator.geolocation.getCurrentPosition((position)=> {
       let geolocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(geolocation);
+
 
       // var circle = new google.maps.Circle(
       //     {center: geolocation, radius: position.coords.accuracy});
 
     let coords = new google.maps.LatLng(geolocation.lat, geolocation.lng)
+    //let coords1 = new google.maps.LatLng(-27, 26)
     let mapOptions: google.maps.MapOptions = {
       center: coords,
       zoom: 11,
@@ -43,11 +45,31 @@ ngOnInit(){
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
 
 
-    let marker: google.maps.Marker = new google.maps.Marker({
+  let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
       map: this.map,
-      position: coords
+      position: coords,
+      title: 'Click to view details'
+
     })
+    
+    let infoWindow = new google.maps.InfoWindow({
+      content: "wdfuwej sdkljerf ekjrg ekljg klgrj rgljr</b>"
+    });
+    google.maps.event.addListener(marker, 'click', (resp)=>{
+      infoWindow.open(this.map, marker)
+    })
+
+    console.log(marker); 
+
+
+
+    // let marker1: google.maps.Marker = new google.maps.Marker({
+    //   map: this.map,
+    //   position: coords1,
+    // })
   });
+
+
   }
   // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
   // let marker: google.maps.Marker = new google.maps.Marker({

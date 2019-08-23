@@ -25,6 +25,7 @@ export class HomePage {
    // console.log(this.places);
 
   }
+ 
 //viewmore
 next(){
   this.modalCtrl.create(AddBricklayerPage).present();

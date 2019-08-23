@@ -27,7 +27,7 @@ export class MyApp {
   rootPage: any = RegisterPage;
 
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
 
 
@@ -36,14 +36,14 @@ export class MyApp {
 firebase.initializeApp(firebaseConfig);
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'View profile', component: ProfileHomeOwnerPage },
-      { title: 'Messages', component:MessagesPage },
-      { title: 'Help', component: HelpPage },
-      { title: 'Feedback', component: FeedbackPage},
-      { title: 'Share', component: SharePage },
-      { title: 'Version', component: VersionPage},
-      { title: 'Signout', component: SignoutPage },
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
+      { title: 'Messages', component:MessagesPage, icon: 'mail' },
+      { title: 'Help', component: HelpPage, icon: 'help-circle-outline' },
+      { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+      { title: 'Share', component: SharePage, icon: 'share' },
+      { title: 'Version', component: VersionPage, icon: ''},
+      { title: 'Signout', component: SignoutPage, icon: 'log-out' },
     
     ];
 
