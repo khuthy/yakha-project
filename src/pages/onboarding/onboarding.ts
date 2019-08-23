@@ -1,7 +1,6 @@
 import { LoginPage } from './../login/login';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { Component,ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 
 /**
  * Generated class for the OnboardingPage page.
@@ -16,22 +15,21 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+@ViewChild('sub') slides:Slides
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OnboardingPage');
   }
+  nextSlide() {
+    this.slides.slideNext();
+}
 
   /* navigate page  */
   goLogin(){
     this.navCtrl.push(LoginPage);
   }
 
- predefinedUser(val) {
-    this.authService.predefined = val;
-    this.navCtrl.setRoot(LoginPage);
- }
-
+ 
 }

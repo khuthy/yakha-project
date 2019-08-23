@@ -15,7 +15,7 @@
     <ion-item *ngFor="let place of places" (click)="next()">{{place.title}}</ion-item>
   </ion-list> -->
  <ion-card>
-
+  <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
       <img src="../../assets/img/advance-card-map-madison.png">
       <ion-fab left bottom>
         <button ion-fab (click)="addLocation()">

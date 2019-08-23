@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { CoordsProvider } from '../providers/coords/coords';
-
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 @NgModule({
   declarations: [
     MyApp,
@@ -71,6 +71,7 @@ import { CoordsProvider } from '../providers/coords/coords';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    GooglePlaceModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
