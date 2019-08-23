@@ -14,7 +14,7 @@ import { ListPage } from '../pages/list/list';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
+
 import { SignoutPage } from '../pages/signout/signout';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 
@@ -52,7 +52,7 @@ firebase.initializeApp(firebaseConfig);
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = HomePage;
+     
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

@@ -38,7 +38,7 @@ export class BaccountSetupPage {
    experiences: '',
    address:'',
    price:'',
-   Location:''
+   location:''
  }
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -53,8 +53,7 @@ export class BaccountSetupPage {
     this.bricklayerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-     
-      certified: new  FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
+      certified: new  FormControl('', Validators.compose([Validators.required])),
       experience: new  FormControl('', Validators.compose([Validators.required])),
       address: new  FormControl('', Validators.compose([Validators.required])),
       price: new  FormControl('', Validators.compose([Validators.required])),
@@ -99,11 +98,15 @@ export class BaccountSetupPage {
       console.log("Something went wrong: ", err);
     })
   }
-  async createprofile(): Promise<void> {
+  async createprofile(profileForm: FormGroup): Promise<void> {
     
-   
-           // load the profile creation process
-           const load = this.loadingCtrl.create({
+    if(!profileForm.valid) {
+      console.log(
+        'Need to complete the form, current value: ',
+        profileForm.value
+      );
+    }else {
+      const load = this.loadingCtrl.create({
             content: 'Creating Profile..'
           });
           load.present();
@@ -127,6 +130,9 @@ export class BaccountSetupPage {
         this.isProfile = false;
         load.dismiss();
       })
+    }
+           // load the profile creation process
+           
       
     
   }
@@ -143,6 +149,24 @@ export class BaccountSetupPage {
     'personalNumber': [
       { type: 'required', message: 'Cellnumber is required.' }
     ],
+    'bricklayerImage': [ {
+      type: 'required', message: 'Field is required'
+    }],
+'certified': [ {
+  type: 'required', message: 'Field is required'
+}],
+'experience': [ {
+  type: 'required', message: 'Field is required'
+}],
+'address': [ {
+  type: 'required', message: 'Field is required'
+}],
+'price': [ {
+  type: 'required', message: 'Field is required'
+}],
+'location': [ {
+  type: 'required', message: 'Field is required'
+}],
   };
   getProfile(){
     // load the process
@@ -170,7 +194,7 @@ export class BaccountSetupPage {
           this.bricklayerProfile.experiences  = doc.data().experience;
           this.bricklayerProfile. address  = doc.data(). address;
           this.bricklayerProfile.price  = doc.data().price;
-          this.bricklayerProfile.Location  = doc.data().location
+          this.bricklayerProfile.location  = doc.data().location
           
         })
         this.isProfile = true;
