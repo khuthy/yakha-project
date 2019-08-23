@@ -108,7 +108,8 @@ import { CoordsProvider } from '../providers/coords/coords';
     UserProvider,
     AuthServiceProvider,
     Camera,
-    CoordsProvider
+    CoordsProvider 
+
   ]
 })
 export class AppModule {}
