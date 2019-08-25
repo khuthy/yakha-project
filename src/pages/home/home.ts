@@ -19,6 +19,7 @@ export class HomePage {
   // lng: number = 27.949579399999998;
   places;
   @ViewChild("map") mapElement;
+  map: any;
 
 //  marker: any;
   constructor(public navCtrl: NavController,
