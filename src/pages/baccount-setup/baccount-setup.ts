@@ -51,6 +51,7 @@ export class BaccountSetupPage {
      country: ['ZA']
    }
  }
+  location: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
