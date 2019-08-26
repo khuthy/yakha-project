@@ -39,7 +39,7 @@ export class HomePage {
 
 //viewmore
 viewBuilderInfo(){
-  this.modalCtrl.create(BuilderProfileviewPage).present();
+  this.navCtrl.push(BuilderProfileviewPage);
 }
 
 // onLocateUser(){

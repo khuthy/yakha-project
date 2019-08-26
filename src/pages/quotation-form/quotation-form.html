@@ -7,9 +7,13 @@
 
 <ion-content padding>
 <h1>Quotation form</h1>
+<div *ngIf="houseImage" class="image">
+  <img src="{{houseImage}}">
+</div>
+<button *ngIf="!houseImage" ion-button clear large full (click)="selectImage()">Select Image</button>
+<p *ngIf="!houseImage">Please Upload the house Plan</p>
 <ion-list>
-
-    <ion-item>
+<ion-item>
       <ion-label floating>Preffered start date</ion-label>
       <ion-input type="date" name="startDate"[(ngModel)]="HomeOwnerQuotation.startDate"></ion-input>
     </ion-item>
@@ -55,20 +59,12 @@
             <ion-label floating>Width in meter</ion-label>
             <ion-input type="tel" max-width="4" name="width" [(ngModel)]="HomeOwnerQuotation.width"></ion-input>
           </ion-item>
-
-
-          <div *ngIf="houseImage" class="image">
-            <img src="{{houseImage}}">
-         </div>
-          <button *ngIf="!houseImage" ion-button clear large full (click)="selectImage()">Select Image</button>
-          <p *ngIf="!houseImage">Please Upload the house Plan</p>
-
-     <ion-item>
+<ion-item>
         <ion-label position="floating">Additional comments</ion-label>
         <ion-textarea rows="6" cols="20" name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
       </ion-item>
   
   </ion-list>
 
-  <button (click)="next()" ion-button block primary>Submit Quote</button>
+  <button (click)="createQuations()" ion-button block primary>Submit Quote</button>
 </ion-content>
