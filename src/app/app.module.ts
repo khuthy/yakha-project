@@ -65,7 +65,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
