@@ -31,7 +31,7 @@
          </div>
 
       <ion-item >
-          <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
+          <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.address">
          <div class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
