@@ -39,7 +39,9 @@ import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { CoordsProvider } from '../providers/coords/coords';
-
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { WelcomePage } from '../pages/welcome/welcome';
+import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 @NgModule({
   declarations: [
     MyApp,
@@ -64,13 +66,16 @@ import { CoordsProvider } from '../providers/coords/coords';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    BricklayerlandingPage,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
+    GooglePlaceModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -97,7 +102,9 @@ import { CoordsProvider } from '../providers/coords/coords';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    BricklayerlandingPage,
+    WelcomePage
 
 
   ],
@@ -108,7 +115,8 @@ import { CoordsProvider } from '../providers/coords/coords';
     UserProvider,
     AuthServiceProvider,
     Camera,
-    CoordsProvider
+    CoordsProvider 
+
   ]
 })
 export class AppModule {}

@@ -1,3 +1,83 @@
 page-home {
- 
+  .menus {
+    position: fixed;
+    top: 1%;
+    z-index: 100;
+    
+  }
+  .slider {
+    width: 100%;
+    height: 35%;
+    //background: red;
+    position: absolute;
+    bottom: 0%;
+    z-index: 100;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .fa {
+    font-weight: bold;
+    font-size: 3rem;
+  }
+
+  .magic {
+    padding: 20px;
+  }
+  .price {
+    color: darkorange;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .squire {
+    font-size: 10px;
+    position: relative;
+    top: -9px;
+
+  }
+
+  .card {
+    padding: 1%;
+    border-radius: 12px;
+     //border: 1px solid rgba(20, 9, 19, 0.8);
+     box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.164);
+     background: #fff;
+   .thumbnail {
+     display: flex;
+     flex-direction: column;
+     .thumbnail > * {
+       flex: 1 1 100%;
+     }
+     .top {
+       display: flex;
+       flex-direction: row;
+       
+       .images {
+        width: 80%;
+        height: 10vh;
+        //border: 1px solid #ddd;
+        img {
+          width: 100%;
+          height: 10vh;
+          object-fit: cover;
+          border-top-left-radius: 12px;
+        }
+      }
+      .title {
+        margin: 0 3%;
+        text-align: left;
+        color: rgb(139, 139, 139);
+        .stars {
+          max-width: 50%;
+          
+        }
+      }
+     }
+     .bottom {
+       padding: 20px;
+       .view {
+         display: flex;
+         justify-content: space-between;
+       }
+     }
+   }
+  }
+  
 }

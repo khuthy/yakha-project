@@ -26,11 +26,11 @@ export class QuotationFormPage {
   storage = firebase.storage().ref();
   
   uid
-  profileImage
+  houseImage
   quotationForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
-  displayProfile;
+  displayQuation;
   HomeOwnerQuotation = {
     dateSubmitted:'',
     startDate:'',
@@ -94,8 +94,8 @@ async selectImage() {
   await this.camera.getPicture(option).then(res => {
     console.log(res);
     const image =`data:image/jpeg;base64,${res}` ;
-    this.profileImage = image;
-    let file = 'HomeOwner-Profile/' + this.authUser.getUser() + '.jpg';
+    this.houseImage = image;
+    let file = 'QuatationForm/' + this.authUser.getUser() + '.jpg';
     const UserImage = this.storage.child(file);
     const upload = UserImage.putString(image, 'data_url');
     upload.on('state_changed', snapshot => {
@@ -115,7 +115,7 @@ async selectImage() {
     console.log("Something went wrong: ", err);
   })
 }
-async createprofile(quotationForm: FormGroup): Promise<void> {
+async createQuations(quotationForm: FormGroup): Promise<void> {
   if (!quotationForm.valid) {
     console.log(
       'Need to complete the form, current value: ',

@@ -1,41 +1,45 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>quotation-form</ion-title>
+    <ion-title>Quotation-form</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 <h1>Quotation form</h1>
+<div *ngIf="houseImage" class="image">
+  <img src="{{houseImage}}">
+</div>
+<button *ngIf="!houseImage" ion-button clear large full (click)="selectImage()">Select Image</button>
+<p *ngIf="!houseImage">Please Upload the house Plan</p>
 <ion-list>
-
-    <ion-item>
+<ion-item>
       <ion-label floating>Preffered start date</ion-label>
-      <ion-input type="date"></ion-input>
+      <ion-input type="date" name="startDate"[(ngModel)]="HomeOwnerQuotation.startDate"></ion-input>
     </ion-item>
 
     
     <ion-item>
         <ion-label floating>Preffered end date</ion-label>
-        <ion-input type="date"></ion-input>
+        <ion-input type="date" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-input>
       </ion-item>
   
       <ion-item>
           <ion-label> Select Wall type</ion-label>
-          <ion-select>
-            <ion-option value="nes">Single wall</ion-option>
-            <ion-option value="n64">Double wall</ion-option>
+          <ion-select name="wallType" [(ngModel)]="HomeOwnerQuotation.wallType">
+            <ion-option value="singleWall">Single wall</ion-option>
+            <ion-option value="doubleWall">Double wall</ion-option>
            </ion-select>
         </ion-item>
 
         <ion-item>
             <ion-label> Select brick type</ion-label>
-            <ion-select multiple="true">
-              <ion-option value="nes">Common burnt clay bricks</ion-option>
-              <ion-option value="n64">Sand lime Bricks</ion-option>
-              <ion-option value="n64">Engineering Bricks</ion-option>
-              <ion-option value="n64">Concrete bricks</ion-option>
-              <ion-option value="n64">Fly ash clay bricks</ion-option>
+            <ion-select name="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
+              <ion-option value="common">Common burnt clay bricks</ion-option>
+              <ion-option value="sand">Sand lime Bricks</ion-option>
+              <ion-option value="engineering">Engineering Bricks</ion-option>
+              <ion-option value="concrete">Concrete bricks</ion-option>
+              <ion-option value="clay">Fly ash clay bricks</ion-option>
              
              </ion-select>
           </ion-item>
@@ -43,31 +47,24 @@
 
     <ion-item>
         <ion-label floating>Height in meter</ion-label>
-        <ion-input type="tel" max-height="4"></ion-input>
+        <ion-input type="tel" max-height="4" name="height" [(ngModel)]="HomeOwnerQuotation.height" ></ion-input>
       </ion-item>
 
       <ion-item>
           <ion-label floating>Length in meter</ion-label>
-          <ion-input type="tel" max-length="4"></ion-input>
+          <ion-input type="tel" max-length="4" name="length" [(ngModel)]="HomeOwnerQuotation.length"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label floating>Width in meter</ion-label>
-            <ion-input type="tel" max-width="4"></ion-input>
+            <ion-input type="tel" max-width="4" name="width" [(ngModel)]="HomeOwnerQuotation.width"></ion-input>
           </ion-item>
-
-
-    <ion-item>
-      <ion-label floating>Upload photo of house plan</ion-label>
-       <button ion-fab mini><ion-icon name="camera"></ion-icon></button>
-     </ion-item>
-
-     <ion-item>
+<ion-item>
         <ion-label position="floating">Additional comments</ion-label>
-        <ion-textarea rows="6" cols="20"></ion-textarea>
+        <ion-textarea rows="6" cols="20" name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
       </ion-item>
   
   </ion-list>
 
-  <button (click)="next()" ion-button block primary>Submit Quote</button>
+  <button (click)="createQuations()" ion-button block primary>Submit Quote</button>
 </ion-content>

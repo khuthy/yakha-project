@@ -56,16 +56,17 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginOwnerPage');
     this.firebase.auth().onAuthStateChanged( user => {
       if (user){
+        
         // send the user's data if they're still loggedin
-        this.userProvider.setUser(user);
-        this.db.collection('users').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
+        this.authService.setUser(user);
+        this.db.collection('User').where('uid', '==', user.uid).get().then(snapshot => {
           if (snapshot.empty){
-            this.navCtrl.push(AccountSetupPage);
+            
           } else {
             this.navCtrl.setRoot(HomeOwnerProfilePage);
             
           }
-        });
+        })
       }
     })
   }

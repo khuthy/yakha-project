@@ -1,39 +1,123 @@
 
 
-<ion-content padding>
-    <div class="container">
-      <ion-slides pager class="builder-slide">
-          <ion-slide>
-            <div class="card">
-              <div class="content">
-                <div class="top">
-                  <img src="http://yesofcorsa.com/wp-content/uploads/2017/04/Jump-Wallpaper-Gallery.jpg" class="thumbnail" alt="">
-                  <article>
-                    <p><strong>Khuthy muenda</strong></p>
-                    <p><strong>R200.00 p/m<span>2</span></strong></p>
-                   <p><strong>*******</strong></p>
-                  </article>
-                </div>
-              </div>
-            </div>      
-          </ion-slide>
-          <ion-slide>
-              <div class="card">
-                  <div class="content">
-                    <div class="top">
-                      <img src="http://yesofcorsa.com/wp-content/uploads/2017/04/Jump-Wallpaper-Gallery.jpg" class="thumbnail" alt="">
-                      <article>
-                        <p><strong>Khuthy muenda</strong></p>
-                        <p><strong>R200.00 p/m<span>2</span></strong></p>
-                       <p><strong>*******</strong></p>
-                      </article>
-                    </div>
-                  </div>
-                </div>
-          </ion-slide>
-        </ion-slides>
+<ion-content> 
+  <div class="menus">
+    <button ion-button clear menuToggle>
+        <ion-icon name="menu" class="fa"></ion-icon>
+      </button>
+  </div>
     
-    </div>
+  
+  <div class="slider">
+    <ion-slides spaceBetween="-33">
+      <ion-slide class="magic">
+        <div class="card" (click)="viewBuilderInfo()">
+     <div class="thumbnail">
+       <div class="top">
+         <div class="images">
+           <img src="http://www.advancednewbuilds.co.uk/wp-content/uploads/2016/10/Bricklayers_wanted_in_Kent.jpg" alt="tough">
+         </div>
+         <div class="title">
+           <p><strong>Yourname</strong></p>
+           <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
+           <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
+         </div>
+         
+       </div>
+       
+       <div class="bottom">
+         <hr style="border-color: #ddd">
+         <div class="view">
+          <p>View more</p>
+          <p><ion-icon name="arrow-forward"></ion-icon></p>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   </ion-slide>
+   <ion-slide class="magic">
+       <div class="card">
+    <div class="thumbnail">
+      <div class="top">
+        <div class="images">
+          <img src="../../assets/imgs/th.jpg" alt="tough">
+        </div>
+        <div class="title">
+          <p><strong>Yourname</strong></p>
+          <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
+          <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
+         
+        </div>
         
+      </div>
+      
+      <div class="bottom">
+        <hr style="border-color: #ddd">
+        <div class="view">
+         <p>View more</p>
+         <p><ion-icon name="person"></ion-icon></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </ion-slide>
+  <ion-slide class="magic">
+      <div class="card">
+   <div class="thumbnail">
+     <div class="top">
+       <div class="images">
+         <img src="https://pagefair.com/wp-content/uploads/2014/03/Home-Builder-9.jpg" alt="tough">
+       </div>
+       <div class="title">
+         <p><strong>Yourname</strong></p>
+         <p><strong>R201.00 p/m2</strong></p>
+         <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
+        
+       </div>
+       
+     </div>
+     
+     <div class="bottom">
+       <hr style="border-color: #ddd">
+       <div class="view">
+        <p>View more</p>
+        <p><ion-icon name="person"></ion-icon></p>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ </ion-slide>
+ </ion-slides>  
+</div>
+
+
+<ion-content>
+  <div class="container">
+
+    <div class="builder">
+        <ion-slides class="image-slide" spaceBetween="-20">
+          <ion-slide class="sliders">
+              <div class="cards">
+                  <div class="top-cards">
+                     <img src="" alt="" class="image-builder">
+                  <article>
+                      <h5>khuthy muenda</h5>
+                      <p>R200.00 per/m <span>2</span></p>
+                  </article>
+                  </div>
+                  <div class="botton-card">
+                  <p>View more</p>
+
+                  </div>
+              </div>
+          </ion-slide>
+
+      </ion-slides>
+    </div>
+
+  </div>
 
 </ion-content>

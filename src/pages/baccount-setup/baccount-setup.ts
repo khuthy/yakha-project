@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
@@ -6,6 +6,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 import { HomePage } from '../home/home';
+import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -38,9 +41,18 @@ export class BaccountSetupPage {
    experiences: '',
    address:'',
    price:'',
-   Location:''
+   location:''
  }
-  constructor(public navCtrl: NavController, 
+ @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+
+
+ formattedAddress='';
+ options = {
+   componentRestrictions: {
+     country: ['ZA']
+   }
+ }
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
     public camera: Camera,
@@ -53,8 +65,7 @@ export class BaccountSetupPage {
     this.bricklayerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-     
-      certified: new  FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
+      certified: new  FormControl('', Validators.compose([Validators.required])),
       experience: new  FormControl('', Validators.compose([Validators.required])),
       address: new  FormControl('', Validators.compose([Validators.required])),
       price: new  FormControl('', Validators.compose([Validators.required])),
@@ -65,6 +76,9 @@ export class BaccountSetupPage {
   ionViewDidLoad() {
     console.log( this.uid)
     console.log( this.authUser.getUser())
+  }
+  public handleAddressChange(address: Address) {
+    console.log(address);
   }
   async selectImage() {
     let option: CameraOptions = {
@@ -99,19 +113,23 @@ export class BaccountSetupPage {
       console.log("Something went wrong: ", err);
     })
   }
-  async createprofile(): Promise<void> {
-    
-   
-           // load the profile creation process
-           const load = this.loadingCtrl.create({
+  async createprofile(profileForm: FormGroup): Promise<void> {
+
+    if(!profileForm.valid) {
+      console.log(
+        'Need to complete the form, current value: ',
+        profileForm.value
+      );
+    }else {
+      const load = this.loadingCtrl.create({
             content: 'Creating Profile..'
           });
           load.present();
       const user = this.db.collection('bricklayerProfile').doc(this.authUser.getUser()).set(this.bricklayerProfile);
-      
+
       // upon success...
       user.then( () => {
-        this.navCtrl.setRoot(HomePage)
+        this.navCtrl.setRoot(BricklayerlandingPage)
         this.toastCtrl.create({
           message: 'User Profile added.',
           duration: 2000,
@@ -127,8 +145,11 @@ export class BaccountSetupPage {
         this.isProfile = false;
         load.dismiss();
       })
-      
-    
+    }
+           // load the profile creation process
+
+
+
   }
 
   validation_messages = {
@@ -139,10 +160,28 @@ export class BaccountSetupPage {
       { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
       { type: 'validUsername', message: 'Your username has already been taken.' }
     ],
-    
+
     'personalNumber': [
       { type: 'required', message: 'Cellnumber is required.' }
     ],
+    'bricklayerImage': [ {
+      type: 'required', message: 'Field is required'
+    }],
+'certified': [ {
+  type: 'required', message: 'Field is required'
+}],
+'experience': [ {
+  type: 'required', message: 'Field is required'
+}],
+'address': [ {
+  type: 'required', message: 'Field is required'
+}],
+'price': [ {
+  type: 'required', message: 'Field is required'
+}],
+'location': [ {
+  type: 'required', message: 'Field is required'
+}],
   };
   getProfile(){
     // load the process
@@ -153,7 +192,7 @@ export class BaccountSetupPage {
     load.present();
     // create a reference to the collection of HomeOwnerProfile...
     let users = this.db.collection('bricklayerProfile');
-    
+
     // ...query the profile that contains the uid of the currently logged in user...
     let query = users.where("uid", "==", this.authUser.getUser().uid);
     query.get().then(querySnapshot => {
@@ -170,8 +209,8 @@ export class BaccountSetupPage {
           this.bricklayerProfile.experiences  = doc.data().experience;
           this.bricklayerProfile. address  = doc.data(). address;
           this.bricklayerProfile.price  = doc.data().price;
-          this.bricklayerProfile.Location  = doc.data().location
-          
+          this.bricklayerProfile.location  = doc.data().location
+
         })
         this.isProfile = true;
       } else {

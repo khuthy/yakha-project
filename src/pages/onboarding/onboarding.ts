@@ -1,6 +1,7 @@
 import { LoginPage } from './../login/login';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
@@ -16,6 +17,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
+ @ViewChild('myslider') slides: Slides;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
   }
@@ -25,9 +27,13 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  goLogin(){
-    this.navCtrl.push(LoginPage);
+  next() {
+   this.slides.slideNext();
   }
+  gotoWelcome(){
+    this.navCtrl.push(WelcomePage);
+  }
+
 
  predefinedUser(val) {
     this.authService.predefined = val;

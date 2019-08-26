@@ -14,5 +14,62 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+    
+}
 
-m,
+.side-menu {
+    background:  linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.637)), url('../assets/imgs/splash.png');
+    background-position: center;
+    background-size: cover;
+}
+.btn-side-menu {
+    background: transparent;
+    color: rgb(201, 201, 201);
+    font-weight: 300;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+  &:active {
+      background: rgb(255, 60, 0);
+      color: #fff;
+  }  
+}
+.fas {
+    width: 40px;
+    height: 30px;
+}
+.profile {
+    height: 20%;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.938);
+    display: flex;
+    align-items: center;
+    //justify-content: space-around;
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+    font-weight: 100;
+    font-size: 20px;
+    .thumb {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        border: 5px solid rgba(0, 0, 0, 0.301);
+        object-fit: cover;
+    }
+}
+.signout {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+
+
+
+
