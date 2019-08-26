@@ -43,7 +43,7 @@ export class BaccountSetupPage {
    location:''
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
- map: any;
+
 
  formattedAddress='';
  options = {
