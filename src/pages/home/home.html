@@ -15,7 +15,7 @@
     <ion-item *ngFor="let place of places" (click)="next()">{{place.title}}</ion-item>
   </ion-list> -->
  <ion-card>
-  <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+  
       <img src="../../assets/img/advance-card-map-madison.png">
       <ion-fab left bottom>
         <button ion-fab (click)="addLocation()">
@@ -77,7 +77,7 @@
 
 <ion-content>
   <div class="container">
-    
+
     <div class="builder">
         <ion-slides class="image-slide" spaceBetween="-20">
           <ion-slide class="sliders">
@@ -87,18 +87,18 @@
                   <article>
                       <h5>khuthy muenda</h5>
                       <p>R200.00 per/m <span>2</span></p>
-                  </article> 
+                  </article>
                   </div>
                   <div class="botton-card">
                   <p>View more</p>
-              
+
                   </div>
-              </div> 
+              </div>
           </ion-slide>
-        
+
       </ion-slides>
     </div>
-    
+
   </div>
-     
+
 </ion-content>
