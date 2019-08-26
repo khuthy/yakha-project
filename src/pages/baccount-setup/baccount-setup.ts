@@ -5,7 +5,6 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-import { HomePage } from '../home/home';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
@@ -52,6 +51,7 @@ export class BaccountSetupPage {
      country: ['ZA']
    }
  }
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -59,8 +59,9 @@ export class BaccountSetupPage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private formBuilder: FormBuilder) {
-    this.uid = firebase.auth().currentUser.uid;
+    private formBuilder: FormBuilder)
+    {
+   // this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.bricklayerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
@@ -78,7 +79,9 @@ export class BaccountSetupPage {
     console.log( this.authUser.getUser())
   }
   public handleAddressChange(address: Address) {
-    console.log(address);
+    this.location = address.geometry.location.lat() + ',' + address.geometry.location.lng() ;
+    console.log(this.location)
+    
   }
   async selectImage() {
     let option: CameraOptions = {

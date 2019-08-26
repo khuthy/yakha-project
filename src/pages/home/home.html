@@ -1,30 +1,31 @@
 
 
-<ion-content> 
+<ion-content>
+    <div #map id="map"></div>
   <div class="menus">
     <button ion-button clear menuToggle>
         <ion-icon name="menu" class="fa"></ion-icon>
       </button>
   </div>
-    
-  
+
+
   <div class="slider">
     <ion-slides spaceBetween="-33">
       <ion-slide class="magic">
-        <div class="card" (click)="viewBuilderInfo()">
+        <div class="card">
      <div class="thumbnail">
        <div class="top">
          <div class="images">
            <img src="http://www.advancednewbuilds.co.uk/wp-content/uploads/2016/10/Bricklayers_wanted_in_Kent.jpg" alt="tough">
          </div>
          <div class="title">
-           <p><strong>Yourname</strong></p>
+           <p><strong>{{lat}}</strong></p>
            <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
            <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
          </div>
-         
+
        </div>
-       
+
        <div class="bottom">
          <hr style="border-color: #ddd">
          <div class="view">
@@ -34,7 +35,7 @@
        </div>
      </div>
    </div>
- 
+
    </ion-slide>
    <ion-slide class="magic">
        <div class="card">
@@ -47,11 +48,11 @@
           <p><strong>Yourname</strong></p>
           <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
           <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
-         
+
         </div>
-        
+
       </div>
-      
+
       <div class="bottom">
         <hr style="border-color: #ddd">
         <div class="view">
@@ -74,11 +75,11 @@
          <p><strong>Yourname</strong></p>
          <p><strong>R201.00 p/m2</strong></p>
          <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
-        
+
        </div>
-       
+
      </div>
-     
+
      <div class="bottom">
        <hr style="border-color: #ddd">
        <div class="view">
@@ -90,7 +91,7 @@
  </div>
 
  </ion-slide>
- </ion-slides>  
+ </ion-slides>
 </div>
 
 

@@ -1,3 +1,4 @@
+import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { VersionPage } from './../pages/version/version';
 import { SharePage } from './../pages/share/share';
 import { FeedbackPage } from './../pages/feedback/feedback';
@@ -35,7 +36,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 firebase.initializeApp(firebaseConfig);
-this.authState();
+//this.authState();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -51,7 +52,7 @@ this.authState();
 
   initializeApp() {
     this.platform.ready().then(() => {
-      
+      this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -60,11 +61,11 @@ this.authState();
   }
   authState(){
     firebase.auth().onAuthStateChanged((user)=>{
-      if(user)
+      if(user.uid=null)
       {
-        this.rootPage = HomePage; 
+        this.rootPage = HomePage;
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = BaccountSetupPage;
       }
     })
   }
@@ -77,10 +78,10 @@ this.authState();
     firebase.auth().signOut().then(() => {
       console.log('Signed Out');
       this.rootPage = LoginPage;
-      
+
     }).catch((err) => {
       console.log('error occured while signing out');
-      
+
     })
   }
   viewProfile() {

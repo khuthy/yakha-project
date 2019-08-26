@@ -1,13 +1,7 @@
-import { PlacesProvider } from './../../providers/places/places';
-import { PlacePage } from './../place/place';
-import { NewPlacesPage } from './../new-places/new-places';
-import { AddBricklayerPage } from './../add-bricklayer/add-bricklayer';
-import { BuilderProfileviewPage } from './../builder-profileview/builder-profileview';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { Geolocation } from '@ionic-native/geolocation';
 declare var google;
 
 @Component({
@@ -21,55 +15,106 @@ export class HomePage {
   @ViewChild("map") mapElement;
   map: any;
 //  marker: any;
+ public lat: any;
+public lng: any;
+geoloc;
   constructor(public navCtrl: NavController,
-    private modalCtrl : ModalController, public loader : LoadingController
+    private modalCtrl : ModalController, public loader : LoadingController,
+    private geolocation: Geolocation
  ) {
+  this.geolocation.getCurrentPosition().then((resp) => {
+    let NEW_ZEALAND_BOUNDS = {
+      north: -22.0913127581,
+      south: -34.8191663551,
+      west: 10.830120477,
+      east: 32.830120477,
+    };
+    let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+    let mapOptions = {
+      center : coords,
+      zoom: 11,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      restriction: {
+        latLngBounds: NEW_ZEALAND_BOUNDS,
+        strictBounds: false,
+      },
+      disableDefaultUI: true
+    }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    firebase.firestore().collection('bricklayerProfile').get().then((resp)=>{
 
+      resp.forEach((doc)=> {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id,  doc.data().location);
+        let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
+        let coord = new google.maps.LatLng(doc.data().location);
+         let marker = new google.maps.Marker({
+             map: this.map,
+             position: coord,
+             title: 'Click to view details',
+           })
+                let infoWindow = new google.maps.InfoWindow({
+            content: lat
+       });
+       google.maps.event.addListener(marker, 'click', (resp)=>{
+        infoWindow.open(this.map, marker)
+        })
+        google.maps.event.addListener( marker,'click', (resp) => {
+          this.map.setZoom(15);
+          this.map.setCenter(marker.getPosition());
+        });
+        let cityCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.6,
+          map: this.map,
+          center: coords,
+          radius: 10000
+        });
+      })
+     
+      // });
+      // // console.log(marker);
+      // } else {
+      //   console.log("The firestore is empty");
+
+      // }
+    });
+
+   }).catch((error) => {
+     console.log('Error getting location', error);
+   });
   }
 
   ionViewDidLoad() {
-  // this.places = this.placeProvider.getPlaces();
-   // console.log(this.places);
-   this.initMap();
     this.loader.create({
       content:"Loading..",
-      duration: 2000
+      duration: 1000
     }).present();
   }
 
-//viewmore
-viewBuilderInfo(){
-  this.navCtrl.push(BuilderProfileviewPage);
+
+loadMap(){
+
+
+
+  // let watch = this.geolocation.watchPosition();
+  // watch.subscribe((data) => {
+  //  // data can be a set of coordinates, or an error (if an error occurred).
+  //  this.lat = data.coords.latitude;
+  //  this.lng = data.coords.longitude;
+
+  //  let coords = new google.maps.LatLng(21, -27);
+  //  let mapOptions = {
+  //   center : coords,
+  //   zoom: 15,
+  //   mapTypeId: google.maps.MapTypeId.ROADMAP
+  // }
+  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  // });
 }
-
-// onLocateUser(){
-//   this.geolocation.getCurrentPosition()
-//   .then(
-//     (location) => {
-//       console.log('Latitude: ' + location.coords.latitude, 'Longitude: '+ location.coords.longitude);
-//       this.location.lat = location.coords.latitude;
-//       this.location.lng = location.coords.longitude;
-
-//     }
-//   )
-// }
-// addLocation(){
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition((position)=> {
-
-//       let pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       };
-//       firebase.firestore().collection('location').add({
-//         lat: pos.lat,
-//         lng : pos.lng
-//       })
-//     } , (error)=> {
-//       console.log(error.code + 'Message:' + error.message);
-//     });
-//   }
-// }
 initMap(){
 
   navigator.geolocation.getCurrentPosition((position)=> {
@@ -123,6 +168,7 @@ initMap(){
   // });
 
   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+  console.log(this.map);
 
   firebase.firestore().collection('location').get().then((resp)=>{
 
@@ -155,7 +201,7 @@ initMap(){
           this.map.panTo(marker.getPosition());
         }, 3000);
       });
-
+    })
     // });
     // // console.log(marker);
     // } else {
@@ -214,7 +260,7 @@ initMap(){
   //    console.log("The firestore is empty");
 
   //  }
-  })
+
 
 
 
