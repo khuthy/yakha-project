@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import * as firebase from 'firebase';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 
 
 /**
@@ -39,6 +40,8 @@ export class RegisterPage {
           Validators.compose([Validators.minLength(6), Validators.required])
         ]
       });
+      
+      console.log(this.authService.manageUsers());
   }
 ​
   ionViewDidLoad() {
@@ -55,6 +58,7 @@ export class RegisterPage {
         signupForm.value
       );
     } else {
+
       const email: string = signupForm.value.email;
       const password: string = signupForm.value.password;
 ​
@@ -62,8 +66,14 @@ export class RegisterPage {
         () => {
           this.loading.dismiss().then(() => {
             console.log();
-            let key=firebase.auth().currentUser.uid;
-           this.navCtrl.setRoot(AccountSetupPage, key)
+            if(this.authService.manageUsers() == 'bricklayer') {
+              let bricklayer = firebase.auth().currentUser.uid;
+              this.navCtrl.setRoot(BaccountSetupPage, bricklayer)
+            }else {
+                let key=firebase.auth().currentUser.uid;
+                this.navCtrl.setRoot(AccountSetupPage, key)
+            }
+           
           });
         },
         error => {

@@ -1,4 +1,4 @@
-import { GoogleMapComponent } from './../components/google-map/google-map';
+
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
@@ -39,8 +39,8 @@ import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { CoordsProvider } from '../providers/coords/coords';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
-
 @NgModule({
   declarations: [
     MyApp,
@@ -65,15 +65,14 @@ import { WelcomePage } from '../pages/welcome/welcome';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage,
-    GoogleMapComponent,
-    WelcomePage
+    PlacePage
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
+    GooglePlaceModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -112,7 +111,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
     UserProvider,
     AuthServiceProvider,
     Camera,
-    CoordsProvider
+    CoordsProvider 
+
   ]
 })
 export class AppModule {}

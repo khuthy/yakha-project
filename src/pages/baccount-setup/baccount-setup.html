@@ -11,5 +11,95 @@
 </ion-header>
 
 <ion-content padding>
+  <div *ngIf="profileImage" class="image">
+        <img src="{{profileImage}}">
+     </div>
+      <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
+      <p *ngIf="!profileImage">Please Upload an image</p>
+<form [formGroup]="profileForm">
 
+  <ion-list>
+
+      <ion-item >
+          <ion-label position="floating"> FullName</ion-label>
+          <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="bricklayerProfile.fullName" ngDefaultControl></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.fullName">
+         <div class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+      <ion-item >
+          <ion-label position="floating"> Physical Address</ion-label>
+          <ion-input ngx-google-places-autocomplete formControlName="address" [options]='options' #placesRef="ngx-places" [(ngModel)]="bricklayerProfile.address" (onAddressChange)="handleAddressChange($event)" ngDefaultControl></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.address">
+         <div class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+    <!-- <ion-item>
+        <ion-label position="floating">Features</ion-label>
+        <ion-select [(ngModel)]="room.features" okText="Okay" multiple="true"   cancelText="Dismiss">
+          <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+
+
+      <ion-item >
+          <ion-label position="floating">Price (p/m2)</ion-label>
+          <ion-input type="text" formControlName="price" name="price" [(ngModel)]="bricklayerProfile.price" ngDefaultControl></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.price">
+         <div class="messages" *ngIf="profileForm.get('price').hasError(validate.type) && (profileForm.get('price').dirty || profileForm.get('price').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+      <ion-item >
+          <ion-label position="floating">Experience</ion-label>
+        <ion-select formControlName="experience" name="experience" [(ngModel)]="bricklayerProfile.experiences"  cancelText="Dismiss">
+          <ion-option *ngFor="let e of experiences" value="{{e}}">{{e}}</ion-option>
+        </ion-select>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.experience">
+         <div class="messages" *ngIf="profileForm.get('experience').hasError(validate.type) && (profileForm.get('experience').dirty || profileForm.get('experience').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+
+
+
+
+      <ion-item >
+          <ion-label position="floating">Location</ion-label>
+          <ion-input type="text" formControlName="location" name="location" [(ngModel)]="bricklayerProfile.location" ngDefaultControl></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.location">
+         <div class="messages" *ngIf="profileForm.get('location').hasError(validate.type) && (profileForm.get('location').dirty || profileForm.get('location').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+    <ion-item >
+        <ion-label position="floating">Are you Certified?</ion-label>
+        <ion-select formControlName="certified" name="certified" [(ngModel)]="bricklayerProfile.certified"  cancelText="Dismiss">
+            <ion-option value="true">Yes</ion-option>
+            <ion-option value="false">No</ion-option>
+          </ion-select>
+      </ion-item>
+      <div class="error" *ngFor="let validate of validation_messages.certified">
+       <div class="messages" *ngIf="profileForm.get('certified').hasError(validate.type) && (profileForm.get('certified').dirty || profileForm.get('certified').touched)">
+         {{validate.message}}
+       </div>
+       </div>
+  <div class="btn">
+    <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
+   <button id="skip" (click)="createprofile(profileForm)"  type="submit"  [disabled]="!profileForm.valid"  ion-button clear  large >Create my Profile </button>
+</div>
+  </ion-list>
+</form>
 </ion-content>

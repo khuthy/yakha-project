@@ -2,7 +2,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { google } from "google-maps";
 
-declare var google;
+declare var google
 @Component({
   selector: 'google-map',
   templateUrl: 'google-map.html'
@@ -13,7 +13,7 @@ export class GoogleMapComponent {
   map: any;
   infoWindow;
   constructor() {
-
+    
   }
 
 ngOnInit(){
@@ -40,10 +40,8 @@ ngOnInit(){
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-
-     let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+let marker: google.maps.Marker = new google.maps.Marker({
       map: this.map,
       position: coords,
       title: 'Click to view details'
@@ -66,13 +64,13 @@ ngOnInit(){
     // })
   });
 
-
+  
   }
-  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-  // let marker: google.maps.Marker = new google.maps.Marker({
-  //   map: this.map,
-  //   position: coords
-  // })
+//     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+//  let marker: google.maps.Marker = new google.maps.Marker({
+//     map: this.map,
+//     position: coords
+//    })  
 
 
   // geolocate() {

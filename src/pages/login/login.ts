@@ -30,6 +30,7 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
+ 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,  
      private formBuilder: FormBuilder,
@@ -44,6 +45,9 @@ export class LoginPage {
         Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(16)])
       ]
     });
+    
+   
+    
   }
 
 ​
@@ -51,23 +55,24 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginOwnerPage');
     this.firebase.auth().onAuthStateChanged( user => {
       if (user){
+        
         // send the user's data if they're still loggedin
-        this.userProvider.setUser(user);
-        this.db.collection('users').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
+        this.authService.setUser(user);
+        this.db.collection('User').where('uid', '==', user.uid).get().then(snapshot => {
           if (snapshot.empty){
-            this.navCtrl.push(AccountSetupPage);
+            
           } else {
             this.navCtrl.setRoot(HomePage);
             
           }
-        });
+        })
       }
     })
   }
 ​
   //Create
-  createAcc(){
-this.navCtrl.push(RegisterPage)
+  createAcc(data){
+this.navCtrl.push(RegisterPage, data)
   }
   forgotpassword(){
     this.navCtrl.push(ForgotPasswordPage)

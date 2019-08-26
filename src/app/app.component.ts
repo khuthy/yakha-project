@@ -25,7 +25,7 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MessagesPage;
+  rootPage: any ;
 
 
   pages: Array<{title: string, component: any, icon: string}>;
@@ -35,6 +35,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 firebase.initializeApp(firebaseConfig);
+this.authState();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -57,7 +58,16 @@ firebase.initializeApp(firebaseConfig);
       this.splashScreen.hide();
     });
   }
-
+  authState(){
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user)
+      {
+        this.rootPage = HomePage; 
+      } else {
+        this.rootPage = LoginPage;
+      }
+    })
+  }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
