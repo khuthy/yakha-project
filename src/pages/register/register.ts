@@ -66,12 +66,12 @@ export class RegisterPage {
         () => {
           this.loading.dismiss().then(() => {
             console.log();
-            if(this.authService.manageUsers() == 'bricklayer') {
-              let bricklayer = firebase.auth().currentUser.uid;
-              this.navCtrl.setRoot(BaccountSetupPage, bricklayer)
+            if(this.authService.manageUsers() == 'Homebuilder') {
+              let homebuilder = firebase.auth().currentUser.uid;
+              this.navCtrl.setRoot(BaccountSetupPage, homebuilder)
             }else {
-                let key=firebase.auth().currentUser.uid;
-                this.navCtrl.setRoot(AccountSetupPage, key)
+                let homeowner=firebase.auth().currentUser.uid;
+                this.navCtrl.setRoot(AccountSetupPage, homeowner)
             }
            
           });

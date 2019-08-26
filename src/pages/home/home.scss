@@ -3,7 +3,10 @@ page-home {
     position: fixed;
     top: 1%;
     z-index: 100;
-    
+
+  }
+  #map{
+    height: 100%;
   }
   .slider {
     width: 100%;
@@ -48,7 +51,7 @@ page-home {
      .top {
        display: flex;
        flex-direction: row;
-       
+
        .images {
         width: 80%;
         height: 10vh;
@@ -66,7 +69,7 @@ page-home {
         color: rgb(139, 139, 139);
         .stars {
           max-width: 50%;
-          
+
         }
       }
      }
@@ -79,5 +82,5 @@ page-home {
      }
    }
   }
-  
+
 }

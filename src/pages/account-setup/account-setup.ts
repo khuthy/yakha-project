@@ -30,10 +30,10 @@ export class AccountSetupPage {
   displayProfile;
   HomeOwnerProfile = {
     uid: '',
-    ownerImage:null,
-    fullName:null,
-    personalNumber: null,
-    About:null
+    ownerImage:'',
+    fullname:'',
+    personalNumber: '',
+    About:''
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,7 +47,7 @@ export class AccountSetupPage {
     this.authUser.setUser(this.uid);
     this.HomeOwnerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
-      fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      fullname: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
      
       personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
       About: ['']
@@ -126,7 +126,7 @@ export class AccountSetupPage {
     }
   }
  validation_messages = {
-    'fullName': [
+    'fullname': [
       { type: 'required', message: 'Name is required.' },
       { type: 'minlength', message: 'Name must be at least 4 characters long.' },
       { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
@@ -160,7 +160,7 @@ export class AccountSetupPage {
           this.HomeOwnerProfile.About  = doc.data().About;
           // this.HomeOwnerProfile.email = doc.data().email
           this.profileImage.image  = doc.data().image
-          this.HomeOwnerProfile. fullName  = doc.data(). fullName;
+          this.HomeOwnerProfile. fullname  = doc.data(). fullname;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })

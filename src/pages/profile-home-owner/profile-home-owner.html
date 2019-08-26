@@ -1,7 +1,7 @@
 
 
 <ion-content >
-<!--   <ion-card *ngIf="isProfile">
+<!--   <ion-card >
 
       <img src="{{HomeOwnerProfile.ownerImage}}">
     <ion-card-content>
@@ -17,29 +17,28 @@
    
   </ion-card> -->
    <div class="container">
-      <div class="profiles">
+      <div class="profiles" *ngIf="isProfile">
      
           <div class="avatar-images">
-          <img src="../../assets/imgs/th.jpg" class="thumbavatar">
+          <img src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
         </div>
         
         
            <div class="name">
-             <h4 style="text-align: center;">Muenda Khuthadzo</h4>
+             <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
            </div>
            <div class="details">
-             <p><ion-icon name="call"></ion-icon> 082 4586 454</p>
-             <p>muendakhuthadzo@gmail.com</p>
+             <p><ion-icon name="call"></ion-icon> {{HomeOwnerProfile.personalNumber}}</p>
+            
            </div>
            <div class="bio">
              <h6>About me</h6>
              <p>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Ab modi sed corporis possimus unde, illo, 
+              {{HomeOwnerProfile.About}}
              </p>
            </div>
            <ion-fab right bottom>
-              <button ion-fab color="button2"><ion-icon name="create"></ion-icon></button>
+              <button ion-fab color="button2"><ion-icon name="create" (click)="editProfile()"></ion-icon></button>
             </ion-fab>
           <!--  <div class="displayName">
 
