@@ -38,7 +38,7 @@ export class BaccountSetupPage {
    fullName:'',
    certified: false,
    experiences: '',
-   address:'',
+   address:null,
    price:'',
    location:''
  }
@@ -80,7 +80,7 @@ export class BaccountSetupPage {
     console.log( this.authUser.getUser())
   }
   public handleAddressChange(addr: Address) {
-    this.bricklayerProfile.address = addr.geometry.location.lat() + ',' + addr.geometry.location.lng() ;
+    this.builderProfile.address = addr.geometry.location.lat() + ',' + addr.geometry.location.lng() ;
    // console.log(this.location)
     
   }
