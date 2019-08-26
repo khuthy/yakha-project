@@ -46,13 +46,13 @@ geoloc;
       disableDefaultUI: true
     }
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    firebase.firestore().collection('bricklayerProfile').get().then((resp)=>{
+    firebase.firestore().collection('builderProfile').get().then((resp)=>{
 
       resp.forEach((doc)=> {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id,  doc.data().location);
+        console.log(doc.data().address.longitude);
         let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
-        let coord = new google.maps.LatLng(doc.data().address);
+        let coord = new google.maps.LatLng(doc.data().address.latitude, doc.data().address.longitude);
          let marker = new google.maps.Marker({
              map: this.map,
              position: coord,
@@ -98,7 +98,7 @@ geoloc;
       content:"Loading..",
       duration: 1000
     }).present();
-    this.db.collection('bricklayerProfile').get().then(snapshot => {
+    this.db.collection('builderProfile').get().then(snapshot => {
       snapshot.forEach(doc => {
         this.builder.push(doc.data());
       });

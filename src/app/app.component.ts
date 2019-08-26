@@ -66,6 +66,7 @@ this.authState();
       {
         this.rootPage = HomePage;
       } else {
+        this.rootPage = OnboardingPage;
         this.rootPage = WelcomePage;
       }
     })

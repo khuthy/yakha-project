@@ -27,7 +27,7 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  next() {
+  nextslides() {
    this.slides.slideNext();
   }
   gotoWelcome(){
