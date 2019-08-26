@@ -80,7 +80,7 @@ export class BaccountSetupPage {
     console.log( this.authUser.getUser())
   }
   public handleAddressChange(address: Address) {
-    this.location = address.geometry.location.lat() + ',' + address.geometry.location.lng() ;
+    this.address = address.geometry.location.lat() + ',' + address.geometry.location.lng() ;
     console.log(this.location)
     
   }
