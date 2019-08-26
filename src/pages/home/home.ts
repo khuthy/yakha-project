@@ -15,6 +15,10 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
+  db = firebase.firestore();
+  // changes if the content is empty
+  info = false;
+  builder = [];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -35,12 +39,24 @@ export class HomePage {
       content:"Loading..",
       duration: 2000
     }).present();
+    this.db.collection('bricklayerProfile').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.builder.push(doc.data());
+      });
+      console.log('Builders: ', this.builder);
+    
+    });
   }
 
 //viewmore
-viewBuilderInfo(){
-  this.navCtrl.push(BuilderProfileviewPage);
+viewBuilderInfo(builder){
+  this.navCtrl.push(BuilderProfileviewPage, builder);
 }
+// viewRoom(room){
+//   // receive the room data from the html and navigate to the next page with it
+//   this.navCtrl.push(OwnerViewHotelPage, {room});
+// }
+
 
 // onLocateUser(){
 //   this.geolocation.getCurrentPosition()

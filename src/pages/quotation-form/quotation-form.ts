@@ -5,7 +5,6 @@ import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { UserProvider } from '../../providers/user/user';
 import { MessagesPage } from '../messages/messages';
 
 /**
@@ -35,15 +34,17 @@ export class QuotationFormPage {
     dateSubmitted:'',
     startDate:'',
     endDate:'',
-    Height: '',
+    height: '',
     length:'',
     width:'',
     wallType:'',
     brickType:'',
-    uid: '',
     houseImage:'',
     comment:'',
-    };
+      
+  };
+
+ date: any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -52,31 +53,37 @@ export class QuotationFormPage {
      public loadCtrl:LoadingController,
      public alertCtrl:AlertController,
      public camera: Camera,
+     
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
-      this.HomeOwnerQuotation.uid = this.uid;
+      // this.HomeOwnerQuotation.uid = this.uid;
       this.quotationForm = this.formBuilder.group({
         // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-       
-       
-        
-        startDate:'',
-        endDate:'',
+        startDate:new  FormControl('', Validators.compose([Validators.required])),
+        endDate:new  FormControl('', Validators.compose([Validators.required])),
         wallType: new  FormControl('', Validators.compose([Validators.required])),
-        brickType:[''],
-        Height: [''],
-        length:[''],
-        width:[''],
-        comment:[''],
+        brickType:new  FormControl('', Validators.compose([Validators.required])),
+        Height: new  FormControl('', Validators.compose([Validators.required])),
+        length:new  FormControl('', Validators.compose([Validators.required])),
+        width:new  FormControl('', Validators.compose([Validators.required])),
+        comment:new  FormControl('', Validators.compose([Validators.required])),
       });
+
+      let date = new Date();
+      let days = date.getDay();
+      let month = date.getMonth();
+      let year = date.getFullYear();
+      this.date = year + '-' + month + '-' + days;
+
+     
     }
-  
-  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad QuotationFormPage');
-    this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
+   // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
+this.authUser.getUser();
+console.log('user ',this.authUser.getUser() );
 
   }
 next(){
@@ -115,16 +122,11 @@ async selectImage() {
     console.log("Something went wrong: ", err);
   })
 }
-async createQuations(quotationForm: FormGroup): Promise<void> {
-  if (!quotationForm.valid) {
-    console.log(
-      'Need to complete the form, current value: ',
-      quotationForm.value
-    );
-  } else {
+async createQuations(): Promise<void> {
+
          // load the profile creation process
          const load = this.loadCtrl.create({
-          content: 'Creating Profile..'
+          content: 'submitting quotations ..'
         });
         load.present();
     const user = this.db.collection('HomeOwnerQuotation').doc(this.authUser.getUser()).set(this.HomeOwnerQuotation);
@@ -133,7 +135,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     user.then( () => {
       this.navCtrl.setRoot(MessagesPage)
       this.toastCtrl.create({
-        message: '  Quotaion submitted.',
+        message: '  Quotation submitted.',
         duration: 2000,
       }).present();
       // ...get the profile that just got created...
@@ -148,5 +150,5 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
       load.dismiss();
     })
   }
-}
+
 }
