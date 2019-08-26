@@ -1,13 +1,14 @@
 
 
-<ion-content> 
+<ion-content>
+    <div #map id="map"></div>
   <div class="menus">
     <button ion-button clear menuToggle>
         <ion-icon name="menu" class="fa"></ion-icon>
       </button>
   </div>
-    
-  
+
+
   <div class="slider">
     <ion-slides spaceBetween="-33">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
@@ -22,9 +23,9 @@
            <p class="price"><strong>R{{b.price}}p/m<span class="squire">2</span></strong></p>
            <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
          </div>
-         
+
        </div>
-       
+
        <div class="bottom">
          <hr style="border-color: #ddd">
          <div class="view">
