@@ -62,8 +62,9 @@ export class BaccountSetupPage {
     public alertCtrl: AlertController,
     private formBuilder: FormBuilder)
     {
-   // this.uid = firebase.auth().currentUser.uid;
+   this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
+    
     this.builderProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
@@ -109,7 +110,7 @@ export class BaccountSetupPage {
       }, err => {
       }, () => {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
-          this.builderProfile. bricklayerImage = downUrl;
+          this.builderProfile.bricklayerImage = downUrl;
           console.log('Image downUrl', downUrl);
         })
       })
