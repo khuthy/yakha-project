@@ -28,7 +28,7 @@ export class MyApp {
   rootPage: any ;
 
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
 
 
@@ -38,22 +38,20 @@ firebase.initializeApp(firebaseConfig);
 this.authState();
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'View profile', component: ProfileHomeOwnerPage },
-      { title: 'Messages', component:MessagesPage },
-      { title: 'Help', component: HelpPage },
-      { title: 'Feedback', component: FeedbackPage},
-      { title: 'Share', component: SharePage },
-      { title: 'Version', component: VersionPage},
-      { title: 'Signout', component: SignoutPage },
-    
-    ];
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
+      { title: 'Messages', component:MessagesPage, icon: 'mail' },
+      { title: 'Help', component: HelpPage, icon: 'help' },
+      { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+      { title: 'Share', component: SharePage, icon: 'share' },
+      { title: 'Version', component: VersionPage, icon: 'information-circle'}
+     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = HomePage;
+      
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -73,7 +71,7 @@ this.authState();
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
   SignOut() {
     firebase.auth().signOut().then(() => {
@@ -84,5 +82,8 @@ this.authState();
       console.log('error occured while signing out');
       
     })
+  }
+  viewProfile() {
+    alert('hey, whatupp!')
   }
 }

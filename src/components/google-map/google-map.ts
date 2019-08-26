@@ -17,8 +17,8 @@ export class GoogleMapComponent {
   }
 
 ngOnInit(){
-  this.initMap();
- // console.log('wffergfefe');
+  this.initMap(); 
+ console.log('wffergfefe');
 }
   initMap(){
 
@@ -52,9 +52,9 @@ let marker: google.maps.Marker = new google.maps.Marker({
     });
     google.maps.event.addListener(marker, 'click', (resp)=>{
       infoWindow.open(this.map, marker)
-    })
+    }) 
 
-    console.log(marker);
+    /* console.log(marker); */
 
 
 
