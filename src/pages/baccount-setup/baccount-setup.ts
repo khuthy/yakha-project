@@ -6,6 +6,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 import { HomePage } from '../home/home';
+import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -114,7 +115,7 @@ export class BaccountSetupPage {
       
       // upon success...
       user.then( () => {
-        this.navCtrl.setRoot(HomePage)
+        this.navCtrl.setRoot(BricklayerlandingPage)
         this.toastCtrl.create({
           message: 'User Profile added.',
           duration: 2000,

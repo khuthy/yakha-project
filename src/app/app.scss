@@ -16,7 +16,7 @@
 // automatically applied to the <body> element in the app.
 .error {
     color: red;
-
+}
 .container1 {
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), url('../assets/imgs/splash.png');
     background-size: cover;
@@ -25,7 +25,7 @@
 .profile {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.157);
+    border-bottom: 1px solid rgba(75, 75, 75, 0.157);
    
     
     align-content: center;
@@ -51,5 +51,4 @@
        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-}
 }

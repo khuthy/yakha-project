@@ -40,6 +40,7 @@ import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { CoordsProvider } from '../providers/coords/coords';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 @NgModule({
   declarations: [
     MyApp,
@@ -64,7 +65,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    BricklayerlandingPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    BricklayerlandingPage
 
 
   ],
