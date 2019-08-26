@@ -78,9 +78,9 @@ export class BaccountSetupPage {
     console.log( this.uid)
     console.log( this.authUser.getUser())
   }
-  public handleAddressChange(address: Address) {
-    this.address = address.geometry.location.lat() + ',' + address.geometry.location.lng() ;
-    console.log(this.location)
+  public handleAddressChange(addr: Address) {
+    this.bricklayerProfile.address = addr.geometry.location.lat() + ',' + addr.geometry.location.lng() ;
+   // console.log(this.location)
     
   }
   async selectImage() {
