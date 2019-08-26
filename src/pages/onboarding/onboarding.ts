@@ -1,6 +1,7 @@
 import { LoginPage } from './../login/login';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { WelcomePage } from '../welcome/welcome';
 
 /**
  * Generated class for the OnboardingPage page.
@@ -15,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
+@ViewChild('Slides') slides: Slides;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -24,8 +26,11 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  goLogin(){
-    this.navCtrl.push(LoginPage);
+  next() {
+   this.slides.slideNext();
+  }
+  gotoWelcome(){
+    this.navCtrl.push(WelcomePage);
   }
 
 }

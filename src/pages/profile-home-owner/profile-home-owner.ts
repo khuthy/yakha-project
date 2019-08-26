@@ -30,10 +30,13 @@ export class ProfileHomeOwnerPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileHomeOwnerPage');
+   
+   
   }
   getProfile(){
     // load the process
@@ -45,7 +48,7 @@ export class ProfileHomeOwnerPage {
     // create a reference to the collection of users...
     let users = this.db.collection('HomeOwnerProfile');
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", firebase.auth().currentUser.uid);
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){

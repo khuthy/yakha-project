@@ -1,19 +1,22 @@
 <ion-menu [content]="content" type="overlay">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-content>
-   
+  <ion-content class="side-menu">
+      <div class="profile" (click)="viewProfile()">
+          <img src="../assets/imgs/th.jpg" class="thumb" alt="profile">
+          <article>
+            <p style="font-size: 17px;">Your name</p>
+            <p style="font-size: 13px;">muendakhuthadzo@gmail.com</p>
+          </article>
+          
+        </div>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button class="btn-side-menu" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon start class="fas" name="{{p.icon}}"></ion-icon>
+       {{p.title}}
       </button>
-     
-      
-    </ion-list>
+     <button class="signout" color="button2" menuClose ion-item (click)="SignOut()"> 
+       <ion-icon name="log-out"></ion-icon> Sign Out</button>
+      </ion-list>
     
   </ion-content>
 

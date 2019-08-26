@@ -1,15 +1,72 @@
-<!--
-  Generated template for the OnboardingPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>onboarding</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
-<button (click)="goLogin()" ion-button block >Get started</button>
+  <div class="main-container">
+    <ion-slides pager>
+      <ion-slide>
+        <div class="onboard">
+          <ion-toolbar color="custom">
+              <ion-buttons end>
+                <button clear ion-button>SKIP</button></ion-buttons>
+            </ion-toolbar>
+            <div class="container">
+               <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
+            </div>
+           <div class="container">
+             <h3>Heading</h3>
+               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+              Vel nemo adipisci quisquam doloribus.
+            </p>
+            </div>
+           
+            <button class="btn-onboard" ion-button (click)="next()">Next</button>
+         
+        </div>
+          
+      </ion-slide>
+      <ion-slide>
+          <div class="onboard">
+            <ion-toolbar color="custom">
+                <ion-buttons end>
+                  <button clear ion-button>SKIP</button></ion-buttons>
+              </ion-toolbar>
+              <div class="container">
+                 <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
+              </div>
+             <div class="container">
+               <h3>Heading</h3>
+                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Vel nemo adipisci quisquam doloribus.
+              </p>
+              </div>
+             
+              <button class="btn-onboard" ion-button (click)="next()">Next</button>
+           
+          </div>
+            
+        </ion-slide>
+        <ion-slide>
+            <div class="onboard">
+              <ion-toolbar color="custom">
+                  <ion-buttons end>
+                    <button clear ion-button>SKIP</button></ion-buttons>
+                </ion-toolbar>
+                <div class="container">
+                   <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
+                </div>
+               <div class="container">
+                 <h3>Heading</h3>
+                   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                  Vel nemo adipisci quisquam doloribus.
+                </p>
+                </div>
+               
+                <button class="btn-onboard-get-started" ion-button (click)="gotoWelcome()">GET STARTED</button>
+             
+            </div>
+              
+          </ion-slide>
+    </ion-slides>
+
+  </div>
+    
 </ion-content>

@@ -1,8 +1,8 @@
 
 import { Component, ViewChild } from '@angular/core';
-// import { google } from "google-maps";
+import { google } from "google-maps";
 
-
+declare var google;
 @Component({
   selector: 'google-map',
   templateUrl: 'google-map.html'
@@ -17,8 +17,8 @@ export class GoogleMapComponent {
   }
 
 ngOnInit(){
-  this.initMap();
- // console.log('wffergfefe');
+  this.initMap(); 
+ console.log('wffergfefe');
 }
   initMap(){
 
@@ -40,10 +40,10 @@ ngOnInit(){
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
 
-    let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
+     let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
       map: this.map,
       position: coords,
       title: 'Click to view details'
@@ -54,9 +54,9 @@ ngOnInit(){
     });
     google.maps.event.addListener(marker, 'click', (resp)=>{
       infoWindow.open(this.map, marker)
-    })
+    }) 
 
-    console.log(marker);
+    /* console.log(marker); */
 
 
 

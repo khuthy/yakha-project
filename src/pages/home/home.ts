@@ -25,9 +25,10 @@ export class HomePage {
    // console.log(this.places);
 
   }
+
 //viewmore
-next(){
-  this.modalCtrl.create(AddBricklayerPage).present();
+viewBuilderInfo(){
+  this.modalCtrl.create(BuilderProfileviewPage).present();
 }
 // onLocateUser(){
 //   this.geolocation.getCurrentPosition()

@@ -39,6 +39,7 @@ import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { CoordsProvider } from '../providers/coords/coords';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { CoordsProvider } from '../providers/coords/coords';
     AddBricklayerPage,
     NewPlacesPage,
     PlacePage,
-    GoogleMapComponent
+    GoogleMapComponent,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +100,8 @@ import { CoordsProvider } from '../providers/coords/coords';
     SuccessPage,
     AddBricklayerPage,
     NewPlacesPage,
-    PlacePage
+    PlacePage,
+    WelcomePage
 
 
   ],

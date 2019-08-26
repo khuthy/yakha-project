@@ -1,17 +1,7 @@
-<!--
-  Generated template for the ProfileHomeOwnerPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>profileHomeOwner</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <ion-card *ngIf="isProfile">
+<ion-content >
+<!--   <ion-card *ngIf="isProfile">
 
       <img src="{{HomeOwnerProfile.image}}">
     <ion-card-content>
@@ -25,24 +15,48 @@
       <p> {{HomeOwnerProfile.personalNumber}} </p>
         <p>{{HomeOwnerProfile.About}}</p>
     </ion-card-content>
-  </ion-card>
-  <!-- <div *ngIf="isProfile">
-      <div class="Profimage">
-           <img src="{{HomeOwnerProfile.image}}">
-          
-           <div class="displayName">
+  </ion-card> -->
+   <div class="container">
+      <div class="profiles">
+     
+          <div class="avatar-images">
+          <img src="../../assets/imgs/th.jpg" class="thumbavatar">
+        </div>
+        
+        
+           <div class="name">
+             <h4 style="text-align: center;">Muenda Khuthadzo</h4>
+           </div>
+           <div class="details">
+             <p><ion-icon name="call"></ion-icon> 082 4586 454</p>
+             <p>muendakhuthadzo@gmail.com</p>
+           </div>
+           <div class="bio">
+             <h6>About me</h6>
+             <p>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit.
+               Ab modi sed corporis possimus unde, illo, 
+             </p>
+           </div>
+           <ion-fab right bottom>
+              <button ion-fab color="button2"><ion-icon name="create"></ion-icon></button>
+            </ion-fab>
+          <!--  <div class="displayName">
 
               <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
                <button (click)="editProfile()" ion-button small color="dark" icon-right >
                   Edit
                   <ion-icon name="create"></ion-icon>
                 </button> 
-           </div>
+           </div> -->
         </div>
-        <div class="contact">
+       <!--  <div class="contact">
           <div class="number"><p>{{HomeOwnerProfile.personalNumber}</p></div>
           <div class="line"></div>
           <div class="email"><p>{{HomeOwnerProfile.About}}</p></div>
-        </div>
-  </div> -->
+        </div> -->
+       
+        
+       
+  </div> 
 </ion-content>
