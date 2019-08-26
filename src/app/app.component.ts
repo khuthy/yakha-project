@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SignoutPage } from '../pages/signout/signout';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 
 @Component({
@@ -65,7 +66,7 @@ this.authState();
       {
         this.rootPage = HomePage;
       } else {
-        this.rootPage = OnboardingPage;
+        this.rootPage = WelcomePage;
       }
     })
   }
@@ -77,8 +78,8 @@ this.authState();
   SignOut() {
     firebase.auth().signOut().then(() => {
       console.log('Signed Out');
-      this.rootPage = LoginPage;
-
+      this.rootPage = WelcomePage;
+      
     }).catch((err) => {
       console.log('error occured while signing out');
 

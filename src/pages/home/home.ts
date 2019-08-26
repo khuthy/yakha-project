@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
+import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 declare var google;
 
 @Component({
@@ -9,6 +10,10 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
+  db = firebase.firestore();
+  // changes if the content is empty
+  info = false;
+  builder = [];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -93,7 +98,23 @@ geoloc;
       content:"Loading..",
       duration: 1000
     }).present();
+    this.db.collection('bricklayerProfile').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.builder.push(doc.data());
+      });
+      console.log('Builders: ', this.builder);
+    
+    });
   }
+
+//viewmore
+viewBuilderInfo(builder){
+  this.navCtrl.push(BuilderProfileviewPage, builder);
+}
+// viewRoom(room){
+//   // receive the room data from the html and navigate to the next page with it
+//   this.navCtrl.push(OwnerViewHotelPage, {room});
+// }
 
 
 loadMap(){

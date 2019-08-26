@@ -5,13 +5,14 @@
            <img  src="{{profileImage}}">
         </div>
          <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
-    <form  [formGroup]="profileForm">
+         <p *ngIf="!profileImage">Please Upload an image</p>
+         <form  [formGroup]="profileForm">
       <ion-item >
         <ion-label > FullName</ion-label>
-        <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
+        <ion-input type="text" formControlName="fullname" [(ngModel)]="HomeOwnerProfile.fullname" ngDefaultControl></ion-input>
       </ion-item>
-      <div class="error" *ngFor="let validate of validation_messages.fullName">
-       <div class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+      <div class="error" *ngFor="let validate of validation_messages.fullname">
+       <div class="messages" *ngIf="profileForm.get('fullname').hasError(validate.type) && (profileForm.get('fullname').dirty || profileForm.get('fullname').touched)">
          {{validate.message}}
        </div>
        </div>

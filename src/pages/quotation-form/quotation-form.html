@@ -12,59 +12,75 @@
 </div>
 <button *ngIf="!houseImage" ion-button clear large full (click)="selectImage()">Select Image</button>
 <p *ngIf="!houseImage">Please Upload the house Plan</p>
-<ion-list>
-<ion-item>
-      <ion-label floating>Preffered start date</ion-label>
-      <ion-input type="date" name="startDate"[(ngModel)]="HomeOwnerQuotation.startDate"></ion-input>
-    </ion-item>
-
+<form >
+  <ion-list>
+    <ion-item>
+          <ion-label floating>Preffered start date</ion-label>
+          <ion-input type="date"  min="{{date}}" name="startDate"[(ngModel)]="HomeOwnerQuotation.startDate"></ion-input>
+        </ion-item>
+        
     
-    <ion-item>
-        <ion-label floating>Preffered end date</ion-label>
-        <ion-input type="date" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-          <ion-label> Select Wall type</ion-label>
-          <ion-select name="wallType" [(ngModel)]="HomeOwnerQuotation.wallType">
-            <ion-option value="singleWall">Single wall</ion-option>
-            <ion-option value="doubleWall">Double wall</ion-option>
-           </ion-select>
-        </ion-item>
-
+        
         <ion-item>
-            <ion-label> Select brick type</ion-label>
-            <ion-select name="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
-              <ion-option value="common">Common burnt clay bricks</ion-option>
-              <ion-option value="sand">Sand lime Bricks</ion-option>
-              <ion-option value="engineering">Engineering Bricks</ion-option>
-              <ion-option value="concrete">Concrete bricks</ion-option>
-              <ion-option value="clay">Fly ash clay bricks</ion-option>
-             
-             </ion-select>
+            <ion-label floating>Preffered end date</ion-label>
+            <ion-input type="date"  name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-input>
           </ion-item>
-
-
-    <ion-item>
-        <ion-label floating>Height in meter</ion-label>
-        <ion-input type="tel" max-height="4" name="height" [(ngModel)]="HomeOwnerQuotation.height" ></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label floating>Length in meter</ion-label>
-          <ion-input type="tel" max-length="4" name="length" [(ngModel)]="HomeOwnerQuotation.length"></ion-input>
-        </ion-item>
-
+          
+      
+          <ion-item>
+              <ion-label> Select Wall type</ion-label>
+              <ion-select name="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
+                <ion-option value="singleWall">Single wall</ion-option>
+                <ion-option value="doubleWall">Double wall</ion-option>
+               </ion-select>
+            </ion-item>
+            <!-- <div class="error" *ngFor="let validate of validation_messages.certified">
+              <div class="messages" *ngIf="profileForm.get('wallType').hasError(validate.type) && (profileForm.get('wallType').dirty || profileForm.get('wallType').touched)">
+                {{validate.message}}
+              </div>
+              </div> -->
+    
+            <ion-item>
+                <ion-label> Select brick type</ion-label>
+                <ion-select name="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
+                  <ion-option value="common">Common burnt clay bricks</ion-option>
+                  <ion-option value="sand">Sand lime Bricks</ion-option>
+                  <ion-option value="engineering">Engineering Bricks</ion-option>
+                  <ion-option value="concrete">Concrete bricks</ion-option>
+                  <ion-option value="clay">Fly ash clay bricks</ion-option>
+                 
+                 </ion-select>
+              </ion-item>
+              <!-- <div class="error" *ngFor="let validate of validation_messages.certified">
+                <div class="messages" *ngIf="profileForm.get('certified').hasError(validate.type) && (profileForm.get('certified').dirty || profileForm.get('certified').touched)">
+                  {{validate.message}}
+                </div>
+                </div> -->
+    
+    
         <ion-item>
-            <ion-label floating>Width in meter</ion-label>
-            <ion-input type="tel" max-width="4" name="width" [(ngModel)]="HomeOwnerQuotation.width"></ion-input>
+            <ion-label floating>Height in meter</ion-label>
+            <ion-input type="tel"  max-height="4" name="height" [(ngModel)]="HomeOwnerQuotation.height" ></ion-input>
           </ion-item>
-<ion-item>
-        <ion-label position="floating">Additional comments</ion-label>
-        <ion-textarea rows="6" cols="20" name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
-      </ion-item>
-  
-  </ion-list>
+    
+          <ion-item>
+              <ion-label floating>Length in meter</ion-label>
+              <ion-input type="tel"  max-length="4" name="length" [(ngModel)]="HomeOwnerQuotation.length"></ion-input>
+            </ion-item>
+    
+            <ion-item>
+                <ion-label floating>Width in meter</ion-label>
+                <ion-input type="tel"  max-width="4" name="width" [(ngModel)]="HomeOwnerQuotation.width"></ion-input>
+              </ion-item>
+    <ion-item>
+            <ion-label position="floating">Additional comments</ion-label>
+            <ion-textarea rows="6" cols="20"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
+          </ion-item>
+          <button (click)="createQuations()" ion-button block primary>Submit Quote</button>
+      
+      </ion-list>
+</form>
 
-  <button (click)="createQuations()" ion-button block primary>Submit Quote</button>
+
+ 
 </ion-content>
