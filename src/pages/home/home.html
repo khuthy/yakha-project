@@ -1,104 +1,39 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content>
-  <div id="map" #map>
-  </div>
 
-  <!-- <ion-list>
-    <ion-item *ngFor="let place of places" (click)="next()">{{place.title}}</ion-item>
-  </ion-list> -->
- <ion-card>
-
-      <img src="../../assets/img/advance-card-map-madison.png">
-      <ion-fab left bottom>
-        <button ion-fab (click)="addLocation()">
-          <ion-icon name="pin" ></ion-icon>
-        </button>
-      </ion-fab>
-
-      <ion-item>
-        <ion-icon name="football" item-start large></ion-icon>
-        <h2>Museum of Football</h2>
-        <p>11 N. Way St, Madison, WI 53703</p>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="wine" item-start large ></ion-icon>
-        <h2>Institute of Fine Cocktails</h2>
-        <p>14 S. Hop Avenue, Madison, WI 53703</p>
-      </ion-item>
-
-      <ion-item>
-        <span item-start>18 min</span>
-        <span item-start>(2.6 mi)</span>
-        <button ion-button icon-start clear item-end>
-          <ion-icon name="navigate"></ion-icon>
-          Start
-        </button>
-      </ion-item>
-
-    </ion-card>
-
-    <ion-grid>
-
-      <ion-row>
-        <ion-col>
-          <!-- <p>Your Location:{{ location?.coords.latitude }} / {{ location?.coords.longitude }} </p> -->
-        </ion-col>
-      </ion-row>
-
-          <ion-row>
-              <ion-col>
-            <!-- <button ion-button block (click)="onLocateUser()">Locate me</button> -->
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-   card for builders information chosen by the map
-    <ion-card>
-
-        <img src="../../assets/img/img/nin-live.png"/>
-        <ion-card-content>
-          <ion-card-title>
-           buidler-name: khutty muenda
-            </ion-card-title>
-          <p> Price : R450.00 p/m2  </p>
- <button (click)="next()" ion-button block primary>view more</button>
-
-        </ion-card-content>
-      </ion-card>
-
-<ion-content>
-  <div class="container">
-    <google-map></google-map>
-    <div class="builder">
-        <ion-slides class="image-slide" spaceBetween="-20">
-          <ion-slide class="sliders">
-              <div class="cards">
-                  <div class="top-cards">
-                     <img src="" alt="" class="image-builder">
+<ion-content padding>
+    <div class="container">
+      <ion-slides pager class="builder-slide">
+          <ion-slide>
+            <div class="card">
+              <div class="content">
+                <div class="top">
+                  <img src="http://yesofcorsa.com/wp-content/uploads/2017/04/Jump-Wallpaper-Gallery.jpg" class="thumbnail" alt="">
                   <article>
-                      <h5>khuthy muenda</h5>
-                      <p>R200.00 per/m <span>2</span></p>
-                  </article> 
-                  </div>
-                  <div class="botton-card">
-                  <p>View more</p>
-              
-                  </div>
-              </div> 
+                    <p><strong>Khuthy muenda</strong></p>
+                    <p><strong>R200.00 p/m<span>2</span></strong></p>
+                   <p><strong>*******</strong></p>
+                  </article>
+                </div>
+              </div>
+            </div>      
           </ion-slide>
-        
-      </ion-slides>
-    </div>
+          <ion-slide>
+              <div class="card">
+                  <div class="content">
+                    <div class="top">
+                      <img src="http://yesofcorsa.com/wp-content/uploads/2017/04/Jump-Wallpaper-Gallery.jpg" class="thumbnail" alt="">
+                      <article>
+                        <p><strong>Khuthy muenda</strong></p>
+                        <p><strong>R200.00 p/m<span>2</span></strong></p>
+                       <p><strong>*******</strong></p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+          </ion-slide>
+        </ion-slides>
     
-  </div>
-     
+    </div>
+        
+
 </ion-content>

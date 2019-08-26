@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -61,7 +62,7 @@ export class LoginPage {
           if (snapshot.empty){
             this.navCtrl.push(AccountSetupPage);
           } else {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomeOwnerProfilePage);
             
           }
         });
