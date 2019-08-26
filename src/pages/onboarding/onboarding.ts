@@ -1,6 +1,7 @@
 import { LoginPage } from './../login/login';
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { Component,ViewChild  } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
@@ -26,8 +27,11 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  gotoLogin(){
-    this.slides.slideTo(3, 1000);
+  next() {
+   this.slides.slideNext();
+  }
+  gotoWelcome(){
+    this.navCtrl.push(WelcomePage);
   }
 
 

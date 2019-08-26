@@ -38,8 +38,8 @@ export class HomePage {
   }
 
 //viewmore
-next(){
-  this.modalCtrl.create(AddBricklayerPage).present();
+viewBuilderInfo(){
+  this.modalCtrl.create(BuilderProfileviewPage).present();
 }
 
 // onLocateUser(){

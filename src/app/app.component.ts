@@ -44,16 +44,14 @@ this.authState();
       { title: 'Help', component: HelpPage, icon: 'help' },
       { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
       { title: 'Share', component: SharePage, icon: 'share' },
-      { title: 'Version', component: VersionPage, icon: 'information-circle'},
-      { title: 'Signout', component: SignoutPage, icon: 'log-out' },
-    
-    ];
+      { title: 'Version', component: VersionPage, icon: 'information-circle'}
+     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = HomePage;
+      
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -84,5 +82,8 @@ this.authState();
       console.log('error occured while signing out');
       
     })
+  }
+  viewProfile() {
+    alert('hey, whatupp!')
   }
 }

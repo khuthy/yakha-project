@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngIf="isProfile">
+   <!-- <ion-card *ngIf="isProfile">
         <img src="{{HomeOwnerProfile.ownerImage}}"/>
         <ion-card-content>
          
@@ -14,20 +14,45 @@
             <p>Physical Address : {{bricklayerProfile.address}}</p>
             <p>Price  :R {{bricklayerProfile.price}}p/m2</p>
             <p>Location:{{bricklayerProfile.Location}}</p> <br>
-           <!-- <div class="bio">
+           <div class="bio">
              <h4>Bio</h4>
              <p>
             The most popular guy ever, and largely
             responsible for bringing the code to a njabulos audience.
           </p>
-           </div> -->
+           </div> 
            <br>
            <p>Experience : {{bricklayerProfile.experiences}}</p>
            <p>Certified :{{bricklayerProfile.certified}}</p>
            
             
-           <!--   -->
+              -->
           
-        </ion-card-content>
-      </ion-card>
+       
+      <div class="container">
+        <div class="builder-image">
+          <img src="../../assets/imgs/img6.jpg" class="thumber" alt="">
+        </div>
+        <div class="titles">
+            <h3>Khuthy Muenda</h3>
+          </div>
+          <div class="price">
+              <h2 style="color: #F15A24">R120.00 p/m<span>2</span></h2>
+            </div>
+            <div class="experience">
+              <p><small>2 years of experience</small></p>
+              </div>
+              <div class="ratings">
+                ****************
+                </div>
+                <div class="bio">
+                   <p>Lorem ipsum dolor sit amet, 
+                     consectetur adipiscing elit, 
+                     sed do eiusmod tempor incididunt ut labore et dolor
+                    </p>
+                  </div>
+                  <div class="button-request">
+                     <button ion-button color="dark" (click)="next()" block>Request Quotes</button>
+                    </div>
+      </div>
 </ion-content>
