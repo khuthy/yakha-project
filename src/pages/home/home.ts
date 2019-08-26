@@ -20,7 +20,6 @@ export class HomePage {
   places;
   @ViewChild("map") mapElement;
   map: any;
-
 //  marker: any;
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController
