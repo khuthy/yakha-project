@@ -36,7 +36,7 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 firebase.initializeApp(firebaseConfig);
-//this.authState();
+this.authState();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -52,7 +52,7 @@ firebase.initializeApp(firebaseConfig);
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.rootPage = HomePage;
+     // this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -61,11 +61,11 @@ firebase.initializeApp(firebaseConfig);
   }
   authState(){
     firebase.auth().onAuthStateChanged((user)=>{
-      if(user.uid=null)
+      if(user)
       {
         this.rootPage = HomePage;
       } else {
-        this.rootPage = BaccountSetupPage;
+        this.rootPage = OnboardingPage;
       }
     })
   }

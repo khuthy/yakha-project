@@ -47,7 +47,7 @@ geoloc;
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id,  doc.data().location);
         let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
-        let coord = new google.maps.LatLng(doc.data().location);
+        let coord = new google.maps.LatLng(doc.data().address);
          let marker = new google.maps.Marker({
              map: this.map,
              position: coord,
