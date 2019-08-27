@@ -12,7 +12,8 @@ import * as firebase from 'firebase';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
+import { WelcomePage } from '../welcome/welcome';
+import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -59,12 +60,14 @@ export class LoginPage {
         
         // send the user's data if they're still loggedin
         this.authService.setUser(user);
-        this.db.collection('User').where('uid', '==', user.uid).get().then(snapshot => {
+        this.db.collection('User').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
           if (snapshot.empty){
-              
+             
           } else {
-            if(this.authService.manageUsers() == 'Homeowner') {
-              this.navCtrl.setRoot(HomeOwnerProfilePage);
+            if(this.authService.manageUsers() == 'Homebuilder') {
+              this.navCtrl.setRoot(BricklayerlandingPage);
+            }else {
+              this.navCtrl.setRoot(HomePage);
             }
             
             
@@ -88,8 +91,12 @@ this.navCtrl.push(RegisterPage, data)
 
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authService => {
-
-        this.navCtrl.setRoot(HomePage);
+         if(this.authService.manageUsers() == 'Homebuilder') {
+              this.navCtrl.setRoot(BricklayerlandingPage);
+         }else{
+           this.navCtrl.setRoot(HomePage);
+         }
+        
       }, error => {
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({

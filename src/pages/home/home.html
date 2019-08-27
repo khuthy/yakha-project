@@ -1,30 +1,31 @@
 
 
-<ion-content> 
+<ion-content>
+    <div #map id="map"></div>
   <div class="menus">
     <button ion-button clear menuToggle>
         <ion-icon name="menu" class="fa"></ion-icon>
       </button>
   </div>
-    
-  
+
+
   <div class="slider">
     <ion-slides spaceBetween="-33">
-      <ion-slide class="magic">
-        <div class="card" (click)="viewBuilderInfo()">
+      <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
+        <div class="card" >
      <div class="thumbnail">
        <div class="top">
          <div class="images">
-           <img src="http://www.advancednewbuilds.co.uk/wp-content/uploads/2016/10/Bricklayers_wanted_in_Kent.jpg" alt="tough">
+           <img src="{{b.bricklayerImage}}" alt="tough">
          </div>
          <div class="title">
-           <p><strong>Yourname</strong></p>
-           <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
+           <p><strong>{{b.fullName}}</strong></p>
+           <p class="price"><strong>R{{b.price}}p/m<span class="squire">2</span></strong></p>
            <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
          </div>
-         
+
        </div>
-       
+
        <div class="bottom">
          <hr style="border-color: #ddd">
          <div class="view">
@@ -33,66 +34,17 @@
          </div>
        </div>
      </div>
-   </div>
+   </div> 
+   
  
    </ion-slide>
-   <ion-slide class="magic">
-       <div class="card">
-    <div class="thumbnail">
-      <div class="top">
-        <div class="images">
-          <img src="../../assets/imgs/th.jpg" alt="tough">
-        </div>
-        <div class="title">
-          <p><strong>Yourname</strong></p>
-          <p class="price"><strong>R201.00 p/m<span class="squire">2</span></strong></p>
-          <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
-         
-        </div>
-        
-      </div>
-      
-      <div class="bottom">
-        <hr style="border-color: #ddd">
-        <div class="view">
-         <p>View more</p>
-         <p><ion-icon name="person"></ion-icon></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  </ion-slide>
-  <ion-slide class="magic">
-      <div class="card">
-   <div class="thumbnail">
-     <div class="top">
-       <div class="images">
-         <img src="https://pagefair.com/wp-content/uploads/2014/03/Home-Builder-9.jpg" alt="tough">
-       </div>
-       <div class="title">
-         <p><strong>Yourname</strong></p>
-         <p><strong>R201.00 p/m2</strong></p>
-         <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
-        
-       </div>
-       
-     </div>
-     
-     <div class="bottom">
-       <hr style="border-color: #ddd">
-       <div class="view">
-        <p>View more</p>
-        <p><ion-icon name="person"></ion-icon></p>
-       </div>
-     </div>
-   </div>
- </div>
-
- </ion-slide>
+   
  </ion-slides>  
 </div>
 
 
+<<<<<<< HEAD
 </ion-content>
+=======
+>>>>>>> 7ba9820e1c2f3597c5f1c159d3fc2717222750b9
 

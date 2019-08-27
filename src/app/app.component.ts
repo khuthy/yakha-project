@@ -1,3 +1,4 @@
+import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { VersionPage } from './../pages/version/version';
 import { SharePage } from './../pages/share/share';
 import { FeedbackPage } from './../pages/feedback/feedback';
@@ -17,7 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SignoutPage } from '../pages/signout/signout';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
-import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      
+     // this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -63,10 +64,10 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user)=>{
       if(user)
       {
-        
-        this.rootPage = OnboardingPage; 
+        this.rootPage = HomePage;
       } else {
-        this.rootPage = OnboardingPage;
+        
+        this.rootPage = WelcomePage;
       }
     })
   }
@@ -78,11 +79,11 @@ export class MyApp {
   SignOut() {
     firebase.auth().signOut().then(() => {
       console.log('Signed Out');
-      this.rootPage = LoginPage;
+      this.rootPage = WelcomePage;
       
     }).catch((err) => {
       console.log('error occured while signing out');
-      
+
     })
   }
   viewProfile() {

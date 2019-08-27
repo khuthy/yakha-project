@@ -27,8 +27,8 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  next() {
-   this.slides.slideNext(1);
+  nextslides() {
+   this.slides.slideNext();
   }
   gotoWelcome(){
     this.navCtrl.push(WelcomePage);

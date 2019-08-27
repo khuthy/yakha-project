@@ -18,6 +18,7 @@ import { OnboardingPage } from './../pages/onboarding/onboarding';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -38,7 +39,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
-import { CoordsProvider } from '../providers/coords/coords';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
@@ -118,7 +118,7 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     UserProvider,
     AuthServiceProvider,
     Camera,
-    CoordsProvider 
+  Geolocation
 
   ]
 })
