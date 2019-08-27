@@ -43,6 +43,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
+import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
 @NgModule({
   declarations: [
     MyApp,
@@ -70,7 +71,8 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     PlacePage,
     BricklayerlandingPage,
     WelcomePage,
-    ViewmessagePage
+    ViewmessagePage,
+    VerifyemailPage
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,8 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     PlacePage,
     BricklayerlandingPage,
     WelcomePage,
-    ViewmessagePage
+    ViewmessagePage,
+    VerifyemailPage
 
 
   ],

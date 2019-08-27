@@ -64,6 +64,10 @@ export class RegisterPage {
 ​
       this.authService.signupUser(email, password).then(
         () => {
+          if(this.authService.getUser().emailVerified == true) {
+             console.log('verified');
+             
+          } 
           this.loading.dismiss().then(() => {
             console.log();
             if(this.authService.manageUsers() == 'Homebuilder') {

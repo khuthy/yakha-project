@@ -8,6 +8,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -134,7 +135,7 @@ export class BaccountSetupPage {
 
       // upon success...
       user.then( () => {
-        this.navCtrl.setRoot(BricklayerlandingPage)
+        this.navCtrl.setRoot(HomePage)
         this.toastCtrl.create({
           message: 'User Profile added.',
           duration: 2000,
