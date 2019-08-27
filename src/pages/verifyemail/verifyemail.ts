@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, MenuController } 
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { LoginPage } from '../login/login';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 /**
  * Generated class for the VerifyemailPage page.
  *
@@ -29,7 +30,8 @@ export class VerifyemailPage {
     public navParams: NavParams,
     public forms: FormBuilder,
     public menuCtrl: MenuController,
-    public alert: AlertController
+    public alert: AlertController,
+    public authService: AuthServiceProvider
     ) {
      this.verifyForm = this.forms.group({
          email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
@@ -49,13 +51,18 @@ export class VerifyemailPage {
    console.log(user);
   }
 
+  skip() {
+    this.navCtrl.setRoot(LoginPage);
+  }
+
   verifyEmail(verifyForm: FormGroup){
     var user = firebase.auth().currentUser;
    console.log(user);
 
  
      if(this.email == user.email) {
-        user.sendEmailVerification().then(() => {
+
+      user.sendEmailVerification().then(() => {
         // Email sent.
         console.log('are you sure thats your email?');
        this.alert.create({
@@ -63,10 +70,14 @@ export class VerifyemailPage {
          subTitle: 'Check your email before logging in',
          buttons: ['Ok']
        }).present();
-       this.navCtrl.setRoot(LoginPage)
+       this.navCtrl.setRoot(LoginPage);
       }).catch((error) => {
         // An error happened.
       });
+
+
+      
+        
      }else {
        console.log('are you sure thats your email?');
        this.alert.create({

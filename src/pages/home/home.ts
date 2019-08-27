@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
@@ -32,7 +32,8 @@ maps: boolean =false;
 request: boolean = false;
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private menuCtrl: MenuController
  ) {
 
   /* home page loads start here */
@@ -134,8 +135,8 @@ request: boolean = false;
   }
 
   ionViewDidLoad() {
-  
-    
+   
+    this.menuCtrl.swipeEnable(true);
   }
 
 //viewmore
