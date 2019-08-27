@@ -44,6 +44,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
 import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
+import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
 @NgModule({
   declarations: [
     MyApp,
@@ -72,7 +73,8 @@ import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
     BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
-    VerifyemailPage
+    VerifyemailPage,
+    BuilderquotesPage
   ],
   imports: [
     BrowserModule,
@@ -110,7 +112,8 @@ import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
     BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
-    VerifyemailPage
+    VerifyemailPage,
+    BuilderquotesPage
 
 
   ],
