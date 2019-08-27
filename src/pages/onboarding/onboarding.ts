@@ -3,7 +3,7 @@ import { Component,ViewChild  } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the OnboardingPage page.
  *
@@ -17,9 +17,20 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
- @ViewChild('myslider') slides: Slides;
+  @ViewChild('slides') slides: Slides
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage) {
+    this.storage.get('onboarding').then(val => {
+      if(val == 'checked')  {
+        console.log(val);
+        this.navCtrl.setRoot(WelcomePage);
+        
+      }else {
+        this.navCtrl.setRoot(OnboardingPage);
+      }
+      
+    });
+    
   }
 
   ionViewDidLoad() {
@@ -27,17 +38,22 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  nextslides() {
-   this.slides.slideNext();
+  nextslides(){
+    this.slides.slideNext();
   }
   gotoWelcome(){
-    this.navCtrl.push(WelcomePage);
+  // set a key/value
+  this.storage.set('onboarding', 'checked');
+  this.navCtrl.setRoot(WelcomePage);
   }
+  // Or to get a key/value pair
 
- predefinedUser(val) {
-    this.authService.predefined = val;
 
-    this.navCtrl.setRoot(LoginPage);
- }
+//  predefinedUser(val) {
+//     this.authService.predefined = val;
 
+//     this.navCtrl.setRoot(LoginPage);
+//  }
+
+// }
 }

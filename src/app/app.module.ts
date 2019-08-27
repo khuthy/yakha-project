@@ -43,6 +43,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
@@ -78,7 +79,8 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     CommonModule,
     HttpClientModule,
     GooglePlaceModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -64,10 +64,10 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user)=>{
       if(user)
       {
-        this.rootPage = HomePage;
+        this.rootPage = OnboardingPage;
       } else {
         
-        this.rootPage = WelcomePage;
+        this.rootPage = OnboardingPage;
       }
     })
   }
