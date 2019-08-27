@@ -27,17 +27,17 @@ export class BuilderquotesPage {
   
   validation_messages = {
     'expiry': [
-      { type: 'required', message: 'Start date is required.' }
+      { type: 'required', message: 'Expiry date is required.' }
     ],
     'address': [
-      { type: 'required', message: 'End date is required.' }
+      { type: 'required', message: 'Address is required.' }
     ],
   'dimension': [ {
-      type: 'required', message: 'Wall type is required'
+      type: 'required', message: 'Dimension is required'
     }],
   'price': [ 
-    {type: 'required', message: 'Brick type is required.'},
-     {type: 'maxlength', message: 'Too large'}
+    {type: 'required', message: 'Price is required.'},
+     {type: 'maxlength', message: 'Amount is too large'}
 ]
 }
   constructor(

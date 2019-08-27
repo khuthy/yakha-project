@@ -1,3 +1,36 @@
 page-builderquotes {
-
+    .content {
+        background: linear-gradient(#62878E, #026172);
+        background-image: linear-gradient(to right, rgb(91, 134, 141), #62878E, rgb(92, 137, 145));
+        display: flex;
+        height: 100%;
+    }
+    .item {
+        background: transparent;
+        color: rgb(255, 255, 255);
+        font-weight: 200;
+        border-color: #fff;
+    }
+    ion-label {
+        color: #fff;
+    }
+    form {
+       display: flex;
+       flex-direction: row;
+       flex-wrap: wrap;
+       align-items: center;
+       justify-content: center;
+       height: 80%;
+       form > div {
+           flex-basis: 100%;
+          
+       }
+    }
+    .quotes {
+        border-radius: 12px;
+        height: 56px;
+    }
+    .error {
+        justify-self: flex-start;
+    }
 }
