@@ -5,6 +5,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+import { MessagesPage } from '../messages/messages';
+import { ViewmessagePage } from '../viewmessage/viewmessage';
 
 declare var google;
 
@@ -142,6 +144,9 @@ request: boolean = false;
 //viewmore
 viewBuilderInfo(builder){
   this.navCtrl.push(BuilderProfileviewPage, builder);
+}
+viewRequest() {
+  this.navCtrl.push(ViewmessagePage);
 }
 // viewRoom(room){
 //   // receive the room data from the html and navigate to the next page with it
