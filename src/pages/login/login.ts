@@ -31,7 +31,7 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
- 
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,  
      private formBuilder: FormBuilder,
@@ -61,9 +61,12 @@ export class LoginPage {
         this.authService.setUser(user);
         this.db.collection('User').where('uid', '==', user.uid).get().then(snapshot => {
           if (snapshot.empty){
-            
+              
           } else {
-            this.navCtrl.setRoot(HomeOwnerProfilePage);
+            if(this.authService.manageUsers() == 'Homeowner') {
+              this.navCtrl.setRoot(HomeOwnerProfilePage);
+            }
+            
             
           }
         })

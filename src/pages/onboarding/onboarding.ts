@@ -28,15 +28,15 @@ export class OnboardingPage {
 
   /* navigate page  */
   next() {
-   this.slides.slideNext();
+   this.slides.slideNext(1);
   }
   gotoWelcome(){
     this.navCtrl.push(WelcomePage);
   }
 
-
  predefinedUser(val) {
     this.authService.predefined = val;
+
     this.navCtrl.setRoot(LoginPage);
  }
 

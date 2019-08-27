@@ -66,7 +66,7 @@ export class RegisterPage {
         () => {
           this.loading.dismiss().then(() => {
             console.log();
-            if(this.authService.manageUsers() == 'bricklayer') {
+            if(this.authService.manageUsers() == 'Homebuilder') {
               let bricklayer = firebase.auth().currentUser.uid;
               this.navCtrl.setRoot(BaccountSetupPage, bricklayer)
             }else {

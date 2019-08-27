@@ -17,6 +17,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SignoutPage } from '../pages/signout/signout';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
 
 
 @Component({
@@ -34,8 +35,8 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-firebase.initializeApp(firebaseConfig);
-this.authState();
+   firebase.initializeApp(firebaseConfig);
+   this.authState();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -62,9 +63,10 @@ this.authState();
     firebase.auth().onAuthStateChanged((user)=>{
       if(user)
       {
-        this.rootPage = HomePage; 
+        
+        this.rootPage = OnboardingPage; 
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = OnboardingPage;
       }
     })
   }

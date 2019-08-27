@@ -17,15 +17,15 @@
    
   </ion-card> -->
    <div class="container">
-      <div class="profiles">
+      <div class="profiles" *ngIf="isProfile">
      
           <div class="avatar-images">
-          <img src="../../assets/imgs/th.jpg" class="thumbavatar">
+          <img src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
         </div>
         
         
            <div class="name">
-             <h4 style="text-align: center;">Muenda Khuthadzo</h4>
+             <h4 style="text-align: center;">{{HomeOwnerProfile.fullName}}</h4>
            </div>
            <div class="details">
              <p><ion-icon name="call"></ion-icon> 082 4586 454</p>
@@ -39,7 +39,7 @@
              </p>
            </div>
            <ion-fab right bottom>
-              <button ion-fab color="button2"><ion-icon name="create"></ion-icon></button>
+              <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create"></ion-icon></button>
             </ion-fab>
           <!--  <div class="displayName">
 

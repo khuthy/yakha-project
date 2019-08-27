@@ -3,7 +3,7 @@ import { PlacePage } from './../place/place';
 import { NewPlacesPage } from './../new-places/new-places';
 import { AddBricklayerPage } from './../add-bricklayer/add-bricklayer';
 import { BuilderProfileviewPage } from './../builder-profileview/builder-profileview';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
@@ -18,7 +18,7 @@ export class HomePage {
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
-  @ViewChild("map") mapElement;
+  @ViewChild("map") mapElement: ElementRef;
   map: any;
 //  marker: any;
   constructor(public navCtrl: NavController,

@@ -1,0 +1,145 @@
+page-viewmessage {
+    .container {
+        display: flex;
+        //height: 100%;
+        width: 100%;
+        flex-direction: column;
+      
+    }
+    .message {
+     position: relative;
+     height: 25vh;
+    
+     
+     top: 0;
+     //border: 1px solid #000;
+     width: 100%;
+    }
+.details {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+   // border: 1px solid #0cc;
+    .images {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+    .expand{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        right: 45%;
+        text-align: center;
+        bottom: -15px;
+        border-radius: 200px;
+        background: white;
+        box-shadow: 0px 0px 3px #1717179f;
+        display: grid;
+        padding-top: 3px;
+        align-content: center;
+        p{
+              margin: 0;
+              padding: 0;
+        }
+    }
+    .title {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.411);
+        text-align: center;
+        color: rgb(58, 58, 58);
+        padding: 2%;
+        border-radius: 50px 50px 0 0;
+    }
+    .textMessages {
+        
+        margin-left: 5%;
+        margin-right: 5%;
+        
+        height: 75vh;
+        overflow: hidden;
+        //border: 1px solid #000;
+        position: fixed;
+        overflow-y: scroll;
+        bottom: 0;
+        z-index: -2;
+        
+
+        .block {
+            //border: 1px solid red;
+            padding: 10px;
+            background: rgb(238, 238, 238);
+            position: relative;
+            border-radius: 10px 10px 10px 0;
+            box-shadow: inset 3px 6px 16px rgba(131, 131, 131, 0.26);
+            margin-bottom: 15px;
+            margin-top: 25px;
+            &::after {
+                position: absolute;
+                content: '';
+                bottom: -8%;
+                left: 0;
+               
+                //box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.411);
+                z-index: -4;
+                border-right: 20px solid transparent;
+                border-top: 20px solid #ddd;
+
+            }
+
+           
+
+
+        }
+    }
+    @keyframes slideUp {
+        0% {
+            height: -75vh;
+        }
+        100% {
+            height: 0;
+        }
+    }
+
+    .booking-inactive{
+        width: 100%;
+        height: 10%;
+        position: absolute;
+        bottom: 0;
+        background: rgba(76, 10, 10, 0.89);
+        z-index:3;
+        animation-name: slideOutDown;
+        .toggler{
+              width: 100%;
+              height: 20px;
+              text-align: center;
+              color: white;
+              padding: 2px 0px;
+        }
+    }
+    .booking-active{
+        width: 100%;
+        height: 95%;
+        position: absolute;
+        bottom: 0;
+        background: rgba(76, 10, 10, 0.89);
+        z-index:3;
+        animation-name: slideInUp;
+        overflow: hidden;
+        .toggler{
+              width: 100%;
+              height: 20px;
+              text-align: center;
+              color: white;
+              padding: 2px 0px;
+              overflow: hidden;
+        }
+    }
+    
+}
