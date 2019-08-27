@@ -19,7 +19,7 @@ import { Storage } from '@ionic/storage';
 export class OnboardingPage {
   @ViewChild('slides') slides: Slides
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
     this.storage.get('onboarding').then(val => {
       if(val == 'checked')  {
         console.log(val);

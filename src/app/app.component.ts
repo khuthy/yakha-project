@@ -77,8 +77,6 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user)=>{
       if(user)
       {
-        this.rootPage = OnboardingPage;
-      } else {
          // create a reference to the collection of users...
          
             let userLoggedIn = this.db.doc(`/User/${user.uid}`);
