@@ -1,19 +1,22 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>Quotation-form</ion-title>
+    <ion-title>Compose</ion-title>
+    <ion-buttons end>
+      <button *ngIf="!houseImage" only-icon clear (click)="selectImage()"><ion-icon name="attach" class="fas"></ion-icon></button>
+      <button *ngIf="!houseImage" only-icon clear (click)="createQuations(quotationForm)" [disabled]="!quotationForm.valid"><ion-icon class="fas" name="send"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-<h1>Quotation form</h1>
-<div *ngIf="houseImage" class="image">
-  <img src="{{houseImage}}">
-</div>
-<button *ngIf="!houseImage" ion-button clear large full (click)="selectImage()">Select Image</button>
-<p *ngIf="!houseImage">Please Upload the house Plan</p>
+  <div *ngIf="houseImage" class="image">
+    <img src="{{houseImage}}">
+  </div>
+  
+  <p *ngIf="!houseImage" >Please Upload the house Plan</p>
+
 <form [formGroup]="quotationForm">
-  <ion-list>
+
     <ion-item>
           <ion-label floating>Preffered start date</ion-label>
           <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
@@ -104,7 +107,7 @@
                   {{validate.message}}
                 </div>
                 </div>
-    <ion-item>
+        <ion-item>
             <ion-label position="floating">Additional comments</ion-label>
             <ion-textarea rows="6" cols="20" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
           </ion-item>
@@ -113,9 +116,9 @@
               {{validate.message}}
             </div>
             </div>
-          <button (click)="createQuations(quotationForm)" [disabled]="!quotationForm.valid" ion-button block primary>Submit Quote</button>
+          <button  ion-button block primary>Submit Quote</button>
       
-      </ion-list>
+     
 </form>
 
 

@@ -68,9 +68,9 @@ type: 'required', message: 'Length is required.'
 'width': [ {
 type: 'required', message: 'Width is required.'
 }],
-'comment': [ {
-type: 'required', message: 'Additional comments is required.'
-}],
+'comment': [ {type: 'required', message: 'Additional comments is required.'},
+            {type: 'maxlength', message: 'Additional comments must be 200 characters'}
+          ]
 };
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -93,7 +93,7 @@ type: 'required', message: 'Additional comments is required.'
         Height: new  FormControl('', Validators.compose([Validators.required])),
         length:new  FormControl('', Validators.compose([Validators.required])),
         width:new  FormControl('', Validators.compose([Validators.required])),
-        comment:new  FormControl('', Validators.compose([Validators.required])),
+        comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
 
       let date = new Date();

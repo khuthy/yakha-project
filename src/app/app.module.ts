@@ -46,6 +46,8 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
 import { IonicStorageModule } from '@ionic/storage';
 import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
 import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 @NgModule({
   declarations: [
     MyApp,
@@ -126,7 +128,9 @@ import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
     UserProvider,
     AuthServiceProvider,
     Camera,
-  Geolocation
+    Geolocation,
+    File,
+    FileOpener
 
   ]
 })
