@@ -43,11 +43,11 @@ export class BuilderquotesPage {
       { type: 'required', message: 'Address is required.' }
     ],
   'dimension': [ {
-      type: 'required', message: 'dimension type is required'
+      type: 'required', message: 'Dimension is required'
     }],
   'price': [ 
-    {type: 'required', message: 'price is required.'},
-     {type: 'maxlength', message: 'Too large'}
+    {type: 'required', message: 'Price is required.'},
+     {type: 'maxlength', message: 'Amount is too large'}
 ]
 }
   constructor(

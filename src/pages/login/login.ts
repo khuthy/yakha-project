@@ -15,6 +15,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { VerifyemailPage } from '../verifyemail/verifyemail';
+import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -82,29 +83,45 @@ this.navCtrl.push(RegisterPage, data)
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authService => {
         if(authService.user.emailVerified === true) {
-              this.navCtrl.setRoot(HomePage);
+         let userLoggedIn = this.db.doc(`/User/${authService.user.uid}`);
+         userLoggedIn.get().then(getuserLoggedIn => {
+         let homeOwnerInfo = this.db.collection('HomeOwnerProfile').where("uid", "==", authService.user.uid);
+         let homeBuilders = this.db.collection('builderProfile').where("uid", "==", authService.user.uid);
+     if(getuserLoggedIn.data().userType == 'Homebuilder') {
+      homeBuilders.get().then(connectBuilder => { 
+        if(connectBuilder.empty) {
+          this.alertCtrl.create({
+            subTitle: 'Create profile',
+            title: 'Please create a profile to continue',
+          }).present();
+          this.navCtrl.setRoot(BaccountSetupPage);
+        }else {
+          this.navCtrl.setRoot(HomePage);
+        }
+    });
+     }else {
+         homeOwnerInfo.get().then(connectOwner => { 
+          if(connectOwner.empty) {
+            this.alertCtrl.create({
+              subTitle: 'Create profile',
+              title: 'Please create a profile to continue.',
+            }).present();
+            this.navCtrl.setRoot(AccountSetupPage);
+          }else {
+            this.navCtrl.setRoot(HomePage);
+          }
+      });
+     }
+    
+     })
+         
+        
         }else {
           this.alertCtrl.create({
            title: 'Email Verification',
            subTitle: 'Your email address is not verified. please complete this form and check your email box',
-           buttons: [
-            {
-              text: 'Cancel',
-              handler: data => {
-                console.log('cancel clicked');
-                
-              }
-            },
-            {
-              text: 'Ok',
-              handler: data => {
-                console.log('Saved clicked');
-                this.navCtrl.setRoot(VerifyemailPage);
-              }
-            }
-          ]
-           
-          })
+           buttons: ['Ok']
+           }).present();
           
         }
          

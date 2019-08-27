@@ -65,24 +65,13 @@ export class RegisterPage {
 ​
       this.authService.signupUser(email, password).then(
         () => {
-          if(this.authService.getUser().emailVerified == false) {
-             console.log('NOT verified');
 
              this.loading.dismiss().then(() => {
               console.log();
-              if(this.authService.manageUsers() == 'Homebuilder') {
-                let homebuilder = firebase.auth().currentUser.uid;
-                this.navCtrl.setRoot(VerifyemailPage, homebuilder)
-              }else {
-                  let homeowner=firebase.auth().currentUser.uid;
-                  this.navCtrl.setRoot(VerifyemailPage, homeowner)
-              }
+              this.navCtrl.setRoot(VerifyemailPage);
+           });
              
-            });
-             
-          }else {
-            
-          } 
+           
         
         },
         error => {
