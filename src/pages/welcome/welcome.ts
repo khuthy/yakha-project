@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
@@ -17,12 +17,19 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider, private menuCtrl: MenuController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
   }
+  ionViewWillEnter(){
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave(){
+    this.menuCtrl.swipeEnable(false);
+  }
+
 
   definedUser(val) {
     this.authService.predefined = val;

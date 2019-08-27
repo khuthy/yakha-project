@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewmessagePage } from '../viewmessage/viewmessage';
 
 /**
  * Generated class for the MessagesPage page.
@@ -20,6 +21,10 @@ export class MessagesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagesPage');
+  }
+
+  viewMessages() {
+    this.navCtrl.push(ViewmessagePage);
   }
 
 }

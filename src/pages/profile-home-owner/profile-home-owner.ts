@@ -24,14 +24,15 @@ export class ProfileHomeOwnerPage {
   uid
   HomeOwnerProfile = {
     ownerImage: '',
-    fullName: '',
-   
+    fullname: '',
+    email: '',
     personalNumber: '',
     About: ''
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
 this.uid = firebase.auth().currentUser.uid;
+ this.HomeOwnerProfile.email = firebase.auth().currentUser.email;
 this.authUser.setUser(this.uid);
   }
 
@@ -61,7 +62,7 @@ this.authUser.setUser(this.uid);
           this. HomeOwnerProfile.About  = doc.data().About;
           // this.HomeOwnerProfile.email = doc.data().email
           this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
-          this.HomeOwnerProfile. fullName  = doc.data(). fullName;
+          this.HomeOwnerProfile. fullname  = doc.data().fullname;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })

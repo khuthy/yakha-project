@@ -42,6 +42,8 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
+import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
+import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
 @NgModule({
   declarations: [
     MyApp,
@@ -68,7 +70,9 @@ import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerland
     NewPlacesPage,
     PlacePage,
     BricklayerlandingPage,
-    WelcomePage
+    WelcomePage,
+    ViewmessagePage,
+    VerifyemailPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,9 @@ import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerland
     NewPlacesPage,
     PlacePage,
     BricklayerlandingPage,
-    WelcomePage
+    WelcomePage,
+    ViewmessagePage,
+    VerifyemailPage
 
 
   ],

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
@@ -14,6 +14,7 @@ import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+import { VerifyemailPage } from '../verifyemail/verifyemail';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -32,14 +33,16 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
- 
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,  
      private formBuilder: FormBuilder,
     private userProvider:UserProvider,
      public loadingCtrl: LoadingController,
      public alertCtrl: AlertController,
-     private authService:AuthServiceProvider) {
+     private authService:AuthServiceProvider,
+     private menuCtrl: MenuController
+     ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: [
@@ -55,26 +58,13 @@ export class LoginPage {
 ​
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginOwnerPage');
-    this.firebase.auth().onAuthStateChanged( user => {
-      if (user){
-        
-        // send the user's data if they're still loggedin
-        this.authService.setUser(user);
-        this.db.collection('User').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
-          if (snapshot.empty){
-             
-          } else {
-            if(this.authService.manageUsers() == 'Homebuilder') {
-              this.navCtrl.setRoot(BricklayerlandingPage);
-            }else {
-              this.navCtrl.setRoot(HomePage);
-            }
-            
-            
-          }
-        })
-      }
-    })
+  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave(){
+    this.menuCtrl.swipeEnable(false);
   }
 ​
   //Create
@@ -91,11 +81,33 @@ this.navCtrl.push(RegisterPage, data)
 
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authService => {
-         if(this.authService.manageUsers() == 'Homebuilder') {
-              this.navCtrl.setRoot(BricklayerlandingPage);
-         }else{
-           this.navCtrl.setRoot(HomePage);
-         }
+        if(authService.user.emailVerified === true) {
+              this.navCtrl.setRoot(HomePage);
+        }else {
+          this.alertCtrl.create({
+           title: 'Email Verification',
+           subTitle: 'Your email address is not verified. please complete this form and check your email box',
+           buttons: [
+            {
+              text: 'Cancel',
+              handler: data => {
+                console.log('cancel clicked');
+                
+              }
+            },
+            {
+              text: 'Ok',
+              handler: data => {
+                console.log('Saved clicked');
+                this.navCtrl.setRoot(VerifyemailPage);
+              }
+            }
+          ]
+           
+          })
+          
+        }
+         
         
       }, error => {
         this.loading.dismiss().then( () => {
