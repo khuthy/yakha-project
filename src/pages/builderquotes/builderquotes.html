@@ -1,0 +1,62 @@
+<!--
+  Generated template for the BuilderquotesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>builderquotes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="quotesForm">
+      <ion-list>
+
+          <ion-item>
+            <ion-label fixed>Expiry date</ion-label>
+            <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
+            
+            <div class="error" *ngFor="let validate of validation_messages.expiry">
+                <div class="messages" *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
+                  {{validate.message}}
+                </div>
+                </div>
+          </ion-item>
+
+          <ion-item>
+              <ion-label fixed>Physical Address</ion-label>
+              <ion-input type="text" formControlName="address" [(ngModel)]="quotes.address"></ion-input>
+            </ion-item>
+
+            <div class="error" *ngFor="let validate of validation_messages.address">
+                <div class="messages" *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
+                  {{validate.message}}
+                </div>
+                </div>
+             
+            <ion-item>
+                <ion-label fixed>Dimensions</ion-label>
+                <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
+              </ion-item>
+
+              <div class="error" *ngFor="let validate of validation_messages.dimension">
+                  <div class="messages" *ngIf="quotesForm.get('dimension').hasError(validate.type) && (quotesForm.get('dimension').dirty || quotesForm.get('dimension').touched)">
+                    {{validate.message}}
+                  </div>
+                  </div>
+        
+          <ion-item>
+            <ion-label fixed>Total price</ion-label>
+            <ion-input type="text" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
+          </ion-item>
+          <div class="error" *ngFor="let validate of validation_messages.price">
+              <div class="messages" *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
+                {{validate.message}}
+              </div>
+              </div>
+        <button (click)="createQuotes()">Create Quotes</button>
+        </ion-list>
+  </form>
+</ion-content>

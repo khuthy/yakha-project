@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BuilderquotesPage } from '../builderquotes/builderquotes';
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -37,6 +38,10 @@ export class ViewmessagePage {
   }
   showMore(){
     this.more = !this.more;
+  }
+
+  quotesForm() {
+    this.navCtrl.push(BuilderquotesPage);
   }
 
 }

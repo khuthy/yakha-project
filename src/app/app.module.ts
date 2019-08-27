@@ -45,6 +45,7 @@ import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerland
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
 import { IonicStorageModule } from '@ionic/storage';
 import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
+import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
 @NgModule({
   declarations: [
     MyApp,
@@ -73,7 +74,8 @@ import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
     BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
-    VerifyemailPage
+    VerifyemailPage,
+    BuilderquotesPage
   ],
   imports: [
     BrowserModule,
@@ -112,7 +114,8 @@ import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
     BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
-    VerifyemailPage
+    VerifyemailPage,
+    BuilderquotesPage
 
 
   ],

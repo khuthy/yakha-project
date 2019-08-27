@@ -26,7 +26,8 @@ export class OnboardingPage {
         this.navCtrl.setRoot(WelcomePage);
         
       }else {
-        this.navCtrl.setRoot(OnboardingPage);
+        console.log('on-boarding now');
+        
       }
       
     });

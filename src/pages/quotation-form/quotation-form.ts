@@ -161,7 +161,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   
   // upon success...
   user.then( () => {
-    this.navCtrl.setRoot(MessagesPage)
+    this.navCtrl.setRoot(SuccessPage)
     this.toastCtrl.create({
       message: '  Quotation submitted.',
       duration: 2000,

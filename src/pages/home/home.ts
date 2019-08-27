@@ -1,10 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+import { MessagesPage } from '../messages/messages';
+import { ViewmessagePage } from '../viewmessage/viewmessage';
 
 declare var google;
 
@@ -32,7 +34,8 @@ maps: boolean =false;
 request: boolean = false;
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private menuCtrl: MenuController
  ) {
 
   /* home page loads start here */
@@ -134,13 +137,16 @@ request: boolean = false;
   }
 
   ionViewDidLoad() {
-  
-    
+   
+    this.menuCtrl.swipeEnable(true);
   }
 
 //viewmore
 viewBuilderInfo(builder){
   this.navCtrl.push(BuilderProfileviewPage, builder);
+}
+viewRequest() {
+  this.navCtrl.push(ViewmessagePage);
 }
 // viewRoom(room){
 //   // receive the room data from the html and navigate to the next page with it
