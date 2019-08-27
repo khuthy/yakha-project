@@ -26,5 +26,6 @@ export class MessagesPage {
   viewMessages() {
     this.navCtrl.push(ViewmessagePage);
   }
+  
 
 }
