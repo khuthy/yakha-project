@@ -1,6 +1,6 @@
 import { LoginPage } from './../login/login';
 import { Component,ViewChild  } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, MenuController} from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
@@ -36,6 +36,12 @@ export class OnboardingPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OnboardingPage');
   }
+  ionViewWillEnter(){
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave(){
+    this.menuCtrl.swipeEnable(false);
+  }
 
   /* navigate page  */
   nextslides(){
@@ -49,11 +55,4 @@ export class OnboardingPage {
   // Or to get a key/value pair
 
 
-//  predefinedUser(val) {
-//     this.authService.predefined = val;
-
-//     this.navCtrl.setRoot(LoginPage);
-//  }
-
-// }
 }

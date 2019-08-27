@@ -1,0 +1,24 @@
+
+<ion-content padding>
+
+  <div class="container">
+    <form [formGroup]="verifyForm">
+       <p>Your email address is not verified</p>
+    <ion-item>
+      <ion-label>
+        
+        Email address<ion-icon style="right: 0; position: fixed;" name="mail"></ion-icon>
+      </ion-label>
+      <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
+
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.email">
+        <div class="messages" *ngIf="verifyForm.get('email').hasError(validate.type) && (verifyForm.get('email').dirty || verifyForm.get('email').touched)">
+          {{validate.message}}
+        </div>
+        </div>
+    <button ion-button [disabled]="!verifyForm.valid" (click)="verifyEmail()" block>Submit</button>
+    </form>
+   
+  </div>
+</ion-content>

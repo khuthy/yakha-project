@@ -1,15 +1,15 @@
 
 
 <ion-content>
-    <div #map id="map"></div>
-  <div class="menus">
+    <div #map id="map" *ngIf="maps"></div>
+  <div class="menus" *ngIf="maps">
     <button ion-button clear menuToggle>
         <ion-icon name="menu" class="fa"></ion-icon>
       </button>
   </div>
 
 
-  <div class="slider">
+  <div class="slider" *ngIf="maps">
     <ion-slides spaceBetween="-33">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
@@ -42,9 +42,24 @@
  </ion-slides>  
 </div>
 
+<div class="homebuilder" padding *ngIf="request">
+  <div class="home-builder-pro">
+   <span>Start date: 2019-12-02</span>
+    <div class="home-builder-top">
+      <img src="../assets/imgs/th.jpg" class="thumb-home-builder" alt="profile">
+      <article>
+        <p style="font-size: 17px;"><strong>Your name</strong> </p>
+        <br>
+        <p style="font-size: 15px;"><ion-icon name="call"></ion-icon> 076 558 4854</p>
+        
+    </article>
+    </div>
+    <div class="bottom-home-builder">
+      <p class="prices-home-builder">End date: 2019-03-23</p>
+    </div>
+    </div> 
+</div>
 
-<<<<<<< HEAD
+
 </ion-content>
-=======
->>>>>>> 7ba9820e1c2f3597c5f1c159d3fc2717222750b9
 
