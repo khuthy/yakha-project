@@ -14,8 +14,7 @@
               </div>
               </div>
           <ion-item color="light"  style="color: #fff;">
-              <ion-label floating>Physical Address</ion-label>
-              <ion-input type="text" formControlName="address" [(ngModel)]="quotes.address"></ion-input>
+            <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
             </ion-item>
 
             <div class="error" *ngFor="let validate of validation_messages.address">
@@ -47,6 +46,6 @@
               <button ion-button full (click)="createPdf()">Create PDF</button>
            
               <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
-        </ion-list>
+        
   </form>
 </ion-content>

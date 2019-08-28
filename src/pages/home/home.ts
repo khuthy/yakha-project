@@ -7,6 +7,7 @@ import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { MessagesPage } from '../messages/messages';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
+import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 
 declare var google;
 
@@ -20,6 +21,7 @@ export class HomePage {
   // changes if the content is empty
   info = false;
   builder = [];
+  owner =[];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -127,6 +129,7 @@ request: boolean = false;
           console.log('Builders: ', this.builder);
         
         });
+  
       }
     })
    }else {
@@ -139,6 +142,7 @@ request: boolean = false;
   ionViewDidLoad() {
    
     this.menuCtrl.swipeEnable(true);
+    this.getOwners();
   }
 
 //viewmore
@@ -152,8 +156,20 @@ viewRequest() {
 //   // receive the room data from the html and navigate to the next page with it
 //   this.navCtrl.push(OwnerViewHotelPage, {room});
 // }
+viewOwner(owner){
+  this.navCtrl.push(HomeOwnerProfilePage,owner);
+}
 
-
+getOwners(){
+  this.db.collection('HomeOwnerProfile').get().then(snapshot => {
+    this.owner = [];
+    snapshot.forEach(doc => {
+      this.owner.push(doc.data());
+    });
+    console.log('Owners: ', this.owner);
+  
+  });
+}
 loadMap(){
 
 

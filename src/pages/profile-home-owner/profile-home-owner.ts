@@ -39,8 +39,7 @@ this.authUser.setUser(this.uid);
   ionViewDidLoad() {
     this.getProfile();
     console.log(this.uid);
-    
-  }
+    }
   getProfile(){
     // load the process
     let load = this.loadingCtlr.create({

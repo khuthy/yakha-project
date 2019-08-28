@@ -31,7 +31,7 @@ export class QuotationFormPage {
   isuploading: false
   displayQuation;
   HomeOwnerQuotation = {
-    dateSubmitted:'',
+    uid:'',
     startDate:'',
     endDate:'',
     height: '',
@@ -83,7 +83,7 @@ type: 'required', message: 'Additional comments is required.'
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
-      // this.HomeOwnerQuotation.uid = this.uid;
+     this.HomeOwnerQuotation.uid = this.uid;
       this.quotationForm = this.formBuilder.group({
         // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
         startDate:new  FormControl('', Validators.compose([Validators.required])),
@@ -106,10 +106,10 @@ type: 'required', message: 'Additional comments is required.'
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotationFormPage');
+    console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
-this.authUser.getUser();
-console.log('user ',this.authUser.getUser() );
+  this.authUser.getUser();
+  console.log(this.authUser.getUser() );
 
   }
 next(){
