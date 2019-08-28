@@ -29,6 +29,7 @@ page-welcome {
        font-size: 24px;
        font-weight: 300;
        text-align: center;
+       text-shadow: 1px 1px #ddd;
        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    }
 
@@ -57,7 +58,16 @@ page-welcome {
         border-radius: 12px;
     }
     .success {
-        background: rgba(4, 4, 119, 0.829);
+        background: linear-gradient(rgb(62, 62, 218), rgb(2, 2, 90));
     }
+    .warning {
+        background: linear-gradient(rgb(255, 115, 0), rgb(90, 49, 2));
+    }
+   }
+   @media only screen and(min-width: 600px) {
+       .bottomWelcome {
+           height: 508px;
+           align-items: center;
+       }
    }
 }
