@@ -9,6 +9,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import * as firebase from 'firebase';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -29,12 +30,13 @@ export class BuilderquotesPage {
   expiry: '',
   address: '',
   dimension: '',
-  price: ''
+  price: '',
+  uid: ''
   }
   pdfObj = null;
   db = firebase.firestore();
   storage = firebase.storage().ref();
-  
+  uid: any;
   validation_messages = {
     'expiry': [
       { type: 'required', message: 'Expiry date is required.' }
@@ -56,8 +58,12 @@ export class BuilderquotesPage {
     public forms: FormBuilder,
     private fileOpener: FileOpener,
     private file: File,
-    private plt: Platform
+    private plt: Platform,
+    private authUser: AuthServiceProvider
     ) {
+      this.uid = firebase.auth().currentUser.uid;
+    this.authUser.setUser(this.uid);
+    this.quotes.uid = this.uid;
       this.quotesForm = this.forms.group({
         expiry: new FormControl('', Validators.compose([Validators.required])),
         address: new FormControl('', Validators.compose([Validators.required])),
@@ -118,7 +124,6 @@ export class BuilderquotesPage {
     }
     this.pdfObj = pdfMake.createPdf(docDefinition);
 
-    console.log(this.pdfObj);
     
   }
   // selectFile() {
@@ -185,6 +190,7 @@ export class BuilderquotesPage {
     } else {
       // On a browser simply use download!
       this.pdfObj.download();
+      this.pdfObj.upload();
     }
   }
 

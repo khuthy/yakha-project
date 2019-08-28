@@ -1,16 +1,17 @@
 
 <ion-header>
-  <ion-navbar>
-    <ion-title>Compose</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Request quotes</ion-title>
     <ion-buttons end>
-      <button *ngIf="!houseImage" only-icon clear (click)="selectImage()"><ion-icon name="attach" class="fas"></ion-icon></button>
-      <button *ngIf="!houseImage" only-icon clear (click)="createQuations(quotationForm)" [disabled]="!quotationForm.valid"><ion-icon class="fas" name="send"></ion-icon></button>
+      <button *ngIf="!houseImage" only-icon clear (click)="selectImage()"><ion-icon name="attach" style="width: 50px;"></ion-icon></button>
+      <button *ngIf="!houseImage" only-icon clear (click)="createQuations(quotationForm)" [disabled]="!quotationForm.valid"><ion-icon style="width: 50px;" name="send"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div *ngIf="houseImage" class="image">
-    <img src="{{houseImage}}">
+  <div *ngIf="houseImage" class="image-holder">
+    <img src="{{houseImage}}" class="image">
+    <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
   </div>
   
   <p *ngIf="!houseImage" >Please Upload the house Plan</p>
