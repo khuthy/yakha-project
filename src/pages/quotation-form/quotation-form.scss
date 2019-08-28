@@ -1,6 +1,16 @@
 page-quotation-form {
     .content {
-        background: linear-gradient( #62878E, #026172);
+        .image-holder {
+            display: flex;
+            justify-content: center;
+           .image {
+            width: 100px;
+            height: 100px;
+            border-radius: 30px;
+        } 
+        }
+        
+        
         .fas {
             width: 50px;
             height: 50%;
@@ -12,7 +22,7 @@ page-quotation-form {
             
     ​   
             h1 {
-                color: white;
+                color: rgb(22, 22, 22);
                 text-align: center;
                 letter-spacing: 1px;
                 font-family: 'Segoe UI';
@@ -26,7 +36,7 @@ page-quotation-form {
                     width: 47%;
                     background: transparent;
                     ion-label, ion-select {
-                        color: rgb(255, 255, 255);
+                        color: rgb(20, 20, 20);
                         font-size: 4vw;
                         font-weight: 400;
                         letter-spacing: 0.6px;
@@ -38,7 +48,7 @@ page-quotation-form {
             .bg {
                 background: transparent;
                 ion-label {
-                    color: white;
+                    color: rgb(22, 22, 22);
                     font-size: 4vw;
                     font-weight: 400;
                     letter-spacing: 0.6px;
@@ -46,7 +56,7 @@ page-quotation-form {
                    
                 }
                 ion-input , ion-textarea, ion-select, ion-datetime{
-                    color: rgb(219, 203, 203);
+                    color: rgb(37, 37, 37);
                     font-size: 4vw;
                     font-weight: 400;
                     letter-spacing: 0.6px;
@@ -59,7 +69,7 @@ page-quotation-form {
     ​
                     #messages{
                        // border: 1px solid red;
-                        color: white;
+                        color: rgb(2, 2, 2);
                     }
                 }
             }//end of bg class
@@ -103,7 +113,7 @@ page-quotation-form {
 
         .item {
             background: transparent;
-            color: #fff;
+            color: rgb(24, 24, 24);
             font-size: 14px;
         }
        

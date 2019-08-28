@@ -181,5 +181,8 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
    }
         
   }
+  remove(){
+    this.houseImage = "";
+  }
 
 }

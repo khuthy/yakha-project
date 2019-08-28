@@ -1,10 +1,10 @@
 
 <ion-content padding>
   <form [formGroup]="quotesForm">
-    <p style="text-align: center; color: #fff; letter-spacing: 1; font-size: 20px">Create Quotation</p>
+    <p style="text-align: center; color: rgb(5, 5, 5); letter-spacing: 1; font-size: 20px">Create Quotation</p>
 
 
-          <ion-item color="light">
+          <ion-item>
             <ion-label floating>Expiry date</ion-label>
             <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
           </ion-item>
@@ -13,7 +13,7 @@
                 {{validate.message}}
               </div>
               </div>
-          <ion-item color="light"  style="color: #fff;">
+          <ion-item>
               <ion-label floating>Physical Address</ion-label>
               <ion-input type="text" formControlName="address" [(ngModel)]="quotes.address"></ion-input>
             </ion-item>
@@ -24,7 +24,7 @@
                 </div>
                 </div>
              
-            <ion-item color="light" style="color: #fff;">
+            <ion-item>
                 <ion-label floating>Dimensions</ion-label>
                 <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
               </ion-item>
@@ -35,7 +35,7 @@
                   </div>
                   </div>
         
-          <ion-item color="light" style="color: #fff;">
+          <ion-item>
             <ion-label floating>Total price</ion-label>
             <ion-input type="text" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
           </ion-item>
@@ -47,6 +47,6 @@
               <button ion-button full (click)="createPdf()">Create PDF</button>
            
               <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
-        </ion-list>
+        
   </form>
 </ion-content>
