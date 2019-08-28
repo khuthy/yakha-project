@@ -1,18 +1,17 @@
 page-builderquotes {
     .content {
-        background: linear-gradient(#62878E, #026172);
-        background-image: linear-gradient(to right, rgb(91, 134, 141), #62878E, rgb(92, 137, 145));
+        background: linear-gradient(rgb(255, 255, 255), #ffffff);
         display: flex;
         height: 100%;
     }
     .item {
         background: transparent;
-        color: rgb(255, 255, 255);
+        color: rgb(26, 26, 26);
         font-weight: 200;
-        border-color: #fff;
+        
     }
     ion-label {
-        color: #fff;
+        color: rgb(20, 20, 20);
     }
     form {
        display: flex;

@@ -91,44 +91,50 @@ export class MyApp {
          this.predefined = getuserLoggedIn.data().userType;
 
          if(this.predefined == "Homebuilder") {
-          homeBuilders.get().then(homeBuilderInfo => {
-          if(homeBuilderInfo.empty) {
-            this.rootPage = BaccountSetupPage;
-          }else {
-            if(user.emailVerified === true) {
-                    this.rootPage = HomePage;
-                    
-                      homeBuilderInfo.forEach(doc => {
-                          this.userLoggedinNow.fullname = doc.data().fullName;
-                          this.userLoggedinNow.image = doc.data().bricklayerImage;
-                          this.userLoggedinNow.email = user.email;
-                          this.userLoggedinNow.isProfile = true;
-                        });
-            }else {
-              this.rootPage = VerifyemailPage;
-            }
-            
-          }
-        });
-      }else {
-        homeOwner.get().then(homeOwnerInfo => {
-          if(homeOwnerInfo.empty) {
-            this.rootPage = AccountSetupPage;
-          }else {
-            if(user.emailVerified === true) { 
-              this.rootPage = HomePage;
-            homeOwnerInfo.forEach(doc => {
-                this.userLoggedinNow.fullname = doc.data().fullname;
-                this.userLoggedinNow.image = doc.data().ownerImage;
-                this.userLoggedinNow.email = user.email;
-                this.userLoggedinNow.isProfile = true;
-              });
-            }else {
-              this.rootPage = VerifyemailPage;
-            }
-              
+          if(user.emailVerified === true) {
+            homeBuilders.get().then(homeBuilderInfo => {
+              if(homeBuilderInfo.empty) {
+                this.rootPage = BaccountSetupPage;
+              }else {
+                
+                        this.rootPage = HomePage;
+                        
+                          homeBuilderInfo.forEach(doc => {
+                              this.userLoggedinNow.fullname = doc.data().fullName;
+                              this.userLoggedinNow.image = doc.data().bricklayerImage;
+                              this.userLoggedinNow.email = user.email;
+                              this.userLoggedinNow.isProfile = true;
+                            });
+                
+                
               }
-        });
+            });
+          }else {
+            this.rootPage = VerifyemailPage;
+          }
+         
+      }else {
+        if(user.emailVerified === true) { 
+          homeOwner.get().then(homeOwnerInfo => {
+            if(homeOwnerInfo.empty) {
+              this.rootPage = AccountSetupPage;
+            }else {
+              
+                this.rootPage = HomePage;
+              homeOwnerInfo.forEach(doc => {
+                  this.userLoggedinNow.fullname = doc.data().fullname;
+                  this.userLoggedinNow.image = doc.data().ownerImage;
+                  this.userLoggedinNow.email = user.email;
+                  this.userLoggedinNow.isProfile = true;
+                });
+             
+                
+                }
+          });
+        }else {
+          this.rootPage = VerifyemailPage;
+        }
+        
       }   
      });
      
@@ -149,7 +155,7 @@ export class MyApp {
   SignOut() {
     firebase.auth().signOut().then(() => {
       console.log('Signed Out');
-      this.rootPage = WelcomePage;
+      this.rootPage = LoginPage;
       
     }).catch((err) => {
       console.log('error occured while signing out');
