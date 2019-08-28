@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 import { AccountSetupPage } from '../account-setup/account-setup';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the VerifyemailPage page.
  *

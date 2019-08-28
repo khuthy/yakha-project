@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -9,6 +9,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import * as firebase from 'firebase';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
@@ -24,7 +26,14 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'builderquotes.html',
 })
 export class BuilderquotesPage {
-
+  pdfDoc;
+  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  formattedAddress='';
+  options = {
+    componentRestrictions: {
+      country: ['ZA']
+    }
+  }
   quotesForm: FormGroup;
   quotes = {
   expiry: '',
@@ -75,12 +84,18 @@ export class BuilderquotesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuilderquotesPage');
   }
-
+  public handleAddressChange(addr: Address) {
+    this.quotes.address = addr.formatted_address ;
+   // console.log(this.location)
+    
+  }
   createQuotes() {
     console.log('navigations');
     
     this.navCtrl.setRoot(SuccessPage)
   }
+  
+  
   createPdf() {
     var docDefinition = {
       content: [
@@ -123,8 +138,11 @@ export class BuilderquotesPage {
       }
     }
     this.pdfObj = pdfMake.createPdf(docDefinition);
-
-    
+    console.log(this.pdfObj);
+    this.downloadUrl();
+  //  firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
+  //     console.log(results);
+  //  })
   }
   // selectFile() {
 
@@ -176,12 +194,24 @@ export class BuilderquotesPage {
       //            });
       //        })
       //      }
-  downloadPdf() {
+  downloadUrl() {
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
-        
+        let date = Date();
+        let user = firebase.auth().currentUser.email;
         // Save the PDF to the data Directory of our App
+         firebase.storage().ref('Quotations/').child(user+' '+date).put(blob).then((results)=>{
+       console.log(results);
+      // results.downloadURL
+          firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url)=>{
+            console.log(url);
+            this.pdfDoc = url;
+            
+          })
+      console.log(this.pdfDoc);
+      
+   })
         this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
@@ -192,6 +222,14 @@ export class BuilderquotesPage {
       this.pdfObj.download();
       this.pdfObj.upload();
     }
+  }
+  downloadPdf(){
+    firebase.firestore().collection('responseQuotation').add({
+      doc: this.pdfDoc,
+      date: Date(),
+      createBy: firebase.auth().currentUser.email,
+      uid: firebase.auth().currentUser.uid
+    })
   }
 
 }
