@@ -10,15 +10,46 @@
           <h2>homeowner name</h2>
         </div>
       </div>
-      <div class="expand" (click)="showMore()">
+      <div class="expand" (click)="togglePanel()">
           <p><ion-icon name="arrow-dropdown-circle"></ion-icon></p>
       </div>
     </div>
     <div class="textMessages">
       <div class="block owner">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam vel expedita repellat, 
-            explicabo, nesciunt ducimus adipisci sed architecto hic exercitationem ut earum quo laudantium id vitae. 
-            Nostrum, voluptates numquam? sharpn</p>
+        <blockquote class="house" [@slideDown]="stateSlideDown">
+            
+          <span id="quotes1"><strong id="date1">start date</strong> <strong id="date2">end date</strong></span>
+          <p class="info">
+            <strong class="measure">
+          <span id="quotes3"> <strong>Width </strong>20 meters</span>
+          <span id="quotes3"> <strong>Length</strong>  40 meters</span>
+          <span id="quotes3"> <strong>Height</strong>  12 meters</span>
+          <span id="quotes3"><strong>length </strong>  40 </span>
+          <span id="quotes3"><strong>Wall type</strong>  double </span>
+          <span id="quotes3"><strong>brick type </strong>  maxi </span>
+          </strong>
+          </p>
+          <div class="imgs">
+              <img src="../../assets/imgs/images (1).jpg" class="thumb" alt="house plan">
+              <p>House plan</p>
+            </div>
+        </blockquote>
+       
+          <blockquote>
+          <p>
+            <span>
+              <strong>Additional comment</strong><br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptate facere consequuntur velit eaque nihil nemo ab necessitatibus recusandae illum. Nulla perspiciatis rem odit iste eveniet consequuntur aut amet dolorem!
+            </span>
+            </p>
+            </blockquote>
+</div>
+      <div class="block2 owner">
+          <blockquote>
+            <p>
+                <ion-icon name="document"></ion-icon> file.pdf
+            </p>
+          </blockquote>
 
             
       </div>

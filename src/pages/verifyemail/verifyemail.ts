@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 import { AccountSetupPage } from '../account-setup/account-setup';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the VerifyemailPage page.
  *
@@ -23,6 +24,7 @@ export class VerifyemailPage {
   verifyForm: FormGroup;
   db = firebase.firestore();
   email: string;
+  isSent: boolean;
   validation_messages = {
     'email': [
       { type: 'required', message: 'Email address is required' },
@@ -34,11 +36,24 @@ export class VerifyemailPage {
     public forms: FormBuilder,
     public menuCtrl: MenuController,
     public alert: AlertController,
-    public authService: AuthServiceProvider
+    public authService: AuthServiceProvider,
+    public storage: Storage
     ) {
      this.verifyForm = this.forms.group({
          email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
       })
+
+      this.storage.get('message').then(val => {
+        if(val == 'sent')  {
+          this.isSent = true;
+          
+        }else {
+          console.log('on-boarding now');
+          this.isSent = false;
+        }
+        
+      });
+    
   }
 
   ionViewWillEnter(){
@@ -68,6 +83,7 @@ export class VerifyemailPage {
       user.sendEmailVerification().then(() => {
         // Email sent.
         console.log('Email was successfully sent');
+        this.storage.set('message', 'sent');
        this.alert.create({
          title: 'Successfully sent',
          subTitle: 'Check your email before logging in',

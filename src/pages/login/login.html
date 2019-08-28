@@ -4,12 +4,12 @@
 
  
     <div class="container">
-      <!-- <img src="../../assets/imgs/login.svg" class="example" alt="login svg"> -->
-     <div class="logo"><img src="../../assets/imgs/log.png" width="50%"> </div>
-     
-      <form class="forms" [formGroup]="loginForm">
-        
-        <ion-item style="background: transparent">
+    
+     <form class="forms" [formGroup]="loginForm">
+     <!-- <img src="../../assets/imgs/login.svg" class="example" alt="login svg"> -->
+       <div class="logo"><img src="../../assets/imgs/log.png" class="logo-img"> </div>
+       <div class="form">
+          <ion-item style="background: transparent">
           <ion-label floating>Email</ion-label>
           <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls['email'].valid &&
           loginForm.controls['email'].touched">
@@ -38,6 +38,8 @@
         <button ion-button  color="button2" block (click)="loginUser(loginForm)" style="letter-spacing: 1px; width: 100%; border-radius: 5px;background: #0071BC">Login</button>
          <button ion-button clear full (click)="createAcc()">Don't have an account? Create one!.</button>
       </div>
+       </div>
+       
       </form>
    
 

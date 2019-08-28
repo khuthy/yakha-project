@@ -48,6 +48,7 @@ import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
 import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     MyApp,
@@ -81,6 +82,7 @@ import { FileOpener } from '@ionic-native/file-opener';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     CommonModule,
     HttpClientModule,

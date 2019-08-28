@@ -58,39 +58,144 @@ page-viewmessage {
         border-radius: 50px 50px 0 0;
     }
     .textMessages {
-        
-        margin-left: 5%;
-        margin-right: 5%;
-        
+        margin: 0 auto;
+        max-width: 100%;
+        background: #fff;
         height: 75vh;
         overflow: hidden;
-        //border: 1px solid #000;
+        border: 1px solid #000;
         position: fixed;
         overflow-y: scroll;
         bottom: 0;
         z-index: -2;
+        padding: 20px;
         
+        .block2 {
+            padding: 10px;
+            background: rgba(31, 19, 1, 0.767);
+            position: relative;
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0px 0px 6px rgba(131, 131, 131, 0.383);
+            margin-bottom: 15px;
+            margin-top: 25px;
+            color: #fff;
+
+
+
+        }
+        .house {
+            background: rgb(255, 255, 255);
+            box-shadow: 0 0 3px rgba(131, 131, 131, 0.383);
+            position: absolute;
+            top: -20%;
+            z-index: 1000;
+            right: 0;
+            left: 0;
+            padding: 20px;
+            height: auto;
+
+            .house::before {
+                position: absolute;
+                content: 'khuthy';
+                width: 100px;
+                height: 100px;
+                top: 0;
+                background: red;
+                z-index: 10000;
+            }
+        }
 
         .block {
             //border: 1px solid red;
             padding: 10px;
-            background: rgb(238, 238, 238);
+            background: rgb(255, 255, 255);
             position: relative;
-            border-radius: 10px 10px 10px 0;
-            box-shadow: inset 3px 6px 16px rgba(131, 131, 131, 0.26);
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0px 0px 6px rgba(131, 131, 131, 0.383);
             margin-bottom: 15px;
             margin-top: 25px;
-            &::after {
+
+            .imgs {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+          .thumb {
+              height: 100px;
+              width: 200px;
+              object-fit: cover;
+              border-radius: 12px;
+          }
+            .img {
+                height: 50px;
+                position: absolute;
+                bottom: -10%;
+               
+                right: 10%;
+                img {
+                    height: 50px;
+                    border-radius: 50px;
+                }
+            }
+          /*   &::after {
                 position: absolute;
                 content: '';
                 bottom: -8%;
                 left: 0;
                
-                //box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.411);
+                
                 z-index: -4;
                 border-right: 20px solid transparent;
-                border-top: 20px solid #ddd;
+                border-top: 20px solid rgb(236, 236, 236);
 
+            } */
+            blockquote {
+                display: flex;
+            flex-direction: column;
+            .measure {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: space-between;
+                margin-bottom: 1%;
+                box-sizing: border-box;
+            }
+            #quotes1 {
+                display: flex;
+                width: 100%;
+               
+                justify-content: space-between;
+                #date1 {
+                    color: rgb(138, 138, 138);
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+                #date2 {
+                    color: rgb(138, 138, 138);
+                    font-size: 20px;
+                    font-weight: 400;
+                }
+            }
+            #quotes3 {
+            
+               padding: 10px;
+              box-shadow: 0 0 3px rgba(179, 179, 179, 0.918);
+               font-weight: 200;
+               font-size: 16px; 
+               margin: 1%; 
+               border-radius: 4px;
+               flex-basis: 100%;
+
+             }
+            
+            #quotes7 {
+                font-weight: 200;
+                padding: 2%;
+                font-size: 17px;
+                text-align: center;
+            }
             }
 
            
@@ -141,5 +246,7 @@ page-viewmessage {
               overflow: hidden;
         }
     }
+
+    
     
 }

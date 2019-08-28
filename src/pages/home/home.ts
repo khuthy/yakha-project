@@ -39,6 +39,7 @@ request: boolean = false;
     private geolocation: Geolocation,
     private menuCtrl: MenuController
  ) {
+  this.menuCtrl.swipeEnable(true);
 
   /* home page loads start here */
   this.loader.create({
@@ -141,8 +142,7 @@ request: boolean = false;
 
   ionViewDidLoad() {
    
-    this.menuCtrl.swipeEnable(true);
-    this.getOwners();
+    
   }
 
 //viewmore

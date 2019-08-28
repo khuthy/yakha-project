@@ -1,30 +1,13 @@
 page-builder-profileview {
-  .container {
-      display: flex;
-      flex-direction: column;
+  .view-builder {
       height: 100%;
       width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: rgb(61, 61, 61);
-  }
-  .builder-image {
-      border: solid;
-      .thumber {
-          height: 30vh;
-          width: 100%;
-          object-fit: cover;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .view-builder > div {
+          flex-basis: 100%;
       }
   }
- .button-request {
-     width: 90%;
-     margin: 0 auto;
- }
- .bio {
-     text-align: center;
- }
- .title {
-     //border: solid;
- }
 }
