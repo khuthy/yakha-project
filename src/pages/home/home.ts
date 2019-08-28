@@ -143,6 +143,7 @@ request: boolean = false;
   ionViewDidLoad() {
    
     
+    this.getOwners();
   }
 
 //viewmore
