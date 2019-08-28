@@ -11,5 +11,37 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="contactForm">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" formControlName="username" [(ngModel)]="contact.username"></ion-input>
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.username">
+      <div class="messages" *ngIf="contactForm.get('username').hasError(validate.type) && (contactForm.get('username').dirty || contactForm.get('username').touched)">
+        {{validate.message}}
+      </div>
+      </div>
+    <ion-item>
+      <ion-label floating>Email address</ion-label>
+      <ion-input type="email" formControlName="email" [(ngModel)]="contact.email"></ion-input>
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.email">
+      <div class="messages" *ngIf="contactForm.get('email').hasError(validate.type) && (contactForm.get('email').dirty || contactForm.get('email').touched)">
+        {{validate.message}}
+      </div>
+      </div>
+    <ion-item>
+      <ion-label floating>Message</ion-label>
+      <ion-textarea placeholder="Message" formControlName="message" [(ngModel)]="contact.message">
 
+      </ion-textarea>
+      
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.message">
+      <div class="messages" *ngIf="contactForm.get('message').hasError(validate.type) && (contactForm.get('message').dirty || contactForm.get('message').touched)">
+        {{validate.message}}
+      </div>
+      </div>
+      <button ion-button (click)="sendMessage(contactForm)" block [disabled]="!contactForm.valid">Send</button>
+  </form>
 </ion-content>
