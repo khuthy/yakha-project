@@ -76,7 +76,9 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
       "cordova-sqlite-storage": {},
-      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-plugin-file": {},
       "cordova-plugin-filechooser": {}
     },
