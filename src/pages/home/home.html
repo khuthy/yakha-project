@@ -69,7 +69,7 @@
       <article>
         <p style="font-size: 17px;"><strong>{{o.fullname}}</strong> </p>
         <br>
-        <p style="font-size: 15px;"><ion-icon name="call"></ion-icon> {{o.personalNumber}}</p>
+        <p style="font-size: 15px;" (click)="callJoint(o.personalNumber)"><ion-icon name="call"></ion-icon> </p>
         
     </article>
     </div>
