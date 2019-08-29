@@ -21,7 +21,7 @@ page-builderquotes {
        justify-content: center;
        height: 80%;
        form > div {
-           flex-basis: 100%;
+           flex-basis: 50%;
           
        }
     }
@@ -29,7 +29,10 @@ page-builderquotes {
         border-radius: 12px;
         height: 56px;
     }
-    .error {
-        justify-self: flex-start;
+    .messages {
+        display: flex;
+        justify-content: flex-start;
+        max-width: 100%;
+        border: 1px solid;
     }
 }

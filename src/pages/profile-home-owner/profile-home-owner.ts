@@ -37,8 +37,18 @@ this.authUser.setUser(this.uid);
   }
 
   ionViewDidLoad() {
-    this.getProfile();
+  
     console.log(this.uid);
+
+    let userLoggedIn = this.db.doc(`/User/${this.uid}`);
+    userLoggedIn.get().then(getuserLoggedIn => {
+     if(getuserLoggedIn.data().userType == "Homebuilder") {
+     this.getBuilderProfile(); 
+      }else {
+   this.getProfile()
+ }
+})
+   
     
   }
   getBuilderProfile(){

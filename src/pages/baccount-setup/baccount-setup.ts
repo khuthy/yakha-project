@@ -32,6 +32,7 @@ export class BaccountSetupPage {
   uploadprogress = 0;
   isuploading: false
   displayProfile;
+ // email = 
   experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
   builderProfile = {
     uid: '',
@@ -41,7 +42,8 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   location:''
+   location:'',
+   email: firebase.auth().currentUser.email
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
 
