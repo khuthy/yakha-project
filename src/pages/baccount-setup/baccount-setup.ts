@@ -9,6 +9,7 @@ import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';
+import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -43,7 +44,10 @@ export class BaccountSetupPage {
    address:null,
    price:'',
    location:'',
-   email: firebase.auth().currentUser.email
+   
+   email: firebase.auth().currentUser.email,
+   date:Date()
+
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
 

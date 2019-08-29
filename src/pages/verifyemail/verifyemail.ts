@@ -48,7 +48,7 @@ export class VerifyemailPage {
           this.isSent = true;
           
         }else {
-          console.log('on-boarding now');
+          console.log('verification form');
           this.isSent = false;
         }
         
@@ -73,6 +73,32 @@ export class VerifyemailPage {
     this.navCtrl.setRoot(LoginPage);
   }
 
+  proceed() {
+    var user = firebase.auth().currentUser;
+    console.log(user);
+    
+    if(user.emailVerified == true) 
+    {
+      this.isSent = true;
+      let userLoggedIn = this.db.doc(`/User/${user.uid}`);
+       userLoggedIn.get().then(getuserLoggedIn => {
+        
+        if(getuserLoggedIn.data().userType == 'Homebuilder') {
+          this.navCtrl.setRoot(BaccountSetupPage);
+        }else {
+          this.navCtrl.setRoot(AccountSetupPage)
+        } 
+      }).catch((error) => {
+
+      })
+    }else {
+      this.alert.create({
+        
+      })
+    }
+      
+  }
+
   verifyEmail(){
     var user = firebase.auth().currentUser;
    console.log(user);
@@ -82,24 +108,18 @@ export class VerifyemailPage {
 
       user.sendEmailVerification().then(() => {
         // Email sent.
+        
         console.log('Email was successfully sent');
         this.storage.set('message', 'sent');
+        this.isSent = true;
+
        this.alert.create({
          title: 'Successfully sent',
          subTitle: 'Check your email before logging in',
          buttons: ['Ok']
        }).present();
        
-       let userLoggedIn = this.db.doc(`/User/${user.uid}`);
-       userLoggedIn.get().then(getuserLoggedIn => {
-        if(getuserLoggedIn.data().userType == 'Homebuilder') {
-          this.navCtrl.setRoot(BaccountSetupPage);
-        }else {
-          this.navCtrl.setRoot(AccountSetupPage)
-        } 
-      }).catch((error) => {
-
-      })
+       
         // An error happened.
       });
 

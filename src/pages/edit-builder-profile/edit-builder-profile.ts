@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 
 /**
- * Generated class for the SuccessPage page.
+ * Generated class for the EditBuilderProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-success',
-  templateUrl: 'success.html',
+  selector: 'page-edit-builder-profile',
+  templateUrl: 'edit-builder-profile.html',
 })
-export class SuccessPage {
+export class EditBuilderProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SuccessPage');
-  }
-
-  complete() {
-    this.navCtrl.setRoot(HomePage);
+    console.log('ionViewDidLoad EditBuilderProfilePage');
   }
 
 }

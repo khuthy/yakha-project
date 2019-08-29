@@ -41,6 +41,8 @@ export class QuotationFormPage {
     brickType:'',
     houseImage:'',
     comment:'',
+    email: firebase.auth().currentUser.email,
+   date:Date()
       
   };
 
