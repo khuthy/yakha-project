@@ -27,7 +27,7 @@ export class RegisterPage {
 
   public signupForm: FormGroup;
   public loading: any;
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authService:AuthServiceProvider,
     private loadingCtrl: LoadingController,
@@ -40,12 +40,12 @@ export class RegisterPage {
           Validators.compose([Validators.minLength(6), Validators.required])
         ]
       });
-      
+
       console.log(this.authService.manageUsers());
   }
 ​
   ionViewDidLoad() {
-   
+
   }
 
   goLogin(){
@@ -63,9 +63,10 @@ export class RegisterPage {
       const password: string = signupForm.value.password;
 ​
       this.authService.signupUser(email, password).then(
-        () => {
+        (user) => {
+
           this.loading.dismiss().then(() => {
-            console.log();
+            console.log(user);
             if(this.authService.manageUsers() == 'Homebuilder') {
               let homebuilder = firebase.auth().currentUser.uid;
               this.navCtrl.setRoot(BaccountSetupPage, homebuilder)
@@ -73,7 +74,7 @@ export class RegisterPage {
                 let homeowner=firebase.auth().currentUser.uid;
                 this.navCtrl.setRoot(AccountSetupPage, homeowner)
             }
-           
+
           });
         },
         error => {
