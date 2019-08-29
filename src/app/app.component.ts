@@ -22,6 +22,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { AccountSetupPage } from '../pages/account-setup/account-setup';
 import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
+import { SuccessPage } from '../pages/success/success';
 
 
 @Component({
@@ -58,7 +59,7 @@ export class MyApp {
       { title: 'Messages', component:MessagesPage, icon: 'mail' },
       { title: 'Help', component: HelpPage, icon: 'help' },
       { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-      { title: 'Share', component: SharePage, icon: 'share' },
+      { title: 'Share', component: SuccessPage, icon: 'share' },
       { title: 'Version', component: VersionPage, icon: 'information-circle'}
      ];
 

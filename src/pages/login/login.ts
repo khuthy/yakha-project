@@ -137,6 +137,7 @@ this.navCtrl.push(RegisterPage, data)
          
         
         }else {
+          this.navCtrl.setRoot(VerifyemailPage); 
           this.alertCtrl.create({
            title: 'Email Verification',
            subTitle: 'Your email address is not verified. please complete this form and check your email box',
