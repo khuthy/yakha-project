@@ -33,7 +33,8 @@ export class AccountSetupPage {
     ownerImage:'../../assets/imgs/team-avatar.jpg',
     fullname:'',
     personalNumber: '',
-    About:''
+    About:'',
+    date: Date()
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,

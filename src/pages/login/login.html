@@ -7,38 +7,39 @@
     
      <form class="forms" [formGroup]="loginForm">
      <!-- <img src="../../assets/imgs/login.svg" class="example" alt="login svg"> -->
-       <div class="logo"><img src="../../assets/imgs/log.png" class="logo-img"> </div>
-       <div class="form">
+       <!-- <div class="logo"><img src="../../assets/imgs/log.png" class="logo-img"> </div> -->
+       
+       
           <ion-item style="background: transparent">
           <ion-label floating>Email</ion-label>
-          <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls['email'].valid &&
-          loginForm.controls['email'].touched">
+          <ion-input formControlName="email" type="email">
           </ion-input>
-    
         </ion-item>
-        <p class="error-message" *ngIf="!loginForm.controls['email'].valid &&
-           loginForm.controls['email'].touched">
-          <ion-label>Please enter a valid email address.</ion-label>
-      </p>
-    ​
+        <div class="error" *ngFor="let validate of validation_messages.email">
+          <div class="messages" *ngIf="loginForm.get('email').hasError(validate.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+            {{validate.message}}
+          </div>
+    ​     </div>
         <ion-item style="background: transparent">
           <ion-label floating>Password</ion-label>
-          <ion-input formControlName="password" type="password" 
-            [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+          <ion-input formControlName="password" type="password">
           </ion-input>
         </ion-item>
     
-        <p class="error-message" *ngIf="!loginForm.controls['password'].valid
-          && loginForm.controls['password'].touched">
-          <ion-label>Your password needs more than 6 characters.</ion-label>
-      </p>
-      <p (click)="forgotpassword()">Forgot password?</p>
-        
+        <div class="error" *ngFor="let validate of validation_messages.password">
+          <div class="messages" *ngIf="loginForm.get('password').hasError(validate.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            {{validate.message}}
+          </div>
+        </div>
+
+        <div class="forgot">
+          <p style="color: #fff; padding: 10px; " (click)="forgotpassword()">Forgot password?</p>
+        </div>
         <div class="btn">
-        <button ion-button  color="button2" block (click)="loginUser(loginForm)" style="letter-spacing: 1px; width: 100%; border-radius: 5px;background: #0071BC">Login</button>
+        <button ion-button block (click)="loginUser(loginForm)">Login</button>
          <button ion-button clear full (click)="createAcc()">Don't have an account? Create one!.</button>
       </div>
-       </div>
+     
        
       </form>
    

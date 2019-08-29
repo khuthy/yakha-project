@@ -1,41 +1,31 @@
 page-login {
+
+    
+    
     .content {
         background: url('../../assets/imgs/login.svg');
         background-size: cover;
+        height: 100%;
     }
-  .container {
-      height: 100%;
-      width: 100%;
-      position: relative;
-        .forms {
-            height: 100%;
-            width: 100%;
-            position: absolute;
-           
-            bottom: 0;
-            right: 0;
-            left: 0;
-            background-size: cover;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+    .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
 
-        }
-        .form {
-            //border: solid;
-        }
-        .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .logo-img {
-                width: 50%;
-                
-            }
-        }
     }
+    .forms {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        height: 100%;
+        width: 80%;
+       justify-content: flex-end;
+       align-items: center;
+       /* padding-bottom: 30%; */
+    }
+    .forms > div {
+        width: 100%;
+    }
+    
     
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
+import * as firebase from 'firebase';
 
 
 /**
@@ -25,6 +26,8 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
   ]
 })
 export class ViewmessagePage {
+  db = firebase.firestore();
+  request =[];
   messages = {
     active: false,
     inactive: true
@@ -38,6 +41,7 @@ export class ViewmessagePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewmessagePage');
+    this.getRequest();
   }
   togglePanel(){
     this.stateSlideDown = (this.stateSlideDown == 'visible') ? 'invisible' : 'visible';
@@ -50,6 +54,16 @@ export class ViewmessagePage {
 
   quotesForm() {
     this.navCtrl.push(BuilderquotesPage);
+  }
+  getRequest(){
+    this.db.collection('HomeOwnerQuotation').get().then(snapshot => {
+      this.request = [];
+      snapshot.forEach(doc => {
+        this.request.push(doc.data());
+      });
+      console.log('Requests: ', this.request);
+    
+    });
   }
 
 }
