@@ -141,9 +141,7 @@ request: boolean = false;
   }
 
   ionViewDidLoad() {
-   
-    
-    this.getOwners();
+   this.getOwners();
   }
 
 //viewmore
