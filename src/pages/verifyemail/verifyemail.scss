@@ -10,10 +10,17 @@ page-verifyemail {
         width: 100%;
         text-align: center;
     }
-    .fas {
+    // .fas {
         
-    }
+    // }
     .error {
         color: red;
+    }
+    .message {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

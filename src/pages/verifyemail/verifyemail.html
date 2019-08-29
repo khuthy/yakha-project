@@ -3,7 +3,7 @@
 
   <div class="container">
     <form [formGroup]="verifyForm" *ngIf="!isSent">
-       <p>Your email address is not verified</p>
+       <p style="color: red">Your email address is not verified</p>
     <ion-item>
       <ion-label>
         
@@ -21,8 +21,8 @@
     <button ion-button (click)="skip()" clear> Skip</button>
     </form>
    <div class="message" *ngIf="isSent">
-      <p>Please check have sent you a message on your email address.</p>
-      <button ion-button (click)="skip()" clear> Login</button>
+      <p>Please check your email address, we have sent you a verification link.</p>
+      <button ion-button (click)="proceed()" color="secondary" clear> Proceed</button>
    </div>
   </div>
 </ion-content>

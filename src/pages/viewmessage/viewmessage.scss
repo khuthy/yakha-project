@@ -87,22 +87,14 @@ page-viewmessage {
             background: rgb(255, 255, 255);
             box-shadow: 0 0 3px rgba(131, 131, 131, 0.383);
             position: absolute;
-            top: -20%;
+            top: -13%;
             z-index: 1000;
             right: 0;
             left: 0;
             padding: 20px;
             height: auto;
 
-            .house::before {
-                position: absolute;
-                content: 'khuthy';
-                width: 100px;
-                height: 100px;
-                top: 0;
-                background: red;
-                z-index: 10000;
-            }
+            
         }
 
         .block {
@@ -247,6 +239,25 @@ page-viewmessage {
         }
     }
 
-    
+    .house::before {
+        position: absolute;
+        content: '';
+       
+        top: -2%;
+        left: 39%;
+        text-align: center;
+        margin-left: 30px;
+        margin-top: 0px;
+        margin-right: 25px;
+        right: 25px;
+        width: 0;
+        height: 0;
+        z-index: -20000;
+        border-color: rgb(92, 94, 92) transparent;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+
+       
+    }
     
 }
