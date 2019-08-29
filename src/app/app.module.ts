@@ -43,6 +43,12 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
 import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
+import { IonicStorageModule } from '@ionic/storage';
+import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
+import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     MyApp,
@@ -70,15 +76,19 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     PlacePage,
     BricklayerlandingPage,
     WelcomePage,
-    ViewmessagePage
+    ViewmessagePage,
+    VerifyemailPage,
+    BuilderquotesPage
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
     GooglePlaceModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -107,7 +117,9 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     PlacePage,
     BricklayerlandingPage,
     WelcomePage,
-    ViewmessagePage
+    ViewmessagePage,
+    VerifyemailPage,
+    BuilderquotesPage
 
 
   ],
@@ -118,7 +130,9 @@ import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
     UserProvider,
     AuthServiceProvider,
     Camera,
-  Geolocation
+    Geolocation,
+    File,
+    FileOpener
 
   ]
 })

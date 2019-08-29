@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BuilderquotesPage } from '../builderquotes/builderquotes';
+import { state, trigger, style, transition, animate } from '@angular/animations';
+
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -12,6 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-viewmessage',
   templateUrl: 'viewmessage.html',
+  animations: [
+    trigger('slideDown', [
+      state('visible', style({height: 'auto'})),
+      state('invisible', style({height: 0, padding: '0%', overflow: 'hidden'})),
+      transition('* => *', animate('.4s'))
+    ]),
+    
+  ]
 })
 export class ViewmessagePage {
   messages = {
@@ -20,7 +31,7 @@ export class ViewmessagePage {
   }
   more = false;
 
-  
+  stateSlideDown = 'visible'
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -29,14 +40,16 @@ export class ViewmessagePage {
     console.log('ionViewDidLoad ViewmessagePage');
   }
   togglePanel(){
+    this.stateSlideDown = (this.stateSlideDown == 'visible') ? 'invisible' : 'visible';
     
-    this.messages = { 
-      active: true,
-      inactive: !this.messages.inactive
-    }
+   
   }
   showMore(){
     this.more = !this.more;
+  }
+
+  quotesForm() {
+    this.navCtrl.push(BuilderquotesPage);
   }
 
 }

@@ -31,7 +31,7 @@ export class QuotationFormPage {
   isuploading: false
   displayQuation;
   HomeOwnerQuotation = {
-    dateSubmitted:'',
+    uid:'',
     startDate:'',
     endDate:'',
     height: '',
@@ -45,7 +45,33 @@ export class QuotationFormPage {
   };
 
  date: any;
-
+/* validations starts here */
+validation_messages = {
+  'startDate': [
+    { type: 'required', message: 'Start date is required.' }
+  ],
+  'endDate': [
+    { type: 'required', message: 'End date is required.' }
+  ],
+'wallType': [ {
+    type: 'required', message: 'Wall type is required'
+  }],
+'brickType': [ {
+type: 'required', message: 'Brick type is required.'
+}],
+'Height': [ {
+type: 'required', message: 'Height is required.'
+}],
+'length': [ {
+type: 'required', message: 'Length is required.'
+}],
+'width': [ {
+type: 'required', message: 'Width is required.'
+}],
+'comment': [ {type: 'required', message: 'Additional comments is required.'},
+            {type: 'maxlength', message: 'Additional comments must be 200 characters'}
+          ]
+};
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private authUser: AuthServiceProvider,
@@ -57,7 +83,7 @@ export class QuotationFormPage {
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
-      // this.HomeOwnerQuotation.uid = this.uid;
+     this.HomeOwnerQuotation.uid = this.uid;
       this.quotationForm = this.formBuilder.group({
         // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
         startDate:new  FormControl('', Validators.compose([Validators.required])),
@@ -67,7 +93,7 @@ export class QuotationFormPage {
         Height: new  FormControl('', Validators.compose([Validators.required])),
         length:new  FormControl('', Validators.compose([Validators.required])),
         width:new  FormControl('', Validators.compose([Validators.required])),
-        comment:new  FormControl('', Validators.compose([Validators.required])),
+        comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
 
       let date = new Date();
@@ -80,10 +106,10 @@ export class QuotationFormPage {
     }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad QuotationFormPage');
+    console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
-this.authUser.getUser();
-console.log('user ',this.authUser.getUser() );
+  this.authUser.getUser();
+  console.log(this.authUser.getUser() );
 
   }
 next(){
@@ -122,33 +148,41 @@ async selectImage() {
     console.log("Something went wrong: ", err);
   })
 }
-async createQuations(): Promise<void> {
+async createQuations(quotationForm: FormGroup): Promise<void> {
+   if(!quotationForm.valid) {
+      console.log('Please fill all the form fields', quotationForm.value)
+   }else {
+      // load the profile creation process
+      const load = this.loadCtrl.create({
+        content: 'submitting quotations ..'
+      });
+      load.present();
+  const user = this.db.collection('HomeOwnerQuotation').doc(this.authUser.getUser()).set(this.HomeOwnerQuotation);
+  
+  // upon success...
+  user.then( () => {
+    this.navCtrl.setRoot(SuccessPage)
+    this.toastCtrl.create({
+      message: '  Quotation submitted.',
+      duration: 2000,
+    }).present();
+    // ...get the profile that just got created...
+    load.dismiss();
+    // catch any errors.
+  }).catch( err=> {
+    this.toastCtrl.create({
+      message: 'Error submitting Quotation.',
+      duration: 2000
+    }).present();
+    this.isProfile = false;
+    load.dismiss();
+  })
 
-         // load the profile creation process
-         const load = this.loadCtrl.create({
-          content: 'submitting quotations ..'
-        });
-        load.present();
-    const user = this.db.collection('HomeOwnerQuotation').doc(this.authUser.getUser()).set(this.HomeOwnerQuotation);
-    
-    // upon success...
-    user.then( () => {
-      this.navCtrl.setRoot(MessagesPage)
-      this.toastCtrl.create({
-        message: '  Quotation submitted.',
-        duration: 2000,
-      }).present();
-      // ...get the profile that just got created...
-      load.dismiss();
-      // catch any errors.
-    }).catch( err=> {
-      this.toastCtrl.create({
-        message: 'Error submitting Quotation.',
-        duration: 2000
-      }).present();
-      this.isProfile = false;
-      load.dismiss();
-    })
+   }
+        
+  }
+  remove(){
+    this.houseImage = "";
   }
 
 }

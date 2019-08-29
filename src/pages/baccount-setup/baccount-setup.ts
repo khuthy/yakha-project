@@ -8,6 +8,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -31,6 +32,7 @@ export class BaccountSetupPage {
   uploadprogress = 0;
   isuploading: false
   displayProfile;
+ // email = 
   experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
   builderProfile = {
     uid: '',
@@ -40,7 +42,8 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   location:''
+   location:'',
+   email: firebase.auth().currentUser.email
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
 
@@ -134,7 +137,7 @@ export class BaccountSetupPage {
 
       // upon success...
       user.then( () => {
-        this.navCtrl.setRoot(BricklayerlandingPage)
+        this.navCtrl.setRoot(HomePage)
         this.toastCtrl.create({
           message: 'User Profile added.',
           duration: 2000,

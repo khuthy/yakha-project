@@ -1,11 +1,5 @@
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>builder-info</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
+<ion-content>
    <!-- <ion-card *ngIf="isProfile">
         <img src="{{HomeOwnerProfile.ownerImage}}"/>
         <ion-card-content>
@@ -30,27 +24,27 @@
           
        
       <div class="container">
-        <div >
+        <div class="view-builder">
             <div class="builder-image" >     
                 <img src="{{dat.bricklayerImage}}" class="thumber" alt="">
               </div>
               <div class="titles">
-                  <h3>FullName: {{dat.fullName}}</h3>
+                  <h3>{{dat.fullName}}</h3>
                 </div>
                 <div class="price">
-                    <h2 style="color: #F15A24">Price :R{{dat.price}} p/m<span>2</span></h2>
+                    <h2 style="color: #F15A24">R{{dat.price}} p/m<span>2</span></h2>
                   </div>
                   <div class="experience">
-                    <p><small>Experience :{{dat.experiences}}</small></p>
+                    <p>{{dat.experiences}}</p>
                     </div>
                     <div class="Location">
-                      <p><small>Location :{{dat.location}}</small></p>
+                      <p>Location :{{dat.location}}</p>
                       </div>
                       <div class="Address">
-                        <p><small>Address :{{dat.address}}</small></p>
+                        <p>Address :{{dat.address}}</p>
                         </div>
                         <div class="Certified">
-                          <p><small>certified :{{dat.certified}}</small></p>
+                          <p>certified :{{dat.certified}}</p>
                           </div>
       
                     <!-- <div class="ratings">

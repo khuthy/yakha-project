@@ -12,13 +12,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { SignoutPage } from '../pages/signout/signout';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
+import { AccountSetupPage } from '../pages/account-setup/account-setup';
+import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
+import { SuccessPage } from '../pages/success/success';
 
 
 @Component({
@@ -28,16 +32,26 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any ;
-
-
+  db: any;
+  predefined: string;
   pages: Array<{title: string, component: any, icon: string}>;
 
 
+  userLoggedinNow = {
+    fullname: '',
+    email: '',
+    isProfile: false,
+    image: ''
+  }
+  
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
    firebase.initializeApp(firebaseConfig);
+   this.db = firebase.firestore();
    this.authState();
+   console.log('im here');
+   
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
@@ -45,7 +59,7 @@ export class MyApp {
       { title: 'Messages', component:MessagesPage, icon: 'mail' },
       { title: 'Help', component: HelpPage, icon: 'help' },
       { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-      { title: 'Share', component: SharePage, icon: 'share' },
+      { title: 'Share', component: SuccessPage, icon: 'share' },
       { title: 'Version', component: VersionPage, icon: 'information-circle'}
      ];
 
@@ -64,10 +78,73 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user)=>{
       if(user)
       {
-        this.rootPage = HomePage;
-      } else {
+         // create a reference to the collection of users...
+         
+            let userLoggedIn = this.db.doc(`/User/${user.uid}`);
+     
+
+     userLoggedIn.get().then(getuserLoggedIn => {
+      
+      let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
+      let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
+         
+      console.log(getuserLoggedIn.data().userType);
+         this.predefined = getuserLoggedIn.data().userType;
+
+         if(this.predefined == "Homebuilder") {
+          if(user.emailVerified === true) {
+            homeBuilders.get().then(homeBuilderInfo => {
+              if(homeBuilderInfo.empty) {
+                this.rootPage = BaccountSetupPage;
+              }else {
+                
+                        this.rootPage = HomePage;
+                        
+                          homeBuilderInfo.forEach(doc => {
+                              this.userLoggedinNow.fullname = doc.data().fullName;
+                              this.userLoggedinNow.image = doc.data().bricklayerImage;
+                              this.userLoggedinNow.email = user.email;
+                              this.userLoggedinNow.isProfile = true;
+                            });
+                
+                
+              }
+            });
+          }else {
+            this.rootPage = VerifyemailPage;
+          }
+         
+      }else {
+        if(user.emailVerified === true) { 
+          homeOwner.get().then(homeOwnerInfo => {
+            if(homeOwnerInfo.empty) {
+              this.rootPage = AccountSetupPage;
+            }else {
+              
+                this.rootPage = HomePage;
+              homeOwnerInfo.forEach(doc => {
+                  this.userLoggedinNow.fullname = doc.data().fullname;
+                  this.userLoggedinNow.image = doc.data().ownerImage;
+                  this.userLoggedinNow.email = user.email;
+                  this.userLoggedinNow.isProfile = true;
+                });
+             
+                
+                }
+          });
+        }else {
+          this.rootPage = VerifyemailPage;
+        }
         
-        this.rootPage = WelcomePage;
+      }   
+     });
+     
+   
+        
+    
+    } else {
+        
+        this.rootPage = OnboardingPage;
       }
     })
   }
@@ -79,7 +156,7 @@ export class MyApp {
   SignOut() {
     firebase.auth().signOut().then(() => {
       console.log('Signed Out');
-      this.rootPage = WelcomePage;
+      this.rootPage = LoginPage;
       
     }).catch((err) => {
       console.log('error occured while signing out');

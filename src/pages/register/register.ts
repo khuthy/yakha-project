@@ -8,6 +8,7 @@ import { AccountSetupPage } from '../account-setup/account-setup';
 import * as firebase from 'firebase';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
+import { VerifyemailPage } from '../verifyemail/verifyemail';
 
 
 /**
@@ -76,6 +77,15 @@ export class RegisterPage {
             }
 
           });
+        // () => {
+
+        //      this.loading.dismiss().then(() => {
+        //       console.log();
+        //       this.navCtrl.setRoot(VerifyemailPage);
+        //    });
+
+
+
         },
         error => {
           this.loading.dismiss().then(async () => {

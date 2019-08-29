@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
@@ -14,6 +14,8 @@ import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+import { VerifyemailPage } from '../verifyemail/verifyemail';
+import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -39,7 +41,9 @@ export class LoginPage {
     private userProvider:UserProvider,
      public loadingCtrl: LoadingController,
      public alertCtrl: AlertController,
-     private authService:AuthServiceProvider) {
+     private authService:AuthServiceProvider,
+     private menuCtrl: MenuController
+     ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: [
@@ -55,26 +59,13 @@ export class LoginPage {
 ​
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginOwnerPage');
-    this.firebase.auth().onAuthStateChanged( user => {
-      if (user){
-        
-        // send the user's data if they're still loggedin
-        this.authService.setUser(user);
-        this.db.collection('User').where('uid', '==', this.authService.getUser().uid).get().then(snapshot => {
-          if (snapshot.empty){
-             
-          } else {
-            if(this.authService.manageUsers() == 'Homebuilder') {
-              this.navCtrl.setRoot(BricklayerlandingPage);
-            }else {
-              this.navCtrl.setRoot(HomePage);
-            }
-            
-            
-          }
-        })
-      }
-    })
+  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave(){
+    this.menuCtrl.swipeEnable(false);
   }
 ​
   //Create
@@ -91,11 +82,50 @@ this.navCtrl.push(RegisterPage, data)
 
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authService => {
-         if(this.authService.manageUsers() == 'Homebuilder') {
-              this.navCtrl.setRoot(BricklayerlandingPage);
-         }else{
-           this.navCtrl.setRoot(HomePage);
-         }
+        if(authService.user.emailVerified === true) {
+         let userLoggedIn = this.db.doc(`/User/${authService.user.uid}`);
+         userLoggedIn.get().then(getuserLoggedIn => {
+         let homeOwnerInfo = this.db.collection('HomeOwnerProfile').where("uid", "==", authService.user.uid);
+         let homeBuilders = this.db.collection('builderProfile').where("uid", "==", authService.user.uid);
+     if(getuserLoggedIn.data().userType == 'Homebuilder') {
+      homeBuilders.get().then(connectBuilder => { 
+        if(connectBuilder.empty) {
+          this.alertCtrl.create({
+            subTitle: 'Create profile',
+            title: 'Please create a profile to continue',
+          }).present();
+          this.navCtrl.setRoot(BaccountSetupPage);
+        }else {
+          this.navCtrl.setRoot(HomePage);
+        }
+    });
+     }else {
+         homeOwnerInfo.get().then(connectOwner => { 
+          if(connectOwner.empty) {
+            this.alertCtrl.create({
+              subTitle: 'Create profile',
+              title: 'Please create a profile to continue.',
+            }).present();
+            this.navCtrl.setRoot(AccountSetupPage);
+          }else {
+            this.navCtrl.setRoot(HomePage);
+          }
+      });
+     }
+    
+     })
+         
+        
+        }else {
+          this.navCtrl.setRoot(VerifyemailPage); 
+          this.alertCtrl.create({
+           title: 'Email Verification',
+           subTitle: 'Your email address is not verified. please complete this form and check your email box',
+           buttons: ['Ok']
+           }).present();
+          
+        }
+         
         
       }, error => {
         this.loading.dismiss().then( () => {

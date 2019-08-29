@@ -1,0 +1,51 @@
+
+<ion-content padding>
+  <form [formGroup]="quotesForm">
+    <p style="text-align: center; color: rgb(5, 5, 5); letter-spacing: 1; font-size: 20px">Create Quotation</p>
+
+
+          <ion-item>
+            <ion-label floating>Expiry date</ion-label>
+            <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
+          </ion-item>
+          <div class="error" *ngFor="let validate of validation_messages.expiry">
+              <div class="messages" *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
+                {{validate.message}}
+              </div>
+              </div>
+          <ion-item color="light"  style="color: #fff;">
+            <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
+            </ion-item>
+
+            <div class="error" *ngFor="let validate of validation_messages.address">
+                <div class="messages" *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
+                  {{validate.message}}
+                </div>
+                </div>
+             
+            <ion-item>
+                <ion-label floating>Dimensions</ion-label>
+                <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
+              </ion-item>
+
+              <div class="error" *ngFor="let validate of validation_messages.dimension">
+                  <div class="messages" *ngIf="quotesForm.get('dimension').hasError(validate.type) && (quotesForm.get('dimension').dirty || quotesForm.get('dimension').touched)">
+                    {{validate.message}}
+                  </div>
+                  </div>
+        
+          <ion-item>
+            <ion-label floating>Total price</ion-label>
+            <ion-input type="text" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
+          </ion-item>
+          <div class="error" *ngFor="let validate of validation_messages.price">
+              <div class="messages" *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
+                {{validate.message}}
+              </div>
+              </div>
+              <button ion-button full (click)="createPdf()">Create PDF</button>
+           
+              <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
+        
+  </form>
+</ion-content>

@@ -1,30 +1,35 @@
 page-builder-profileview {
-  .container {
-      display: flex;
-      flex-direction: column;
+  .view-builder {
       height: 100%;
       width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: rgb(61, 61, 61);
+      display: flex;
+      flex-direction: row;
+      /* flex-wrap: wrap; */
+      justify-content: space-around;
+      //align-items: center;
+      //align-content: center;
+      
   }
   .builder-image {
-      border: solid;
-      .thumber {
-          height: 30vh;
-          width: 100%;
-          object-fit: cover;
-      }
+    width: 100vw;
+    height: 40%;
   }
- .button-request {
-     width: 90%;
-     margin: 0 auto;
- }
- .bio {
-     text-align: center;
- }
- .title {
-     //border: solid;
- }
+  .thumber {
+    max-width: 100%;
+    max-height: 100%; 
+    object-fit: cover;
+  }
+  .view-builder > div {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+.titles {
+  //margin-top: -30px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: lighter;
+
+}
 }
