@@ -48,7 +48,7 @@ export class VerifyemailPage {
           this.isSent = true;
           
         }else {
-          console.log('on-boarding now');
+          console.log('verification form');
           this.isSent = false;
         }
         

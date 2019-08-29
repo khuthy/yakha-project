@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 
 // import { ForgotPasswordPage } from '../forgot-password/forgot-password';
@@ -34,6 +34,22 @@ export class LoginPage {
   firebase = firebase;
   public loginForm: FormGroup;
   loading: Loading;
+
+
+  
+  validation_messages = {
+    'email': [
+      {type: 'required', message: 'Email address is required.'},
+      {type: 'pattern', message: 'Email address is not Valid.'},
+   
+    ],
+    'password': [
+     {type: 'required', message: 'Password is required.'},
+     {type: 'minlength', message: 'password must be atleast 6 char or more.'},
+     {type: 'maxlength', message: 'Password must be less than 8 char or less'},
+   ]
+ 
+  }
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,  
@@ -42,15 +58,14 @@ export class LoginPage {
      public loadingCtrl: LoadingController,
      public alertCtrl: AlertController,
      private authService:AuthServiceProvider,
-     private menuCtrl: MenuController
+     private menuCtrl: MenuController,
+  
      ) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(6),Validators.maxLength(16)])
-      ]
-    });
+      this.loginForm = this.formBuilder.group({
+        email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+$')])),
+        password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)]))
+      
+      })
     
    
     
@@ -75,6 +90,11 @@ this.navCtrl.push(RegisterPage, data)
   forgotpassword(){
     this.navCtrl.push(ForgotPasswordPage)
   }
+
+  checkeyboard() {
+   
+  }
+
   loginUser(){
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
