@@ -9,6 +9,7 @@ import { MessagesPage } from '../messages/messages';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
+import { LoginPage } from '../login/login';
 declare var google;
 
 @Component({
@@ -31,7 +32,7 @@ export class HomePage {
  public lat: any;
 public lng: any;
 geoloc;
-
+status: string = '';
 maps: boolean =false;
 request: boolean = false;
   constructor(public navCtrl: NavController,
@@ -54,9 +55,13 @@ request: boolean = false;
     userLoggedIn.get().then(getuserLoggedIn => {
       if(getuserLoggedIn.data().userType == 'Homebuilder') {
         
-  
-        this.maps = false;
+        if(getuserLoggedIn.data().status == true) {
+          this.maps = false;
         this.request = true;
+        }else {
+          this.status = "Please wait for 48 hours. We are still processing your profile.";
+         }
+        
       }else {
         this.geolocation.getCurrentPosition().then((resp) => {
           let NEW_ZEALAND_BOUNDS = {
@@ -140,6 +145,9 @@ request: boolean = false;
    /* home page loads here */
 
   }
+  back() {
+    this.navCtrl.setRoot(LoginPage);
+  }
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
 }
@@ -148,9 +156,7 @@ request: boolean = false;
 //   .catch(err => console.log('Error launching dialer', err));
 
   ionViewDidLoad() {
-   
-    
-    this.getOwners();
+   this.getOwners();
   }
 
 //viewmore

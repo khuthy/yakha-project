@@ -1,8 +1,8 @@
  <ion-content padding>
-      <div *ngIf="!isProfile">
+      <div class="container" *ngIf="!isProfile">
           <h1>Manage Profile</h1>
-      <div *ngIf="profileImage" class="image">
-           <img  src="{{profileImage}}">
+      <div  class="image">
+           <img  src="{{profileImage}}" class="thumb">
         </div>
          <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
          <p *ngIf="!profileImage">Please Upload an image</p>
