@@ -139,10 +139,10 @@ request: boolean = false;
         });
 
       }
-       else {
-        console.log('you are in the waiting list. please wait for 24 hours');
+      // else {
+      //   console.log('you are in the waiting list. please wait for 24 hours');
 
-      }
+      // }
 
     })
    }else {
