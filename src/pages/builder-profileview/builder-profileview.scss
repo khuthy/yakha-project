@@ -57,8 +57,13 @@ page-builder-profileview {
 }
 .back {
   position: fixed;
-  top: 1%;
-  left: 5%;
+  top: 0%;
+  left: 0%;
+  background: linear-gradient(to left, rgba(12, 12, 12, 0.308), rgba(2, 2, 2, 0.486));
+  width: 20%;
+  padding: 20px;
+  border-radius: 0 0 50px 0;
+  color: #fff;
 }
 .price {
   background: rgb(196, 196, 196);

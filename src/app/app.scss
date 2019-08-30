@@ -14,7 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -43,7 +43,7 @@
     color: rgb(201, 201, 201);
     font-weight: 300;
     font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
+  
   &:active {
       background: rgb(255, 60, 0);
       color: #fff;
