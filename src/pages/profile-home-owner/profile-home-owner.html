@@ -19,7 +19,9 @@
    <div class="container" *ngIf="homeowner">
      
       <div class="profiles" *ngIf="isProfile">
-     
+       <div class="back">
+         <p><ion-icon name="arrow-back"></ion-icon></p>
+       </div>
           <div class="avatar-images">
           <img src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
         </div>
@@ -28,6 +30,9 @@
            <div class="name">
              <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
            </div>
+           <ion-fab right bottom>
+            <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>
            <div class="details">
              <p><ion-icon name="call"></ion-icon> {{HomeOwnerProfile.personalNumber}}</p>
             
@@ -38,9 +43,7 @@
               {{HomeOwnerProfile.About}}
              </p>
            </div>
-           <ion-fab right bottom>
-              <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
-            </ion-fab>
+           
           <!--  <div class="displayName">
 
               <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
@@ -76,7 +79,9 @@
       
          <div class="name">
            <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
-           <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
+           <ion-fab right bottom>
+            <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>
          </div>
          <div class="details">
            <p> {{builderProfile.experiences}} years of experience</p>

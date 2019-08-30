@@ -12,15 +12,15 @@
 
 <ion-content padding>
   <div class="container">
-      <div class="profiles" (click)="viewMessages()">
+      <div class="profiles" (click)="viewMessages()" >
         <span></span>
-        <div class="top">
-          <img src="" class="thumb" alt="profile">
+        <div class="top" *ngFor="let m of messages">
+          <!-- <img src="" class="thumb" alt="profile"> -->
           <article>
-            <p style="font-size: 17px;"><strong>Your name</strong> </p>
+            <p style="font-size: 17px;"><strong>From:{{m.createBy}}</strong> </p>
             <br>
-            <p style="font-size: 15px;"><ion-icon name="call"></ion-icon> 076 558 4854</p>
-            
+            <p style="font-size: 15px;"><ion-icon name="call"></ion-icon>{{m.date}}</p>
+            <button ion-button clear style="float: right" (click)="downloadPDF()"><ion-icon ios="ios-download" md="md-download"></ion-icon></button>
         </article>
         </div>
         <div class="bottom">

@@ -35,8 +35,13 @@ export class ViewmessagePage {
   more = false;
 
   stateSlideDown = 'visible'
-
+  userDetails;
+  hOwnerUID;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userDetails = this.navParams.data;
+    this.hOwnerUID = this.userDetails.uid;
+    console.log(this.userDetails);
+    
   }
 
   ionViewDidLoad() {
@@ -53,10 +58,10 @@ export class ViewmessagePage {
   }
 
   quotesForm() {
-    this.navCtrl.push(BuilderquotesPage);
+    this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
   }
   getRequest(){
-    this.db.collection('HomeOwnerQuotation').get().then(snapshot => {
+    this.db.collection('HomeOwnerQuotation').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
       this.request = [];
       snapshot.forEach(doc => {
         this.request.push(doc.data());

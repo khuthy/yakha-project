@@ -9,6 +9,7 @@ import { MessagesPage } from '../messages/messages';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
+import { LoginPage } from '../login/login';
 declare var google;
 
 @Component({
@@ -31,7 +32,7 @@ export class HomePage {
  public lat: any;
 public lng: any;
 geoloc;
-
+status: string = '';
 maps: boolean =false;
 request: boolean = false;
   constructor(public navCtrl: NavController,
@@ -54,9 +55,13 @@ request: boolean = false;
     userLoggedIn.get().then(getuserLoggedIn => {
       if(getuserLoggedIn.data().userType == 'Homebuilder') {
         
-  
-        this.maps = false;
+        if(getuserLoggedIn.data().status == true) {
+          this.maps = false;
         this.request = true;
+        }else {
+          this.status = "Please wait for 48 hours. We are still processing your profile.";
+         }
+        
       }else {
         this.geolocation.getCurrentPosition().then((resp) => {
           let NEW_ZEALAND_BOUNDS = {
@@ -83,7 +88,7 @@ request: boolean = false;
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.data().address.longitude);
               let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
-              let coord = new google.maps.LatLng(doc.data().address.latitude, doc.data().address.longitude);
+              let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
                let marker = new google.maps.Marker({
                    map: this.map,
                    position: coord,
@@ -140,6 +145,9 @@ request: boolean = false;
    /* home page loads here */
 
   }
+  back() {
+    this.navCtrl.setRoot(LoginPage);
+  }
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
 }
@@ -155,8 +163,8 @@ request: boolean = false;
 viewBuilderInfo(builder){
   this.navCtrl.push(BuilderProfileviewPage, builder);
 }
-viewRequest() {
-  this.navCtrl.push(ViewmessagePage);
+viewRequest(user) {
+  this.navCtrl.push(ViewmessagePage, user);
 }
 // viewRoom(room){
 //   // receive the room data from the html and navigate to the next page with it

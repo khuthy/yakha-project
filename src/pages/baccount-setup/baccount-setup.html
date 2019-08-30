@@ -5,17 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>BaccountSetup</ion-title>
+  <ion-navbar color="custom">
+    <ion-title middle>Builder Profile Setup</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="profileImage" class="image">
-        <img src="{{profileImage}}">
-     </div>
-      <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
+  <div class="image">
+        <img src="{{profileImage}}" class="thumb">
+        <button class="btn-upload" ion-fab color="light" mini (click)="selectImage()"><ion-icon name="image"></ion-icon></button>
       <p *ngIf="!profileImage">Please Upload an image</p>
+     </div>
+      
 <form [formGroup]="profileForm">
 
   <ion-list>
@@ -73,7 +74,7 @@
 
 
 
-      <ion-item >
+      <!-- <ion-item >
           <ion-label position="floating">Location</ion-label>
           <ion-input type="text" formControlName="location" name="location" [(ngModel)]="builderProfile.location" ngDefaultControl></ion-input>
         </ion-item>
@@ -81,7 +82,7 @@
          <div class="messages" *ngIf="profileForm.get('location').hasError(validate.type) && (profileForm.get('location').dirty || profileForm.get('location').touched)">
            {{validate.message}}
          </div>
-         </div>
+         </div> -->
 
     <ion-item >
         <ion-label position="floating">Are you Certified?</ion-label>
@@ -97,7 +98,7 @@
        </div>
   <div class="btn">
     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-   <button id="skip" (click)="createprofile(profileForm)"  type="submit"  [disabled]="!profileForm.valid"  ion-button clear  large >Create my Profile </button>
+   <button id="skip" (click)="createprofile(profileForm)"  type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Create my Profile </button>
 </div>
   </ion-list>
 </form>

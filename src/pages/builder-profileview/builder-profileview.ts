@@ -42,7 +42,7 @@ export class BuilderProfileviewPage {
       
     }
 next(){
-  this.navCtrl.push(QuotationFormPage);
+  this.navCtrl.push(QuotationFormPage,this.dat.uid);
 }
 
 editProfile(){

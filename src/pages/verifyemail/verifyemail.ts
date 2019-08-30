@@ -43,16 +43,7 @@ export class VerifyemailPage {
          email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
       })
 
-      this.storage.get('message').then(val => {
-        if(val == 'sent')  {
-          this.isSent = true;
-          
-        }else {
-          console.log('verification form');
-          this.isSent = false;
-        }
-        
-      });
+      
     
   }
 
@@ -65,8 +56,19 @@ export class VerifyemailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VerifyemailPage');
-    var user = firebase.auth().currentUser;
+    var user = firebase.auth().currentUser.uid;
    console.log(user);
+
+   this.storage.get('message').then(val => {
+    if(val == user)  {
+      this.isSent = true;
+      
+    }else {
+      console.log('verification form');
+      this.isSent = false;
+    }
+    
+  });
   }
 
   skip() {
@@ -93,8 +95,9 @@ export class VerifyemailPage {
       })
     }else {
       this.alert.create({
-        
-      })
+        title: 'Please check your email address',
+        buttons: ['Try again']
+      }).present();
     }
       
   }
@@ -110,7 +113,7 @@ export class VerifyemailPage {
         // Email sent.
         
         console.log('Email was successfully sent');
-        this.storage.set('message', 'sent');
+        this.storage.set('message', user.uid);
         this.isSent = true;
 
        this.alert.create({

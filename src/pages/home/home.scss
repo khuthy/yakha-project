@@ -148,5 +148,26 @@ page-home {
     z-index: -1;
     text-align: center;
 }
+.status {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 21px;
+  background: #216D7B;
 
+}
+.btn-animate {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  -moz-animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
 }

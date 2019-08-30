@@ -1,3 +1,9 @@
 page-account-setup {
-
+    .content {
+        background: color($colors, 'custom');
+    }
+    .image {
+        max-width: 20%;
+        margin: 0 auto; 
+    }
 }
