@@ -156,9 +156,7 @@ request: boolean = false;
 //   .catch(err => console.log('Error launching dialer', err));
 
   ionViewDidLoad() {
-   
-    
-    this.getOwners();
+   this.getOwners();
   }
 
 //viewmore
