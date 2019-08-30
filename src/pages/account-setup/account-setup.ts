@@ -33,7 +33,8 @@ export class AccountSetupPage {
     ownerImage:'',
     fullname:'',
     personalNumber: '',
-    About:''
+    About:'',
+    date: Date()
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,

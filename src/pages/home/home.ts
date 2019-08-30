@@ -8,7 +8,7 @@ import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { MessagesPage } from '../messages/messages';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
-
+import { CallNumber } from '@ionic-native/call-number';
 declare var google;
 
 @Component({
@@ -37,7 +37,8 @@ request: boolean = false;
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
     private geolocation: Geolocation,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private callNumber: CallNumber
  ) {
   this.menuCtrl.swipeEnable(true);
 
@@ -139,6 +140,12 @@ request: boolean = false;
    /* home page loads here */
 
   }
+  callJoint(phoneNumber) {
+    this.callNumber.callNumber(phoneNumber, true);
+}
+// this.callNumber.callNumber("18001010101", true)
+//   .then(res => console.log('Launched dialer!', res))
+//   .catch(err => console.log('Error launching dialer', err));
 
   ionViewDidLoad() {
    

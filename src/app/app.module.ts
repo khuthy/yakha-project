@@ -49,6 +49,7 @@ import { BuilderquotesPage } from '../pages/builderquotes/builderquotes';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CallNumber } from '@ionic-native/call-number';
 @NgModule({
   declarations: [
     MyApp,
@@ -132,7 +133,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     Camera,
     Geolocation,
     File,
-    FileOpener
+    FileOpener,
+    CallNumber
 
   ]
 })
