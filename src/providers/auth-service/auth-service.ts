@@ -14,7 +14,7 @@ export class AuthServiceProvider {
 
  public userProfile: firebase.firestore.DocumentReference;
  constructor() {}
- 
+
  manageUsers() {
    return this.predefined;
  }
@@ -23,7 +23,7 @@ export class AuthServiceProvider {
  }
  signupUser(email: string, password: string): Promise<any> {
    return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUserCredential: firebase.auth.UserCredential) => {
-       firebase.firestore().doc(`/User/${newUserCredential.user.uid}`).set({ email, userType: this.predefined });
+       firebase.firestore().doc(`/User/${newUserCredential.user.uid}`).set({ email, userType: this.predefined, status: false });
        this.setUser(newUserCredential);
      })
      .catch(error => {
