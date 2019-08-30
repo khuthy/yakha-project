@@ -20,9 +20,9 @@
     <button ion-button [disabled]="!verifyForm.valid" (click)="verifyEmail()" block>Submit</button>
     <button ion-button (click)="skip()" clear> Skip</button>
     </form>
-   <div class="message" *ngIf="isSent">
+   <div class="status" *ngIf="isSent">
       <p>Please check your email address, we have sent you a verification link.</p>
-      <button ion-button (click)="proceed()" color="secondary" clear> Proceed</button>
+      <button ion-button class="btn-animate" (click)="proceed()" color="secondary" clear> Proceed</button>
    </div>
   </div>
 </ion-content>

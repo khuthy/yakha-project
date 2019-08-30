@@ -30,10 +30,11 @@ export class AccountSetupPage {
   displayProfile;
   HomeOwnerProfile = {
     uid: '',
-    ownerImage:'',
+    ownerImage:'../../assets/imgs/team-avatar.jpg',
     fullname:'',
     personalNumber: '',
-    About:''
+    About:'',
+    date: Date()
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -56,6 +57,7 @@ export class AccountSetupPage {
   ionViewDidLoad() {
     console.log( this.uid)
     console.log( this.authUser.getUser())
+    this.getProfile();
   }
   //select image for the salon
   async selectImage() {
@@ -149,10 +151,10 @@ export class AccountSetupPage {
     let users = this.db.collection('HomeOwnerProfile');
     
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
-      if (querySnapshot.empty !== true){
+      if (!querySnapshot.empty){
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())

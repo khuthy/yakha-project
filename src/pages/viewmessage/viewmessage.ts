@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
+import * as firebase from 'firebase';
 
 
 /**
@@ -25,6 +26,8 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
   ]
 })
 export class ViewmessagePage {
+  db = firebase.firestore();
+  request =[];
   messages = {
     active: false,
     inactive: true
@@ -32,12 +35,18 @@ export class ViewmessagePage {
   more = false;
 
   stateSlideDown = 'visible'
-
+  userDetails;
+  hOwnerUID;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.userDetails = this.navParams.data;
+    this.hOwnerUID = this.userDetails.uid;
+    console.log(this.userDetails);
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewmessagePage');
+    this.getRequest();
   }
   togglePanel(){
     this.stateSlideDown = (this.stateSlideDown == 'visible') ? 'invisible' : 'visible';
@@ -49,7 +58,17 @@ export class ViewmessagePage {
   }
 
   quotesForm() {
-    this.navCtrl.push(BuilderquotesPage);
+    this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
+  }
+  getRequest(){
+    this.db.collection('HomeOwnerQuotation').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
+      this.request = [];
+      snapshot.forEach(doc => {
+        this.request.push(doc.data());
+      });
+      console.log('Requests: ', this.request);
+    
+    });
   }
 
 }

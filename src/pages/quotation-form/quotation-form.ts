@@ -41,7 +41,10 @@ export class QuotationFormPage {
     brickType:'',
     houseImage:'',
     comment:'',
-      
+    hOwnerPhone: 0,
+    email: firebase.auth().currentUser.email,
+   date:Date(),
+   builderUID: '' 
   };
 
  date: any;
@@ -72,6 +75,7 @@ type: 'required', message: 'Width is required.'
             {type: 'maxlength', message: 'Additional comments must be 200 characters'}
           ]
 };
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private authUser: AuthServiceProvider,
@@ -84,6 +88,7 @@ type: 'required', message: 'Width is required.'
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
      this.HomeOwnerQuotation.uid = this.uid;
+      this.HomeOwnerQuotation.builderUID = this.navParams.data;
       this.quotationForm = this.formBuilder.group({
         // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
         startDate:new  FormControl('', Validators.compose([Validators.required])),
@@ -95,7 +100,11 @@ type: 'required', message: 'Width is required.'
         width:new  FormControl('', Validators.compose([Validators.required])),
         comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
-
+      firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
+        resp.forEach((doc)=>{
+          this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
+        })
+      })
       let date = new Date();
       let days = date.getDay();
       let month = date.getMonth();

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
+import { AccountSetupPage } from '../account-setup/account-setup';
 
 /**
  * Generated class for the ProfileHomeOwnerPage page.
@@ -30,6 +32,20 @@ export class ProfileHomeOwnerPage {
     About: ''
   }
 
+  builderProfile = {
+   uid: '',
+   bricklayerImage:'',
+   fullName:'',
+   certified: false,
+   experiences: '',
+   address:null,
+   price:'',
+   location:'',
+   email: firebase.auth().currentUser.email
+ }
+
+ homeowner: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
 this.uid = firebase.auth().currentUser.uid;
  this.HomeOwnerProfile.email = firebase.auth().currentUser.email;
@@ -43,9 +59,11 @@ this.authUser.setUser(this.uid);
     let userLoggedIn = this.db.doc(`/User/${this.uid}`);
     userLoggedIn.get().then(getuserLoggedIn => {
      if(getuserLoggedIn.data().userType == "Homebuilder") {
+       this.homeowner = false;
      this.getBuilderProfile(); 
       }else {
-   this.getProfile()
+   this.getProfile();
+   this.homeowner = true;
  }
 })
    
@@ -69,11 +87,14 @@ this.authUser.setUser(this.uid);
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
-          this. HomeOwnerProfile.About  = doc.data().About;
+          this.builderProfile.address  = doc.data().address;
           // this.HomeOwnerProfile.email = doc.data().email
-          this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
-          this.HomeOwnerProfile. fullname  = doc.data().fullname;
-          this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
+          this.builderProfile.bricklayerImage  = doc.data().bricklayerImage;
+          this.builderProfile. fullName  = doc.data().fullName;
+          this.builderProfile.certified  = doc.data().certified;
+          this.builderProfile. experiences  = doc.data(). experiences;
+          this.builderProfile.price  = doc.data().price;
+          this.builderProfile.location  = doc.data().location;
           
         })
         this.isProfile = true;
@@ -127,10 +148,22 @@ this.authUser.setUser(this.uid);
       console.log("Query Results: ", err);
       // dismiss the loading
       load.dismiss();
+      
     })
   }
   editProfile(){
-    this.isProfile = false;
+    this.isProfile=false;
+    
+    let userLoggedIn = this.db.doc(`/User/${this.uid}`);
+    userLoggedIn.get().then(getuserLoggedIn => {
+     if(getuserLoggedIn.data().userType == "Homebuilder") {
+      this.navCtrl.push(BaccountSetupPage); 
+      }else {
+        this.navCtrl.push(AccountSetupPage);   
+ }
+})
+   
+    
   }
 
 

@@ -1,8 +1,8 @@
 
-<ion-header >
-  <ion-navbar *ngIf="request" color="custom">
+<ion-header *ngIf="request">
+  <ion-navbar color="primary">
     <ion-title middle>Home</ion-title>
-    <button ion-button clear menuToggle *ngIf="request">
+    <button ion-button clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
@@ -11,7 +11,7 @@
     <div #map id="map" *ngIf="maps"></div>
   <div class="menus" *ngIf="maps">
     <button ion-button clear menuToggle>
-        <ion-icon name="menu" class="fa"></ion-icon>
+        <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
       </button>
   </div>
 
@@ -62,21 +62,25 @@
     </div> 
 </div> -->
 <div class="homebuilder" padding *ngIf="request">
-  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest()">
+  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o)">
   
     <div class="home-builder-top">
       <img src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile">
       <article>
         <p style="font-size: 17px;"><strong>{{o.fullname}}</strong> </p>
         <br>
-        <p style="font-size: 15px;"><ion-icon name="call"></ion-icon> {{o.personalNumber}}</p>
+        <p style="font-size: 15px;" (click)="callJoint(o.personalNumber)"><ion-icon name="call"></ion-icon> </p>
         
     </article>
     </div>
     
     </div> 
     </div>
-
+  
+     <div class="status" *ngIf="status">
+       <p style="color: #fff">{{status}}</p>
+        <button ion-fab class="btn-animate" color="secondary" (click)="back()"><ion-icon name="arrow-back"></ion-icon></button>
+     </div>
 
 
 </ion-content>

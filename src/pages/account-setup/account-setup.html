@@ -1,8 +1,8 @@
  <ion-content padding>
-      <div *ngIf="!isProfile">
+      <div class="container" *ngIf="!isProfile">
           <h1>Manage Profile</h1>
-      <div *ngIf="profileImage" class="image">
-           <img  src="{{profileImage}}">
+      <div  class="image">
+           <img  src="{{profileImage}}" class="thumb">
         </div>
          <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
          <p *ngIf="!profileImage">Please Upload an image</p>
@@ -38,7 +38,7 @@
       <br>
        <div class="btn">
           <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-         <button id="skip" (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button clear  large >Create my Profile </button>
+         <button id="skip" (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button clear  large >Save Profile </button>
     </div>
      </form>
      </div>

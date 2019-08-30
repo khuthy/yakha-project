@@ -51,6 +51,7 @@ export class MyApp {
    this.db = firebase.firestore();
    this.authState();
    console.log('im here');
+   console.log(this.predefined);
    
     // used for an example of ngFor and navigation
     this.pages = [

@@ -9,6 +9,7 @@ import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';
+import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -27,7 +28,7 @@ export class BaccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage
+  profileImage: any = "../../assets/imgs/team-avatar.jpg";
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -42,8 +43,13 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   location:'',
-   email: firebase.auth().currentUser.email
+   
+   lng: 0,
+   lat: 0,
+   
+   email: firebase.auth().currentUser.email,
+   date:Date()
+
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
 
@@ -74,8 +80,7 @@ export class BaccountSetupPage {
       certified: new  FormControl('', Validators.compose([Validators.required])),
       experience: new  FormControl('', Validators.compose([Validators.required])),
       address: new  FormControl('', Validators.compose([Validators.required])),
-      price: new  FormControl('', Validators.compose([Validators.required])),
-      location: new  FormControl('', Validators.compose([Validators.required]))
+      price: new  FormControl('', Validators.compose([Validators.required]))
     });
   }
 
@@ -84,7 +89,9 @@ export class BaccountSetupPage {
     console.log( this.authUser.getUser())
   }
   public handleAddressChange(addr: Address) {
-    this.builderProfile.address = addr.geometry.location.lat() + ',' + addr.geometry.location.lng() ;
+    this.builderProfile.address = addr.formatted_address ;
+    this.builderProfile.lat = addr.geometry.location.lat();
+    this.builderProfile.lng = addr.geometry.location.lng();
    // console.log(this.location)
     
   }
@@ -182,10 +189,10 @@ export class BaccountSetupPage {
 }],
 'price': [ {
   type: 'required', message: 'Field is required'
-}],
-'location': [ {
-  type: 'required', message: 'Field is required'
-}],
+}]
+// 'location': [ {
+//   type: 'required', message: 'Field is required'
+// }],
   };
   getProfile(){
     // load the process
@@ -213,7 +220,7 @@ export class BaccountSetupPage {
           this.builderProfile.experiences  = doc.data().experience;
           this.builderProfile. address  = doc.data(). address;
           this.builderProfile.price  = doc.data().price;
-          this.builderProfile.location  = doc.data().location
+          // this.builderProfile.location  = doc.data().location
 
         })
         this.isProfile = true;
