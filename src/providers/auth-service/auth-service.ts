@@ -11,7 +11,7 @@ export class AuthServiceProvider {
  db = firebase.firestore();
  user;
  predefined: string;
-
+ 
  public userProfile: firebase.firestore.DocumentReference;
  constructor() {}
  

@@ -40,7 +40,9 @@ export class BuilderquotesPage {
   address: '',
   dimension: '',
   price: '',
-  uid: ''
+  uid: '',
+  ownerUID: null,
+  hOwnerUID: null
   }
   pdfObj = null;
   db = firebase.firestore();
@@ -70,6 +72,7 @@ export class BuilderquotesPage {
     private plt: Platform,
     private authUser: AuthServiceProvider
     ) {
+      this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;

@@ -1,8 +1,8 @@
 
-<ion-header >
-  <ion-navbar *ngIf="request" color="custom">
+<ion-header *ngIf="request">
+  <ion-navbar color="primary">
     <ion-title middle>Home</ion-title>
-    <button ion-button clear menuToggle *ngIf="request">
+    <button ion-button clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
@@ -62,7 +62,7 @@
     </div> 
 </div> -->
 <div class="homebuilder" padding *ngIf="request">
-  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest()">
+  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o)">
   
     <div class="home-builder-top">
       <img src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile">

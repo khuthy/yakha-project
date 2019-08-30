@@ -83,7 +83,7 @@ request: boolean = false;
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.data().address.longitude);
               let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
-              let coord = new google.maps.LatLng(doc.data().address.latitude, doc.data().address.longitude);
+              let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
                let marker = new google.maps.Marker({
                    map: this.map,
                    position: coord,
@@ -157,8 +157,8 @@ request: boolean = false;
 viewBuilderInfo(builder){
   this.navCtrl.push(BuilderProfileviewPage, builder);
 }
-viewRequest() {
-  this.navCtrl.push(ViewmessagePage);
+viewRequest(user) {
+  this.navCtrl.push(ViewmessagePage, user);
 }
 // viewRoom(room){
 //   // receive the room data from the html and navigate to the next page with it
