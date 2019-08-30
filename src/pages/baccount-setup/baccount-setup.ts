@@ -28,7 +28,7 @@ export class BaccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage
+  profileImage: any = "../../assets/imgs/team-avatar.jpg";
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false

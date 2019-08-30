@@ -59,4 +59,28 @@ page-baccount-setup {
         line-height: 1.75;
 
     }
+
+    .image {
+        //border: 1px solid #000;
+        text-align: center;
+        position: relative;
+        width: 100%;
+        .thumb {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .btn-upload {
+            position: absolute;
+            bottom: 0;
+            z-index: 4;
+            left: 50%;
+        }
+        
+    }
+    .btn {
+        display: flex;
+        justify-content: center;
+    }
 }

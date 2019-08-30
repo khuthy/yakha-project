@@ -76,7 +76,11 @@
     
     </div> 
     </div>
-
+  
+     <div class="status" *ngIf="status">
+       <p style="color: #fff">{{status}}</p>
+        <button ion-fab class="btn-animate" color="secondary" (click)="back()"><ion-icon name="arrow-back"></ion-icon></button>
+     </div>
 
 
 </ion-content>
