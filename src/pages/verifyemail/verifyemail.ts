@@ -110,7 +110,7 @@ export class VerifyemailPage {
         // Email sent.
         
         console.log('Email was successfully sent');
-        this.storage.set('message', 'sent');
+       
         this.isSent = true;
 
        this.alert.create({

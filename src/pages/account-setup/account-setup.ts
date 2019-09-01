@@ -23,14 +23,14 @@ export class AccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage
+  profileImage:any = '../../assets/imgs/team-avatar.jpg';
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
   displayProfile;
   HomeOwnerProfile = {
     uid: '',
-    ownerImage:'../../assets/imgs/team-avatar.jpg',
+    ownerImage:'',
     fullname:'',
     personalNumber: '',
     About:'',
