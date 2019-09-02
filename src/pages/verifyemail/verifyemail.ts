@@ -93,11 +93,6 @@ export class VerifyemailPage {
       }).catch((error) => {
 
       })
-    }else {
-      this.alert.create({
-        title: 'Please check your email address',
-        buttons: ['Try again']
-      }).present();
     }
       
   }

@@ -32,7 +32,7 @@ export class AccountSetupPage {
     uid: '',
     ownerImage:'',
     fullname:'',
-    personalNumber: '',
+    personalNumber:'',
     About:'',
     date: Date()
   }
@@ -160,9 +160,8 @@ export class AccountSetupPage {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
           this.HomeOwnerProfile.About  = doc.data().About;
-          // this.HomeOwnerProfile.email = doc.data().email
-          this.profileImage.image  = doc.data().image
-          this.HomeOwnerProfile. fullname  = doc.data(). fullname;
+          // this.profileImage.image  = doc.data().image;
+          this.HomeOwnerProfile.fullname  = doc.data().fullname;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })
@@ -183,4 +182,13 @@ export class AccountSetupPage {
   editProfile(){
     this.isProfile = false;
   }
+  
  }
+ export interface  HomeOwnerProfile{
+  uid :string;
+  image?:string;
+  fullname:string;
+  personalNumber:any;
+  About:string;
+
+} 
