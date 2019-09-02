@@ -2,10 +2,12 @@
       <div class="container" *ngIf="!isProfile">
           <h1>Manage Profile</h1>
       <div  class="image">
+          <p *ngIf="!profileImage" style="color: red; text-align: center;">Please Upload an image</p>
            <img  src="{{profileImage}}" class="thumb">
+           <button ion-button clear large full (click)="selectImage()">Select Image</button>
         </div>
-         <button *ngIf="!profileImage" ion-button clear large full (click)="selectImage()">Select Image</button>
-         <p *ngIf="!profileImage">Please Upload an image</p>
+         
+         
          <form  [formGroup]="profileForm">
       <ion-item >
         <ion-label > FullName</ion-label>
@@ -17,8 +19,8 @@
        </div>
        </div>
       
-      <ion-item >
-        <ion-label > cellphone number</ion-label>
+      <ion-item>
+        <ion-label> cellphone number</ion-label>
         <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
       </ion-item>
       <div class="error" *ngFor="let validate of validation_messages.personalNumber">
@@ -48,7 +50,7 @@
             
              <div class="displayName">
   
-                <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
+                <h4> HomeOwner FullName:{{HomeOwnerProfile.fullname}}  </h4>
                 <button (click)="editProfile()" ion-button small color="dark" icon-right >
                     Edit
                     <ion-icon name="create"></ion-icon>
