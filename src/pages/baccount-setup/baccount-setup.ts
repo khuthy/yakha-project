@@ -28,7 +28,7 @@ export class BaccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage: any = "../../assets/imgs/team-avatar.jpg";
+  profileImage: any = "";
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -88,7 +88,8 @@ export class BaccountSetupPage {
 
   ionViewDidLoad() {
     console.log( this.uid)
-    console.log( this.authUser.getUser())
+    console.log( this.authUser.getUser());
+    this.getProfile();
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -213,7 +214,7 @@ export class BaccountSetupPage {
     let users = this.db.collection('builderProfile');
 
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
@@ -221,8 +222,8 @@ export class BaccountSetupPage {
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
-         ;
-          this.profileImage.image  = doc.data().image
+         
+          this.profileImage.image  = doc.data().bricklayerImage
           this.builderProfile.fullName  = doc.data().fullName;
           this.builderProfile.certified  = doc.data().certified;
           this.builderProfile.experiences  = doc.data().experience;
