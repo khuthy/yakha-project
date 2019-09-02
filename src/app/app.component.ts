@@ -49,7 +49,7 @@ export class MyApp {
    firebase.initializeApp(firebaseConfig);
    this.db = firebase.firestore();
    console.log('im here');
-   console.log(this.predefined);
+   
    this.authState();
    
     // used for an example of ngFor and navigation
@@ -81,10 +81,10 @@ export class MyApp {
       let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
       let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
          
-     
-         this.predefined = getuserLoggedIn.data().userType;
-
-         if(this.predefined == "Homebuilder") {
+            
+         
+         console.log(getuserLoggedIn.data().userType);
+         if(getuserLoggedIn.data().userType == "Homebuilder") {
           if(user.emailVerified === true) {
             homeBuilders.get().then(homeBuilderInfo => {
               if(homeBuilderInfo.empty) {
@@ -103,8 +103,8 @@ export class MyApp {
                     /* home builder side menu content */
                     this.pages = [
                       { title: 'Home', component: HomePage, icon: 'home' },
-                      { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
-                      { title: 'Reviews', component:MessagesPage, icon: 'mail' },
+                      { title: 'View profile', component: BaccountSetupPage, icon: 'person' },
+                      { title: 'Reviews', component: VersionPage, icon: 'mail' },
                       { title: 'Help', component: HelpPage, icon: 'help' },
                      ];
                 
@@ -133,7 +133,7 @@ export class MyApp {
 
                 this.pages = [
                   { title: 'Home', component: HomePage, icon: 'home' },
-                  { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
+                  { title: 'View profile', component: AccountSetupPage, icon: 'person' },
                   { title: 'Messages', component:MessagesPage, icon: 'mail' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
                   { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
