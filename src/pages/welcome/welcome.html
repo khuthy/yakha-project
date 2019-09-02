@@ -3,18 +3,18 @@
  <div class="container">
 
         <div class="top">
-            <p>Skip</p>
+            <p></p>
             <img src="../../assets/imgs/builders.svg">
           </div>
 
           <div class="bottom">
-            <p>The following screens will familarize you with
+            <p>The following screens will familarize you 
               with the basic usage of Yakha Application.
             </p>
             <div class="btn">
-             <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Continue as Home-owner</button>
+             <button (click)=" definedUser('Homeowner')" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Continue as Home-owner</button>
            <br>
-             <button id="btn2" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Continue as Builder</button>
+             <button (click)=" definedUser('Homebuilder')" id="btn2" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Continue as Builder</button>
             </div>
            
           </div>

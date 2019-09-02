@@ -25,7 +25,8 @@ page-onboarding-builder {
                 }
               
                 p {
-                    //border: 1px solid black;
+                   // border: 1px solid black;
+                    height: 15%;
                     color: #23A9C6;
                     display: grid;
                     justify-content: end;
@@ -45,8 +46,9 @@ page-onboarding-builder {
     
             
             p {
-                //border: 1px solid black;
-                color: white;
+               // border: 1px solid black;
+                height: 15%;
+                color: #23A9C6;
                 display: grid;
                 justify-content: end;
                 align-items: flex-end;

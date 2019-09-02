@@ -1,3 +1,4 @@
+import { OnboardingBuilderPage } from './../onboarding-builder/onboarding-builder';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -34,10 +35,13 @@ export class WelcomePage {
 
   definedUser(val) {
     if(val == 'Homebuilder') {
+      console.log('builder');
+      
       this.authService.predefined = val;
-    this.navCtrl.setRoot(OnboardingPage);
+    this.navCtrl.setRoot(OnboardingBuilderPage);
     }else {
       this.authService.predefined = val;
+      console.log('Owner');
     this.navCtrl.setRoot(OnboardingPage);
     }
      
