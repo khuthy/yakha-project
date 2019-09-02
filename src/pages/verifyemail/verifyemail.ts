@@ -79,8 +79,7 @@ export class VerifyemailPage {
     var user = firebase.auth().currentUser;
     console.log(user);
     
-    if(user.emailVerified == true) 
-    {
+   
       this.isSent = true;
       let userLoggedIn = this.db.doc(`/User/${user.uid}`);
        userLoggedIn.get().then(getuserLoggedIn => {
@@ -88,12 +87,12 @@ export class VerifyemailPage {
         if(getuserLoggedIn.data().userType == 'Homebuilder') {
           this.navCtrl.setRoot(BaccountSetupPage);
         }else {
-          this.navCtrl.setRoot(AccountSetupPage)
+          this.navCtrl.setRoot(AccountSetupPage);
         } 
       }).catch((error) => {
 
       })
-    }
+    
       
   }
 

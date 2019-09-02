@@ -87,7 +87,7 @@ request: boolean = false;
 
             resp.forEach((doc)=> {
               // doc.data() is never undefined for query doc snapshots
-              console.log(doc.data().address.longitude);
+              
               let lat = doc.id +"<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price;
               let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
                let marker = new google.maps.Marker({
