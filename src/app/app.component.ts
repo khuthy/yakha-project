@@ -156,7 +156,7 @@ export class MyApp {
     
     } else {
         
-        this.rootPage = OnboardingPage;
+        this.rootPage = WelcomePage;
         console.log('user is logged out');
         
       }

@@ -1,12 +1,11 @@
-import { LoginPage } from './../login/login';
-import { Component,ViewChild  } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, MenuController} from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides, MenuController } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
 /**
- * Generated class for the OnboardingPage page.
+ * Generated class for the OnboardingBuilderPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,13 +13,13 @@ import { RegisterPage } from '../register/register';
 
 @IonicPage()
 @Component({
-  selector: 'page-onboarding',
-  templateUrl: 'onboarding.html',
+  selector: 'page-onboarding-builder',
+  templateUrl: 'onboarding-builder.html',
 })
-export class OnboardingPage {
-  @ViewChild('slides') slides: Slides
+export class OnboardingBuilderPage {
+@ViewChild('slides') slides: Slides;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
     this.storage.get('onboarding').then(val => {
       if(val == 'checkedf')  {
         console.log(val);
@@ -32,11 +31,10 @@ export class OnboardingPage {
       }
       
     });
-    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OnboardingPage');
+    console.log('ionViewDidLoad OnboardingBuilderPage');
   }
   ionViewWillEnter(){
     this.menuCtrl.swipeEnable(false);
@@ -49,7 +47,7 @@ export class OnboardingPage {
   nextslides(){
     this.slides.slideNext();
   }
-
+  
   register(){
     this.navCtrl.push(RegisterPage);
   }
@@ -58,7 +56,5 @@ export class OnboardingPage {
   this.storage.set('onboarding', 'checked');
   this.navCtrl.setRoot(WelcomePage);
   }
-  // Or to get a key/value pair
-
 
 }
