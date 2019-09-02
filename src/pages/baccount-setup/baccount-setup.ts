@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -69,7 +69,9 @@ export class BaccountSetupPage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private formBuilder: FormBuilder)
+    private formBuilder: FormBuilder,
+    private menuCtrl: MenuController
+    )
     {
    this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -87,6 +89,12 @@ export class BaccountSetupPage {
   ionViewDidLoad() {
     console.log( this.uid)
     console.log( this.authUser.getUser())
+  }
+  ionViewWillEnter() {
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menuCtrl.swipeEnable(false);
   }
   public handleAddressChange(addr: Address) {
     this.builderProfile.address = addr.formatted_address ;
