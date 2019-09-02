@@ -1,6 +1,6 @@
 
 
-<ion-content padding>
+<ion-content>
     <div class="container" *ngIf="!isProfile">
         <h1>Manage Profile</h1>
   <div class="image">
@@ -95,40 +95,29 @@
   </ion-list>
 </form>
 </div>
-<div class="profiles" *ngIf="isProfile">
-   
+<div *ngIf="isProfile" class="container">
+<div class="profiles"  *ngFor="let builder of displayProfile">
   <div class="avatar-images">
-  <img src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
+  <img src="{{builder.bricklayerImage}}" class="thumbavatar">
 </div>
-
-
-   <div class="name">
-     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
+<div class="name">
+     <h4 style="text-align: center;">{{builder.fullName}}</h4>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           Edit<ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
    <div class="details">
-     <p> {{builderProfile.experiences}} years of experience</p>
+     <p> {{builder.experiences}} years of experience</p>
     
    </div>
    <div class="bio">
      <h6>Location</h6>
      <p>
-      {{builderProfile.location}}
+      {{profileForm.value.address}}
      </p>
    </div>
-   <!-- <ion-fab right bottom>
-      <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
-    </ion-fab> -->
-  <!--  <div class="displayName">
-
-      <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
-       <button (click)="editProfile()" ion-button small color="dark" icon-right >
-          Edit
-          <ion-icon name="create"></ion-icon>
-        </button> 
-   </div> -->
+   </div>
 </div>
+
 </ion-content>

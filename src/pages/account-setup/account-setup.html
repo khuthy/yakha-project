@@ -43,22 +43,20 @@
      </form>
      </div>
      <div *ngIf="isProfile">
-        <div class="Profimage">
-             <img src="{{HomeOwnerProfile.image}}">
-            
-             <div class="displayName">
-  
-                <h4> HomeOwner FullName:{{HomeOwnerProfile.fullname}}  </h4>
+        <div class="avatar-images">
+            <img src="{{displayProfile.ownerImage}}" alt="khuthy" class="thumbavatar">
+          </div>
+            <div class="name">
+                <h4>{{HomeOwnerProfile.fullname}}  </h4>
                 <button (click)="editProfile()" ion-button small color="dark" icon-right >
                     Edit
                     <ion-icon name="create"></ion-icon>
                   </button> 
              </div>
-          </div>
-          <div class="contact">
-            <div class="number"><p>{{HomeOwnerProfile.personalNumber}</p></div>
+          <div class="details">
+            <div class="number"><p>{{HomeOwnerProfile.personalNumber}}</p></div>
             <div class="line"></div>
-            <div class="email"><p>{{HomeOwnerProfile.About}}</p></div>
+            <div class="bio"><p>{{HomeOwnerProfile.About}}</p></div>
           </div>
     </div>
   

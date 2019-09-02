@@ -28,11 +28,13 @@ export class BaccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage: any = "../../assets/imgs/team-avatar.jpg";
+  profileImage;
+  imageSelected= false;
+  isuploaded =false;
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
-  displayProfile;
+  displayProfile = [];
  // email = 
   experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
   builderProfile = {
@@ -43,7 +45,6 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   
    lng: 0,
    lat: 0,
    
@@ -88,7 +89,8 @@ export class BaccountSetupPage {
 
   ionViewDidLoad() {
     console.log( this.uid)
-    console.log( this.authUser.getUser())
+    console.log( this.authUser.getUser());
+    this.getProfile();
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -170,9 +172,6 @@ export class BaccountSetupPage {
       })
     }
            // load the profile creation process
-
-
-
   }
 
   validation_messages = {
@@ -204,6 +203,8 @@ export class BaccountSetupPage {
   };
   getProfile(){
     // load the process
+    console.log('sharon');
+    
     let load = this.loadingCtrl.create({
       content: 'Just a sec...',
       spinner: 'bubbles'
@@ -213,25 +214,27 @@ export class BaccountSetupPage {
     let users = this.db.collection('builderProfile');
 
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
+        
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
-          this.displayProfile = doc.data();
-         ;
-          this.profileImage.image  = doc.data().image
+          this.displayProfile.push(doc.data());
+          this.profileImage = doc.data().bricklayerImage;
           this.builderProfile.fullName  = doc.data().fullName;
           this.builderProfile.certified  = doc.data().certified;
-          this.builderProfile.experiences  = doc.data().experience;
-          this.builderProfile. address  = doc.data(). address;
-          this.builderProfile.price  = doc.data().price;
-          // this.builderProfile.location  = doc.data().location
+          this.builderProfile.experiences  = doc.data().experiences;
+          this.profileForm.patchValue({address: doc.data().address}); 
+          this.builderProfile.price  = doc.data().price; 
+        // this.builderProfile.location  = doc.data().location
 
         })
         this.isProfile = true;
+
+        
       } else {
         console.log('No data');
         this.isProfile = false;
@@ -248,5 +251,14 @@ export class BaccountSetupPage {
   editProfile(){
     this.isProfile = false;
   }
+
+}export interface  builderProfile{
+  uid:string;
+  image?:string;
+  fullName: string,
+  certified: string,
+  experiences: string,
+  address: string,
+  price: string
 
 }
