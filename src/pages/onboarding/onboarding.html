@@ -1,70 +1,80 @@
 
-<ion-content padding>
+<ion-content>
   <div class="main-container">
+     <!--  <button class="btn-onboard" ion-button (click)="nextslides()">Next</button> -->
     <ion-slides #slides pager>
-      <ion-slide>
-        <div class="onboard">
-          <ion-toolbar color="custom">
-              <ion-buttons end>
-                <button clear ion-button color="light">SKIP</button></ion-buttons>
-            </ion-toolbar>
-            <div class="container">
-               <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
+
+     <!--  <ion-slide>
+          <div class="top">
+              <p>Skip</p>
+              <img src="../../assets/imgs/builders.svg">
             </div>
-           <div class="container">
-             <h3>Heading</h3>
-               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-              Vel nemo adipisci quisquam doloribus.
-            </p>
-            </div>
-           
-            <button class="btn-onboard" ion-button (click)="nextslides()">Next</button>
-         
-        </div>
-          
-      </ion-slide>
-      <ion-slide>
-          <div class="onboard">
-            <ion-toolbar color="custom">
-                <ion-buttons end>
-                  <button clear ion-button color="light">SKIP</button></ion-buttons>
-              </ion-toolbar>
-              <div class="container">
-                 <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
-              </div>
-             <div class="container">
-               <h3>Heading</h3>
-                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                Vel nemo adipisci quisquam doloribus.
+  
+            <div class="bottom">
+              <p>The following screens will familarize you with
+                with the basic usage of Yakha Application.
               </p>
+              <div class="btn">
+               <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Continue as Home-owner</button>
+             <br>
+               <button id="btn2" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Continue as Builder</button>
               </div>
              
-              <button class="btn-onboard" ion-button (click)="nextslides()">Next</button>
+            </div>
+      </ion-slide> -->
+
+      <ion-slide>
+          <div class="image"  >
+              <p>Skip</p>
+              <img src="../../assets/imgs/login.svg"  >
+            </div>
+  
+            <div class="bottoms">
+              <p>Create an account and 
+                  setup your profile to start using 
+                  this applicatin.
+              </p>
+              <div class="btn">
+               <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Next</button>
+          
+              </div>
+             
+            </div>
+        </ion-slide>
+        <div class="image">
+            <p>Skip</p>
+            <img src="../../assets/imgs/maps.svg" >
+          </div>
+
+          <div class="bottoms">
+            <p>Enable your location search 
+              for all the available builders
+              around your area.
+            </p>
+            <div class="btn">
+             <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Next</button>
+           </div>
            
           </div>
-            
-        </ion-slide>
         <ion-slide>
-            <div class="onboard">
-              <ion-toolbar color="custom">
-                  <ion-buttons end>
-                    <button clear ion-button color="light">SKIP</button></ion-buttons>
-                </ion-toolbar>
-                <div class="container">
-                   <img class="on-board-images" src="../../assets/imgs/icon.png" alt="">
-                </div>
-               <div class="container">
-                 <h3>Heading</h3>
-                   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                  Vel nemo adipisci quisquam doloribus.
+            <div class="top">
+                <p>Skip</p>
+                <img src="../../assets/imgs/hands.svg">
+              </div>
+    
+              <div class="bottom">
+                <p>Send a quotation request to a 
+                  builder of your choice and receive
+                  their  detailed quotation in your 
+                  messages. 
                 </p>
+                <div class="btn">
+                 <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Done</button>
                 </div>
                
-                <button class="btn-onboard-get-started" ion-button (click)="gotoWelcome()">GET STARTED</button>
-             
-            </div>
-              
-          </ion-slide>
+              </div>
+       </ion-slide>
+
     </ion-slides>
 
   </div>

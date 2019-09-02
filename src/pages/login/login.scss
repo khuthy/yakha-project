@@ -1,7 +1,7 @@
 page-login {
 
     
-    
+    /* 
     .content {
         background: url('../../assets/imgs/login.svg');
         background-size: cover;
@@ -27,7 +27,7 @@ page-login {
         width: 80%;
        justify-content: center;
        align-items: center;
-       /* padding-bottom: 30%; */
+    
     }
     .forms > div {
         width: 80%;
@@ -35,6 +35,28 @@ page-login {
     .btn-custom {
         background: rgb(31, 31, 31);
     }
-    
-    
+     */
+    .container {
+        width: 100%;
+        height: 100%;
+        border: 1px solid red;
+
+        .middle {
+            border: 1px solid blue;
+            height: 70%;
+            width: 60%;
+            position: relative;
+            left: 40%;
+             .triangle {
+            width: 0;
+            height: 0;
+            border-radius: 15px;
+            border-top: 250px solid transparent;
+            border-right: 250px solid red;
+            border-bottom: 300px solid transparent;
+            
+        }
+        }
+       
+    }
 }
