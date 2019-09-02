@@ -53,6 +53,7 @@ export class MyApp {
    console.log('im here');
    console.log(this.predefined);
    
+   
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },

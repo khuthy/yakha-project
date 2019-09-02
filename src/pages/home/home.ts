@@ -26,7 +26,7 @@ export class HomePage {
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
- 
+
   map: any;
 //  marker: any;
  public lat: any;
@@ -50,19 +50,20 @@ request: boolean = false;
   }).present();
    let user = firebase.auth().currentUser;
    if(user){
-
     let userLoggedIn = this.db.doc(`/User/${user.uid}`);
     userLoggedIn.get().then(getuserLoggedIn => {
       if(getuserLoggedIn.data().userType == 'Homebuilder') {
-        
+
         if(getuserLoggedIn.data().status == true) {
           this.maps = false;
         this.request = true;
         }else {
           this.status = "Please wait for 48 hours. We are still processing your profile.";
          }
-        
-      }else {
+
+      }
+      else
+       {
         this.geolocation.getCurrentPosition().then((resp) => {
           let NEW_ZEALAND_BOUNDS = {
             north: -22.0913127581,
@@ -83,7 +84,7 @@ request: boolean = false;
           }
           this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
           firebase.firestore().collection('builderProfile').get().then((resp)=>{
-      
+
             resp.forEach((doc)=> {
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.data().address.longitude);
@@ -115,15 +116,15 @@ request: boolean = false;
                 radius: 10000
               });
             })
-           
+
             // });
             // // console.log(marker);
             // } else {
             //   console.log("The firestore is empty");
-      
+
             // }
           });
-      
+
          }).catch((error) => {
            console.log('Error getting location', error);
          });
@@ -134,10 +135,15 @@ request: boolean = false;
             this.builder.push(doc.data());
           });
           console.log('Builders: ', this.builder);
-        
+
         });
-  
+
       }
+      // else {
+      //   console.log('you are in the waiting list. please wait for 24 hours');
+
+      // }
+
     })
    }else {
      this.navCtrl.setRoot(WelcomePage);
@@ -181,7 +187,7 @@ getOwners(){
       this.owner.push(doc.data());
     });
     console.log('Owners: ', this.owner);
-  
+
   });
 }
 loadMap(){
