@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
@@ -37,7 +37,7 @@ export class ViewmessagePage {
   stateSlideDown = 'visible'
   userDetails;
   hOwnerUID;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
     console.log(this.userDetails);
@@ -46,6 +46,7 @@ export class ViewmessagePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewmessagePage');
+    this.menuCtrl.swipeEnable(true);
     this.getRequest();
   }
   togglePanel(){

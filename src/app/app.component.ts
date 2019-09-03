@@ -86,6 +86,7 @@ export class MyApp {
          console.log(getuserLoggedIn.data().userType);
          if(getuserLoggedIn.data().userType == "Homebuilder") {
           if(user.emailVerified === true) {
+            
             homeBuilders.get().then(homeBuilderInfo => {
               if(homeBuilderInfo.empty) {
                 this.rootPage = BaccountSetupPage;
