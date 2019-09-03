@@ -1,4 +1,30 @@
 page-baccount-setup {
+
+     /* create or update profile */
+     .container-form {
+          .image {
+    display: flex;
+    justify-content: center;
+   
+    
+      .thumb {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+
+  }
+  .btn-upload {
+      position: absolute;
+      left: 65%;
+      bottom: -5%;
+  }
+}
+     }
+ 
+
+    /* view profile code */
     .container {
         .profiles {
           
@@ -82,5 +108,15 @@ page-baccount-setup {
     .btn {
         display: flex;
         justify-content: center;
+    }
+    .back {
+        position: fixed;
+        top: 1%;
+        left: 2%;
+        z-index: 4;
+        .icon {
+            color: #fff;
+            font-size: 20px;
+        }
     }
 }

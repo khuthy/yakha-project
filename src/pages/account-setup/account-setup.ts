@@ -5,6 +5,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -28,6 +29,7 @@ export class AccountSetupPage {
   uploadprogress = 0;
   isuploading: false
   displayProfile;
+  icon: string;
   HomeOwnerProfile = {
     uid: '',
     ownerImage:'',
@@ -44,7 +46,8 @@ export class AccountSetupPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private callNumber: CallNumber
     ) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -168,15 +171,18 @@ export class AccountSetupPage {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
           this.HomeOwnerProfile.About  = doc.data().About;
-          // this.profileImage.image  = doc.data().image;
+          this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
+          this.profileImage  = doc.data().ownerImage;
           this.HomeOwnerProfile.fullname  = doc.data().fullname;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })
+        this.icon = 'create';
         this.isProfile = true;
       } else {
         console.log('No data');
         this.isProfile = false;
+        this.icon = 'image';
       }
       // dismiss the loading
       load.dismiss();
@@ -189,7 +195,12 @@ export class AccountSetupPage {
   }
   editProfile(){
     this.isProfile = false;
+    this.icon = 'create';
   }
+
+  callJoint(phoneNumber) {
+    this.callNumber.callNumber(phoneNumber, true);
+}
   
  }
  export interface  HomeOwnerProfile{

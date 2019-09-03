@@ -59,24 +59,25 @@ page-builder-profileview {
   position: fixed;
   top: 0%;
   left: 0%;
-  background: linear-gradient(to left, rgba(12, 12, 12, 0.308), rgba(2, 2, 2, 0.486));
-  width: 20%;
-  padding: 20px;
+  background: linear-gradient(rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.061));
+  width: 100%;
+  padding: 10px;
   border-radius: 0 0 50px 0;
   color: #fff;
 }
 .price {
   background: rgb(196, 196, 196);
 }
-.two {
-   font-size: 13px;
-   position: relative;
-   top: -20%;
-   
-}
+
 .experience {
   display: flex;
   justify-content: center;
  
+}
+.squire {
+  font-size: 10px;
+  position: relative;
+  top: -9px;
+
 }
 }

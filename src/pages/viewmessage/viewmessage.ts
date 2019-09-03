@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';

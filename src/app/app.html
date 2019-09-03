@@ -2,7 +2,8 @@
 
   <ion-content class="side-menu">
       <div class="profile" (click)="viewProfile()">
-          <img src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
+          <img *ngIf="userLoggedinNow.image" src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
+          <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" class="thumb" alt="profile">
           <article>
             <p style="font-size: 17px;">{{userLoggedinNow.fullname}}</p>
             <p style="font-size: 13px;">{{userLoggedinNow.email}}</p>

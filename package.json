@@ -45,6 +45,7 @@
     "firebase": "^6.4.0",
     "ionic-angular": "3.9.5",
     "ionicons": "3.0.0",
+    "mx.ferreyra.callnumber": "0.0.2",
     "ngx-google-places-autocomplete": "^2.0.4",
     "pdfmake": "^0.1.58",
     "rxjs": "5.5.11",
@@ -85,7 +86,8 @@
       },
       "cordova-plugin-file": {},
       "cordova-plugin-filechooser": {},
-      "mx.ferreyra.callnumber": {}
+      "mx.ferreyra.callnumber": {},
+      "call-number": {}
     },
     "platforms": [
       "android"
