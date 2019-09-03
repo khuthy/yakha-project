@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
@@ -52,7 +52,8 @@ export class ViewmessagePage {
    
     this.db.collection('User').doc(firebase.auth().currentUser.uid).get().then((res)=>{
      res.data();
-     this.bUid = res.data().userType;
+    
+     this.bUid = res.data().userType =="Homebuilder";
     })
     // this.db.collection('HomeOwnerProfile').doc(firebase.auth().currentUser.uid).get().then((res)=>{
     //   res.data();
@@ -101,7 +102,7 @@ export class ViewmessagePage {
   download(){
     if(this.quoteDoc!='')
   //  var blob = new Blob([buffer], { type: 'application/pdf' });
-    this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', this.quoteDoc, { replace: true }).then(fileEntry => {
+    this.file.writeFile(this.file.dataDirectory, `${this.quoteDoc}.pdf`, this.quoteDoc+'.pdf', { replace: true }).then(fileEntry => {
       // Open the PDf with the correct OS tools
       this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
     })

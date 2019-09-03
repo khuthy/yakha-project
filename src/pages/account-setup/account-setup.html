@@ -1,16 +1,22 @@
  <ion-content>
       <div class="container" *ngIf="!isProfile">
           <h1>Manage Profile</h1>
+      <div class="container-form" *ngIf="!isProfile" padding>
+         
       <div  class="image">
-          <p *ngIf="!profileImage" style="color: red; text-align: center;">Please Upload an image</p>
-           <img  src="{{profileImage}}" class="thumb">
-           <button ion-button clear large full (click)="selectImage()">Select Image</button>
+          <div class="thumb">
+            <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
+            <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
+            <button ion-fab color="custom" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+          </div>
+           
+           
         </div>
          
          
          <form  [formGroup]="profileForm">
       <ion-item >
-        <ion-label > FullName</ion-label>
+        <ion-label  floating> Full Name</ion-label>
         <ion-input type="text" formControlName="fullname" [(ngModel)]="HomeOwnerProfile.fullname" ngDefaultControl></ion-input>
       </ion-item>
       <div class="error" *ngFor="let validate of validation_messages.fullname">
@@ -20,7 +26,7 @@
        </div>
       
       <ion-item>
-        <ion-label> cellphone number</ion-label>
+        <ion-label floating> Cellphone number</ion-label>
         <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
       </ion-item>
       <div class="error" *ngFor="let validate of validation_messages.personalNumber">
@@ -29,7 +35,7 @@
        </div>
        </div>
        <ion-item >
-        <ion-label > bio </ion-label>
+        <ion-label  floating> Bio </ion-label>
         <ion-input  type="text" formControlName="About"  [(ngModel)]="HomeOwnerProfile.About" ngDefaultControl></ion-input>
       </ion-item>
       <div class="error" *ngFor="let validate of validation_messages.About">
@@ -40,7 +46,7 @@
       <br>
        <div class="btn">
           <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-         <button id="skip" (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button clear  large >Save Profile </button>
+         <button id="skip" (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>
     </div>
      </form>
      </div>
@@ -49,21 +55,38 @@
      <div class="profiles" *ngIf="isProfile">
         <div class="Profimage">
              <img src="{{HomeOwnerProfile.image}}">
+    <!-- view profile -->
+    <div class="container">
+     
+      <div class="profiles" *ngIf="isProfile">
+       <div class="back">
+         <p (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></p>
+       </div>
+          <div class="avatar-images">
+          <img *ngIf="HomeOwnerProfile.ownerImage" src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
+          <img *ngIf="!HomeOwnerProfile.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+        </div>
+        
+        
+           <div class="name">
+             <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
+           </div>
+           <ion-fab right bottom>
+            <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>
+           <div class="details">
+             <p (click)="callJoint(HomeOwnerProfile.personalNumber)"><ion-icon name="call"></ion-icon></p>
             
-             <div class="displayName">
-  
-                <h4> HomeOwner FullName:{{HomeOwnerProfile.fullname}}  </h4>
-                <button (click)="editProfile()" ion-button small color="dark" icon-right >
-                    Edit
-                    <ion-icon name="create"></ion-icon>
-                  </button> 
-             </div>
-          </div>
-          <div class="contact">
-            <div class="number"><p>{{HomeOwnerProfile.personalNumber}</p></div>
-            <div class="line"></div>
-            <div class="email"><p>{{HomeOwnerProfile.About}}</p></div>
-          </div>
-    </div>
+           </div>
+           <div class="bio">
+             <h6>About me</h6>
+             <p>
+             {{HomeOwnerProfile.About}}
+             </p>
+           </div>
+        
+        </div>
+        </div>
+    <!-- profile -->
   
    </ion-content>

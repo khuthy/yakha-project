@@ -65,9 +65,14 @@
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.comment)">
   
     <div class="home-builder-top">
-      <!-- <img src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile"> -->
+      <img *ngIf="o.ownerImage" src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile">
+      <img *ngIf="!o.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
       <article>
-        <p style="font-size: 17px;text-align: left;">{{o.comment}}</p><br>
+     <div>
+       
+     </div>
+        <!-- <p style="font-size: 17px;text-align: left;">{{ownerName}}</p><br> -->
+        <p style="font-size: 12px;text-align: left;">{{o.comment}}</p><br>
         <p style="font-size: 10px;text-align: left;">{{o.date}}</p>
         <br> 
     </article>

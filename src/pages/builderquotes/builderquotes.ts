@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -73,7 +74,8 @@ export class BuilderquotesPage {
     private fileOpener: FileOpener,
     private file: File,
     private plt: Platform,
-    private authUser: AuthServiceProvider
+    private authUser: AuthServiceProvider,
+    private loader: LoadingController
     ) {
      // this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
@@ -216,6 +218,10 @@ export class BuilderquotesPage {
       //        })
       //      }
   downloadUrl() {
+    this.loader.create({
+      duration: 2000,
+      content: 'Loading'
+    }).present();
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
@@ -245,12 +251,16 @@ export class BuilderquotesPage {
     }
   }
   downloadPdf(){
+    this.loader.create({
+      duration: 2000,
+      content: 'Loading'
+    }).present();
     firebase.firestore().collection('HomeOwnerQuotation').doc(this.navParams.data).update({
       doc: this.pdfDoc,
       response_date: Date(),
       createBy: firebase.auth().currentUser.email,
-     // uid: firebase.auth().currentUser.uid
+     // uid: firebase.auth().currentUser.ui
     })
+    this.navCtrl.setRoot(HomePage);
   }
-
 }
