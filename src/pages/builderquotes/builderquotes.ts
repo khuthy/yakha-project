@@ -27,6 +27,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class BuilderquotesPage {
   pdfDoc;
+  length;
+  height;
+  width;
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
   formattedAddress='';
   options = {
@@ -39,7 +42,7 @@ export class BuilderquotesPage {
   expiry: '',
   address: '',
   dimension: '',
-  price: '',
+  price: 0,
   uid: '',
   ownerUID: null,
   hOwnerUID: null
@@ -72,7 +75,7 @@ export class BuilderquotesPage {
     private plt: Platform,
     private authUser: AuthServiceProvider
     ) {
-      this.quotes.hOwnerUID = this.navParams.data;
+     // this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
@@ -85,7 +88,20 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuilderquotesPage');
+    console.log(this.navParams.data);
+    this.db.collection('HomeOwnerQuotation').doc(this.navParams.data).get().then((res)=>{
+      this.quotes.dimension = res.data().length + 'x' + res.data().width + 'x' + res.data().height;
+      this.length = res.data().length;
+      this.height = res.data().height;
+      this.width = res.data().width;
+    })
+
+    this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
+        res.forEach((doc)=>{
+          this.quotes.address = doc.data().address;
+          this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+        })
+    })
   }
   public handleAddressChange(addr: Address) {
     this.quotes.address = addr.formatted_address ;
@@ -98,7 +114,9 @@ export class BuilderquotesPage {
     this.navCtrl.setRoot(SuccessPage)
   }
   
-  
+  // getQuoteInfo(){
+   
+  // }
   createPdf() {
     var docDefinition = {
       content: [
@@ -227,11 +245,11 @@ export class BuilderquotesPage {
     }
   }
   downloadPdf(){
-    firebase.firestore().collection('responseQuotation').add({
+    firebase.firestore().collection('HomeOwnerQuotation').doc(this.navParams.data).update({
       doc: this.pdfDoc,
-      date: Date(),
+      response_date: Date(),
       createBy: firebase.auth().currentUser.email,
-      uid: firebase.auth().currentUser.uid
+     // uid: firebase.auth().currentUser.uid
     })
   }
 
