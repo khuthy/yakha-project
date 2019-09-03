@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -32,7 +32,7 @@ export class AccountSetupPage {
     uid: '',
     ownerImage:'',
     fullname:'',
-    personalNumber: '',
+    personalNumber:'',
     About:'',
     date: Date()
   }
@@ -43,7 +43,9 @@ export class AccountSetupPage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private menuCtrl: MenuController
+    ) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.HomeOwnerProfile.uid = this.uid;
@@ -58,6 +60,12 @@ export class AccountSetupPage {
     console.log( this.uid)
     console.log( this.authUser.getUser())
     this.getProfile();
+  }
+  ionViewWillEnter() {
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menuCtrl.swipeEnable(false);
   }
   //select image for the salon
   async selectImage() {
@@ -160,9 +168,8 @@ export class AccountSetupPage {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
           this.HomeOwnerProfile.About  = doc.data().About;
-          // this.HomeOwnerProfile.email = doc.data().email
-          this.profileImage.image  = doc.data().image
-          this.HomeOwnerProfile. fullname  = doc.data(). fullname;
+          // this.profileImage.image  = doc.data().image;
+          this.HomeOwnerProfile.fullname  = doc.data().fullname;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })
@@ -183,4 +190,13 @@ export class AccountSetupPage {
   editProfile(){
     this.isProfile = false;
   }
+  
  }
+ export interface  HomeOwnerProfile{
+  uid :string;
+  image?:string;
+  fullname:string;
+  personalNumber:any;
+  About:string;
+
+} 

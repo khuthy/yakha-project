@@ -1,3 +1,4 @@
+import { OnboardingBuilderPage } from './../pages/onboarding-builder/onboarding-builder';
 
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
@@ -50,6 +51,7 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -79,7 +81,8 @@ import { CallNumber } from '@ionic-native/call-number';
     WelcomePage,
     ViewmessagePage,
     VerifyemailPage,
-    BuilderquotesPage
+    BuilderquotesPage,
+    OnboardingBuilderPage
   ],
   imports: [
     BrowserModule,
@@ -120,7 +123,8 @@ import { CallNumber } from '@ionic-native/call-number';
     WelcomePage,
     ViewmessagePage,
     VerifyemailPage,
-    BuilderquotesPage
+    BuilderquotesPage,
+    OnboardingBuilderPage
 
 
   ],

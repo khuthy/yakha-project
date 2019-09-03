@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -28,7 +28,7 @@ export class BaccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage: any = "../../assets/imgs/team-avatar.jpg";
+  profileImage: any = "";
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -69,7 +69,9 @@ export class BaccountSetupPage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private formBuilder: FormBuilder)
+    private formBuilder: FormBuilder,
+    private menuCtrl: MenuController
+    )
     {
    this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -86,7 +88,14 @@ export class BaccountSetupPage {
 
   ionViewDidLoad() {
     console.log( this.uid)
-    console.log( this.authUser.getUser())
+    console.log( this.authUser.getUser());
+    this.getProfile();
+  }
+  ionViewWillEnter() {
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menuCtrl.swipeEnable(false);
   }
   public handleAddressChange(addr: Address) {
     this.builderProfile.address = addr.formatted_address ;
@@ -205,7 +214,7 @@ export class BaccountSetupPage {
     let users = this.db.collection('builderProfile');
 
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser().uid);
+    let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
@@ -213,8 +222,8 @@ export class BaccountSetupPage {
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data())
           this.displayProfile = doc.data();
-         ;
-          this.profileImage.image  = doc.data().image
+         
+          this.profileImage.image  = doc.data().bricklayerImage
           this.builderProfile.fullName  = doc.data().fullName;
           this.builderProfile.certified  = doc.data().certified;
           this.builderProfile.experiences  = doc.data().experience;

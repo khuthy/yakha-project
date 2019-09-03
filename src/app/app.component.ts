@@ -40,7 +40,6 @@ export class MyApp {
   userLoggedinNow = {
     fullname: '',
     email: '',
-    isProfile: false,
     image: ''
   }
   
@@ -49,21 +48,13 @@ export class MyApp {
     this.initializeApp();
    firebase.initializeApp(firebaseConfig);
    this.db = firebase.firestore();
-   this.authState();
    console.log('im here');
-   console.log(this.predefined);
    
+   this.authState();
    
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage, icon: 'home' },
-      { title: 'View profile', component: ProfileHomeOwnerPage, icon: 'person' },
-      { title: 'Messages', component:MessagesPage, icon: 'mail' },
-      { title: 'Help', component: HelpPage, icon: 'help' },
-      { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-      { title: 'Share', component: SuccessPage, icon: 'share' },
-      { title: 'Version', component: VersionPage, icon: 'information-circle'}
-     ];
+    
+   
 
   }
 
@@ -90,10 +81,10 @@ export class MyApp {
       let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
       let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
          
-      console.log(getuserLoggedIn.data().userType);
-         this.predefined = getuserLoggedIn.data().userType;
-
-         if(this.predefined == "Homebuilder") {
+            
+         
+         console.log(getuserLoggedIn.data().userType);
+         if(getuserLoggedIn.data().userType == "Homebuilder") {
           if(user.emailVerified === true) {
             homeBuilders.get().then(homeBuilderInfo => {
               if(homeBuilderInfo.empty) {
@@ -106,8 +97,16 @@ export class MyApp {
                               this.userLoggedinNow.fullname = doc.data().fullName;
                               this.userLoggedinNow.image = doc.data().bricklayerImage;
                               this.userLoggedinNow.email = user.email;
-                              this.userLoggedinNow.isProfile = true;
+                             
                             });
+
+                    /* home builder side menu content */
+                    this.pages = [
+                      { title: 'Home', component: HomePage, icon: 'home' },
+                      { title: 'View profile', component: BaccountSetupPage, icon: 'person' },
+                      { title: 'Reviews', component: VersionPage, icon: 'mail' },
+                      { title: 'Help', component: HelpPage, icon: 'help' },
+                     ];
                 
                 
               }
@@ -128,8 +127,19 @@ export class MyApp {
                   this.userLoggedinNow.fullname = doc.data().fullname;
                   this.userLoggedinNow.image = doc.data().ownerImage;
                   this.userLoggedinNow.email = user.email;
-                  this.userLoggedinNow.isProfile = true;
+                  
                 });
+                /* Side menu content for home owner */
+
+                this.pages = [
+                  { title: 'Home', component: HomePage, icon: 'home' },
+                  { title: 'View profile', component: AccountSetupPage, icon: 'person' },
+                  { title: 'Messages', component:MessagesPage, icon: 'mail' },
+                  { title: 'Help', component: HelpPage, icon: 'help' },
+                  { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+                  { title: 'Share', component: SuccessPage, icon: 'share' },
+                  { title: 'Version', component: VersionPage, icon: 'information-circle'}
+                 ];
              
                 
                 }
@@ -146,7 +156,9 @@ export class MyApp {
     
     } else {
         
-        this.rootPage = OnboardingPage;
+        this.rootPage = WelcomePage;
+        console.log('user is logged out');
+        
       }
     })
   }

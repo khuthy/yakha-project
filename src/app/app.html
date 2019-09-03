@@ -1,7 +1,7 @@
 <ion-menu [content]="content" type="overlay">
 
   <ion-content class="side-menu">
-      <div class="profile" *ngIf="userLoggedinNow.isProfile" (click)="viewProfile()">
+      <div class="profile" (click)="viewProfile()">
           <img src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
           <article>
             <p style="font-size: 17px;">{{userLoggedinNow.fullname}}</p>
