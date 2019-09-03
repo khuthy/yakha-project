@@ -62,17 +62,17 @@
     </div> 
 </div> -->
 <div class="homebuilder" padding *ngIf="request">
-  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o)">
+  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.comment)">
   
     <div class="home-builder-top">
       <img *ngIf="o.ownerImage" src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile">
       <img *ngIf="!o.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
       <article>
-        <p style="font-size: 17px;"><strong>{{o.fullname}}</strong> </p>
-        <br>
-        <p style="font-size: 15px;" (click)="callJoint(o.personalNumber)"><ion-icon name="call"></ion-icon> </p>
-        
+        <p style="font-size: 17px;text-align: left;">{{o.comment}}</p><br>
+        <p style="font-size: 10px;text-align: left;">{{o.date}}</p>
+        <br> 
     </article>
+    <button ion-button clear style="font-size: 15px;float: right; margin: 10px" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
     </div>
     
     </div> 

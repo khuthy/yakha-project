@@ -44,7 +44,10 @@ export class QuotationFormPage {
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
    date:Date(),
-   builderUID: '' 
+   builderUID: '',
+   doc:'',
+   response_date:'',
+   createBy:''
   };
 
  date: any;
@@ -166,7 +169,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
         content: 'submitting quotations ..'
       });
       load.present();
-  const user = this.db.collection('HomeOwnerQuotation').doc(this.authUser.getUser()).set(this.HomeOwnerQuotation);
+  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
   
   // upon success...
   user.then( () => {

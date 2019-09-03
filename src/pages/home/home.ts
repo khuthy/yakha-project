@@ -181,13 +181,12 @@ viewOwner(owner){
 }
 
 getOwners(){
-  this.db.collection('HomeOwnerProfile').get().then(snapshot => {
+  this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).get().then(snapshot => {
     this.owner = [];
     snapshot.forEach(doc => {
       this.owner.push(doc.data());
     });
     console.log('Owners: ', this.owner);
-
   });
 }
 loadMap(){

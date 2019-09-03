@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
-
+import { FileOpener } from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -37,22 +38,34 @@ export class ViewmessagePage {
   stateSlideDown = 'visible'
   userDetails;
   hOwnerUID;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
+  id;
+  hOwnerUid;
+  bUid;
+  quoteDoc;
+  homeOwner;
+  profilePic;
+  ownerName;
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private fileOpener: FileOpener,
+    private file: File) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
-    console.log(this.userDetails);
-    
+   
+    this.db.collection('User').doc(firebase.auth().currentUser.uid).get().then((res)=>{
+     res.data();
+     this.bUid = res.data().userType;
+    })
+    // this.db.collection('HomeOwnerProfile').doc(firebase.auth().currentUser.uid).get().then((res)=>{
+    //   res.data();
+    //   this.bUid = res.data().userType;
+    //  })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewmessagePage');
-    this.menuCtrl.swipeEnable(true);
+    //console.log(this.navParams.data);
     this.getRequest();
   }
   togglePanel(){
     this.stateSlideDown = (this.stateSlideDown == 'visible') ? 'invisible' : 'visible';
-    
-   
   }
   showMore(){
     this.more = !this.more;
@@ -62,14 +75,36 @@ export class ViewmessagePage {
     this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
   }
   getRequest(){
-    this.db.collection('HomeOwnerQuotation').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
+    this.db.collection('HomeOwnerQuotation').where('comment', '==', this.userDetails).get().then(snapshot => {
       this.request = [];
       snapshot.forEach(doc => {
         this.request.push(doc.data());
+        this.hOwnerUID = doc.id;
+        this.quoteDoc = doc.data().doc;
+        this.homeOwner = doc.data().uid;
+       // console.log(this.homeOwner);
+        this.db.collection('HomeOwnerProfile').doc(this.homeOwner).get().then((res)=>{
+          console.log(res.data());
+           this.profilePic = res.data().ownerImage;
+           this.ownerName = res.data().fullname;
+        })
+        //this.hOwnerUID = doc.data().length + 'x' + doc.data().width + 'x' + doc.data().height;
       });
       console.log('Requests: ', this.request);
     
     });
+  }
+  getUser(){
+   // let homeOwner = '';
+   
+  }
+  download(){
+    if(this.quoteDoc!='')
+  //  var blob = new Blob([buffer], { type: 'application/pdf' });
+    this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', this.quoteDoc, { replace: true }).then(fileEntry => {
+      // Open the PDf with the correct OS tools
+      this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
+    })
   }
 
 }

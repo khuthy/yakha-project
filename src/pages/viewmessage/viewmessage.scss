@@ -6,6 +6,7 @@ page-viewmessage {
         flex-direction: column;
       
     }
+   
     .message {
      position: relative;
      height: 25vh;
@@ -59,11 +60,11 @@ page-viewmessage {
     }
     .textMessages {
         margin: 0 auto;
-        max-width: 100%;
+        width: 100%;
         background: #fff;
         height: 75vh;
         overflow: hidden;
-        border: 1px solid #000;
+       // border: 1px solid #000;
         position: fixed;
         overflow-y: scroll;
         bottom: 0;
