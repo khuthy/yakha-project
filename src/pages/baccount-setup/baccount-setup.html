@@ -4,7 +4,7 @@
     <div class="container" *ngIf="!isProfile">
         <h1>Manage Profile</h1>
   <div class="image">
-        <img src="{{profileImage}}" class="thumb">
+        <img src="{{profileImage.image}}" class="thumb">
         <button class="btn-upload" ion-fab color="light" mini (click)="selectImage()"><ion-icon name="image"></ion-icon></button>
       <p *ngIf="!profileImage">Please Upload an image</p>
      </div>
