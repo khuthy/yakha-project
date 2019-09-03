@@ -1,20 +1,25 @@
 
 
-<ion-content padding>
-    <div class="container" *ngIf="!isProfile">
+<ion-content >
+    <div class="container-form" *ngIf="!isProfile" padding>
         <h1>Manage Profile</h1>
-  <div class="image">
-        <img src="{{profileImage}}" class="thumb">
-        <button class="btn-upload" ion-fab color="light" mini (click)="selectImage()"><ion-icon name="image"></ion-icon></button>
-      <p *ngIf="!profileImage">Please Upload an image</p>
-     </div>
+
+     <div  class="image">
+      <div class="thumb">
+        <img  *ngIf="profileImage" src="{{profileImage}}" class="thumb">
+        <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
+        <button ion-fab color="custom" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+      </div>
+       
+       
+    </div>
       
 <form [formGroup]="profileForm">
 
   <ion-list>
 
       <ion-item >
-          <ion-label position="floating"> FullName</ion-label>
+          <ion-label floating> FullName</ion-label>
           <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.fullName">
@@ -41,7 +46,7 @@
 
 
       <ion-item >
-          <ion-label position="floating">Price (p/m2)</ion-label>
+          <ion-label floating>Price (p/m2)</ion-label>
           <ion-input type="text" formControlName="price" name="price" [(ngModel)]="builderProfile.price" ngDefaultControl></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.price">
@@ -51,7 +56,7 @@
          </div>
 
       <ion-item >
-          <ion-label position="floating">Experience</ion-label>
+          <ion-label floating>Experience</ion-label>
         <ion-select formControlName="experience" name="experience" [(ngModel)]="builderProfile.experiences"  cancelText="Dismiss">
           <ion-option *ngFor="let e of experiences" value="{{e}}">{{e}}</ion-option>
         </ion-select>
@@ -77,7 +82,7 @@
          </div> -->
 
     <ion-item >
-        <ion-label position="floating">Are you Certified?</ion-label>
+        <ion-label floating>Are you Certified?</ion-label>
         <ion-select formControlName="certified" name="certified" [(ngModel)]="builderProfile.certified"  cancelText="Dismiss">
             <ion-option value="true">Yes</ion-option>
             <ion-option value="false">No</ion-option>
@@ -95,10 +100,15 @@
   </ion-list>
 </form>
 </div>
+
+<div class="container">
 <div class="profiles" *ngIf="isProfile">
-   
+    <div class="back">
+        <p (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></p>
+      </div>
   <div class="avatar-images">
-  <img src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
+  <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar">
+  <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
 
 
@@ -106,7 +116,7 @@
      <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
-          Edit<ion-icon name="create" ></ion-icon></button>
+          <ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
    <div class="details">
@@ -114,9 +124,9 @@
     
    </div>
    <div class="bio">
-     <h6>Location</h6>
+     <h6><ion-icon size="large" name="pin"></ion-icon></h6>
      <p>
-      {{builderProfile.location}}
+      {{builderProfile.address}}
      </p>
    </div>
    <!-- <ion-fab right bottom>
@@ -131,4 +141,7 @@
         </button> 
    </div> -->
 </div>
+</div>
+
+
 </ion-content>

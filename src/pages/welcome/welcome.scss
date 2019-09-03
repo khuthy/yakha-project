@@ -56,10 +56,10 @@ page-welcome {
          border-radius: 12px;
      }
      .success {
-         background: linear-gradient(60deg, rgb(62, 62, 218), rgb(2, 2, 90));
+         background: linear-gradient(60deg, rgba(99, 99, 255, 0.897), rgba(2, 2, 255, 0.822));
      }
      .warning {
-         background: linear-gradient(60deg, rgb(255, 115, 0), rgb(90, 49, 2));
+         background: linear-gradient(60deg, rgba(255, 115, 0, 0.972), rgba(255, 136, 0, 0.808));
      }
     }
     @media only screen and(min-width: 600px) {

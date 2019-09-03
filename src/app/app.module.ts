@@ -1,5 +1,5 @@
 import { OnboardingBuilderPage } from './../pages/onboarding-builder/onboarding-builder';
-
+import { Keyboard } from '@ionic-native/keyboard';
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
@@ -91,6 +91,7 @@ import { CallNumber } from '@ionic-native/call-number';
     CommonModule,
     HttpClientModule,
     GooglePlaceModule,
+    
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -138,8 +139,10 @@ import { CallNumber } from '@ionic-native/call-number';
     Geolocation,
     File,
     FileOpener,
-    CallNumber
+    CallNumber,
+    Keyboard,
 
   ]
 })
+
 export class AppModule {}

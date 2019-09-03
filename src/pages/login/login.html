@@ -3,41 +3,42 @@
 
  
     <div class="container">
-    
+    <div class="logo">
+       <img src="../../assets/imgs/log.png" height="60%" > 
+    </div>
      <form class="forms" [formGroup]="loginForm">
-     <ion-item style="background: transparent">
-          <ion-label floating>Email Address</ion-label>
-          <ion-input formControlName="email" type="email">
-          </ion-input>
-        </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.email">
-          <div class="messages" *ngIf="loginForm.get('email').hasError(validate.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
-            {{validate.message}}
-          </div>
-    ​     </div>
+        <ion-list no-lines>
         <ion-item style="background: transparent">
-          <ion-label floating>Password</ion-label>
-          <ion-input formControlName="password" type="password">
+          <ion-label floating style="color: #4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email Address</ion-label>
+          <ion-input  style="color: #4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="email" type="email">
           </ion-input>
         </ion-item>
-    
-        <div class="error" *ngFor="let validate of validation_messages.password">
-          <div class="messages" *ngIf="loginForm.get('password').hasError(validate.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
-            {{validate.message}}
-          </div>
-        </div>
 
-        <div class="forgot">
-          <p style="color: #fff; padding: 10px; " (click)="forgotpassword()">Forgot password?</p>
-        </div>
-        <div class="btn">
-        <button ion-button block class="btn-custom" (click)="loginUser(loginForm)">Login</button>
-         <button ion-button clear full (click)="createAcc()">Don't have an account? Create one!.</button>
+        <ion-label class="messages" *ngFor="let validate of validation_messages.email">
+            <p style="background: transparent; color: rgb(246, 22, 22); font-size: 3vw;text-align: center; "  *ngIf="loginForm.get('email').hasError(validate.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">{{validate.message}}</p> 
+           </ion-label>
+
+           <ion-item style="background: transparent">
+              <ion-label floating style="color: #4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
+              <ion-input style="color: #4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="password" type="password">
+              </ion-input>
+            </ion-item>
+            <ion-label class="messages" *ngFor="let validate of validation_messages.password">
+                <p style="background: transparent; color: rgb(246, 22, 22); font-size: 3vw;text-align: center;" *ngIf="loginForm.get('password').hasError(validate.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{validate.message}}</p> 
+               </ion-label>
+        
+
+   
+          <p style="color: rgb(71, 162, 179);text-align:center;padding-bottom:4% " (click)="forgotpassword()">Forgot password?</p>
+        
+        <div class="btn" hide-on-keyboard-open>
+        <button ion-button block style="border-radius:5px;letter-spacing: 1px" class="btn-custom" (click)="loginUser(loginForm)">Login</button>
+         <button  clear block (click)="createAcc()" style="color: rgb(8, 8, 46);padding-top:3%;background: transparent;width:100%; text-align: center;color:#4D4D4D;font-family: 'Segoe UI'; font-size: 3.5vw">Don't have an account? Sign-Up.</button>
       </div>
      
-       
+    </ion-list>
       </form>
-   
+  
 
   
      
