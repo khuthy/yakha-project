@@ -35,6 +35,8 @@ geoloc;
 status: string = '';
 maps: boolean =false;
 request: boolean = false;
+  ownerUID: string;
+  ownerName = [];
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
     private geolocation: Geolocation,
@@ -181,13 +183,22 @@ viewOwner(owner){
 }
 
 getOwners(){
+  
   this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).get().then(snapshot => {
     this.owner = [];
     snapshot.forEach(doc => {
       this.owner.push(doc.data());
+      this.ownerUID = doc.data().uid;
+
+      this.db.collection('HomeOwnerProfile').doc(this.ownerUID).get().then((res)=>{
+     
+          this.ownerName.push(res.data());
+          console.log(this.ownerName);
+      })
     });
     console.log('Owners: ', this.owner);
   });
+  
 }
 loadMap(){
 
