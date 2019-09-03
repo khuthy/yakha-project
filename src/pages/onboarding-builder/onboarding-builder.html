@@ -1,13 +1,13 @@
 
 <ion-content>
     <div class="container">
-      <ion-slides>
+      <ion-slides #slides pager>
     
     
         <ion-slide>
             <div class="image"  >
                 <p>Skip</p>
-                <img src="../../assets/imgs/login.svg"  >
+                <img src="../../assets/imgs/login.svg">
               </div>
     
               <div class="bottoms">
@@ -15,7 +15,7 @@
                   profile to start using this application.
                 </p>
                 <div class="btn">
-                 <button ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
+                 <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
             
                 </div>
                
@@ -25,7 +25,7 @@
         <ion-slide>
             <div class="image">
                 <p>Skip</p>
-                <img src="../../assets/imgs/viewlist.svg" >
+                <img src="../../assets/imgs/viewlist.svg">
               </div>
     
               <div class="bottoms">
@@ -33,7 +33,7 @@
                   around your location.
                 </p>
                 <div class="btn">
-                 <button ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
+                 <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
                </div>
                
               </div>
@@ -50,7 +50,7 @@
                   you would like to work with.
                 </p>
                 <div class="btn">
-                 <button ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
+                 <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Next</button>
                 </div>
                
               </div>
@@ -67,7 +67,7 @@
                 <p>The beginning of working relationship :) .
                 </p>
                 <div class="btn">
-                 <button ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Done</button>
+                 <button (click)="register()" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Done</button>
                 </div>
                
               </div>

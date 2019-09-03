@@ -1,3 +1,4 @@
+import { OnboardingBuilderPage } from './../onboarding-builder/onboarding-builder';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';

@@ -4,20 +4,20 @@
 
   <ion-content>
     <div class="container">
-      <!-- header -->
-      <div class="logo">
-       <img src="../../assets/imgs/log.png" width=40%>
+     
+    <div class="logo">
+       <img src="../../assets/imgs/log.png" width=30%>
       </div>
-
-      <!-- inputs -->
+ 
+      
      <div class="inputs">
         <form [formGroup]="signupForm">
             <ion-list no-lines>
               
         
                <ion-item style="background: transparent"> 
-                <ion-label floating style="color: white; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email</ion-label>
-                <ion-input style="color: white; letter-spacing: 1px; font-weight:300;border-bottom:1px solid white" formControlName="email" type="email" 
+                <ion-label floating style="color: black; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email</ion-label>
+                <ion-input style="color: black; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="email" type="email" 
                 [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
               </ion-input>
      </ion-item> 
@@ -28,27 +28,22 @@
   
             
               <ion-item style="background: transparent">
-                <ion-label floating style="color: white; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
-                <ion-input style="color: white; letter-spacing: 1px; font-weight:300;border-bottom:1px solid white" formControlName="password" type="password" 
+                <ion-label floating style="color:black; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
+                <ion-input style="color: black; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="password" type="password" 
                 [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
               </ion-input>
               </ion-item >
 
               <p style="background: transparent; color: rgb(246, 22, 22)" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
-              signupForm.controls['password'].touched">
+              signupForm.controls['password'].touched"> 
               <ion-label>Your password needs more than 6 characters.</ion-label>
-            </p>
+           </p>
             
             </ion-list>
-            <!-- <button ion-button expand="block" (click)="signupUser(signupForm)" [disabled]="!signupForm.valid"> -->
                
             </form>
-     </div><!-- end inputs -->
-    <div class="btn">
-        <button ion-button  color="button2" block (click)="signupUser(signupForm)" [disabled]="!signupForm.valid" style="letter-spacing: 1px; width: 100%; border-radius: 5px;">Register</button>
-        <p>Already have an account? <span (click)="goLogin()">Login</span> </p>
-    </div>
-      
+     </div>
+    
       
         
     

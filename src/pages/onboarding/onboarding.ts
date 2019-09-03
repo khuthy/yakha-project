@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, Slides, MenuController} from 'ioni
 import { WelcomePage } from '../welcome/welcome';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
+import { RegisterPage } from '../register/register';
 /**
  * Generated class for the OnboardingPage page.
  *
@@ -21,7 +22,7 @@ export class OnboardingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
     this.storage.get('onboarding').then(val => {
-      if(val == 'checked')  {
+      if(val == 'checkedf')  {
         console.log(val);
         this.navCtrl.setRoot(WelcomePage);
         
@@ -47,6 +48,10 @@ export class OnboardingPage {
   /* navigate page  */
   nextslides(){
     this.slides.slideNext();
+  }
+
+  register(){
+    this.navCtrl.push(RegisterPage);
   }
   gotoWelcome(){
   // set a key/value
