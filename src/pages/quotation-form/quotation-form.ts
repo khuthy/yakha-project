@@ -49,7 +49,7 @@ export class QuotationFormPage {
    response_date:'',
    createBy:''
   };
-
+  docID;
  date: any;
 /* validations starts here */
 validation_messages = {
@@ -121,8 +121,7 @@ type: 'required', message: 'Width is required.'
     console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();
-  console.log(this.authUser.getUser() );
-
+  console.log(this.authUser.getUser());
   }
 next(){
   this.navCtrl.push(SuccessPage);
