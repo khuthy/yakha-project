@@ -1,4 +1,4 @@
- <ion-content padding>
+ <ion-content>
       <div class="container" *ngIf="!isProfile">
           <h1>Manage Profile</h1>
       <div  class="image">
@@ -44,6 +44,8 @@
     </div>
      </form>
      </div>
+
+     <!-- view the profile here -->
      <div class="profiles" *ngIf="isProfile">
         <div class="Profimage">
              <img src="{{HomeOwnerProfile.image}}">
