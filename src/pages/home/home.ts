@@ -106,6 +106,11 @@ request: boolean = false;
                 this.map.setCenter(marker.getPosition());
               });
               let cityCircle = new google.maps.Circle({
+                strokeColor: '#FFFFFF',
+                strokeOpacity: 0,
+                strokeWeight: 0,
+                fillColor: '#FFFFFF',
+                fillOpacity: 0,
                 map: this.map,
                 center: coords,
                 radius: 10000

@@ -1,23 +1,26 @@
 
 <ion-content>
  <div class="container">
-
-        <div class="top">
-            <p>Skip</p>
-            <img src="../../assets/imgs/builders.svg">
-          </div>
-
-          <div class="bottom">
-            <p>The following screens will familarize you with
-              with the basic usage of Yakha Application.
-            </p>
-            <div class="btn">
-             <button ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Continue as Home-owner</button>
-           <br>
-             <button id="btn2" ion-button style="width: 70%;border-radius:5px;background:#0B6474;color:white;letter-spacing: 1px;">Continue as Builder</button>
-            </div>
-           
-          </div>
+   <div class="top">
+     <div class="logo">
+     <img src="../../assets/imgs/log.png" alt="logo" class="logoImage">
+      
+    </div>
+    <div class="slogan">
+        <p>Connecting reliable builders with hardworking communities</p>
+    </div>
+   </div>
    
-</div>
+    <div class="bottomWelcome">
+        <div class="continue">
+             <button ion-button  class="btn success" (click)="definedUser('Homeowner')">Continue as Home Owner</button>
+           <button ion-button class="btn warning" (click)="definedUser('Homebuilder')">Continue as Home Builder</button>
+     
+        </div>
+        
+     
+    </div>
+   
+   
+ </div>
 </ion-content>
