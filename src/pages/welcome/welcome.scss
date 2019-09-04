@@ -55,12 +55,7 @@ page-welcome {
          width: 90%;
          border-radius: 12px;
      }
-     .success {
-         background: linear-gradient(60deg, rgba(99, 99, 255, 0.897), rgba(2, 2, 255, 0.822));
-     }
-     .warning {
-         background: linear-gradient(60deg, rgba(255, 115, 0, 0.972), rgba(255, 136, 0, 0.808));
-     }
+     
     }
     @media only screen and(min-width: 600px) {
         .bottomWelcome {

@@ -1,5 +1,5 @@
 import { Keyboard } from '@ionic-native/keyboard';
-import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -40,11 +40,8 @@ import { state, trigger, transition, animate, style } from '@angular/animations'
   ]
 })
 export class LoginPage {
-  @ViewChild('svg') svg: ElementRef;
+  
  
-  hideMe(){
-   
-  }
   db = firebase.firestore();
   firebase = firebase;
   public loginForm: FormGroup;
@@ -75,21 +72,12 @@ export class LoginPage {
      private authService:AuthServiceProvider,
      private menuCtrl: MenuController,
      private keyboard: Keyboard,
-     private render: Renderer2
+     
      ) {
       this.loginForm = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+$')])),
         password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)]))
       
-      })
-    
-      this.keyboard.onKeyboardShow().subscribe((val) => {
-        if(this.keyboard.isVisible) {
-          this.render.setStyle(this.svg.nativeElement, 'opacity', '0');
-        }else {
-          this.render.setStyle(this.svg.nativeElement, 'opacity', '5');
-        }
-        
       })
     
   }
