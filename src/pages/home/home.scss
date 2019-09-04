@@ -41,7 +41,7 @@ page-home {
     border-radius: 12px;
      //border: 1px solid rgba(20, 9, 19, 0.8);
      box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.164);
-     background: #fff;
+     background: rgba(255, 255, 255, 0.623);
    .thumbnail {
      display: flex;
      flex-direction: column;
@@ -169,5 +169,12 @@ page-home {
 @keyframes fadeIn {
   0% {opacity: 0}
   100% {opacity: 1}
+}
+.message {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 }

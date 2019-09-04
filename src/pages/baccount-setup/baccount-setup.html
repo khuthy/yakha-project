@@ -2,9 +2,10 @@
 
 <ion-content >
     <div class="container-form" *ngIf="!isProfile">
-        <h1>Manage Profile</h1>
+        
 
      <div  class="image">
+       <h2 style="text-align: center; color: #fff;">Manage Profile</h2>
       <div class="thumb">
         <img  *ngIf="profileImage" src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
@@ -13,8 +14,8 @@
        
        
     </div>
-      
-<form [formGroup]="profileForm">
+      <div class="inputs">
+        <form [formGroup]="profileForm">
 
   <ion-list>
 
@@ -95,20 +96,22 @@
        </div>
   <div class="btn">
     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-   <button id="skip" (click)="createprofile(profileForm)"  type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Create my Profile </button>
+   <button id="skip" (click)="createprofile(profileForm)"  type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
 </div>
   </ion-list>
 </form>
+      </div>
+
 </div>
 
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
     <div class="back">
-        <p (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></p>
+      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="arrow-back"></ion-icon></button>
       </div>
   <div class="avatar-images">
-  <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar">
-  <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+  <img *ngIf="builderProfile.bricklayerImage" src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
+  <img *ngIf="!builderProfile.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
 
 
