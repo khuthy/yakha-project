@@ -2,6 +2,7 @@
   <div class="container-form" *ngIf="!isProfile">
      
   <div  class="image">
+      <h2 style="text-align: center; color: #fff;">Manage Profile</h2>
       <div class="thumb">
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
@@ -56,7 +57,7 @@
  
   <div class="profiles" *ngIf="isProfile">
    <div class="back">
-     <p (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></p>
+     <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
       <div class="avatar-images">
       <img *ngIf="HomeOwnerProfile.ownerImage" src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">

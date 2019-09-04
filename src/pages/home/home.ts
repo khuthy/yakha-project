@@ -26,7 +26,7 @@ export class HomePage {
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
-
+  requestFound: string = '';
   map: any;
 //  marker: any;
  public lat: any;
@@ -73,9 +73,11 @@ request: boolean = false;
             west: 10.830120477,
             east: 32.830120477,
           };
-          let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+          let coords1 = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+          console.log(resp.coords.latitude, resp.coords.longitude);
+          
           let mapOptions = {
-            center : coords,
+            center : coords1,
             zoom: 11,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             restriction: {
@@ -84,7 +86,23 @@ request: boolean = false;
             },
             disableDefaultUI: true
           }
+          
           this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+          let marker1 = new google.maps.Marker({
+            map: this.map,
+            position: coords1,
+            title: 'Click to view details',
+          })
+          let infoWindow = new google.maps.InfoWindow({
+            content: 'My location'
+       });
+       google.maps.event.addListener(marker1, 'click', (resp)=>{
+        infoWindow.open(this.map, marker1)
+        })
+        google.maps.event.addListener( marker1,'click', (resp) => {
+          this.map.setZoom(15);
+          this.map.setCenter(marker1.getPosition());
+        });
           firebase.firestore().collection('builderProfile').get().then((resp)=>{
 
             resp.forEach((doc)=> {
@@ -107,16 +125,16 @@ request: boolean = false;
                 this.map.setZoom(15);
                 this.map.setCenter(marker.getPosition());
               });
-              let cityCircle = new google.maps.Circle({
-                strokeColor: '#FFFFFF',
-                strokeOpacity: 0,
-                strokeWeight: 0,
-                fillColor: '#FFFFFF',
-                fillOpacity: 0,
-                map: this.map,
-                center: coords,
-                radius: 10000
-              });
+              // let cityCircle = new google.maps.Circle({
+              //   strokeColor: '#FFFFFF',
+              //   strokeOpacity: 0,
+              //   strokeWeight: 0,
+              //   fillColor: '#FFFFFF',
+              //   fillOpacity: 0,
+              //   map: this.map,
+              //   center: coords,
+              //   radius: 10000
+              // });
             })
 
             // });
@@ -186,7 +204,9 @@ getOwners(){
   
   this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).get().then(snapshot => {
     this.owner = [];
-    snapshot.forEach(doc => {
+    if(!snapshot.empty) {
+      this.requestFound = '';
+      snapshot.forEach(doc => {
       this.owner.push(doc.data());
       this.ownerUID = doc.data().uid;
 
@@ -196,6 +216,10 @@ getOwners(){
           console.log(this.ownerName);
       })
     });
+    }else {
+      this.requestFound = 'No requests have been found.';
+    }
+    
     console.log('Owners: ', this.owner);
   });
   

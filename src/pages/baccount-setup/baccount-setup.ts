@@ -37,14 +37,13 @@ export class BaccountSetupPage {
  // email = 
   experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
   builderProfile = {
-    uid: '',
+  uid: '',
    bricklayerImage:'',
    fullName:'',
    certified: false,
    experiences: '',
    address:null,
    price:'',
-   image: '',
    lng: 0,
    lat: 0,
    
@@ -131,6 +130,7 @@ export class BaccountSetupPage {
       }, () => {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.builderProfile.bricklayerImage = downUrl;
+          this.profileImage = downUrl;
           console.log('Image downUrl', downUrl);
         })
       })
@@ -162,7 +162,7 @@ export class BaccountSetupPage {
         // ...get the profile that just got created...
         load.dismiss();
         // catch any errors.
-        this.isProfile = true;
+        
       }).catch( err=> {
         this.toastCtrl.create({
           message: 'Error creating Profile.',
@@ -225,7 +225,7 @@ export class BaccountSetupPage {
           console.log('Profile Document: ', doc.data().bricklayerImage)
           this.displayProfile.push(doc.data());
          
-          this.builderProfile.image  = doc.data().bricklayerImage
+          this.builderProfile.bricklayerImage  = doc.data().bricklayerImage
           this.profileImage = doc.data().bricklayerImage;
           this.builderProfile.fullName = doc.data().fullName;
           this.builderProfile.certified  = doc.data().certified;

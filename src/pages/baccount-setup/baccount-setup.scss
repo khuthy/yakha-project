@@ -1,28 +1,48 @@
 page-baccount-setup {
 
-     /* create or update profile */
-     .container-form {
-          .image {
-    display: flex;
-    justify-content: center;
-   
+  
+        /* create or update profile */
+        .container-form {
+            width: 100%;
+            height: 100%;
+            
+           .image {
+            background-image: url(../../assets/imgs/waverotate.svg);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+               //border: 1px solid red;
+               height: 35%;
     
-      .thumb {
-      height: 100px;
-      width: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      position: relative;
-
-  }
-  .btn-upload {
-      position: absolute;
-      left: 65%;
-      bottom: -5%;
-  }
-}
-     }
- 
+          display: flex;
+          justify-content: center;
+          
+            .thumb {
+            height: 140px;
+            width: 140px;
+            border-radius: 50%;
+           
+            object-fit: cover;
+            position: relative;
+            top: 40%;
+        }
+        .btn-upload {
+            position: absolute;
+            right: 0%;
+            bottom:-50%;
+        }
+      } 
+      .inputs {
+         // border: 1px solid rgb(4, 0, 255);
+          width: 80%;
+          height: 65%;
+          position: relative;
+          left: 10%;
+          top:10%;
+      }
+        }
+     
+      /* create or update ends */
 
     /* view profile code */
     .container {
@@ -112,7 +132,7 @@ page-baccount-setup {
     .back {
         position: fixed;
         top: 1%;
-        left: 2%;
+        left: 5%;
         z-index: 4;
         .icon {
             color: #fff;
