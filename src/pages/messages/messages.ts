@@ -18,14 +18,15 @@ import { FileOpener } from '@ionic-native/file-opener';
 })
 export class MessagesPage {
 
-  dbMessage = firebase.firestore().collection('responseQuotation');
+  dbMessage = firebase.firestore().collection('HomeOwnerQuotation');
   messages = [];
   qDoc;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileOpener: FileOpener) {
-    this.dbMessage.where('hOwnerUID','==', firebase.auth().currentUser.uid).get().then((res)=>{
+    this.dbMessage.where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
       res.forEach((doc)=>{
-        this.messages.push(doc.data());
-        this.qDoc = doc.data().doc;
+        this.messages.push(doc.data().comment);
+        this.qDoc = doc.id;
+        console.log(this.messages);
       })
     }).catch((error)=>{
       console.log(error.code + 'Message='+error.message);
@@ -34,7 +35,7 @@ export class MessagesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MessagesPage');
+   // console.log('ionViewDidLoad MessagesPage');
   }
   downloadPDF(){
     this.fileOpener.open(this.qDoc, 'application/pdf')
@@ -42,8 +43,11 @@ export class MessagesPage {
     .catch(e => console.log('Error opening file', e));
 }
 
-  viewMessages() {
-    this.navCtrl.push(ViewmessagePage);
+  // viewMessages() {
+  //   this.navCtrl.push(ViewmessagePage);
+  // }
+  itemSelected(item){
+    this.navCtrl.push(ViewmessagePage, item);
   }
   
 

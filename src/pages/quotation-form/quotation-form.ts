@@ -44,9 +44,12 @@ export class QuotationFormPage {
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
    date:Date(),
-   builderUID: '' 
+   builderUID: '',
+   doc:'',
+   response_date:'',
+   createBy:''
   };
-
+  docID;
  date: any;
 /* validations starts here */
 validation_messages = {
@@ -118,8 +121,7 @@ type: 'required', message: 'Width is required.'
     console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();
-  console.log(this.authUser.getUser() );
-
+  console.log(this.authUser.getUser());
   }
 next(){
   this.navCtrl.push(SuccessPage);
@@ -166,7 +168,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
         content: 'submitting quotations ..'
       });
       load.present();
-  const user = this.db.collection('HomeOwnerQuotation').doc(this.authUser.getUser()).set(this.HomeOwnerQuotation);
+  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
   
   // upon success...
   user.then( () => {

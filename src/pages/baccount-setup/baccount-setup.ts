@@ -27,10 +27,9 @@ export class BaccountSetupPage {
   isProfile = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
-  uid
-  profileImage;
-  imageSelected= false;
-  isuploaded =false;
+  uid;
+  icon: string;
+  profileImage: any = "../../assets/imgs/team-avatar.jpg";
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -45,6 +44,7 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
+   image: '',
    lng: 0,
    lat: 0,
    
@@ -162,6 +162,7 @@ export class BaccountSetupPage {
         // ...get the profile that just got created...
         load.dismiss();
         // catch any errors.
+        this.isProfile = true;
       }).catch( err=> {
         this.toastCtrl.create({
           message: 'Error creating Profile.',
@@ -221,23 +222,27 @@ export class BaccountSetupPage {
         
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data())
+          console.log('Profile Document: ', doc.data().bricklayerImage)
           this.displayProfile.push(doc.data());
+         
+          this.builderProfile.image  = doc.data().bricklayerImage
           this.profileImage = doc.data().bricklayerImage;
-          this.builderProfile.fullName  = doc.data().fullName;
+          this.builderProfile.fullName = doc.data().fullName;
           this.builderProfile.certified  = doc.data().certified;
           this.builderProfile.experiences  = doc.data().experiences;
-          this.profileForm.patchValue({address: doc.data().address}); 
-          this.builderProfile.price  = doc.data().price; 
-        // this.builderProfile.location  = doc.data().location
+          this.builderProfile.address  = doc.data().address;
+          this.profileForm.patchValue({address: doc.data().address});
+          this.builderProfile.price  = doc.data().price;
+          // this.builderProfile.location  = doc.data().location
 
         })
         this.isProfile = true;
-
+        this.icon = 'create';
         
       } else {
         console.log('No data');
         this.isProfile = false;
+        this.icon = 'image';
       }
       // dismiss the loading
       load.dismiss();

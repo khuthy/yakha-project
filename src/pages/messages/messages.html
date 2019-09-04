@@ -5,17 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="custom">
+  <ion-navbar color="primary">
     <ion-title>messages</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div class="container">
+  <!-- <div class="container">
       <div class="profiles" (click)="viewMessages()" >
         <span></span>
         <div class="top" *ngFor="let m of messages">
-          <!-- <img src="" class="thumb" alt="profile"> -->
+           <img src="" class="thumb" alt="profile"> 
           <article>
             <p style="font-size: 17px;"><strong>From:{{m.createBy}}</strong> </p>
             <br>
@@ -43,6 +43,10 @@
           </div>
           </div>
                
-  </div>
-    
+  </div> -->
+  <ion-list>
+    <button ion-item *ngFor="let item of messages" (click)="itemSelected(item)">
+      {{ item }}
+    </button>  
+  </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -27,6 +28,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class BuilderquotesPage {
   pdfDoc;
+  length;
+  height;
+  width;
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
   formattedAddress='';
   options = {
@@ -39,7 +43,7 @@ export class BuilderquotesPage {
   expiry: '',
   address: '',
   dimension: '',
-  price: '',
+  price: 0,
   uid: '',
   ownerUID: null,
   hOwnerUID: null
@@ -70,9 +74,10 @@ export class BuilderquotesPage {
     private fileOpener: FileOpener,
     private file: File,
     private plt: Platform,
-    private authUser: AuthServiceProvider
+    private authUser: AuthServiceProvider,
+    private loader: LoadingController
     ) {
-      this.quotes.hOwnerUID = this.navParams.data;
+     // this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
@@ -85,20 +90,31 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuilderquotesPage');
+    console.log(this.navParams.data);
+    this.db.collection('HomeOwnerQuotation').doc(this.navParams.data).get().then((res)=>{
+      this.quotes.dimension = res.data().length + 'x' + res.data().width + 'x' + res.data().height;
+      this.length = res.data().length;
+      this.height = res.data().height;
+      this.width = res.data().width;
+    })
+
+    this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
+        res.forEach((doc)=>{
+          this.quotes.address = doc.data().address;
+          this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+        })
+    })
   }
   public handleAddressChange(addr: Address) {
     this.quotes.address = addr.formatted_address ;
    // console.log(this.location)
     
   }
-  createQuotes() {
-    console.log('navigations');
-    
-    this.navCtrl.setRoot(SuccessPage)
-  }
+
   
-  
+  // getQuoteInfo(){
+   
+  // }
   createPdf() {
     var docDefinition = {
       content: [
@@ -112,15 +128,11 @@ export class BuilderquotesPage {
         this.quotes.address,
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: this.quotes.price, style: 'story', margin: [0, 20, 0, 20] }, 
+        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
         
 
         {
-          ul: [
-            'Bacon',
-            'Rips',
-            'BBQ',
-          ]
+         
         }
       ],
       styles: {
@@ -143,6 +155,7 @@ export class BuilderquotesPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
+   // this.downloadPdf();
   //  firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
   //     console.log(results);
   //  })
@@ -198,6 +211,10 @@ export class BuilderquotesPage {
       //        })
       //      }
   downloadUrl() {
+    this.loader.create({
+      duration: 2000,
+      content: 'Loading'
+    }).present();
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
@@ -227,12 +244,16 @@ export class BuilderquotesPage {
     }
   }
   downloadPdf(){
-    firebase.firestore().collection('responseQuotation').add({
+    this.loader.create({
+      duration: 2000,
+      content: 'Loading'
+    }).present();
+    firebase.firestore().collection('HomeOwnerQuotation').doc(this.navParams.data).update({
       doc: this.pdfDoc,
-      date: Date(),
+      response_date: Date(),
       createBy: firebase.auth().currentUser.email,
-      uid: firebase.auth().currentUser.uid
+     // uid: firebase.auth().currentUser.ui
     })
+    this.navCtrl.setRoot(SuccessPage);
   }
-
 }

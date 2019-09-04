@@ -3,6 +3,9 @@
 <ion-content>
 
   <div class="container">
+      <div class="back" (click)="navCtrl.pop()">
+          <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
+        </div>
     <div class="message">
       <div class="details">
         <img src="../../assets/imgs/th.jpg" class="images" alt="thumb">
@@ -44,10 +47,10 @@
             </p>
             </blockquote>
 </div>
-      <div class="block2 owner">
-          <blockquote>
+      <div class="block2 owner" *ngIf="quoteDoc">
+          <blockquote *ngFor ="let r of request">
             <p>
-                <ion-icon name="document"></ion-icon> file.pdf
+                <ion-icon name="document"></ion-icon><button ion-button clear (click)="download()">{{r.doc}}.pdf</button> 
             </p>
           </blockquote>
 

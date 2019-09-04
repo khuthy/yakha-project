@@ -1,3 +1,4 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -16,6 +17,7 @@ import { WelcomePage } from '../welcome/welcome';
 import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { VerifyemailPage } from '../verifyemail/verifyemail';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
+import { state, trigger, transition, animate, style } from '@angular/animations';
 ​
 /**
  * Generated class for the LoginPage page.
@@ -28,8 +30,18 @@ import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  animations: [
+    trigger('hide', [
+      state('visible', style({opacity: 1})),
+      state('invisible', style({opacity: 0})),
+      transition('* => *', animate('.1s'))
+    ]),
+    
+  ]
 })
 export class LoginPage {
+  
+ 
   db = firebase.firestore();
   firebase = firebase;
   public loginForm: FormGroup;
@@ -46,7 +58,7 @@ export class LoginPage {
     'password': [
      {type: 'required', message: 'Password is required.'},
      {type: 'minlength', message: 'password must be atleast 6 char or more.'},
-     {type: 'maxlength', message: 'Password must be less than 8 char or less'},
+    /*  {type: 'maxlength', message: 'Password must be less than 8 char or less'}, */
    ]
  
   }
@@ -59,15 +71,14 @@ export class LoginPage {
      public alertCtrl: AlertController,
      private authService:AuthServiceProvider,
      private menuCtrl: MenuController,
-  
+     private keyboard: Keyboard,
+     
      ) {
       this.loginForm = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-.]+$')])),
         password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)]))
       
       })
-    
-   
     
   }
 
@@ -84,17 +95,25 @@ export class LoginPage {
   }
 ​
   //Create
-  createAcc(data){
-this.navCtrl.push(RegisterPage, data)
+  createAcc(){
+this.navCtrl.push(RegisterPage)
   }
   forgotpassword(){
     this.navCtrl.push(ForgotPasswordPage)
   }
 
   checkeyboard() {
-   
+
   }
 
+  //hide keyboard
+  hidekeyboard(){
+    this.keyboard.hide();
+  }
+
+  showkeyboard(){
+    this.keyboard.show();
+  }
   loginUser(){
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
