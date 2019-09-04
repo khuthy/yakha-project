@@ -47,10 +47,10 @@
             </p>
             </blockquote>
 </div>
-      <div class="block2 owner">
-          <blockquote>
+      <div class="block2 owner" *ngIf="quoteDoc">
+          <blockquote *ngFor ="let r of request">
             <p>
-                <ion-icon name="document"></ion-icon> file.pdf
+                <ion-icon name="document"></ion-icon><button ion-button clear (click)="download()">{{r.doc}}.pdf</button> 
             </p>
           </blockquote>
 

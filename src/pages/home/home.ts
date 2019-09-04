@@ -35,6 +35,8 @@ geoloc;
 status: string = '';
 maps: boolean =false;
 request: boolean = false;
+  ownerUID: string;
+  ownerName = [];
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
     private geolocation: Geolocation,
@@ -181,13 +183,22 @@ viewOwner(owner){
 }
 
 getOwners(){
+  
   this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).get().then(snapshot => {
     this.owner = [];
     snapshot.forEach(doc => {
       this.owner.push(doc.data());
+      this.ownerUID = doc.data().uid;
+
+      this.db.collection('HomeOwnerProfile').doc(this.ownerUID).get().then((res)=>{
+     
+          this.ownerName.push(res.data());
+          console.log(this.ownerName);
+      })
     });
     console.log('Owners: ', this.owner);
   });
+  
 }
 loadMap(){
 
@@ -260,48 +271,48 @@ initMap(){
   //   }
   // });
 
-  this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-  console.log(this.map);
+  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+  // console.log(this.map);
 
-  firebase.firestore().collection('location').get().then((resp)=>{
+  // firebase.firestore().collection('location').get().then((resp)=>{
 
-    resp.forEach((doc)=> {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id,  doc.data().lat);
-      let lat = doc.id +"<br>Latitude: "+ doc.data().lat+ "<br>Longitude: " + doc.data().lng;
-      let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
-       let marker = new google.maps.Marker({
-           map: this.map,
-           position: coord,
-           title: 'Click to view details',
-         })
-              let infoWindow = new google.maps.InfoWindow({
-          content: lat
-     });
-     google.maps.event.addListener(marker,'click', (resp)=>{
-      marker.setAnimation(google.maps.Animation.BOUNCE);
-      })
-    google.maps.event.addListener(marker, 'click', (resp)=>{
-      infoWindow.open(this.map, marker)
-      })
-      google.maps.event.addListener( marker,'click', (resp) => {
-        this.map.setZoom(13);
-        this.map.setCenter(marker.getPosition());
-      });
-      google.maps.event.addListener(marker ,'center_changed', (res) => {
+  //   resp.forEach((doc)=> {
+  //     // doc.data() is never undefined for query doc snapshots
+  //     console.log(doc.id,  doc.data().lat);
+  //     let lat = doc.id +"<br>Latitude: "+ doc.data().lat+ "<br>Longitude: " + doc.data().lng;
+  //     let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
+  //      let marker = new google.maps.Marker({
+  //          map: this.map,
+  //          position: coord,
+  //          title: 'Click to view details',
+  //        })
+  //             let infoWindow = new google.maps.InfoWindow({
+  //         content: lat
+  //    });
+  //    google.maps.event.addListener(marker,'click', (resp)=>{
+  //     marker.setAnimation(google.maps.Animation.BOUNCE);
+  //     })
+  //   google.maps.event.addListener(marker, 'click', (resp)=>{
+  //     infoWindow.open(this.map, marker)
+  //     })
+  //     google.maps.event.addListener( marker,'click', (resp) => {
+  //       this.map.setZoom(13);
+  //       this.map.setCenter(marker.getPosition());
+  //     });
+  //     google.maps.event.addListener(marker ,'center_changed', (res) => {
 
-        window.setTimeout((timeout) => {
-          this.map.panTo(marker.getPosition());
-        }, 3000);
-      });
-    })
-    // });
-    // // console.log(marker);
-    // } else {
-    //   console.log("The firestore is empty");
+  //       window.setTimeout((timeout) => {
+  //         this.map.panTo(marker.getPosition());
+  //       }, 3000);
+  //     });
+  //   })
+  //   // });
+  //   // // console.log(marker);
+  //   // } else {
+  //   //   console.log("The firestore is empty");
 
-    // }
-  });
+  //   // }
+  // });
     // if(resp.exists){
 
     //   this.lat = resp.data().lat;
