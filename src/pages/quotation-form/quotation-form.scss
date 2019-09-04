@@ -15,8 +15,12 @@ page-quotation-form {
         .prefered {
             display: flex;
             justify-content: space-evenly;
-            max-width: 100%;
-
+            width: 100%;
+            
+            .time {
+                width: 50%;
+                
+            }
         }
         
         
@@ -129,7 +133,7 @@ page-quotation-form {
        
     }
     .btn-proceed {
-        padding: 5%;
+       
         border-radius: 12px;
     }
     }

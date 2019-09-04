@@ -3,23 +3,16 @@
 <ion-content>
 
   <div class="container">
-      
+      <div class="back" (click)="navCtrl.pop()">
+          <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
+        </div>
     <div class="message">
-      <div class="back">
-        <ion-icon name="arrow-back"></ion-icon>
-      </div>
-      <div class="details" *ngIf="profilePic">
-        <img src="{{profilePic}}" class="images" alt="thumb">
+      <div class="details">
+        <img src="../../assets/imgs/th.jpg" class="images" alt="thumb">
         <div class="title">
-          <h2>{{ownerName}}</h2>
+          <h2>homeowner name</h2>
         </div>
       </div>
-      <div class="details" *ngIf="!profilePic">
-          <img src="../../assets/imgs/placeholder.png" class="images" alt="thumb">
-          <div class="title">
-            <h2>Name</h2>
-          </div>
-        </div>
       <div class="expand" (click)="togglePanel()">
           <p><ion-icon name="arrow-dropdown-circle"></ion-icon></p>
       </div>
@@ -28,15 +21,15 @@
       <div class="block owner" *ngFor ="let r of request">
         <blockquote class="house" [@slideDown]="stateSlideDown">
             
-          <span id="quotes1"><strong id="date1">Preferred start: {{r.startDate}}</strong> <strong id="date2">Preferred end: {{r.endDate}}</strong></span>
+          <span id="quotes1"><strong id="date1">{{r.startDate}}start date</strong> <strong id="date2">{{r.endDate}}</strong></span>
           <p class="info">
             <strong class="measure">
-          <span id="quotes3"> <strong>Width: </strong>{{r.width}} meters</span>
-          <span id="quotes3"> <strong>Length: </strong>{{r.length}} meters</span>
-          <span id="quotes3"> <strong>Height: </strong> {{r.height}} meters</span>          
-          <span id="quotes3"><strong>Wall type: </strong> {{r.wallType}} </span>
-          <span id="quotes3"><strong>Brick type: </strong> {{r.brickType}} </span>
-          <p style="font-weight: normal; font-style: italic; font-size: 7pt">sent on {{r.date}}</p>
+          <span id="quotes3"> <strong>Width: </strong>{{r.width}}20 meters</span>
+          <span id="quotes3"> <strong>Length</strong>{{r.length}}  40 meters</span>
+          <span id="quotes3"> <strong>Height</strong> {{r.height}} 12 meters</span>
+          <span id="quotes3"><strong>length </strong>{{r.width}}  40 </span>
+          <span id="quotes3"><strong>Wall type</strong> {{r.wallType}} double </span>
+          <span id="quotes3"><strong>brick type </strong> {{r.brickType}} maxi </span>
           </strong>
           </p>
           <div class="imgs">
@@ -54,35 +47,27 @@
             </p>
             </blockquote>
 </div>
-      <div class="block2 owner" *ngIf="quoteDoc">
-          <blockquote >
+      <div class="block2 owner">
+          <blockquote>
             <p>
-                <ion-icon name="document"></ion-icon><button ion-button clear (click)="download()">Quotation.pdf</button> 
+                <ion-icon name="document"></ion-icon> file.pdf
             </p>
-          </blockquote>     
-      </div>
+          </blockquote>
 
-      <div class="block2 owner" *ngIf="!quoteDoc">
-          <blockquote >
-            <p>
-                Not yet responded to this request 
-            </p>
-          </blockquote>     
+            
       </div>
-      <!-- <div class="block builder">
+      <div class="block builder">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam vel expedita repellat, 
             explicabo, nesciunt ducimus adipisci sed architecto hic exercitationem ut earum quo laudantium id vitae. 
             Nostrum, voluptates numquam?</p>
 
             
-      </div> -->
+      </div>
      
     </div>
-    <div *ngIf="bUid">
- <ion-fab right bottom>
+    <ion-fab right bottom>
         <button ion-fab color="button2" (click)="quotesForm()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>  
-    </div>
   </div>
 
 </ion-content>

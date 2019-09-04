@@ -1,11 +1,15 @@
 
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Request quotes</ion-title>
-    <ion-buttons end>
-      
-      <button  only-icon clear  [disabled]="!quotationForm.valid"><ion-icon style="width: 50px;" name="send"></ion-icon></button>
-    </ion-buttons>
+      <ion-toolbar>
+        <ion-title>Request quotes</ion-title>
+        <ion-buttons end>
+          <button ion-button icon-only>
+            <ion-icon name="attach"></ion-icon>
+          </button>
+        </ion-buttons>
+          
+        </ion-toolbar>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -14,11 +18,12 @@
     <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
   </div>
   
-  <p *ngIf="!houseImage" >Please Upload the house Plan</p>
+  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p>
 
 <form [formGroup]="quotationForm">
     <ion-item>
         <ion-label floating> Select Wall type</ion-label>
+        
         <ion-select name="wallType" formControlName="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
           <ion-option value="singleWall">Single wall</ion-option>
           <ion-option value="doubleWall">Double wall</ion-option>
@@ -54,7 +59,8 @@
  <div class="prefered">
     <div class="time">
    <ion-item>
-          <ion-label floating>Preffered start date</ion-label>
+          <ion-label floating><ion-icon end name="calendar"></ion-icon> Prefered start date </ion-label>
+          
           <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.startDate">
@@ -103,9 +109,7 @@
               </div>
               </div> 
       </div>
-      <div class="time">
-        
-      </div>
+      
     </div>
     <ion-item>
         <ion-label floating>Width in meter</ion-label>
@@ -138,8 +142,9 @@
  
 </ion-content>
 <ion-footer padding>
-    <ion-buttons end>
-        <button ion-button class="btn-proceed" (click)="createQuations(quotationForm)" color="primary">Proceed</button>
-       </ion-buttons>
+    <ion-toolbar>
+      <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+    </ion-toolbar>
+        
    
   </ion-footer>
