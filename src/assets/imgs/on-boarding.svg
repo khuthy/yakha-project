@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="384.23" height="254" viewBox="0 0 384.23 254"><defs><linearGradient id="a" x1="0.83" y1="0.443" x2="0.042" y2="-0.145" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#456d74" stop-opacity="0.588"/><stop offset="1" stop-color="#23373a" stop-opacity="0.588"/></linearGradient><linearGradient id="b" x1="0.303" y1="0.376" x2="0.898" y2="1.008" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#f15d28" stop-opacity="0.678"/><stop offset="1" stop-color="#176978" stop-opacity="0.69"/></linearGradient></defs><g transform="translate(1485 626.674)"><path d="M-2121-541.607s97.775-12.382,191.853,23.388,192.377,22.466,192.377,22.466v204.078H-2121Z" transform="translate(636 -81)" fill="url(#a)"/><path d="M-1736.77-544.29s-103.2-10.344-197.326,25.514S-2121-494.64-2121-494.64v202.965h384.23Z" transform="translate(636 -81)" fill="url(#b)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="384.23" height="254" viewBox="0 0 384.23 254">
+<defs><linearGradient id="a" x1="0.83" y1="0.443" x2="0.042" y2="-0.145" gradientUnits="objectBoundingBox">
+<stop offset="0" stop-color="#456d74" stop-opacity="0.588"/>
+<stop offset="1" stop-color="#23373a" stop-opacity="0.588"/>
+</linearGradient><linearGradient id="b" x1="0.303" y1="0.376" x2="0.898" y2="1.008" gradientUnits="objectBoundingBox">
+<stop offset="0" stop-color="#f15d28" stop-opacity="0.678"/><stop offset="1" stop-color="#176978" stop-opacity="0.69"/>
+</linearGradient></defs><g transform="translate(1485 626.674)">
+<path d="M-2121-541.607s97.775-12.382,191.853,23.388,192.377,22.466,192.377,22.466v204.078H-2121Z" transform="translate(636 -81)" fill="rgba(33,109,123,0.44)"/>
+<path d="M-1736.77-544.29s-103.2-10.344-197.326,25.514S-2121-494.64-2121-494.64v202.965h384.23Z" transform="translate(636 -81)" fill="rgba(33,109,123,0.78)"/></g></svg>
+

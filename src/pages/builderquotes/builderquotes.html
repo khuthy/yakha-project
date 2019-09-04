@@ -1,7 +1,16 @@
-
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-toolbar>
+          <ion-title>Quotation</ion-title>
+         </ion-toolbar>
+    </ion-navbar>
+  </ion-header>
 <ion-content padding>
+  <div class="logo">
+    <img src="../../assets/imgs/logo.png" class="thumb" alt="">
+  </div>
   <form [formGroup]="quotesForm">
-    <p style="text-align: center; color: rgb(5, 5, 5); letter-spacing: 1; font-size: 20px">Create Quotation</p>
+    
 
 
           <ion-item>
@@ -45,16 +54,22 @@
         
           <ion-item>
             <ion-label floating>Total price</ion-label>
-            <ion-input type="text" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
+            <ion-input type="number" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
           </ion-item>
           <div class="error" *ngFor="let validate of validation_messages.price">
               <div class="messages" *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
                 {{validate.message}}
               </div>
               </div>
-              <button ion-button full (click)="createPdf()">Create PDF</button>
-           
-              <button ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Save</button>
+              
         
   </form>
 </ion-content>
+<ion-footer>
+    <ion-toolbar padding>
+      <button ion-button class="btn-proceed" block  (click)="createPdf()" color="primary">Send Quotation</button>
+      <button ion-button class="btn-proceed" block  (click)="downloadPdf()" color="primary">Download</button>
+    </ion-toolbar>
+        
+   
+  </ion-footer>

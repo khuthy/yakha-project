@@ -25,8 +25,8 @@
 
       <ion-slide>
           <div class="top"  >
-              <p>Skip</p>
-              <img src="../../assets/imgs/login.svg"  >
+              <p (click)="skip()">Skip</p>
+              <img src="../../assets/imgs/login.svg" class="onboard" >
             </div>
   
             <div class="bottom">
@@ -44,8 +44,8 @@
 
         <ion-slide>
             <div class="top">
-                <p>Skip</p>
-                <img src="../../assets/imgs/maps.svg" >
+                <p (click)="skip()">Skip</p>
+                <img src="../../assets/imgs/maps.svg" class="onboard">
               </div>
     
               <div class="bottom">
@@ -64,8 +64,8 @@
 
         <ion-slide>
             <div class="top">
-                <p>Skip</p>
-                <img src="../../assets/imgs/hands.svg">
+                <p (click)="skip()">Skip</p>
+                <img src="../../assets/imgs/hands.svg"class="onboard">
               </div>
     
               <div class="bottoms">
@@ -75,7 +75,7 @@
                   messages. 
                 </p>
                 <div class="btn">
-                 <button (click)="register()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Done</button>
+                 <button (click)="getStarted()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Done</button>
                 </div>
                
               </div>

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
+import { OnboardingPage } from '../onboarding/onboarding';
+import {Storage} from '@ionic/storage';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -18,7 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider, private menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider, private menuCtrl: MenuController, private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -34,7 +35,31 @@ export class WelcomePage {
 
   definedUser(val) {
     this.authService.predefined = val;
-    this.navCtrl.setRoot(LoginPage); 
+    if(this.authService.manageUsers() == 'Homebuilder') {
+      this.storage.get('onboarding').then((val) => {
+        if(val == 'checked')  {
+          console.log(val);
+          this.navCtrl.setRoot(LoginPage);
+          
+        }else {
+          console.log('on-boarding now');
+           this.navCtrl.setRoot(OnboardingBuilderPage);
+        }
+      });
+     
+    }else {
+      this.storage.get('homeOwner').then((val) => {
+        if(val == 'checked')  {
+          console.log(val);
+          this.navCtrl.setRoot(LoginPage);
+          
+        }else {
+          console.log('on-boarding now');
+           this.navCtrl.setRoot(OnboardingPage);
+        }
+      });
+    }
+   
   }
 
 }

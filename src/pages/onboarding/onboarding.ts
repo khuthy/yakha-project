@@ -21,10 +21,10 @@ export class OnboardingPage {
   @ViewChild('slides') slides: Slides
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
-    this.storage.get('onboarding').then(val => {
-      if(val == 'checkedf')  {
+    this.storage.get('homeOwner').then(val => {
+      if(val == 'checked')  {
         console.log(val);
-        this.navCtrl.setRoot(WelcomePage);
+        this.navCtrl.setRoot(LoginPage);
         
       }else {
         console.log('on-boarding now');
@@ -53,12 +53,15 @@ export class OnboardingPage {
   register(){
     this.navCtrl.push(RegisterPage);
   }
-  gotoWelcome(){
+  getStarted(){
   // set a key/value
-  this.storage.set('onboarding', 'checked');
-  this.navCtrl.setRoot(WelcomePage);
+  this.storage.set('homeOwner', 'checked');
+  this.navCtrl.setRoot(LoginPage);
   }
   // Or to get a key/value pair
-
+ skip(){
+  this.storage.set('homeOwner', 'checked');
+  this.navCtrl.setRoot(LoginPage);
+ }
 
 }

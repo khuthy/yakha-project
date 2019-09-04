@@ -110,11 +110,7 @@ export class BuilderquotesPage {
    // console.log(this.location)
     
   }
-  createQuotes() {
-    console.log('navigations');
-    
-    this.navCtrl.setRoot(SuccessPage)
-  }
+
   
   // getQuoteInfo(){
    
@@ -163,6 +159,7 @@ export class BuilderquotesPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
+   // this.downloadPdf();
   //  firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
   //     console.log(results);
   //  })
@@ -261,6 +258,6 @@ export class BuilderquotesPage {
       createBy: firebase.auth().currentUser.email,
      // uid: firebase.auth().currentUser.ui
     })
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(SuccessPage);
   }
 }
