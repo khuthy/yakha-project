@@ -113,17 +113,15 @@
   <img *ngIf="builderProfile.bricklayerImage" src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
   <img *ngIf="!builderProfile.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
-
-
-   <div class="name">
-     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
+<div class="name">
+     <h4 style="text-align: center;">{{builder.fullName}}</h4>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
    <div class="details">
-     <p> {{builderProfile.experiences}} years of experience</p>
+     <p> {{builder.experiences}} years of experience</p>
     
    </div>
    <div class="bio">
@@ -132,17 +130,7 @@
       {{builderProfile.address}}
      </p>
    </div>
-   <!-- <ion-fab right bottom>
-      <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
-    </ion-fab> -->
-  <!--  <div class="displayName">
-
-      <h4> HomeOwner FullName:{{HomeOwnerProfile.fullName}}  </h4>
-       <button (click)="editProfile()" ion-button small color="dark" icon-right >
-          Edit
-          <ion-icon name="create"></ion-icon>
-        </button> 
-   </div> -->
+   </div>
 </div>
 </div>
 

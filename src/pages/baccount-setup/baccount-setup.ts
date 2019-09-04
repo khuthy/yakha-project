@@ -173,9 +173,6 @@ export class BaccountSetupPage {
       })
     }
            // load the profile creation process
-
-
-
   }
 
   validation_messages = {
@@ -207,6 +204,8 @@ export class BaccountSetupPage {
   };
   getProfile(){
     // load the process
+    console.log('sharon');
+    
     let load = this.loadingCtrl.create({
       content: 'Just a sec...',
       spinner: 'bubbles'
@@ -220,6 +219,7 @@ export class BaccountSetupPage {
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
+        
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
           console.log('Profile Document: ', doc.data().bricklayerImage)
@@ -256,5 +256,14 @@ export class BaccountSetupPage {
   editProfile(){
     this.isProfile = false;
   }
+
+}export interface  builderProfile{
+  uid:string;
+  image?:string;
+  fullName: string,
+  certified: string,
+  experiences: string,
+  address: string,
+  price: string
 
 }

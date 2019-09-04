@@ -24,7 +24,9 @@ export class AccountSetupPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid
-  profileImage:any = '../../assets/imgs/team-avatar.jpg';
+  profileImage;
+  imageSelected= false;
+  isuploaded =false;
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -61,7 +63,7 @@ export class AccountSetupPage {
   }
   ionViewDidLoad() {
     console.log( this.uid)
-    console.log( this.authUser.getUser())
+    console.log( this.authUser.getUser());
     this.getProfile();
   }
   ionViewWillEnter() {
@@ -165,10 +167,10 @@ export class AccountSetupPage {
     let query = users.where("uid", "==", this.authUser.getUser());
     query.get().then(querySnapshot => {
       // ...log the results of the document exists...
-      if (!querySnapshot.empty){
+      if (querySnapshot.empty !== true){
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data())
+          console.log('Profile Document: ', doc.data(), doc.data().ownerImage)
           this.displayProfile = doc.data();
           this.HomeOwnerProfile.About  = doc.data().About;
           this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
