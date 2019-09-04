@@ -4,7 +4,7 @@
       <ion-toolbar>
         <ion-title>Request quotes</ion-title>
         <ion-buttons end>
-          <button ion-button icon-only>
+          <button ion-button icon-only *ngIf="!houseImage" (click)="selectImage()">
             <ion-icon name="attach"></ion-icon>
           </button>
         </ion-buttons>
@@ -141,8 +141,8 @@
 
  
 </ion-content>
-<ion-footer padding>
-    <ion-toolbar>
+<ion-footer>
+    <ion-toolbar padding>
       <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
     </ion-toolbar>
         

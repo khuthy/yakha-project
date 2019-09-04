@@ -110,11 +110,7 @@ export class BuilderquotesPage {
    // console.log(this.location)
     
   }
-  createQuotes() {
-    console.log('navigations');
-    
-    this.navCtrl.setRoot(SuccessPage)
-  }
+
   
   // getQuoteInfo(){
    

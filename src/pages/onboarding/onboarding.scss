@@ -21,7 +21,7 @@ page-onboarding {
                 p {
                   //  border: 1px solid black;
                     height: 15%;
-                    color: white;
+                    color: rgb(110, 110, 110);
                     display: grid;
                     justify-content: end;
                     align-items: flex-end;
@@ -46,7 +46,7 @@ page-onboarding {
                     position: relative;
                     left: 15%;
                     top: 20%;
-                    color: white;
+                    color: rgb(110, 110, 110);
                     letter-spacing: 1px;
                     font-family: 'Segoe UI';
                     line-height: 1.6;
@@ -79,7 +79,7 @@ page-onboarding {
                     position: relative;
                     left: 15%;
                     top: 0%;
-                    color: white;
+                    color: rgb(110, 110, 110);
                     letter-spacing: 1px;
                     font-family: 'Segoe UI';
                     line-height: 1.6;
@@ -98,5 +98,12 @@ page-onboarding {
                 }
             }
         
+    }
+    .onboard {
+        height: 250px;
+        width: 250px;
+    }
+    .swiper-pagination {
+        bottom: 7% !important;
     }
 }
