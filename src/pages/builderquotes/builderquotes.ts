@@ -128,15 +128,11 @@ export class BuilderquotesPage {
         this.quotes.address,
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: this.quotes.price, style: 'story', margin: [0, 20, 0, 20] }, 
+        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
         
 
         {
-          ul: [
-            'Bacon',
-            'Rips',
-            'BBQ',
-          ]
+         
         }
       ],
       styles: {
