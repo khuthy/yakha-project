@@ -8,9 +8,10 @@
         </div>
     <div class="message">
       <div class="details">
-        <img src="../../assets/imgs/th.jpg" class="images" alt="thumb">
+        <img *ngIf="profilePic" src="{{profilePic}}" class="images" alt="thumb">
+        <img *ngIf="!profilePic" src="../../assets/imgs/placeholder.png" class="images" alt="thumb">
         <div class="title">
-          <h2>homeowner name</h2>
+          <h2>{{ownerName}}</h2>
         </div>
       </div>
       <div class="expand" (click)="togglePanel()">
@@ -50,7 +51,7 @@
       <div class="block2 owner" *ngIf="quoteDoc">
           <blockquote *ngFor ="let r of request">
             <p>
-                <ion-icon name="document"></ion-icon><button ion-button clear (click)="download()">{{r.doc}}.pdf</button> 
+                <ion-icon name="document"></ion-icon><a href="{{r.doc}}">Quotation.pdf</a>
             </p>
           </blockquote>
 
@@ -65,7 +66,7 @@
       </div>
      
     </div>
-    <ion-fab right bottom>
+    <ion-fab right bottom *ngIf="bUid">
         <button ion-fab color="button2" (click)="quotesForm()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>  
   </div>

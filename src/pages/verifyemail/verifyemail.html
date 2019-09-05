@@ -1,5 +1,5 @@
 
-<ion-content padding>
+<ion-content>
 
   <div class="container">
     <form [formGroup]="verifyForm" *ngIf="!isSent">
@@ -22,7 +22,7 @@
     </form>
    <div class="status" *ngIf="isSent">
       <p>Please check your email address, we have sent you a verification link.</p>
-      <button ion-button class="btn-animate" (click)="proceed()" color="secondary" clear> Proceed</button>
+      <button ion-button class="btn-animate" (click)="proceed()" color="primary"> Proceed</button>
    </div>
   </div>
 </ion-content>
