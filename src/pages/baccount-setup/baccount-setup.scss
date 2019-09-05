@@ -7,38 +7,67 @@ page-baccount-setup {
             height: 100%;
             
            .image {
+           
+               //border: 1px solid red;
+         height: 30vh;
+         position: relative;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          flex-direction: column;
+          //border: 1px solid #0cc;
+          position: fixed;
+          padding-top: 1%;
+          width: 100%;
+          &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            height: 25vh;
+            width: 100%;
             background-image: url(../../assets/imgs/waverotate.svg);
             background-size: cover;
-            background-position: center center;
+            background-position: center bottom;
             background-repeat: no-repeat;
-               //border: 1px solid red;
-               height: 35%;
-    
-          display: flex;
-          justify-content: center;
+        }
+        
+        h4 {
+            position: relative;
+            z-index: 10;
+        }
+          
           
             .thumb {
-            height: 140px;
-            width: 140px;
+            height: 100px;
+            width: 100px;
             border-radius: 50%;
-           
+            justify-self: self-end;
             object-fit: cover;
             position: relative;
-            top: 40%;
+           
         }
         .btn-upload {
             position: absolute;
-            right: 0%;
-            bottom:-50%;
+            right: -20%;
+            bottom:0%;
         }
       } 
       .inputs {
-         // border: 1px solid rgb(4, 0, 255);
-          width: 80%;
-          height: 65%;
-          position: relative;
-          left: 10%;
-          top:10%;
+          //border: 1px solid rgb(4, 0, 255);
+          width: 100%;
+          position: absolute;
+    
+          padding: 20px;
+          bottom: 0;
+          height: 70vh;
+          overflow-y: scroll;
+          display: flex;
+        align-items: center;
+    
+        form {
+            width: 100%;
+        }
+    
       }
         }
      

@@ -2,11 +2,12 @@
   <div class="container-form" *ngIf="!isProfile">
      
   <div  class="image">
-      <h2 style="text-align: center; color: #fff;">Manage Profile</h2>
+        <h4 style="text-align: center; color: #fff;">Manage Profile</h4>
       <div class="thumb">
+      
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
-        <button ion-fab color="custom" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+        <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
       </div>
        
        
