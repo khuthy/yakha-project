@@ -59,9 +59,7 @@ request: boolean = false;
         if(getuserLoggedIn.data().status == true) {
           this.maps = false;
         this.request = true;
-        }else {
-          this.status = "Please wait for 48 hours. We are still processing your profile.";
-         }
+        }
 
       }
       else
@@ -217,7 +215,7 @@ getOwners(){
       })
     });
     }else {
-      this.requestFound = 'No requests have been found.';
+      this.requestFound = 'You do not have any messages.';
     }
     
     console.log('Owners: ', this.owner);
