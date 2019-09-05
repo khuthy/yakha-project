@@ -12,7 +12,7 @@
 
 <ion-content padding>
   <div class="container">
-      <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(item)">
+      <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
        <div class="top">
          <article>
             <p style="font-size: 17px;"><strong> {{ m.comment }}</strong> </p>

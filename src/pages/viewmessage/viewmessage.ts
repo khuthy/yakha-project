@@ -5,6 +5,7 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
+import { v } from '@angular/core/src/render3';
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -45,24 +46,69 @@ export class ViewmessagePage {
   homeOwner;
   profilePic;
   ownerName;
+  profPic;
+  profName;
+  profAbout;
+  hType;
+  brickType;
+  comment: any;
+  date: any;
+  doc: any;
+  email: any;
+  endDate: any;
+  hOwnerPhone: any;
+  height: any;
+  houseImage: any;
+  response_date: any;
+  startDate: any;
+  wallType: any;
+  width: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,  private fileOpener: FileOpener,
     private file: File) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
    
-    this.db.collection('User').doc(firebase.auth().currentUser.uid).get().then((res)=>{
+    this.db.collection('User').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
      res.data();
     
      this.bUid = res.data().userType =="Homebuilder";
+     this.hType = res.data().userType =="Homeowner";
     })
-    // this.db.collection('HomeOwnerProfile').doc(firebase.auth().currentUser.uid).get().then((res)=>{
-    //   res.data();
-    //   this.bUid = res.data().userType;
-    //  })
+    
   }
 
   ionViewDidLoad() {
-    //console.log(this.navParams.data);
+    console.log(this.userDetails);
+    this.brickType = this.userDetails.brickType;
+    this.comment = this.userDetails.comment;
+    this.date = this.userDetails.date;
+    this.doc = this.userDetails.doc;
+    this.email = this.userDetails.email;
+    this.endDate = this.userDetails.endDate;
+    this.hOwnerPhone = this.userDetails.hOwnerPhone;
+    this.height = this.userDetails.height;
+    this.houseImage = this.userDetails.houseImage;
+    this.response_date = this.userDetails.response_date;
+    this.startDate = this.userDetails.startDate;
+    this.wallType = this.userDetails.wallType;
+    this.width = this.userDetails.width;
+    //this.hOwnerPhone = this.userDetails.hOwnerPhone;
+//builderUID: "HkXc4HvYXIOjZm51BdQcaRZvLj13"
+// comment: "I need this urgently"
+// createBy: ""
+// date: "Thu Sep 05 2019 17:11:52 GMT+0200 (South Africa Standard Time)"
+// doc: ""
+// email: "sharonmunyai@gmail.com"
+// endDate: "2019-09-14"
+// hOwnerPhone: "0815884639"
+// height: "23"
+// houseImage: ""
+// length: "23"
+// response_date: ""
+// startDate: "2019-09-05"
+// uid: "EaMeGYMVqagYRxXfQ87thFBA9wZ2"
+// wallType: "singleWall"
+// width: "23"
     this.getRequest();
   }
   togglePanel(){
@@ -71,7 +117,18 @@ export class ViewmessagePage {
   showMore(){
     this.more = !this.more;
   }
-
+  getOwnerDetails(){
+    this.db.collection('HomeOwnerProfile').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
+      res.data();
+      console.log(res.data());
+      this.profPic = res.data().ownerImage;
+      this.profName = res.data().fullname;
+      this.profAbout = res.data().About;
+      
+      this.bUid = res.data().userType;
+     })
+   
+  }
   quotesForm() {
     this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
   }
