@@ -76,7 +76,7 @@ export class MyApp {
             let userLoggedIn = this.db.doc(`/User/${user.uid}`);
      
 
-     userLoggedIn.get().then(getuserLoggedIn => {
+     userLoggedIn.onSnapshot(getuserLoggedIn => {
       
       let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
       let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
@@ -87,7 +87,7 @@ export class MyApp {
          if(getuserLoggedIn.data().userType == "Homebuilder") {
           if(user.emailVerified === true) {
             
-            homeBuilders.get().then(homeBuilderInfo => {
+            homeBuilders.onSnapshot(homeBuilderInfo => {
               if(homeBuilderInfo.empty) {
                 this.rootPage = BaccountSetupPage;
               }else {
@@ -118,7 +118,7 @@ export class MyApp {
          
       }else {
         if(user.emailVerified === true) { 
-          homeOwner.get().then(homeOwnerInfo => {
+          homeOwner.onSnapshot(homeOwnerInfo => {
             if(homeOwnerInfo.empty) {
               this.rootPage = AccountSetupPage;
             }else {
