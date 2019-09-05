@@ -223,7 +223,7 @@ export class BaccountSetupPage {
         
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data().bricklayerImage)
+          console.log('Profile Document: ', doc.data())
           this.displayProfile.push(doc.data());
          
           this.builderProfile.bricklayerImage  = doc.data().bricklayerImage
