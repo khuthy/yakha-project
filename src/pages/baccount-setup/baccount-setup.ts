@@ -44,8 +44,8 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   lng: 0,
-   lat: 0,
+   lng: null,
+   lat: null,
    
    email: firebase.auth().currentUser.email,
    date:Date()
@@ -101,8 +101,7 @@ export class BaccountSetupPage {
     this.builderProfile.address = addr.formatted_address ;
     this.builderProfile.lat = addr.geometry.location.lat();
     this.builderProfile.lng = addr.geometry.location.lng();
-   // console.log(this.location)
-    
+    //console.log(this.location)
   }
   async selectImage() {
     let option: CameraOptions = {
@@ -150,6 +149,8 @@ export class BaccountSetupPage {
             content: 'Creating Profile..'
           });
           load.present();
+          console.log(this.builderProfile.lat, this.builderProfile.lng);
+          
       const user = this.db.collection('builderProfile').doc(this.authUser.getUser()).set(this.builderProfile);
 
       // upon success...
