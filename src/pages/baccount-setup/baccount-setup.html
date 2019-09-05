@@ -1,15 +1,16 @@
 
 
 <ion-content >
-    <div class="container-form" *ngIf="!isProfile">
+  <div class="status" *ngIf="status">
+      <div class="container-form" *ngIf="!isProfile">
         
 
      <div  class="image">
-       <h2 style="text-align: center; color: #fff;">Manage Profile</h2>
+       <h4 style="text-align: center; color: #fff;">Manage Profile</h4>
       <div class="thumb">
         <img  *ngIf="profileImage" src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
-        <button ion-fab color="custom" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+        <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
       </div>
        
        
@@ -44,9 +45,7 @@
           <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
         </ion-select>
       </ion-item> -->
-
-
-      <ion-item >
+     <ion-item >
           <ion-label floating>Price (p/m2)</ion-label>
           <ion-input type="text" formControlName="price" name="price" [(ngModel)]="builderProfile.price" ngDefaultControl></ion-input>
         </ion-item>
@@ -96,7 +95,7 @@
        </div>
   <div class="btn">
     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-   <button id="skip" (click)="createprofile(profileForm)"  type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
+   <button id="skip" color="primary" (click)="createprofile(profileForm)" block type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
 </div>
   </ion-list>
 </form>
@@ -114,25 +113,30 @@
   <img *ngIf="!builderProfile.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
 <div class="name">
-     <h4 style="text-align: center;">{{builder.fullName}}</h4>
+     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
    <div class="details">
-     <p> {{builder.experiences}} years of experience</p>
+     <p> {{builderProfile.experiences}} years of experience</p>
     
    </div>
    <div class="bio">
      <h6><ion-icon size="large" name="pin"></ion-icon></h6>
      <p>
-      {{builderProfile.address}}
+      {{profileForm.value.address}}
      </p>
    </div>
    </div>
 </div>
 
+  </div>
+  <div class="statusApproval" *ngIf="!status">
+    <h3>Please wait for an approval</h3>
+  </div>
+  
 
 
 </ion-content>

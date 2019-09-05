@@ -33,7 +33,6 @@ export class BuilderProfileviewPage {
   this.dat = this.navParams.data;
   console.log('jjj ', this.dat);
 
-  
     }
   
     ionViewDidLoad() {

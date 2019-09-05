@@ -122,12 +122,13 @@ export class AccountSetupPage {
       
       // upon success...
       user.then( () => {
-        this.navCtrl.setRoot(HomePage)
+        this.navCtrl.push(HomePage)
         this.toastCtrl.create({
           message: 'User Profile added.',
           duration: 2000,
         }).present();
         // ...get the profile that just got created...
+        // this.isProfile = true;
         load.dismiss();
         // catch any errors.
       }).catch( err=> {
@@ -180,7 +181,7 @@ export class AccountSetupPage {
           
         })
         this.icon = 'create';
-        this.isProfile = true;
+        // this.isProfile = true;
       } else {
         console.log('No data');
         this.isProfile = false;

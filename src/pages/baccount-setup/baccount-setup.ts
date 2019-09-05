@@ -25,6 +25,7 @@ import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 })
 export class BaccountSetupPage {
   isProfile = false;
+  status = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid;
@@ -44,8 +45,8 @@ export class BaccountSetupPage {
    experiences: '',
    address:null,
    price:'',
-   lng: 0,
-   lat: 0,
+   lng: null,
+   lat: null,
    
    email: firebase.auth().currentUser.email,
    date:Date()
@@ -88,8 +89,11 @@ export class BaccountSetupPage {
 
   ionViewDidLoad() {
     console.log( this.uid)
+    this.getStatus();
     console.log( this.authUser.getUser());
+
     this.getProfile();
+    
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -101,8 +105,7 @@ export class BaccountSetupPage {
     this.builderProfile.address = addr.formatted_address ;
     this.builderProfile.lat = addr.geometry.location.lat();
     this.builderProfile.lng = addr.geometry.location.lng();
-   // console.log(this.location)
-    
+    //console.log(this.location)
   }
   async selectImage() {
     let option: CameraOptions = {
@@ -150,16 +153,19 @@ export class BaccountSetupPage {
             content: 'Creating Profile..'
           });
           load.present();
+          console.log(this.builderProfile.lat, this.builderProfile.lng);
+          
       const user = this.db.collection('builderProfile').doc(this.authUser.getUser()).set(this.builderProfile);
 
       // upon success...
       user.then( () => {
         this.navCtrl.setRoot(HomePage)
         this.toastCtrl.create({
-          message: 'User Profile added.',
+          message: 'User profile saved.',
           duration: 2000,
         }).present();
         // ...get the profile that just got created...
+        // this.isProfile = true;
         load.dismiss();
         // catch any errors.
         
@@ -222,7 +228,7 @@ export class BaccountSetupPage {
         
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data().bricklayerImage)
+          console.log('Profile Document: ', doc.data())
           this.displayProfile.push(doc.data());
          
           this.builderProfile.bricklayerImage  = doc.data().bricklayerImage
@@ -256,6 +262,17 @@ export class BaccountSetupPage {
   }
   editProfile(){
     this.isProfile = false;
+  }
+
+  getStatus(){
+    let userLoggedIn = this.db.doc(`/User/${this.authUser.getUser()}`);
+    userLoggedIn.onSnapshot((check) => {
+        if(check.data().status == true) {
+          this.status = true;
+        }else {
+          this.status = false;
+        }
+    })
   }
 
 }export interface  builderProfile{

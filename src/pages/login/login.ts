@@ -121,7 +121,7 @@ this.navCtrl.push(RegisterPage)
 
       this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authService => {
-        if(authService.user.emailVerified === true) {
+     
          let userLoggedIn = this.db.doc(`/User/${authService.user.uid}`);
          userLoggedIn.get().then(getuserLoggedIn => {
          let homeOwnerInfo = this.db.collection('HomeOwnerProfile').where("uid", "==", authService.user.uid);
@@ -155,15 +155,7 @@ this.navCtrl.push(RegisterPage)
      })
          
         
-        }else {
-          this.navCtrl.setRoot(VerifyemailPage); 
-          this.alertCtrl.create({
-           title: 'Email Verification',
-           subTitle: 'Your email address is not verified. please complete this form and check your email box',
-           buttons: ['Ok']
-           }).present();
-          
-        }
+        
          
         
       }, error => {
