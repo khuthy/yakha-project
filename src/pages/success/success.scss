@@ -13,6 +13,7 @@ page-success {
         height: 200px;
     }
     .message {
+   // border: 1px solid red;
         display: flex;
         justify-content: center;
          text-align: center;  
@@ -21,10 +22,21 @@ page-success {
         font-weight: 200;
         font-size: 22px;
         flex-wrap: wrap;
-
-        .message > * {
-            
-        }
+            h1 {
+                 font-size: 12vw;
+               //  border: 1px solid white;
+                 margin-top: 0;
+                 letter-spacing: 1px;
+                        }
+       p {
+           letter-spacing: 1px;
+           font-family: 'Segoe UI';
+       }
+          #thank {
+              font-weight: bold;
+              font-size: 7vw;
+          } 
+    
     }
     .continue {
         width: 100%;
