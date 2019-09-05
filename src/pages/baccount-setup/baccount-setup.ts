@@ -216,7 +216,7 @@ export class BaccountSetupPage {
 
     // ...query the profile that contains the uid of the currently logged in user...
     let query = users.where("uid", "==", this.authUser.getUser());
-    query.get().then(querySnapshot => {
+    query.onSnapshot(querySnapshot => {
       // ...log the results of the document exists...
       if (querySnapshot.empty !== true){
         
@@ -246,12 +246,13 @@ export class BaccountSetupPage {
       }
       // dismiss the loading
       load.dismiss();
-    }).catch(err => {
-      // catch any errors that occur with the query.
-      console.log("Query Results: ", err);
-      // dismiss the loading
-      load.dismiss();
     })
+    // .catch(err => {
+    //   // catch any errors that occur with the query.
+    //   console.log("Query Results: ", err);
+    //   // dismiss the loading
+    //   load.dismiss();
+    // })
   }
   editProfile(){
     this.isProfile = false;
