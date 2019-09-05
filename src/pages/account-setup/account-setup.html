@@ -2,10 +2,12 @@
   <div class="container-form" *ngIf="!isProfile">
      
   <div  class="image">
+        <h4 style="text-align: center; color: #fff;">Manage Profile</h4>
       <div class="thumb">
+      
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
-        <button ion-fab color="custom" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+        <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
       </div>
        
        
@@ -56,7 +58,7 @@
  
   <div class="profiles" *ngIf="isProfile">
    <div class="back">
-     <p (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></p>
+     <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
       <div class="avatar-images">
       <img *ngIf="HomeOwnerProfile.ownerImage" src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">

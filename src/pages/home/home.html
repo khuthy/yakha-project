@@ -82,7 +82,9 @@
     
     </div> 
     </div>
-  
+    <div class="message" *ngIf="requestFound">
+      <p>{{requestFound}}</p>
+    </div>
      <div class="status" *ngIf="status">
        <p style="color: #fff">{{status}}</p>
         <button ion-fab class="btn-animate" color="secondary" (click)="back()"><ion-icon name="arrow-back"></ion-icon></button>

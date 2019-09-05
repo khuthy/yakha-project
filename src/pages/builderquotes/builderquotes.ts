@@ -129,11 +129,6 @@ export class BuilderquotesPage {
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
         { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
-        
-
-        {
-         
-        }
       ],
       styles: {
         header: {
