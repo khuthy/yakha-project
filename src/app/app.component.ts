@@ -4,7 +4,7 @@ import { SharePage } from './../pages/share/share';
 import { FeedbackPage } from './../pages/feedback/feedback';
 import { HelpPage } from './../pages/help/help';
 import { MessagesPage } from './../pages/messages/messages';
-import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';

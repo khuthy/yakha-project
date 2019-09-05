@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
 import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
-import { ProfileHomeOwnerPage } from './../pages/profile-home-owner/profile-home-owner';
+
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
@@ -71,7 +71,6 @@ import { CallNumber } from '@ionic-native/call-number';
     ForgotPasswordPage,
     BuilderProfileviewPage,
     QuotationFormPage,
-    ProfileHomeOwnerPage,
     BaccountSetupPage,
     SuccessPage,
     AddBricklayerPage,
@@ -114,7 +113,6 @@ import { CallNumber } from '@ionic-native/call-number';
     SignoutPage,
     BuilderProfileviewPage,
     QuotationFormPage,
-    ProfileHomeOwnerPage,
     BaccountSetupPage,
     SuccessPage,
     AddBricklayerPage,
