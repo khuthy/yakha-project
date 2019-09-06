@@ -62,7 +62,7 @@
    
     </div> 
 </div> -->
-<div class="homebuilder" padding *ngIf="request">
+<div class="homebuilder" padding >
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.comment)">
   
     <div class="home-builder-top">
@@ -82,13 +82,11 @@
     
     </div> 
     </div>
-    <div class="message" *ngIf="requestFound">
-      <p>{{requestFound}}</p>
+    <div class="message" *ngIf="request">
+      <h3 *ngIf="requestFound">{{requestFound}}</h3>
     </div>
-     <div class="status" *ngIf="status">
-       <p style="color: #fff">{{status}}</p>
-        <button ion-fab class="btn-animate" color="secondary" (click)="back()"><ion-icon name="arrow-back"></ion-icon></button>
-     </div>
+    
+    
 
 
 </ion-content>

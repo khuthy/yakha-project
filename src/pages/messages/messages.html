@@ -11,42 +11,24 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <div class="container">
-      <div class="profiles" (click)="viewMessages()" >
-        <span></span>
-        <div class="top" *ngFor="let m of messages">
-           <img src="" class="thumb" alt="profile"> 
-          <article>
-            <p style="font-size: 17px;"><strong>From:{{m.createBy}}</strong> </p>
+  <div class="container">
+      <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
+       <div class="top">
+         <article>
+            <p style="font-size: 17px;"><strong> {{ m.comment }}</strong> </p>
             <br>
-            <p style="font-size: 15px;"><ion-icon name="call"></ion-icon>{{m.date}}</p>
-            <button ion-button clear style="float: right" (click)="downloadPDF()"><ion-icon ios="ios-download" md="md-download"></ion-icon></button>
+            <p style="font-size: 9px;">{{m.date}}</p>
+            <!-- <button ion-button clear style="float: right"></button> -->
         </article>
         </div>
-        <div class="bottom">
-          <p class="prices">R201.00 per square meter</p>
-        </div>
+        
         </div> 
-        <div class="profiles" (click)="viewProfile()">
-          <span></span>
-          <div class="top">
-            <img src="../assets/imgs/th.jpg" class="thumb" alt="profile">
-            <article>
-              <p style="font-size: 17px;"><strong>Your name</strong> </p>
-              <br>
-              <p style="font-size: 15px;"><ion-icon name="call"></ion-icon> 076 558 4854</p>
-              
-          </article>
-          </div>
-          <div class="bottom">
-            <p class="prices">R201.00 per square meter</p>
-          </div>
-          </div>
+       
                
-  </div> -->
-  <ion-list>
+  </div>
+  <!-- <ion-list>
     <button ion-item *ngFor="let item of messages" (click)="itemSelected(item)">
       {{ item }}
     </button>  
-  </ion-list>
+  </ion-list>  -->
 </ion-content>

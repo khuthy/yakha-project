@@ -1,7 +1,8 @@
 
 
 <ion-content >
-    <div class="container-form" *ngIf="!isProfile">
+  <div class="status" *ngIf="status">
+      <div class="container-form" *ngIf="!isProfile">
         
 
      <div  class="image">
@@ -44,9 +45,7 @@
           <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
         </ion-select>
       </ion-item> -->
-
-
-      <ion-item >
+     <ion-item >
           <ion-label floating>Price (p/m2)</ion-label>
           <ion-input type="text" formControlName="price" name="price" [(ngModel)]="builderProfile.price" ngDefaultControl></ion-input>
         </ion-item>
@@ -133,6 +132,11 @@
    </div>
 </div>
 
+  </div>
+  <div class="statusApproval" *ngIf="!status">
+    <h3>Please wait for an approval</h3>
+  </div>
+  
 
 
 </ion-content>

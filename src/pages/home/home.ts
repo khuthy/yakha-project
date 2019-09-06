@@ -59,9 +59,7 @@ request: boolean = false;
         if(getuserLoggedIn.data().status == true) {
           this.maps = false;
         this.request = true;
-        }else {
-          this.status = "Please wait for 48 hours. We are still processing your profile.";
-         }
+        }
 
       }
       else
@@ -202,7 +200,7 @@ viewOwner(owner){
 
 getOwners(){
   
-  this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).get().then(snapshot => {
+  this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot(snapshot => {
     this.owner = [];
     if(!snapshot.empty) {
       this.requestFound = '';
@@ -210,14 +208,14 @@ getOwners(){
       this.owner.push(doc.data());
       this.ownerUID = doc.data().uid;
 
-      this.db.collection('HomeOwnerProfile').doc(this.ownerUID).get().then((res)=>{
+      this.db.collection('HomeOwnerProfile').doc(this.ownerUID).onSnapshot((res)=>{
      
           this.ownerName.push(res.data());
           console.log(this.ownerName);
       })
     });
     }else {
-      this.requestFound = 'No requests have been found.';
+      this.requestFound = 'You do not have any messages.';
     }
     
     console.log('Owners: ', this.owner);
