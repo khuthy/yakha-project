@@ -50,11 +50,102 @@ export class MyApp {
    this.db = firebase.firestore();
    console.log('im here');
    
-   this.authState();
+  
+   /* auth guards */
+   firebase.auth().onAuthStateChanged((user)=>{
+    if(user)
+    {
+       // create a reference to the collection of users...
+       console.log('user is logged in');
+       
+          let userLoggedIn = this.db.doc(`/User/${user.uid}`);
    
-    // used for an example of ngFor and navigation
+
+   userLoggedIn.onSnapshot(getuserLoggedIn => {
     
+    let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
+    let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
+       
+          
+       
+       console.log(getuserLoggedIn.data().userType);
+       if(getuserLoggedIn.data().userType == "Homebuilder") {
+       
+          
+          homeBuilders.onSnapshot(homeBuilderInfo => {
+            if(homeBuilderInfo.empty) {
+              this.rootPage = BaccountSetupPage;
+            
+            }else {
+              
+                      this.rootPage = HomePage;
+                      
+                        homeBuilderInfo.forEach(doc => {
+                            this.userLoggedinNow.fullname = doc.data().fullName;
+                            this.userLoggedinNow.image = doc.data().bricklayerImage;
+                            this.userLoggedinNow.email = user.email;
+                           
+                          });
+
+                  /* home builder side menu content */
+                  this.pages = [
+                    { title: 'Home', component: HomePage, icon: 'home' },
+                    { title: 'View profile', component: BaccountSetupPage, icon: 'person' },
+                    { title: 'Contact Us', component: HelpPage, icon: 'mail' },
+                    { title: 'Version', component: VersionPage, icon: 'information-circle' },
+                   ];
+              
+                  
+            }
+          });
+        
+       
+    }else {
+     
+        homeOwner.onSnapshot(homeOwnerInfo => {
+          if(homeOwnerInfo.empty) {
+            this.rootPage = AccountSetupPage;
+          }else {
+            
+              this.rootPage = HomePage;
+            homeOwnerInfo.forEach(doc => {
+                this.userLoggedinNow.fullname = doc.data().fullname;
+                this.userLoggedinNow.image = doc.data().ownerImage;
+                this.userLoggedinNow.email = user.email;
+                
+              });
+              /* Side menu content for home owner */
+
+              this.pages = [
+                { title: 'Home', component: HomePage, icon: 'home' },
+                { title: 'View profile', component: AccountSetupPage, icon: 'person' },
+                { title: 'Messages', component:MessagesPage, icon: 'mail' },
+                { title: 'Help', component: HelpPage, icon: 'help' },
+                { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+                { title: 'Share', component: SharePage, icon: 'share' },
+                { title: 'Version', component: VersionPage, icon: 'information-circle'}
+               ];
+           
+              
+              }
+        });
+     
+      
+    }   
+   });
    
+ 
+      
+  
+  } else {
+      
+      this.rootPage = WelcomePage;
+      console.log('user is logged out');
+      
+    }
+  })
+    
+   /* auth guards */
 
   }
 
@@ -68,100 +159,7 @@ export class MyApp {
     });
   }
   authState(){
-    firebase.auth().onAuthStateChanged((user)=>{
-      if(user)
-      {
-         // create a reference to the collection of users...
-         
-            let userLoggedIn = this.db.doc(`/User/${user.uid}`);
-     
-
-     userLoggedIn.onSnapshot(getuserLoggedIn => {
-      
-      let homeOwner = this.db.collection('HomeOwnerProfile').where("uid", "==", user.uid);
-      let homeBuilders = this.db.collection('builderProfile').where("uid", "==", user.uid);
-         
-            
-         
-         console.log(getuserLoggedIn.data().userType);
-         if(getuserLoggedIn.data().userType == "Homebuilder") {
-          if(user.emailVerified === true) {
-            
-            homeBuilders.onSnapshot(homeBuilderInfo => {
-              if(homeBuilderInfo.empty) {
-                this.rootPage = BaccountSetupPage;
-              }else {
-                
-                        this.rootPage = HomePage;
-                        
-                          homeBuilderInfo.forEach(doc => {
-                              this.userLoggedinNow.fullname = doc.data().fullName;
-                              this.userLoggedinNow.image = doc.data().bricklayerImage;
-                              this.userLoggedinNow.email = user.email;
-                             
-                            });
-
-                    /* home builder side menu content */
-                    this.pages = [
-                      { title: 'Home', component: HomePage, icon: 'home' },
-                      { title: 'View profile', component: BaccountSetupPage, icon: 'person' },
-                      { title: 'Reviews', component: VersionPage, icon: 'mail' },
-                      { title: 'Help', component: HelpPage, icon: 'help' },
-                     ];
-                
-                
-              }
-            });
-          }else {
-            this.rootPage = VerifyemailPage;
-          }
-         
-      }else {
-        if(user.emailVerified === true) { 
-          homeOwner.onSnapshot(homeOwnerInfo => {
-            if(homeOwnerInfo.empty) {
-              this.rootPage = AccountSetupPage;
-            }else {
-              
-                this.rootPage = HomePage;
-              homeOwnerInfo.forEach(doc => {
-                  this.userLoggedinNow.fullname = doc.data().fullname;
-                  this.userLoggedinNow.image = doc.data().ownerImage;
-                  this.userLoggedinNow.email = user.email;
-                  
-                });
-                /* Side menu content for home owner */
-
-                this.pages = [
-                  { title: 'Home', component: HomePage, icon: 'home' },
-                  { title: 'View profile', component: AccountSetupPage, icon: 'person' },
-                  { title: 'Messages', component:MessagesPage, icon: 'mail' },
-                  { title: 'Help', component: HelpPage, icon: 'help' },
-                  { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-                  { title: 'Share', component: SuccessPage, icon: 'share' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle'}
-                 ];
-             
-                
-                }
-          });
-        }else {
-          this.rootPage = VerifyemailPage;
-        }
-        
-      }   
-     });
-     
-   
-        
     
-    } else {
-        
-        this.rootPage = WelcomePage;
-        console.log('user is logged out');
-        
-      }
-    })
   }
   openPage(page) {
     // Reset the content nav to have just this page

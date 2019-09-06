@@ -21,28 +21,16 @@ import { Storage } from '@ionic/storage';
 })
 export class VerifyemailPage {
 
-  verifyForm: FormGroup;
-  db = firebase.firestore();
-  email: string;
-  isSent: boolean;
-  validation_messages = {
-    'email': [
-      { type: 'required', message: 'Email address is required' },
-       {type: 'pattern', message: 'Email address is not valid'}
-    ]
-  }
+ 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public forms: FormBuilder,
     public menuCtrl: MenuController,
     public alert: AlertController,
     public authService: AuthServiceProvider,
-    public storage: Storage
+   
     ) {
-     this.verifyForm = this.forms.group({
-         email: new FormControl('', Validators.compose([Validators.required, Validators.email]))
-      })
-
+    
       
     
   }
@@ -54,85 +42,10 @@ export class VerifyemailPage {
     this.menuCtrl.swipeEnable(false);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VerifyemailPage');
-    var user = firebase.auth().currentUser.uid;
-   console.log(user);
+  
 
-   this.storage.get('message').then(val => {
-    if(val == user)  {
-      this.isSent = true;
-      
-    }else {
-      console.log('verification form');
-      this.isSent = false;
-    }
-    
-  });
-  }
-
-  skip() {
-    this.navCtrl.setRoot(LoginPage);
-  }
-
-  proceed() {
-    var user = firebase.auth().currentUser;
-    console.log(user);
-    
-   
-      this.isSent = true;
-      let userLoggedIn = this.db.doc(`/User/${user.uid}`);
-       userLoggedIn.get().then(getuserLoggedIn => {
-        
-        if(getuserLoggedIn.data().userType == 'Homebuilder') {
-          this.navCtrl.setRoot(BaccountSetupPage);
-        }else {
-          this.navCtrl.setRoot(AccountSetupPage);
-        } 
-      }).catch((error) => {
-
-      })
-    
-      
-  }
-
-  verifyEmail(){
-    var user = firebase.auth().currentUser;
-   console.log(user);
+  
 
  
-     if(this.email == user.email) {
-
-      user.sendEmailVerification().then(() => {
-        // Email sent.
-        
-        console.log('Email was successfully sent');
-        this.storage.set('message', user.uid);
-        this.isSent = true;
-
-       this.alert.create({
-         title: 'Successfully sent',
-         subTitle: 'Check your email before logging in',
-         buttons: ['Ok']
-       }).present();
-       
-       
-        // An error happened.
-      });
-
-
-      
-        
-     }else {
-       console.log('are you sure thats your email?');
-       this.alert.create({
-         title: 'Wrong Email',
-         subTitle: 'are you sure that\'s your email',
-         buttons: ['Ok']
-       }).present();
-     }
-     
-   
-  }
 
 }

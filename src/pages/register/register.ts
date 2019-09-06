@@ -70,19 +70,15 @@ export class RegisterPage {
             console.log(user);
             if(this.authService.manageUsers() == 'Homebuilder') {
               let homebuilder = firebase.auth().currentUser.uid;
-              this.navCtrl.setRoot(BaccountSetupPage, homebuilder)
+              this.navCtrl.setRoot(BaccountSetupPage)
+              
             }else {
                 let homeowner=firebase.auth().currentUser.uid;
-                this.navCtrl.setRoot(AccountSetupPage, homeowner)
+                this.navCtrl.setRoot(AccountSetupPage)
             }
 
           });
-        // () => {
-
-        //      this.loading.dismiss().then(() => {
-        //       console.log();
-        //       this.navCtrl.setRoot(VerifyemailPage);
-        //    });
+        
 
 
 

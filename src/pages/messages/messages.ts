@@ -24,7 +24,7 @@ export class MessagesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileOpener: FileOpener) {
     this.dbMessage.where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
       res.forEach((doc)=>{
-        this.messages.push(doc.data().comment);
+        this.messages.push(doc.data());
         this.qDoc = doc.id;
         console.log(this.messages);
       })

@@ -25,6 +25,7 @@ import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 })
 export class BaccountSetupPage {
   isProfile = false;
+  status = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid;
@@ -88,8 +89,11 @@ export class BaccountSetupPage {
 
   ionViewDidLoad() {
     console.log( this.uid)
+    this.getStatus();
     console.log( this.authUser.getUser());
+
     this.getProfile();
+    
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -157,10 +161,11 @@ export class BaccountSetupPage {
       user.then( () => {
         this.navCtrl.setRoot(HomePage)
         this.toastCtrl.create({
-          message: 'User Profile added.',
+          message: 'User profile saved.',
           duration: 2000,
         }).present();
         // ...get the profile that just got created...
+        // this.isProfile = true;
         load.dismiss();
         // catch any errors.
         
@@ -257,6 +262,17 @@ export class BaccountSetupPage {
   }
   editProfile(){
     this.isProfile = false;
+  }
+
+  getStatus(){
+    let userLoggedIn = this.db.doc(`/User/${this.authUser.getUser()}`);
+    userLoggedIn.onSnapshot((check) => {
+        if(check.data().status == true) {
+          this.status = true;
+        }else {
+          this.status = false;
+        }
+    })
   }
 
 }export interface  builderProfile{
