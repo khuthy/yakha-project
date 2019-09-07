@@ -19,8 +19,10 @@ import { FileOpener } from '@ionic-native/file-opener';
 export class MessagesPage {
 
   dbMessage = firebase.firestore().collection('HomeOwnerQuotation');
+  dbProfile = firebase.firestore().collection('HomeOwnerProfile');
   messages = [];
   qDoc;
+  honwerUID;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileOpener: FileOpener) {
     this.dbMessage.where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
       res.forEach((doc)=>{
@@ -30,6 +32,9 @@ export class MessagesPage {
       })
     }).catch((error)=>{
       console.log(error.code + 'Message='+error.message);
+      
+    })
+    this.dbProfile.doc().onSnapshot((res)=>{
       
     })
   }

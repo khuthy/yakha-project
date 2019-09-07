@@ -8,6 +8,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+    <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
     <div #map id="map" *ngIf="maps"></div>
   <div class="menus" *ngIf="maps">
     <button ion-button clear menuToggle>
