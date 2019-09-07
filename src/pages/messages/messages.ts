@@ -23,24 +23,30 @@ export class MessagesPage {
   messages = [];
   qDoc;
   honwerUID;
+  hownerName;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileOpener: FileOpener) {
     this.dbMessage.where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
       res.forEach((doc)=>{
         this.messages.push(doc.data());
         this.qDoc = doc.id;
         console.log(this.messages);
+        //this.honwerUID = doc.data().uid;
+        this.dbProfile.doc(doc.data().uid).get().then((res)=>{
+          this.hownerName = res.data().fullname;
+          //console.log(this.hownerName);
+          
+        })
       })
     }).catch((error)=>{
       console.log(error.code + 'Message='+error.message);
       
     })
-    this.dbProfile.doc().onSnapshot((res)=>{
-      
-    })
+   
   }
 
   ionViewDidLoad() {
-   // console.log('ionViewDidLoad MessagesPage');
+  // console.log(this.honwerUID);
+  
   }
   downloadPDF(){
     this.fileOpener.open(this.qDoc, 'application/pdf')
@@ -54,6 +60,9 @@ export class MessagesPage {
   itemSelected(item){
     this.navCtrl.push(ViewmessagePage, item);
   }
-  
+  userProfile(){
+   
+    console.log(this.hownerName);
+  }
 
 }

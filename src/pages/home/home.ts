@@ -36,7 +36,8 @@ status: string = '';
 maps: boolean =false;
 request: boolean = false;
   ownerUID: string;
-  ownerName = [];
+  ownerName ;
+  ownerImage: any;
   
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
@@ -134,14 +135,6 @@ request: boolean = false;
           });
           this.map.fitBounds(bounds);
         });
-      
-
-
-
-
-
-
-
           let marker1 = new google.maps.Marker({
             map: this.map,
             position: coords1,
@@ -236,7 +229,39 @@ request: boolean = false;
 //   .catch(err => console.log('Error launching dialer', err));
 
   ionViewDidLoad() {
-   this.getOwners();
+    let data = {
+      builder: {},
+      owner: {}
+    }
+    this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot(snapshot => {
+      this.owner = [];
+      if(!snapshot.empty) {
+        this.requestFound = '';
+        snapshot.forEach(doc => {
+        
+        this.ownerUID = doc.data().uid;
+          
+          
+        this.db.collection('HomeOwnerProfile').doc(this.ownerUID).get().then((res)=>{   
+          data.owner = res.data();
+          data.builder = doc.data();
+         // console.log(res.data());
+          this.owner.push(data);
+          data = {
+            builder: {},
+            owner: {}
+          }
+        })
+      });
+      console.log(this.owner);
+      
+      }else {
+        this.requestFound = 'You do not have any messages.';
+      }
+      
+     // console.log('Owners: ', this.owner);
+    });
+    
   }
 
 //viewmore
@@ -256,26 +281,6 @@ viewOwner(owner){
 
 getOwners(){
   
-  this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot(snapshot => {
-    this.owner = [];
-    if(!snapshot.empty) {
-      this.requestFound = '';
-      snapshot.forEach(doc => {
-      this.owner.push(doc.data());
-      this.ownerUID = doc.data().uid;
-
-      this.db.collection('HomeOwnerProfile').doc(this.ownerUID).onSnapshot((res)=>{
-     
-          this.ownerName.push(res.data());
-          console.log(this.ownerName);
-      })
-    });
-    }else {
-      this.requestFound = 'You do not have any messages.';
-    }
-    
-    console.log('Owners: ', this.owner);
-  });
   
 }
 loadMap(){
