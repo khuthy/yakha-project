@@ -19,18 +19,19 @@
   
   
  <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
- <form [formGroup]="quotationForm"> 
+ 
 
     <!-- start of slides -->
-  <ion-slides>
-   <ion-slide>
   
-      <div *ngIf="!houseImage" class="img-holder">
-          <img src="{{houseImage}}" class="image">
-          <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
+<form [formGroup]="quotationForm">  
+   <div class="one" *ngIf="" >
+      <div  class="holder">khuthy
+        <!--   <img src="{{houseImage}}" >
+          <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button> -->
         </div>
+
         <div class="inputs">
-      <ion-item>
+      <ion-item style="margin: 0; padding;">
           <ion-label floating><ion-icon end name="calendar"></ion-icon> Prefered start date </ion-label>
           
           <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
@@ -82,72 +83,79 @@
               {{validate.message}}
             </div>
             </div>
+            <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+
   </div>
+   </div>
+  
+  
 
-   </ion-slide>
 
-   <ion-slide>
-    <h4>Please include the following</h4>
-    <ion-list>
-
-        <ion-item>
-          <ion-label style="color: gray">Roofing</ion-label>
-          <ion-checkbox ></ion-checkbox>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label style="color: gray">Framing</ion-label>
-          <ion-checkbox ></ion-checkbox>
-        </ion-item>
-      
-        <ion-item>
-          <ion-label style="color: gray">Doors</ion-label>
-          <ion-checkbox ></ion-checkbox>
-        </ion-item>
-      
-        <ion-item>
-            <ion-label style="color:gray">Windows</ion-label>
+   <div class="two" *ngIf="" >
+      <h4>Please include the following</h4>
+      <ion-list>
+  
+          <ion-item>
+            <ion-label style="color: gray">Roofing</ion-label>
             <ion-checkbox ></ion-checkbox>
           </ion-item>
         
           <ion-item>
-            <ion-label style="color: gray">Plaster</ion-label>
+            <ion-label style="color: gray">Framing</ion-label>
             <ion-checkbox ></ion-checkbox>
           </ion-item>
         
           <ion-item>
-            <ion-label style="color: gray">Plumbing</ion-label>
+            <ion-label style="color: gray">Doors</ion-label>
             <ion-checkbox ></ion-checkbox>
           </ion-item>
-
+        
           <ion-item>
-              <ion-label style="color: gray">Ceiling</ion-label>
+              <ion-label style="color:gray">Windows</ion-label>
               <ion-checkbox ></ion-checkbox>
             </ion-item>
           
             <ion-item>
-              <ion-label style="color: gray">Electricity</ion-label>
+              <ion-label style="color: gray">Plaster</ion-label>
               <ion-checkbox ></ion-checkbox>
             </ion-item>
-
-
-             <ion-item>
-              <ion-label style="color: gray">Select All</ion-label>
+          
+            <ion-item>
+              <ion-label style="color: gray">Plumbing</ion-label>
               <ion-checkbox ></ion-checkbox>
             </ion-item>
-      </ion-list>
-     
-      <ion-item>
-          <ion-label floating>Additional comments</ion-label>
-          <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
-        </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.comment">
-          <div class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
-            {{validate.message}}
-          </div>
-          </div>
-   </ion-slide>
- </ion-slides>
+  
+            <ion-item>
+                <ion-label style="color: gray">Ceiling</ion-label>
+                <ion-checkbox ></ion-checkbox>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label style="color: gray">Electricity</ion-label>
+                <ion-checkbox ></ion-checkbox>
+              </ion-item>
+  
+  
+               <ion-item>
+                <ion-label style="color: gray">Select All</ion-label>
+                <ion-checkbox ></ion-checkbox>
+              </ion-item>
+        </ion-list>
+       
+        <ion-item>
+            <ion-label floating>Additional comments</ion-label>
+            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
+          </ion-item>
+          <div class="error" *ngFor="let validate of validation_messages.comment">
+            <div class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
+              {{validate.message}}
+            </div>
+            </div>
+   </div>
+
+ 
+   </form> 
+
 <!--      
         <ion-item>
             <ion-label floating>Additional comments</ion-label>
@@ -161,9 +169,9 @@
       
       
      
- </form>
 
-<!--    <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+
+<!--   
  -->   
 </div>
 </ion-content>
