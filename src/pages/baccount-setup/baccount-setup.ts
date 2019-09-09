@@ -186,14 +186,14 @@ export class BaccountSetupPage {
   }
 
   validation_messages = {
-  'fullName': [
+'fullName': [
       { type: 'required', message: 'Name is required.' },
       { type: 'minlength', message: 'Name must be at least 4 characters long.' },
       { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
       { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
       { type: 'validUsername', message: 'Your username has already been taken.' }
     ],
-    'gender': [ {
+'gender': [ {
       type: 'required', message: 'Field is required'
     }],
 'bricklayerImage': [ {

@@ -43,13 +43,13 @@ export class QuotationFormPage {
     comment:'',
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
-   date:Date(),
-   builderUID: '',
-   doc:'',
-   response_date:'',
-   createBy:'', 
-   ownerAddress:'',
-   ownerName:''
+    date:Date(),
+    builderUID: '',
+    doc:'',
+    response_date:'',
+    createBy:'', 
+    ownerAddress:'',
+    ownerName:''
   };
   docID;
  date: any;

@@ -37,6 +37,7 @@ export class AccountSetupPage {
     uid: '',
     ownerImage:'',
     fullname:'',
+    gender:'',
     personalNumber:'',
     About:'',
     date: Date(),
@@ -63,7 +64,7 @@ export class AccountSetupPage {
     this.HomeOwnerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullname: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-     
+      gender: new  FormControl('', Validators.compose([Validators.required])),
       personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
       About: [''],
       address: new  FormControl('', Validators.compose([Validators.required]))
@@ -162,6 +163,9 @@ export class AccountSetupPage {
       { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
       { type: 'validUsername', message: 'Your username has already been taken.' }
     ],
+    'gender': [
+      { type: 'required', message: 'Gender is required.' }
+    ],
     
     'personalNumber': [
       { type: 'required', message: 'Cellnumber is required.' }
@@ -191,6 +195,7 @@ export class AccountSetupPage {
           this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
           this.profileImage  = doc.data().ownerImage;
           this.HomeOwnerProfile.fullname  = doc.data().fullname;
+          this.HomeOwnerProfile.gender  = doc.data().gender;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           
         })
@@ -224,6 +229,7 @@ export class AccountSetupPage {
   uid :string;
   image?:string;
   fullname:string;
+  gender:string;
   personalNumber:any;
   About:string;
 
