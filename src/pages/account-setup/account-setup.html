@@ -2,7 +2,7 @@
   <div class="container-form" *ngIf="!isProfile">
      
   <div  class="image">
-        <h4 style="text-align: center; color: #fff;">Manage Profile</h4>
+        <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: Roboto">Tell us a little about yourself</h4>
       <div class="thumb">
       
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
@@ -24,6 +24,14 @@
            {{validate.message}}
          </div>
          </div>
+
+         <ion-item>
+          <ion-label>Gender</ion-label>
+          <ion-select >
+            <ion-option value="f">Female</ion-option>
+            <ion-option value="m">Male</ion-option>
+          </ion-select>
+        </ion-item>
         
          <ion-item >
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
@@ -44,7 +52,7 @@
          </div>
          </div>
          <ion-item >
-          <ion-label  floating> Bio </ion-label>
+          <ion-label  floating>Bio</ion-label>
           <ion-input  type="text" formControlName="About"  [(ngModel)]="HomeOwnerProfile.About" ngDefaultControl></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.About">
