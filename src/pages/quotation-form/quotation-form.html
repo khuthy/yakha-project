@@ -12,6 +12,7 @@
         </ion-toolbar>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
   <div *ngIf="houseImage" class="image-holder">
     <img src="{{houseImage}}" class="image">
@@ -19,6 +20,7 @@
   </div>
   
   <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p>
+ 
 
 <form [formGroup]="quotationForm">
     <ion-item>

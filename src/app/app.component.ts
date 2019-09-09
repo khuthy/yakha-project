@@ -7,7 +7,7 @@ import { MessagesPage } from './../pages/messages/messages';
 
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
+/* import { StatusBar } from '@ionic-native/status-bar'; */
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
@@ -44,7 +44,7 @@ export class MyApp {
   }
   
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, /* public statusBar: StatusBar, */ public splashScreen: SplashScreen) {
     this.initializeApp();
    firebase.initializeApp(firebaseConfig);
    this.db = firebase.firestore();
@@ -122,7 +122,7 @@ export class MyApp {
                 { title: 'Messages', component:MessagesPage, icon: 'mail' },
                 { title: 'Help', component: HelpPage, icon: 'help' },
                 { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-                { title: 'Share', component: SharePage, icon: 'share' },
+               /*  { title: 'Share', component: SharePage, icon: 'share' }, */
                 { title: 'Version', component: VersionPage, icon: 'information-circle'}
                ];
            
@@ -154,7 +154,7 @@ export class MyApp {
      // this.rootPage = HomePage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      //this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }

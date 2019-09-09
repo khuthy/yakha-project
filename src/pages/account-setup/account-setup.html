@@ -2,7 +2,7 @@
   <div class="container-form" *ngIf="!isProfile">
      
   <div  class="image">
-        <h4 style="text-align: center; color: #fff;">Manage Profile</h4>
+        <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: Roboto">Tell us a little about yourself</h4>
       <div class="thumb">
       
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
@@ -24,6 +24,14 @@
            {{validate.message}}
          </div>
          </div>
+
+         <ion-item>
+          <ion-label>Gender</ion-label>
+          <ion-select >
+            <ion-option value="f">Female</ion-option>
+            <ion-option value="m">Male</ion-option>
+          </ion-select>
+        </ion-item>
         
         <ion-item>
           <ion-label floating> Cellphone number</ion-label>
