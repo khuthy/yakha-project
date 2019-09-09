@@ -181,7 +181,7 @@ export class AccountSetupPage {
           
         })
         this.icon = 'create';
-        // this.isProfile = true;
+         this.isProfile = true;
       } else {
         console.log('No data');
         this.isProfile = false;

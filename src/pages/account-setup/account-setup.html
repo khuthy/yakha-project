@@ -54,9 +54,9 @@
  </div>
 
 <!-- view profile -->
-<div class="container">
+<div class="container" *ngIf="isProfile">
  
-  <div class="profiles" *ngIf="isProfile">
+  <div class="profiles" >
    <div class="back">
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>

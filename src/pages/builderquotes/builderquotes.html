@@ -22,6 +22,15 @@
                 {{validate.message}}
               </div>
               </div>
+              <ion-item >
+                <ion-label floating> FullName</ion-label>
+                <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName" ngDefaultControl></ion-input>
+              </ion-item>
+              <!-- <div class="error" *ngFor="let validate of validation_messages.fullName">
+               <div class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+                 {{validate.message}}
+               </div>
+               </div> -->
           <!-- <ion-item color="light"  style="color: #fff;">
             <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
             </ion-item> -->
