@@ -133,15 +133,19 @@
 </div>
 <div class="name">
      <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
+     <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
+   <div class="">
+    <p> R:{{builderProfile.price}}(p/m2)</p>
+    <p> {{builderProfile.roof}} Does your price include roofing</p>
+   </div>
    <div class="details">
      <p> {{builderProfile.experiences}} years of experience</p>
-    
-   </div>
+    </div>
    <div class="bio">
      <h6><ion-icon size="large" name="pin"></ion-icon></h6>
      <p>
