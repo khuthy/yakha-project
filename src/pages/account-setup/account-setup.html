@@ -25,6 +25,15 @@
          </div>
          </div>
         
+         <ion-item >
+          <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.address">
+         <div class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
         <ion-item>
           <ion-label floating> Cellphone number</ion-label>
           <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
@@ -54,9 +63,9 @@
  </div>
 
 <!-- view profile -->
-<div class="container">
+<div class="container" *ngIf="isProfile">
  
-  <div class="profiles" *ngIf="isProfile">
+  <div class="profiles" >
    <div class="back">
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
