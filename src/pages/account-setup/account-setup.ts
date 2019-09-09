@@ -6,6 +6,7 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { HomePage } from '../home/home';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { CallNumber } from '@ionic-native/call-number';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -38,7 +39,13 @@ export class AccountSetupPage {
     fullname:'',
     personalNumber:'',
     About:'',
-    date: Date()
+    date: Date(),
+    ownerAddress: ''
+  }
+  options = {
+    componentRestrictions: {
+      country: ['ZA']
+    }
   }
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -57,9 +64,15 @@ export class AccountSetupPage {
     this.profileForm = this.formBuilder.group({
       fullname: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
      
-      personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      About: ['']
+      personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
+      About: [''],
+      address: new  FormControl('', Validators.compose([Validators.required]))
     });
+  }
+  public handleAddressChange(addr: Address) {
+    this.HomeOwnerProfile.ownerAddress = addr.formatted_address ;
+
+    console.log(this.HomeOwnerProfile.ownerAddress)
   }
   ionViewDidLoad() {
     console.log( this.uid)
@@ -153,6 +166,7 @@ export class AccountSetupPage {
     'personalNumber': [
       { type: 'required', message: 'Cellnumber is required.' }
     ],
+    'address': [{type: 'required', message: 'Address is required.'}]
   };
   getProfile(){
     // load the process

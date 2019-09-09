@@ -47,7 +47,8 @@ export class QuotationFormPage {
    builderUID: '',
    doc:'',
    response_date:'',
-   createBy:''
+   createBy:'', 
+   ownerAddress:''
   };
   docID;
  date: any;
@@ -106,6 +107,7 @@ type: 'required', message: 'Width is required.'
       firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
+          this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
         })
       })
       let date = new Date();
