@@ -48,7 +48,8 @@ export class QuotationFormPage {
    doc:'',
    response_date:'',
    createBy:'', 
-   ownerAddress:''
+   ownerAddress:'',
+   ownerName:''
   };
   docID;
  date: any;
@@ -108,6 +109,7 @@ type: 'required', message: 'Width is required.'
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
+          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
       let date = new Date();
