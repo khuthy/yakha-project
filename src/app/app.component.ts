@@ -91,7 +91,7 @@ export class MyApp {
                   this.pages = [
                     { title: 'Home', component: HomePage, icon: 'home' },
                     { title: 'View profile', component: BaccountSetupPage, icon: 'person' },
-                    { title: 'Contact Us', component: HelpPage, icon: 'mail' },
+                    // { title: 'Contact Us', component: HelpPage, icon: 'mail' },
                     { title: 'Version', component: VersionPage, icon: 'information-circle' },
                    ];
               

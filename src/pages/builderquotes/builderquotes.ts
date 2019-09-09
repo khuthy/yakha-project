@@ -40,6 +40,9 @@ export class BuilderquotesPage {
   }
   quotesForm: FormGroup;
   quotes = {
+  fullname:'',  
+  ownerAddress:'',
+  fullName:'',
   expiry: '',
   address: '',
   dimension: '',
@@ -53,6 +56,13 @@ export class BuilderquotesPage {
   storage = firebase.storage().ref();
   uid: any;
   validation_messages = {
+    'fullName': [
+      { type: 'required', message: 'Name is required.' },
+      { type: 'minlength', message: 'Name must be at least 4 characters long.' },
+      { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
+      { type: 'validUsername', message: 'Your username has already been taken.' }
+    ],
     'expiry': [
       { type: 'required', message: 'Expiry date is required.' }
     ],
@@ -67,6 +77,7 @@ export class BuilderquotesPage {
      {type: 'maxlength', message: 'Amount is too large'}
 ]
 }
+  ownerAddress: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -82,6 +93,7 @@ export class BuilderquotesPage {
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
       this.quotesForm = this.forms.group({
+        fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
         expiry: new FormControl('', Validators.compose([Validators.required])),
         address: new FormControl('', Validators.compose([Validators.required])),
         dimension: new FormControl('', Validators.compose([Validators.required])),
@@ -96,11 +108,13 @@ export class BuilderquotesPage {
       this.length = res.data().length;
       this.height = res.data().height;
       this.width = res.data().width;
+      this.ownerAddress = res.data().ownerAddress;
     })
 
     this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
         res.forEach((doc)=>{
           this.quotes.address = doc.data().address;
+          this.quotes.fullName = doc.data().fullName;
           this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
         })
     })
@@ -121,32 +135,63 @@ export class BuilderquotesPage {
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
+       
+        { text: 'From', style: 'subheader' },
+        this.quotes.fullName,
+        this.quotes.address,
+        { text: 'To', style: 'subheader' },
+        this.quotes.fullname,
+        this.quotes.ownerAddress,
         { text: 'Expiry', style: 'subheader' },
         { text: this.quotes.expiry },
 
-        { text: 'Address', style: 'subheader' },
-        this.quotes.address,
+        { text: 'Items', style: 'subheader'},
+        {
+          style: 'itemsTable',
+          table: {
+              widths: ['*', 75, 75],
+              body: [
+                  [ 
+                      { text: 'Description', style: 'itemsTableHeader' },
+                      { text: 'Quantity', style: 'itemsTableHeader' },
+                      { text: 'Price', style: 'itemsTableHeader' },
+                  ]
+              ].concat()
+          }
+      },
+
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
         { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
       ],
       styles: {
         header: {
-          fontSize: 18,
+          fontSize: 20,
           bold: true,
-        },
-        subheader: {
-          fontSize: 14,
-          bold: true,
-          margin: [0, 15, 0, 0]
-        },
+          margin: [0, 0, 0, 10],
+          alignment: 'right'
+      },
+      subheader: {
+        fontSize: 16,
+        bold: true,
+        margin: [0, 20, 0, 5]
+    },
         story: {
-          italic: true,
-          alignment: 'center',
-          width: '50%',
-        }
+          bold: true,
+            fontSize: 13,
+            color: 'black'
+        },
+        totalsTable: {
+          bold: true,
+          margin: [0, 30, 0, 0]
       }
-    }
+  },
+  defaultStyle: {
+  }
+ }
+     
+
+    
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
