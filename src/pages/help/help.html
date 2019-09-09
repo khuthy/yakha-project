@@ -6,7 +6,7 @@
       <img src="../../assets/imgs/log.png" height="50%">
     </div>
 
-    <div class="inputs">
+    <div class="inputs" *ngIf="!data">
         <form [formGroup]="contactForm">
             <ion-item>
               <ion-label floating>Username</ion-label>
@@ -41,12 +41,16 @@
 
           </form>
           <div class="btn">
-              <button ion-button (click)="sendMessage(contactForm)" block [disabled]="!contactForm.valid">Send</button>
+              <button ion-button block [disabled]="!contactForm.valid" (click)="sendMessage()">Send</button>
 
           </div>
 
     </div>
-      
+    <div class="inputs" *ngIf="data">
+      <div *ngFor="let msg of feedMsg">
+        <div>{{msg.message}}</div>
+      </div>
+    </div>
   </div>
 
 </ion-content>

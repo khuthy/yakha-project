@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content>
+    <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
     <div #map id="map" *ngIf="maps"></div>
     <div class="menus">
        <ion-searchbar showCancelButton="true" (ionInput)="getItems($event)" animated="true" #filterSearch></ion-searchbar>
@@ -67,19 +68,19 @@
    
     </div> 
 </div> -->
-<div class="homebuilder">
-  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.comment)">
+<div class="homebuilder" padding >
+  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder.comment)">
   
     <div class="home-builder-top">
-      <img *ngIf="o.ownerImage" src="{{o.ownerImage}}" class="thumb-home-builder" alt="profile">
-      <img *ngIf="!o.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
+      <img *ngIf="o.owner.ownerImage" src="{{o.owner.ownerImage}}" class="thumb-home-builder" alt="profile">
+      <img *ngIf="!o.owner.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
       <article>
      <div>
        
      </div>
-        <!-- <p style="font-size: 17px;text-align: left;">{{ownerName}}</p><br> -->
-        <p style="font-size: 12px;text-align: left;">{{o.comment}}</p><br>
-        <p style="font-size: 10px;text-align: left;">{{o.date}}</p>
+     <p style="font-size: 17px;text-align: left;margin-top: 10px">{{o.owner.fullname}}</p><br> 
+        <p style="font-size: 12px;text-align: left;margin-top: -20px">{{o.builder.comment}}</p><br>
+        <p style="font-size: 10px;text-align: left;margin-top: -20px">{{o.builder.date}}</p>
         <br> 
     </article>
     <button ion-button clear style="font-size: 15px;float: right; margin: 10px" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
@@ -87,9 +88,7 @@
     
     </div> 
     </div>
-    <div class="message" *ngIf="request">
-      <h3 *ngIf="requestFound">{{requestFound}}</h3>
-    </div>
+ 
     
     
 
