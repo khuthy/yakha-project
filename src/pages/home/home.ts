@@ -38,6 +38,7 @@ request: boolean = false;
   ownerUID: string;
   ownerName ;
   ownerImage: any;
+  bUID: string;
   
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
@@ -166,7 +167,8 @@ request: boolean = false;
                   content: lat
              });
              google.maps.event.addListener(marker, 'click', (resp)=>{
-              infoWindow.open(this.map, marker)
+               //infoWindow.open(this.map, marker)
+               this.viewBuilderInfo(doc.data());
               })
               google.maps.event.addListener( marker,'click', (resp) => {
                 this.map.setZoom(15);
@@ -200,6 +202,7 @@ request: boolean = false;
         this.db.collection('builderProfile').get().then(snapshot => {
           snapshot.forEach(doc => {
             this.builder.push(doc.data());
+            this.bUID = doc.id;
           });
           console.log('Builders: ', this.builder);
 
