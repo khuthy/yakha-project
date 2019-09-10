@@ -46,7 +46,7 @@ export class BaccountSetupPage {
    roof:false,
    experiences: '',
    address:null,
-   price: 0,
+   price:0,
    lng: null,
    lat: null,
    
@@ -89,14 +89,18 @@ export class BaccountSetupPage {
       address: new  FormControl('', Validators.compose([Validators.required])),
       price: new  FormControl('', Validators.compose([Validators.required]))
     });
+   
+   var y = +4;
+   this.builderProfile.price = y;
   }
 
   ionViewDidLoad() {
     console.log( this.uid)
     this.getStatus();
     console.log( this.authUser.getUser());
-
+    this.builderProfile.price = 0;
     this.getProfile();
+    console.log(this.builderProfile.price);
     
   }
   ionViewWillEnter() {
@@ -289,7 +293,9 @@ export class BaccountSetupPage {
     })
   }
 
-}export interface  builderProfile{
+}
+
+export interface  builderProfile{
   uid:string;
   image?:string;
   fullName: string,
