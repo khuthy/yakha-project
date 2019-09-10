@@ -4,29 +4,79 @@ page-quotation-form {
         .container {
             height: 100%;
             width: 100%;
-            //border: 1px solid red;
-
-
-   .holder {
-                                                                                                                                                                                                                                                                                                                             
-                height: 150px;
-                width: 80%;
-                //background:  rgb(0, 38, 255);
-                position: relative;
-                left: 10%; 
-            }
-            .inputs {
+            .image {
                 //border: 1px solid blue;
                 width: 80%;
-                height: 60%;
-            position: relative;
+                height: 45%;
+                position: relative;
                 left: 10%;
-                margin: 0 !important;
-            } 
+                button {
+                    position: relative;
+                   
+                }
+                img {
+                    position: center;
+                    height: 90%;
+                    //display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 5%;
+                    width: 100%;
+                    border-radius: 20px;
+                    object-fit: cover;
+
+                }
+            }
+            #icon {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                width: 80%;
+                position: relative;
+                left: 10%;
+                margin-top: 5%;
+                border-radius: 10px;
+                margin-bottom: 5%;
+                text-align: center;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                letter-spacing: 1px;
+            }
+
+  .inputs {
+    // border: 1px solid blue;
+     width: 80%;
+     height: 60%;
+ position: relative;
+     left: 10%;
+     margin: 0 !important;
+     h4 {
+         margin-top: 5%;
+         text-align: center;
+         font-size: 5vw;
+          font-family: 'Roboto';
+          letter-spacing: 1px;
+          font-weight: 400;
+     }
+
+     .extras {
+        // border: 1px solid green;
+       display: flex;
+       flex-wrap: wrap;
+         #ex {  
+            
+             padding: 8px;
+             margin: 1%;
+             letter-spacing: 1px;
+             background: #c46441;
+             color: white;
+             border-radius: 5px;
+         }
+     }
+ } 
+            }
+      
 }
             
         }
 
        
     
-}

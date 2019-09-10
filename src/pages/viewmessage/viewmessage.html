@@ -25,10 +25,6 @@
           <span id="quotes1"><strong id="date1">{{r.startDate}}start date</strong> <strong id="date2">{{r.endDate}}</strong></span>
           <p class="info">
           <strong class="measure">
-          <span id="quotes3"> <strong>Width: </strong>{{r.width}} meters</span>
-          <span id="quotes3"> <strong>Length</strong>{{r.length}}   meters</span>
-          <span id="quotes3"> <strong>Height</strong> {{r.height}}  meters</span>
-          <span id="quotes3"><strong>length </strong>{{r.width}}   </span>
           <span id="quotes3"><strong>Wall type</strong> {{r.wallType}} </span>
           <span id="quotes3"><strong>brick type </strong> {{r.brickType}} </span>
           </strong>
@@ -36,7 +32,15 @@
           <div class="imgs">
               <img src="{{r.houseImage}}" class="thumb" alt="house plan">
               <p>House plan</p>
+          </div>
+          <div class="extras">
+            <h3>Extras</h3>
+            <hr>
+            <div class="fet">
+              <p *ngFor="let e of r.extras">{{e}}</p>
             </div>
+            <!-- <p>Created: {{n.lastcreated}}</p> -->
+          </div>
         </blockquote>
        
           <blockquote>
