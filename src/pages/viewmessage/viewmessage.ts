@@ -57,12 +57,13 @@ export class ViewmessagePage {
   email: any;
   endDate: any;
   hOwnerPhone: any;
-  height: any;
+  // height: any;
   houseImage: any;
   response_date: any;
   startDate: any;
   wallType: any;
-  width: any;
+  // width: any;
+  extras:[];
   constructor(public navCtrl: NavController, public navParams: NavParams,  private fileOpener: FileOpener,
     private file: File) {
     this.userDetails = this.navParams.data;
@@ -86,12 +87,13 @@ export class ViewmessagePage {
     this.email = this.userDetails.email;
     this.endDate = this.userDetails.endDate;
     this.hOwnerPhone = this.userDetails.hOwnerPhone;
-    this.height = this.userDetails.height;
+    // this.height = this.userDetails.height;
     this.houseImage = this.userDetails.houseImage;
     this.response_date = this.userDetails.response_date;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
-    this.width = this.userDetails.width;
+    // this.width = this.userDetails.width;
+    this.extras =this.userDetails.extras;
     //this.hOwnerPhone = this.userDetails.hOwnerPhone;
 //builderUID: "HkXc4HvYXIOjZm51BdQcaRZvLj13"
 // comment: "I need this urgently"

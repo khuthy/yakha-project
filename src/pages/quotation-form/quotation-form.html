@@ -16,13 +16,11 @@
 <ion-content>
    <div class="container">
  <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
-  <div  class="holder">
-        <!--   <img src="{{houseImage}}" >
-          <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button> -->
+  <div  class="holder" *ngIf="houseImage">
+           <img src="{{houseImage}}" >
+          <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
         </div>
 
-  
- 
  <div class="inputs">
     <form [formGroup]="quotationForm">
       <ion-item style="margin: 0">
@@ -81,17 +79,16 @@
             <h4>Please include the following</h4>
             <ion-item>
               <ion-label>Extras</ion-label>
-              <ion-select formControlName="brickType" [(ngModel)]="extras" multiple="true" cancelText="Nah" okText="Okay!">
-                <ion-option value="Roofing" selected="true">Roofing</ion-option>
-                <ion-option value="Framing"> Framing</ion-option>
-                <ion-option value="Doors" selected="true">Doors</ion-option>
-                <ion-option value="Windows">Windows</ion-option>
-                <ion-option value="Plaster">Plaster</ion-option>
-                <ion-option value="Plumbing">Plumbing</ion-option>
-                <ion-option value="Ceiling">Ceiling</ion-option>
-                <ion-option value="Electricity">Electricity</ion-option>
+              <ion-select formControlName="extras" [(ngModel)]="HomeOwnerQuotation.extras" multiple="true" cancelText="Nah" okText="Okay!">
+                <ion-option *ngFor ="let e of extras" value="{{e}}" >{{e}}</ion-option>
+               
               </ion-select>
             </ion-item>
+             <ion-label class="error" *ngFor="let validate of validation_messages.extras">
+            <p class="messages" *ngIf="quotationForm.get('extras').hasError(validate.type) && (quotationForm.get('extras').dirty || quotationForm.get('extras').touched)">
+              {{validate.message}}
+            </p>
+            </ion-label>
 <!-- select all -->
 <button (click)="selectAll();">select all</button>
 <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
