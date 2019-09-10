@@ -31,7 +31,8 @@
             </div> -->
       <ion-list style="margin-top:8%">
           <ion-item>
-             <ion-datetime style="color: #c46441" placeholder="Preffered start date" displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
+            <ion-label floating>date</ion-label>
+             <ion-datetime  displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
             </ion-item>
             <ion-label class="error" *ngFor="let validate of validation_messages.startDate">
               <p class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
@@ -40,8 +41,8 @@
               </ion-label>
       
               <ion-item>
-                  
-                  <ion-datetime style="color: #c46441" placeholder="Preffered end date" formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
+                  <ion-label floating>Preffered end date</ion-label>
+                  <ion-datetime formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
                 </ion-item>
                 <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
                   <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
@@ -49,8 +50,9 @@
                   </p>
                   </ion-label>
       
-          <ion-item>
-         <ion-select style="border:1px solid red; width: 85%" placeholder="Select wall type" name="wallType" formControlName="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
+          <ion-item> 
+              <ion-label floating>Select wall type</ion-label>
+         <ion-select   name="wallType" formControlName="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
                 <ion-option  value="singleWall">Single wall</ion-option>
                 <ion-option value="doubleWall">Double wall</ion-option>
                </ion-select>
@@ -62,12 +64,13 @@
               </ion-label>
            
       
-            <ion-item style="border:1px solid red; padding:5%" >
-                <ion-select style="border:1px solid blue; width:5%"  placeholder="Select brick type" name="brickType" formControlName="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
+            <ion-item  >
+                <ion-label floating>Select brick type</ion-label>
+                <ion-select  floating name="brickType" formControlName="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
                   <ion-option value="common">Common burnt clay bricks</ion-option>
                   <ion-option value="sand">Sand lime Bricks</ion-option>
-                  <ion-option value="engineering">Engineering Bricks</ion-option>
                   <ion-option value="concrete">Concrete bricks</ion-option>
+                  <ion-option value="engineering">Engineering Bricks</ion-option>
                   <ion-option value="clay">Fly ash clay bricks</ion-option>
                        </ion-select>
               </ion-item>
@@ -80,17 +83,17 @@
     
                 <h4 >Please include the following</h4>
                 <ion-item>
-                  <ion-label>Extras</ion-label>
+                  <ion-label floating>Extras</ion-label>
                   <ion-select  formControlName="brickType" [(ngModel)]="extras" multiple="true" cancelText="Nah" okText="Okay!">
-                    <ion-option value="Roofing" selected="true">Roofing</ion-option>
-                    <ion-option value="Framing"> Framing</ion-option>
-                    <ion-option value="Doors" selected="true">Doors</ion-option>
-                    <ion-option value="Windows">Windows</ion-option>
-                    <ion-option value="Plaster">Plaster</ion-option>
-                    <ion-option value="Plumbing">Plumbing</ion-option>
-                    <ion-option value="Ceiling">Ceiling</ion-option>
-                    <ion-option value="Electricity">Electricity</ion-option>
-                    <ion-option (change)="selectAll()">Select all</ion-option>
+                    <ion-option value="Roofing" selected="false" >Roofing</ion-option>
+                    <ion-option value="Framing" selected="false"> Framing</ion-option>
+                    <ion-option value="Doors" selected="false">Doors</ion-option>
+                    <ion-option value="Windows" selected="false">Windows</ion-option>
+                    <ion-option value="Plaster" selected="false">Plaster</ion-option>
+                    <ion-option value="Plumbing" false>Plumbing</ion-option>
+                    <ion-option value="Ceiling" false>Ceiling</ion-option>
+                    <ion-option value="Electricity" false>Electricity</ion-option>
+                 
                   </ion-select>
                 </ion-item>
     
