@@ -53,7 +53,7 @@ export class QuotationFormPage {
   };
   docID;
  date: any;
- extras:any;
+ extras:any[];
 /* validations starts here */
 validation_messages = {
   'startDate': [
