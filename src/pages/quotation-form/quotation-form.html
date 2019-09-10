@@ -14,43 +14,37 @@
 </ion-header>
 
 <ion-content>
-  
-  <div class="container">
-
-  
+   <div class="container">
  <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
- 
-
-    <!-- start of slides -->
-  
-<form [formGroup]="quotationForm">  
-   <div class="one" *ngIf="" >
-      <div  class="holder">khuthy
+  <div  class="holder">
         <!--   <img src="{{houseImage}}" >
           <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button> -->
         </div>
 
-        <div class="inputs">
+  
+ 
+ <div class="inputs">
+    <form [formGroup]="quotationForm">
       <ion-item style="margin: 0">
           <ion-label floating><ion-icon end name="calendar"></ion-icon> Prefered start date </ion-label>
           
           <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.startDate">
-          <div class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
+        <ion-label class="error" *ngFor="let validate of validation_messages.startDate">
+          <p class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
             {{validate.message}}
-          </div>
-          </div>
+          </p>
+          </ion-label>
   
           <ion-item>
               <ion-label floating>Preffered end date</ion-label>
               <ion-datetime formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
             </ion-item>
-            <div class="error" *ngFor="let validate of validation_messages.endDate">
-              <div class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
+            <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
+              <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
                 {{validate.message}}
-              </div>
-              </div>
+              </p>
+              </ion-label>
   
       <ion-item>
           <ion-label floating> Select Wall type</ion-label>
@@ -60,11 +54,11 @@
             <ion-option value="doubleWall">Double wall</ion-option>
            </ion-select>
         </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.wallType">
-          <div class="messages" *ngIf="quotationForm.get('wallType').hasError(validate.type) && (quotationForm.get('wallType').dirty || quotationForm.get('wallType').touched)">
+        <ion-label class="error" *ngFor="let validate of validation_messages.wallType">
+          <p class="messages" *ngIf="quotationForm.get('wallType').hasError(validate.type) && (quotationForm.get('wallType').dirty || quotationForm.get('wallType').touched)">
             {{validate.message}}
-          </div>
-          </div>
+          </p>
+          </ion-label>
        
   
         <ion-item>
@@ -75,19 +69,19 @@
               <ion-option value="engineering">Engineering Bricks</ion-option>
               <ion-option value="concrete">Concrete bricks</ion-option>
               <ion-option value="clay">Fly ash clay bricks</ion-option>
-             
-             </ion-select>
+                   </ion-select>
           </ion-item>
-           <div class="error" *ngFor="let validate of validation_messages.brickType">
-            <div class="messages" *ngIf="quotationForm.get('brickType').hasError(validate.type) && (quotationForm.get('brickType').dirty || quotationForm.get('brickType').touched)">
+       
+           <ion-label class="error" *ngFor="let validate of validation_messages.brickType">
+            <p class="messages" *ngIf="quotationForm.get('brickType').hasError(validate.type) && (quotationForm.get('brickType').dirty || quotationForm.get('brickType').touched)">
               {{validate.message}}
-            </div>
-            </div>
+            </p>
+            </ion-label>
 
             <h4>Please include the following</h4>
             <ion-item>
-              <ion-label>Toppings</ion-label>
-              <ion-select  [(ngModel)]="extras" multiple="true" cancelText="Nah" okText="Okay!">
+              <ion-label>Extras</ion-label>
+              <ion-select formControlName="brickType" [(ngModel)]="extras" multiple="true" cancelText="Nah" okText="Okay!">
                 <ion-option value="Roofing" selected="true">Roofing</ion-option>
                 <ion-option value="Framing"> Framing</ion-option>
                 <ion-option value="Doors" selected="true">Doors</ion-option>
@@ -100,57 +94,54 @@
             </ion-item>
 <!-- select all -->
 <button (click)="selectAll();">select all</button>
+<button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+ <ion-item>
+            <ion-label floating>Additional comments</ion-label>
+            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
+          </ion-item>
+          <ion-label class="error" *ngFor="let validate of validation_messages.comment">
+            <p class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
+              {{validate.message}}
+            </p>
+            </ion-label>
+</form>  
+</div>   
+</div>
+</ion-content>
+       
 
-            <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+ 
+   
 
-  </div>
-   </div>
   
-  
 
-
-   <div class="two" *ngIf="" >
     
-      <ion-list>
+
+       
+ 
+  
+  
+
+
+   
+ 
 
       
   
   
-               <ion-item>
-                <ion-label style="color: gray">Select All</ion-label>
-                <ion-checkbox ></ion-checkbox>
-              </ion-item>
-        </ion-list>
+               
+      
        
-        <ion-item>
-            <ion-label floating>Additional comments</ion-label>
-            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
-          </ion-item>
-          <div class="error" *ngFor="let validate of validation_messages.comment">
-            <div class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
-              {{validate.message}}
-            </div>
-            </div>
-   </div>
+       
+  
 
    
 
  
-   </form> 
+ 
 
-<!--      
-        <ion-item>
-            <ion-label floating>Additional comments</ion-label>
-            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
-          </ion-item>
-          <div class="error" *ngFor="let validate of validation_messages.comment">
-            <div class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
-              {{validate.message}}
-            </div>
-            </div> -->
-       
-</div>
-</ion-content>
+
+
 
         
    
