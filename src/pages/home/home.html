@@ -13,16 +13,29 @@
     <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
     <div #map id="map" *ngIf="maps"></div>
     <div class="menus">
-       <ion-searchbar showCancelButton="true" (ionInput)="getItems($event)" animated="true" #filterSearch></ion-searchbar>
-       <ion-list class="list">
-        <ion-item *ngFor="let item of items">
-          {{ item }}
-        </ion-item>
-      </ion-list>
+       <!-- <ion-searchbar id="pac-input" *ngIf="maps"></ion-searchbar> -->
+       <!-- <ion-item class="list" *ngFor="let item of resultArr">
+        <ion-avatar>
+            <img src="{{item.bricklayerImage}}" alt="" srcset="">
+        </ion-avatar>
+
+        <ion-label>
+          <ion-note style="font-weight: bold">
+            {{item.fullName}}
+          </ion-note>
+        </ion-label>
+      </ion-item> -->
     </div>
    
 
   <div class="slider" *ngIf="maps">
+      <ion-item>
+          <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
+            <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
+            <ion-label range-left>R0</ion-label>
+            <ion-label range-right>R1000</ion-label>
+          </ion-range>
+        </ion-item>
     <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >

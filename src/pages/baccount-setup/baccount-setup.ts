@@ -46,7 +46,7 @@ export class BaccountSetupPage {
    roof:false,
    experiences: '',
    address:null,
-   price:'',
+   price: 0,
    lng: null,
    lat: null,
    
@@ -296,6 +296,6 @@ export class BaccountSetupPage {
   roof:string,
   experiences: string,
   address: string,
-  price: string
+  price: number
 
 }

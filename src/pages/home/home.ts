@@ -19,9 +19,15 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
+  // brightness: number = 20;
+  // contrast: number = 0;
+  // warmth: number = 1300;
+  // structure: any = { lower: 33, upper: 60 };
+  // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
-  @ViewChild("filterSearch") filterSearch: ElementRef;
-
+//  @ViewChild("filterSearch") filterSearch: ElementRef;
+  sampleArr = [];
+  resultArr = [];
   db = firebase.firestore();
   isSearchbarOpened = false;
   color: string = 'yakha';
@@ -47,6 +53,7 @@ request: boolean = false;
   ownerName ;
   ownerImage: any;
   bUID: string;
+  price = 0;
   
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, public loader : LoadingController,
@@ -56,13 +63,16 @@ request: boolean = false;
     public platform: Platform,
     
  ) {
+   this.price = 0;
+   console.log(this.price);
+   
   this.menuCtrl.swipeEnable(true);
   if(this.isSearchbarOpened) {
     this.color = 'primary';
   }else {
     this.color = 'yakha';
   }
- console.log(this.platform.width());
+ //console.log(this.platform.width());
  
 
   /* home page loads start here */
@@ -92,7 +102,7 @@ request: boolean = false;
             east: 32.830120477,
           };
           let coords1 = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-          console.log(resp.coords.latitude, resp.coords.longitude);
+        //  console.log(resp.coords.latitude, resp.coords.longitude);
           
           let mapOptions = {
             center : coords1,
@@ -218,16 +228,17 @@ request: boolean = false;
          }).catch((error) => {
            console.log('Error getting location', error);
          });
-        this.maps = true;
+         this.builder = [];
+         this.maps = true;
         this.request = false;
-        this.db.collection('builderProfile').get().then(snapshot => {
+      this.db.collection('builderProfile').get().then(snapshot => {
           snapshot.forEach(doc => {
-            this.builder.push(doc.data());
-            this.bUID = doc.id;
-          });
-          console.log('Builders: ', this.builder);
-
+          this.builder.push(doc.data());
+          this.bUID = doc.id;
         });
+        //console.log('Builders: ', this.builder);
+
+      });
 
       }
       // else {
@@ -245,6 +256,27 @@ request: boolean = false;
   back() {
     this.navCtrl.setRoot(LoginPage);
   }
+  setPriceRange(param){
+    this.price = param;
+   // console.log("Price range = "+ this.price);
+   if(this.price>=0){
+     this.builder = [];
+      this.db.collection('builderProfile').where('price','>=',param)
+    .onSnapshot((res)=>{
+     // console.log(res.);
+      res.forEach((doc)=>{
+        // this.db.collection('builderProfile').get().then(snapshot => {
+        //   snapshot.forEach(doc => {
+            this.builder.push(doc.data());
+            this.bUID = doc.id;
+        //   });
+        //   console.log('Builders: ', this.builder);
+
+        // });
+      })
+    })
+   }
+}
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
 }
@@ -259,6 +291,38 @@ initializeItems() {
     
   ];
 }
+// search(event){
+//     let searchKey : string = event.target.value;
+//     let firstLetter = searchKey.toUpperCase();
+    
+//    if(searchKey.length == 0){
+//      this.sampleArr = [];
+//      this.resultArr = [];
+//    }
+//     if(this.sampleArr.length == 0){
+//       firebase.firestore().collection('builderProfile').where('fullName', '==',firstLetter)
+//       .onSnapshot((res)=>{
+//         res.forEach((doc)=>{
+//          this.sampleArr.push(doc.data())
+//          // console.log(doc.data());  
+//         })
+//       })
+//     } 
+//     else{
+//       this.resultArr = [];
+//       this.sampleArr.forEach((val)=>{
+//         let name: string = val['Name'];
+//         if(name.toUpperCase().startsWith(searchKey.toUpperCase())){
+//           if(true){
+//              this.resultArr.push(val);
+//             // console.log(this.resultArr);
+             
+//           }
+         
+//         }
+//       })
+//     }
+// }
 getItems(ev: any) {
   // Reset items back to all of the items
   this.initializeItems();
@@ -354,7 +418,7 @@ getOwners(){
 }
 
 moveMapEvent() {
-  console.log('changed');
+ // console.log('changed');
   
 }
 
