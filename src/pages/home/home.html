@@ -5,22 +5,36 @@
     <button ion-button clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
+    
   </ion-navbar>
- 
+  
+
 </ion-header>
 
 <ion-content>
-    <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
+    
     <div #map id="map" *ngIf="maps"></div>
-    <div class="menus">
-       <ion-searchbar showCancelButton="true" (ionInput)="getItems($event)" animated="true" #filterSearch></ion-searchbar>
-       <ion-list class="list">
-        <ion-item *ngFor="let item of items">
-          {{ item }}
-        </ion-item>
-      </ion-list>
-    </div>
+    <div class="menu">
+     <div class="control">
+       <button class="btn-menu" ion-button clear menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+   <input type="text" id="search" class="controls">  
    
+      <button class="btn-fab" ion-fab mini><ion-icon name="add"></ion-icon></button>
+    
+     </div>
+       
+   </div> 
+   
+    
+  
+    
+       
+     
+   
+  
 
   <div class="slider" *ngIf="maps">
     <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
@@ -68,7 +82,7 @@
    
     </div> 
 </div> -->
-<div class="homebuilder" padding >
+<div class="homebuilder" *ngIf="request">
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder.comment)">
   
     <div class="home-builder-top">
