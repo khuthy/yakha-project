@@ -158,7 +158,9 @@ export class BaccountSetupPage {
           });
           load.present();
           console.log(this.builderProfile.lat, this.builderProfile.lng);
-          
+          console.log(this.builderProfile);
+          let num = parseFloat(this.builderProfile.price.toString())
+          this.builderProfile.price = num;
       const user = this.db.collection('builderProfile').doc(this.authUser.getUser()).set(this.builderProfile);
 
       // upon success...
@@ -296,6 +298,6 @@ export class BaccountSetupPage {
   roof:string,
   experiences: string,
   address: string,
-  price: number
+  price:number
 
 }
