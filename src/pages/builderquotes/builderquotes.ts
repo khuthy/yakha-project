@@ -188,7 +188,6 @@ export class BuilderquotesPage {
                       'Subtotal',
                       1000,
                   ],
-                  
                   [
                       '',
                       'Total',
