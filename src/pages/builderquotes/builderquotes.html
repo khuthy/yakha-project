@@ -43,25 +43,21 @@
                     {{validate.message}}
                   </div>
                   </div>
-
-            <div class="error" *ngFor="let validate of validation_messages.address">
+          <div class="error" *ngFor="let validate of validation_messages.address">
                 <div class="messages" *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
                   {{validate.message}}
                 </div>
                 </div>
-             
-            <ion-item>
+              <ion-item>
                 <ion-label floating>Dimensions</ion-label>
                 <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
               </ion-item>
-
-              <div class="error" *ngFor="let validate of validation_messages.dimension">
+            <div class="error" *ngFor="let validate of validation_messages.dimension">
                   <div class="messages" *ngIf="quotesForm.get('dimension').hasError(validate.type) && (quotesForm.get('dimension').dirty || quotesForm.get('dimension').touched)">
                     {{validate.message}}
-                  </div>
-                  </div>
-        
-          <ion-item>
+            </div>
+            </div>
+              <ion-item>
             <ion-label floating>Total price</ion-label>
             <ion-input type="number" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
           </ion-item>
@@ -70,8 +66,6 @@
                 {{validate.message}}
               </div>
               </div>
-              
-        
   </form>
 </ion-content>
 <ion-footer>

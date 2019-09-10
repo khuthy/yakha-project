@@ -112,6 +112,7 @@ type: 'required', message: 'Please include some features'
     }
 
   ionViewDidLoad() {
+   // firebase.database().ref().child('hotels').
     console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();

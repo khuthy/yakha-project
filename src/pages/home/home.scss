@@ -1,28 +1,71 @@
 page-home {
+    
+
+
+
+ 
   .scroll-content {
-    margin-top: 0 !important;
+    
     padding-bottom: 0 !important;
   }
-  ion-header {
-    box-shadow: none !important;
-    border-bottom: none !important;
+   .control {
+     position: relative;
+     //box-shadow: 0 3px 6px #0000002c;
+     border-radius: 50px;
+     //border: 1px solid red;
+      padding: 0px;
+   }
+   .controls {
+  padding-left: 40px;
+   position: absolute;
+   min-width: 100%;
+    right: 0; 
+    left: 0;
+    bottom: 0%;
+    top: 0;
+    border: none;
+    box-shadow: 0 3px 6px rgba(95, 95, 95, 0.103);
+    //box-shadow: 0 3px 6px #0000002c;
+    font-size: 16px;
+  
+    border-radius: 50px;
   }
-  .menus {
-    position: fixed;
+  .btn-menu {
+    position: relative;
+    z-index: 1000;
+    padding: 0;
+    left:1%;
+    .icon {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  .btn-fab {
+    position: absolute;
+    right: -9px;
+    top: -9px;
+  } 
+  
+  .menu {
+ 
+    position: absolute;
+    height: auto;
     top: 1%;
-    z-index: 100;
-    width: 100%;
-     display: flex;
     
-    flex-direction: column; 
-    //border: 1px solid #333;
-    padding: 0 10px;
+    left: 5%;
+    right: 5%;
+    //border:1px solid  #0000002c;
+    //box-shadow: 0 3px 6px #0000002c;
+    border-radius: 50px;
+    
   }
+  
  
   
   #map{
     height: 100%;
     width: 100%;
+  
     object-fit: cover;
   }
   .slider {
@@ -52,12 +95,16 @@ page-home {
     top: -9px;
 
   }
+  .search {
+    padding: 10px;
+    background: red;
+  }
 
   .card {
     padding: 1%;
     border-radius: 12px;
      //border: 1px solid rgba(20, 9, 19, 0.8);
-     box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.164);
+     box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.103);
      background: rgba(255, 255, 255, 0.904);
    .thumbnail {
      display: flex;
@@ -87,6 +134,10 @@ page-home {
         margin: 0 3%;
         text-align: left;
         color: rgb(139, 139, 139);
+        display: flex;
+        
+        flex-direction: column;
+        justify-content: center;
         .stars {
           max-width: 50%;
 
@@ -120,7 +171,7 @@ page-home {
   .homebuilder {
     font-family: 'Montserrat', sans-serif;
     position: relative;
-    margin-top: 90px;
+
    
     
 }
