@@ -43,15 +43,17 @@ export class QuotationFormPage {
     comment:'',
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
-   date:Date(),
-   builderUID: '',
-   doc:'',
-   response_date:'',
-   createBy:'', 
-   ownerAddress:''
+    date:Date(),
+    builderUID: '',
+    doc:'',
+    response_date:'',
+    createBy:'', 
+    ownerAddress:'',
+    ownerName:''
   };
   docID;
  date: any;
+ extras:any;
 /* validations starts here */
 validation_messages = {
   'startDate': [
@@ -108,6 +110,7 @@ type: 'required', message: 'Width is required.'
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
+          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
       let date = new Date();
@@ -127,6 +130,10 @@ type: 'required', message: 'Width is required.'
   }
 next(){
   this.navCtrl.push(SuccessPage);
+}
+
+selectAll(){
+this.extras = ["Roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
 }
 async selectImage() {
   let option: CameraOptions = {

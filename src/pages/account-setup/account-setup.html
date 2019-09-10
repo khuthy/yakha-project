@@ -25,13 +25,18 @@
          </div>
          </div>
 
-         <ion-item>
-          <ion-label>Gender</ion-label>
-          <ion-select >
-            <ion-option value="f">Female</ion-option>
-            <ion-option value="m">Male</ion-option>
-          </ion-select>
+         <ion-item >
+          <ion-label floating>Gender</ion-label>
+          <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"  cancelText="Dismiss">
+              <ion-option value="Female">Female</ion-option>
+              <ion-option value="Male">Male</ion-option>
+            </ion-select>
         </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.gender">
+         <div class="messages" *ngIf="profileForm.get('gender').hasError(validate.type) && (profileForm.get('gender').dirty || profileForm.get('gender').touched)">
+           {{validate.message}}
+         </div>
+         </div>
         
          <ion-item >
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
@@ -43,7 +48,7 @@
          </div>
 
         <ion-item>
-          <ion-label floating> Cellphone number</ion-label>
+          <ion-label floating> CellPhone Number</ion-label>
           <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.personalNumber">
@@ -86,6 +91,9 @@
        <div class="name">
          <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
        </div>
+       <div class="gender">
+        <h4 style="text-align: center;">{{HomeOwnerProfile.gender}}</h4>
+      </div>
        <ion-fab right bottom>
         <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>

@@ -29,14 +29,20 @@
            {{validate.message}}
          </div>
          </div>
-
-         <ion-item>
-          <ion-label>Gender</ion-label>
-          <ion-select >
-            <ion-option value="f">Female</ion-option>
-            <ion-option value="m">Male</ion-option>
-          </ion-select>
+         <ion-item >
+          <ion-label floating>Gender</ion-label>
+          <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"  cancelText="Dismiss">
+              <ion-option value="Female">Female</ion-option>
+              <ion-option value="Male">Male</ion-option>
+            </ion-select>
         </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.gender">
+         <div class="messages" *ngIf="profileForm.get('gender').hasError(validate.type) && (profileForm.get('gender').dirty || profileForm.get('gender').touched)">
+           {{validate.message}}
+         </div>
+         </div>
+
+         
 
       <ion-item >
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
@@ -63,13 +69,25 @@
          </div>
          </div>
 
-         <ion-item>
-          <ion-label>Does price include roofing?</ion-label>
+         <!-- <ion-item>
+          <ion-label floating>Does price include roofing?</ion-label>
           <ion-select >
             <ion-option value="y">Yes</ion-option>
             <ion-option value="n">No</ion-option>
           </ion-select>
+        </ion-item> -->
+        <ion-item >
+          <ion-label floating>Does price include roofing?</ion-label>
+          <ion-select formControlName="roof" name="roof" [(ngModel)]="builderProfile.roof"  cancelText="Dismiss">
+              <ion-option value="true">Yes</ion-option>
+              <ion-option value="false">No</ion-option>
+            </ion-select>
         </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.roof">
+         <div class="messages" *ngIf="profileForm.get('roof').hasError(validate.type) && (profileForm.get('roof').dirty || profileForm.get('roof').touched)">
+           {{validate.message}}
+         </div>
+         </div>
 
       <ion-item >
           <ion-label floating>Experience</ion-label>
@@ -82,22 +100,7 @@
            {{validate.message}}
          </div>
          </div>
-
-
-
-
-
-      <!-- <ion-item >
-          <ion-label position="floating">Location</ion-label>
-          <ion-input type="text" formControlName="location" name="location" [(ngModel)]="builderProfile.location" ngDefaultControl></ion-input>
-        </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.location">
-         <div class="messages" *ngIf="profileForm.get('location').hasError(validate.type) && (profileForm.get('location').dirty || profileForm.get('location').touched)">
-           {{validate.message}}
-         </div>
-         </div> -->
-
-    <ion-item >
+      <ion-item >
         <ion-label floating>Are you Certified?</ion-label>
         <ion-select formControlName="certified" name="certified" [(ngModel)]="builderProfile.certified"  cancelText="Dismiss">
             <ion-option value="true">Yes</ion-option>
@@ -130,15 +133,19 @@
 </div>
 <div class="name">
      <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
+     <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
      <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
     </ion-fab>
    </div>
+   <div class="">
+    <p> R:{{builderProfile.price}}(p/m2)</p>
+    <p> {{builderProfile.roof}} Does your price include roofing</p>
+   </div>
    <div class="details">
      <p> {{builderProfile.experiences}} years of experience</p>
-    
-   </div>
+    </div>
    <div class="bio">
      <h6><ion-icon size="large" name="pin"></ion-icon></h6>
      <p>
