@@ -5,28 +5,37 @@
     <button ion-button clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
+    
   </ion-navbar>
- 
+  
+
 </ion-header>
 
 <ion-content>
-    <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
+    
     <div #map id="map" *ngIf="maps"></div>
-    <div class="menus">
-       <!-- <ion-searchbar id="pac-input" *ngIf="maps"></ion-searchbar> -->
-       <!-- <ion-item class="list" *ngFor="let item of resultArr">
-        <ion-avatar>
-            <img src="{{item.bricklayerImage}}" alt="" srcset="">
-        </ion-avatar>
-
-        <ion-label>
-          <ion-note style="font-weight: bold">
-            {{item.fullName}}
-          </ion-note>
-        </ion-label>
-      </ion-item> -->
-    </div>
+    <div class="menu" *ngIf="maps">
+     <div class="control">
+       <button class="btn-menu" ion-button clear menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+   <input type="text" id="search" placeholder="Search..." class="controls">  
+    <ion-fab top right>
+      <button class="btn-fab" ion-fab ><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+      
+     </div>
+       
+   </div> 
    
+    
+  
+    
+       
+     
+   
+  
 
   <div class="slider" *ngIf="maps">
       <ion-item>
@@ -81,7 +90,7 @@
    
     </div> 
 </div> -->
-<div class="homebuilder" padding >
+<div class="homebuilder" *ngIf="request">
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder.comment)">
   
     <div class="home-builder-top">

@@ -63,8 +63,6 @@ request: boolean = false;
     public platform: Platform,
     
  ) {
-   this.price = 0;
-   console.log(this.price);
    
   this.menuCtrl.swipeEnable(true);
   if(this.isSearchbarOpened) {
@@ -116,10 +114,10 @@ request: boolean = false;
           }
           
           this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          let input = document.getElementById('pac-input');
+          let input = document.getElementById('search');
           let searchBox = new google.maps.places.SearchBox(input);
-          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-          //this.db.collection('builder')
+          /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+           */
           this.map.addListener('bounds_changed', (res) => {
             searchBox.setBounds(this.map.getBounds());
           });
@@ -353,7 +351,7 @@ getItems(ev: any) {
     }
  
     // On a desktop, and is wider than 400px
-    else if(this.platform.width() > 400) {
+    else if(this.platform.width() > 450) {
       this.slidesPerView = 2;
     }
  

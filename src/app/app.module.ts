@@ -92,6 +92,7 @@ import { CallNumber } from '@ionic-native/call-number';
     GooglePlaceModule,
     
     IonicModule.forRoot(MyApp),
+
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

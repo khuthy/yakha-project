@@ -51,16 +51,8 @@ $colors: (
 
 $list-md-border-color: #b8b8b8;
 
-$searchbar-md-input-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.294);
-$searchbar-md-border-radius: 12px;
-$searchbar-ios-padding-horizontal: 0px;
-$searchbar-ios-padding-vertical: 0px;
-$searchbar-md-padding-start: 0px;
-$searchbar-md-padding-end: 0px;
-$searchbar-md-padding-bottom: 0px;
-$searchbar-md-padding-top: 0px;
-
-
+$searchbar-md-input-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.294);
+$searchbar-md-border-radius: 50%;
 $fab-mini-size: 30px;
 $fab-size: 40px;
 // App iOS Variables
