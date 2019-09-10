@@ -61,7 +61,7 @@
       </ion-item> -->
      <ion-item >
           <ion-label floating>Price (p/m2)</ion-label>
-          <ion-input type="number" formControlName="price" name="price" [(ngModel)]="builderProfile.price" ngDefaultControl></ion-input>
+          <ion-input type="number" formControlName="price" name="price" [(ngModel)]="builderProfile.price"></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.price">
          <div class="messages" *ngIf="profileForm.get('price').hasError(validate.type) && (profileForm.get('price').dirty || profileForm.get('price').touched)">
