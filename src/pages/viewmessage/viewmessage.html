@@ -24,11 +24,7 @@
             
           <span id="quotes1"><strong id="date1">{{r.startDate}}start date</strong> <strong id="date2">{{r.endDate}}</strong></span>
           <p class="info">
-            <strong class="measure">
-          <span id="quotes3"> <strong>Width: </strong>{{r.width}} meters</span>
-          <span id="quotes3"> <strong>Length</strong>{{r.length}}   meters</span>
-          <span id="quotes3"> <strong>Height</strong> {{r.height}}  meters</span>
-          <span id="quotes3"><strong>length </strong>{{r.width}}   </span>
+          <strong class="measure">
           <span id="quotes3"><strong>Wall type</strong> {{r.wallType}} </span>
           <span id="quotes3"><strong>brick type </strong> {{r.brickType}} </span>
           </strong>
@@ -36,7 +32,15 @@
           <div class="imgs">
               <img src="{{r.houseImage}}" class="thumb" alt="house plan">
               <p>House plan</p>
+          </div>
+          <div class="extras">
+            <h3>Extras</h3>
+            <hr>
+            <div class="fet">
+              <p *ngFor="let e of r.extras">{{e}}</p>
             </div>
+            <!-- <p>Created: {{n.lastcreated}}</p> -->
+          </div>
         </blockquote>
        
           <blockquote>
@@ -77,8 +81,8 @@
         </div>
     <div class="message">
       <div class="details">
-        <img *ngIf="houseImage" src="{{houseImage}}" class="images" alt="thumb">
-        <img *ngIf="!houseImage" src="../../assets/imgs/placeholder.png" class="images" alt="thumb">
+        <img *ngIf="profilePic" src="{{profilePic}}" class="images" alt="thumb">
+        <img *ngIf="!profilePic" src="../../assets/imgs/Construction ncf-psp_516_d2210.jpg" class="images" alt="thumb">
         <div class="title">
           <h2>{{hOwnerPhone}}</h2>
         </div>
@@ -94,15 +98,23 @@
           <span id="quotes1"><strong id="date1">{{startDate}}</strong> <strong id="date2">{{endDate}}</strong></span>
           <p class="info">
             <strong class="measure">
-          <span id="quotes3"> <strong>Width: </strong>{{width}} meters</span>
+          <!-- <span id="quotes3"> <strong>Width: </strong>{{width}} meters</span>
           <span id="quotes3"> <strong>Length:</strong>{{length}} meters</span>
-          <span id="quotes3"> <strong>Height:</strong>{{height}} meters</span>
+          <span id="quotes3"> <strong>Height:</strong>{{height}} meters</span> -->
           <span id="quotes3"><strong>Wall type:</strong>{{wallType}} </span>
           <span id="quotes3"><strong>brick type: </strong>{{brickType}} </span>
           </strong>
-          </p>
+          <div class="extras">
+            <h3>Extras</h3>
+            <hr>
+            <div class="fet">
+                  <p *ngFor="let e of extras">{{e}}</p>
+            </div>
+            <!-- <p>Created: {{n.lastcreated}}</p> -->
+          </div>
+          
           <div class="imgs">
-              <img src="../../assets/imgs/placeholder.png" class="thumb" alt="house plan">
+              <img src="{{houseImage}}" class="thumb" alt="house plan">
               <p>House plan</p>
             </div>
         </blockquote>
@@ -124,11 +136,6 @@
 
             
       </div>
-      <!-- <div class="block builder">
-          <p>{{email}}</p>
-
-            
-      </div> -->
      
     </div>
    

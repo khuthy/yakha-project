@@ -188,11 +188,6 @@ export class BuilderquotesPage {
                       'Subtotal',
                       1000,
                   ],
-                  [ 
-                      '',
-                      'Shipping',
-                      2234,
-                  ],
                   [
                       '',
                       'Total',
