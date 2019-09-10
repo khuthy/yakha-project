@@ -34,30 +34,30 @@ export class QuotationFormPage {
     uid:'',
     startDate:'',
     endDate:'',
-    height: '',
-    length:'',
-    width:'',
+    extras:[],
     wallType:'',
     brickType:'',
     houseImage:'',
     comment:'',
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
-   date:Date(),
-   builderUID: '',
-   doc:'',
-   response_date:'',
-   createBy:'', 
-   ownerAddress:''
+    date:Date(),
+    builderUID: '',
+    doc:'',
+    response_date:'',
+    createBy:'', 
+    ownerAddress:'',
+    ownerName:''
   };
   docID;
  date: any;
+ extras:any = ['roofing', 'doors', 'windows', 'framing', 'electricity', 'Plumbing', 'ceiling', 'plaster' ];
 /* validations starts here */
 validation_messages = {
-  'startDate': [
-    { type: 'required', message: 'Start date is required.' }
+'startDate': [
+   { type: 'required', message: 'Start date is required.' }
   ],
-  'endDate': [
+'endDate': [
     { type: 'required', message: 'End date is required.' }
   ],
 'wallType': [ {
@@ -66,15 +66,10 @@ validation_messages = {
 'brickType': [ {
 type: 'required', message: 'Brick type is required.'
 }],
-'Height': [ {
-type: 'required', message: 'Height is required.'
+'extras': [ {
+type: 'required', message: 'Please include some features'
 }],
-'length': [ {
-type: 'required', message: 'Length is required.'
-}],
-'width': [ {
-type: 'required', message: 'Width is required.'
-}],
+
 'comment': [ {type: 'required', message: 'Additional comments is required.'},
             {type: 'maxlength', message: 'Additional comments must be 200 characters'}
           ]
@@ -99,15 +94,14 @@ type: 'required', message: 'Width is required.'
         endDate:new  FormControl('', Validators.compose([Validators.required])),
         wallType: new  FormControl('', Validators.compose([Validators.required])),
         brickType:new  FormControl('', Validators.compose([Validators.required])),
-        Height: new  FormControl('', Validators.compose([Validators.required])),
-        length:new  FormControl('', Validators.compose([Validators.required])),
-        width:new  FormControl('', Validators.compose([Validators.required])),
+        extras: new  FormControl('', Validators.compose([Validators.required])),
         comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
       firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
+          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
       let date = new Date();
@@ -115,8 +109,6 @@ type: 'required', message: 'Width is required.'
       let month = date.getMonth();
       let year = date.getFullYear();
       this.date = year + '-' + month + '-' + days;
-
-     
     }
 
   ionViewDidLoad() {
@@ -127,6 +119,9 @@ type: 'required', message: 'Width is required.'
   }
 next(){
   this.navCtrl.push(SuccessPage);
+}
+selectAll(){
+this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
 }
 async selectImage() {
   let option: CameraOptions = {

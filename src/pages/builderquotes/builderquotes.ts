@@ -40,7 +40,7 @@ export class BuilderquotesPage {
   }
   quotesForm: FormGroup;
   quotes = {
-  fullname:'',  
+  ownerName:'',  
   ownerAddress:'',
   fullName:'',
   expiry: '',
@@ -88,7 +88,7 @@ export class BuilderquotesPage {
     private authUser: AuthServiceProvider,
     private loader: LoadingController
     ) {
-     // this.quotes.hOwnerUID = this.navParams.data;
+     this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
@@ -102,25 +102,40 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.navParams.data);
-    this.db.collection('HomeOwnerQuotation').doc(this.navParams.data).get().then((res)=>{
+   // console.log(this.navParams.data);
+    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).get().then((res)=>{
       this.quotes.dimension = res.data().length + 'x' + res.data().width + 'x' + res.data().height;
       this.length = res.data().length;
       this.height = res.data().height;
       this.width = res.data().width;
-      this.ownerAddress = res.data().ownerAddress;
+     this.quotes.ownerAddress = res.data().ownerAddress;
+     this.quotes.price = Number(res.data().price) * (this.length*this.width*this.height)*2 + (Number(res.data().price) * (this.length*this.width*this.height)*2)*.15;
+     this.quotes.ownerName = res.data().ownerName;
+  //   console.log(res.id);
+     
     })
 
     this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
         res.forEach((doc)=>{
           this.quotes.address = doc.data().address;
           this.quotes.fullName = doc.data().fullName;
-          this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+         
+          
         })
     })
+    this.db.collection('HomeOwnerProfile').where('uid','==', this.quotes.hOwnerUID).get().then((res)=>{
+      res.forEach((doc)=>{
+        //this.quotes.ownerAddress = doc.data().ownerAddress;
+        //console.log(doc.data());
+        this.quotes.ownerName = doc.data().fullname;
+        // this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+      })
+  })
+
   }
   public handleAddressChange(addr: Address) {
-    this.quotes.address = addr.formatted_address ;
+    this.quotes.address = addr.formatted_address;
+    //this.quotes.ownerAddress = addr.formatted_address;
    // console.log(this.location)
     
   }
@@ -140,7 +155,7 @@ export class BuilderquotesPage {
         this.quotes.fullName,
         this.quotes.address,
         { text: 'To', style: 'subheader' },
-        this.quotes.fullname,
+        this.quotes.ownerName,
         this.quotes.ownerAddress,
         { text: 'Expiry', style: 'subheader' },
         { text: this.quotes.expiry },
@@ -162,7 +177,26 @@ export class BuilderquotesPage {
 
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
+        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
+        {
+          style: 'totalsTable',
+          table: {
+              widths: ['*', 75, 75],
+              body: [
+                  [
+                      '',
+                      'Subtotal',
+                      1000,
+                  ],
+                  [
+                      '',
+                      'Total',
+                      15111451454,
+                  ]
+              ]
+          },
+          layout: 'noBorders'
+      }, 
       ],
       styles: {
         header: {

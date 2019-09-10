@@ -33,11 +33,7 @@
               </ion-textarea>
               
             </ion-item>
-            <div class="error" *ngFor="let validate of validation_messages.message">
-              <div class="messages" *ngIf="contactForm.get('message').hasError(validate.type) && (contactForm.get('message').dirty || contactForm.get('message').touched)">
-                {{validate.message}}
-              </div>
-              </div>
+           
 
           </form>
           <div class="btn">

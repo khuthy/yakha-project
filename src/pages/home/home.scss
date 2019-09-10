@@ -165,7 +165,8 @@ page-home {
   .homebuilder {
     font-family: 'Montserrat', sans-serif;
     position: relative;
-    padding: 20px;
+
+   
     
 }
 .home-builder-top {
@@ -226,7 +227,7 @@ page-home {
     z-index: -1;
     text-align: center;
 }
-.status {
+/* .status {
   height: 100%;
   width: 100%;
   display: flex;
@@ -237,22 +238,27 @@ page-home {
   font-size: 21px;
   background: #216D7B;
 
-}
-.btn-animate {
+} */
+/* .btn-animate {
   animation-name: fadeIn;
   animation-duration: 2s;
   -moz-animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-}
-@keyframes fadeIn {
+} */
+/* @keyframes fadeIn {
   0% {opacity: 0}
   100% {opacity: 1}
-}
+} */
 .message {
+  overflow-y: hidden;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('../../assets/imgs/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 }
