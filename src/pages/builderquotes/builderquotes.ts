@@ -40,6 +40,9 @@ export class BuilderquotesPage {
   }
   quotesForm: FormGroup;
   quotes = {
+  ownerName:'',  
+  ownerAddress:'',
+  fullName:'',
   expiry: '',
   address: '',
   dimension: '',
@@ -53,6 +56,13 @@ export class BuilderquotesPage {
   storage = firebase.storage().ref();
   uid: any;
   validation_messages = {
+    'fullName': [
+      { type: 'required', message: 'Name is required.' },
+      { type: 'minlength', message: 'Name must be at least 4 characters long.' },
+      { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
+      { type: 'validUsername', message: 'Your username has already been taken.' }
+    ],
     'expiry': [
       { type: 'required', message: 'Expiry date is required.' }
     ],
@@ -67,6 +77,7 @@ export class BuilderquotesPage {
      {type: 'maxlength', message: 'Amount is too large'}
 ]
 }
+  ownerAddress: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -77,11 +88,12 @@ export class BuilderquotesPage {
     private authUser: AuthServiceProvider,
     private loader: LoadingController
     ) {
-     // this.quotes.hOwnerUID = this.navParams.data;
+     this.quotes.hOwnerUID = this.navParams.data;
       this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
       this.quotesForm = this.forms.group({
+        fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
         expiry: new FormControl('', Validators.compose([Validators.required])),
         address: new FormControl('', Validators.compose([Validators.required])),
         dimension: new FormControl('', Validators.compose([Validators.required])),
@@ -90,23 +102,40 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.navParams.data);
-    this.db.collection('HomeOwnerQuotation').doc(this.navParams.data).get().then((res)=>{
+   // console.log(this.navParams.data);
+    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).get().then((res)=>{
       this.quotes.dimension = res.data().length + 'x' + res.data().width + 'x' + res.data().height;
       this.length = res.data().length;
       this.height = res.data().height;
       this.width = res.data().width;
+     this.quotes.ownerAddress = res.data().ownerAddress;
+     this.quotes.price = Number(res.data().price) * (this.length*this.width*this.height)*2 + (Number(res.data().price) * (this.length*this.width*this.height)*2)*.15;
+     this.quotes.ownerName = res.data().ownerName;
+  //   console.log(res.id);
+     
     })
 
     this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
         res.forEach((doc)=>{
           this.quotes.address = doc.data().address;
-          this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+          this.quotes.fullName = doc.data().fullName;
+         
+          
         })
     })
+    this.db.collection('HomeOwnerProfile').where('uid','==', this.quotes.hOwnerUID).get().then((res)=>{
+      res.forEach((doc)=>{
+        //this.quotes.ownerAddress = doc.data().ownerAddress;
+        //console.log(doc.data());
+        this.quotes.ownerName = doc.data().fullname;
+        // this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
+      })
+  })
+
   }
   public handleAddressChange(addr: Address) {
-    this.quotes.address = addr.formatted_address ;
+    this.quotes.address = addr.formatted_address;
+    //this.quotes.ownerAddress = addr.formatted_address;
    // console.log(this.location)
     
   }
@@ -121,32 +150,87 @@ export class BuilderquotesPage {
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
+       
+        { text: 'From', style: 'subheader' },
+        this.quotes.fullName,
+        this.quotes.address,
+        { text: 'To', style: 'subheader' },
+        this.quotes.ownerName,
+        this.quotes.ownerAddress,
         { text: 'Expiry', style: 'subheader' },
         { text: this.quotes.expiry },
 
-        { text: 'Address', style: 'subheader' },
-        this.quotes.address,
+        { text: 'Items', style: 'subheader'},
+        {
+          style: 'itemsTable',
+          table: {
+              widths: ['*', 75, 75],
+              body: [
+                  [ 
+                      { text: 'Description', style: 'itemsTableHeader' },
+                      { text: 'Quantity', style: 'itemsTableHeader' },
+                      { text: 'Price', style: 'itemsTableHeader' },
+                  ]
+              ].concat()
+          }
+      },
+
 
         { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] }, 
+        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
+        {
+          style: 'totalsTable',
+          table: {
+              widths: ['*', 75, 75],
+              body: [
+                  [
+                      '',
+                      'Subtotal',
+                      1000,
+                  ],
+                  [ 
+                      '',
+                      'Shipping',
+                      2234,
+                  ],
+                  [
+                      '',
+                      'Total',
+                      15111451454,
+                  ]
+              ]
+          },
+          layout: 'noBorders'
+      }, 
       ],
       styles: {
         header: {
-          fontSize: 18,
+          fontSize: 20,
           bold: true,
-        },
-        subheader: {
-          fontSize: 14,
-          bold: true,
-          margin: [0, 15, 0, 0]
-        },
+          margin: [0, 0, 0, 10],
+          alignment: 'right'
+      },
+      subheader: {
+        fontSize: 16,
+        bold: true,
+        margin: [0, 20, 0, 5]
+    },
         story: {
-          italic: true,
-          alignment: 'center',
-          width: '50%',
-        }
+          bold: true,
+            fontSize: 13,
+            color: 'black'
+        },
+        totalsTable: {
+          bold: true,
+          margin: [0, 30, 0, 0]
       }
-    }
+  },
+  defaultStyle: {
+  }
+ }
+     
+
+    
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();

@@ -43,12 +43,13 @@ export class QuotationFormPage {
     comment:'',
     hOwnerPhone: 0,
     email: firebase.auth().currentUser.email,
-   date:Date(),
-   builderUID: '',
-   doc:'',
-   response_date:'',
-   createBy:'', 
-   ownerAddress:''
+    date:Date(),
+    builderUID: '',
+    doc:'',
+    response_date:'',
+    createBy:'', 
+    ownerAddress:'',
+    ownerName:''
   };
   docID;
  date: any;
@@ -108,6 +109,7 @@ type: 'required', message: 'Width is required.'
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
+          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
       let date = new Date();

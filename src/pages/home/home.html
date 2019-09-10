@@ -1,24 +1,29 @@
 
-<ion-header *ngIf="request">
-  <ion-navbar color="primary">
+<ion-header >
+  <ion-navbar color="primary" *ngIf="request">
     <ion-title middle>Home</ion-title>
     <button ion-button clear menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
+ 
 </ion-header>
+
 <ion-content>
     <input id="pac-input" *ngIf="maps" class="controls" type="text" placeholder="Search Box">
     <div #map id="map" *ngIf="maps"></div>
-  <div class="menus" *ngIf="maps">
-    <button ion-button clear menuToggle>
-        <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
-      </button>
-  </div>
-
+    <div class="menus">
+       <ion-searchbar showCancelButton="true" (ionInput)="getItems($event)" animated="true" #filterSearch></ion-searchbar>
+       <ion-list class="list">
+        <ion-item *ngFor="let item of items">
+          {{ item }}
+        </ion-item>
+      </ion-list>
+    </div>
+   
 
   <div class="slider" *ngIf="maps">
-    <ion-slides spaceBetween="-33">
+    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
      <div class="thumbnail">
@@ -34,10 +39,10 @@
          </div>
 
        </div>
-
+      <hr style="border-color: rgb(255, 3, 3)">
        <div class="bottom">
-         <hr style="border-color: #ddd">
-         <div class="view">
+        
+         <div class="view"> 
           <p>View more</p>
           <p><ion-icon name="arrow-forward"></ion-icon></p>
          </div>

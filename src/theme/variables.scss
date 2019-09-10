@@ -34,19 +34,35 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:       rgba(197, 101, 66, 0.966),
-
-  secondary:  #216D7B,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  button: #0071BC,
-  button2: #F15A24,
-  custom: #216D7B
+  primary     : rgba(197, 101, 66, 0.966),
+  secondary   : #216D7B,
+  danger      : #f53d3d,
+  light       : #f4f4f4,
+  dark        : #222,
+  button      : #0071BC,
+  button2     : #F15A24,
+  custom      : #216D7B,
+  transparent : rgba(0, 0, 0, 0.24),
+  yakha       : (
+    base      : rgba(255, 255, 255, 0),
+    contrast  : rgb(53, 53, 53)
+       )
 );
 
-$list-md-border-color: #b6b6b6;
+$list-md-border-color: #b8b8b8;
+
+$searchbar-md-input-box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.294);
+$searchbar-md-border-radius: 12px;
+$searchbar-ios-padding-horizontal: 0px;
+$searchbar-ios-padding-vertical: 0px;
+$searchbar-md-padding-start: 0px;
+$searchbar-md-padding-end: 0px;
+$searchbar-md-padding-bottom: 0px;
+$searchbar-md-padding-top: 0px;
+
+
 $fab-mini-size: 30px;
+$fab-size: 40px;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

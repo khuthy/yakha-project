@@ -41,7 +41,9 @@ export class BaccountSetupPage {
   uid: '',
    bricklayerImage:'',
    fullName:'',
+   gender:'',
    certified: false,
+   roof:false,
    experiences: '',
    address:null,
    price:'',
@@ -80,8 +82,10 @@ export class BaccountSetupPage {
     this.builderProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      gender: new  FormControl('', Validators.compose([Validators.required])),
       certified: new  FormControl('', Validators.compose([Validators.required])),
       experience: new  FormControl('', Validators.compose([Validators.required])),
+      roof: new  FormControl('', Validators.compose([Validators.required])),
       address: new  FormControl('', Validators.compose([Validators.required])),
       price: new  FormControl('', Validators.compose([Validators.required]))
     });
@@ -182,17 +186,23 @@ export class BaccountSetupPage {
   }
 
   validation_messages = {
-    'fullName': [
+'fullName': [
       { type: 'required', message: 'Name is required.' },
       { type: 'minlength', message: 'Name must be at least 4 characters long.' },
       { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
       { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
       { type: 'validUsername', message: 'Your username has already been taken.' }
     ],
+'gender': [ {
+      type: 'required', message: 'Field is required'
+    }],
 'bricklayerImage': [ {
       type: 'required', message: 'Field is required'
     }],
 'certified': [ {
+  type: 'required', message: 'Field is required'
+}],
+'roof': [ {
   type: 'required', message: 'Field is required'
 }],
 'experience': [ {
@@ -234,7 +244,9 @@ export class BaccountSetupPage {
           this.builderProfile.bricklayerImage  = doc.data().bricklayerImage
           this.profileImage = doc.data().bricklayerImage;
           this.builderProfile.fullName = doc.data().fullName;
+          this.builderProfile.gender = doc.data().gender;
           this.builderProfile.certified  = doc.data().certified;
+          this.builderProfile.roof  = doc.data().roof;
           this.builderProfile.experiences  = doc.data().experiences;
           this.builderProfile.address  = doc.data().address;
           this.profileForm.patchValue({address: doc.data().address});
@@ -279,7 +291,9 @@ export class BaccountSetupPage {
   uid:string;
   image?:string;
   fullName: string,
+  gender: string,
   certified: string,
+  roof:string,
   experiences: string,
   address: string,
   price: string
