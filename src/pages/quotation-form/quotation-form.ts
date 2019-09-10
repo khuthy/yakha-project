@@ -53,6 +53,7 @@ export class QuotationFormPage {
   };
   docID;
  date: any;
+ extras:any;
 /* validations starts here */
 validation_messages = {
   'startDate': [
@@ -129,6 +130,10 @@ type: 'required', message: 'Width is required.'
   }
 next(){
   this.navCtrl.push(SuccessPage);
+}
+
+selectAll(){
+this.extras = ["Roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
 }
 async selectImage() {
   let option: CameraOptions = {
