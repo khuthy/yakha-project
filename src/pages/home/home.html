@@ -15,15 +15,16 @@
 <ion-content>
     
     <div #map id="map" *ngIf="maps"></div>
-    <div class="menu">
+    <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="btn-menu" ion-button clear menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-   <input type="text" id="search" class="controls">  
-   
-      <button class="btn-fab" ion-fab mini><ion-icon name="add"></ion-icon></button>
-    
+   <input type="text" id="search" placeholder="Search..." class="controls">  
+    <ion-fab top right>
+      <button class="btn-fab" ion-fab ><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+      
      </div>
        
    </div> 

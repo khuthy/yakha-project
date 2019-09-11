@@ -21,9 +21,10 @@ page-home {
    min-width: 100%;
     right: 0; 
     left: 0;
-    bottom: 0;
+    bottom: 0%;
     top: 0;
     border: none;
+    box-shadow: 0 3px 6px rgba(95, 95, 95, 0.103);
     //box-shadow: 0 3px 6px #0000002c;
     font-size: 16px;
   
@@ -33,11 +34,16 @@ page-home {
     position: relative;
     z-index: 1000;
     padding: 0;
+    left:1%;
+    .icon {
+      font-weight: bold;
+      font-size: 20px;
+    }
   }
   .btn-fab {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: -9px;
+    top: -9px;
   } 
   
   .menu {

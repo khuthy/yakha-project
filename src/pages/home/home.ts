@@ -109,8 +109,8 @@ request: boolean = false;
           this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
           let input = document.getElementById('search');
           let searchBox = new google.maps.places.SearchBox(input);
-          
-          
+          /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+           */
           this.map.addListener('bounds_changed', (res) => {
             searchBox.setBounds(this.map.getBounds());
           });
