@@ -204,6 +204,19 @@ page-viewmessage {
             height: 0;
         }
     }
+    .fet {
+        margin: 1%;
+        display: flex;
+        flex-wrap: wrap;
+        > p {
+            background: rgba(255, 140, 0, 0.609); 
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            
+            padding: 2%;
+            margin: 1%;       
+        }
+    }
 
     .booking-inactive{
         width: 100%;
