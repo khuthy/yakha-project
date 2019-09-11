@@ -34,15 +34,7 @@
           </p>
           </ion-label>
   
-          <ion-item>
-              <ion-label floating>Preffered end date</ion-label>
-              <ion-datetime formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
-            </ion-item>
-            <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
-              <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
-                {{validate.message}}
-              </p>
-              </ion-label>
+          
       
               <ion-item>
                   <ion-label floating>Preffered end date</ion-label>
