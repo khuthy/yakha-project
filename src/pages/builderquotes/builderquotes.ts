@@ -100,7 +100,7 @@ export class BuilderquotesPage {
         price: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(7)]))
       })
   }
-
+  
   ionViewDidLoad() {
    // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).get().then((res)=>{
