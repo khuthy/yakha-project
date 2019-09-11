@@ -91,7 +91,11 @@ import { CallNumber } from '@ionic-native/call-number';
     HttpClientModule,
     GooglePlaceModule,
     
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false
+    } ),
 
     IonicStorageModule.forRoot()
   ],
