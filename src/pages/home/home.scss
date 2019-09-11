@@ -51,7 +51,7 @@ page-home {
     position: absolute;
     height: auto;
     top: 1%;
-    
+   
     left: 5%;
     right: 5%;
     //border:1px solid  #0000002c;
@@ -60,7 +60,10 @@ page-home {
     
   }
   
- 
+ .list {
+   position: absolute;
+   bottom: 30%;
+ }
   
   #map{
     height: 100%;
