@@ -48,8 +48,10 @@
                   {{validate.message}}
                 </div>
                 </div>
-              <ion-item>
-                <ion-label floating>Dimensions</ion-label>
+              
+              <div *ngFor="let item of extras">
+                <ion-item>
+                <ion-label floating>{{item}}</ion-label>
                 <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
               </ion-item>
             <div class="error" *ngFor="let validate of validation_messages.dimension">
@@ -57,9 +59,11 @@
                     {{validate.message}}
             </div>
             </div>
+              </div>
+                
               <ion-item>
             <ion-label floating>Total price</ion-label>
-            <ion-input type="number" formControlName="price" [(ngModel)]="quotes.price"></ion-input>
+            <ion-input type="number" formControlName="price" [(ngModel)]="total"></ion-input>
           </ion-item>
           <div class="error" *ngFor="let validate of validation_messages.price">
               <div class="messages" *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
