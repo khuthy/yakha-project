@@ -189,7 +189,7 @@ export class AccountSetupPage {
       if (querySnapshot.empty !== true){
         console.log('Got data', querySnapshot);
         querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data(), doc.data().ownerImage)
+          console.log('Profile Document: ', doc.data(), doc.data())
           this.displayProfile = doc.data();
           this.HomeOwnerProfile.About  = doc.data().About;
           this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
@@ -197,7 +197,7 @@ export class AccountSetupPage {
           this.HomeOwnerProfile.fullname  = doc.data().fullname;
           this.HomeOwnerProfile.gender  = doc.data().gender;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
-          
+          this.profileForm.patchValue({address: doc.data().ownerAddress})
         })
         this.icon = 'create';
          this.isProfile = true;
