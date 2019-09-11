@@ -4,7 +4,9 @@
       <ion-toolbar>
         <ion-title>Request quotes</ion-title>
         <ion-buttons end>
-          
+          <button ion-button icon-only *ngIf="!houseImage" (click)="selectImage()">
+            <ion-icon name="attach"></ion-icon>
+          </button>
         </ion-buttons>
           
         </ion-toolbar>
@@ -13,29 +15,31 @@
 
 <ion-content>
    <div class="container">
-  <p id="icon" *ngIf="!houseImage"  (click)="selectImage()">Please Upload the house Plan<span>
-    <ion-icon style="color:#c46441;font-size: 6vw" name="attach"></ion-icon>
- </span></p> 
-  <div class="image" *ngIf="houseImage">
-      <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
-         <img src="{{houseImage}}" height="100%" style="border: none"  >
-    
+ <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
+  <div  class="holder" *ngIf="houseImage">
+           <img src="{{houseImage}}" >
+          <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
         </div>
 
  <div class="inputs">
     <form [formGroup]="quotationForm">
-
-      <!--   <div  class="holder">
-             <img src="{{houseImage}}" >
-              <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
-            </div> -->
-      <ion-list style="margin-top:8%">
+      <ion-item style="margin: 0">
+          <ion-label floating><ion-icon end name="calendar"></ion-icon> Prefered start date </ion-label>
+          
+          <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
+        </ion-item>
+        <ion-label class="error" *ngFor="let validate of validation_messages.startDate">
+          <p class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
+            {{validate.message}}
+          </p>
+          </ion-label>
+  
           <ion-item>
-            <ion-label floating>date</ion-label>
-             <ion-datetime  displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
+              <ion-label floating>Preffered end date</ion-label>
+              <ion-datetime formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
             </ion-item>
-            <ion-label class="error" *ngFor="let validate of validation_messages.startDate">
-              <p class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
+            <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
+              <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
                 {{validate.message}}
               </p>
               </ion-label>
@@ -108,10 +112,17 @@
       </ion-list>
       
 <!-- select all -->
-<!-- <button (click)="selectAll();">select all</button> -->
-<button style="margin-top: -8%" ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
-
-            
+<button (click)="selectAll();">select all</button>
+<button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
+ <ion-item>
+            <ion-label floating>Additional comments</ion-label>
+            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
+          </ion-item>
+          <ion-label class="error" *ngFor="let validate of validation_messages.comment">
+            <p class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
+              {{validate.message}}
+            </p>
+            </ion-label>
 </form>  
 </div>   
 </div>

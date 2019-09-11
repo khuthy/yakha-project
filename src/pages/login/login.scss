@@ -9,14 +9,15 @@ page-login {
         
             .logo {
                 border: 1px solid green;
-                height: 30%;
+                height: 30vh;
                 width: auto;
                 background-image: url(../../assets/imgs/waverotate.svg);
                 background-size: cover;
                 background-position: 0vh 0vh 0vh 5vh;
                 background-repeat: no-repeat;
                 text-align: center;
-                position: absolute;
+                position: fixed;
+                top: 0;
                 width: 100%;
 
                 
@@ -31,11 +32,15 @@ page-login {
             form {
                 margin:0;
                 padding:0;
-              //  border: 1px solid blue;
-                width: 80%;
-                height: 45%;
+               border: 1px solid blue;
+                width: 100%;
+                height: 70vh;
                 position: absolute;
-                left: 10%;
+                top: 30%;
+                display: flex;
+                justify-content: center;
+
+               
               
                 .btn {
                     height: 50%;

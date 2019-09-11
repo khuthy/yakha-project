@@ -23,8 +23,8 @@
             </div>
       </ion-slide> -->
 
-      <ion-slide>
-          <div class="top"  >
+      <ion-slide class="main">
+         <!--  <div class="top"  >
               <p (click)="skip()">Skip</p>
               <img src="../../assets/imgs/login.svg" class="onboard" >
             </div>
@@ -39,45 +39,58 @@
           
               </div>
              
+            </div> -->
+            <div class="sliderOne">
+              <p (click)="skip()" class="skip">Skip</p>
+              <div class="image">
+                <img src="../../assets/imgs/login.svg" class="onboard" >
+              </div>
+              <p class="text">Create an account and 
+                setup your profile to start using 
+                this applicatin.
+            </p>
+            <div class="btn">
+              <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Next</button>
+         
+             </div>
             </div>
         </ion-slide>
 
-        <ion-slide>
-            <div class="top">
-                <p (click)="skip()">Skip</p>
-                <img src="../../assets/imgs/maps.svg" class="onboard">
-              </div>
-    
-              <div class="bottom">
-                <p>Enable your location search 
+        <ion-slide class="main">
+          
+              <div class="sliderOne">
+                <p (click)="skip()" class="skip">Skip</p>
+                <div class="image">
+                  <img src="../../assets/imgs/maps.svg" class="onboard" >
+                </div>
+                <p class="text">Enable your location search 
                   for all the available builders
                   around your area.
-                </p>
-                <div class="btn">
-                 <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Next</button>
+              </p>
+              <div class="btn">
+                <button (click)="nextslides()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Next</button>
+           
                </div>
-               
               </div>
         </ion-slide>
 
       
 
-        <ion-slide>
-            <div class="top">
-                <p (click)="skip()">Skip</p>
-                <img src="../../assets/imgs/hands.svg"class="onboard">
-              </div>
-    
-              <div class="bottoms">
-                <p>Send a quotation request to a 
+        <ion-slide class="main">
+             <div class="sliderOne">
+                <p (click)="skip()" class="skip">Skip</p>
+                <div class="image">
+                  <img src="../../assets/imgs/hands.svg" class="onboard" >
+                </div>
+                <p class="text">Send a quotation request to a 
                   builder of your choice and receive
                   their  detailed quotation in your 
-                  messages. 
-                </p>
-                <div class="btn">
-                 <button (click)="getStarted()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Done</button>
-                </div>
-               
+                  messages.
+              </p>
+              <div class="btn">
+                <button (click)="getStarted()" ion-button style="width: 70%;border-radius:5px;background:#F38D69;color:white;letter-spacing: 1px;">Get Started</button>
+           
+               </div>
               </div>
        </ion-slide>
 
