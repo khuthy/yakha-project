@@ -100,7 +100,7 @@ export class BuilderquotesPage {
         price: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(7)]))
       })
   }
-
+  
   ionViewDidLoad() {
    // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).get().then((res)=>{
@@ -147,7 +147,9 @@ export class BuilderquotesPage {
   createPdf() {
     var docDefinition = {
       content: [
+      
         { text: 'Quotations', style: 'header' },
+        { image: '../../assets/imgs/logo.png', alignment: 'left' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
        

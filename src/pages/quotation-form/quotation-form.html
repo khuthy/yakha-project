@@ -20,13 +20,13 @@
            <img src="{{houseImage}}" >
           <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
         </div>
-
+ 
  <div class="inputs">
     <form [formGroup]="quotationForm">
       <ion-item style="margin: 0">
           <ion-label floating><ion-icon end name="calendar"></ion-icon> Prefered start date </ion-label>
           
-          <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
+          <ion-datetime displayFormat="D, MMM, YY" pickerFormat="DD MMM YYYY" min="2019-09-11" max="2022-10-31" formControlName="startDate"  name="startDate" [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.startDate">
           <p class="messages" *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
@@ -34,19 +34,11 @@
           </p>
           </ion-label>
   
-          <ion-item>
-              <ion-label floating>Preffered end date</ion-label>
-              <ion-datetime formControlName="endDate" name="endDate" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
-            </ion-item>
-            <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
-              <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
-                {{validate.message}}
-              </p>
-              </ion-label>
+          
       
               <ion-item>
                   <ion-label floating>Preffered end date</ion-label>
-                  <ion-datetime formControlName="endDate" name="endDate" [min]="" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
+                  <ion-datetime formControlName="endDate" name="endDate" min="2019-12-01" max="2023-09-11" [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
                 </ion-item>
                 <ion-label class="error" *ngFor="let validate of validation_messages.endDate">
                   <p class="messages" *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
@@ -109,7 +101,7 @@
                   {{validate.message}}
                 </p>
                 </ion-label>
-    
+     
       
 <!-- select all -->
 <button (click)="selectAll();">select all</button>

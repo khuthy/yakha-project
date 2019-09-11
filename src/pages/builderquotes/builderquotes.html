@@ -6,16 +6,16 @@
     </ion-navbar>
   </ion-header>
 <ion-content padding>
-  <div class="logo">
+<!--   <div class="logo">
     <img src="../../assets/imgs/logo.png" class="thumb" alt="">
-  </div>
+  </div> -->
   <form [formGroup]="quotesForm">
     
 
 
           <ion-item>
             <ion-label floating>Expiry date</ion-label>
-            <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
+            <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" min="2019-09-11" max="2022-10-31" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
           </ion-item>
           <div class="error" *ngFor="let validate of validation_messages.expiry">
               <div class="messages" *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
