@@ -149,6 +149,7 @@ export class BuilderquotesPage {
       content: [
       
         { text: 'Quotations', style: 'header' },
+        { image: '../../assets/imgs/logo.png', alignment: 'left' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
        
