@@ -38,6 +38,13 @@
   
 
   <div class="slider" *ngIf="maps">
+      <ion-item>
+          <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
+            <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
+            <ion-label range-left>R0</ion-label>
+            <ion-label range-right>R1000</ion-label>
+          </ion-range>
+        </ion-item>
     <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
