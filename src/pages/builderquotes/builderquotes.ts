@@ -13,6 +13,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
+import { ThrowStmt } from '@angular/compiler';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -50,10 +51,11 @@ export class BuilderquotesPage {
   price: 0,
   uid: '',
   meter: null,
-  discount: null,
+  discount: 0,
   discountAmount: null,
   ownerUID: null,
-  hOwnerUID: null
+  hOwnerUID: null,
+  unitCost : 0
   }
   pdfObj = null;
   db = firebase.firestore();
@@ -85,6 +87,8 @@ export class BuilderquotesPage {
   count = 0;
   extras = [];
   total: number = 0;
+  price;
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -106,17 +110,40 @@ export class BuilderquotesPage {
         dimension: new FormControl('', Validators.compose([Validators.required])),
         price: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(7)]))
       })
+      this.quotes.discount = 0;
   }
   
-  ionViewDidLoad() {
+  ionViewDidLoad() {  
+    let data = {name:'', price:0, quantity:0}
+    
    // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res)=>{
       
-      console.log('count',res.data().extras);
+      //console.log('count',res.data().extras);
+      ;
       
-      res.data().extras.forEach(extras => {
-          this.extras.push(extras);
-          
+      res.data().extras.forEach(extras=> {
+         // 
+          this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).collection('extras').doc(extras).onSnapshot((info)=>{
+            
+            data.name = info.id;
+            data.price = info.data().price;
+            data.quantity = info.data().quantity;
+            //this.quotes.discount = info.data();
+           
+            // data = { arr , id}
+            this.extras.push(data);
+
+            console.log(this.extras);
+            data = {name:'', price:0, quantity:0}
+          //  data = {name: '', price:0, quantity:0}
+          })
+          //console.log(this.extras);
+          // this.extras.forEach((servPrice)=>{
+          //  // this.price = servPrice.name.price;
+          //   console.log(servPrice);
+            
+          // })
       });
       
      this.quotes.ownerAddress = res.data().ownerAddress;
@@ -164,7 +191,11 @@ export class BuilderquotesPage {
    
   // }
   createPdf() {
-    var docDefinition = {
+
+    console.log('this.dimension');
+    
+
+   /* var docDefinition = {
       content: [
       
         { text: 'Quotations', style: 'header' },
@@ -250,6 +281,8 @@ export class BuilderquotesPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
+*/
+
    // this.downloadPdf();
   //  firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
   //     console.log(results);

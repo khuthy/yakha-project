@@ -79,12 +79,14 @@
               
               <div *ngFor="let item of extras; let i=index;">
                 <hr>
-                  <h5>{{item}}</h5><hr>
+                  <h5>{{item.name}}</h5><hr>
+                   <h5></h5><hr>
                   <div class="parent">
                     <div class="price">
-                      <ion-item>
-                <ion-label floating>Price</ion-label>
-                <ion-input type="text" formControlName="dimension"></ion-input>
+                      <ion-item >
+                
+                        <ion-label floating>Price</ion-label>
+                <ion-input type="text" formControlName="dimension" [(ngModel)]="extras[i].price"></ion-input>
               </ion-item>
                     </div>
                     <div class="quantity">

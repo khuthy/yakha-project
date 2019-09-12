@@ -74,6 +74,7 @@ type: 'required', message: 'Please include some features'
             {type: 'maxlength', message: 'Additional comments must be 200 characters'}
           ]
 };
+extraName;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -113,6 +114,7 @@ type: 'required', message: 'Please include some features'
 
   ionViewDidLoad() {
    // firebase.database().ref().child('hotels').
+   // this.extras = firebase.firestore().collection('extras')
     console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();
@@ -166,10 +168,18 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
         content: 'submitting quotations ..'
       });
       load.present();
-  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
-  
-  // upon success...
-  user.then( () => {
+      
+    this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation).then((res) => {
+       this.HomeOwnerQuotation.extras.forEach((name) => {
+       // 
+       res.collection('extras').doc(name).set({price:0, quantity:0})
+       console.log(name);
+       //this.extraName.push(name);
+       
+       })
+       
+       
+     
     this.navCtrl.setRoot(SuccessPage)
     this.toastCtrl.create({
       message: '  Quotation submitted.',
