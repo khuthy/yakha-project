@@ -301,7 +301,8 @@ export interface  builderProfile{
   fullName: string,
   gender: string,
   certified: string,
-  roof:string,
+  roo
+  f:string,
   experiences: string,
   address: string,
   price:number
