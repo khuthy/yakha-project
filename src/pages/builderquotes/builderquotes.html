@@ -10,6 +10,9 @@
     <img src="../../assets/imgs/logo.png" class="thumb" alt="">
   </div> -->
   <form [formGroup]="quotesForm">
+
+
+       
     
 
 
@@ -49,16 +52,27 @@
                 </div>
                 </div>
               
-              <div *ngFor="let item of extras">
-                <ion-item>
-                <ion-label floating>{{item}}</ion-label>
-                <ion-input type="text" value="" formControlName="dimension" [(ngModel)]="quotes.dimension"></ion-input>
+              <div *ngFor="let item of extras; let i=index;">
+                <hr>
+                  <h5>{{item}}</h5><hr>
+                  <div class="parent">
+                    <div class="price">
+                      <ion-item>
+                <ion-label floating>Price</ion-label>
+                <ion-input type="text" formControlName="dimension" [(ngModel)]="extras[i].price"></ion-input>
               </ion-item>
-            <div class="error" *ngFor="let validate of validation_messages.dimension">
-                  <div class="messages" *ngIf="quotesForm.get('dimension').hasError(validate.type) && (quotesForm.get('dimension').dirty || quotesForm.get('dimension').touched)">
-                    {{validate.message}}
-            </div>
-            </div>
+                    </div>
+                    <div class="quantity">
+                      <div class="header">
+                       <ion-label>Quantity</ion-label>
+                      </div>
+                      <div class="quantityCount">
+                           <div class="typ2"><button class="btn-border" ion-fab mini color="light"  (click)="childMinus()"><ion-icon ios="ios-remove" md="md-remove"></ion-icon></button></div>
+                        <div class="typ3" style="padding: 12px">{{extras[i].count}}</div>
+                        <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus()" ><ion-icon ios="ios-add" md="md-add"></ion-icon></button></div>
+                     </div>
+                     </div>
+                  </div>
               </div>
                 
               <ion-item>
