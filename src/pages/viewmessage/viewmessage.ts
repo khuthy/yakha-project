@@ -130,6 +130,14 @@ export class ViewmessagePage {
      })
    
   }
+  viewProfile(myEvent) {
+    console.log('wow');
+    
+    let popover = this.popoverCtrl.create(ProfileComponent);
+    popover.present({
+      ev: myEvent
+    });
+  }
   quotesForm() {
     this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
   }
