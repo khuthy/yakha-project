@@ -26,4 +26,18 @@ page-builderquotes {
              }
          }
      }
+     .houseOverall {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+     }
+     .price {
+         flex: 2;
+     }
+     .subtotal,
+     .discount, .discountAmount {
+         display: flex;
+         justify-content: space-between;
+         padding: 20px;
+     }
 }

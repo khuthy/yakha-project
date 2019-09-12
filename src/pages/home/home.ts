@@ -10,7 +10,8 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
-
+import { PopoverController } from 'ionic-angular';
+import { ProfileComponent } from '../../components/profile/profile';
 
 declare var google;
 
@@ -61,6 +62,7 @@ request: boolean = false;
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
+    public popoverCtrl: PopoverController
     
  ) {
    
@@ -289,6 +291,7 @@ initializeItems() {
     
   ];
 }
+
 // search(event){
 //     let searchKey : string = event.target.value;
 //     let firstLetter = searchKey.toUpperCase();
