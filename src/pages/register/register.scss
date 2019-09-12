@@ -6,82 +6,54 @@ page-register {
            // border: 1px solid red;
           margin:0;
              padding:0;
+
             .logo {
-                display: block;
-                //border: 1px solid green;
+               // border: 1px solid green;
                 height: 226.203px;
                 width: 100%;
-                background-image: url('../../assets/imgs/waverotate.svg');
+                background-image: url(../../assets/imgs/waverotate.svg);
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
+                position: fixed;
                 img {
-                   // border: 1px solid red;
+                   
                     position: relative;
                     left: 35%;
                     top: 20%;
+                    
                 }
             }
 
             .inputs {
                 margin:0;
                 padding:0;
-                //border: 1px solid blue;
+               // border: 1px solid blue;
                 width: 80%;
-                height: 35%;
+                height: 55%;
                 position: relative;
                 left: 10%;
-                top:5%;
-               
-              
-                
-            }
-             #bottom {
-                width: 80%;
+                top: 230px;
+               }
+             
+               #bottom {
+               /*  width: 80%;
                 height: 30%; 
-            //  border: 1px solid rgb(0, 0, 0);
+              border: 1px solid rgb(0, 0, 0);
               position: relative;
-              left: 10%;
+              left: 10%; */
               .btn {
                   width: 100%;
-                
+                position: relative;
+                left: 10%;
+                top: 10%;
                // border: 1px solid black;
              
              
              }   
             } 
-
-            .btn {
-                  width: 80%;
-                  height: 25%; 
-               // border: 1px solid black;
-                position: relative;
-               
-               
-             }
+         
         }
     }
 }
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  
-}
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-height: 600px) {
-    
-  }
-  
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-   
-  } 
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-   
-  } 
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-    
-  }
+

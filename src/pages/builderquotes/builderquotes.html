@@ -1,141 +1,150 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-toolbar>
-          <ion-title>Quotation</ion-title>
-         </ion-toolbar>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar color="primary">
+    <ion-toolbar>
+      <ion-title>Quotation</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
-<!--   <div class="logo">
+  <!--   <div class="logo">
     <img src="../../assets/imgs/logo.png" class="thumb" alt="">
   </div> -->
   <form [formGroup]="quotesForm">
 
 
 
-    
 
 
-          <ion-item>
-            <ion-label floating>Expiry date</ion-label>
-            <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" min="2019-09-11" max="2022-10-31" pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
-          </ion-item>
-          <div class="error" *ngFor="let validate of validation_messages.expiry">
-              <div class="messages" *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
-                {{validate.message}}
-              </div>
-              </div>
-              <ion-item >
-                <ion-label floating> FullName</ion-label>
-                <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName" ngDefaultControl></ion-input>
-              </ion-item>
-              <!-- <div class="error" *ngFor="let validate of validation_messages.fullName">
+
+    <ion-item>
+      <ion-label floating>Expiry date</ion-label>
+      <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" min="2019-09-11" max="2022-10-31"
+        pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.expiry">
+      <div class="messages"
+        *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
+        {{validate.message}}
+      </div>
+    </div>
+    <ion-item>
+      <ion-label floating> FullName</ion-label>
+      <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName" ngDefaultControl>
+      </ion-input>
+    </ion-item>
+    <!-- <div class="error" *ngFor="let validate of validation_messages.fullName">
                <div class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
                  {{validate.message}}
                </div>
                </div> -->
-          <!-- <ion-item color="light"  style="color: #fff;">
+    <!-- <ion-item color="light"  style="color: #fff;">
             <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
             </ion-item> -->
-            <ion-item>
-                <ion-label floating>Address</ion-label>
-                <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
-              </ion-item>
-              <div class="error" *ngFor="let validate of validation_messages.address">
-                  <div class="messages" *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
-                    {{validate.message}}
-                  </div>
-                  </div>
-          <div class="error" *ngFor="let validate of validation_messages.address">
-                <div class="messages" *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
-                  {{validate.message}}
-                </div>
-                </div>
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.address">
+      <div class="messages"
+        *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
+        {{validate.message}}
+      </div>
+    </div>
+    <div class="error" *ngFor="let validate of validation_messages.address">
+      <div class="messages"
+        *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
+        {{validate.message}}
+      </div>
+    </div>
 
-            <!-- Overall house -->
-            
-          <div class="houseOverall">
-            <div class="header">
-              <h5>Overall House</h5>
-            </div>
-            <div class="parent">
-              <div class="price">
-                  
-                <p>Price p/2</p>
-                <p><strong>R200</strong></p>
-              </div>
-              <ion-item>
-                <ion-label floating>m2</ion-label>
-                <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-label floating>Discount</ion-label>
-                  <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
-                </ion-item>
-            </div>
-              
-            </div> 
+    <!-- Overall house -->
 
-              
-              <div *ngFor="let item of extras; let i=index;">
-                <hr>
-                  <h5>{{item.name}}</h5><hr>
-                   <h5></h5><hr>
-                  <div class="parent">
-                    <div class="price">
-                      <ion-item >
-                
-                        <ion-label floating>Price</ion-label>
-                <ion-input type="text" formControlName="dimension" [(ngModel)]="extras[i].price"></ion-input>
-              </ion-item>
-                    </div>
-                    <div class="quantity">
-                      <div class="header">
-                       <ion-label>Quantity</ion-label>
-                      </div>
-                      <div class="quantityCount">
-                           <div class="typ2"><button class="btn-border" ion-fab mini color="light"  (click)="childMinus()"><ion-icon ios="ios-remove" md="md-remove"></ion-icon></button></div>
-                        <div class="typ3" style="padding: 12px"></div>
-                        <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus()" ><ion-icon ios="ios-add" md="md-add"></ion-icon></button></div>
-                     </div>
-                     </div>
-                  </div>
-              </div>
-              <div class="calculations">
-                <!-- subtotal and discount -->
-                <div class="accumulatedAmount">
-                  <div class="subtotal">
-                    <p><strong>Subtotal</strong></p>
-                    <p><strong>R300.00</strong></p>
-                  </div>
-                  <div class="discount">
-                    <p><strong>Discount</strong></p>
-                    <ion-item>
-                      <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
-                    </ion-item>
-                    <p>%</p>
-                    </div>
-                    <div class="discountAmount" style="color: grey">
-                        <p><strong>Discount Amount</strong></p>
-                        <p><strong>R30.00</strong></p>
-                      </div>
-                </div>
-              </div>
-                
-              <ion-item>
-            <ion-label floating>Total Price</ion-label>
-            <ion-input type="number" formControlName="price" [(ngModel)]="total"></ion-input>
+    <div class="houseOverall">
+      <div class="header">
+        <h5>Overall House</h5>
+      </div>
+      <div class="parent">
+        <div class="price">
+
+          <p>Price p/2</p>
+          <p><strong>R200</strong></p>
+        </div>
+        <ion-item>
+          <ion-label floating>m2</ion-label>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Discount</ion-label>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
+        </ion-item>
+      </div>
+
+    </div>
+
+
+    <div *ngFor="let item of extras; let i=index;">
+      <hr>
+      <h5>{{item.name}}</h5>
+      <hr>
+      <div class="parent">
+        <div class="price">
+          <ion-item>
+            <ion-label floating>Price</ion-label>
+            <ion-input type="text" formControlName="dimension">{{item.price}}</ion-input>
           </ion-item>
-          <div class="error" *ngFor="let validate of validation_messages.price">
-              <div class="messages" *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
-                {{validate.message}}
-              </div>
-              </div>
+        </div>
+        <div class="quantity">
+          <div class="header">
+            <ion-label>Quantity</ion-label>
+          </div>
+          <div class="quantityCount">
+            <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(i)">
+                <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
+              </button></div>
+            <div class="typ3" style="padding: 12px">{{item.quantity}}</div>
+            <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(i)">
+                <ion-icon ios="ios-add" md="md-add"></ion-icon>
+              </button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="calculations">
+      <!-- subtotal and discount -->
+      <div class="accumulatedAmount">
+        <div class="subtotal">
+          <p><strong>Subtotal</strong></p>
+          <p><strong>R300.00</strong></p>
+        </div>
+        <div class="discount">
+          <p><strong>Discount</strong></p>
+          <ion-item>
+            <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
+          </ion-item>
+          <p>%</p>
+        </div>
+        <div class="discountAmount" style="color: grey">
+          <p><strong>Discount Amount</strong></p>
+          <p><strong>R30.00</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Total Price</ion-label>
+      <ion-input type="number" formControlName="price" [(ngModel)]="total"></ion-input>
+    </ion-item>
+    <div class="error" *ngFor="let validate of validation_messages.price">
+      <div class="messages"
+        *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
+        {{validate.message}}
+      </div>
+    </div>
   </form>
 </ion-content>
 <ion-footer>
-    <ion-toolbar padding style="display: flex">
-      <button ion-button class="btn-proceed" block  (click)="createPdf()" color="primary">Send Quotation</button>
-      <button ion-button class="btn-proceed" block  (click)="downloadPdf()" color="primary">Download</button>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar padding style="display: flex">
+    <button ion-button class="btn-proceed" block (click)="createPdf()" color="primary">Send Quotation</button>
+    <button ion-button class="btn-proceed" block (click)="downloadPdf()" color="primary">Download</button>
+  </ion-toolbar>
+</ion-footer>

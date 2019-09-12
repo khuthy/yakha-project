@@ -51,7 +51,17 @@ export class QuotationFormPage {
   };
   docID;
  date: any;
- extras:any = ['roofing', 'doors', 'windows', 'framing', 'electricity', 'Plumbing', 'ceiling', 'plaster' ];
+ 
+ extras:any = [
+  {service: 'Roofing', price: 0, quantity: 0 }, 
+  {service: 'Doors', price: 0, quantity: 0 }, 
+  {service: 'Windows', price: 0, quantity: 0 },
+  {service: 'Electricity', price: 0, quantity: 0 },
+  {service: 'Plumbing', price: 0, quantity: 0 },
+  {service: 'Ceiling', price: 0, quantity: 0 },
+  {service: 'Pluster', price: 0, quantity: 0 },
+];
+
 /* validations starts here */
 validation_messages = {
 'startDate': [
@@ -105,6 +115,8 @@ extraName;
           this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
+     
+      
       let date = new Date();
       let days = date.getDay();
       let month = date.getMonth();
@@ -113,6 +125,12 @@ extraName;
     }
 
   ionViewDidLoad() {
+ 
+    console.log(this.extras);
+    
+    //let arr = [{objExtra, objPrice, objQuantity}]
+   
+    
    // firebase.database().ref().child('hotels').
    // this.extras = firebase.firestore().collection('extras')
     console.log(this.uid);
@@ -123,9 +141,9 @@ extraName;
 next(){
   this.navCtrl.push(SuccessPage);
 }
-selectAll(){
-this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
-}
+// selectAll(){
+// this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
+// }
 async selectImage() {
   let option: CameraOptions = {
     quality: 100,
@@ -160,48 +178,49 @@ async selectImage() {
   })
 }
 async createQuations(quotationForm: FormGroup): Promise<void> {
-   if(!quotationForm.valid) {
-      console.log('Please fill all the form fields', quotationForm.value)
-   }else {
-      // load the profile creation process
-      const load = this.loadCtrl.create({
-        content: 'submitting quotations ..'
-      });
-      load.present();
-      
-    this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation).then((res) => {
-       this.HomeOwnerQuotation.extras.forEach((name) => {
-       // 
-       res.collection('extras').doc(name).set({price:0, quantity:0})
-       console.log(name);
-       //this.extraName.push(name);
-       
-       })
-       
-       
-     
-    this.navCtrl.setRoot(SuccessPage)
-    this.toastCtrl.create({
-      message: '  Quotation submitted.',
-      duration: 2000,
-    }).present();
-    // ...get the profile that just got created...
-    load.dismiss();
-    // catch any errors.
-  }).catch( err=> {
-    this.toastCtrl.create({
-      message: 'Error submitting Quotation.',
-      duration: 2000
-    }).present();
-    this.isProfile = false;
-    load.dismiss();
-  })
+  //  if(!quotationForm.valid) {
+  //     console.log('Please fill all the form fields', quotationForm.value)
+  //  }else {
+  //     // load the profile creation process
+  //     const load = this.loadCtrl.create({
+  //       content: 'submitting quotations ..'
+  //     });
+  //     load.present();
+  // const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
+  
+  // // upon success...
+  // user.then( () => {
+  //   this.navCtrl.setRoot(SuccessPage)
+  //   this.toastCtrl.create({
+  //     message: '  Quotation submitted.',
+  //     duration: 2000,
+  //   }).present();
+  //   // ...get the profile that just got created...
+  //   load.dismiss();
+  //   // catch any errors.
+  // }).catch( err=> {
+  //   this.toastCtrl.create({
+  //     message: 'Error submitting Quotation.',
+  //     duration: 2000
+  //   }).present();
+  //   this.isProfile = false;
+  //   load.dismiss();
+  // })
 
-   }
+  //  }
+     // console.log(this.HomeOwnerQuotation.extras);
+     let obj = [];
+     obj.push(this.HomeOwnerQuotation.extras);
+     firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
+    //   console.log(res.update());
+       
+     })
         
   }
   remove(){
     this.houseImage = "";
   }
+
+  
 
 }
