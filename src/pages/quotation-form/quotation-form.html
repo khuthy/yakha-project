@@ -17,7 +17,7 @@
    <div class="container">
  <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
   <div  class="holder" *ngIf="houseImage">
-           <img src="{{houseImage}}" >
+           <img src="{{houseImage}}" class="image">
           <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
         </div>
  
@@ -104,17 +104,9 @@
      
       
 <!-- select all -->
-<button (click)="selectAll()">select all</button>
+
 <button ion-button class="btn-proceed" block  (click)="createQuations(quotationForm)" color="primary">Proceed</button>
- <ion-item>
-            <ion-label floating>Additional comments</ion-label>
-            <ion-textarea  formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment"></ion-textarea>
-          </ion-item>
-          <ion-label class="error" *ngFor="let validate of validation_messages.comment">
-            <p class="messages" *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
-              {{validate.message}}
-            </p>
-            </ion-label>
+ 
 </form>  
 </div>   
 </div>
