@@ -46,8 +46,12 @@ export class BuilderquotesPage {
   expiry: '',
   address: '',
   dimension: '',
+  extras: [],
   price: 0,
   uid: '',
+  meter: null,
+  discount: null,
+  discountAmount: null,
   ownerUID: null,
   hOwnerUID: null
   }
@@ -112,7 +116,7 @@ export class BuilderquotesPage {
       
       res.data().extras.forEach(extras => {
           this.extras.push(extras);
-        
+          
       });
       
      this.quotes.ownerAddress = res.data().ownerAddress;
@@ -164,6 +168,7 @@ export class BuilderquotesPage {
       content: [
       
         { text: 'Quotations', style: 'header' },
+        { image: '../../assets/imgs/logo.png', alignment: 'left' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
        
@@ -199,11 +204,11 @@ export class BuilderquotesPage {
           table: {
               widths: ['*', 105, 105],
               body: [
-                  // [
-                  //     '',
-                  //     'House cost(excl. extras)',
-                  //     'R'+ this.quotes.price+'.00',
-                  // ],
+                  [
+                      '',
+                      'House cost(excl. extras)',
+                      'R'+ this.quotes.price+'.00',
+                  ],
                   [
                       '',
                       'Total(incl. extras)',

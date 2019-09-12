@@ -94,10 +94,10 @@
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder.comment)">
   
     <div class="home-builder-top">
-      <img *ngIf="o.owner.ownerImage" src="{{o.owner.ownerImage}}" class="thumb-home-builder" alt="profile">
+      <img *ngIf="o.owner.ownerImage" src="{{o.owner.ownerImage}}" (click)="viewProfile(o.owner.ownerImage)" class="thumb-home-builder" alt="profile">
       <img *ngIf="!o.owner.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
       <article style="margin-left: 2%;">
-     <p style="font-size: 17px;text-align: left;margin-top: 10px">{{o.owner.fullname}}</p><br> 
+        <p style="font-size: 17px;text-align: left;margin-top: 10px">{{o.owner.fullname}}</p><br> 
         <p style="font-size: 12px;text-align: left;margin-top: -20px">{{o.builder.comment}}</p><br>
         <p style="font-size: 10px;text-align: left;margin-top: -20px">{{o.builder.date}}</p>
         <br> 
