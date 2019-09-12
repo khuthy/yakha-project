@@ -30,7 +30,7 @@
           </strong>
           </p>
           <div class="imgs">
-              <img src="{{r.houseImage}}" class="thumb" alt="house plan">
+              <img src="{{r.houseImage}}" class="thumb" (click)="viewHouse(r.houseImage)" alt="house plan">
               <p>House plan</p>
           </div>
           <div class="extras">
@@ -113,13 +113,12 @@
             <!-- <p>Created: {{n.lastcreated}}</p> -->
           </div>
           
-          <div class="imgs">
-              <img src="{{houseImage}}" class="thumb" alt="house plan">
+          <div class="imgs" >
+              <img src="{{houseImage}}" class="thumb" (click)="viewHouse(houseImage)" alt="house plan" >
               <p>House plan</p>
             </div>
         </blockquote>
-       
-          <blockquote>
+       <blockquote>
           <p>
             <span>
               <strong>Additional comment</strong><br>
@@ -130,7 +129,7 @@
       <div class="block2 owner" *ngIf="doc">
           <blockquote>
             <p>
-                <ion-icon name="document"></ion-icon><a href="{{doc}}">Quotation.pdf</a>
+              <ion-icon name="document"></ion-icon><a href="{{doc}}">Quotation.pdf</a>
             </p>
           </blockquote>
 

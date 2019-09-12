@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, PopoverController } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
 import { v } from '@angular/core/src/render3';
+import { ProfileComponent } from '../../components/profile/profile';
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -62,7 +63,11 @@ export class ViewmessagePage {
   startDate: any;
   wallType: any;
   extras=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private fileOpener: FileOpener,
+ 
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+     private fileOpener: FileOpener,
+     public popoverCtrl: PopoverController,
     private file: File) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
@@ -159,6 +164,14 @@ export class ViewmessagePage {
       // Open the PDf with the correct OS tools
       this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
     })
+  }
+  viewHouse(myEvent) {
+    console.log('image',myEvent);
+    
+    let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

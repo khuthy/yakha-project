@@ -57,7 +57,8 @@ request: boolean = false;
   price = 0;
   
   constructor(public navCtrl: NavController,
-    private modalCtrl : ModalController, public loader : LoadingController,
+    private modalCtrl : ModalController, 
+    public loader : LoadingController,
     private geolocation: Geolocation,
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
@@ -292,11 +293,20 @@ initializeItems() {
   ];
 }
 viewProfile(myEvent) {
-  let popover = this.popoverCtrl.create(ProfileComponent);
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
   popover.present({
     ev: myEvent
   });
 }
+viewHouse(myEvent) {
+  console.log('image',myEvent);
+  
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+  popover.present({
+    ev: myEvent
+  });
+}
+
 // search(event){
 //     let searchKey : string = event.target.value;
 //     let firstLetter = searchKey.toUpperCase();
@@ -564,8 +574,7 @@ initMap(){
     // // console.log(marker);
     // } else {
     //   console.log("The firestore is empty");
-
-    // }
+// }
   // firebase.firestore().collection('location').doc('coords').get().then((resp)=>{
   //  if(resp.exists){
 
