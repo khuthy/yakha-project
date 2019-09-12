@@ -95,7 +95,7 @@ import { CallNumber } from '@ionic-native/call-number';
       scrollPadding: false,
       scrollAssist: true,
       autoFocusAssist: false
-    } ),
+    }),
 
     IonicStorageModule.forRoot()
   ],

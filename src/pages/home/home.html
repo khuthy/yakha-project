@@ -26,10 +26,16 @@
     </ion-fab>
       
      </div>
-       
+    
    </div> 
    
-    
+   <ion-item class="list" *ngIf="maps">
+    <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
+      <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
+      <ion-label range-left>R0</ion-label>
+      <ion-label range-right>R1000</ion-label>
+    </ion-range>
+  </ion-item> 
   
     
        
@@ -38,13 +44,7 @@
   
 
   <div class="slider" *ngIf="maps">
-      <ion-item>
-          <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
-            <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
-            <ion-label range-left>R0</ion-label>
-            <ion-label range-right>R1000</ion-label>
-          </ion-range>
-        </ion-item>
+    
     <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
@@ -96,10 +96,7 @@
     <div class="home-builder-top">
       <img *ngIf="o.owner.ownerImage" src="{{o.owner.ownerImage}}" class="thumb-home-builder" alt="profile">
       <img *ngIf="!o.owner.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-      <article>
-     <div>
-       
-     </div>
+      <article style="margin-left: 2%;">
      <p style="font-size: 17px;text-align: left;margin-top: 10px">{{o.owner.fullname}}</p><br> 
         <p style="font-size: 12px;text-align: left;margin-top: -20px">{{o.builder.comment}}</p><br>
         <p style="font-size: 10px;text-align: left;margin-top: -20px">{{o.builder.date}}</p>
