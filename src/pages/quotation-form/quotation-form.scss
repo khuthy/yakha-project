@@ -5,7 +5,7 @@ page-quotation-form {
             height: 100%;
             width: 100%;
             .image {
-                //border: 1px solid blue;
+                border: 1px solid blue;
                 width: 80%;
                 height: 45%;
                 position: relative;
@@ -74,6 +74,9 @@ page-quotation-form {
  } 
             }
       
+}
+.holder {
+    display: flex;
 }
             
         }
