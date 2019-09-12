@@ -15,7 +15,11 @@
 
 <ion-content>
    <div class="container">
- <!--  <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> -->
+
+      <p *ngIf="!houseImage" style="text-align: center; color: rgb(155, 155, 155);">Please Upload the house Plan</p> 
+
+
+
   <div  class="holder" *ngIf="houseImage">
            <img src="{{houseImage}}" class="image">
           <button ion-fab (click)="remove()" mini color="light"><ion-icon name="close"></ion-icon></button>
