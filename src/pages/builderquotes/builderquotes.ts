@@ -78,6 +78,7 @@ export class BuilderquotesPage {
 ]
 }
   ownerAddress: any;
+  count = 0;
   extras = [];
   total: number = 0;
   constructor(
@@ -106,8 +107,13 @@ export class BuilderquotesPage {
   ionViewDidLoad() {
    // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res)=>{
-      this.extras.push(res.data().extras)
-      console.log(this.extras);
+      
+      console.log('count',res.data().extras);
+      
+      res.data().extras.forEach(extras => {
+          this.extras.push(extras);
+        
+      });
       
      this.quotes.ownerAddress = res.data().ownerAddress;
      let num = parseFloat((res.data().price) + this.quotes.dimension)
@@ -141,6 +147,13 @@ export class BuilderquotesPage {
    // console.log(this.location)
     
   }
+
+  childPlus() {
+    console.log('decreament')
+  }
+    childMinus() {
+      console.log('excalate')
+    }
 
   
   // getQuoteInfo(){
