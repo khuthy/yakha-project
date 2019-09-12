@@ -46,8 +46,12 @@ export class BuilderquotesPage {
   expiry: '',
   address: '',
   dimension: '',
+  extras: [],
   price: 0,
   uid: '',
+  meter: null,
+  discount: null,
+  discountAmount: null,
   ownerUID: null,
   hOwnerUID: null
   }
@@ -78,6 +82,7 @@ export class BuilderquotesPage {
 ]
 }
   ownerAddress: any;
+  count = 0;
   extras = [];
   total: number = 0;
   constructor(
@@ -106,8 +111,13 @@ export class BuilderquotesPage {
   ionViewDidLoad() {
    // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res)=>{
-      this.extras.push(res.data().extras)
-      console.log(this.extras);
+      
+      console.log('count',res.data().extras);
+      
+      res.data().extras.forEach(extras => {
+          this.extras.push(extras);
+          
+      });
       
      this.quotes.ownerAddress = res.data().ownerAddress;
      let num = parseFloat((res.data().price) + this.quotes.dimension)
@@ -142,6 +152,13 @@ export class BuilderquotesPage {
     
   }
 
+  childPlus() {
+    console.log('decreament')
+  }
+    childMinus() {
+      console.log('excalate')
+    }
+
   
   // getQuoteInfo(){
    
@@ -151,6 +168,7 @@ export class BuilderquotesPage {
       content: [
       
         { text: 'Quotations', style: 'header' },
+        { image: '../../assets/imgs/logo.png', alignment: 'left' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
        
@@ -186,11 +204,11 @@ export class BuilderquotesPage {
           table: {
               widths: ['*', 105, 105],
               body: [
-                  // [
-                  //     '',
-                  //     'House cost(excl. extras)',
-                  //     'R'+ this.quotes.price+'.00',
-                  // ],
+                  [
+                      '',
+                      'House cost(excl. extras)',
+                      'R'+ this.quotes.price+'.00',
+                  ],
                   [
                       '',
                       'Total(incl. extras)',

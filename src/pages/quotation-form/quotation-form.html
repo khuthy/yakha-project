@@ -84,7 +84,7 @@
                 <h4>Please include the following</h4>
                 <ion-item>
                   <ion-label>Extras</ion-label>
-                  <ion-select formControlName="extras" [(ngModel)]="HomeOwnerQuotation.extras" multiple="true" cancelText="Nah" okText="Okay!">
+                  <ion-select formControlName="extras" [(ngModel)]="HomeOwnerQuotation.extras" multiple="true" cancelText="Cancel" okText="Ok">
                     <ion-option *ngFor ="let e of extras" value="{{e}}" >{{e}}</ion-option>
                   </ion-select>
                 </ion-item>

@@ -1,26 +1,19 @@
 
-
 <ion-content >
   <div class="status" *ngIf="status">
       <div class="container-form" *ngIf="!isProfile">
-        
-
-     <div  class="image">
+         <div  class="image">
       <!--  <h4 style="text-align: center; color: #fff;">Manage Profile</h4> -->
       <div class="thumb">
         <img  *ngIf="profileImage" src="{{profileImage}}" class="thumb">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
         <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
       </div>
-       
-       
     </div>
       <div class="inputs">
         <form [formGroup]="profileForm">
-
   <ion-list>
-
-      <ion-item >
+<ion-item >
           <ion-label floating style="letter-spacing: 1px"> FullName</ion-label>
           <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
@@ -41,9 +34,6 @@
            {{validate.message}}
          </div>
          </div>
-
-         
-
       <ion-item >
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
@@ -52,8 +42,7 @@
            {{validate.message}}
          </div>
          </div>
-
-    <!-- <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Features</ion-label>
         <ion-select [(ngModel)]="room.features" okText="Okay" multiple="true"   cancelText="Dismiss">
           <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
@@ -68,8 +57,7 @@
            {{validate.message}}
          </div>
          </div>
-
-         <!-- <ion-item>
+        <!-- <ion-item>
           <ion-label floating>Does price include roofing?</ion-label>
           <ion-select >
             <ion-option value="y">Yes</ion-option>
@@ -119,7 +107,6 @@
 </form>
       </div>
     </div>
-
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
     <div class="back">
@@ -152,12 +139,8 @@
    </div>
    </div>
 </div>
-
-  </div>
+</div>
   <div class="statusApproval" *ngIf="!status">
     <h3>Please wait for an approval</h3>
   </div>
-  
-
-
 </ion-content>
