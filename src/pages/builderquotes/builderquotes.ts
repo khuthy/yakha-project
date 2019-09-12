@@ -70,7 +70,7 @@ export class BuilderquotesPage {
       { type: 'required', message: 'Address is required.' }
     ],
   'dimension': [ {
-      type: 'required', message: 'Dimension is required'
+      type: 'required', message: 'Extra costs are required'
     }],
   'price': [ 
     {type: 'required', message: 'Price is required.'},
@@ -78,6 +78,8 @@ export class BuilderquotesPage {
 ]
 }
   ownerAddress: any;
+  extras = [];
+  total: number = 0;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -103,16 +105,16 @@ export class BuilderquotesPage {
   
   ionViewDidLoad() {
    // console.log(this.navParams.data);
-    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).get().then((res)=>{
-      this.quotes.dimension = res.data().length + 'x' + res.data().width + 'x' + res.data().height;
-      this.length = res.data().length;
-      this.height = res.data().height;
-      this.width = res.data().width;
+    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res)=>{
+      this.extras.push(res.data().extras)
+      console.log(this.extras);
+      
      this.quotes.ownerAddress = res.data().ownerAddress;
-     this.quotes.price = Number(res.data().price) * (this.length*this.width*this.height)*2 + (Number(res.data().price) * (this.length*this.width*this.height)*2)*.15;
+     let num = parseFloat((res.data().price) + this.quotes.dimension)
+      this.total = num;
+      
+    //  this.quotes.price = num;
      this.quotes.ownerName = res.data().ownerName;
-  //   console.log(res.id);
-     
     })
 
     this.db.collection('builderProfile').where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
@@ -177,22 +179,22 @@ export class BuilderquotesPage {
       },
 
 
-        { text: this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
+        // { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
+        // { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
         {
           style: 'totalsTable',
           table: {
-              widths: ['*', 75, 75],
+              widths: ['*', 105, 105],
               body: [
+                  // [
+                  //     '',
+                  //     'House cost(excl. extras)',
+                  //     'R'+ this.quotes.price+'.00',
+                  // ],
                   [
                       '',
-                      'Subtotal',
-                      1000,
-                  ],
-                  [
-                      '',
-                      'Total',
-                      15111451454,
+                      'Total(incl. extras)',
+                      'R'+ this.total +'.00',
                   ]
               ]
           },
