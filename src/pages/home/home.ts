@@ -291,12 +291,7 @@ initializeItems() {
     
   ];
 }
-viewProfile(myEvent) {
-  let popover = this.popoverCtrl.create(ProfileComponent);
-  popover.present({
-    ev: myEvent
-  });
-}
+
 // search(event){
 //     let searchKey : string = event.target.value;
 //     let firstLetter = searchKey.toUpperCase();
