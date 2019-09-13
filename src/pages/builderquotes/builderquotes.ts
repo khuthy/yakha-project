@@ -246,10 +246,7 @@ export class BuilderquotesPage {
       defaultStyle: {
       }
     }
-
-
-
-    this.pdfObj = pdfMake.createPdf(docDefinition);
+this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
     // this.downloadPdf();
