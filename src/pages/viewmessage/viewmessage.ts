@@ -93,6 +93,8 @@ export class ViewmessagePage {
     this.response_date = this.userDetails.response_date;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
+
+    
    this.extras = this.userDetails.extras;
     //this.hOwnerPhone = this.userDetails.hOwnerPhone;
 //builderUID: "HkXc4HvYXIOjZm51BdQcaRZvLj13"
@@ -145,6 +147,7 @@ export class ViewmessagePage {
     this.db.collection('HomeOwnerQuotation').where('comment', '==', this.userDetails).get().then(snapshot => {
       this.request = [];
       snapshot.forEach(doc => {
+        
         this.request.push(doc.data());
         this.hOwnerUID = doc.id;
         this.quoteDoc = doc.data().doc;
