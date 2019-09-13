@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, style } from '@angular/core';
+import { Component , ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -26,6 +26,7 @@ export class HomePage {
   // structure: any = { lower: 33, upper: 60 };
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
+ 
 //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
   resultArr = [];
@@ -63,7 +64,9 @@ request: boolean = false;
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public elementref: ElementRef,
+    public renderer: Renderer2
     
  ) {
    
@@ -217,6 +220,9 @@ request: boolean = false;
                 radius: 10000
               }); */
             })
+            // let cards = document.querySelector('home-builder-top');
+            // console.log('Cards to style', cards);
+            
 
             // });
             // // console.log(marker);
@@ -225,7 +231,7 @@ request: boolean = false;
 
             // }
           });
-
+          
          }).catch((error) => {
            console.log('Error getting location', error);
          });
@@ -356,8 +362,17 @@ getItems(ev: any) {
   }
 }
   ionViewDidLoad() {
+    
      
-     
+     /* 
+     for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
+       let background = i % 2;
+       if(background) {
+
+       }else {
+
+       }
+     } */
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -377,7 +392,7 @@ getItems(ev: any) {
     else if(this.platform.width() > 319) {
       this.slidesPerView = 1;
     }
-   this.getOwners();
+   
     let data = {
       builder: {},
       owner: {}
@@ -402,6 +417,11 @@ getItems(ev: any) {
           }
         })
       });
+      
+      setTimeout(()=> {
+        this.getOwners();
+      }, 1000)
+      console.log('Done');
       console.log(this.owner);
       
       }else {
@@ -415,6 +435,8 @@ getItems(ev: any) {
 
 //viewmore
 viewBuilderInfo(builder){
+ 
+
   this.navCtrl.push(BuilderProfileviewPage, builder);
 }
 viewRequest(user) {
@@ -429,8 +451,32 @@ viewOwner(owner){
 }
 
 getOwners(){
+  console.log('Triggerd');
   
+  console.log('Element ref', this.elementref);
+  let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
+    let c = this.elementref.nativeElement.children[1].children[1].children[0].children[0];
+    // this.renderer.setStyle(c, `background`, `pink`);
+    console.log('c', c);
+    
+  let colors = ['rgba(95, 95, 95, 0.103)','rgba(197, 101, 66, 0.966)','rgba(33, 109, 123, 0.78)']
+  console.log('Cards ', cards);
   
+  for (let i = 0; i < this.elementref.nativeElement.children[1].children[1].children[0].children.length; i++) {
+    let changecolor = i % 2;
+    console.log('Remainder ', changecolor);
+    
+    let randomColor = Math.floor((Math.random() * colors.length));
+
+    console.log('Random number', randomColor);
+    let card = this.elementref.nativeElement.children[1].children[1].children[0].children[i]
+    if (changecolor) {
+      this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
+    } else {
+      this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
+    }
+    
+  }
 }
 
 moveMapEvent() {

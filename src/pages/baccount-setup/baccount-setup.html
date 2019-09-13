@@ -107,6 +107,7 @@
 </form>
       </div>
     </div>
+    <!-- profile for builder starts here -->
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
     <div class="back">
@@ -125,10 +126,10 @@
     </ion-fab>
    </div>
    <div class="">
-    <p> R:{{builderProfile.price}}(p/m2)</p>
-    <p> {{builderProfile.roof}} Does your price include roofing</p>
+    <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
+    <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
    </div>
-   <div class="details">
+   <div class="details" style="background: #f15a24; color: white; letter-spacing: 1px">
      <p> {{builderProfile.experiences}} years of experience</p>
     </div>
    <div class="bio">

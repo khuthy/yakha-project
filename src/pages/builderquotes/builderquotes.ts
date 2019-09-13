@@ -394,5 +394,8 @@ export class BuilderquotesPage {
       // uid: firebase.auth().currentUser.ui
     })
     this.navCtrl.setRoot(SuccessPage);
+    
   }
+  
 }
+

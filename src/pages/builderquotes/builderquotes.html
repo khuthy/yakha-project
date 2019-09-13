@@ -10,12 +10,6 @@
     <img src="../../assets/imgs/logo.png" class="thumb" alt="">
   </div> -->
   <form [formGroup]="quotesForm">
-
-
-
-
-
-
     <ion-item>
       <ion-label floating>Expiry date</ion-label>
       <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" min="2019-09-11" max="2022-10-31"
@@ -129,7 +123,6 @@
         </div>
       </div>
     </div>
-
     <ion-item>
       <ion-label floating>Total Price</ion-label>
       <ion-input type="number" formControlName="price" [(ngModel)]="total"></ion-input>
