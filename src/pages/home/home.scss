@@ -192,8 +192,6 @@ background: rgba(33, 109, 123, 0.78);
 p {
   color: white;
 } 
-
-}
 .home-builder-top:nth-child(2n){
   background:  rgba(197, 101, 66, 0.966);
 }
@@ -203,6 +201,16 @@ p {
 .home-builder-top:nth-child(4n){
   background:  rgba(197, 101, 66, 0.966);
 }
+}
+/* .home-builder-top:nth-child(2n){
+  background:  rgba(197, 101, 66, 0.966);
+}
+.home-builder-top:nth-child(3n){
+  background:  white;
+}
+.home-builder-top:nth-child(4n){
+  background:  rgba(197, 101, 66, 0.966);
+} */
 .bottom-home-builder {
    background: rgb(235, 235, 235);
    width: 100%;

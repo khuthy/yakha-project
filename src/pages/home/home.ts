@@ -26,6 +26,7 @@ export class HomePage {
   // structure: any = { lower: 33, upper: 60 };
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
+ 
 //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
   resultArr = [];
@@ -359,7 +360,15 @@ getItems(ev: any) {
   ionViewDidLoad() {
     
      console.log('Element ref', this.elementref);
-     
+     /* 
+     for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
+       let background = i % 2;
+       if(background) {
+
+       }else {
+
+       }
+     } */
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;
