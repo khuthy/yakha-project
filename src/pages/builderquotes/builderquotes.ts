@@ -13,7 +13,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
-import { ThrowStmt } from '@angular/compiler';
+
  
 /**
  * Generated class for the BuilderquotesPage page.
@@ -95,9 +95,8 @@ export class BuilderquotesPage {
   ownerAddress: any;
   count = 0;
   extras = [];
-
   total: number = 0;
-  
+  extrasValues: Quotations;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -205,10 +204,6 @@ export class BuilderquotesPage {
     
   }
   createPdf() {
-
-    console.log('this.dimension');
-    
-
     var docDefinition = {
       content: [
 
@@ -394,8 +389,5 @@ export class BuilderquotesPage {
       // uid: firebase.auth().currentUser.ui
     })
     this.navCtrl.setRoot(SuccessPage);
-    
   }
-  
 }
-
