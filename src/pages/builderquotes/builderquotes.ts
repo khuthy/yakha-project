@@ -13,7 +13,6 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
-import { ThrowStmt } from '@angular/compiler';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -86,19 +85,9 @@ export class BuilderquotesPage {
   }
   ownerAddress: any;
   count = 0;
-  extras: any [];
-  extrasValues = [
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-  ];
+  extras = [];
   total: number = 0;
-  
+  extrasValues: Quotations;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -129,11 +118,7 @@ export class BuilderquotesPage {
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).collection('extras').onSnapshot((res) => {
 
       res.docs.forEach(doc => {
-        /* this.extras = [...this.extras, {name: doc.id, quantity: doc.data().quantity, price: doc.data().price}]; */
-        
-        this.quotes.extras.push(doc.id);
-          
-          
+        this.extras = [...this.extras, {name: doc.id,quantity: doc.data().quantity,price: doc.data().price,}]
       })
     })
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res) => {
@@ -181,10 +166,6 @@ export class BuilderquotesPage {
 
   // }
   createPdf() {
-
-    console.log('this.dimension');
-    
-
     var docDefinition = {
       content: [
 
@@ -371,8 +352,5 @@ export class BuilderquotesPage {
       // uid: firebase.auth().currentUser.ui
     })
     this.navCtrl.setRoot(SuccessPage);
-    
   }
-  
 }
-
