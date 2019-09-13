@@ -6,58 +6,51 @@
     <div class="container">
      
     <div class="logo">
-       <img src="../../assets/imgs/log.png" width=25%>
+       <img src="../../assets/imgs/logo.png" width=35%>
       </div>
  
       
-     <div class="inputs" style="overflow-y: scroll">
-        <form [formGroup]="signupForm">
+     <div class="inputs">
+        <form class="forms"[formGroup]="signupForm">
             <ion-list no-lines>
               
         
                <ion-item style="background: transparent"> 
-                <ion-label floating style="color: black; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email</ion-label>
-                <ion-input style="color: black; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="email" type="email" 
+                <ion-label floating style="color: 4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email Address</ion-label>
+                <ion-input style="color: 4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="email" type="email" 
                 [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
               </ion-input>
      </ion-item> 
 
-              <p style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['email'].valid
+              <ion-label style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['email'].valid
               && signupForm.controls['email'].touched">
-              <ion-label>Please enter a valid email.</ion-label>  </p>
-  
+              <p>Please enter a valid email.</p>  </ion-label>
+  <br>
             
               <ion-item style="background: transparent">
-                <ion-label floating style="color:black; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
-                <ion-input style="color: black; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="password" type="password" 
+                <ion-label floating style="color:4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
+                <ion-input style="color: 4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="password" type="password" 
                 [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
               </ion-input>
               </ion-item >
 
-              <p style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+              <ion-label style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
               signupForm.controls['password'].touched"> 
-              <ion-label>Your password needs more than 6 characters.</ion-label>
-           </p>
+              <p>Your password needs more than 6 characters.</p>
+            </ion-label>
             
+            <div class="btn" hide-on-keyboard-open>
+              <button ion-button block style="border-radius:5px;letter-spacing: 1px;margin-top:15%" class="btn-custom" (click)="signupUser(signupForm)">Register</button>
+               <button  clear block (click)="goLogin()" style="color: rgb(8, 8, 46);padding-top:3%;background: transparent;width:100%; text-align: center;color:#4D4D4D;font-family: 'Segoe UI'; font-size: 3.5vw">Already a member? Login.</button>
+            </div>
            
-            </ion-list>
                
-            </form>
-
+           </ion-list>
+ </form>
            
      </div>
-    <div id="bottom">
-     <div class="btn" >
-      <button ion-button block style="border-radius:5px;letter-spacing: 1px" class="btn-custom" (click)="signupUser(signupForm)">Register</button>
-       <button  clear block (click)="goLogin()" style="color: rgb(8, 8, 46);padding-top:3%;background: transparent;width:100%; text-align: center;color:#4D4D4D;font-family: 'Segoe UI'; font-size: 3.5vw">Already a member? Login.</button>
-    </div>
-    </div>
-     
-        
-    
-    </div>
-    
-    </ion-content>
+ </div>
+     </ion-content>
     <!-- <form [formGroup]="signupForm">
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
