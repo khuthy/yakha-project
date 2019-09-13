@@ -176,43 +176,43 @@ async selectImage() {
   })
 }
 async createQuations(quotationForm: FormGroup): Promise<void> {
-  //  if(!quotationForm.valid) {
-  //     console.log('Please fill all the form fields', quotationForm.value)
-  //  }else {
-  //     // load the profile creation process
-  //     const load = this.loadCtrl.create({
-  //       content: 'submitting quotations ..'
-  //     });
-  //     load.present();
-  // const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
+   if(!quotationForm.valid) {
+      console.log('Please fill all the form fields', quotationForm.value)
+   }else {
+      // load the profile creation process
+      const load = this.loadCtrl.create({
+        content: 'submitting quotations ..'
+      });
+      load.present();
+  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
   
-  // // upon success...
-  // user.then( () => {
-  //   this.navCtrl.setRoot(SuccessPage)
-  //   this.toastCtrl.create({
-  //     message: '  Quotation submitted.',
-  //     duration: 2000,
-  //   }).present();
-  //   // ...get the profile that just got created...
-  //   load.dismiss();
-  //   // catch any errors.
-  // }).catch( err=> {
-  //   this.toastCtrl.create({
-  //     message: 'Error submitting Quotation.',
-  //     duration: 2000
-  //   }).present();
-  //   this.isProfile = false;
-  //   load.dismiss();
-  // })
+  // upon success...
+  user.then( () => {
+    this.navCtrl.setRoot(SuccessPage)
+    this.toastCtrl.create({
+      message: '  Quotation submitted.',
+      duration: 2000,
+    }).present();
+    // ...get the profile that just got created...
+    load.dismiss();
+    // catch any errors.
+  }).catch( err=> {
+    this.toastCtrl.create({
+      message: 'Error submitting Quotation.',
+      duration: 2000
+    }).present();
+    this.isProfile = false;
+    load.dismiss();
+  })
 
-  //  }
+   }
      // console.log(this.HomeOwnerQuotation.extras);
-     let obj = [];
-     obj.push(this.HomeOwnerQuotation.extras);
-     firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
-    //   console.log(res.update());
+    //  let obj = [];
+    //  obj.push(this.HomeOwnerQuotation.extras);
+    //  firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
+    // //   console.log(res.update());
        
-     })
+    //  })
         
   }
   remove(){
