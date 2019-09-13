@@ -185,7 +185,7 @@ export class BuilderquotesPage {
     console.log('this.dimension');
     
 
-   /* var docDefinition = {
+    var docDefinition = {
       content: [
 
         { text: 'Quotations', style: 'header' },
@@ -371,7 +371,7 @@ export class BuilderquotesPage {
       // uid: firebase.auth().currentUser.ui
     })
     this.navCtrl.setRoot(SuccessPage);
-    */
+    
   }
   
 }
