@@ -85,9 +85,19 @@ export class BuilderquotesPage {
   }
   ownerAddress: any;
   count = 0;
-  extras = [];
+  extras: any [];
+  extrasValues = [
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+    {price: 0, quantity: 0},
+  ];
   total: number = 0;
-  extrasValues: Quotations;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -118,7 +128,11 @@ export class BuilderquotesPage {
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).collection('extras').onSnapshot((res) => {
 
       res.docs.forEach(doc => {
-        this.extras = [...this.extras, {name: doc.id,quantity: doc.data().quantity,price: doc.data().price,}]
+        /* this.extras = [...this.extras, {name: doc.id, quantity: doc.data().quantity, price: doc.data().price}]; */
+        
+        this.quotes.extras.push(doc.id);
+          
+          
       })
     })
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res) => {
