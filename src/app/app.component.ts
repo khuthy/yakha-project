@@ -75,17 +75,17 @@ export class MyApp {
        
        if(getuserLoggedIn.data().userType == "Homebuilder") {
        
-        Notification.requestPermission().then((permission) => {
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-            // TODO(developer): Retrieve an Instance ID token for use with FCM.
-            // ...
-           // console.log(messaging.getToken());
+        // Notification.requestPermission().then((permission) => {
+        //   if (permission === 'granted') {
+        //     console.log('Notification permission granted.');
+        //     // TODO(developer): Retrieve an Instance ID token for use with FCM.
+        //     // ...
+        //    // console.log(messaging.getToken());
             
-          } else {
-            console.log('Unable to get permission to notify.');
-          }
-        });   
+        //   } else {
+        //     console.log('Unable to get permission to notify.');
+        //   }
+        // });   
           homeBuilders.onSnapshot(homeBuilderInfo => {
 
             if(homeBuilderInfo.empty) {

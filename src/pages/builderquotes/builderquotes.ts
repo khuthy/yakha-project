@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -14,7 +14,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
 import { ThrowStmt } from '@angular/compiler';
-
+ 
 /**
  * Generated class for the BuilderquotesPage page.
  *
@@ -33,6 +33,16 @@ export class BuilderquotesPage {
   height;
   width;
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+  extra = {
+    Ceiling: {
+      price: 122,
+      quantity: 9
+    },
+    Doors: {
+      price: 122,
+      quantity: 9
+    }
+  }
   formattedAddress = '';
   options = {
     componentRestrictions: {
@@ -47,8 +57,6 @@ export class BuilderquotesPage {
     expiry: '',
     address: '',
     dimension: '',
-    extras: [],
-
     price: 0,
     uid: '',
     meter: null,
@@ -61,7 +69,7 @@ export class BuilderquotesPage {
   db = firebase.firestore();
   storage = firebase.storage().ref();
   uid: any;
-
+ 
   validation_messages = {
     'fullName': [
       { type: 'required', message: 'Name is required.' },
@@ -79,24 +87,15 @@ export class BuilderquotesPage {
     'dimension': [{
       type: 'required', message: 'Extra costs are required'
     }],
-    'price': [
+    'price':  [
       { type: 'required', message: 'Price is required.' },
       { type: 'maxlength', message: 'Amount is too large' }
     ]
   }
   ownerAddress: any;
   count = 0;
-  extras: any [];
-  extrasValues = [
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-    {price: 0, quantity: 0},
-  ];
+  extras = [];
+
   total: number = 0;
   
   constructor(
@@ -107,7 +106,8 @@ export class BuilderquotesPage {
     private file: File,
     private plt: Platform,
     private authUser: AuthServiceProvider,
-    private loader: LoadingController
+    private loader: LoadingController,
+    private cdRef : ChangeDetectorRef
   ) {
     this.quotes.hOwnerUID = this.navParams.data;
     this.uid = firebase.auth().currentUser.uid;
@@ -122,19 +122,32 @@ export class BuilderquotesPage {
     })
   }
 
+  ngAfterContentChecked() {
+
+    this.cdRef.detectChanges();
+
+  }
+
   ionViewDidLoad() {
 
 
     // console.log(this.navParams.data);
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).collection('extras').onSnapshot((res) => {
-
-      res.docs.forEach(doc => {
+      if(!res.empty) {
+         res.docs.forEach(doc => {
         /* this.extras = [...this.extras, {name: doc.id, quantity: doc.data().quantity, price: doc.data().price}]; */
-        
-        this.quotes.extras.push(doc.id);
-          
+        this.extras.push({item: doc.id, price: doc.data().price, quantity: doc.data().quantity}); 
+
+
           
       })
+      console.log('Extras ', this.extras);
+      
+      }else {
+        console.log('No extras yet');
+        
+      }
+     
     })
     this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res) => {
       this.quotes.ownerAddress = res.data().ownerAddress;
@@ -148,6 +161,7 @@ export class BuilderquotesPage {
       res.forEach((doc) => {
         this.quotes.address = doc.data().address;
         this.quotes.fullName = doc.data().fullName;
+        this.quotes.price = doc.data().price;
 
 
       })
@@ -170,26 +184,35 @@ export class BuilderquotesPage {
   }
 
   childPlus(i) {
+     this.extras[i].quantity++;
 
   }
   childMinus(i) {
-    console.log('excalate')
+    this.extras[i].quantity--;
+    if(this.extras[i].quantity <= 0) {
+    
+      this.extras[i].quantity = 0;
+    }
+    
   }
 
 
   // getQuoteInfo(){
 
   // }
+  test(){
+    console.log(this.extras);
+    
+  }
   createPdf() {
 
     console.log('this.dimension');
     
 
-   /* var docDefinition = {
+    var docDefinition = {
       content: [
 
         { text: 'Quotations', style: 'header' },
-        { image: '../../assets/imgs/logo.png', alignment: 'left' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
 
@@ -218,8 +241,8 @@ export class BuilderquotesPage {
         },
 
 
-        // { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        // { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
+        { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
+        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
         {
           style: 'totalsTable',
           table: {
@@ -271,10 +294,10 @@ export class BuilderquotesPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
-    // this.downloadPdf();
-    //  firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
-    //     console.log(results);
-    //  })
+    this.downloadPdf();
+     firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
+        console.log(results);
+     })
   }
   // selectFile() {
 

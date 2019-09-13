@@ -67,7 +67,7 @@
         <div class="price">
 
           <p>Price p/2</p>
-          <p><strong>R200</strong></p>
+          <p><strong>{{quotes.price}}</strong></p>
         </div>
         <ion-item>
           <ion-label floating>m2</ion-label>
@@ -82,15 +82,15 @@
     </div>
 
 
-    <div *ngFor="let item of quotes.extras; let i=index;">
+    <div *ngFor="let item of extras; let i=index;">
       <hr>
-      <h5>{{item}}</h5>
+      <h5>{{item.item}}</h5>
       <hr>
       <div class="parent">
         <div class="price">
           <ion-item>
             <ion-label floating>Price</ion-label>
-            <ion-input type="text" formControlName="dimension" ></ion-input>
+            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].price"></ion-input>
           </ion-item>
         </div>
         <div class="quantity">
@@ -101,7 +101,7 @@
             <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(i)">
                 <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
               </button></div>
-            <div class="typ3" style="padding: 12px"></div>
+            <div class="typ3" style="padding: 12px">{{extras[i].quantity}}</div>
             <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(i)">
                 <ion-icon ios="ios-add" md="md-add"></ion-icon>
               </button></div>
