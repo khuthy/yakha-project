@@ -85,7 +85,7 @@
                 <ion-item>
                   <ion-label>Extras</ion-label>
                   <ion-select formControlName="extras" [(ngModel)]="HomeOwnerQuotation.extras" multiple="true" cancelText="Cancel" okText="Ok">
-                    <ion-option *ngFor ="let e of extras" value="{{e}}" >{{e}}</ion-option>
+                    <ion-option *ngFor ="let e of extras" value="{{e}}" >{{e.service}}</ion-option>
                   </ion-select>
                 </ion-item>
                  <ion-label class="error" *ngFor="let validate of validation_messages.extras">
