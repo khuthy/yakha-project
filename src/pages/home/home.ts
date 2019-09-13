@@ -358,7 +358,7 @@ getItems(ev: any) {
 }
   ionViewDidLoad() {
     
-     console.log('Element ref', this.elementref)
+     console.log('Element ref', this.elementref);
      
 
     if(this.platform.width() > 1200) {
