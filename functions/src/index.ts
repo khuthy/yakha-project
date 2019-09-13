@@ -1,71 +1,75 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+const functions = require('firebase-functions');
+
+// The Firebase Admin SDK to access the Firebase Realtime Database.
+const admin = require('firebase-admin');
 admin.initializeApp();
 
-const db = admin.firestore();
 
-import * as sgMail from '@sendgrid/mail';
+//const db = admin.firestore();
+const messaging = admin.messaging();
 
-const API_KEY = functions.config().sendgrid.key;
-const TEMPLATE_ID = functions.config().sendgrid.template;
-sgMail.setApiKey(API_KEY);
+// import * as sgMail from '@sendgrid/mail';
 
-export const welcomeEmail = functions.auth.user().onCreate((user)=>{
-    const msg = {
-        to: user.email,
-        from: 'hello@fireship.oi',
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            subject:'Welcome to us!',
-            name:user.displayName
-        },
-    };
+// const API_KEY = functions.config().sendgrid.key;
+// const TEMPLATE_ID = functions.config().sendgrid.template;
+// sgMail.setApiKey(API_KEY);
 
-    return sgMail.send(msg)
-})
+// export const welcomeEmail = functions.auth.user().onCreate((user)=>{
+//     const msg = {
+//         to: user.email,
+//         from: 'hello@fireship.oi',
+//         templateId: TEMPLATE_ID,
+//         dynamic_template_data: {
+//             subject:'Welcome to us!',
+//             name:user.displayName
+//         },
+//     };
 
-
-export const genericEmail = functions.https.onCall(async (data, context)=>{
-    if(!context.auth || !context.auth.token.email){
-        throw new functions.https.HttpsError('failed-precondition', 'Must be logged with an email address');
-    }
-
-    const msg = {
-        to: context.auth.token.email,
-        from: 'hello@fireship.oi',
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            subject: data.subject,
-            name:data.text
-        },
-    };
-    await sgMail.send(msg);
+//     return sgMail.send(msg)
+// })
 
 
-    return {
-        success: true
-    };
-})
+// export const genericEmail = functions.https.onCall(async (data, context)=>{
+//     if(!context.auth || !context.auth.token.email){
+//         throw new functions.https.HttpsError('failed-precondition', 'Must be logged with an email address');
+//     }
 
-export const newComment = functions.firestore.document('posts/{postId}/comments/{commentId}')
-.onCreate(async (change, context)=>{
-    const postSnap = await db.collection('posts').doc(context.params.postId).get();
+//     const msg = {
+//         to: context.auth.token.email,
+//         from: 'hello@fireship.oi',
+//         templateId: TEMPLATE_ID,
+//         dynamic_template_data: {
+//             subject: data.subject,
+//             name:data.text
+//         },
+//     };
+//     await sgMail.send(msg);
 
-    const post = postSnap.data() || {};
-    const comment = change.data() || {};
 
-    const msg = {
-        to: post.authorEmail,
-        from: 'hello@fireship.oi',
-        templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            subject: `New Comment on ${post.title}`,
-            name: post.displayName,
-            text: `${comment.user} said... ${comment.text}`
-        },
-    };
-    return sgMail.send(msg);
-})
+//     return {
+//         success: true
+//     };
+// })
+
+// export const newComment = functions.firestore.document('posts/{postId}/comments/{commentId}')
+// .onCreate(async (change, context)=>{
+//     const postSnap = await db.collection('posts').doc(context.params.postId).get();
+
+//     const post = postSnap.data() || {};
+//     const comment = change.data() || {};
+
+//     const msg = {
+//         to: post.authorEmail,
+//         from: 'hello@fireship.oi',
+//         templateId: TEMPLATE_ID,
+//         dynamic_template_data: {
+//             subject: `New Comment on ${post.title}`,
+//             name: post.displayName,
+//             text: `${comment.user} said... ${comment.text}`
+//         },
+//     };
+//     return sgMail.send(msg);
+// })
 // const functions = require('firebase-functions');
 
 // const admin = require('firebase-admin');
@@ -77,8 +81,16 @@ export const newComment = functions.firestore.document('posts/{postId}/comments/
 // const sgMail = require('@sendgrid/mail');
 // sgMail.setApiKey(SENDGRID_API_KEY);
 
-//export const helloWorld = functions.https.onRequest((request, response) => {
- 
+export const helloWorld = functions.https.onRequest((req, res) => {
+   // Grab the text parameter.
+   console.log(messaging);
+   
+   //const original = req.query.text;
+   // Push the new message into the Realtime Database using the Firebase Admin SDK.
+  // const snapshot = db.add({original: original});
+   // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
+  // res.redirect(303, snapshot.ref.toString());
+ });
 
 // exports.firestoreEmail = functions.firestore.document('builderProfile/{userId}/followers/{follwerId}')
 // .onCreate((event) => {

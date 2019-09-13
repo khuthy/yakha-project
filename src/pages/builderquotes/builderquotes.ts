@@ -13,6 +13,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
+import { ThrowStmt } from '@angular/compiler';
 
 /**
  * Generated class for the BuilderquotesPage page.
@@ -180,7 +181,11 @@ export class BuilderquotesPage {
 
   // }
   createPdf() {
-    var docDefinition = {
+
+    console.log('this.dimension');
+    
+
+   /* var docDefinition = {
       content: [
 
         { text: 'Quotations', style: 'header' },
