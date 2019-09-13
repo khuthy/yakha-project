@@ -51,7 +51,17 @@ export class QuotationFormPage {
   };
   docID;
  date: any;
- extras:any = ['roofing', 'doors', 'windows', 'framing', 'electricity', 'Plumbing', 'ceiling', 'plaster' ];
+ 
+ extras:any = [
+  {service: 'Roofing', price: 0, quantity: 0 }, 
+  {service: 'Doors', price: 0, quantity: 0 }, 
+  {service: 'Windows', price: 0, quantity: 0 },
+  {service: 'Electricity', price: 0, quantity: 0 },
+  {service: 'Plumbing', price: 0, quantity: 0 },
+  {service: 'Ceiling', price: 0, quantity: 0 },
+  {service: 'Pluster', price: 0, quantity: 0 },
+];
+
 /* validations starts here */
 validation_messages = {
 'startDate': [
@@ -74,6 +84,7 @@ type: 'required', message: 'Please include some features'
             {type: 'maxlength', message: 'Additional comments must be 200 characters'}
           ]
 };
+extraName;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -104,6 +115,8 @@ type: 'required', message: 'Please include some features'
           this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
       })
+     
+      
       let date = new Date();
       let days = date.getDay();
       let month = date.getMonth();
@@ -112,7 +125,14 @@ type: 'required', message: 'Please include some features'
     }
 
   ionViewDidLoad() {
+ 
+    console.log(this.extras);
+    
+    //let arr = [{objExtra, objPrice, objQuantity}]
+   
+    
    // firebase.database().ref().child('hotels').
+   // this.extras = firebase.firestore().collection('extras')
     console.log(this.uid);
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();
@@ -121,9 +141,9 @@ type: 'required', message: 'Please include some features'
 next(){
   this.navCtrl.push(SuccessPage);
 }
-selectAll(){
-this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
-}
+// selectAll(){
+// this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
+// }
 async selectImage() {
   let option: CameraOptions = {
     quality: 100,
@@ -188,10 +208,19 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   })
 
    }
+     // console.log(this.HomeOwnerQuotation.extras);
+    //  let obj = [];
+    //  obj.push(this.HomeOwnerQuotation.extras);
+    //  firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
+    // //   console.log(res.update());
+       
+    //  })
         
   }
   remove(){
     this.houseImage = "";
   }
+
+  
 
 }

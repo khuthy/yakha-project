@@ -96,7 +96,7 @@ import { ProfileComponent } from '../components/profile/profile';
     
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
-      scrollAssist: true,
+      scrollAssist: false,
       autoFocusAssist: false
     }),
 

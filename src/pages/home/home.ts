@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, style } from '@angular/core';
+import { Component , ViewChild, ElementRef, Renderer2,  style } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -57,12 +57,14 @@ request: boolean = false;
   price = 0;
   
   constructor(public navCtrl: NavController,
-    private modalCtrl : ModalController, public loader : LoadingController,
+    private modalCtrl : ModalController, 
+    public loader : LoadingController,
     private geolocation: Geolocation,
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public elementref: ElementRef
     
  ) {
    
@@ -291,6 +293,20 @@ initializeItems() {
     
   ];
 }
+viewProfile(myEvent) {
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+  popover.present({
+    ev: myEvent
+  });
+}
+viewHouse(myEvent) {
+  console.log('image',myEvent);
+  
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+  popover.present({
+    ev: myEvent
+  });
+}
 
 // search(event){
 //     let searchKey : string = event.target.value;
@@ -341,7 +357,8 @@ getItems(ev: any) {
   }
 }
   ionViewDidLoad() {
-     
+    
+     console.log('Element ref', this.elementref);
      
 
     if(this.platform.width() > 1200) {
@@ -559,8 +576,7 @@ initMap(){
     // // console.log(marker);
     // } else {
     //   console.log("The firestore is empty");
-
-    // }
+// }
   // firebase.firestore().collection('location').doc('coords').get().then((resp)=>{
   //  if(resp.exists){
 
