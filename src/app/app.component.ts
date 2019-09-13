@@ -48,15 +48,17 @@ export class MyApp {
     this.initializeApp();
    firebase.initializeApp(firebaseConfig);
    this.db = firebase.firestore();
-   console.log('im here');
-   
+    //console.log('im here');
+   //const messaging = firebase.messaging();
+   //console.log(messaging.getToken());
+  
   
    /* auth guards */
    firebase.auth().onAuthStateChanged((user)=>{
     if(user)
     {
        // create a reference to the collection of users...
-       console.log('user is logged in');
+       //console.log('user is logged in: '+ user.uid);
        
           let userLoggedIn = this.db.doc(`/User/${user.uid}`);
    
@@ -69,10 +71,23 @@ export class MyApp {
           
        
        console.log(getuserLoggedIn.data().userType);
+       
+       
        if(getuserLoggedIn.data().userType == "Homebuilder") {
        
-          
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            console.log('Notification permission granted.');
+            // TODO(developer): Retrieve an Instance ID token for use with FCM.
+            // ...
+           // console.log(messaging.getToken());
+            
+          } else {
+            console.log('Unable to get permission to notify.');
+          }
+        });   
           homeBuilders.onSnapshot(homeBuilderInfo => {
+
             if(homeBuilderInfo.empty) {
               this.rootPage = BaccountSetupPage;
             

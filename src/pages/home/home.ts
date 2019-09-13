@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, style } from '@angular/core';
+import { Component , ViewChild, ElementRef, Renderer2,  style } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -63,7 +63,8 @@ request: boolean = false;
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public elementref: ElementRef
     
  ) {
    
@@ -356,7 +357,8 @@ getItems(ev: any) {
   }
 }
   ionViewDidLoad() {
-     
+    
+     console.log('Element ref', this.elementref);
      
 
     if(this.platform.width() > 1200) {
