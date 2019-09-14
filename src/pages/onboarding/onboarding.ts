@@ -24,7 +24,7 @@ export class OnboardingPage {
     this.storage.get('homeOwner').then(val => {
       if(val == 'checked')  {
         console.log(val);
-        this.navCtrl.setRoot(LoginPage);
+        this.navCtrl.setRoot(LoginPage, this.navParams.data);
         
       }else {
         console.log('on-boarding now');
@@ -51,17 +51,17 @@ export class OnboardingPage {
   }
 
   register(){
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RegisterPage, this.navParams.data);
   }
   getStarted(){
   // set a key/value
   this.storage.set('homeOwner', 'checked');
-  this.navCtrl.setRoot(LoginPage);
+  this.navCtrl.setRoot(LoginPage,this.navParams.data);
   }
   // Or to get a key/value pair
  skip(){
   this.storage.set('homeOwner', 'checked');
-  this.navCtrl.setRoot(LoginPage);
+  this.navCtrl.setRoot(LoginPage,this.navParams.data);
  }
 
 }
