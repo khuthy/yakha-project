@@ -190,7 +190,10 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
   
   // upon success...
-  user.then( () => {
+  user.then( (response) => {
+    this.extras.forEach(item => {
+      response.collection('extras').doc(item.service).set({price: item.price, quantity: item.quantity});
+    });
     this.navCtrl.setRoot(SuccessPage)
     this.toastCtrl.create({
       message: '  Quotation submitted.',
@@ -209,13 +212,13 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   })
 
    }
-     // console.log(this.HomeOwnerQuotation.extras);
-    //  let obj = [];
-    //  obj.push(this.HomeOwnerQuotation.extras);
-    //  firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
-    // //   console.log(res.update());
+   /*   console.log(this.HomeOwnerQuotation.extras);
+     let obj = [];
+     obj.push(this.HomeOwnerQuotation.extras);
+     firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
+    //   console.log(res.update());
        
-    //  })
+     }) */
         
   }
   remove(){
