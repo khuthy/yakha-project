@@ -78,6 +78,8 @@ export class AccountSetupPage {
   ionViewDidLoad() {
     console.log( this.uid)
     console.log( this.authUser.getUser());
+    console.log( this.navParams.data);
+    
     this.getProfile();
   }
   ionViewWillEnter() {

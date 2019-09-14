@@ -1,25 +1,22 @@
-import { Component , ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component , ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import { WelcomePage } from '../welcome/welcome';
-import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
-import { MessagesPage } from '../messages/messages';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { PopoverController } from 'ionic-angular';
 import { ProfileComponent } from '../../components/profile/profile';
-
 declare var google;
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   // brightness: number = 20;
   // contrast: number = 0;
   // warmth: number = 1300;
@@ -69,196 +66,199 @@ request: boolean = false;
     public renderer: Renderer2
     
  ) {
-   
-  this.menuCtrl.swipeEnable(true);
-  if(this.isSearchbarOpened) {
-    this.color = 'primary';
-  }else {
-    this.color = 'yakha';
+
+
   }
- //console.log(this.platform.width());
- 
 
-  /* home page loads start here */
-  this.loader.create({
-    content:"Loading..",
-    duration: 1000
-  }).present();
-   let user = firebase.auth().currentUser;
-   if(user){
-    let userLoggedIn = this.db.doc(`/User/${user.uid}`);
-    userLoggedIn.get().then(getuserLoggedIn => {
-      if(getuserLoggedIn.data().userType == 'Homebuilder') {
-
-        if(getuserLoggedIn.data().status == true) {
-          this.maps = false;
-        this.request = true;
-        }
-
-      }
-      else
-       {
-        this.geolocation.getCurrentPosition().then((resp) => {
-          let NEW_ZEALAND_BOUNDS = {
-            north: -22.0913127581,
-            south: -34.8191663551,
-            west: 10.830120477,
-            east: 32.830120477,
-          };
-          let coords1 = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-        //  console.log(resp.coords.latitude, resp.coords.longitude);
-          
-          let mapOptions = {
-            center : coords1,
-            zoom: 11,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            restriction: {
-              latLngBounds: NEW_ZEALAND_BOUNDS,
-              strictBounds: false,
-            },
-            disableDefaultUI: true
+  ngOnInit(){
+    this.menuCtrl.swipeEnable(true);
+    if(this.isSearchbarOpened) {
+      this.color = 'primary';
+    }else {
+      this.color = 'yakha';
+    }
+   //console.log(this.platform.width());
+   
+  
+    /* home page loads start here */
+    this.loader.create({
+      content:"Loading..",
+      duration: 1000
+    }).present();
+     let user = firebase.auth().currentUser;
+     if(user){
+      let userLoggedIn = this.db.doc(`/User/${user.uid}`);
+      userLoggedIn.get().then(getuserLoggedIn => {
+        if(getuserLoggedIn.data().userType == 'Homebuilder') {
+  
+          if(getuserLoggedIn.data().status == true) {
+            this.maps = false;
+          this.request = true;
           }
-          
-          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          let input = document.getElementById('search');
-          let searchBox = new google.maps.places.SearchBox(input);
-          /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-           */
-          this.map.addListener('bounds_changed', (res) => {
-            searchBox.setBounds(this.map.getBounds());
-          });
-          let  markers = [];
-          searchBox.addListener('places_changed', (res)=> {
-            var places = searchBox.getPlaces();
-            if (places.length == 0) {
-              return;
-            }
-            markers.forEach((marker)=> {
-              marker.setMap(null);
-            });
-            markers = [];
-            let bounds = new google.maps.LatLngBounds();
-          places.forEach((place)=> {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            let icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
+  
+        }
+        else
+         {
+          this.geolocation.getCurrentPosition().then((resp) => {
+            let NEW_ZEALAND_BOUNDS = {
+              north: -22.0913127581,
+              south: -34.8191663551,
+              west: 10.830120477,
+              east: 32.830120477,
             };
-
-            markers.push(new google.maps.Marker({
-              map: this.map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          this.map.fitBounds(bounds);
-        });
-          let marker1 = new google.maps.Marker({
-            map: this.map,
-            position: coords1,
-            title: 'Click to view details',
-          })
-          let infoWindow = new google.maps.InfoWindow({
-            content: 'My location'
-       });
-       google.maps.event.addListener(marker1, 'click', (resp)=>{
-        infoWindow.open(this.map, marker1)
-        })
-       
-        google.maps.event.addListener( marker1,'click', (resp) => {
-          this.map.setZoom(15);
-          this.map.setCenter(marker1.getPosition());
-        });
-          firebase.firestore().collection('builderProfile').onSnapshot((resp)=>{
-
-            resp.forEach((doc)=> {
-              // doc.data() is never undefined for query doc snapshots
-              let certified = (doc.data().certified == true) ? 'Certified': 'Not certified';
-              let lat = "<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price + '<br>'+certified;
-              let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
-           
-               let marker = new google.maps.Marker({
-                   map: this.map,
-                   position: coord,
-                   draggable: false,
-                  animation: google.maps.Animation.DROP,
-                   title: 'Click to view details',
-                 })
-                      let infoWindow = new google.maps.InfoWindow({
-                  content: lat
-             });
-             google.maps.event.addListener(marker, 'click', (resp)=>{
-               //infoWindow.open(this.map, marker)
-               this.viewBuilderInfo(doc.data());
-              })
-              google.maps.event.addListener( marker,'click', (resp) => {
-                this.map.setZoom(15);
-                this.map.setCenter(marker.getPosition());
-              });
-           /*    let cityCircle = new google.maps.Circle({
-                strokeColor: '#000000',
-                strokeOpacity: 0.8,
-                strokeWeight: 0.8,
-                fillColor: '#FFFFFF',
-                fillOpacity: 0.8,
-                map: this.map,
-                center: coord,
-                radius: 10000
-              }); */
-            })
-            // let cards = document.querySelector('home-builder-top');
-            // console.log('Cards to style', cards);
+            let coords1 = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+          //  console.log(resp.coords.latitude, resp.coords.longitude);
             
-
-            // });
-            // // console.log(marker);
-            // } else {
-            //   console.log("The firestore is empty");
-
-            // }
+            let mapOptions = {
+              center : coords1,
+              zoom: 11,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              restriction: {
+                latLngBounds: NEW_ZEALAND_BOUNDS,
+                strictBounds: false,
+              },
+              disableDefaultUI: true
+            }
+            
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            let input = document.getElementById('search');
+            let searchBox = new google.maps.places.SearchBox(input);
+            /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+             */
+            this.map.addListener('bounds_changed', (res) => {
+              searchBox.setBounds(this.map.getBounds());
+            });
+            let  markers = [];
+            searchBox.addListener('places_changed', (res)=> {
+              var places = searchBox.getPlaces();
+              if (places.length == 0) {
+                return;
+              }
+              markers.forEach((marker)=> {
+                marker.setMap(null);
+              });
+              markers = [];
+              let bounds = new google.maps.LatLngBounds();
+            places.forEach((place)=> {
+              if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+              }
+              let icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+              };
+  
+              markers.push(new google.maps.Marker({
+                map: this.map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+              }));
+  
+              if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+              } else {
+                bounds.extend(place.geometry.location);
+              }
+            });
+            this.map.fitBounds(bounds);
           });
-          
-         }).catch((error) => {
-           console.log('Error getting location', error);
+            let marker1 = new google.maps.Marker({
+              map: this.map,
+              position: coords1,
+              title: 'Click to view details',
+            })
+            let infoWindow = new google.maps.InfoWindow({
+              content: 'My location'
          });
-         this.builder = [];
-         this.maps = true;
-        this.request = false;
-      this.db.collection('builderProfile').get().then(snapshot => {
-          snapshot.forEach(doc => {
-          this.builder.push(doc.data());
-          this.bUID = doc.id;
+         google.maps.event.addListener(marker1, 'click', (resp)=>{
+          infoWindow.open(this.map, marker1)
+          })
+         
+          google.maps.event.addListener( marker1,'click', (resp) => {
+            this.map.setZoom(15);
+            this.map.setCenter(marker1.getPosition());
+          });
+            firebase.firestore().collection('builderProfile').onSnapshot((resp)=>{
+  
+              resp.forEach((doc)=> {
+                // doc.data() is never undefined for query doc snapshots
+                let certified = (doc.data().certified == true) ? 'Certified': 'Not certified';
+                let lat = "<br>Builder name: "+ doc.data().fullName+ "<br>Price: R" + doc.data().price + '<br>'+certified;
+                let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
+             
+                 let marker = new google.maps.Marker({
+                     map: this.map,
+                     position: coord,
+                     draggable: false,
+                    animation: google.maps.Animation.DROP,
+                     title: 'Click to view details',
+                   })
+                        let infoWindow = new google.maps.InfoWindow({
+                    content: lat
+               });
+               google.maps.event.addListener(marker, 'click', (resp)=>{
+                 //infoWindow.open(this.map, marker)
+                 this.viewBuilderInfo(doc.data());
+                })
+                google.maps.event.addListener( marker,'click', (resp) => {
+                  this.map.setZoom(15);
+                  this.map.setCenter(marker.getPosition());
+                });
+             /*    let cityCircle = new google.maps.Circle({
+                  strokeColor: '#000000',
+                  strokeOpacity: 0.8,
+                  strokeWeight: 0.8,
+                  fillColor: '#FFFFFF',
+                  fillOpacity: 0.8,
+                  map: this.map,
+                  center: coord,
+                  radius: 10000
+                }); */
+              })
+              // let cards = document.querySelector('home-builder-top');
+              // console.log('Cards to style', cards);
+              
+  
+              // });
+              // // console.log(marker);
+              // } else {
+              //   console.log("The firestore is empty");
+  
+              // }
+            });
+            
+           }).catch((error) => {
+             console.log('Error getting location', error);
+           });
+           this.builder = [];
+           this.maps = true;
+          this.request = false;
+        this.db.collection('builderProfile').get().then(snapshot => {
+            snapshot.forEach(doc => {
+            this.builder.push(doc.data());
+            this.bUID = doc.id;
+          });
+          //console.log('Builders: ', this.builder);
+  
         });
-        //console.log('Builders: ', this.builder);
-
-      });
-
-      }
-      // else {
-      //   console.log('you are in the waiting list. please wait for 24 hours');
-
-      // }
-
-    })
-   }else {
-     this.navCtrl.setRoot(WelcomePage);
-   }
-   /* home page loads here */
-
+  
+        }
+        // else {
+        //   console.log('you are in the waiting list. please wait for 24 hours');
+  
+        // }
+  
+      })
+     }else {
+       this.navCtrl.setRoot(WelcomePage);
+     }
+     /* home page loads here */
   }
   back() {
     this.navCtrl.setRoot(LoginPage);
@@ -432,6 +432,269 @@ getItems(ev: any) {
     });
     
   }
+  mapstyle=[
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#1d2c4d"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#8ec3b9"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1a3646"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#4b6878"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#64779e"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.province",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#4b6878"
+        }
+      ]
+    },
+    {
+      "featureType": "landscape.man_made",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#334e87"
+        }
+      ]
+    },
+    {
+      "featureType": "landscape.natural",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#023e58"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#283d6a"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#6f9ba5"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1d2c4d"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#023e58"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#3C7680"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#304a7d"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#ffeb3b"
+        },
+        {
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text",
+      "stylers": [
+        {
+          "color": "#ffeb3b"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#98a5be"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1d2c4d"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#2c6675"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#255763"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#b0d5ce"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#023e58"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#98a5be"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1d2c4d"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#283d6a"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#3a4762"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#0e1626"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#4e6d70"
+        }
+      ]
+    }
+  ]
 
 //viewmore
 viewBuilderInfo(builder){

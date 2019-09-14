@@ -109,8 +109,6 @@ export class MyApp {
                     // { title: 'Contact Us', component: HelpPage, icon: 'mail' },
                     { title: 'Version', component: VersionPage, icon: 'information-circle' },
                    ];
-              
-                  
             }
           });
         
@@ -137,21 +135,12 @@ export class MyApp {
                 { title: 'Messages', component:MessagesPage, icon: 'mail' },
                 { title: 'Help', component: HelpPage, icon: 'help' },
                 { title: 'Feedback', component: FeedbackPage, icon: 'paper'},
-               /*  { title: 'Share', component: SharePage, icon: 'share' }, */
                 { title: 'Version', component: VersionPage, icon: 'information-circle'}
                ];
-           
-              
               }
         });
-     
-      
     }   
    });
-   
- 
-      
-  
   } else {
       
       this.rootPage = WelcomePage;

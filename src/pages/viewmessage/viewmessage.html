@@ -53,7 +53,7 @@
             </blockquote>
 </div>
       <div class="block2 owner" *ngIf="quoteDoc">
-          <blockquote *ngFor ="let r of request">
+          <blockquote *ngFor ="let r of request" >
             <p>
                 <ion-icon name="document"></ion-icon><a href="{{r.doc}}">Quotation.pdf</a>
             </p>
@@ -93,7 +93,7 @@
     </div>
     <div class="textMessages">
       <div class="block owner">
-        <blockquote class="house" >
+        <blockquote class="house" [@slideDown]="stateSlideDown">
             
           <span id="quotes1"><strong id="date1">{{startDate}}</strong> <strong id="date2">{{endDate}}</strong></span>
           <p class="info">
