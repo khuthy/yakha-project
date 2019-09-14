@@ -161,8 +161,6 @@ export class BuilderquotesPage {
         this.quotes.address = doc.data().address;
         this.quotes.fullName = doc.data().fullName;
         this.quotes.price = doc.data().price;
-
-
       })
     })
     this.db.collection('HomeOwnerProfile').where('uid', '==', this.quotes.hOwnerUID).get().then((res) => {
@@ -194,11 +192,6 @@ export class BuilderquotesPage {
     }
     
   }
-
-
-  // getQuoteInfo(){
-
-  // }
   test(){
     console.log(this.extras);
     
@@ -206,7 +199,6 @@ export class BuilderquotesPage {
   createPdf() {
     var docDefinition = {
       content: [
-
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
