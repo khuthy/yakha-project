@@ -30,29 +30,31 @@ export class RegisterPage {
   public loading: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private authService:AuthServiceProvider,
+    private authService: AuthServiceProvider,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
-    private formBuilder: FormBuilder,) {
-      this.signupForm = this.formBuilder.group({
-        email: ['', Validators.compose([Validators.required, Validators.email])],
-        password: [
-          '',
-          Validators.compose([Validators.minLength(6), Validators.required])
-        ]
-      });
+    private formBuilder: FormBuilder, ) {
+    this.signupForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: [
+        '',
+        Validators.compose([Validators.minLength(6), Validators.required])
+      ]
+    });
 
-      console.log(this.authService.manageUsers());
+    console.log(this.authService.manageUsers());
   }
-​
+
   ionViewDidLoad() {
+    console.log(this.navParams.data);
 
   }
 
-  goLogin(){
+  goLogin() {
     this.navCtrl.push(LoginPage);
   }
   async signupUser(signupForm: FormGroup): Promise<void> {
+    let builder = this.navParams.data;
     if (!signupForm.valid) {
       console.log(
         'Need to complete the form, current value: ',
@@ -62,23 +64,23 @@ export class RegisterPage {
 
       const email: string = signupForm.value.email;
       const password: string = signupForm.value.password;
-​
+
       this.authService.signupUser(email, password).then(
         (user) => {
-
+          let typeBuilder = this.navParams.data;
           this.loading.dismiss().then(() => {
             console.log(user);
-            if(this.authService.manageUsers() == 'Homebuilder') {
-              let homebuilder = firebase.auth().currentUser.uid;
-              this.navCtrl.setRoot(BaccountSetupPage)
-              
-            }else {
-                let homeowner=firebase.auth().currentUser.uid;
-                this.navCtrl.setRoot(AccountSetupPage)
-            }
+            if (this.authService.manageUsers() == 'Homebuilder') {
+             
+             // let homebuilder = firebase.auth().currentUser.uid;
+              this.navCtrl.setRoot(BaccountSetupPage, builder)
 
+            } else {
+             // let homeowner = firebase.auth().currentUser.uid;
+              this.navCtrl.setRoot(AccountSetupPage, builder)
+            }
           });
-        
+
 
 
 

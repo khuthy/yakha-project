@@ -35,27 +35,30 @@ export class WelcomePage {
 
   definedUser(val) {
     this.authService.predefined = val;
+    let Homebuilder = true;
     if(this.authService.manageUsers() == 'Homebuilder') {
       this.storage.get('onboarding').then((val) => {
         if(val == 'checked')  {
           console.log(val);
-          this.navCtrl.setRoot(LoginPage);
+          this.navCtrl.setRoot(LoginPage, Homebuilder);
           
         }else {
           console.log('on-boarding now');
-           this.navCtrl.setRoot(OnboardingBuilderPage);
+           this.navCtrl.setRoot(OnboardingBuilderPage, Homebuilder);
         }
       });
      
     }else {
+      //let userType = 'homeOwner';
+      let Homebuilder = false;
       this.storage.get('homeOwner').then((val) => {
         if(val == 'checked')  {
           console.log(val);
-          this.navCtrl.setRoot(LoginPage);
+          this.navCtrl.setRoot(LoginPage, Homebuilder);
           
         }else {
           console.log('on-boarding now');
-           this.navCtrl.setRoot(OnboardingPage);
+           this.navCtrl.setRoot(OnboardingPage, Homebuilder);
         }
       });
     }
