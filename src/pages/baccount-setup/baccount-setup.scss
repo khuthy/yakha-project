@@ -44,20 +44,23 @@ h5 {
 
 
         /* create or update profile */
-        .container-form {
-            width: 100%;
-            height: 100%;
-            
+     .fifi{
+        margin: 0;
+        padding: 0;
             .image {
-                // border: 1px solid red;
-                 height: 176.203px;
-                 width: 100%;
-                 background-image: url(../../assets/imgs/waverotate.svg);
-                 background-size: cover;
-                background-position: center bottom;
-                background-repeat: no-repeat;
-                 position: fixed;
-                 z-index: 10;
+         width: 100%;
+         padding-top: 50px;
+         padding-bottom: 70px;
+          background-image: url(../../assets/imgs/waverotate.svg);
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          margin: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          align-content: center;
     
     /* h4 {
         position: relative;
@@ -66,38 +69,59 @@ h5 {
       
       
          .thumb {
-        height: 100px;
-        width: 100px;
+        height: 150px;
+        width: 150px;
         border-radius: 50%;
-        justify-self: self-end;
-        object-fit: cover;
-        position: relative;
-        left: 30%;
-        top: 30%;
        
-    }
-    .btn-upload {
-        position: absolute;
-        right:-45%;
-        bottom:0%;
+        object-fit: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+       .btn-upload {
+       
+        align-items: center;
+        justify-content: center;
+        align-content: center;
     } 
+    }
+    
   } 
       } 
       .inputs {
-          //border: 1px solid rgb(4, 0, 255);
+        margin: 0;
+          padding: 0;
+          //border: 1px solid blue;
+          width: 80%;
+          height: 60%;
+          position: relative;
+          left: 10%;
+          top:20px;;
+          ion-list > .item {
+            border: 1px solid #3c7f8b;
+            border-radius: 10px;
+            margin-top: 3%;
           width: 100%;
-          position: absolute;
     
-          padding: 20px;
-          bottom: 0;
-          height: 70vh;
-          overflow-y: scroll;
-          display: flex;
-        
-    
-        form {
-            width: 100%;
-        }
+            ion-label {
+              color: #4D4D4D; 
+              letter-spacing: 1px;
+              font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            ion-input {
+              color: #4D4D4D;
+              letter-spacing: 1px;
+              font-weight:300;
+              border-bottom: none;
+            }
+            p {
+              color: rgb(246, 22, 22);
+              font-size: 3vw;
+              text-align: center;
+              margin-top:-5%;
+            }
+          }
     
       }
         }
@@ -106,25 +130,26 @@ h5 {
 
     /* view profile code */
     .container {
+
         .profiles {
-          
+            overflow-y: fixed;
+        //  border: 1px solid red;
+          background: 	#f6f2f2;
+          height: 100vh;
             .avatar-images {
-                width: 100%;
-                height: 30vh;
-                position: relative;
-                
-                &::before {
-                    position: absolute;
-                    content: '';
-                    top: 0;
-                    height: 22.5vh;
-                    width: 100%;
-                    background: rgb(49, 49, 49);
-                }
+             // border: 1px solid black;
+              width:60%;
+             img {
+                 height: 25vh;
+                 border-bottom-right-radius: 15px;
+                 border-bottom-right-radius: 15px;
+                 box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);   
+             }
+               
 
 
 
-                .thumbavatar {
+                /* .thumbavatar {
                     position: absolute;
                     width: 15vh;
                     height: 15vh;
@@ -136,16 +161,68 @@ h5 {
                     bottom: 0%;
                     margin-bottom: 0px;
                   
-                }
-                .name > h4 {
-                    position: relative;
-                    text-align: center;
-                }
+                } */
+             
                
+            }//end of avatar-images
+
+            .fullnames {
+               // border: 1px solid red;
+                padding-top: 5%;
+                h4 {
+                       color: rgb(54, 53, 53);
+                font-family: 'Segoe UI';
+                font-size: 3vh;
+                }
+             
             }
-          
+            .name {
+                margin-top:5%;
+                  height: 25vh;
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                background: linear-gradient(to bottom,#3cb371 0%, darkcyan 100%);
+                width: 90%;
+                border-radius: 15px;
+               position: relative;
+               left: 5%;
+               color:white;
+               p,h5 {
+                   letter-spacing: 1px;
+                   font-family: 'Segoe UI';
+                   font-size: 2vh;
+               }
+               .one {
+                  // border: 1px solid black;
+                   height:50%;
+                   display: flex;
+                   
+                 div {
+                    border-bottom: 1px solid rgb(190, 188, 188);
+                    display: flex;
+                    flex-direction: column;
+                    width:50%;
+                    align-items: center;
+                    justify-content: top;
+                 } 
+               }
+               .two {
+               // border: 1px solid rgb(228, 17, 17);
+                height:50%; 
+                display: flex;
+                div {
+                   
+                    display: flex;
+                    flex-direction: column;
+                    width:50%;
+                    align-items: center;
+                    justify-content: top;
+               }  
+               }
+            }
         }
-    }
+    }//end of container
+
+
     .details {
         padding: 5px;
         background: #ddd;
@@ -159,11 +236,26 @@ h5 {
         color: grey;
     }
     .bio {
-        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+        width: 90%;
+        border-radius: 15px;
+       position: relative;
+       left: 5%;
+       top:5%;
+        padding: 10px;
         text-align: center;
         letter-spacing: 2px;
         line-height: 1.75;
 
+    }
+    #fabby {
+       // border: 1px solid black;
+        padding: 10px;
+      
+        position: fixed;
+       left: 80%;
+       //top: 10%; 
     }
 
     .image {
@@ -185,6 +277,7 @@ h5 {
             z-index: 4;
             right: 10%;
             bottom: 15%;
+          
         }
         
     }

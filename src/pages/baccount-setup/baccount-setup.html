@@ -1,7 +1,12 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>Your Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content >
   <div class="status" *ngIf="status">
-      <div class="container-form" *ngIf="!isProfile">
+      <div class="fifi" *ngIf="!isProfile">
          <div  class="image">
       <!--  <h4 style="text-align: center; color: #fff;">Manage Profile</h4> -->
       <div class="thumb">
@@ -13,8 +18,8 @@
       <div class="inputs">
         <form [formGroup]="profileForm">
   <ion-list>
-<ion-item >
-          <ion-label floating style="letter-spacing: 1px"> FullName</ion-label>
+<ion-item class="item" >
+          <ion-label stacked style="letter-spacing: 1px"> FullName</ion-label>
           <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.fullName">
@@ -22,8 +27,9 @@
            {{validate.message}}
          </div>
          </div>
-         <ion-item >
-          <ion-label floating>Gender</ion-label>
+
+         <ion-item class="item" >
+          <ion-label stacked>Gender</ion-label>
           <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"  cancelText="Dismiss">
               <ion-option value="Female">Female</ion-option>
               <ion-option value="Male">Male</ion-option>
@@ -34,7 +40,8 @@
            {{validate.message}}
          </div>
          </div>
-      <ion-item >
+
+      <ion-item class="item">
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.address">
@@ -48,8 +55,8 @@
           <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
         </ion-select>
       </ion-item> -->
-     <ion-item >
-          <ion-label floating>Price (p/m2)</ion-label>
+     <ion-item class="item">
+          <ion-label stacked>Price (p/m2)</ion-label>
           <ion-input type="number" formControlName="price" name="price" [(ngModel)]="builderProfile.price"></ion-input>
         </ion-item>
         <div class="error" *ngFor="let validate of validation_messages.price">
@@ -64,8 +71,8 @@
             <ion-option value="n">No</ion-option>
           </ion-select>
         </ion-item> -->
-        <ion-item >
-          <ion-label floating>Does price include roofing?</ion-label>
+        <ion-item class="item">
+          <ion-label stacked>Does price include roofing?</ion-label>
           <ion-select formControlName="roof" name="roof" [(ngModel)]="builderProfile.roof"  cancelText="Dismiss">
               <ion-option value="true">Yes</ion-option>
               <ion-option value="false">No</ion-option>
@@ -76,8 +83,8 @@
            {{validate.message}}
          </div>
          </div>
-      <ion-item >
-          <ion-label floating>Experience</ion-label>
+      <ion-item class="item">
+          <ion-label stacked>Experience</ion-label>
         <ion-select formControlName="experience" name="experience" [(ngModel)]="builderProfile.experiences"  cancelText="Dismiss">
           <ion-option *ngFor="let e of experiences" value="{{e}}">{{e}}</ion-option>
         </ion-select>
@@ -87,13 +94,13 @@
            {{validate.message}}
          </div>
          </div>
-      <ion-item >
-        <ion-label floating>Are you Certified?</ion-label>
+      <ion-item class="item" >
+        <ion-label stacked>Are you Certified?</ion-label>
         <ion-select formControlName="certified" name="certified" [(ngModel)]="builderProfile.certified"  cancelText="Dismiss">
             <ion-option value="true">Yes</ion-option>
             <ion-option value="false">No</ion-option>
           </ion-select>
-      </ion-item>
+      </ion-item >
       <div class="error" *ngFor="let validate of validation_messages.certified">
        <div class="messages" *ngIf="profileForm.get('certified').hasError(validate.type) && (profileForm.get('certified').dirty || profileForm.get('certified').touched)">
          {{validate.message}}
@@ -101,43 +108,77 @@
        </div>
   <div class="btn">
     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-   <button id="skip" color="primary" (click)="createprofile(profileForm)" block type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
+   <button id="skip" color="primary" (click)="createprofile(profileForm)" style="width: 100%" type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
 </div>
   </ion-list>
 </form>
       </div>
     </div>
+
+
     <!-- profile for builder starts here -->
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
-    <div class="back">
+ <!--  <div class="back">
       <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="arrow-back"></ion-icon></button>
-      </div>
-  <div class="avatar-images">
+      </div> --> 
+      <div style="display: flex; flex-direction: row;margin-left: auto;">
+        <div class="avatar-images">
   <img *ngIf="builderProfile.bricklayerImage" src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
   <img *ngIf="!builderProfile.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
+
+<ion-fab id="fabby">
+    <button ion-fab (click)="editProfile()">
+        <ion-icon name="create" ></ion-icon></button>
+  </ion-fab>
+      </div>
+  
+
+
+
+<div class="fullnames">
+    <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
+</div>
+
 <div class="name">
-     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
-     <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
-     <ion-fab right bottom>
-      <button ion-fab color="button2" (click)="editProfile()">
-          <ion-icon name="create" ></ion-icon></button>
-    </ion-fab>
+  <div class="one">
+      <div style="border-right: 1px solid rgb(190, 188, 188)">
+          <h5>Gender</h5>
+           <p style="text-align: center;">{{builderProfile.gender}}</p>
+        </div>
+      
+          <div>
+            <h5>Price</h5>
+            <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
+      </div>
+  </div>
+
+  <div class="two">
+      <div style="border-right: 1px solid rgb(190, 188, 188)">
+          <h5>Roofing Included?</h5>
+          <p style="text-align:center;padding:5px"> {{builderProfile.roof}} </p>
+        </div>
+             <div>
+               <h5>Experience</h5>
+                 <p> {{builderProfile.experiences}} years of experience</p>
+             </div>
+  </div> 
    </div>
-   <div class="">
-    <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-    <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
-   </div>
-   <div class="details" style="background: #f15a24; color: white; letter-spacing: 1px">
-     <p> {{builderProfile.experiences}} years of experience</p>
-    </div>
+
    <div class="bio">
-     <h6><ion-icon size="large" name="pin"></ion-icon></h6>
-     <p>
-      {{profileForm.value.address}}
-     </p>
-   </div>
+     <div class="location">
+        <h6><ion-icon style="color:darkcyan;font-size:7vh" size="large" name="pin"></ion-icon></h6>
+        <p>
+            {{profileForm.value.address}}
+           </p>
+     </div>
+     </div>
+     
+  
+ 
+   
+
    </div>
 </div>
 </div>
