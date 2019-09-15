@@ -22,7 +22,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 })
 export class AccountSetupPage {
   isProfile = false;
-  db = firebase.firestore();
+  db = firebase.firestore().collection('Users');
   storage = firebase.storage().ref();
   uid
   profileImage;
@@ -31,12 +31,13 @@ export class AccountSetupPage {
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
-  displayProfile;
+  displayProfile =[];
   icon: string;
   HomeOwnerProfile = {
     uid: '',
-    ownerImage:'',
-    fullname:'',
+    image:'',
+    isProfile: true,
+    fullName:'',
     gender:'',
     personalNumber:'',
     About:'',
@@ -63,7 +64,7 @@ export class AccountSetupPage {
     this.authUser.setUser(this.uid);
     this.HomeOwnerProfile.uid = this.uid;
     this.profileForm = this.formBuilder.group({
-      fullname: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       gender: new  FormControl('', Validators.compose([Validators.required])),
       personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
       About: [''],
@@ -114,7 +115,7 @@ export class AccountSetupPage {
       }, err => {
       }, () => {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
-          this.HomeOwnerProfile.ownerImage = downUrl;
+          this.HomeOwnerProfile.image = downUrl;
           console.log('Image downUrl', downUrl);
         })
       })
@@ -134,7 +135,7 @@ export class AccountSetupPage {
             content: 'Creating Profile..'
           });
           load.present();
-      const user = this.db.collection('HomeOwnerProfile').doc(this.authUser.getUser()).set(this.HomeOwnerProfile);
+      const user = this.db.doc(firebase.auth().currentUser.uid).update(this.HomeOwnerProfile);
       
       // upon success...
       user.then( () => {
@@ -158,7 +159,7 @@ export class AccountSetupPage {
     }
   }
  validation_messages = {
-    'fullname': [
+    'fullName': [
       { type: 'required', message: 'Name is required.' },
       { type: 'minlength', message: 'Name must be at least 4 characters long.' },
       { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
@@ -182,27 +183,33 @@ export class AccountSetupPage {
     });
     load.present();
     // create a reference to the collection of HomeOwnerProfile...
-    let users = this.db.collection('HomeOwnerProfile');
+   
     
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser());
-    query.get().then(querySnapshot => {
+    let query = this.db.doc(this.authUser.getUser());
+    query.get().then(doc => {
       // ...log the results of the document exists...
-      if (querySnapshot.empty !== true){
-        console.log('Got data', querySnapshot);
-        querySnapshot.forEach(doc => {
+      if (doc.exists){
+        if(doc.data().isProfile == true) {
+           console.log('Got data', doc.data());
+       
           console.log('Profile Document: ', doc.data(), doc.data())
-          this.displayProfile = doc.data();
+          this.displayProfile.push(doc.data());
           this.HomeOwnerProfile.About  = doc.data().About;
-          this.HomeOwnerProfile.ownerImage  = doc.data().ownerImage;
+          this.HomeOwnerProfile.image  = doc.data().ownerImage;
           this.profileImage  = doc.data().ownerImage;
-          this.HomeOwnerProfile.fullname  = doc.data().fullname;
+          this.HomeOwnerProfile.fullName  = doc.data().fullName;
           this.HomeOwnerProfile.gender  = doc.data().gender;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
           this.profileForm.patchValue({address: doc.data().ownerAddress})
-        })
+      
         this.icon = 'create';
          this.isProfile = true;
+        }else {
+          this.isProfile = false;
+          this.icon = 'image';
+        }
+       
       } else {
         console.log('No data');
         this.isProfile = false;

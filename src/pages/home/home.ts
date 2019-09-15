@@ -86,9 +86,9 @@ request: boolean = false;
   }).present();
    let user = firebase.auth().currentUser;
    if(user){
-    let userLoggedIn = this.db.doc(`/User/${user.uid}`);
+    let userLoggedIn = this.db.collection('Users').doc(user.uid);
     userLoggedIn.get().then(getuserLoggedIn => {
-      if(getuserLoggedIn.data().userType == 'Homebuilder') {
+      if(getuserLoggedIn.data().builder == true) {
 
         if(getuserLoggedIn.data().status == true) {
           this.maps = false;

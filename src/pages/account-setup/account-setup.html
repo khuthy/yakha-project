@@ -17,10 +17,10 @@
       <form  [formGroup]="profileForm">
          <ion-item >
           <ion-label  floating style="letter-spacing: 1px;"> Full Names</ion-label>
-          <ion-input type="text" formControlName="fullname" [(ngModel)]="HomeOwnerProfile.fullname" ngDefaultControl></ion-input>
+          <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.fullname">
-         <p class="messages" *ngIf="profileForm.get('fullname').hasError(validate.type) && (profileForm.get('fullname').dirty || profileForm.get('fullname').touched)">
+        <div class="error" *ngFor="let validate of validation_messages.fullName">
+         <p class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
            {{validate.message}}
          </p>
          </div> 
@@ -83,13 +83,13 @@
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
       <div class="avatar-images">
-      <img *ngIf="HomeOwnerProfile.ownerImage" src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
-      <img *ngIf="!HomeOwnerProfile.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" class="thumbavatar">
+      <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
     </div>
     
     
        <div class="name">
-         <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
+         <h4 style="text-align: center;">{{HomeOwnerProfile.fullName}}</h4>
        </div>
        <div class="gender">
         <h4 style="text-align: center;">{{HomeOwnerProfile.gender}}</h4>

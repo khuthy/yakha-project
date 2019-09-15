@@ -114,8 +114,8 @@
       <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="arrow-back"></ion-icon></button>
       </div>
   <div class="avatar-images">
-  <img *ngIf="builderProfile.bricklayerImage" src="{{builderProfile.bricklayerImage}}" class="thumbavatar">
-  <img *ngIf="!builderProfile.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+  <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar">
+  <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
 <div class="name">
      <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
