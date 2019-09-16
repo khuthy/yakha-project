@@ -24,9 +24,9 @@ export class OnboardingBuilderPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,  private authService: AuthServiceProvider,private storage: Storage, private menuCtrl: MenuController) {
     this.storage.get('onboarding').then(val => {
-      if(val == 'checked')  {
+      if(val == true)  {
         console.log(val);
-        this.navCtrl.setRoot(LoginPage, this.navParams.data);
+        this.navCtrl.setRoot(LoginPage);
         
       }else {
         console.log('on-boarding now');
@@ -53,17 +53,17 @@ export class OnboardingBuilderPage {
   }
   
   register(){
-    this.navCtrl.push(RegisterPage, this.navParams.data);
+    this.navCtrl.push(RegisterPage);
   }
   getStarted(){
   // set a key/value
-  this.storage.set('onboarding', 'checked');
-  this.navCtrl.setRoot(LoginPage, this.navParams.data);
+  this.storage.set('onboarding', true);
+  this.navCtrl.setRoot(LoginPage);
   }
 
   skip() {
-    this.navCtrl.setRoot(LoginPage, this.navParams.data);
-    this.storage.set('onboarding', 'checked');
+    this.navCtrl.setRoot(LoginPage);
+    this.storage.set('onboarding', true);
 
   }
 

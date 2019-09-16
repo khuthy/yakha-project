@@ -108,7 +108,7 @@ extraName;
         extras: new  FormControl('', Validators.compose([Validators.required])),
         comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
-      firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
+      firebase.firestore().collection('Users').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
@@ -203,7 +203,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     
    // console.log(this.HomeOwnerQuotation.extras);
     
-  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
+  const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
   
   // upon success...
   user.then( (response) => {

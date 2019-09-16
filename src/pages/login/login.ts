@@ -6,9 +6,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 
 // import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { HomePage } from '../home/home';
-
 import { RegisterPage } from '../register/register';
-import { UserProvider } from '../../providers/user/user';
 import * as firebase from 'firebase';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
@@ -42,8 +40,7 @@ import { state, trigger, transition, animate, style } from '@angular/animations'
 export class LoginPage {
 
 
-  db = firebase.firestore();
-  firebase = firebase;
+  db = firebase.firestore().collection('Users');
   public loginForm: FormGroup;
   loading: Loading;
   builder;
@@ -66,7 +63,6 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
-    private userProvider: UserProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthServiceProvider,
@@ -81,11 +77,9 @@ export class LoginPage {
     })
 
   }
-
-
   ionViewDidLoad() {
-    this.builder = this.navParams.data;
-    console.log(this.navParams.data);
+    this.authService.manageUsers();
+    console.log( 'check if the user is a builder: ',this.authService.manageUsers());
   }
 
   ionViewWillEnter() {
@@ -97,87 +91,42 @@ export class LoginPage {
 
   //Create
   createAcc() {
-    this.navCtrl.push(RegisterPage, this.builder)
+    this.navCtrl.push(RegisterPage)
   }
   forgotpassword() {
     this.navCtrl.push(ForgotPasswordPage)
   }
 
-  checkeyboard() {
-
-  }
-
-  //hide keyboard
-  hidekeyboard() {
-    this.keyboard.hide();
-  }
-
-  showkeyboard() {
-    this.keyboard.show();
-  }
   loginUser() {
     if (!this.loginForm.valid) {
       console.log(this.loginForm.value);
     } else {
+     let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+      signIn.then((getUid) => {
+        let loading = this.loadingCtrl.create({
+          content: 'Please wait...',
+          duration: 3000
+        })
+        loading.present();
+        this.authService.setUser(getUid.user.uid);
+       this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
+         if(!profile.exists) {
+           this.alertCtrl.create({
+             message: 'Please create an account before we log you in.'
+           }).present();
+           if(profile.data().builder == true) {
+              this.navCtrl.setRoot(BaccountSetupPage);
+              loading.dismiss();
+           }else {
+            this.navCtrl.setRoot(AccountSetupPage);
+            loading.dismiss();
+           }
+         }else {
+           this.navCtrl.setRoot(HomePage);
+         }
+       })
+      })
 
-      this.userProvider.loginUser(this.loginForm.value.email, this.loginForm.value.password)
-        .then(authService => {
-
-          let userLoggedIn = this.db.doc(`/User/${authService.user.uid}`);
-          userLoggedIn.get().then(getuserLoggedIn => {
-            let homeOwnerInfo = this.db.collection('HomeOwnerProfile').where("uid", "==", authService.user.uid);
-            let homeBuilders = this.db.collection('builderProfile').where("uid", "==", authService.user.uid);
-            if (getuserLoggedIn.data().userType == 'Homebuilder') {
-              homeBuilders.get().then(connectBuilder => {
-                if (connectBuilder.empty) {
-                  this.alertCtrl.create({
-                    subTitle: 'Create profile',
-                    title: 'Please create a profile to continue',
-                  }).present();
-                  this.navCtrl.setRoot(BaccountSetupPage);
-                } else {
-                  this.navCtrl.setRoot(HomePage);
-                }
-              });
-            } else {
-              homeOwnerInfo.get().then(connectOwner => {
-                if (connectOwner.empty) {
-                  this.alertCtrl.create({
-                    subTitle: 'Create profile',
-                    title: 'Please create a profile to continue.',
-                  }).present();
-                  this.navCtrl.setRoot(AccountSetupPage);
-                } else {
-                  this.navCtrl.setRoot(HomePage);
-                }
-              });
-            }
-
-          })
-
-
-
-
-
-        }, error => {
-          this.loading.dismiss().then(() => {
-            let alert = this.alertCtrl.create({
-              message: error.message,
-              buttons: [
-                {
-                  text: "Ok",
-                  role: 'cancel'
-                }
-              ]
-            });
-            alert.present();
-          });
-        });
-
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-      });
-      this.loading.present();
     }
   }
 }

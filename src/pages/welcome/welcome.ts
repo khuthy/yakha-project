@@ -33,32 +33,39 @@ export class WelcomePage {
   }
 
 
-  definedUser(val) {
+  definedUser(val: boolean) {
+    /* check if the user is a builder or a home owner. false will be returned if the user is a home owner else true if it is a builder */
     this.authService.predefined = val;
-    let Homebuilder = true;
-    if(this.authService.manageUsers() == 'Homebuilder') {
+    
+    if(this.authService.manageUsers() == true) {
+      /* setting status to false will prevent builders from creating their profile */
+      this.authService.status = false;
+      console.log('builder not verified: ',this.authService.getBuilderStatus());
       this.storage.get('onboarding').then((val) => {
-        if(val == 'checked')  {
-          console.log(val);
-          this.navCtrl.setRoot(LoginPage, Homebuilder);
+        if(val == true)  {
+          console.log('onboarding has already been seen: ',val);
+          this.navCtrl.setRoot(LoginPage);
           
         }else {
-          console.log('on-boarding now');
-           this.navCtrl.setRoot(OnboardingBuilderPage, Homebuilder);
+           console.log('not seen', false);
+           this.navCtrl.setRoot(OnboardingBuilderPage);
         }
       });
      
     }else {
-      //let userType = 'homeOwner';
-      let Homebuilder = false;
+     
+       /* setting status to false will prevent builders from creating their profile */
+       this.authService.status = true;
+       console.log('Home owners status is always true: ',this.authService.getBuilderStatus()); 
+       
       this.storage.get('homeOwner').then((val) => {
-        if(val == 'checked')  {
-          console.log(val);
-          this.navCtrl.setRoot(LoginPage, Homebuilder);
+        if(val == true)  {
+          console.log('onboard already been seen: ',val);
+          this.navCtrl.setRoot(LoginPage);
           
         }else {
           console.log('on-boarding now');
-           this.navCtrl.setRoot(OnboardingPage, Homebuilder);
+           this.navCtrl.setRoot(OnboardingPage);
         }
       });
     }

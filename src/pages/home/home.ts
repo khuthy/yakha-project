@@ -27,7 +27,8 @@ export class HomePage implements OnInit {
 //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
   resultArr = [];
-  db = firebase.firestore();
+  db = firebase.firestore().collection('Users');
+  dbRequest = firebase.firestore().collection('Request')
   isSearchbarOpened = false;
   color: string = 'yakha';
   slidesPerView : number = 1;
@@ -81,19 +82,19 @@ request: boolean = false;
    
   
     /* home page loads start here */
-    this.loader.create({
+  /*   this.loader.create({
       content:"Loading..",
       duration: 1000
-    }).present();
+    }).present(); */
      let user = firebase.auth().currentUser;
      if(user){
-      let userLoggedIn = this.db.doc(`/User/${user.uid}`);
-      userLoggedIn.get().then(getuserLoggedIn => {
-        if(getuserLoggedIn.data().userType == 'Homebuilder') {
+      let userLoggedIn = this.db.doc(user.uid);
+      userLoggedIn.onSnapshot(getuserLoggedIn => {
+        if(getuserLoggedIn.data().builder == true) {
   
           if(getuserLoggedIn.data().status == true) {
             this.maps = false;
-          this.request = true;
+            this.request = true;
           }
   
         }
@@ -184,7 +185,7 @@ request: boolean = false;
             this.map.setZoom(15);
             this.map.setCenter(marker1.getPosition());
           });
-            firebase.firestore().collection('builderProfile').onSnapshot((resp)=>{
+            firebase.firestore().collection('Users').where("builder","==", true).onSnapshot((resp)=>{
   
               resp.forEach((doc)=> {
                 // doc.data() is never undefined for query doc snapshots
@@ -239,7 +240,7 @@ request: boolean = false;
            this.builder = [];
            this.maps = true;
           this.request = false;
-        this.db.collection('builderProfile').get().then(snapshot => {
+        this.db.where("builder","==", true).get().then(snapshot => {
             snapshot.forEach(doc => {
             this.builder.push(doc.data());
             this.bUID = doc.id;
@@ -268,7 +269,7 @@ request: boolean = false;
    // console.log("Price range = "+ this.price);
    if(this.price>=0){
      this.builder = [];
-      this.db.collection('builderProfile').where('price','>=',param)
+      this.db.where('price','>=',param)
     .onSnapshot((res)=>{
      // console.log(res.);
       res.forEach((doc)=>{
@@ -397,16 +398,15 @@ getItems(ev: any) {
       builder: {},
       owner: {}
     }
-    this.db.collection('HomeOwnerQuotation').where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot(snapshot => {
+    this.dbRequest.where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
-      if(!snapshot.empty) {
-        this.requestFound = '';
-        snapshot.forEach(doc => {
+      res.forEach((doc)=>{
+          
+        this.requestFound = '';      
+      //  this.ownerUID = doc.data().uid; 
         
-        this.ownerUID = doc.data().uid;
-          
-          
-        this.db.collection('HomeOwnerProfile').doc(this.ownerUID).get().then((res)=>{   
+             
+        this.db.doc(doc.data().uid).get().then((res)=>{   
           data.owner = res.data();
           data.builder = doc.data();
          // console.log(res.data());
@@ -416,7 +416,7 @@ getItems(ev: any) {
             owner: {}
           }
         })
-      });
+     
       
       setTimeout(()=> {
         this.getOwners();
@@ -424,10 +424,10 @@ getItems(ev: any) {
       console.log('Done');
       console.log(this.owner);
       
-      }else {
-        this.requestFound = 'You do not have any messages.';
-      }
+     
       
+      })
+    
      // console.log('Owners: ', this.owner);
     });
     
