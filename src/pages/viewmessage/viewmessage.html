@@ -2,16 +2,16 @@
 
 <ion-content>
 
-  <div class="container" *ngIf="bUid">
+  <div class="container">
       <div class="back" (click)="navCtrl.pop()">
           <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
         </div>
     <div class="message">
       <div class="details">
-        <img *ngIf="profilePic" src="{{profilePic}}" class="images" alt="thumb">
-        <img *ngIf="!profilePic" src="../../assets/imgs/Construction ncf-psp_516_d2210.jpg" class="images" alt="thumb">
+        <!-- <img *ngIf="profilePic" src="{{profilePic}}" class="images" alt="thumb"> -->
+        <img src="../../assets/imgs/Construction ncf-psp_516_d2210.jpg" class="images" alt="thumb">
         <div class="title">
-          <h2>{{ownerName}}</h2>
+          <h2>{{profName}}</h2>
         </div>
       </div>
       <div class="expand" (click)="togglePanel()">
@@ -19,27 +19,27 @@
       </div>
     </div>
     <div class="textMessages">
-      <div class="block owner" *ngFor ="let r of request">
+      <div class="block owner" >
         <blockquote class="house" [@slideDown]="stateSlideDown">
             
-          <span id="quotes1"><strong id="date1">{{r.startDate}}start date</strong> <strong id="date2">{{r.endDate}}</strong></span>
+          <span id="quotes1"><strong id="date1">start date: {{startDate}}</strong> <strong id="date2">end date: {{endDate}}</strong></span>
           <p class="info">
           <strong class="measure">
-          <span id="quotes3"><strong>Wall type</strong> {{r.wallType}} </span>
-          <span id="quotes3"><strong>brick type </strong> {{r.brickType}} </span>
+          <span id="quotes3"><strong>Wall type</strong> {{wallType}} </span>
+          <span id="quotes3"><strong>Brick type </strong> {{brickType}} </span>
           </strong>
           </p>
           <div class="imgs">
-              <img src="{{r.houseImage}}" class="thumb" (click)="viewHouse(r.houseImage)" alt="house plan">
+              <img src="{{houseImage}}" class="thumb" (click)="viewHouse(houseImage)" alt="house plan">
               <p>House plan</p>
           </div>
           <div class="extras">
             <h3>Extras</h3>
             <hr>
             <div class="fet">
-              <p *ngFor="let e of r.extras">{{e}}</p>
+               <p *ngFor="let e of extras">{{e}}</p> 
             </div>
-            <!-- <p>Created: {{n.lastcreated}}</p> -->
+             <p>Created: {{date}}</p> 
           </div>
         </blockquote>
        
@@ -47,15 +47,15 @@
           <p>
             <span>
               <strong>Additional comment</strong><br>
-              {{r.comment}}
+            {{comment}}
             </span>
             </p>
             </blockquote>
 </div>
-      <div class="block2 owner" *ngIf="quoteDoc">
-          <blockquote *ngFor ="let r of request" >
+      <div class="block2 owner" >
+          <blockquote >
             <p>
-                <ion-icon name="document"></ion-icon><a href="{{r.doc}}">Quotation.pdf</a>
+                <ion-icon name="document"></ion-icon><a href="">Quotation.pdf</a>
             </p>
           </blockquote>
 
@@ -70,12 +70,12 @@
       </div>
      
     </div>
-    <ion-fab right bottom >
+    <ion-fab right bottom *ngIf="bUid">
         <button ion-fab color="button2" (click)="quotesForm()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>  
   </div>
 
-  <div class="container" *ngIf="hType">
+  <!-- <div class="container" *ngIf="hType">
       <div class="back" (click)="navCtrl.pop()">
           <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
         </div>
@@ -97,11 +97,11 @@
             
           <span id="quotes1"><strong id="date1">{{startDate}}</strong> <strong id="date2">{{endDate}}</strong></span>
           <p class="info">
-            <strong class="measure">
+            <strong class="measure"> -->
           <!-- <span id="quotes3"> <strong>Width: </strong>{{width}} meters</span>
           <span id="quotes3"> <strong>Length:</strong>{{length}} meters</span>
           <span id="quotes3"> <strong>Height:</strong>{{height}} meters</span> -->
-          <span id="quotes3"><strong>Wall type:</strong>{{wallType}} </span>
+          <!-- <span id="quotes3"><strong>Wall type:</strong>{{wallType}} </span>
           <span id="quotes3"><strong>brick type: </strong>{{brickType}} </span>
           </strong>
           <div class="extras">
@@ -109,9 +109,9 @@
             <hr>
             <div class="fet">
                   <p *ngFor="let e of extras">{{e}}</p>
-            </div>
+            </div> -->
             <!-- <p>Created: {{n.lastcreated}}</p> -->
-          </div>
+          <!-- </div>
           
           <div class="imgs" >
               <img src="{{houseImage}}" class="thumb" (click)="viewHouse(houseImage)" alt="house plan" >
@@ -138,6 +138,6 @@
      
     </div>
    
-  </div>
+  </div> -->
 
 </ion-content>

@@ -28,16 +28,16 @@ export class BuilderProfileviewPage {
   dat = {} as builderProfile
 
  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
-  this.dat.uid = 
+  this.dat.uid = this.navParams.data;
 
-  this.dat = this.navParams.data;
+  //this.dat = 
   console.log('jjj ', this.dat);
 
     }
   
     ionViewDidLoad() {
     
-      console.log(this.uid);
+      console.log(this.dat.uid);
       
     }
 next(){

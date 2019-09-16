@@ -72,10 +72,10 @@ export class ViewmessagePage {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
    
-    this.db.collection('User').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
      res.data();
-     this.bUid = res.data().userType =="Homebuilder";
-     this.hType = res.data().userType =="Homeowner";
+     this.bUid = res.data().builder == true;
+     this.hType = res.data().builder == false;
     })
     
   }
@@ -85,12 +85,12 @@ export class ViewmessagePage {
     this.brickType = this.userDetails.brickType;
     this.comment = this.userDetails.comment;
     this.date = this.userDetails.date;
-    this.doc = this.userDetails.doc;
+   // this.doc = this.userDetails.doc;
     this.email = this.userDetails.email;
     this.endDate = this.userDetails.endDate;
-    this.hOwnerPhone = this.userDetails.hOwnerPhone;
+    //this.hOwnerPhone = this.userDetails.hOwnerPhone;
     this.houseImage = this.userDetails.houseImage;
-    this.response_date = this.userDetails.response_date;
+   // this.response_date = this.userDetails.response_date;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
 
@@ -114,6 +114,7 @@ export class ViewmessagePage {
 // wallType: "singleWall"
 // width: "23"
     this.getRequest();
+    this.getOwnerDetails();
   }
   togglePanel(){
     this.stateSlideDown = (this.stateSlideDown == 'visible') ? 'invisible' : 'visible';
@@ -122,11 +123,11 @@ export class ViewmessagePage {
     this.more = !this.more;
   }
   getOwnerDetails(){
-    this.db.collection('HomeOwnerProfile').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.data();
       console.log(res.data());
-      this.profPic = res.data().ownerImage;
-      this.profName = res.data().fullname;
+      this.profPic = res.data().image;
+      this.profName = res.data().fullName;
       this.profAbout = res.data().About;
       this.bUid = res.data().userType;
      })
@@ -144,19 +145,19 @@ export class ViewmessagePage {
     this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
   }
   getRequest(){
-    this.db.collection('HomeOwnerQuotation').where('comment', '==', this.userDetails).get().then(snapshot => {
+    this.db.collection('Request').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
       this.request = [];
       snapshot.forEach(doc => {
         
         this.request.push(doc.data());
         this.hOwnerUID = doc.id;
         this.quoteDoc = doc.data().doc;
-        this.homeOwner = doc.data().uid;
+        this.homeOwner = doc.data().hOwnerUid;
        // console.log(this.homeOwner);
-        this.db.collection('HomeOwnerProfile').doc(this.homeOwner).get().then((res)=>{
+        this.db.collection('Users').doc(this.homeOwner).get().then((res)=>{
           console.log(res.data());
-           this.profilePic = res.data().ownerImage;
-           this.ownerName = res.data().fullname;
+           this.profilePic = res.data().image;
+           this.ownerName = res.data().fullName;
         })
         //this.hOwnerUID = doc.data().length + 'x' + doc.data().width + 'x' + doc.data().height;
       });

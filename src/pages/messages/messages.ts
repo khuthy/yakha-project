@@ -18,30 +18,28 @@ import { FileOpener } from '@ionic-native/file-opener';
 })
 export class MessagesPage {
 
-  dbMessage = firebase.firestore().collection('HomeOwnerQuotation');
-  dbProfile = firebase.firestore().collection('HomeOwnerProfile');
+  dbMessage = firebase.firestore().collection('Request');
+  dbProfile = firebase.firestore().collection('Users');
   messages = [];
   qDoc;
   honwerUID;
   hownerName;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileOpener: FileOpener) {
-    this.dbMessage.where('uid','==', firebase.auth().currentUser.uid).get().then((res)=>{
+    this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
         this.messages.push(doc.data());
         this.qDoc = doc.id;
         console.log(this.messages);
         //this.honwerUID = doc.data().uid;
-        this.dbProfile.doc(doc.data().uid).get().then((res)=>{
-          this.hownerName = res.data().fullname;
-          //console.log(this.hownerName);
+        console.log(doc.data().hOwnerUid);
+        
+        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
+          this.hownerName = res.data().fullName;
+          console.log(this.hownerName);
           
         })
       })
-    }).catch((error)=>{
-      console.log(error.code + 'Message='+error.message);
-      
     })
-   
   }
 
   ionViewDidLoad() {
