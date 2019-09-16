@@ -119,12 +119,21 @@
   <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar">
   <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
+<h4 style="text-align: center;border:red">{{builderProfile.fullName}}</h4>
 <div class="name">
-     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
-     <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
-     <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-     <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
+   
+  <div class="one">
+      <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
+      <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
+     
+  </div>
+
+  <div class="two">
+    <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
      <p> {{builderProfile.experiences}} years of experience</p>
+  </div>
+    
+ 
    <!--   <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
@@ -133,7 +142,7 @@
 
  
    <div class="bio">
-     <h6><ion-icon size="large" name="pin"></ion-icon></h6>
+     <h6><ion-icon style="color:darkcyan" size="large" name="pin"></ion-icon></h6>
      <p>
       {{profileForm.value.address}}
      </p>
