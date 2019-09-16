@@ -132,7 +132,7 @@ export class AccountSetupPage {
     } else {
            // load the profile creation process
            const load = this.loadingCtrl.create({
-            content: 'Creating Profile..'
+            content: 'Proccessing...'
           });
           load.present();
       const user = this.db.doc(firebase.auth().currentUser.uid).update(this.HomeOwnerProfile);
@@ -141,7 +141,7 @@ export class AccountSetupPage {
       user.then( () => {
         this.navCtrl.push(HomePage)
         this.toastCtrl.create({
-          message: 'User Profile added.',
+          message: 'User Profile is successful',
           duration: 2000,
         }).present();
         // ...get the profile that just got created...
@@ -196,8 +196,8 @@ export class AccountSetupPage {
           console.log('Profile Document: ', doc.data(), doc.data())
           this.displayProfile.push(doc.data());
           this.HomeOwnerProfile.About  = doc.data().About;
-          this.HomeOwnerProfile.image  = doc.data().ownerImage;
-          this.profileImage  = doc.data().ownerImage;
+          this.HomeOwnerProfile.image  = doc.data().image;
+          this.profileImage  = doc.data().image;
           this.HomeOwnerProfile.fullName  = doc.data().fullName;
           this.HomeOwnerProfile.gender  = doc.data().gender;
           this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber

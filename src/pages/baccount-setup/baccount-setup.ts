@@ -242,8 +242,8 @@ export class BaccountSetupPage {
             console.log('Profile Document: ', doc.data())
           this.displayProfile.push(doc.data());
           
-          this.builderProfile.image  = doc.data().bricklayerImage
-          this.profileImage = doc.data().bricklayerImage;
+          this.builderProfile.image  = doc.data().image;
+          this.profileImage = doc.data().image;
           this.builderProfile.fullName = doc.data().fullName;
           this.builderProfile.gender = doc.data().gender;
           this.builderProfile.certified  = doc.data().certified;
