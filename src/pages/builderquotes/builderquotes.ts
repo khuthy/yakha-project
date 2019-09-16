@@ -66,7 +66,8 @@ export class BuilderquotesPage {
     hOwnerUID: null
   }
   pdfObj = null;
-  db = firebase.firestore();
+  db = firebase.firestore().collection('Respond');
+  dbUsers =  firebase.firestore().collection('Users');
   storage = firebase.storage().ref();
   uid: any;
  
@@ -109,6 +110,8 @@ export class BuilderquotesPage {
     private cdRef : ChangeDetectorRef
   ) {
     this.quotes.hOwnerUID = this.navParams.data;
+    console.log(this.quotes.hOwnerUID);
+    
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
@@ -131,15 +134,12 @@ export class BuilderquotesPage {
 
 
     // console.log(this.navParams.data);
-    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).collection('extras').onSnapshot((res) => {
-      if(!res.empty) {
-         res.docs.forEach(doc => {
-        /* this.extras = [...this.extras, {name: doc.id, quantity: doc.data().quantity, price: doc.data().price}]; */
-        this.extras.push({item: doc.id, price: doc.data().price, quantity: doc.data().quantity}); 
-
-
-          
-      })
+    this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
+      if(res.exists) {
+         res.data();
+         this.quotes.fullName = res.data().fullName;
+         this.quotes.address = res.data().address;
+         this.quotes.price = res.data().price;
       console.log('Extras ', this.extras);
       
       }else {
@@ -148,28 +148,28 @@ export class BuilderquotesPage {
       }
      
     })
-    this.db.collection('HomeOwnerQuotation').doc(this.quotes.hOwnerUID).onSnapshot((res) => {
-      this.quotes.ownerAddress = res.data().ownerAddress;
+   /*  this.db.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
+      this.quotes.ownerAddress = res.data().address;
       let num = parseFloat((res.data().price) + this.quotes.dimension)
       this.total = num;
       //  this.quotes.price = num;
       this.quotes.ownerName = res.data().ownerName;
-    })
+    }) */
 
-    this.db.collection('builderProfile').where('uid', '==', firebase.auth().currentUser.uid).get().then((res) => {
-      res.forEach((doc) => {
+    this.dbUsers.doc(firebase.auth().currentUser.uid).onSnapshot((doc) => {
+     
         this.quotes.address = doc.data().address;
         this.quotes.fullName = doc.data().fullName;
         this.quotes.price = doc.data().price;
-      })
+    
     })
-    this.db.collection('HomeOwnerProfile').where('uid', '==', this.quotes.hOwnerUID).get().then((res) => {
-      res.forEach((doc) => {
+    this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((doc) => {
+    
         //this.quotes.ownerAddress = doc.data().ownerAddress;
         //console.log(doc.data());
-        this.quotes.ownerName = doc.data().fullname;
+        this.quotes.ownerName = doc.data().fullName;
         // this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
-      })
+     
     })
 
   }
