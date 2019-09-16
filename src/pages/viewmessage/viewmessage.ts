@@ -63,7 +63,7 @@ export class ViewmessagePage {
   startDate: any;
   wallType: any;
   extras=[];
- 
+  builda = '';
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
      private fileOpener: FileOpener,
@@ -74,45 +74,33 @@ export class ViewmessagePage {
    
     this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
      res.data();
-     this.bUid = res.data().builder == true;
-     this.hType = res.data().builder == false;
+    // this.bUid = res.data().builder == true;
+    // this.hType = res.data().builder == false;
+   
+    if(res.data().builder == true)
+    {
+      this.builda='ssfsfs';
+      console.log(this.builda);
+    } else {
+      this.builda;
+    }
     })
-    
-  }
+ 
+}
 
   ionViewDidLoad() {
     console.log(this.userDetails);
     this.brickType = this.userDetails.brickType;
     this.comment = this.userDetails.comment;
     this.date = this.userDetails.date;
-   // this.doc = this.userDetails.doc;
     this.email = this.userDetails.email;
     this.endDate = this.userDetails.endDate;
-    //this.hOwnerPhone = this.userDetails.hOwnerPhone;
     this.houseImage = this.userDetails.houseImage;
-   // this.response_date = this.userDetails.response_date;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
-
+   
     
    this.extras = this.userDetails.extras;
-    //this.hOwnerPhone = this.userDetails.hOwnerPhone;
-//builderUID: "HkXc4HvYXIOjZm51BdQcaRZvLj13"
-// comment: "I need this urgently"
-// createBy: ""
-// date: "Thu Sep 05 2019 17:11:52 GMT+0200 (South Africa Standard Time)"
-// doc: ""
-// email: "sharonmunyai@gmail.com"
-// endDate: "2019-09-14"
-// hOwnerPhone: "0815884639"
-// height: "23"
-// houseImage: ""
-// length: "23"
-// response_date: ""
-// startDate: "2019-09-05"
-// uid: "EaMeGYMVqagYRxXfQ87thFBA9wZ2"
-// wallType: "singleWall"
-// width: "23"
     this.getRequest();
     this.getOwnerDetails();
   }
@@ -150,7 +138,9 @@ export class ViewmessagePage {
       snapshot.forEach(doc => {
         
         this.request.push(doc.data());
-        this.hOwnerUID = doc.id;
+        this.hOwnerUID = doc.data().builderUID;
+        console.log(this.hOwnerUID);
+        
         this.quoteDoc = doc.data().doc;
         this.homeOwner = doc.data().hOwnerUid;
        // console.log(this.homeOwner);

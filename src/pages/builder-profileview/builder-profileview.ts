@@ -23,21 +23,21 @@ export class BuilderProfileviewPage {
   uid
   profileImage
   displayProfile;
-  experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
+  //experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
    
   dat = {} as builderProfile
 
  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtlr:LoadingController,private authUser:AuthServiceProvider) {
-  this.dat.uid = this.navParams.data;
+  this.dat = this.navParams.data;
 
   //this.dat = 
-  console.log('jjj ', this.dat);
+  //console.log('jjj ', this.displayProfile);
 
     }
   
     ionViewDidLoad() {
     
-      console.log(this.dat.uid);
+      console.log(this.displayProfile);
       
     }
 next(){
@@ -51,8 +51,8 @@ editProfile(){
 }
 export interface builderProfile  {
   uid: '',
- bricklayerImage:'',
- fullName: '',
+  image:'',
+ fullname: '',
  certified: false,
  experiences: '',
  address:'',

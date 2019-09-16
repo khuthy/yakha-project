@@ -26,8 +26,8 @@
       <div class="container">
         <div class="view-builder">
             <div class="builder-image" >     
-                <img *ngIf="dat.bricklayerImage" src="{{dat.bricklayerImage}}" class="thumber" alt="">
-                <img *ngIf="!dat.bricklayerImage" src="../../assets/imgs/team-avatar.jpg" class="thumber" alt="">
+                <img *ngIf="dat.image" src="{{dat.image}}" class="thumber" alt="">
+                <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumber" alt="">
                 <div class="back" (click)="navCtrl.pop()">
                   <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
                 </div>
