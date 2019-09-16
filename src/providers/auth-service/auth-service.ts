@@ -10,13 +10,16 @@ import * as firebase from 'firebase';
 export class AuthServiceProvider {
  db = firebase.firestore();
  user;
- predefined: string;
-
+ predefined: boolean;
+ status: boolean;
  public userProfile: firebase.firestore.DocumentReference;
  constructor() {}
 
  manageUsers() {
    return this.predefined;
+ }
+ getBuilderStatus() {
+  return this.status;
  }
 
  loginUser(email: string,password: string): Promise<firebase.auth.UserCredential> {
@@ -24,8 +27,9 @@ export class AuthServiceProvider {
  }
  signupUser(email: string, password: string): Promise<any> {
    return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUserCredential: firebase.auth.UserCredential) => {
-       firebase.firestore().doc(`/User/${newUserCredential.user.uid}`).set({ email, userType: this.predefined, status: false });
-       this.setUser(newUserCredential);
+       this.setUser(newUserCredential.user.uid);
+      
+       firebase.firestore().collection('Users').doc(this.getUser()).set({builder: this.manageUsers(), status: this.getBuilderStatus(), uid: this.getUser(), isProfile: false});
      })
      .catch(error => {
        console.error(error);

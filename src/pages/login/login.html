@@ -8,35 +8,39 @@
       <form class="forms" [formGroup]="loginForm">
         <ion-list no-lines style="background: transparent">
 
-          <ion-item style="background: transparent">
-            <ion-label floating
-              style="color: #4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-              Email Address</ion-label>
-            <ion-input style="color: #4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black"
+      <!--     <ion-item  >
+            <ion-label stacked>Username</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item> -->
+
+          <ion-item class="item" >
+            <ion-label  stacked>    Email Address</ion-label>
+            <ion-input
               formControlName="email" type="email">
             </ion-input>
-            <p style="background: red; color: rgb(246, 22, 22); font-size: 3vw;text-align: center;margin-top:-5% "
+          <p 
               *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
               The email/password combination you entered is incorrect}</p>
+             </ion-item>
 
-          </ion-item>
+         
 
-          <ion-item style="background: transparent">
-            <ion-label floating
-              style="color: #4D4D4D; letter-spacing: 1px;margin-top:1%; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-              Password</ion-label>
-            <ion-input style="color: #4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black"
+          <ion-item  class="item">
+            <ion-label stacked>  Password</ion-label>
+              <ion-input 
               formControlName="password" type="password">
             </ion-input>
-            <p style="background: transparent; color: rgb(246, 22, 22); font-size: 3vw;text-align: center;"
+             <p 
               *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
               The email/password combination you entered is incorrect.</p>
+            </ion-item>
+           
 
-          </ion-item>
+        
 
 
 
-          <p style="color: rgb(71, 162, 179);text-align:center;padding-bottom:4% " (click)="forgotpassword()">Forgot
+          <p style="color: rgb(71, 162, 179);text-align:center;margin-top: 3%; " (click)="forgotpassword()">Forgot
             password?</p>
 
           <div class="btn" hide-on-keyboard-open>

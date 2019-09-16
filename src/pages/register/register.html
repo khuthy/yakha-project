@@ -15,12 +15,12 @@
             <ion-list no-lines style="background: transparent" >
               
         
-               <ion-item style="background: transparent"> 
-                <ion-label floating style="color: 4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Email Address</ion-label>
-                <ion-input style="color: 4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="email" type="email" 
+               <ion-item class="item"> 
+                <ion-label stacked >Email Address</ion-label>
+                <ion-input formControlName="email" type="email" 
                 [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
               </ion-input>
-  <p style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['email'].valid
+  <p class="error-message" *ngIf="!signupForm.controls['email'].valid
               && signupForm.controls['email'].touched">
               Please enter a valid email.</p>  
      </ion-item> 
@@ -28,9 +28,9 @@
             
   
             
-              <ion-item style="background: transparent">
-                <ion-label floating style="color:4D4D4D; letter-spacing: 1px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Password</ion-label>
-                <ion-input style="color: 4D4D4D; letter-spacing: 1px; font-weight:300;border-bottom:1px solid black" formControlName="password" type="password" 
+              <ion-item class="item">
+                <ion-label stacked >Password</ion-label>
+                <ion-input  formControlName="password" type="password" 
                 [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
               </ion-input>
 

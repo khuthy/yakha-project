@@ -26,7 +26,7 @@ import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 export class BaccountSetupPage {
   isProfile = false;
   status = false;
-  db = firebase.firestore();
+  db = firebase.firestore().collection('Users');
   storage = firebase.storage().ref();
   uid;
   icon: string;
@@ -38,9 +38,9 @@ export class BaccountSetupPage {
  // email = 
   experiences: any = ['1','2','3','4','5','6','7','8','9','10','11'];
   builderProfile = {
-  uid: '',
-   bricklayerImage:'',
+   image:'',
    fullName:'',
+   isProfile: true,
    gender:'',
    certified: false,
    roof:false,
@@ -49,7 +49,6 @@ export class BaccountSetupPage {
    price:0,
    lng: null,
    lat: null,
-   
    email: firebase.auth().currentUser.email,
    date:Date()
 
@@ -76,10 +75,8 @@ export class BaccountSetupPage {
     private menuCtrl: MenuController
     )
     {
-   this.uid = firebase.auth().currentUser.uid;
-    this.authUser.setUser(this.uid);
-    
-    this.builderProfile.uid = this.uid;
+     this.authUser.setUser(firebase.auth().currentUser.uid);
+
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       gender: new  FormControl('', Validators.compose([Validators.required])),
@@ -90,14 +87,13 @@ export class BaccountSetupPage {
       price: new  FormControl('', Validators.compose([Validators.required]))
     });
    
-   var y = +4;
-   this.builderProfile.price = y;
+  
   }
 
   ionViewDidLoad() {
-    console.log( this.uid)
+  
     this.getStatus();
-    console.log( this.authUser.getUser());
+    console.log(this.authUser.getUser());
     this.builderProfile.price = 0;
     this.getProfile();
     console.log(this.builderProfile.price);
@@ -140,7 +136,7 @@ export class BaccountSetupPage {
       }, err => {
       }, () => {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
-          this.builderProfile.bricklayerImage = downUrl;
+          this.builderProfile.image = downUrl;
           this.profileImage = downUrl;
           console.log('Image downUrl', downUrl);
         })
@@ -165,10 +161,10 @@ export class BaccountSetupPage {
           console.log(this.builderProfile);
           let num = parseFloat(this.builderProfile.price.toString())
           this.builderProfile.price = num;
-      const user = this.db.collection('builderProfile').doc(this.authUser.getUser()).set(this.builderProfile);
+    
 
       // upon success...
-      user.then( () => {
+      this.db.doc(firebase.auth().currentUser.uid).update(this.builderProfile).then( () => {
         this.navCtrl.setRoot(HomePage)
         this.toastCtrl.create({
           message: 'User profile saved.',
@@ -202,7 +198,7 @@ export class BaccountSetupPage {
 'gender': [ {
       type: 'required', message: 'Field is required'
     }],
-'bricklayerImage': [ {
+'image': [ {
       type: 'required', message: 'Field is required'
     }],
 'certified': [ {
@@ -234,21 +230,20 @@ export class BaccountSetupPage {
     });
     load.present();
     // create a reference to the collection of HomeOwnerProfile...
-    let users = this.db.collection('builderProfile');
+    
 
     // ...query the profile that contains the uid of the currently logged in user...
-    let query = users.where("uid", "==", this.authUser.getUser());
-    query.onSnapshot(querySnapshot => {
+    let query = this.db.doc(this.authUser.getUser());
+    query.onSnapshot(doc => {
+      
       // ...log the results of the document exists...
-      if (querySnapshot.empty !== true){
-        
-        console.log('Got data', querySnapshot);
-        querySnapshot.forEach(doc => {
-          console.log('Profile Document: ', doc.data())
+      if (doc.exists){
+        if(doc.data().isProfile == true) {
+            console.log('Profile Document: ', doc.data())
           this.displayProfile.push(doc.data());
-         
-          this.builderProfile.bricklayerImage  = doc.data().bricklayerImage
-          this.profileImage = doc.data().bricklayerImage;
+          
+          this.builderProfile.image  = doc.data().image;
+          this.profileImage = doc.data().image;
           this.builderProfile.fullName = doc.data().fullName;
           this.builderProfile.gender = doc.data().gender;
           this.builderProfile.certified  = doc.data().certified;
@@ -258,12 +253,15 @@ export class BaccountSetupPage {
           this.profileForm.patchValue({address: doc.data().address});
           this.builderProfile.price  = doc.data().price;
           // this.builderProfile.location  = doc.data().location
-
-        })
-        this.isProfile = true;
-        this.icon = 'create';
-        
-      } else {
+          this.isProfile = true;
+          this.icon = 'create';
+        }
+        else {
+          this.isProfile = false;
+          this.icon = 'image';
+        }
+       } 
+       else {
         console.log('No data');
         this.isProfile = false;
         this.icon = 'image';
@@ -283,8 +281,8 @@ export class BaccountSetupPage {
   }
 
   getStatus(){
-    let userLoggedIn = this.db.doc(`/User/${this.authUser.getUser()}`);
-    userLoggedIn.onSnapshot((check) => {
+    
+    this.db.doc(this.authUser.getUser()).onSnapshot((check) => {
         if(check.data().status == true) {
           this.status = true;
         }else {

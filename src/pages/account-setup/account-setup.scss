@@ -4,20 +4,29 @@ page-account-setup {
 
  
      .container {
-        width: 100%;
-        height: 100%;
-         //border: 1px solid red;
           margin:0;
              padding:0;
+
+             .vector {
+                 position: absolute;
+                 width: 235.5px;
+                 height: 148.84;
+                 border:1px solid  goldenrod;
+             }
        .image {
-                // border: 1px solid red;
-                 height: 196.203px;
-                 width: 100%;
-                 background-image: url(../../assets/imgs/waverotate.svg);
-                 background-size: cover;
-                background-position: center bottom;
-                background-repeat: no-repeat;
-                 position: fixed;
+        width: 100%;
+       
+        padding-bottom: 70px;
+        background-image: url(../../assets/imgs/waverotate.svg);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-content:flex-end;
                  z-index: 10;
     
     /* h4 {
@@ -27,39 +36,60 @@ page-account-setup {
       
       
          .thumb {
-        height: 100px;
-        width: 100px;
+        height: 150px;
+        width: 150px;
         border-radius: 50%;
-        justify-self: self-end;
         object-fit: cover;
-        position: relative;
-        left: 30%;
-        top: 20%;
+       display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        align-content: center;
        
     }
     .btn-upload {
         position: absolute;
-        right:-45%;
-        bottom:0%;
+        right:30%;
+       bottom:30%;
+       
     } 
   } 
+  
   .inputs {
-     // border: 1px solid rgb(4, 0, 255);
-      width: 80%;
-      position: absolute;
-      top: 200px;
-     left: 10%;
-      overflow-y: scroll;
-      display: flex;
-    align-items: center;
+    margin: 0;
+    padding: 0;
+    //border: 1px solid blue;
+    width: 80%;
+    height: 60%;
+    position: relative;
+    left: 10%;
+    top:20px;
+   
+ .item {
+    border: 1px solid #3c7f8b;
+    border-radius: 10px;
+    margin-top: 3%;
 
-    form {
-        width: 100%;
-        ion-label {
-            letter-spacing: 1px;
-        }
+  
+
+    ion-label {
+      color: #4D4D4D; 
+      letter-spacing: 1px;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
-
+    ion-input {
+      color: #4D4D4D;
+      letter-spacing: 1px;
+      font-weight:300;
+      border-bottom: none;
+    }
+    p {
+      color: rgb(246, 22, 22);
+      font-size: 3vw;
+      text-align: center;
+      margin-top:-5%;
+    }
+  }
   }
     }
         //approval period starts here
@@ -73,10 +103,14 @@ page-account-setup {
 
     /* view profile code */
     .container {
+        border: 1px solid red;
+        height: 100vh;
+        width: 100vw;
         .profiles {
-          
+        
             .avatar-images {
-                width: 100%;
+             /* 
+                width: 80%;
                 height: 30vh;
                 position: relative;
                 display: flex;
@@ -89,21 +123,13 @@ page-account-setup {
                     height: 22.5vh;
                     width: 100%;
                     background: rgb(49, 49, 49);
-                }
+                    
+                } */
 
 
 
                 .thumbavatar {
-                    position: relative;
-                    width: 15vh;
-                    height: 15vh;
-                    border: 4px solid rgb(255, 255, 255);
-                    border-radius: 50%;
-                    object-fit: cover;
-                   /*  margin-left: -50px;
-                    left: 50%;
-                    bottom: 0%;
-                    margin-bottom: 0px; */
+                 
                   
                 }
                 .name > h4 {

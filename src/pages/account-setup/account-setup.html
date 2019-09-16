@@ -1,32 +1,33 @@
 <ion-content>
   <div class="container" *ngIf="!isProfile">
      
-  <div  class="image">
+ <div  class="image">
         <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: 'Roboto','Segoe UI'">Tell us a little about yourself</h4>
-      <div class="thumb">
       
+      <div class="thumb">
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
+        <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
-        <button ion-fab color="dark" class="btn-upload" mini (click)="test()"><ion-icon name="{{icon}}"></ion-icon></button>
       </div>
        
        
-    </div>
+    </div> 
      
      <div class="inputs">
       <form  [formGroup]="profileForm">
          <ion-item >
           <ion-label  floating style="letter-spacing: 1px;"> Full Names</ion-label>
-          <ion-input type="text" formControlName="fullname" [(ngModel)]="HomeOwnerProfile.fullname" ngDefaultControl></ion-input>
+          <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.fullname">
-         <p class="messages" *ngIf="profileForm.get('fullname').hasError(validate.type) && (profileForm.get('fullname').dirty || profileForm.get('fullname').touched)">
+        <div class="error" *ngFor="let validate of validation_messages.fullName">
+         <p class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
            {{validate.message}}
          </p>
          </div> 
  
-         <ion-item  >
-          <ion-label floating>Gender</ion-label>
+         <ion-item style="margin-top:5%" class="item">
+          <ion-label stacked>Gender</ion-label>
           <ion-select formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
               <ion-option value="Female">Female</ion-option>
               <ion-option value="Male">Male</ion-option>
@@ -38,7 +39,7 @@
          </p>
          </ion-label> 
          
-         <ion-item >
+         <ion-item class="item">
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.address">
@@ -47,8 +48,8 @@
          </p>
          </ion-label> 
  
-        <ion-item>
-          <ion-label floating> CellPhone Number</ion-label>
+        <ion-item class="item">
+          <ion-label stacked> CellPhone Number</ion-label>
           <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.personalNumber">
@@ -56,8 +57,8 @@
            {{validate.message}}
          </p>
          </ion-label> 
-          <ion-item >
-          <ion-label  floating>Bio</ion-label>
+          <ion-item class="item">
+          <ion-label  stacked>Bio</ion-label>
           <ion-input  type="text" formControlName="About"  [(ngModel)]="HomeOwnerProfile.About" ngDefaultControl></ion-input>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.About">
@@ -83,13 +84,13 @@
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
       <div class="avatar-images">
-      <img *ngIf="HomeOwnerProfile.ownerImage" src="{{HomeOwnerProfile.ownerImage}}" class="thumbavatar">
-      <img *ngIf="!HomeOwnerProfile.ownerImage" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" class="thumbavatar">
+      <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
     </div>
     
     
        <div class="name">
-         <h4 style="text-align: center;">{{HomeOwnerProfile.fullname}}</h4>
+         <h4 style="text-align: center;">{{HomeOwnerProfile.fullName}}</h4>
        </div>
        <div class="gender">
         <h4 style="text-align: center;">{{HomeOwnerProfile.gender}}</h4>

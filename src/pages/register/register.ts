@@ -42,19 +42,18 @@ export class RegisterPage {
       ]
     });
 
-    console.log(this.authService.manageUsers());
+    
   }
 
   ionViewDidLoad() {
-    console.log(this.navParams.data);
-
+    console.log('check if the user is builder: if user->false !homeowner:',this.authService.manageUsers());
   }
 
   goLogin() {
     this.navCtrl.push(LoginPage);
   }
   async signupUser(signupForm: FormGroup): Promise<void> {
-    let builder = this.navParams.data;
+
     if (!signupForm.valid) {
       console.log(
         'Need to complete the form, current value: ',
@@ -67,17 +66,13 @@ export class RegisterPage {
 
       this.authService.signupUser(email, password).then(
         (user) => {
-          let typeBuilder = this.navParams.data;
+         
           this.loading.dismiss().then(() => {
-            console.log(user);
-            if (this.authService.manageUsers() == 'Homebuilder') {
-             
-             // let homebuilder = firebase.auth().currentUser.uid;
-              this.navCtrl.setRoot(BaccountSetupPage, builder)
-
-            } else {
-             // let homeowner = firebase.auth().currentUser.uid;
-              this.navCtrl.setRoot(AccountSetupPage, builder)
+            console.log('user is registered: ', user);
+            if (this.authService.manageUsers() == true) {
+              this.navCtrl.setRoot(BaccountSetupPage)
+             } else {
+              this.navCtrl.setRoot(AccountSetupPage)
             }
           });
 
