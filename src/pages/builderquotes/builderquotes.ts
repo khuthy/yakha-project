@@ -65,9 +65,11 @@ export class BuilderquotesPage {
     ownerUID: null,
     hOwnerUID: null
   }
+  meter = 2;
   pdfObj = null;
   db = firebase.firestore().collection('Respond');
   dbUsers =  firebase.firestore().collection('Users');
+  dbRequest = firebase.firestore().collection('Request');
   storage = firebase.storage().ref();
   uid: any;
  
@@ -131,7 +133,19 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-
+    this.dbRequest.where('builderUID', '==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+      res.forEach((doc)=>{
+        this.dbRequest.doc(doc.id).collection('extras').onSnapshot((res)=>{
+          res.forEach((doc)=>{
+            console.log(doc.id);
+            
+            this.extras.push({item: doc.id, data: doc.data()});
+          })
+          
+    })
+      })
+    })
+    
 
     // console.log(this.navParams.data);
     this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((res) => {

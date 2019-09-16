@@ -65,7 +65,7 @@
         </div>
         <ion-item>
           <ion-label floating>m2</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="meter"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Discount</ion-label>
@@ -84,7 +84,7 @@
         <div class="price">
           <ion-item>
             <ion-label floating>Price</ion-label>
-            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].price"></ion-input>
+            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price"></ion-input>
           </ion-item>
         </div>
         <div class="quantity">
