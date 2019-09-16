@@ -82,10 +82,10 @@ request: boolean = false;
    
   
     /* home page loads start here */
-    this.loader.create({
+  /*   this.loader.create({
       content:"Loading..",
       duration: 1000
-    }).present();
+    }).present(); */
      let user = firebase.auth().currentUser;
      if(user){
       let userLoggedIn = this.db.doc(user.uid);

@@ -105,7 +105,7 @@ export class LoginPage {
       signIn.then((getUid) => {
         let loading = this.loadingCtrl.create({
           content: 'Please wait...',
-          spinner: 'bubble'
+          duration: 3000
         })
         loading.present();
         this.authService.setUser(getUid.user.uid);
