@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -7,6 +7,7 @@ import { HomePage } from '../home/home';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { CallNumber } from '@ionic-native/call-number';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { ProfileComponent } from '../../components/profile/profile';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -58,7 +59,8 @@ export class AccountSetupPage {
     public alertCtrl: AlertController,
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
-    private callNumber: CallNumber
+    private callNumber: CallNumber,
+    public popoverCtrl: PopoverController
     ) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -231,6 +233,20 @@ export class AccountSetupPage {
 
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
+}
+viewProfile(myEvent) {
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+  popover.present({
+    ev: myEvent
+  });
+}
+viewHouse(myEvent) {
+  console.log('image',myEvent);
+  
+  let popover = this.popoverCtrl.create(ProfileComponent,{image: myEvent});
+  popover.present({
+    ev: myEvent
+  });
 }
   
  }
