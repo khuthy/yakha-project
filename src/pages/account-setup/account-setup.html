@@ -84,7 +84,7 @@
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
       <div class="avatar-images">
-      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" class="thumbavatar">
+      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" (click)="viewProfile(HomeOwnerProfile.image)" class="thumbavatar">
       <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
     </div>
     
