@@ -111,6 +111,9 @@ export class MyApp {
     })
   }
   viewProfile() {
-    alert('hey, whatupp!')
+    this.nav.push(AccountSetupPage);
+  }
+  viewProfileB() {
+    this.nav.push(BaccountSetupPage);
   }
 }
