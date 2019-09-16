@@ -6,9 +6,9 @@
       
       <div class="thumb">
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
-        <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
+       <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
+ <img *ngIf="!profileImage" width="75%"  src="../../assets/imgs/placeholder.png" class="thumb">
 
-        <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
       </div>
        
        
@@ -16,17 +16,33 @@
      
      <div class="inputs">
       <form  [formGroup]="profileForm">
-         <ion-item  class="item">
-          <ion-label  floating style="letter-spacing: 1px;"> Full Names</ion-label>
+
+         <ion-item class="item">
+          <ion-label  stacked style="letter-spacing: 1px;"> Full Names</ion-label>
           <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
-        <div class="error" *ngFor="let validate of validation_messages.fullName">
-         <p class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
-           {{validate.message}}
+        <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('required') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+         <p class="messages">
+            Name is required.
          </p>
-         </div> 
+         </ion-label> 
+         <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('minlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+            <p class="messages">
+                Name must be at least 4 characters long.
+            </p>
+            </ion-label>
+            <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('maxlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+                <p class="messages">
+                    Name cannot be more than 25 characters long.
+                </p>
+                </ion-label>
+                <ion-label class="error"  *ngIf="profileForm.get('fullName').hasError('pattern') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
+                    <p class="messages">
+                        Your Name must not contain numbers and special characters.
+                    </p>
+                    </ion-label>
  
-         <ion-item style="margin-top:5%" class="item">
+         <ion-item class="item">
           <ion-label stacked>Gender</ion-label>
           <ion-select formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
               <ion-option value="Female">Female</ion-option>
