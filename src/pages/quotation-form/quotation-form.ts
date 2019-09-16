@@ -31,7 +31,7 @@ export class QuotationFormPage {
   isuploading: false
   displayQuation;
   HomeOwnerQuotation = {
-    uid:'',
+    hOwnerUid:'',
     startDate:'',
     endDate:'',
     extras:[],
@@ -39,15 +39,8 @@ export class QuotationFormPage {
     brickType:'',
     houseImage:'',
     comment:'',
-    hOwnerPhone: 0,
-    email: firebase.auth().currentUser.email,
     date:Date(),
     builderUID: '',
-    doc:'',
-    response_date:'',
-    createBy:'', 
-    ownerAddress:'',
-    ownerName:''
   };
   docID;
  date: any;
@@ -97,7 +90,7 @@ extraName;
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
-     this.HomeOwnerQuotation.uid = this.uid;
+     this.HomeOwnerQuotation.hOwnerUid = this.uid;
       this.HomeOwnerQuotation.builderUID = this.navParams.data;
       this.quotationForm = this.formBuilder.group({
         // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
@@ -108,13 +101,13 @@ extraName;
         extras: new  FormControl('', Validators.compose([Validators.required])),
         comment:new  FormControl('', Validators.compose([Validators.required,Validators.maxLength(200)])),
       });
-      firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
+     /*  firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
         resp.forEach((doc)=>{
           this.HomeOwnerQuotation.hOwnerPhone = doc.data().personalNumber;
           this.HomeOwnerQuotation.ownerAddress = doc.data().ownerAddress;
           this.HomeOwnerQuotation.ownerName = doc.data().fullname;
         })
-      })
+      }) */
      
       
       let date = new Date();
@@ -203,13 +196,13 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     
    // console.log(this.HomeOwnerQuotation.extras);
     
-  const user = this.db.collection('HomeOwnerQuotation').add(this.HomeOwnerQuotation);
+  const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
   
   // upon success...
   user.then( (response) => {
-   /*  this.extras.forEach(item => {
-      response.collection('extras').doc(item.service).set({price: item.price, quantity: item.quantity});
-    }); */
+      this.HomeOwnerQuotation.extras.forEach((item) => {
+      response.collection('extras').doc(item).set({price: 0, quantity: 0});
+    }); 
     this.navCtrl.setRoot(SuccessPage)
     this.toastCtrl.create({
       message: '  Quotation submitted.',
