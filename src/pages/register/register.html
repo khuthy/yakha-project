@@ -15,8 +15,8 @@
             <ion-list no-lines style="background: transparent" >
               
         
-               <ion-item class="item"> 
-                <ion-label stacked >Email Address</ion-label>
+               <ion-item class="item" > 
+                <ion-label floating>Email Address</ion-label>
                 <ion-input formControlName="email" type="email" 
                 [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
               </ion-input>
@@ -53,7 +53,7 @@
      </div>
  </div>
      </ion-content>
-    <!-- <form [formGroup]="signupForm">
+  <form [formGroup]="signupForm">
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
         <ion-input formControlName="email" type="email" placeholder="Your email address"
@@ -79,7 +79,7 @@
       <button ion-button expand="block" (click)="signupUser(signupForm)" [disabled]="!signupForm.valid">
         Create an Account
       </button>
-    </form> -->
+    </form>
     
     
 
