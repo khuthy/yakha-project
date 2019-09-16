@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
   sampleArr = [];
   resultArr = [];
   db = firebase.firestore().collection('Users');
-  dbRequest = firebase.firestore().collection('Request')
+  dbRequest = firebase.firestore().collection('Request');
   isSearchbarOpened = false;
   color: string = 'yakha';
   slidesPerView : number = 1;
@@ -613,6 +613,8 @@ getItems(ev: any) {
       builder: {},
       owner: {}
     }
+    console.log();
+    
     this.dbRequest.where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
       res.forEach((doc)=>{
@@ -621,7 +623,7 @@ getItems(ev: any) {
       //  this.ownerUID = doc.data().uid; 
         
              
-        this.db.doc(doc.data().uid).get().then((res)=>{   
+        this.db.doc(doc.data().hOwnerUid).get().then((res)=>{   
           data.owner = res.data();
           data.builder = doc.data();
          // console.log(res.data());
@@ -634,7 +636,7 @@ getItems(ev: any) {
      
       
       setTimeout(()=> {
-        this.getOwners();
+       // this.getOwners();
       }, 1000)
       console.log('Done');
       console.log(this.owner);
@@ -928,34 +930,34 @@ viewOwner(owner){
   this.navCtrl.push(HomeOwnerProfilePage,owner);
 }
 
-getOwners(){
-  console.log('Triggerd');
+// getOwners(){
+//   console.log('Triggerd');
   
-  console.log('Element ref', this.elementref);
-  let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
-    let c = this.elementref.nativeElement.children[1].children[1].children[0].children[0];
-    // this.renderer.setStyle(c, `background`, `pink`);
-    console.log('c', c);
+//   console.log('Element ref', this.elementref);
+//   let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
+//     let c = this.elementref.nativeElement.children[1].children[1].children[0].children[0];
+//     // this.renderer.setStyle(c, `background`, `pink`);
+//     console.log('c', c);
     
-  let colors = ['rgba(95, 95, 95, 0.103)','rgba(197, 101, 66, 0.966)','rgba(33, 109, 123, 0.78)']
-  console.log('Cards ', cards);
+//   let colors = ['rgba(95, 95, 95, 0.103)','rgba(197, 101, 66, 0.966)','rgba(33, 109, 123, 0.78)']
+//   console.log('Cards ', cards);
   
-  for (let i = 0; i < this.elementref.nativeElement.children[1].children[1].children[0].children.length; i++) {
-    let changecolor = i % 2;
-    console.log('Remainder ', changecolor);
+//   for (let i = 0; i < this.elementref.nativeElement.children[1].children[1].children[0].children.length; i++) {
+//     let changecolor = i % 2;
+//     console.log('Remainder ', changecolor);
     
-    let randomColor = Math.floor((Math.random() * colors.length));
+//     let randomColor = Math.floor((Math.random() * colors.length));
 
-    console.log('Random number', randomColor);
-    let card = this.elementref.nativeElement.children[1].children[1].children[0].children[i]
-    if (changecolor) {
-      this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
-    } else {
-      this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
-    }
+//     console.log('Random number', randomColor);
+//     let card = this.elementref.nativeElement.children[1].children[1].children[0].children[i]
+//     if (changecolor) {
+//       this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
+//     } else {
+//       this.renderer.setStyle(card, 'background', `${colors[randomColor]}`);
+//     }
     
-  }
-}
+//   }
+// }
 
 moveMapEvent() {
  // console.log('changed');
@@ -966,20 +968,6 @@ loadMap(){
 
 
 
-  // let watch = this.geolocation.watchPosition();
-  // watch.subscribe((data) => {
-  //  // data can be a set of coordinates, or an error (if an error occurred).
-  //  this.lat = data.coords.latitude;
-  //  this.lng = data.coords.longitude;
-
-  //  let coords = new google.maps.LatLng(21, -27);
-  //  let mapOptions = {
-  //   center : coords,
-  //   zoom: 15,
-  //   mapTypeId: google.maps.MapTypeId.ROADMAP
-  // }
-  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-  // });
 }
 initMap(){
 
@@ -1016,232 +1004,12 @@ initMap(){
 
   const infowindow = new google.maps.InfoWindow();
 
-  // let request = {
-  //   query: 'Museum of Contemporary Art Australia',
-  //   fields: ['name', 'geometry'],
-  // };
-  //e.maps.places.PlacesService
- // let service = new google.maps.places.PlacesService(map);
-
-  // service.findPlaceFromQuery(request, (results, status) => {
-  //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //     for (var i = 0; i < results.length; i++) {
-  //       this.createMarker(results[i]);
-  //     }
-
-  //     map.setCenter(results[0].geometry.location);
-  //   }
-  // });
-
-  // this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
-  // console.log(this.map);
-
-  // firebase.firestore().collection('location').get().then((resp)=>{
-
-  //   resp.forEach((doc)=> {
-  //     // doc.data() is never undefined for query doc snapshots
-  //     console.log(doc.id,  doc.data().lat);
-  //     let lat = doc.id +"<br>Latitude: "+ doc.data().lat+ "<br>Longitude: " + doc.data().lng;
-  //     let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
-  //      let marker = new google.maps.Marker({
-  //          map: this.map,
-  //          position: coord,
-  //          title: 'Click to view details',
-  //        })
-  //             let infoWindow = new google.maps.InfoWindow({
-  //         content: lat
-  //    });
-  //    google.maps.event.addListener(marker,'click', (resp)=>{
-  //     marker.setAnimation(google.maps.Animation.BOUNCE);
-  //     })
-  //   google.maps.event.addListener(marker, 'click', (resp)=>{
-  //     infoWindow.open(this.map, marker)
-  //     })
-  //     google.maps.event.addListener( marker,'click', (resp) => {
-  //       this.map.setZoom(13);
-  //       this.map.setCenter(marker.getPosition());
-  //     });
-  //     google.maps.event.addListener(marker ,'center_changed', (res) => {
-
-  //       window.setTimeout((timeout) => {
-  //         this.map.panTo(marker.getPosition());
-  //       }, 3000);
-  //     });
-  //   })
-  //   // });
-  //   // // console.log(marker);
-  //   // } else {
-  //   //   console.log("The firestore is empty");
-
-  //   // }
-  // });
-    // if(resp.exists){
-
-    //   this.lat = resp.data().lat;
-    //   this.lng = resp.data().lng;
-    //   let coord = new google.maps.LatLng(this.lat, this.lng)
-    //   let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
-    //    map: this.map,
-    //    position: coord,
-    //    title: 'Click to view details',
-    //  })
-
-
-
-    //  let infoWindow = new google.maps.InfoWindow({
-    //    content:    resp.data().username + "<br>" + "from: " + resp.data().place + "<br>Costs: " + resp.data().price
-    //  });
-    //  google.maps.event.addListener(marker, 'click', (resp)=>{
-    //    infoWindow.open(this.map, marker)
-    //  })
-
-    // // console.log(marker);
-    // } else {
-    //   console.log("The firestore is empty");
-// }
-  // firebase.firestore().collection('location').doc('coords').get().then((resp)=>{
-  //  if(resp.exists){
-
-  //    this.lat = resp.data().lat;
-  //    this.lng = resp.data().lng;
-  //    let coord = new google.maps.LatLng(this.lat, this.lng)
-  //    let marker: google.maps.Marker = this.infoWindow = new google.maps.Marker({
-  //     map: this.map,
-  //     position: coord,
-  //     title: 'Click to view details',
-  //   })
-
-
-
-  //   let infoWindow = new google.maps.InfoWindow({
-  //     content:    resp.data().username + "<br>" + "from: " + resp.data().place + "<br>Costs: " + resp.data().price
-  //   });
-  //   google.maps.event.addListener(marker, 'click', (resp)=>{
-  //     infoWindow.open(this.map, marker)
-  //   })
-
-  //  // console.log(marker);
-  //  } else {
-  //    console.log("The firestore is empty");
-
-  //  }
-
-
-
-
- // let coordi = new google.maps.LatLng(this.lat, this.lng);
-
-
-
-
-
-  // let marker1: google.maps.Marker = new google.maps.Marker({
-  //   map: this.map,
-  //   position: coords1,
-  // })
 });
 
 
 }
 
-// autoCompleteMap() {
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: -33.8688, lng: 151.2195},
-//     zoom: 13
-//   });
-//   var card = document.getElementById('pac-card');
-//   var input = document.getElementById('pac-input');
-//   var types = document.getElementById('type-selector');
-//   var strictBounds = document.getElementById('strict-bounds-selector');
 
-//   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-//   var autocomplete = new google.maps.places.Autocomplete(input);
-
-//   // Bind the map's bounds (viewport) property to the autocomplete object,
-//   // so that the autocomplete requests use the current map bounds for the
-//   // bounds option in the request.
-//   autocomplete.bindTo('bounds', map);
-
-//   // Set the data fields to return when the user selects a place.
-//   autocomplete.setFields(
-//       ['address_components', 'geometry', 'icon', 'name']);
-
-//   var infowindow = new google.maps.InfoWindow();
-//   var infowindowContent = document.getElementById('infowindow-content');
-//   infowindow.setContent(infowindowContent);
-//   var marker = new google.maps.Marker({
-//     map: map,
-//     anchorPoint: new google.maps.Point(0, -29)
-//   });
-
-//   autocomplete.addListener('place_changed', function() {
-//     infowindow.close();
-//     marker.setVisible(false);
-//     var place = autocomplete.getPlace();
-//     if (!place.geometry) {
-//       // User entered the name of a Place that was not suggested and
-//       // pressed the Enter key, or the Place Details request failed.
-//       window.alert("No details available for input: '" + place.name + "'");
-//       return;
-//     }
-
-//     // If the place has a geometry, then present it on a map.
-//     if (place.geometry.viewport) {
-//       map.fitBounds(place.geometry.viewport);
-//     } else {
-//       map.setCenter(place.geometry.location);
-//       map.setZoom(17);  // Why 17? Because it looks good.
-//     }
-//     marker.setPosition(place.geometry.location);
-//     marker.setVisible(true);
-
-//     var address = '';
-//     if (place.address_components) {
-//       address = [
-//         (place.address_components[0] && place.address_components[0].short_name || ''),
-//         (place.address_components[1] && place.address_components[1].short_name || ''),
-//         (place.address_components[2] && place.address_components[2].short_name || '')
-//       ].join(' ');
-//     }
-
-//     infowindowContent.children['place-icon'].src = place.icon;
-//     infowindowContent.children['place-name'].textContent = place.name;
-//     infowindowContent.children['place-address'].textContent = address;
-//     infowindow.open(map, marker);
-//   });
-
-//   // Sets a listener on a radio button to change the filter type on Places
-//   // Autocomplete.
-//   function setupClickListener(id, types) {
-//     var radioButton = document.getElementById(id);
-//     radioButton.addEventListener('click', function() {
-//       autocomplete.setTypes(types);
-//     });
-//   }
-
-//   setupClickListener('changetype-all', []);
-//   setupClickListener('changetype-address', ['address']);
-//   setupClickListener('changetype-establishment', ['establishment']);
-//   setupClickListener('changetype-geocode', ['geocode']);
-
-//   document.getElementById('use-strict-bounds')
-//       .addEventListener('click', function() {
-//         console.log('Checkbox clicked! New state=' + this.checked);
-//         autocomplete.setOptions({strictBounds: this.checked});
-//       });
-// }
-// createMarker(place) {
-//   var marker = new google.maps.Marker({
-//     map: this.map,
-//     position: place.geometry.location
-//   });
-
-//   google.maps.event.addListener(marker, 'click', (res)=> {
-//     res.setContent(place.name);
-//     res.open(this.map);
-//   });
-// }
 }
 
 

@@ -72,13 +72,13 @@ export class ViewmessagePage {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
    
-    this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
-     res.data();
-     this.bUid = res.data().builder == true;
-     this.hType = res.data().builder == false;
-    })
-    
-  }
+    // this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    //  res.data();
+    //  this.bUid = res.data().builder == true;
+    //  this.hType = res.data().builder == false;
+    // })
+ 
+}
 
   ionViewDidLoad() {
     console.log(this.userDetails);
@@ -93,7 +93,9 @@ export class ViewmessagePage {
    // this.response_date = this.userDetails.response_date;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
-
+   // console.log(this.userDetails.builder);
+   
+    
     
    this.extras = this.userDetails.extras;
     //this.hOwnerPhone = this.userDetails.hOwnerPhone;
