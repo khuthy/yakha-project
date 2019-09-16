@@ -16,7 +16,7 @@
           <ion-item class="item" >
             <ion-label  stacked>    Email Address</ion-label>
             <ion-input
-              formControlName="email" type="email">
+              formControlName="email" type="email"[(ngModel)]="!LoginForm.email" ngDefaultControl>
             </ion-input>
           <p 
               *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
@@ -28,7 +28,7 @@
           <ion-item  class="item">
             <ion-label stacked>  Password</ion-label>
               <ion-input 
-              formControlName="password" type="password">
+              formControlName="password" type="password" [(ngModel)]="!LoginForm.password" ngDefaultControl>
             </ion-input>
              <p 
               *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">

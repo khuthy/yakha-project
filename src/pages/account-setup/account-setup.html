@@ -5,7 +5,7 @@
         <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: 'Roboto','Segoe UI'">Tell us a little about yourself</h4>
       
       <div class="thumb">
-        <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb">
+        <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
         <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button>
 
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
@@ -16,7 +16,7 @@
      
      <div class="inputs">
       <form  [formGroup]="profileForm">
-         <ion-item >
+         <ion-item  class="item">
           <ion-label  floating style="letter-spacing: 1px;"> Full Names</ion-label>
           <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
