@@ -45,6 +45,7 @@ page-account-setup {
         align-items: flex-end;
         justify-content: center;
         align-content: center;
+       background:white;
        
     }
     .btn-upload {
@@ -104,34 +105,14 @@ page-account-setup {
     /* view profile code */
     .container {
        // border: 1px solid red;
-        height: 100vh;
+        
         width: 100vw;
         .profiles {
-        
+        overflow: fixed;
+        background: #f6f2f2;
+        height: 100vh;
             .avatar-images {
-             /* 
-                width: 80%;
-                height: 30vh;
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                &::before {
-                    position: absolute;
-                    content: '';
-                    top: 0;
-                    height: 22.5vh;
-                    width: 100%;
-                    background: rgb(49, 49, 49);
-                    
-                } */
-
-
-
-                .thumbavatar {
-                 
-                  
-                }
+                width: 60%;
                 .name > h4 {
                     position: relative;
                     text-align: center;

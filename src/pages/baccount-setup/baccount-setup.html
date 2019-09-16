@@ -107,6 +107,8 @@
 </form>
       </div>
     </div>
+
+
     <!-- profile for builder starts here -->
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
@@ -120,18 +122,16 @@
 <div class="name">
      <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
      <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
-     <ion-fab right bottom>
+     <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
+     <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
+     <p> {{builderProfile.experiences}} years of experience</p>
+   <!--   <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
-    </ion-fab>
+    </ion-fab> -->
    </div>
-   <div class="">
-    <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-    <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
-   </div>
-   <div class="details" style="background: #f15a24; color: white; letter-spacing: 1px">
-     <p> {{builderProfile.experiences}} years of experience</p>
-    </div>
+
+ 
    <div class="bio">
      <h6><ion-icon size="large" name="pin"></ion-icon></h6>
      <p>
