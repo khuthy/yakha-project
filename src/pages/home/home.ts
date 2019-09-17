@@ -70,6 +70,36 @@ request: boolean = false;
 
 
   }
+  display = 'none';
+range = 'none';
+  showSearch() {
+ 
+    let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
+    if(this.display == 'none') {
+      this.display = 'block';
+      this.renderer.setStyle(search, 'display', 'block');
+    }else {
+      this.display = 'none';
+      this.renderer.setStyle(search, 'display', 'none');
+    }
+    
+    
+  }
+  showRangeSearch() {
+ 
+    let search = this.elementref.nativeElement.children[1].children[1].children[2];
+    console.log(search);
+    
+    if(this.range == 'none') {
+      this.range = 'block';
+      this.renderer.setStyle(search, 'display', 'block');
+    }else {
+      this.range = 'none';
+      this.renderer.setStyle(search, 'display', 'none');
+    }
+    
+  }
+
 
   ngOnInit(){
     this.menuCtrl.swipeEnable(true);
