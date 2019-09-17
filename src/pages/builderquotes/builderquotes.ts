@@ -100,6 +100,9 @@ export class BuilderquotesPage {
   extras = [];
   total: number = 0;
   extrasValues: Quotations;
+  date;
+  maxDate;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -124,6 +127,9 @@ export class BuilderquotesPage {
       dimension: new FormControl('', Validators.compose([Validators.required])),
       price: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(7)]))
     })
+
+    this.date = new Date();
+    this.maxDate = this.formatDate(this.date);
   }
 
   ngAfterContentChecked() {
@@ -193,24 +199,44 @@ export class BuilderquotesPage {
     // console.log(this.location)
 
   }
+  formatDate(date) {
+    let d = new Date(date),
+      day = '' + d.getDate(),
+      month = '' + (d.getMonth() + 1),
+      year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
 
   childPlus(i) {
-     this.extras[i].quantity++;
+     this.extras[i].data.quantity++;
 
   }
   childMinus(i) {
-    this.extras[i].quantity--;
-    if(this.extras[i].quantity <= 0) {
+    this.extras[i].data.quantity--;
+    if(this.extras[i].data.quantity <= 0) {
     
-      this.extras[i].quantity = 0;
+      this.extras[i].data.quantity = 0;
     }
     
   }
   test(){
-    console.log(this.extras);
+    console.log(this.extras[4]);
     
   }
   createPdf() {
+    console.log(this.extras);
+    
+    var items = this.extras.map((item) => {
+      console.log(item);
+      this.quotes.price = ((this.quotes.price*this.quotes.meter) * (this.quotes.discount / 100)) + ((item.data.price * item.data.price) * (this.quotes.discount / 100));
+      
+      return [item.item, item.data.price, item.data.quantity];
+
+  });
+
+
     var docDefinition = {
       content: [
         { text: 'Quotations', style: 'header' },
@@ -221,8 +247,8 @@ export class BuilderquotesPage {
         this.quotes.fullName,
         this.quotes.address,
         { text: 'To', style: 'subheader' },
-        this.quotes.ownerName,
-        this.quotes.ownerAddress,
+        this.quotes.fullName,
+        this.quotes.address,
         { text: 'Expiry', style: 'subheader' },
         { text: this.quotes.expiry },
 
@@ -237,13 +263,13 @@ export class BuilderquotesPage {
                 { text: 'Quantity', style: 'itemsTableHeader' },
                 { text: 'Price', style: 'itemsTableHeader' },
               ]
-            ].concat()
+            ].concat(items)
           }
         },
 
 
         { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
-        { text: 'R'+ this.quotes.price+'.00', style: 'story', margin: [0, 20, 0, 20] },
+        /* { text: 'R'+ this.quotes.price +'.00', style: 'story', margin: [0, 20, 0, 20] }, */
         {
           style: 'totalsTable',
           table: {
@@ -296,6 +322,8 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
      firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
         console.log(results);
      })
+
+
   }
   // selectFile() {
 

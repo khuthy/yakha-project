@@ -12,7 +12,7 @@
   <form [formGroup]="quotesForm">
     <ion-item>
       <ion-label floating>Expiry date</ion-label>
-      <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" min="2019-09-11" max="2022-10-31"
+      <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
     <div class="error" *ngFor="let validate of validation_messages.expiry">
@@ -95,7 +95,7 @@
             <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(i)">
                 <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
               </button></div>
-            <div class="typ3" style="padding: 12px">{{extras[i].quantity}}</div>
+            <div class="typ3" style="padding: 12px">{{extras[i].data.quantity}}</div>
             <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(i)">
                 <ion-icon ios="ios-add" md="md-add"></ion-icon>
               </button></div>
@@ -108,7 +108,7 @@
       <div class="accumulatedAmount">
         <div class="subtotal">
           <p><strong>Subtotal</strong></p>
-          <p><strong>R300.00</strong></p>
+          <p><strong>{{subtotal}}</strong></p>
         </div>
         <div class="discount">
           <p><strong>Discount</strong></p>
@@ -137,6 +137,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar padding style="display: flex">
+    <button ion-button (click)="test()">Test</button>
     <button ion-button class="btn-proceed" block (click)="createPdf()" color="primary">Send Quotation</button>
     <button ion-button class="btn-proceed" block (click)="downloadPdf()" color="primary">Download</button>
   </ion-toolbar>
