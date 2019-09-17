@@ -540,15 +540,15 @@ getItems(ev: any) {
   ionViewDidLoad() {
     
      
-     /* 
+
      for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
        let background = i % 2;
        if(background) {
 
        }else {
-
+        
        }
-     } */
+     } 
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;

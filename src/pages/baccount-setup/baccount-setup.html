@@ -119,7 +119,7 @@
   <img *ngIf="builderProfile.image" src="{{builderProfile.image}}"(click)="viewProfile(builderProfile.image)" class="thumbavatar">
   <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
-<h4 style="text-align: center;border:red">{{builderProfile.fullName}}</h4>
+<h4 style="text-align: center">{{builderProfile.fullName}}</h4>
 <div class="name">
    
   <div class="one">
@@ -134,10 +134,12 @@
   </div>
     
  
-   <!--   <ion-fab right bottom>
+     <ion-fab right bottom>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
-    </ion-fab> -->
+    </ion-fab>
+
+
    </div>
 
  

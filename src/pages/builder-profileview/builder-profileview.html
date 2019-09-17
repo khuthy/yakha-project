@@ -24,34 +24,52 @@
           
        
       <div class="container">
-        <div class="view-builder">
+        
             <div class="builder-image" >     
                 <img *ngIf="dat.image" src="{{dat.image}}" class="thumber" alt="">
                 <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumber" alt="">
                 <div class="back" (click)="navCtrl.pop()">
-                  <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
+                  <ion-icon style="font-size: 28px;color: black" name="arrow-round-back"></ion-icon>
                 </div>
               </div>
-              <div class="titles">
+
+              <div class="name">
+                <h3>{{dat.fullName}}</h3>
+              </div>
+            
+              <div class="info">
+                <div class="one">
+                  <h5></h5>
+                </div>
+                <h2 style="color: rgba(197, 101, 66, 0.966); letter-spacing: .30em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">R{{dat.price}}.00 p/m<span class="squire">2</span></h2>
+                <p>{{dat.experiences}} year of experience</p>
+                <p>{{dat.certified}}</p>
+              </div>
+              <div class="location">
+                  <h6><ion-icon style="color:darkcyan" size="large" name="pin"></ion-icon></h6>
+                <p>{{dat.address}}</p>
+              </div>
+              <div class="button-request">
+                <button style="border-radius: 5px;" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
+               </div>
+             <!--  <div class="titles">
                   <h3>{{dat.fullName}}</h3>
                 </div>
                 <div class="price">
-                    <h2 style="color: rgba(197, 101, 66, 0.966); letter-spacing: .30em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">R{{dat.price}}.00 p/m<span class="squire">2</span></h2>
+                    
                   </div>
                   <div class="experience">
-                    <p>{{dat.experiences}} year of experience</p>
+                    
                     </div>
                     
                       <div class="Address">
-                        <p>{{dat.address}}</p>
+                       
                         </div>
                         <div class="Certified">
-                          <p>{{dat.certified}}</p>
-                          </div>
-                <div class="button-request">
-                           <button ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
-                          </div>
+                        
+                          </div> -->
+          <!--        -->
         </div>
        
-      </div>
+ 
 </ion-content>
