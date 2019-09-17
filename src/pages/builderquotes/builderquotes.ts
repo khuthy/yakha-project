@@ -289,6 +289,7 @@ export class BuilderquotesPage {
 
     var docDefinition = {
       content: [
+        
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
