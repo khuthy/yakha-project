@@ -60,8 +60,8 @@ export class MyApp {
                 {title: 'Home', component: HomePage, icon: 'home'},
                 {title: 'View Profile', component: AccountSetupPage, icon: 'person'},
                 {title: 'Messages', component: MessagesPage, icon: 'mail'},
-                {title: 'Help', component: HelpPage, icon: 'help'},
-                {title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+                // {title: 'Help', component: HelpPage, icon: 'help'},
+                // {title: 'Feedback', component: FeedbackPage, icon: 'paper'},
                 {title: 'Version', component: VersionPage, icon: 'information-circle'},
               ];
               this.userLoggedinNow.image = profile.data().image
@@ -111,6 +111,9 @@ export class MyApp {
     })
   }
   viewProfile() {
-    alert('hey, whatupp!')
+    this.nav.push(AccountSetupPage);
+  }
+  viewProfileB() {
+    this.nav.push(BaccountSetupPage);
   }
 }
