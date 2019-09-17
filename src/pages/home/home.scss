@@ -1,7 +1,10 @@
 page-home {
     
 
-
+  ::marker {
+    color: blue;
+    font-size: 1.2em;
+  }
 
  
   .scroll-content {
@@ -108,7 +111,7 @@ page-home {
     border-radius: 12px;
    // border: 1px solid rgba(20, 9, 19, 0.8);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
+    background: white;
    .thumbnail {
      display: flex;
      flex-direction: column;
