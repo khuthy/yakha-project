@@ -64,6 +64,8 @@ export class ViewmessagePage {
   wallType: any;
   extras=[];
   builda = '';
+  docID: any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
      private fileOpener: FileOpener,
@@ -98,6 +100,7 @@ export class ViewmessagePage {
     this.houseImage = this.userDetails.houseImage;
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
+    this.docID = this.userDetails.docID;
    
     
    this.extras = this.userDetails.extras;
@@ -129,9 +132,9 @@ export class ViewmessagePage {
       ev: myEvent
     });
   }
-  quotesForm(value) {
-    this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
-   console.log(value);
+  quotesForm() {
+    this.navCtrl.push(BuilderquotesPage, this.docID);
+ //  console.log(value);
    
   }
   getRequest(){

@@ -54,8 +54,7 @@ request: boolean = false;
   ownerImage: any;
   bUID: string;
   price = 0;
-  display: string = 'none';
-  range: string = 'none';
+  
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, 
     public loader : LoadingController,
@@ -70,35 +69,6 @@ request: boolean = false;
  ) {
 
 
-  }
-
-  showSearch() {
- 
-    let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
-    if(this.display == 'none') {
-      this.display = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    }else {
-      this.display = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-    
-    
-  }
-  showRangeSearch() {
- 
-    let search = this.elementref.nativeElement.children[1].children[1].children[2];
-    console.log(search);
-    
-    if(this.range == 'none') {
-      this.range = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    }else {
-      this.range = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-    
-    
   }
 
   ngOnInit(){
@@ -149,7 +119,181 @@ request: boolean = false;
                 strictBounds: false,
               },
               disableDefaultUI: true,
-              
+              styles: [
+                {
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.icon",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#616161"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.country",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                    {
+                      "color": "#216d7b"
+                    },
+                    {
+                      "visibility": "on"
+                    },
+                    {
+                      "weight": 5
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#bdbdbd"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#216d7b"
+                    },
+                    {
+                      "saturation": 100
+                    },
+                    {
+                      "visibility": "on"
+                    },
+                    {
+                      "weight": 1
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.station",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#c9c9c9"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                }
+              ]
             }
             
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
@@ -395,26 +539,16 @@ getItems(ev: any) {
 }
   ionViewDidLoad() {
     
-    
      
-    if (this.elementref.nativeElement.children[1].children[1].children[0]) {
-      let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[0]
-      console.log(cards);
-      
-    } else {
-      // console.log('Nothing');
-      
-    }
-    // console.log(this.elementref);
-    
+     /* 
      for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
        let background = i % 2;
        if(background) {
 
-       } else {
-        
+       }else {
+
        }
-     } 
+     } */
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -459,37 +593,17 @@ getItems(ev: any) {
             owner: {}
           }
         })
-
-        
+     
+      
       setTimeout(()=> {
        // this.getOwners();
-      let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'rgb(53, 53, 53)', '']
-       let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
-       for(var i = 0; i < cards; i++) {
-         console.log('for running');
-         
-        let background = i % 2;
-        
-        let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
-        let randomColor = Math.floor((Math.random() * colors.length));
-        if(background) {
-          console.log(cards);
-          
-          this.renderer.setStyle(cards, 'background', colors[randomColor])
-        } else {
-          console.log(cards);
-          this.renderer.setStyle(cards, 'background', colors[randomColor])
-        }
-      }
-      console.log('for done');
-      console.log(cards);
-      }, 500)
-      
-      
-      
-      })
+      }, 1000)
       console.log('Done');
       console.log(this.owner);
+      
+     
+      
+      })
     
      // console.log('Owners: ', this.owner);
     });
