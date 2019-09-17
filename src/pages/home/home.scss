@@ -242,7 +242,7 @@ p {
     font-size: 20px;
     position: relative;
    // border: 1px solid red;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 10px 10px;
     .thumb-home-builder {
         width: 10vh;
         height: 10vh;
@@ -252,7 +252,7 @@ p {
         object-fit: cover;
         position: relative;
         left: 5%;
-        top: -15px;
+        //top: -15px;
     }
     article {
         text-align: right;
