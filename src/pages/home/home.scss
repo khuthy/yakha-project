@@ -12,20 +12,23 @@ page-home {
     padding-bottom: 0 !important;
   }
    .control {
-     position: relative;
-     //box-shadow: 0 3px 6px #0000002c;
-     border-radius: 50px;
-     //border: 1px solid red;
-      padding: 0px;
+     display: flex;
+      width: 100%;
+      justify-content: space-between;
    }
+   .control > input {
+      order: 2;
+      display: none;
+   }
+   .control > .menus {
+    order: 1;
+ }
+ .control > .searching {
+  order: 3;
+  
+}
    .controls {
   padding-left: 40px;
-   position: absolute;
-   min-width: 100%;
-    right: 0; 
-    left: 0;
-    bottom: 0%;
-    top: 0;
     border: none;
     box-shadow: 0 3px 6px rgba(95, 95, 95, 0.103);
     //box-shadow: 0 3px 6px #0000002c;
@@ -55,8 +58,8 @@ page-home {
     height: auto;
     top: 1%;
    
-    left: 5%;
-    right: 5%;
+    left: 1%;
+    right: 1%;
     //border:1px solid  #0000002c;
     //box-shadow: 0 3px 6px #0000002c;
     border-radius: 50px;
@@ -66,6 +69,7 @@ page-home {
  .list {
    position: absolute;
    bottom: 30%;
+   display: none;
  }
   
   #map{
@@ -101,10 +105,7 @@ page-home {
     top: -9px;
 
   }
-  .search {
-    padding: 10px;
-    background: red;
-  }
+ 
 
   .card {
     padding: 1%;
