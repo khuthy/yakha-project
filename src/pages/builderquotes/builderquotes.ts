@@ -92,10 +92,7 @@ export class BuilderquotesPage {
     'dimension': [{
       type: 'required', message: 'Extra costs are required'
     }],
-    'price':  [
-      { type: 'required', message: 'Price is required.' },
-      { type: 'maxlength', message: 'Amount is too large' }
-    ]
+   
   }
   ownerAddress: any;
   count = 0;
@@ -130,7 +127,7 @@ export class BuilderquotesPage {
       expiry: new FormControl('', Validators.compose([Validators.required])),
       address: new FormControl('', Validators.compose([Validators.required])),
       dimension: new FormControl('', Validators.compose([Validators.required])),
-      price: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(7)]))
+     
     })
 
     this.date = new Date();
@@ -234,32 +231,43 @@ export class BuilderquotesPage {
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
   }
+  input= [];
+  onChange(event) {
+    if(event.value != 0) {
+      this.input.push({input: parseFloat(event.value)});
+      console.log(this.input);
+    }else {
+      this.input.push({input: 0})
+    }
+    
+    
+  }
 
   childPlus(i, index) {
-     console.log(this.extras.length);
+     /* console.log(this.extras.length); */
      
      this.extras[index].data.quantity++;
-     console.log(i)
-    /*  console.log(parseFloat(i.data.price)*parseFloat(i.data.quantity))
-     this.value =this.value+parseFloat(i.data.price)*parseFloat(i.data.quantity);  */
-
-
-     console.log(this.value)
+     if(this.extras[index].data.quantity != 0 && this.extras[index].data.price != 0) {
+      this.value = this.value + (parseFloat(i.data.price) * parseFloat(i.data.quantity));
+     }else {
+       this.value = 0;
+     }
+       
+     
   }
   childMinus(i, index) {
 
     console.log(i)
     this.extras[index].data.quantity--;
     if(this.extras[index].data.quantity <= 0) {
-    
-      this.extras[index].data.quantity = 0;
-
+       this.extras[index].data.quantity = 0;
+      if(this.extras[index].data.quantity != 0 && this.extras[index].data.price != 0) {
+        this.value = this.value + (parseFloat(i.data.price) * parseFloat(i.data.quantity));
+       }else {
+         this.value = 0;
+       }
 
     }
-    this.value =this.value-parseFloat(i.data.price)*parseFloat(i.data.quantity); 
-      
-     console.log(this.value)
-     console.log(parseFloat(i.data.price)*parseFloat(i.data.quantity))
     
   }
   test(){
