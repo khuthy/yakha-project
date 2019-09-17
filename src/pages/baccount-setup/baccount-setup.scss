@@ -133,16 +133,21 @@ h5 {
 
         .profiles {
             overflow-y: fixed;
-          border: 1px solid red;
+         // border: 1px solid red;
           background: 	#f6f2f2;
           height: 100vh;
             .avatar-images {
-             // border: 1px solid black;
+             // border: 1px solid red;
               width:60%;
+              position: relative;
+              left:40%;
+              height: 35%;
              img {
-                 height: 25vh;
-                 border-bottom-right-radius: 15px;
-                 border-bottom-right-radius: 15px;
+                 width: 100%;
+                 height:100%;
+                 object-fit: cover;
+                 border-bottom-left-radius: 25%;
+                // border-bottom-left-radius: 15px;
                  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);   
              }
                
@@ -170,13 +175,15 @@ h5 {
                // border: 1px solid red;
                 padding-top: 5%;
                 h4 {
-                       color: rgb(54, 53, 53);
+                color: rgb(54, 53, 53);
                 font-family: 'Segoe UI';
                 font-size: 3vh;
+                letter-spacing: 1px;
                 }
              
             }
             .name {
+               // border: 1px solid red;
                 margin-top:5%;
                   height: 25vh;
                   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -186,6 +193,7 @@ h5 {
                position: relative;
                left: 5%;
                color:white;
+               
                p,h5 {
                    letter-spacing: 1px;
                    font-family: 'Segoe UI';
@@ -197,20 +205,22 @@ h5 {
                    display: flex;
                    
                  div {
-                    border-bottom: 1px solid rgb(190, 188, 188);
+                    border-right: 1px solid rgb(190, 188, 188);
                     display: flex;
                     flex-direction: column;
                     width:50%;
                     align-items: center;
                     justify-content: top;
+                    //border: 1px solid blue;
                  } 
                }
                .two {
-               // border: 1px solid rgb(228, 17, 17);
+                border-top: 1px solid rgb(214, 202, 202);
                 height:50%; 
                 display: flex;
                 div {
-                   
+                  border-right: 1px solid rgb(190, 188, 188);
+
                     display: flex;
                     flex-direction: column;
                     width:50%;
@@ -242,7 +252,7 @@ h5 {
         border-radius: 15px;
        position: relative;
        left: 5%;
-       top:5%;
+       top:3%;
         padding: 10px;
         text-align: center;
         letter-spacing: 2px;

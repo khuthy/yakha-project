@@ -113,28 +113,48 @@
 <div class="container">
 <div class="profiles" *ngIf="isProfile">
     <div class="back">
-      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="arrow-back"></ion-icon></button>
+      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;color:black" name="arrow-back"></ion-icon></button>
       </div>
   <div class="avatar-images">
   <img *ngIf="builderProfile.image" src="{{builderProfile.image}}"(click)="viewProfile(builderProfile.image)" class="thumbavatar">
   <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
 </div>
+<h4 style="text-align: center">{{builderProfile.fullName}}</h4>
 <div class="name">
-     <h4 style="text-align: center;">{{builderProfile.fullName}}</h4>
-     <h5 style="text-align: center;">{{builderProfile.gender}}</h5>
-     <p style="text-align:center;padding:5px"> {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-     <p style="text-align:center;padding:5px"> {{builderProfile.roof}} Does your price include roofing</p>
-     <p> {{builderProfile.experiences}} years of experience</p>
-   <!--   <ion-fab right bottom>
+   
+  <div class="one">
+    <div >
+      <h5 >Gender</h5>
+      <p>{{builderProfile.gender}}</p>
+    </div>
+    <div>
+      <h5>Experience?</h5>
+      <p>{{builderProfile.experiences}} years.</p>
+    </div>
+ </div>
+
+
+  <div class="two" >
+    <div>
+      <h5>Price</h5>
+      <p>{{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
+    </div>
+    <div>
+      <h5>Roofing Included?</h5>
+      <p> {{builderProfile.roof}}</p>
+    </div>
+     </div>
+   
+ 
+   </div>
+   <ion-fab bottom right>
       <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create" ></ion-icon></button>
-    </ion-fab> -->
-   </div>
-
+    </ion-fab>
  
    <div class="bio">
-     <h6><ion-icon size="large" name="pin"></ion-icon></h6>
-     <p>
+     <h6><ion-icon style="color:darkcyan;font-size:5vh" size="large" name="pin"></ion-icon></h6>
+     <p style="font-size: 2vh; font-family: 'Segoe UI';">
       {{profileForm.value.address}}
      </p>
    </div>
