@@ -60,17 +60,18 @@
       <div class="parent">
         <div class="price">
 
-          <p>Price p/2</p>
+          <p>Price p/m2</p>
           <p><strong>{{quotes.price | currency:'&#82;'}}</strong></p>
         </div>
         <ion-item>
           <ion-label floating>m2</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="meter"></ion-input>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Discount</ion-label>
           <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
         </ion-item>
+        <p>%</p>
       </div>
 
     </div>
@@ -92,11 +93,11 @@
             <ion-label>Quantity</ion-label>
           </div>
           <div class="quantityCount">
-            <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(i)">
+            <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(item,i)">
                 <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
               </button></div>
             <div class="typ3" style="padding: 12px">{{extras[i].data.quantity}}</div>
-            <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(i)">
+            <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(item, i)">
                 <ion-icon ios="ios-add" md="md-add"></ion-icon>
               </button></div>
           </div>
@@ -119,7 +120,7 @@
         </div>
         <div class="discountAmount" style="color: grey">
           <p><strong>Discount Amount</strong></p>
-          <p><strong>R30.00</strong></p>
+          <p><strong>{{quotes.discountAmount/100}}%</strong></p>
         </div>
       </div>
     </div>
@@ -137,7 +138,6 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar padding style="display: flex">
-    <button ion-button (click)="test()">Test</button>
     <button ion-button class="btn-proceed" block (click)="createPdf()" color="primary">Send Quotation</button>
     <button ion-button class="btn-proceed" block (click)="downloadPdf()" color="primary">Download</button>
   </ion-toolbar>

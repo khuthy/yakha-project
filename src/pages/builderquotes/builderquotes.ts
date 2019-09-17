@@ -32,8 +32,9 @@ export class BuilderquotesPage {
   length;
   height;
   width;
+  value =0;
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
-  extra = {
+/*   extra = {
     Ceiling: {
       price: 122,
       quantity: 9
@@ -42,7 +43,7 @@ export class BuilderquotesPage {
       price: 122,
       quantity: 9
     }
-  }
+  } */
   formattedAddress = '';
   options = {
     componentRestrictions: {
@@ -59,11 +60,12 @@ export class BuilderquotesPage {
     dimension: '',
     price: 0,
     uid: '',
-    meter: null,
-    discount: null,
-    discountAmount: null,
+    meter: 0,
+    discount: 0,
+    discountAmount: 0,
     ownerUID: null,
-    hOwnerUID: null
+    hOwnerUID: null,
+    subtotal: 0
   }
   meter = 2;
   pdfObj = null;
@@ -102,6 +104,8 @@ export class BuilderquotesPage {
   extrasValues: Quotations;
   date;
   maxDate;
+  buid: string;
+  userMsg: any;
   
   constructor(
     public navCtrl: NavController,
@@ -114,8 +118,8 @@ export class BuilderquotesPage {
     private loader: LoadingController,
     private cdRef : ChangeDetectorRef
   ) {
-    this.quotes.hOwnerUID = this.navParams.data;
-    console.log(this.quotes.hOwnerUID);
+    this.userMsg = this.navParams.data;
+   // console.log(this.quotes.hOwnerUID);
     
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -130,6 +134,8 @@ export class BuilderquotesPage {
 
     this.date = new Date();
     this.maxDate = this.formatDate(this.date);
+
+ 
   }
 
   ngAfterContentChecked() {
@@ -139,22 +145,41 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    this.dbRequest.where('builderUID', '==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    console.log(this.userMsg);
+    
+     /* this.dbRequest.where('builderUID', '==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
-        this.dbRequest.doc(doc.id).collection('extras').onSnapshot((res)=>{
-          res.forEach((doc)=>{
-            console.log(doc.id);
-            
-            this.extras.push({item: doc.id, data: doc.data()});
-          })
-          
-    })
+       // console.log(doc.id,'=>', doc.data());
+        this.buid = doc.id; */
+ 
+    /*   })
+    }) */
+ 
+    this.dbRequest.doc(this.userMsg.docID).collection('extras').onSnapshot((res)=>{
+      console.log(res.docs);
+      
+      res.forEach((doc)=>{
+    //   console.log(doc.id);
+        console.log(doc.data());
+        
+       this.extras=[];
+       this.extras.push({item: doc.id, data: doc.data()});
+    
+        console.log(this.extras);
+        
+       
+        
       })
-    })
+      
+})
+     
+      
+     
+    
     
 
     // console.log(this.navParams.data);
-    this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
+  /*   this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
       if(res.exists) {
          res.data();
          this.quotes.fullName = res.data().fullName;
@@ -167,7 +192,7 @@ export class BuilderquotesPage {
         
       }
      
-    })
+    }) */
    /*  this.db.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
       this.quotes.ownerAddress = res.data().address;
       let num = parseFloat((res.data().price) + this.quotes.dimension)
@@ -183,19 +208,19 @@ export class BuilderquotesPage {
         this.quotes.price = doc.data().price;
     
     })
-    this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((doc) => {
+   /*  this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((doc) => {
     
         //this.quotes.ownerAddress = doc.data().ownerAddress;
         //console.log(doc.data());
         this.quotes.ownerName = doc.data().fullName;
         // this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
      
-    })
+    }) */
 
   }
   public handleAddressChange(addr: Address) {
     this.quotes.address = addr.formatted_address;
-    //this.quotes.ownerAddress = addr.formatted_address;
+    this.quotes.ownerAddress = addr.formatted_address;
     // console.log(this.location)
 
   }
@@ -209,16 +234,31 @@ export class BuilderquotesPage {
     return [year, month, day].join('-');
   }
 
-  childPlus(i) {
-     this.extras[i].data.quantity++;
+  childPlus(i, index) {
+     console.log(this.extras.length);
+     
+     this.extras[index].data.quantity++;
+     console.log(i)
+    /*  console.log(parseFloat(i.data.price)*parseFloat(i.data.quantity))
+     this.value =this.value+parseFloat(i.data.price)*parseFloat(i.data.quantity);  */
 
+
+     console.log(this.value)
   }
-  childMinus(i) {
-    this.extras[i].data.quantity--;
-    if(this.extras[i].data.quantity <= 0) {
+  childMinus(i, index) {
+
+    console.log(i)
+    this.extras[index].data.quantity--;
+    if(this.extras[index].data.quantity <= 0) {
     
-      this.extras[i].data.quantity = 0;
+      this.extras[index].data.quantity = 0;
+
+
     }
+    this.value =this.value-parseFloat(i.data.price)*parseFloat(i.data.quantity); 
+      
+     console.log(this.value)
+     console.log(parseFloat(i.data.price)*parseFloat(i.data.quantity))
     
   }
   test(){
@@ -226,16 +266,26 @@ export class BuilderquotesPage {
     
   }
   createPdf() {
+    /* calculations */
+    for (let index = 0; index < this.extras.length; index++) {
+      console.log(this.extras[index].data.price * this.extras[index].quantity);
+      
+    this.quotes.subtotal += (parseFloat(this.extras[index].data.price.toString()) * parseFloat(this.extras[index].quantity.toString()));
+    
+    
+    }
+    this.quotes.discountAmount = this.quotes.subtotal * (this.quotes.discount/100);
     console.log(this.extras);
     
     var items = this.extras.map((item) => {
       console.log(item);
-      this.quotes.price = ((this.quotes.price*this.quotes.meter) * (this.quotes.discount / 100)) + ((item.data.price * item.data.price) * (this.quotes.discount / 100));
       
-      return [item.item, item.data.price, item.data.quantity];
+      return [item.item, item.data.quantity, item.data.price];
+     
 
   });
-
+  
+     
 
     var docDefinition = {
       content: [
@@ -268,7 +318,7 @@ export class BuilderquotesPage {
         },
 
 
-        { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] },
+       /*  { text: 'Extras costs R ' + this.quotes.dimension, style: 'story', margin: [0, 20, 0, 20] }, */
         /* { text: 'R'+ this.quotes.price +'.00', style: 'story', margin: [0, 20, 0, 20] }, */
         {
           style: 'totalsTable',
@@ -277,9 +327,15 @@ export class BuilderquotesPage {
             body: [
               [
                 '',
-                'House cost(excl. extras)',
-                'R' + this.quotes.price + '.00',
+                'Subtotal(excl. extras)',
+                'R' + this.quotes.subtotal + '.00',
               ],
+              [
+                '',
+                'Discount(extras)',
+                'R' + this.quotes.discountAmount + '.00',
+              ],
+              
               [
                 '',
                 'Total(incl. extras)',
@@ -319,9 +375,9 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
     this.downloadUrl();
     this.downloadPdf();
-     firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
+   /*   firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
         console.log(results);
-     })
+     }) */
 
 
   }
@@ -405,7 +461,7 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
     } else {
       // On a browser simply use download!
       this.pdfObj.download();
-      this.pdfObj.upload();
+      /* this.pdfObj.upload(); */
     }
   }
   downloadPdf() {
@@ -413,12 +469,7 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
       duration: 2000,
       content: 'Loading'
     }).present();
-    firebase.firestore().collection('HomeOwnerQuotation').doc(this.navParams.data).update({
-      doc: this.pdfDoc,
-      response_date: Date(),
-      createBy: firebase.auth().currentUser.email,
-      // uid: firebase.auth().currentUser.ui
-    })
+    firebase.firestore().collection('Response').add(this.quotes)
     this.navCtrl.setRoot(SuccessPage);
   }
 }
