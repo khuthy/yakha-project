@@ -603,6 +603,8 @@ getItems(ev: any) {
             owner: {}
           }
         })
+
+        
       setTimeout(()=> {
        // this.getOwners();
       let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
