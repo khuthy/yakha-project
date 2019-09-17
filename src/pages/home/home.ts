@@ -433,7 +433,7 @@ getItems(ev: any) {
         
       setTimeout(()=> {
        // this.getOwners();
-      let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
+      let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'rgb(53, 53, 53)', '']
        let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
        for(var i = 0; i < cards; i++) {
          console.log('for running');
