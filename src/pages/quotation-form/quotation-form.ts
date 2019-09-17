@@ -41,6 +41,7 @@ export class QuotationFormPage {
     comment:'',
     date:Date(),
     builderUID: '',
+    docID:''
   };
   docID;
  date: any;
@@ -200,6 +201,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   
   // upon success...
   user.then( (response) => {
+      response.update({docID: response.id});
       this.HomeOwnerQuotation.extras.forEach((item) => {
       response.collection('extras').doc(item).set({price: 0, quantity: 0});
     }); 
