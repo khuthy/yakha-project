@@ -41,7 +41,7 @@ export class ViewmessagePage {
   userDetails;
   hOwnerUID;
   id;
-  hOwnerUid;
+  hOwnerUid={};
   bUid;
   quoteDoc;
   homeOwner;
@@ -129,16 +129,20 @@ export class ViewmessagePage {
       ev: myEvent
     });
   }
-  quotesForm() {
+  quotesForm(value) {
     this.navCtrl.push(BuilderquotesPage, this.hOwnerUID);
+   console.log(value);
+   
   }
   getRequest(){
     this.db.collection('Request').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
       this.request = [];
       snapshot.forEach(doc => {
-        
         this.request.push(doc.data());
         this.hOwnerUID = doc.data().builderUID;
+        let docID = doc.id;
+        let docData = doc.data();
+        this.hOwnerUID = {docID, docData} 
         console.log(this.hOwnerUID);
         
         this.quoteDoc = doc.data().doc;
