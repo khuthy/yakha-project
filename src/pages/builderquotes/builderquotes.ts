@@ -13,7 +13,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
  
 /**
  * Generated class for the BuilderquotesPage page.
@@ -116,7 +116,8 @@ export class BuilderquotesPage {
     private plt: Platform,
     private authUser: AuthServiceProvider,
     private loader: LoadingController,
-    private cdRef : ChangeDetectorRef
+    private cdRef : ChangeDetectorRef,
+    private localNotifications: LocalNotifications
   ) {
     this.userMsg = this.navParams.data;
    // console.log(this.quotes.hOwnerUID);
