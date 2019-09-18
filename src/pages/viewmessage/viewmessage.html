@@ -52,24 +52,20 @@
             </p>
             </blockquote>
 </div>
-      <div class="block2 owner" >
+      <div class="block2 owner" *ngIf="response">
           <blockquote >
-            <p>
-              <ion-icon name="document"></ion-icon><a href="{{doc}}">Quotation.pdf</a>
+            <p >
+              <ion-icon name="document"></ion-icon><a href="{{doc}}">{{userDetails.docID}}.pdf</a>
             </p>
           </blockquote>
-
-            
-      </div>
-      <div class="block builder">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione quibusdam vel expedita repellat, 
-            explicabo, nesciunt ducimus adipisci sed architecto hic exercitationem ut earum quo laudantium id vitae. 
-            Nostrum, voluptates numquam?</p>
+     </div>
+      <div class="block builder" style="background:cornsilk;" *ngIf="!response">
+          <p>Please wait for a respond</p>
       </div>
      
     </div>
     <ion-fab right bottom *ngIf="builda">
-        <button ion-fab color="button2" (click)="quotesForm()"><ion-icon name="create" ></ion-icon></button>
+        <button ion-fab color="button2" (click)="quotesForm(docID)"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>  
   </div>
 

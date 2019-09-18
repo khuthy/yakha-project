@@ -52,6 +52,8 @@ import { FileOpener } from '@ionic-native/file-opener';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../components/profile/profile';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
@@ -147,7 +149,8 @@ import { ProfileComponent } from '../components/profile/profile';
     FileOpener,
     CallNumber,
     Keyboard,
-
+    FileTransfer,
+    DocumentViewer
   ]
 })
 
