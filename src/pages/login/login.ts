@@ -125,6 +125,10 @@ export class LoginPage {
            this.navCtrl.setRoot(HomePage);
          }
        })
+      }).catch(err => {
+        this.alertCtrl.create({
+          message: err.message
+        })
       })
 
     }
