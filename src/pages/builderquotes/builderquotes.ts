@@ -457,7 +457,6 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
           firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
             console.log(url);
             this.pdfDoc = url;
-
           })
           console.log(this.pdfDoc);
 

@@ -52,6 +52,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../components/profile/profile';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { ProfileComponent } from '../components/profile/profile';
     FileOpener,
     CallNumber,
     Keyboard,
+    LocalNotifications
 
   ]
 })
