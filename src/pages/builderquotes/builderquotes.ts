@@ -155,14 +155,14 @@ export class BuilderquotesPage {
     /*   })
     }) */
  
-    this.dbRequest.doc(this.userMsg.docID).collection('extras').onSnapshot((res)=>{
+    this.dbRequest.doc(this.userMsg).collection('extras').onSnapshot((res)=>{
       console.log(res.docs);
       
       res.forEach((doc)=>{
     //   console.log(doc.id);
         console.log(doc.data());
         
-       this.extras=[];
+      // this.extras=[];
        this.extras.push({item: doc.id, data: doc.data()});
     
         console.log(this.extras);

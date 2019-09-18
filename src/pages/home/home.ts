@@ -570,26 +570,16 @@ getItems(ev: any) {
 }
   ionViewDidLoad() {
     
-    
      
-    if (this.elementref.nativeElement.children[1].children[1].children[0]) {
-      let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[0]
-      console.log(cards);
-      
-    } else {
-      // console.log('Nothing');
-      
-    }
-    // console.log(this.elementref);
-    
+     /* 
      for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
        let background = i % 2;
        if(background) {
 
-       } else {
-        
+       }else {
+
        }
-     } 
+     } */
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -634,8 +624,8 @@ getItems(ev: any) {
             owner: {}
           }
         })
-
-        
+     
+      
       setTimeout(()=> {
        // this.getOwners();
       let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
@@ -661,10 +651,9 @@ getItems(ev: any) {
       }, 500)
       
       
+     
       
       })
-      console.log('Done');
-      console.log(this.owner);
     
      // console.log('Owners: ', this.owner);
     });
