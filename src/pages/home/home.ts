@@ -98,7 +98,6 @@ request: boolean = false;
       this.renderer.setStyle(search, 'display', 'none');
     }
     
-    
   }
 
 
