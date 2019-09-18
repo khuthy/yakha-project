@@ -132,7 +132,10 @@ export class LoginPage {
          }
        })
       }).catch(error => {
-        
+        this.alertCtrl.create({
+          title : error.code,
+          subTitle : error.message
+        }).present();
       })
 
     }
