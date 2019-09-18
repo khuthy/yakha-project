@@ -13,6 +13,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { style } from '@angular/animations';
 
  
@@ -120,6 +121,7 @@ export class BuilderquotesPage {
     private authUser: AuthServiceProvider,
     private loader: LoadingController,
     private cdRef : ChangeDetectorRef,
+    private localNotifications: LocalNotifications,
     public toastCtrl: ToastController
   ) {
     this.userMsg = this.navParams.data;

@@ -10,6 +10,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { PopoverController } from 'ionic-angular';
 import { ProfileComponent } from '../../components/profile/profile';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 declare var google;
 
 @Component({
@@ -65,7 +66,8 @@ request: boolean = false;
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
-    public renderer: Renderer2
+    public renderer: Renderer2,
+    private localNotifications: LocalNotifications
     
  ) {}
    ngOnInit(){
@@ -575,7 +577,10 @@ getItems(ev: any) {
     this.dbRequest.where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
       res.forEach((doc)=>{
-          
+        this.localNotifications.schedule({
+          text: 'You have new request',
+          led: 'FF0000'
+       });
         this.requestFound = '';      
       //  this.ownerUID = doc.data().uid; 
         
