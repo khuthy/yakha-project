@@ -93,19 +93,18 @@
 <div class="homebuilder" *ngIf="request" >
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
   
-    <div class="home-builder-top">
       <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
       <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-      <article style="margin-left: 2%;">
+     <!--  <article style="margin-left: 2%;">
         <p style="font-size: 20px;font-weight:bold;height:60%;text-align: left;margin-top: 10px;padding-left: 20px; color: #000;">{{o.owner.fullName}}</p><br> 
         <p style="font-size: 15px;font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{o.builder.comment}}</p><br>
         <p style="font-size: 10px;font-weight:300;text-align: left;margin-top: -25px;padding-left: 20px;padding-top:5px; color: #000;">{{o.builder.date}}</p>
         <br> 
-    </article>
+    </article> -->
     <div class="button">
     <button ion-button clear style="font-size: 25px;float: right;top:5px;" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
     </div> 
-  </div>
+  
     
     </div> 
     </div>

@@ -677,7 +677,7 @@ showRangeSearch() {
   
 }
 
-showSearch() {
+/* showSearch() {
  
   let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
   if(this.display == 'none') {
@@ -704,7 +704,7 @@ showRangeSearch() {
   }
   
   
-}
+} */
 moveMapEvent() {
  // console.log('changed');
   
