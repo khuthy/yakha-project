@@ -89,8 +89,7 @@ export class ViewmessagePage {
     })
  
 }
-
-  ionViewDidLoad() {
+    ionViewDidLoad() {
     console.log(this.userDetails);
     this.brickType = this.userDetails.brickType;
     this.comment = this.userDetails.comment;
