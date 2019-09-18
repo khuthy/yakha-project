@@ -278,7 +278,7 @@ export class BuilderquotesPage {
     for (let index = 0; index < this.extras.length; index++) {
       console.log(this.extras[index].data.price * this.extras[index].quantity);
       
-    this.quotes.subtotal += (parseFloat(this.extras[index].data.price.toString()) * parseFloat(this.extras[index].quantity.toString()));
+    this.quotes.subtotal += (parseFloat(this.extras[index].data.price.toString()) * parseFloat(this.extras[index].quantity));
     
     
     }
