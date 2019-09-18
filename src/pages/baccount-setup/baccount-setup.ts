@@ -123,7 +123,7 @@ export class BaccountSetupPage {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
     await this.camera.getPicture(option).then(res => {
-      console.log(res);
+      console.log('images',res);
       const image =`data:image/jpeg;base64,${res}` ;
       this.profileImage = image;
       let file = 'builder-Profile/' + this.authUser.getUser() + '.jpg';
