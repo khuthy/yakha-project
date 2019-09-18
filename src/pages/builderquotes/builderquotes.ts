@@ -107,7 +107,9 @@ export class BuilderquotesPage {
   maxDate;
   buid: string;
   userMsg: any;
-  
+  itemtotals = {
+   
+  }
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -262,51 +264,16 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
   }
 
   childPlus(i, index) {
-   
-    this.extras[index].data.quantity++; 
-     if(this.extras[index].data.price != 0 && this.extras[index].data.quantity != 0) {
-      console.log('old',parseFloat(i.data.quantity),'new', this.extras[index].data.quantity);
-      this.value = this.value + ((parseFloat(this.extras[index].data.price)) * (this.extras[index].data.quantity));
-      
-     }else { 
-       this.extras[index].data.quantity = 0;
-       console.log(parseFloat(i.data.quantity));
-      
-      this.value = this.value;
-       this.toastCtrl.create({
-         message: 'Please specify the price',
-         showCloseButton: true,
-         cssClass: 'toast'
-       }).present();
-     }
-      
-     
+    this.extras[index].data.quantity++;
+    console.log('item: ', i, 'index: ', index);
+    this.value = (this.value + parseFloat(i.data.price));
+    
   }
   childMinus(i, index) {
-
-    this.extras[index].data.quantity--; 
-    if(this.extras[index].data.quantity < 0) {
-      if(this.extras[index].data.price != 0) {
-     this.value = this.value - (parseFloat(i.data.price) * parseFloat(i.data.quantity));
-    }else {
-      this.value = this.value;
-      this.toastCtrl.create({
-        message: 'Please specify the price',
-        showCloseButton: true,
-        cssClass: 'toast'
-      })
-    }
-    }else {
-      this.extras[index].data.quantity = 0;
-      this.toastCtrl.create({
-        message: 'Quantity cant be less than 0',
-        showCloseButton: true,
-        cssClass: 'toast'
-      })
-    }
-    
-    
-  }
+    this.extras[index].data.quantity--;
+    console.log('item: ', i, 'index: ', index);
+    this.value -= i.data.price;
+  } 
   test(){
    
    
@@ -320,7 +287,7 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
     /* calculations */
     
     /* discount amount of extras */
-    this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100)
+    this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100) 
     this.quotes.total = ((this.quotes.price * this.quotes.meter) - (this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)) + (this.value) * this.quotes.discountAmount/100 ;
     this.quotes.discountPrice = (this.value) * this.quotes.discountAmount/100
     console.log(this.quotes.total);
