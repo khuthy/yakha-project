@@ -17,7 +17,8 @@
        <button class="menus"  ion-button clear menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-   <input type="text" id="search" class="controls" placeholder="Search..." >  
+      <ion-input class="controls" (ionChange)='onInput($event)' name="user"></ion-input>
+   <input type="text" id="search" class="controls"  placeholder="Search..." >  
       <ion-fab right>
         <button class="searching" ion-fab mini ><ion-icon name="search"></ion-icon></button>
         <ion-fab-list>
