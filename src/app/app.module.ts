@@ -53,6 +53,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../components/profile/profile';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @NgModule({
   declarations: [
@@ -148,8 +150,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     FileOpener,
     CallNumber,
     Keyboard,
-    LocalNotifications
-
+    LocalNotifications,
+    FileTransfer,
+    DocumentViewer
   ]
 })
 

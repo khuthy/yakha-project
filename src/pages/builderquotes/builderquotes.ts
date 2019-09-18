@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -14,6 +14,8 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { HomePage } from '../home/home';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { style } from '@angular/animations';
+
  
 /**
  * Generated class for the BuilderquotesPage page.
@@ -58,11 +60,14 @@ export class BuilderquotesPage {
     expiry: '',
     address: '',
     dimension: '',
+    total: 0,
     price: 0,
     uid: '',
+    pdfLink: null,
     meter: 0,
     discount: 0,
     discountAmount: 0,
+    discountPrice: 0,
     ownerUID: null,
     hOwnerUID: null,
     subtotal: 0
@@ -114,7 +119,8 @@ export class BuilderquotesPage {
     private authUser: AuthServiceProvider,
     private loader: LoadingController,
     private cdRef : ChangeDetectorRef,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    public toastCtrl: ToastController
   ) {
     this.userMsg = this.navParams.data;
    // console.log(this.quotes.hOwnerUID);
@@ -170,6 +176,25 @@ export class BuilderquotesPage {
       })
       
 })
+
+console.log('yea: ', this.userMsg);
+    
+this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
+   this.quotes.hOwnerUID = res.data().hOwnerUid;
+   
+   this.dbUsers.doc(res.data().hOwnerUid).onSnapshot((res)=>{
+     if(res.data().builder == false) {
+        this.quotes.ownerUID = this.quotes.hOwnerUID;
+     this.quotes.ownerAddress = res.data().ownerAddress;
+     this.quotes.ownerName = res.data().fullName;
+     this.quotes.dimension = 'Whole House measurement'+ this.quotes.meter+'per meter squared';
+     }else {
+       console.log('this is a builder, sorry');
+       
+     }
+    
+   })
+ }) 
      
       
      
@@ -231,73 +256,89 @@ export class BuilderquotesPage {
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
   }
-  input= [];
+  input = 0;
   onChange(event) {
-    if(event.value != 0) {
-      this.input.push({input: parseFloat(event.value)});
-      console.log(this.input);
-    }else {
-      this.input.push({input: 0})
-    }
+    console.log(event);
     
     
   }
 
   childPlus(i, index) {
-     /* console.log(this.extras.length); */
-     
-     this.extras[index].data.quantity++;
-     if(this.extras[index].data.quantity != 0 && this.extras[index].data.price != 0) {
-      this.value = this.value + (parseFloat(i.data.price) * parseFloat(i.data.quantity));
-     }else {
-       this.value = 0;
+   
+    this.extras[index].data.quantity++; 
+     if(this.extras[index].data.price != 0 && this.extras[index].data.quantity != 0) {
+      console.log('old',parseFloat(i.data.quantity),'new', this.extras[index].data.quantity);
+      this.value = this.value + ((parseFloat(this.extras[index].data.price)) * (this.extras[index].data.quantity));
+      
+     }else { 
+       this.extras[index].data.quantity = 0;
+       console.log(parseFloat(i.data.quantity));
+      
+      this.value = this.value;
+       this.toastCtrl.create({
+         message: 'Please specify the price',
+         showCloseButton: true,
+         cssClass: 'toast'
+       }).present();
      }
-       
+      
      
   }
   childMinus(i, index) {
 
-    console.log(i)
-    this.extras[index].data.quantity--;
-    if(this.extras[index].data.quantity <= 0) {
-       this.extras[index].data.quantity = 0;
-      if(this.extras[index].data.quantity != 0 && this.extras[index].data.price != 0) {
-        this.value = this.value + (parseFloat(i.data.price) * parseFloat(i.data.quantity));
-       }else {
-         this.value = 0;
-       }
-
+    this.extras[index].data.quantity--; 
+    if(this.extras[index].data.quantity < 0) {
+      if(this.extras[index].data.price != 0) {
+     this.value = this.value - (parseFloat(i.data.price) * parseFloat(i.data.quantity));
+    }else {
+      this.value = this.value;
+      this.toastCtrl.create({
+        message: 'Please specify the price',
+        showCloseButton: true,
+        cssClass: 'toast'
+      })
     }
+    }else {
+      this.extras[index].data.quantity = 0;
+      this.toastCtrl.create({
+        message: 'Quantity cant be less than 0',
+        showCloseButton: true,
+        cssClass: 'toast'
+      })
+    }
+    
     
   }
   test(){
-    console.log(this.extras[4]);
-    
+   
+   
+    this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100)
+    this.quotes.total = ((this.quotes.price * this.quotes.meter) - (this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)) + (this.value) * this.quotes.discountAmount/100 ;
+    console.log(this.quotes.total);
+    console.log( this.quotes.subtotal);
   }
+  
   createPdf() {
     /* calculations */
-    for (let index = 0; index < this.extras.length; index++) {
-      console.log(this.extras[index].data.price * this.extras[index].quantity);
-      
-    this.quotes.subtotal += (parseFloat(this.extras[index].data.price.toString()) * parseFloat(this.extras[index].quantity.toString()));
     
-    
-    }
-    this.quotes.discountAmount = this.quotes.subtotal * (this.quotes.discount/100);
-    console.log(this.extras);
+    /* discount amount of extras */
+    this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100)
+    this.quotes.total = ((this.quotes.price * this.quotes.meter) - (this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)) + (this.value) * this.quotes.discountAmount/100 ;
+    this.quotes.discountPrice = (this.value) * this.quotes.discountAmount/100
+    console.log(this.quotes.total);
     
     var items = this.extras.map((item) => {
-      console.log(item);
-      
-      return [item.item, item.data.quantity, item.data.price];
-     
+    
+      return [item.item, item.data.quantity, 'R'+item.data.price+'.00'];
+       
 
   });
   
-     
+   
 
     var docDefinition = {
       content: [
+        
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
 
@@ -306,8 +347,8 @@ export class BuilderquotesPage {
         this.quotes.fullName,
         this.quotes.address,
         { text: 'To', style: 'subheader' },
-        this.quotes.fullName,
-        this.quotes.address,
+        this.quotes.ownerName,
+        this.quotes.ownerAddress,
         { text: 'Expiry', style: 'subheader' },
         { text: this.quotes.expiry },
 
@@ -323,6 +364,7 @@ export class BuilderquotesPage {
                 { text: 'Price', style: 'itemsTableHeader' },
               ]
             ].concat(items)
+             
           }
         },
 
@@ -336,19 +378,19 @@ export class BuilderquotesPage {
             body: [
               [
                 '',
-                'Subtotal(excl. extras)',
-                'R' + this.quotes.subtotal + '.00',
+                'Subtotal(of extras)',
+                'R' + this.quotes.subtotal.toFixed(2),
               ],
               [
                 '',
                 'Discount(extras)',
-                'R' + this.quotes.discountAmount + '.00',
+                'R' + this.quotes.discountPrice.toFixed(2),
               ],
               
               [
                 '',
                 'Total(incl. extras)',
-                'R' + this.total + '.00',
+                'R' + this.quotes.total.toFixed(2),
               ]
             ]
           },
@@ -382,6 +424,7 @@ export class BuilderquotesPage {
     }
 this.pdfObj = pdfMake.createPdf(docDefinition);
     console.log(this.pdfObj);
+    this.quotes.pdfLink = 
     this.downloadUrl();
     this.downloadPdf();
    /*   firebase.storage().ref().child('Quotations').put(this.pdfObj).then((results)=>{
@@ -451,15 +494,28 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
         let date = Date();
         let user = firebase.auth().currentUser.email;
         // Save the PDF to the data Directory of our App
-        firebase.storage().ref('Quotations/').child(user + ' ' + date).put(blob).then((results) => {
+        firebase.storage().ref('Quotations/').child(this.userMsg+'.pdf').put(blob).then((results) => {
           console.log(results);
           // results.downloadURL
+          
+          
+        
+         
+          
           firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
             console.log(url);
             this.pdfDoc = url;
+            this.quotes.pdfLink = url;
+             this.loader.create({
+            duration: 2000,
+            content: 'Loading'
+          }).present();
+          this.db.doc(this.userMsg).set(this.quotes);
+          this.navCtrl.setRoot(SuccessPage);
+          
           })
-          console.log(this.pdfDoc);
-
+          console.log('pdf',this.pdfDoc);
+          console.log(this.quotes.pdfLink);
         })
         this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
@@ -473,11 +529,6 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
     }
   }
   downloadPdf() {
-    this.loader.create({
-      duration: 2000,
-      content: 'Loading'
-    }).present();
-    firebase.firestore().collection('Response').add(this.quotes)
-    this.navCtrl.setRoot(SuccessPage);
+    
   }
 }

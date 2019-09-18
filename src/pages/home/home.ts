@@ -69,41 +69,8 @@ request: boolean = false;
     public renderer: Renderer2,
     private localNotifications: LocalNotifications
     
- ) {
-
-
-  }
- 
- showSearch() {
- 
-    let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
-    if(this.display == 'none') {
-      this.display = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    }else {
-      this.display = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-    
-    
-  }
-  showRangeSearch() {
- 
-    let search = this.elementref.nativeElement.children[1].children[1].children[2];
-    console.log(search);
-    
-    if(this.range == 'none') {
-      this.range = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    }else {
-      this.range = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-    
-  }
-
-
-  ngOnInit(){
+ ) {}
+   ngOnInit(){
     this.menuCtrl.swipeEnable(true);
     if(this.isSearchbarOpened) {
       this.color = 'primary';
@@ -681,7 +648,34 @@ viewRequest(user) {
 viewOwner(owner){
   this.navCtrl.push(HomeOwnerProfilePage,owner);
 }
+showSearch() {
+ 
+  let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
+  if(this.display == 'none') {
+    this.display = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.display = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+}
+showRangeSearch() {
 
+  let search = this.elementref.nativeElement.children[1].children[1].children[2];
+  console.log(search);
+  
+  if(this.range == 'none') {
+    this.range = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.range = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+}
 
 moveMapEvent() {
  // console.log('changed');
