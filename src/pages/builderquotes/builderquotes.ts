@@ -305,6 +305,7 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
 
     var docDefinition = {
       content: [
+       
         
         { text: 'Quotations', style: 'header' },
         { text: new Date().toTimeString(), alignment: 'right' },
