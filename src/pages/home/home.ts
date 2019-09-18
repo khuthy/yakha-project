@@ -54,7 +54,8 @@ request: boolean = false;
   ownerImage: any;
   bUID: string;
   price = 0;
-  
+  display: string = 'none';
+  range: string = 'none';
   constructor(public navCtrl: NavController,
     private modalCtrl : ModalController, 
     public loader : LoadingController,
@@ -66,12 +67,8 @@ request: boolean = false;
     public elementref: ElementRef,
     public renderer: Renderer2
     
- ) {
-
-
-  }
-
-  ngOnInit(){
+ ) {}
+   ngOnInit(){
     this.menuCtrl.swipeEnable(true);
     if(this.isSearchbarOpened) {
       this.color = 'primary';
@@ -540,15 +537,15 @@ getItems(ev: any) {
   ionViewDidLoad() {
     
      
-
+     /* 
      for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
        let background = i % 2;
        if(background) {
 
        }else {
-        
+
        }
-     } 
+     } */
 
     if(this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -597,9 +594,28 @@ getItems(ev: any) {
       
       setTimeout(()=> {
        // this.getOwners();
-      }, 1000)
-      console.log('Done');
-      console.log(this.owner);
+      let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
+       let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
+       for(var i = 0; i < cards; i++) {
+         console.log('for running');
+         
+        let background = i % 2;
+        
+        let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
+        let randomColor = Math.floor((Math.random() * colors.length));
+        if(background) {
+          console.log(cards);
+          
+          this.renderer.setStyle(cards, 'background', colors[randomColor])
+        } else {
+          console.log(cards);
+          this.renderer.setStyle(cards, 'background', colors[randomColor])
+        }
+      }
+      console.log('for done');
+      console.log(cards);
+      }, 500)
+      
       
      
       
@@ -627,7 +643,34 @@ viewRequest(user) {
 viewOwner(owner){
   this.navCtrl.push(HomeOwnerProfilePage,owner);
 }
+showSearch() {
+ 
+  let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
+  if(this.display == 'none') {
+    this.display = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.display = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+}
+showRangeSearch() {
 
+  let search = this.elementref.nativeElement.children[1].children[1].children[2];
+  console.log(search);
+  
+  if(this.range == 'none') {
+    this.range = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.range = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+}
 
 moveMapEvent() {
  // console.log('changed');

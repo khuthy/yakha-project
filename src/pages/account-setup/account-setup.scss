@@ -110,10 +110,11 @@ page-account-setup {
         .profiles {
         overflow: fixed;
         background: #f6f2f2;
-        border: 1px solid red;
+        //border: 1px solid red;
         height: 100vh;
             .avatar-images {
-                width: 60%;
+                width: 80%;
+              //  border:1px solid red;
                 .name > h4 {
                     position: relative;
                     text-align: center;
@@ -122,6 +123,29 @@ page-account-setup {
             }
           
         }
+        h4 {
+            //border: 1px solid red;
+            text-align: center;
+            font-family: 'Segoe UI';
+            color: rgb(88, 84, 84);
+            font-size: 4vh;
+        }
+.fifi {
+    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #3c7f8b;
+    width: 80%;
+    height: 45%;
+    position: relative;
+    left: 10%;
+    border-radius: 15px;
+    padding: 3%;
+    h5 {
+        color:white;
+        letter-spacing: 1px;
+    }
+}
+
     }
     .details {
         padding: 5px;
@@ -147,9 +171,12 @@ page-account-setup {
         top: 1%;
         left: 2%;
         z-index: 4;
+     
         .icon {
-            color: #fff;
-            font-size: 20px;
+            color: black;
+            font-size: 25px;
+            font-weight: bolder;
+
         }
     }
     /* view profile code ends here */

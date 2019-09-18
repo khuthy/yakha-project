@@ -13,15 +13,24 @@
 <ion-content padding>
   <div class="container">
       <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
-       <div class="top">
+      <!--  <div class="top">
          <article>
            {{hownerName}}
             <p style="font-size: 17px;"><strong> {{ m.comment }}</strong> </p>
             <br>
             <p style="font-size: 9px;">{{m.date}}</p>
-            <!-- <button ion-button clear style="float: right"></button> -->
+          
         </article>
+        </div> -->
+        <div class="home-builder-top">
+            <article style="margin-left: 2%;">
+              <p style="font-size: 20px;font-weight:bold;height:60%;text-align: left;margin-top: 10px;padding-left: 20px; color: #000;">{{hownerName}}</p><br> 
+              <p style="font-size: 15px;font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{ m.comment }}</p><br>
+              <p style="font-size: 10px;font-weight:300;text-align: left;margin-top: -25px;padding-left: 20px;padding-top:5px; color: #000;">{{m.date}}</p>
+              <br> 
+          </article>
         </div>
+
         
         </div> 
        
