@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, PopoverController, Platform } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
-import { v } from '@angular/core/src/render3';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 import { ProfileComponent } from '../../components/profile/profile';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 /**
  * Generated class for the ViewmessagePage page.
@@ -65,14 +66,21 @@ export class ViewmessagePage {
   extras=[];
   builda = '';
   docID: any;
+  response: boolean = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
      private fileOpener: FileOpener,
      public popoverCtrl: PopoverController,
-    private file: File) {
+    private file: File,
+    private platform: Platform, 
+    private ft: FileTransfer, 
+    private document: DocumentViewer
+    ) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
+    console.log('data info: ',this.userDetails.docID);
+    
    
     this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
      res.data();
@@ -137,9 +145,9 @@ export class ViewmessagePage {
    
   }
   getRequest(){
-    this.db.collection('Request').where('builderUID', '==', firebase.auth().currentUser.uid).get().then(snapshot => {
+    this.db.collection('Request').doc(this.userDetails.docID).onSnapshot(doc => {
       this.request = [];
-      snapshot.forEach(doc => {
+      
         this.request.push(doc.data());
         this.hOwnerUID = doc.data().builderUID;
         let docID = doc.id;
@@ -156,11 +164,46 @@ export class ViewmessagePage {
            this.ownerName = res.data().fullName;
         })
         //this.hOwnerUID = doc.data().length + 'x' + doc.data().width + 'x' + doc.data().height;
-      });
+     
       console.log('Requests: ', this.request);
     
     });
+    firebase.firestore().collection('Respond').doc(this.userDetails.docID).onSnapshot((pdfDownloadUrl) => {
+      if(pdfDownloadUrl.exists) {
+         this.doc = pdfDownloadUrl.data().pdfLink;
+         this.response = true;
+      }else {
+        console.log('NO RESPONSE YET');
+        this.response = false;
+        this.doc = null;
+      }
+     
+    })
   }
+  getDPF(){
+    return this.doc;
+  }
+  
+downloadAndOpenPdf() {
+  if(this.doc !== null) {
+    let downloadUrl = this.doc;
+   let path = this.file.dataDirectory;
+  const transfer = this.ft.create();
+ 
+  transfer.download(downloadUrl, path + this.userDetails.docID).then(entry => {
+    let url = entry.toURL();
+ 
+    if (this.platform.is('ios')) {
+      this.document.viewDocument(url, 'application/pdf', {});
+    } else {
+      this.fileOpener.open(url, 'application/pdf')
+        .then(() => console.log('File is opened'))
+        .catch(e => console.log('Error opening file', e));
+    }
+  });
+  }
+ 
+} 
   getUser(){
    // let homeOwner = '';
    
