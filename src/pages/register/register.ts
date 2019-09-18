@@ -28,6 +28,7 @@ export class RegisterPage {
 
   public signupForm: FormGroup;
   public loading: any;
+  getUser: string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthServiceProvider,
@@ -46,7 +47,11 @@ export class RegisterPage {
   }
 
   ionViewDidLoad() {
-    console.log('check if the user is builder: if user->false !homeowner:',this.authService.manageUsers());
+    if(this.authService.manageUsers() == true) {
+      this.getUser = "Home Builder";
+    }else {
+      this.getUser = "Aspiring Home Owner"
+    }
   }
 
   goLogin() {

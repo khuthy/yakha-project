@@ -59,6 +59,7 @@ export class LoginPage {
     ]
 
   }
+  getUser: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -80,6 +81,11 @@ export class LoginPage {
   ionViewDidLoad() {
     this.authService.manageUsers();
     console.log( 'check if the user is a builder: ',this.authService.manageUsers());
+    if(this.authService.manageUsers() == true) {
+      this.getUser = "Home Builder";
+    }else {
+      this.getUser = "Aspiring Home Owner"
+    }
   }
 
   ionViewWillEnter() {
@@ -125,6 +131,11 @@ export class LoginPage {
            this.navCtrl.setRoot(HomePage);
          }
        })
+      }).catch(error => {
+        this.alertCtrl.create({
+          title : error.code,
+          subTitle : error.message
+        }).present();
       })
 
     }

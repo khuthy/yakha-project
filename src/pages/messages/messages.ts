@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 /**
  * Generated class for the MessagesPage page.
@@ -29,13 +30,18 @@ export class MessagesPage {
      public navParams: NavParams,
       private fileOpener: FileOpener,
       public elementref: ElementRef,
-      public renderer: Renderer2
+      public renderer: Renderer2,
+      private localNotifications : LocalNotifications
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
         this.messages.push(doc.data());
         this.qDoc = doc.id;
         console.log(this.messages);
+        this.localNotifications.schedule({
+          text: 'You have new message',
+          led: 'FF0000'
+       });
         //this.honwerUID = doc.data().uid;
         console.log(doc.data().hOwnerUid);
         

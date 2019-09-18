@@ -52,6 +52,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../components/profile/profile';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 
@@ -149,6 +150,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     FileOpener,
     CallNumber,
     Keyboard,
+    LocalNotifications,
     FileTransfer,
     DocumentViewer
   ]
