@@ -61,12 +61,14 @@
         <div class="price">
 
           <p>Price p/m2</p>
-          <p><strong>{{quotes.price | currency:'&#82;'}}</strong></p>
+          <p><strong>{{quotes.price  | currency:'&#82;'}}</strong></p>
         </div>
         <ion-item>
           <ion-label floating>m2</ion-label>
           <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+
         </ion-item>
+        
         <ion-item>
           <ion-label floating>Discount</ion-label>
           <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
@@ -85,7 +87,7 @@
         <div class="price">
           <ion-item>
             <ion-label floating>Price</ion-label>
-            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price"></ion-input>
+            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)"></ion-input>
           </ion-item>
         </div>
         <div class="quantity">
@@ -109,10 +111,10 @@
       <div class="accumulatedAmount">
         <div class="subtotal">
           <p><strong>Subtotal</strong></p>
-          <p><strong>{{subtotal}}</strong></p>
+          <p><strong>{{value - (value * quotes.discountAmount/100)  | currency:'&#82;'}}</strong></p>
         </div>
         <div class="discount">
-          <p><strong>Discount</strong></p>
+          <p><strong>Discount(%)</strong></p>
           <ion-item>
             <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
           </ion-item>
@@ -120,25 +122,17 @@
         </div>
         <div class="discountAmount" style="color: grey">
           <p><strong>Discount Amount</strong></p>
-          <p><strong>{{quotes.discountAmount/100}}%</strong></p>
+          <p><strong>{{ (value) * quotes.discountAmount/100 | currency:'&#82;' }}</strong></p>
         </div>
       </div>
     </div>
-    <ion-item>
-      <ion-label floating>Total Price</ion-label>
-      <ion-input type="number" formControlName="price" [(ngModel)]="total"></ion-input>
-    </ion-item>
-    <div class="error" *ngFor="let validate of validation_messages.price">
-      <div class="messages"
-        *ngIf="quotesForm.get('price').hasError(validate.type) && (quotesForm.get('price').dirty || quotesForm.get('price').touched)">
-        {{validate.message}}
-      </div>
-    </div>
+    <p>Total price: {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value) * quotes.discountAmount/100 | currency:'&#82;'}}</p>
   </form>
 </ion-content>
 <ion-footer>
   <ion-toolbar padding style="display: flex">
+
     <button ion-button class="btn-proceed" block (click)="createPdf()" color="primary">Send Quotation</button>
-    <button ion-button class="btn-proceed" block (click)="downloadPdf()" color="primary">Download</button>
+    <button ion-button class="btn-proceed" block (click)="test()" color="primary">Download</button>
   </ion-toolbar>
 </ion-footer>
