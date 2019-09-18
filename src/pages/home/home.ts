@@ -68,10 +68,7 @@ request: boolean = false;
     public renderer: Renderer2
     
  ) {}
-  
-
-
-  ngOnInit(){
+   ngOnInit(){
     this.menuCtrl.swipeEnable(true);
     if(this.isSearchbarOpened) {
       this.color = 'primary';
