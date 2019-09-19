@@ -55,6 +55,7 @@ export class BuilderquotesPage {
   quotesForm: FormGroup;
   quotes = {
     ownerName: '',
+    overallHouse:0,
     ownerAddress: '',
     fullName: '',
     expiry: '',
