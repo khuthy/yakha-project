@@ -6,7 +6,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
+import { Quotations , WallType, Extra } from '../../app/model/bricks';
 
+import { brickType, wallTypes, Extras } from '../../app/model/bricks.model';
 /**
  * Generated class for the QuotationFormPage page.
  *
@@ -23,7 +25,9 @@ export class QuotationFormPage {
   isProfile = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
-  
+  bricks: Quotations[] = brickType;
+  walls: WallType[] = wallTypes;
+  extras: Extra[] = Extras;
   uid
   houseImage
   quotationForm : FormGroup;
@@ -46,15 +50,7 @@ export class QuotationFormPage {
   docID;
  date: any;
  
- extras:any = [
-  {service: 'Roofing', price: 0, quantity: 0 }, 
-  {service: 'Doors', price: 0, quantity: 0 }, 
-  {service: 'Windows', price: 0, quantity: 0 },
-  {service: 'Electricity', price: 0, quantity: 0 },
-  {service: 'Plumbing', price: 0, quantity: 0 },
-  {service: 'Ceiling', price: 0, quantity: 0 },
-  {service: 'Pluster', price: 0, quantity: 0 },
-];
+
 
 /* validations starts here */
 validation_messages = {
@@ -132,8 +128,9 @@ extraName;
   this.authUser.getUser();
   console.log(this.authUser.getUser());
   }
-next(){
-  this.navCtrl.push(SuccessPage);
+  highlight(event){
+   console.log('tapped', event);
+
 }
 // selectAll(){
 // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];

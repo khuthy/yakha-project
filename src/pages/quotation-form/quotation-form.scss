@@ -1,85 +1,95 @@
 page-quotation-form {
-    ion-content {
-       
-        .container {
-            height: 100%;
-            width: 100%;
-            .image {
-                border: 1px solid blue;
-                width: 80%;
-                height: 45%;
-                position: relative;
-                left: 10%;
-                button {
-                    position: relative;
-                   
-                }
-                img {
-                    position: center;
-                    height: 90%;
-                    //display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                    margin-top: 5%;
-                    width: 100%;
-                    border-radius: 20px;
-                    object-fit: cover;
-
-                }
-            }
-            #icon {
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                width: 80%;
-                position: relative;
-                left: 10%;
-                margin-top: 5%;
-                border-radius: 10px;
-                margin-bottom: 5%;
-                text-align: center;
-                padding-top: 8px;
-                padding-bottom: 8px;
-                letter-spacing: 1px;
-            }
-
-  .inputs {
-    // border: 1px solid blue;
-     width: 80%;
-     height: 60%;
- position: relative;
-     left: 10%;
-     margin: 0 !important;
-     h4 {
-         margin-top: 5%;
-         text-align: center;
-         font-size: 5vw;
-          font-family: 'Roboto';
-          letter-spacing: 1px;
-          font-weight: 400;
-     }
-
-     .extras {
-        // border: 1px solid green;
-       display: flex;
-       flex-wrap: wrap;
-         #ex {  
-            
-             padding: 8px;
-             margin: 1%;
-             letter-spacing: 1px;
-             background: #c46441;
-             color: white;
-             border-radius: 5px;
-         }
-     }
- } 
-            }
-      
-}
-.holder {
-    display: flex;
-}
-            
+    .content {
+        .scroll-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        background: #f9f9f9;
+      
+        .container {
+           
+          display: flex;
+          width: 100%;
+          height: 100%;
+        
+        .form-group {
+            box-shadow: 0 1px 2px 0 #ddd;
+            padding: 1%;
+            border-radius: 5px;
+            background: #fff;
+            position: relative;
+            margin-bottom: 5%;
+            align-items: center;
+            .btn-upload {
+                border: 1px solid #ddd;
+                max-width: 80%;
+                margin: 0 auto;
+                .icon {
+                    width: 25px;
+                }
+            }
+            h6 {
+                text-align: center;
+            }
 
-       
+            .interval {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .bricks {
+                display: flex;
+                flex-wrap: wrap;
+              justify-content: space-around;
+                width: 100%;
+                .card {
+                    width: 45%;
+                    box-shadow:0 1px 2px 0 #ddd; 
+                    margin: 2%;
+                    padding: 2%;
+                    background: #fff;
+                    
+                   
+
+                    .radio {
+                      
+                    }
+                }
+            }
+            .image {
+                height: 50px;
+                width: 50px;
+                
+            }
+            .brickImage{
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+ }
+    /* Progress bar code css */
+    #progress {
+        background: rgb(22, 22, 22);
+        border-radius: 13px;
+        height: 10px;
+        width: 100%;
+        padding: 3px;
+    }
+ #progress:after {
+        content: '';
+        display: block;
+        background: rgb(96, 116, 133);
+        width: 50%;
+        height: 100%;
+        border-radius: 9px;
+    }
+    .proceed {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     
+   
+}
