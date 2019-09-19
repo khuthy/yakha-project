@@ -608,8 +608,8 @@ getItems(ev: any) {
         })
      
       
-      setTimeout(()=> {
-       // this.getOwners();
+/*       setTimeout(()=> {
+       this.getOwners();
       let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
        let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
        for(var i = 0; i < cards; i++) {
@@ -630,7 +630,7 @@ getItems(ev: any) {
       }
       console.log('for done');
       console.log(cards);
-      }, 500)
+      }, 500) */
       
       
      

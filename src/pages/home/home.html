@@ -92,18 +92,22 @@
     </div> 
 </div> -->
 <div class="homebuilder" *ngIf="request" >
-  <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
+  <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
   
-      <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
-      <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-     <!--  <article style="margin-left: 2%;">
-        <p style="font-size: 20px;font-weight:bold;height:60%;text-align: left;margin-top: 10px;padding-left: 20px; color: #000;">{{o.owner.fullName}}</p><br> 
-        <p style="font-size: 15px;font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{o.builder.comment}}</p><br>
-        <p style="font-size: 10px;font-weight:300;text-align: left;margin-top: -25px;padding-left: 20px;padding-top:5px; color: #000;">{{o.builder.date}}</p>
+    <div class="images">
+    <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
+    <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
+  </div>
+     
+      <article >
+        <p >{{o.owner.fullName}}</p>
+      <!--   <p style="font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{o.builder.comment}}</p><br> -->
+        <p style="font-size:1.4vh;padding:2.5%">{{o.builder.date}}</p>
         <br> 
-    </article> -->
-    <div class="button">
-    <button ion-button clear style="font-size: 25px;float: right;top:5px;" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
+        <p></p>
+    </article> 
+     <div class="btn">
+      <p>View Request</p>
     </div> 
   
     
@@ -112,3 +116,5 @@
 
 </ion-content>
 
+<!-- <button ion-button clear style="font-size: 25px;float: right;top:5px;" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
+ -->

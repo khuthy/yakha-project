@@ -5,13 +5,12 @@
     </ion-toolbar>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <!--   <div class="logo">
-    <img src="../../assets/imgs/logo.png" class="thumb" alt="">
-  </div> -->
+
+<ion-content >
+  
   <form [formGroup]="quotesForm">
     <ion-item>
-      <ion-label floating>Expiry date</ion-label>
+      <ion-label >Expiry date</ion-label>
       <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
