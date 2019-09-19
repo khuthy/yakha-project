@@ -71,7 +71,11 @@
           </ion-item>
         </div>
         <div class="form-group">
-       
+          <ion-item>
+            <ion-textarea name="comment" class="comment"></ion-textarea>
+          </ion-item>
+          <button class="predefined"></button>
+         
         </div>
       </form>
     </div>
@@ -80,7 +84,6 @@
   <ion-toolbar>
       <div id="progress"></div>
     <ion-buttons end>
-      
       <button ion-fab  (click)="sendQuotation()"><ion-icon name="send"></ion-icon></button>
     </ion-buttons>
     
