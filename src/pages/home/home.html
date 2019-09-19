@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content>
-    
+         <!-- <ion-input (ionChange)='search($event)' name="user"></ion-input> -->
     <div #map id="map" *ngIf="maps"></div>
     <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="menus"  ion-button clear menuToggle>
         <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
       </button>
-      <ion-input class="controls" (ionChange)='onInput($event)' name="user"></ion-input>
+ 
    <input type="text" id="search" class="controls"  placeholder="Search..." >  
       <ion-fab right>
         <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
@@ -46,7 +46,7 @@
 
   <div class="slider" *ngIf="maps">
     
-    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
+    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
      <div class="thumbnail">
