@@ -55,7 +55,8 @@ import { ProfileComponent } from '../components/profile/profile';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
-
+import { StarRatingModule } from 'ionic3-star-rating';
+import { PopoverPage } from '../pages/popover/popover';
 @NgModule({
   declarations: [
     MyApp,
@@ -87,9 +88,10 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     BuilderquotesPage,
     OnboardingBuilderPage,
     ProfileComponent,
+    PopoverPage
 
   ],
-  imports: [
+  imports: [StarRatingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -135,7 +137,8 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     VerifyemailPage,
     BuilderquotesPage,
     OnboardingBuilderPage,
-    ProfileComponent
+    ProfileComponent,
+    PopoverPage
 
   ],
   providers: [

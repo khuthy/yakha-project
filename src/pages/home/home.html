@@ -10,15 +10,15 @@
 </ion-header>
 
 <ion-content>
-    
+         <!-- <ion-input (ionChange)='search($event)' name="user"></ion-input> -->
     <div #map id="map" *ngIf="maps"></div>
     <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="menus"  ion-button clear menuToggle>
         <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
       </button>
-      <ion-input class="controls" (ionChange)='onInput($event)' name="user"></ion-input>
-   <input type="text" id="search" class="controls"  placeholder="Search..." >  
+      
+   <input type="text" id="search" class="controls"  placeholder="Search by location" >  
       <ion-fab right>
         <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
         <ion-fab-list>
@@ -31,6 +31,7 @@
    </div> 
    
    <ion-item class="list" *ngIf="maps">
+      <ion-input  (ionChange)='search($event)' style="background-color: antiquewhite" placeholder="Search by name"></ion-input>
     <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
       <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
       <ion-label range-left>R0</ion-label>
@@ -45,8 +46,8 @@
   
 
   <div class="slider" *ngIf="maps">
-    
-    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent()">
+   
+    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
         <div class="card" >
      <div class="thumbnail">
@@ -58,7 +59,8 @@
          <div class="title">
            <p><strong>{{b.fullName}}</strong></p>
            <p class="price"><strong>R{{b.price}}p/m<span class="squire">2</span></strong></p>
-           <img src="../../assets/imgs/stars.jpg" class="stars" alt="">
+           <p class="stars">{{b.experiences}} years</p>
+           
          </div>
 
        </div>
