@@ -12,7 +12,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
-import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+//import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { VerifyemailPage } from '../verifyemail/verifyemail';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 import { state, trigger, transition, animate, style } from '@angular/animations';

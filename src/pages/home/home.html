@@ -3,7 +3,7 @@
   <ion-navbar color="primary" *ngIf="request">
     <ion-title middle>Home</ion-title>
     <button ion-button clear menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" style="font-size:3vh"></ion-icon>
     </button>    
   </ion-navbar>
   
@@ -15,14 +15,15 @@
     <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="menus"  ion-button clear menuToggle>
-        <ion-icon name="menu"></ion-icon>
+        <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
       </button>
-   <input type="text" id="search" class="controls" placeholder="Search..." >  
+      <ion-input class="controls" (ionChange)='onInput($event)' name="user"></ion-input>
+   <input type="text" id="search" class="controls"  placeholder="Search..." >  
       <ion-fab right>
-        <button class="searching" ion-fab mini ><ion-icon name="search"></ion-icon></button>
+        <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
         <ion-fab-list>
-          <button ion-fab (click)="showSearch()"><ion-icon  name="search"></ion-icon></button>
-          <button ion-fab (click)="showRangeSearch()"><ion-icon name="logo-usd"></ion-icon></button>
+          <button ion-fab style="background-color: chocolate; color: white; font-size: 30px;" (click)="showSearch()"><ion-icon  name="search"></ion-icon></button>
+          <button ion-fab style="background-color: chocolate; color: white; font-size: 30px;" (click)="showRangeSearch()"><ion-icon name="logo-usd"></ion-icon></button>
         </ion-fab-list>
       </ion-fab>
      </div>
@@ -93,19 +94,18 @@
 <div class="homebuilder" *ngIf="request" >
   <div class="home-builder-pro" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
   
-    <div class="home-builder-top">
       <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
       <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-      <article style="margin-left: 2%;">
+     <!--  <article style="margin-left: 2%;">
         <p style="font-size: 20px;font-weight:bold;height:60%;text-align: left;margin-top: 10px;padding-left: 20px; color: #000;">{{o.owner.fullName}}</p><br> 
         <p style="font-size: 15px;font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{o.builder.comment}}</p><br>
         <p style="font-size: 10px;font-weight:300;text-align: left;margin-top: -25px;padding-left: 20px;padding-top:5px; color: #000;">{{o.builder.date}}</p>
         <br> 
-    </article>
+    </article> -->
     <div class="button">
     <button ion-button clear style="font-size: 25px;float: right;top:5px;" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
     </div> 
-  </div>
+  
     
     </div> 
     </div>
