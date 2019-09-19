@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -9,6 +9,8 @@ import { MessagesPage } from '../messages/messages';
 import { Quotations , WallType, Extra, Comments } from '../../app/model/bricks';
 
 import { brickType, wallTypes, Extras, comment } from '../../app/model/bricks.model';
+import { ProfileComponent } from '../../components/profile/profile';
+import { DescriptionComponent } from '../../components/description/description';
 /**
  * Generated class for the QuotationFormPage page.
  *
@@ -89,7 +91,7 @@ extraName;
      public loadCtrl:LoadingController,
      public alertCtrl:AlertController,
      public camera: Camera,
-     
+     public popoverCtrl: PopoverController,
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
@@ -258,6 +260,16 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   sendQuotation() {
     console.log(this.HomeOwnerQuotation);
     
+  }
+  viewProfile(myEvent) {
+    console.log(myEvent);
+    
+    let popover = this.popoverCtrl.create(DescriptionComponent, {
+      data: myEvent
+    });
+    popover.present({
+      ev: myEvent
+    });
   }
 
 }

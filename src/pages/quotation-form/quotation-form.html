@@ -29,7 +29,7 @@
           <div class="interval">
             <div class="child">
             <ion-item no-lines>
-            <ion-label>Start Date</ion-label>
+            <ion-label floating>Start Date</ion-label>
            <ion-datetime [(ngModel)]="HomeOwnerQuotation.startDate" formControlName="startDate" name="startDate" [min]="maxDate" max="2022-01-01" displayFormat="MM/DD/YYYY"></ion-datetime>
             </ion-item>
             <div class="error" *ngFor="let validate of validation_messages.startDate">
@@ -41,7 +41,7 @@
             </div>
           <div class="child">
             <ion-item no-lines>
-            <ion-label>End Date</ion-label>
+            <ion-label floating>End Date</ion-label>
            <ion-datetime [(ngModel)]="HomeOwnerQuotation.endDate" formControlName="endDate" [min]="maxDate" max="2022-01-01" name="endDate" displayFormat="MM/DD/YYYY"></ion-datetime>
            </ion-item>
            <div class="error" *ngFor="let validate of validation_messages.endDate">
@@ -65,7 +65,7 @@
               <div class="card" (tap)="highlight($event)" *ngFor="let brick of  bricks; let i=index;">
               <ion-radio class="radio" [value]="brick.name" name="brickType"></ion-radio>
               <p style="text-align: center;"><strong>{{brick.name}}</strong></p>
-              <img src="{{brick.image}}" class="brickImage">
+              <img (click)="viewProfile(brick)" src="{{brick.image}}" class="brickImage">
               <p>{{brick.description}}</p>
             </div>
           </ion-list>
