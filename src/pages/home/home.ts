@@ -657,6 +657,7 @@ export class HomePage implements OnInit {
 
 
   }
+ 
   showRangeSearch() {
 
     let search = this.elementref.nativeElement.children[1].children[1].children[2];
@@ -674,24 +675,11 @@ export class HomePage implements OnInit {
   }
 
   moveMapEvent() {
-  //  let currentIndex = this.slides.getActiveIndex();
-    // console.log('Current index is', currentIndex);
-
-    /*   this.builder.forEach((res) => {
-        if (currentIndex) {
-          console.log('%cInfo'+res.fullName,'color:orange; font-weight:bold');
-        } 
-      }) */
-   /*  for (let index = currentIndex; index < this.builder.length; index++) {
-      const element = this.builder[index];
-      console.log('%cInfo ' + element.fullName + ' ' + element.lat + ' , ' + element.lng, 'color:orange; font-weight:bold');
-
-    } */  
     let currentIndex = this.slides.getActiveIndex();
-  let currentEvent  =this.builder[currentIndex];
-  this.map.setCenter({lat:currentEvent.lat,lng:currentEvent.lng});
+    let currentEvent = this.builder[currentIndex];
+    this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
   }
-  
+
 
 
 }
