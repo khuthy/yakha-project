@@ -91,7 +91,7 @@ import { PopoverPage } from '../pages/popover/popover';
     PopoverPage
 
   ],
-  imports: [StarRatingModule,
+  imports: [StarRatingModule ,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
