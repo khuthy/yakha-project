@@ -102,7 +102,8 @@ import { PopoverPage } from '../pages/popover/popover';
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: false,
-      autoFocusAssist: false
+      autoFocusAssist: false,
+      
     }),
 
     IonicStorageModule.forRoot()

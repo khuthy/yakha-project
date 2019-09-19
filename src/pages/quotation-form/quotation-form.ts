@@ -29,6 +29,7 @@ export class QuotationFormPage {
   walls: WallType[] = wallTypes;
   extras: Extra[] = Extras;
   comments: Comments[] = comment;
+  selectedComment: string;
   uid
   houseImage
   quotationForm : FormGroup;
@@ -46,11 +47,14 @@ export class QuotationFormPage {
     comment:'',
     date:Date(),
     builderUID: '',
-    docID:''
   };
   docID;
  date: any;
  
+/* Three steps to take */
+stepOne = true;
+stepTwo = true;
+stepThree = true;
 
 
 /* validations starts here */
@@ -76,6 +80,7 @@ type: 'required', message: 'Please include some features'
           ]
 };
 extraName;
+  maxDate: string;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -108,11 +113,27 @@ extraName;
       }) */
      
       
-      let date = new Date();
-      let days = date.getDay();
-      let month = date.getMonth();
-      let year = date.getFullYear();
-      this.date = year + '-' + month + '-' + days;
+     
+      this.date = new Date();
+    this.maxDate = this.formatDate(this.date);
+   console.log(this.selectedComment);
+
+   console.log(this.quotationForm.value.endDate.valid);
+   
+    }
+    formatDate(date) {
+      let d = new Date(date),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth() + 1),
+        year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
+
+    commentNow(event) {
+      console.log(event);
+      this.HomeOwnerQuotation.comment = event;
     }
 
   ionViewDidLoad() {
@@ -234,6 +255,9 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     this.houseImage = "";
   }
 
-  
+  sendQuotation() {
+    console.log(this.HomeOwnerQuotation);
+    
+  }
 
 }
