@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-import { Quotations } from '../../app/quotation.model';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import * as firebase from 'firebase';
@@ -103,7 +102,7 @@ export class BuilderquotesPage {
   count = 0;
   extras = [];
   total: number = 0;
-  extrasValues: Quotations;
+ 
   date;
   maxDate;
   buid: string;
