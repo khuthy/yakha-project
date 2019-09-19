@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
-import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+//import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';

@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
   // structure: any = { lower: 33, upper: 60 };
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
- 
+  person;
 //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
   resultArr = [];
@@ -297,9 +297,11 @@ request: boolean = false;
             
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
             let input = document.getElementById('search');
+            
             let searchBox = new google.maps.places.SearchBox(input);
             /* this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-             */
+             */ console.log(input);
+             
             this.map.addListener('bounds_changed', (res) => {
               searchBox.setBounds(this.map.getBounds());
             });
@@ -435,6 +437,16 @@ request: boolean = false;
      }
      /* home page loads here */
   }
+  onInput(event){
+    console.log(event._value);
+    this.db.where('fullName','==',event._value).onSnapshot(snapshot => {
+      snapshot.forEach(doc => {
+      console.log(doc.data());
+    });
+    //console.log('Builders: ', this.builder);
+
+  });
+  }
   back() {
     this.navCtrl.setRoot(LoginPage);
   }
@@ -537,7 +549,7 @@ getItems(ev: any) {
   }
 }
   ionViewDidLoad() {
-    
+   // console.log(this.person);
      
      /* 
      for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
@@ -572,7 +584,6 @@ getItems(ev: any) {
       builder: {},
       owner: {}
     }
-    console.log();
     
     this.dbRequest.where('builderUID','==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
@@ -677,6 +688,34 @@ showRangeSearch() {
   
 }
 
+/* showSearch() {
+ 
+  let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
+  if(this.display == 'none') {
+    this.display = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.display = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+}
+showRangeSearch() {
+
+  let search = this.elementref.nativeElement.children[1].children[1].children[2];
+  console.log(search);
+  
+  if(this.range == 'none') {
+    this.range = 'block';
+    this.renderer.setStyle(search, 'display', 'block');
+  }else {
+    this.range = 'none';
+    this.renderer.setStyle(search, 'display', 'none');
+  }
+  
+  
+} */
 moveMapEvent() {
  // console.log('changed');
   
