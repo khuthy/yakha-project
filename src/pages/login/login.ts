@@ -12,7 +12,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
-import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
+//import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { VerifyemailPage } from '../verifyemail/verifyemail';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 import { state, trigger, transition, animate, style } from '@angular/animations';
@@ -107,6 +107,7 @@ export class LoginPage {
     if (!this.loginForm.valid) {
       console.log(this.loginForm.value);
     } else {
+      
      let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
       signIn.then((getUid) => {
         let loading = this.loadingCtrl.create({
@@ -118,7 +119,9 @@ export class LoginPage {
        this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
          if(!profile.exists) {
            this.alertCtrl.create({
-             message: 'Please create an account before we log you in.'
+             title: 'Create a profile',
+             subTitle: 'Please create an account before we log you in.',
+             buttons: ['Ok']
            }).present();
            if(profile.data().builder == true) {
               this.navCtrl.setRoot(BaccountSetupPage);
@@ -134,7 +137,8 @@ export class LoginPage {
       }).catch(error => {
         this.alertCtrl.create({
           title : error.code,
-          subTitle : error.message
+          subTitle : error.message,
+          buttons: ['Try again']
         }).present();
       })
 

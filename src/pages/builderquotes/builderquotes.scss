@@ -1,28 +1,25 @@
 page-builderquotes {
-     .container {
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-     
-
-     }
-     .container > * {
+   
+  /*    .container > * {
          width: 100%;
          box-shadow: 0 3px 6px inset rgba(0, 0, 0, 0.123);
-         background: rgb(250, 253, 255);
+         background: rgb(41, 129, 187);
          border-radius: 30px;
-     }
+     } */
      .parent {
          display: flex;
          align-items: center;
+         background: red;
          .quantity {
              display: flex;
              align-items: center;
              flex-direction: column;
              justify-content: center;
+             background: rgb(55, 0, 255);
              .quantityCount {
                 display: flex;
                 align-items: center;
+                background: rgb(238, 255, 0);
              }
          }
      }

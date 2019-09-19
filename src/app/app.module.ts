@@ -3,7 +3,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
-import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
+//import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
@@ -42,7 +42,7 @@ import { NewPlacesPage } from '../pages/new-places/new-places';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { WelcomePage } from '../pages/welcome/welcome';
-import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
+//import { BricklayerlandingPage } from '../pages/bricklayerlanding/bricklayerlanding';
 import { ViewmessagePage } from '../pages/viewmessage/viewmessage';
 import { IonicStorageModule } from '@ionic/storage';
 import { VerifyemailPage } from '../pages/verifyemail/verifyemail';
@@ -77,10 +77,10 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     QuotationFormPage,
     BaccountSetupPage,
     SuccessPage,
-    AddBricklayerPage,
+   // AddBricklayerPage,
     NewPlacesPage,
     PlacePage,
-    BricklayerlandingPage,
+    //BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
     VerifyemailPage,
@@ -126,10 +126,10 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
     QuotationFormPage,
     BaccountSetupPage,
     SuccessPage,
-    AddBricklayerPage,
+    //AddBricklayerPage,
     NewPlacesPage,
     PlacePage,
-    BricklayerlandingPage,
+   // BricklayerlandingPage,
     WelcomePage,
     ViewmessagePage,
     VerifyemailPage,

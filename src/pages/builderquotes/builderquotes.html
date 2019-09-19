@@ -5,13 +5,12 @@
     </ion-toolbar>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <!--   <div class="logo">
-    <img src="../../assets/imgs/logo.png" class="thumb" alt="">
-  </div> -->
+
+<ion-content >
+  
   <form [formGroup]="quotesForm">
     <ion-item>
-      <ion-label floating>Expiry date</ion-label>
+      <ion-label >Expiry date</ion-label>
       <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
@@ -34,6 +33,7 @@
     <!-- <ion-item color="light"  style="color: #fff;">
             <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
             </ion-item> -->
+            <!-- <img src="../../assets/imgs/log.png"> -->
     <ion-item>
       <ion-label floating>Builder Address</ion-label>
       <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
