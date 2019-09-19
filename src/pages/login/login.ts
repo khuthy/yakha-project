@@ -105,16 +105,20 @@ export class LoginPage {
 
   loginUser() {
     if (!this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this.alertCtrl.create({
+        title: 'Incorrect entry!',
+        subTitle: 'Please make sure your info is correct..',
+        buttons: ['Ok']
+      }).present();
     } else {
       
      let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+     let loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      duration: 3500
+    })
+    loading.present();
       signIn.then((getUid) => {
-        let loading = this.loadingCtrl.create({
-          content: 'Please wait...',
-          duration: 3000
-        })
-        loading.present();
         this.authService.setUser(getUid.user.uid);
        this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
          if(!profile.exists) {
@@ -132,6 +136,7 @@ export class LoginPage {
            }
          }else {
            this.navCtrl.setRoot(HomePage);
+           loading.dismiss();
          }
        })
       }).catch(error => {

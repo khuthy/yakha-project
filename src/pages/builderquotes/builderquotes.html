@@ -9,19 +9,20 @@
 <ion-content >
   
   <form [formGroup]="quotesForm">
-    <ion-item>
-      <ion-label >Expiry date</ion-label>
+    <ion-item >
+      <ion-label stacked >Expiry date</ion-label>
       <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
-    <div class="error" *ngFor="let validate of validation_messages.expiry">
-      <div class="messages"
+    <ion-label style="font-size: 2vh" class="error" *ngFor="let validate of validation_messages.expiry">
+      <p class="messages"
         *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
         {{validate.message}}
-      </div>
-    </div>
+      </p>
+    </ion-label>
+
     <ion-item>
-      <ion-label floating>Builder Name</ion-label>
+      <ion-label stacked>Your Name</ion-label>
       <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName" ngDefaultControl>
       </ion-input>
     </ion-item>
@@ -35,74 +36,91 @@
             </ion-item> -->
             <!-- <img src="../../assets/imgs/log.png"> -->
     <ion-item>
-      <ion-label floating>Builder Address</ion-label>
+      <ion-label stacked>Your Address</ion-label>
       <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
     </ion-item>
+
+    <ion-label class="error" *ngFor="let validate of validation_messages.address">
+      <p class="messages"
+        *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
+        {{validate.message}}
+    </p>
+    </ion-label>
     <div class="error" *ngFor="let validate of validation_messages.address">
       <div class="messages"
         *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
         {{validate.message}}
       </div>
     </div>
-    <div class="error" *ngFor="let validate of validation_messages.address">
-      <div class="messages"
-        *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
-        {{validate.message}}
-      </div>
-    </div>
+    
+  
+    
 
     <!-- Overall house -->
 
     <div class="houseOverall">
-      <div class="header">
-        <h5>Overall House</h5>
-      </div>
+      >
       <div class="parent">
-        <div class="price">
+      <h5>Pricing of the overall house</h5>
 
-          <p>Price p/m2</p>
-          <p><strong>{{quotes.price  | currency:'&#82;'}}</strong></p>
-        </div>
         <ion-item>
-          <ion-label floating>m2</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
-
-        </ion-item>
-        
-        <ion-item>
-          <ion-label floating>Discount</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
-        </ion-item>
-        <p>%</p>
+            <ion-label stacked>Your Price p/m2</ion-label>
+            <ion-input placeholder="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
+          </ion-item>
+          
+       
+            <ion-item>
+                <ion-label stacked>Enter total of metres here</ion-label>
+                <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+             </ion-item>
+               
+               <ion-item>
+                 <ion-label stacked >Enter Discount here</ion-label>
+                 <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
+               </ion-item>
+      
+      <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong>{{quotes.price  | currency:'&#82;'}}</strong></span></p>
+       
       </div>
 
     </div>
+    
 
-
-    <div *ngFor="let item of extras; let i=index;">
-      <hr>
+    <div style="background: yellow;" *ngFor="let item of extras; let i=index;">
+        <h5>Pricing for the extras you requested</h5>
       <h5>{{item.item}}</h5>
-      <hr>
       
-      <div class="parent">
+      
+      <div class="parent2">
         <div class="price">
-          <ion-item>
-            <ion-label floating>Price</ion-label>
+          <ion-item style="width: 30%;margin-left: 2%">
+            <ion-label stacked>Price</ion-label>
             <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)"></ion-input>
           </ion-item>
+          <!-- fabs -->
+          <div style="" >
+              <button end class="btn-border" ion-fab mini color="light" (click)="childMinus(item,i)">
+                  <ion-icon ios="ios-remove" md="md-remove" end></ion-icon>
+                </button>
+                <button ion-fab  mini>{{extras[i].data.quantity}}</button>
+                <button class="btn-border" ion-fab mini (click)="childPlus(item, i)">
+                  <ion-icon ios="ios-add" md="md-add"></ion-icon>
+                </button>
+
+          </div>
         </div>
+
+
         <div class="quantity">
           <div class="header">
             <ion-label>Quantity</ion-label>
           </div>
           <div class="quantityCount">
-            <div class="typ2"><button class="btn-border" ion-fab mini color="light" (click)="childMinus(item,i)">
-                <ion-icon ios="ios-remove" md="md-remove"></ion-icon>
-              </button></div>
-            <div class="typ3" style="padding: 12px">{{extras[i].data.quantity}}</div>
-            <div class="typ4"> <button class="btn-border" ion-fab mini (click)="childPlus(item, i)">
-                <ion-icon ios="ios-add" md="md-add"></ion-icon>
-              </button></div>
+            <div class="typ2"></div>
+            <div class="typ3" style="padding: 12px"></div>
+            <div class="typ4"> 
+           
+            </div>
           </div>
         </div>
       </div>

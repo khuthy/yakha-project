@@ -61,7 +61,7 @@ export class MyApp {
                 {title: 'View Profile', component: AccountSetupPage, icon: 'person'},
                 {title: 'Messages', component: MessagesPage, icon: 'mail'},
                 // {title: 'Help', component: HelpPage, icon: 'help'},
-                // {title: 'Feedback', component: FeedbackPage, icon: 'paper'},
+                 {title: 'Feedback', component: FeedbackPage, icon: 'paper'},
                 {title: 'Version', component: VersionPage, icon: 'information-circle'},
               ];
               this.userLoggedinNow.image = profile.data().image
