@@ -28,6 +28,6 @@ export const comment: Comments[] = [
     {comment: 'Come with your lunch box'},
     {comment: 'i will pay you like yesterday'},
     {comment: 'Great work only'},
-    {comment: 'I will not be around during working days'}
-
+    {comment: 'I will not be around during working days'},
+    {comment: ''}
 ];

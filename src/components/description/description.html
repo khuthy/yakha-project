@@ -1,0 +1,18 @@
+<!-- Generated template for the DescriptionComponent component -->
+<div>
+  <ion-card *ngFor="let t of text">
+    <img src="{{t.image}}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{t.name}}
+        </ion-card-title>
+      <p>
+        {{t.description}}
+      </p>
+      <p>
+       SA=L*H*W = {{t.width}}cm * {{t.height}}cm * {{t.width}}cm = {{t.width * t.height * t.width | number}}cm
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</div>

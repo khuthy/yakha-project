@@ -57,6 +57,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { PopoverPage } from '../pages/popover/popover';
+import { DescriptionComponent } from '../components/description/description';
 @NgModule({
   declarations: [
     MyApp,
@@ -88,8 +89,10 @@ import { PopoverPage } from '../pages/popover/popover';
     BuilderquotesPage,
     OnboardingBuilderPage,
     ProfileComponent,
-    PopoverPage
+    PopoverPage,
+    DescriptionComponent
 
+   
   ],
   imports: [StarRatingModule ,
     BrowserModule,
@@ -102,7 +105,9 @@ import { PopoverPage } from '../pages/popover/popover';
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: false,
-      autoFocusAssist: false
+      autoFocusAssist: false,
+      iconMode: 'ios'
+      
     }),
 
     IonicStorageModule.forRoot()
@@ -138,8 +143,8 @@ import { PopoverPage } from '../pages/popover/popover';
     BuilderquotesPage,
     OnboardingBuilderPage,
     ProfileComponent,
-    PopoverPage
-
+    PopoverPage,
+    DescriptionComponent
   ],
   providers: [
    /*  StatusBar, */

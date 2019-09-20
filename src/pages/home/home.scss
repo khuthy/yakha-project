@@ -14,17 +14,19 @@ page-home {
    .control {
      display: flex;
       width: 100%;
-      justify-content: space-between;
+      justify-content: flex-start;
    }
    .control > input {
       order: 2;
       display: none;
+      width: 70%;
    }
    .control > .menus {
     order: 1;
  }
  .control > .searching {
   order: 3;
+  
   
 }
    .controls {
