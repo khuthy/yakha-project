@@ -11,5 +11,15 @@
 </ion-header>
 
 <ion-content padding>
-
+  <h3>Rate yakha</h3>
+  <ionic3-star-rating #rating
+  activeIcon = "ios-star"
+  defaultIcon = "ios-star-outline"
+  activeColor = "#488aff" 
+  defaultColor = "#f4f4f4"
+  readonly="false"
+  rating="3"
+  fontSize = "32px"
+  (ratingChanged)="logRatingChange($event)">
+</ionic3-star-rating>
 </ion-content>

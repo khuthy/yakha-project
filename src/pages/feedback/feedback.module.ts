@@ -6,7 +6,7 @@ import { FeedbackPage } from './feedback';
   declarations: [
     FeedbackPage,
   ],
-  imports: [
+  imports: [ 
     IonicPageModule.forChild(FeedbackPage),
   ],
 })

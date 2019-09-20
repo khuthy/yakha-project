@@ -146,8 +146,8 @@ page-home {
         flex-direction: column;
         justify-content: center;
         .stars {
-          max-width: 50%;
-
+          //max-width: 50%;
+          font-size: 7 px;
         }
       }
      }
@@ -169,7 +169,9 @@ page-home {
    }
   }
  
-
+  .nameBuilder{
+    
+  }
 
 
   /* Home builder home page */
@@ -185,12 +187,16 @@ page-home {
 }
 .images {
   //border: 1px solid rgb(30, 255, 0);
-  width: 35%;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ // width: 35%;
+/*   display: block;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 margin-top: 3%;
-  //the round image
+  //the round imag
+  text-align: center;
 .thumb-home-builder {
 
    width: 50px;
