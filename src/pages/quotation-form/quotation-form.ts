@@ -6,9 +6,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
-import { Quotations , WallType, Extra } from '../../app/model/bricks';
+import { Quotations , WallType, Extra, Comments } from '../../app/model/bricks';
 
-import { brickType, wallTypes, Extras } from '../../app/model/bricks.model';
+import { brickType, wallTypes, Extras, comment } from '../../app/model/bricks.model';
 /**
  * Generated class for the QuotationFormPage page.
  *
@@ -28,6 +28,7 @@ export class QuotationFormPage {
   bricks: Quotations[] = brickType;
   walls: WallType[] = wallTypes;
   extras: Extra[] = Extras;
+  comments: Comments[] = comment;
   uid
   houseImage
   quotationForm : FormGroup;
