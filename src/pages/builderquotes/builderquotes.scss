@@ -1,16 +1,13 @@
 page-builderquotes {
    form {
-       width: 90%;
-      position: relative;
-      left: 5%;
-      top: 5%;
+       
      // background: red;
 
       .item {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.144);
 
         border-radius: 5px;
-        margin-top: 3%;
+      
       
         ion-datetime {
             color: #4D4D4D;
@@ -31,7 +28,7 @@ page-builderquotes {
           border-bottom: none;
         }
         p {
-          color: rgb(246, 22, 22);
+          color: rgb(134, 134, 134);
           font-size: 5vw;
           text-align: center;
           margin-top:-5%;
@@ -53,7 +50,7 @@ page-builderquotes {
          align-items: center;
          border-radius: 5px;
         // background: green;
-         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+         //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(66, 66, 66, 0.089);
         h5 {
             text-align:center;
             font-family: 'Segoe UI';
@@ -84,22 +81,27 @@ page-builderquotes {
      }
 
      .parent2 {
-
+         /* box-shadow:  0 0 3px #ddd; */
      }
 
      .houseOverall {
          display: flex;
          flex-direction: column;
          align-items: center;
-         background: red;
+         background: rgb(247, 247, 247);
+         margin-bottom: 20px;
      }
      .price {
         display: flex;
         //justify-content: space-evenly;
         div {
-            width: 60%;
-            border: 1px solid green;
-         display:flex
+            width: 70%;
+           // border: 1px solid green;
+         display:flex;
+         justify-content: flex-end;
+         align-items: center;
+         align-content: flex-end;
+         background: #fff;
         }
      }
      .subtotal,

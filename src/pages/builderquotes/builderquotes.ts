@@ -269,13 +269,35 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
   childPlus(i, index) {
     this.extras[index].data.quantity++;
     console.log('item: ', i, 'index: ', index);
-    this.value = (this.value + parseFloat(i.data.price));
+    if(i.data.price > 0 && i.data.quantity >= 0) {
+        
+           this.value = (this.value + parseFloat(i.data.price));
+       
+    }else {
+      this.value = this.value;
+      i.data.quantity = 0;
+      this.toastCtrl.create({
+        message: 'Please specify the price first',
+        duration: 3000
+      }).present();
+    }
     
   }
   childMinus(i, index) {
     this.extras[index].data.quantity--;
     console.log('item: ', i, 'index: ', index);
-    this.value -= i.data.price;
+    if(i.data.quantity < 0){
+      i.data.quantity = 0;
+      
+    }else {
+      if((i.data.price >= 0 && i.data.quantity >= 0) || (i.data.price != null && i.data.quantity != null)) {
+      this.value -= i.data.price;
+    }else {
+      this.value = this.value;
+    }
+    }
+    
+    
   } 
   test(){
    
