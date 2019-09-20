@@ -19,7 +19,7 @@
         </div>
         <div class="form-group" *ngIf="HomeOwnerQuotation.houseImage">
             <div class="interval">
-            <img src="../../assets/imgs/housePlan.jpg" class="image">
+            <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
             <p>House plan successful</p>
             <button ion-fab mini (click)="remove()" color="light"><ion-icon name="close"></ion-icon></button>
             </div>
