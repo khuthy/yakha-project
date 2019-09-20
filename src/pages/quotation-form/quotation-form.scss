@@ -1,5 +1,6 @@
 page-quotation-form {
     .content {
+      
        
         background: #f9f9f9;
       
@@ -8,6 +9,8 @@ page-quotation-form {
          position: relative;  
          max-width: 100%;
 
+         
+        
         
         .form-group {
             box-shadow: 0 1px 2px 0 #ddd;
@@ -30,6 +33,7 @@ page-quotation-form {
                 }
             }
             h6 {
+                color: rgb(110, 110, 110);
                 text-align: center;
             }
 
@@ -37,24 +41,21 @@ page-quotation-form {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                .child {
+                    width: 50%;
+                }
             }
             .bricks {
                 display: flex;
                 flex-wrap: wrap;
-              justify-content: space-around;
+                justify-content: space-evenly;
                 width: 100%;
                 .card {
                     width: 45%;
                     box-shadow:0 1px 2px 0 #ddd; 
-                    margin: 2%;
                     padding: 2%;
                     background: #fff;
-                    
-                   
-
-                    .radio {
-                      
-                    }
+                    margin: 1%;
                 }
             }
             .image {
@@ -68,13 +69,15 @@ page-quotation-form {
             }
         }
     }
+  
  }
+
     /* Progress bar code css */
     #progress {
         background: rgb(22, 22, 22);
         border-radius: 13px;
         height: 10px;
-        width: 100%;
+        width: 70%;
         padding: 3px;
     }
  #progress:after {
@@ -90,6 +93,18 @@ page-quotation-form {
         justify-content: space-between;
         align-items: center;
     }
+
     
+    @media only screen and (min-width: 900px)  {
+     
+        .bricks{
+            justify-content: initial;
+        }        
+       .card {
+          justify-self: flex-start;
+           max-width: 250px;
+       }
+    
+}
    
 }

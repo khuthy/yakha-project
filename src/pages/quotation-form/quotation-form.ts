@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
-import { Quotations , WallType, Extra } from '../../app/model/bricks';
+import { Quotations , WallType, Extra, Comments } from '../../app/model/bricks';
 
-import { brickType, wallTypes, Extras } from '../../app/model/bricks.model';
+import { brickType, wallTypes, Extras, comment } from '../../app/model/bricks.model';
+import { ProfileComponent } from '../../components/profile/profile';
+import { DescriptionComponent } from '../../components/description/description';
 /**
  * Generated class for the QuotationFormPage page.
  *
@@ -28,6 +30,8 @@ export class QuotationFormPage {
   bricks: Quotations[] = brickType;
   walls: WallType[] = wallTypes;
   extras: Extra[] = Extras;
+  comments: Comments[] = comment;
+  selectedComment: string;
   uid
   houseImage
   quotationForm : FormGroup;
@@ -45,11 +49,14 @@ export class QuotationFormPage {
     comment:'',
     date:Date(),
     builderUID: '',
-    docID:''
   };
   docID;
  date: any;
  
+/* Three steps to take */
+stepOne = true;
+stepTwo = true;
+stepThree = true;
 
 
 /* validations starts here */
@@ -75,6 +82,7 @@ type: 'required', message: 'Please include some features'
           ]
 };
 extraName;
+  maxDate: string;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -83,7 +91,7 @@ extraName;
      public loadCtrl:LoadingController,
      public alertCtrl:AlertController,
      public camera: Camera,
-     
+     public popoverCtrl: PopoverController,
      private formBuilder: FormBuilder) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
@@ -107,11 +115,27 @@ extraName;
       }) */
      
       
-      let date = new Date();
-      let days = date.getDay();
-      let month = date.getMonth();
-      let year = date.getFullYear();
-      this.date = year + '-' + month + '-' + days;
+     
+      this.date = new Date();
+    this.maxDate = this.formatDate(this.date);
+   console.log(this.selectedComment);
+
+   console.log(this.quotationForm.value.endDate.valid);
+   
+    }
+    formatDate(date) {
+      let d = new Date(date),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth() + 1),
+        year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
+
+    commentNow(event) {
+      console.log(event);
+      this.HomeOwnerQuotation.comment = event;
     }
 
   ionViewDidLoad() {
@@ -233,6 +257,19 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     this.houseImage = "";
   }
 
-  
+  sendQuotation() {
+    console.log(this.HomeOwnerQuotation);
+    
+  }
+  viewProfile(myEvent) {
+    console.log(myEvent);
+    
+    let popover = this.popoverCtrl.create(DescriptionComponent, {
+      data: myEvent
+    });
+    popover.present({
+      ev: myEvent
+    });
+  }
 
 }

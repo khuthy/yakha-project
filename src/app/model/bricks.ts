@@ -14,3 +14,6 @@ export interface Extra {
    price: number;
    quantity: number;
 }
+export interface Comments {
+   comment: string;
+}
