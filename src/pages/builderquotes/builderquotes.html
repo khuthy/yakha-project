@@ -27,15 +27,6 @@
       </ion-input>
     </ion-item>
     <br>
-    <!-- <div class="error" *ngFor="let validate of validation_messages.fullName">
-               <div class="messages" *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
-                 {{validate.message}}
-               </div>
-               </div> -->
-    <!-- <ion-item color="light"  style="color: #fff;">
-            <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
-            </ion-item> -->
-            <!-- <img src="../../assets/imgs/log.png"> -->
     <ion-item>
       <ion-label stacked>Your Address</ion-label>
       <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
@@ -53,10 +44,6 @@
         {{validate.message}}
       </div>
     </div>
-    
-  
-    
-
     <!-- Overall house -->
 
     <div class="houseOverall">
@@ -68,25 +55,22 @@
             <ion-label stacked>Your Price p/m2</ion-label>
             <ion-input disabled placeholder="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
           </ion-item>
-          
-       
             <ion-item>
                 <ion-label stacked>Enter total of metres here</ion-label>
                 <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
              </ion-item>
-               
                <ion-item>
                  <ion-label stacked >Enter Discount (%) here</ion-label>
                  <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
                </ion-item>
-      
-      <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</strong></span></p>
-       
+      <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span></p>
       </div>
 
     </div>
     
     <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
+<!-- </div> -->
+    <p>Specify the price of the extras included by the owner</p>
     <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;" *ngFor="let item of extras; let i=index;">
        <h5 style="text-align: center;">{{item.item}}</h5>
        <div class="parent2">
@@ -98,10 +82,7 @@
      
             </ion-input>
           </ion-item>
-         
-          
-          <!-- fabs -->
-         
+         <!-- fabs -->
           <div>
               <p style="text-align: right;">Quantity</p>
               <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;"  (click)="childMinus(item,i)">
@@ -111,7 +92,6 @@
                 <button class="btn-border" style="background: transparent; box-shadow: none;color: #333;" ion-fab mini (click)="childPlus(item, i)">
                   <ion-icon ios="ios-add" md="md-add"></ion-icon>
                 </button>
-
           </div>
         </div>
       </div>
@@ -143,7 +123,6 @@
       <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</strong></span></p>
     <ion-buttons end>
          <button ion-fab class="btn-proceed"  (click)="createPdf()" color="primary"><ion-icon name="send"></ion-icon></button>
- 
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

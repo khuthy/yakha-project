@@ -593,7 +593,7 @@ export class HomePage implements OnInit {
         })
 
 
-        setTimeout(() => {
+      /*   setTimeout(() => {
           // this.getOwners();
           let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
@@ -615,7 +615,7 @@ export class HomePage implements OnInit {
           }
           console.log('for done');
           console.log(cards);
-        }, 500)
+        }, 500) */
 
 
 
