@@ -38,12 +38,15 @@ export class FeedbackPage {
   ionViewDidLoad() {
     // console.log('ionViewDidLoad FeedbackPage');  
     
-    this.db.where('uid', '==', this.uid).onSnapshot((res) => {
+    this.db.onSnapshot((res)=> {
       this.feed=[];
       res.forEach((doc) => {
-        this.dbU.doc(this.uid).onSnapshot((res)=> {
-          this.img =  res.data().image;
-          this.feed.push(doc.data());
+        this.dbU.doc(doc.data().uid).onSnapshot((res)=> {
+          let info = doc.data();
+          let img =  res.data();
+          let data = {info, img}
+          this.feed.push(data);
+        // console.log(this.feed);
          
         })
         

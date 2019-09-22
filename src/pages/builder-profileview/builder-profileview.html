@@ -69,6 +69,27 @@
                           </div> -->
           <!--        -->
         </div>
-       
- 
+     <!--   <div *ngIf="respQ">
+        <h3>Rate builder</h3>
+        <ionic3-star-rating #rating *ngIf="!average"
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "#488aff" 
+        defaultColor = "#f4f4f4"
+        readonly="false"
+        rating="1"
+        fontSize = "32px"
+        (ratingChanged)="logRatingChange($event)">
+      </ionic3-star-rating>
+       </div>
+       <ionic3-star-rating  *ngIf="average"
+       activeIcon = "ios-star"
+       defaultIcon = "ios-star-outline"
+       activeColor = "#FFC26E" 
+       defaultColor = "#f4f4f4"
+       readonly="true"
+       rating={{average}}
+       fontSize = "15px"
+       >
+       </ionic3-star-rating> -->
 </ion-content>
