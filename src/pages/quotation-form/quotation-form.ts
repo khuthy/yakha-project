@@ -254,7 +254,7 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
         
   }
   remove(){
-    this.houseImage = "";
+    this.HomeOwnerQuotation.houseImage = "";
   }
 
   sendQuotation() {
