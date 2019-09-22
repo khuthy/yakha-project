@@ -82,6 +82,7 @@ export class AccountSetupPage {
     console.log( this.uid)
     console.log( this.authUser.getUser());
     console.log( this.navParams.data);
+   
     
     this.getProfile();
   }
@@ -202,7 +203,8 @@ export class AccountSetupPage {
           this.profileImage  = doc.data().image;
           this.HomeOwnerProfile.fullName  = doc.data().fullName;
           this.HomeOwnerProfile.gender  = doc.data().gender;
-          this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber
+          this.HomeOwnerProfile.personalNumber  = doc.data().personalNumber;
+          this.HomeOwnerProfile.ownerAddress = doc.data().ownerAddress
           this.profileForm.patchValue({address: doc.data().ownerAddress})
       
         this.icon = 'create';
