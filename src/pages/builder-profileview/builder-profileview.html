@@ -24,17 +24,42 @@
           
        
       <div class="container">
+          <div class="profiles">
+              <div class="back">
+                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;color:black" name="arrow-back"></ion-icon></button>
+                  </div>
         
-            <div class="builder-image" >     
-                <img *ngIf="dat.image" src="{{dat.image}}" class="thumber" alt="">
-                <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumber" alt="">
-                <div class="back" (click)="navCtrl.pop()">
+          <div class="avatar-images">   
+                <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
+                <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
+                <!-- <div class="back" (click)="navCtrl.pop()">
                   <ion-icon style="font-size: 28px;color: black" name="arrow-round-back"></ion-icon>
-                </div>
+                </div> -->
               </div>
+              <h4 style="text-align: center">{{dat.fullName}}</h4>
 
               <div class="name">
-                <h3>{{dat.fullName}}</h3>
+                  <div class="one">
+                      <div >
+                        <h5 >Gender</h5>
+                        <p>{{dat.gender}}</p>
+                      </div>
+                      <div>
+                        <h5>Experience?</h5>
+                        <p>{{dat.experiences}} years.</p>
+                      </div>
+                   </div>
+                   <div class="two" >
+                      <div>
+                        <h5>Price</h5>
+                        <p>{{dat.price | currency:'&#82;'}}(p/&#13217;)</p>
+                      </div>
+                      <div>
+                        <h5>Roofing Included?</h5>
+                        <p> {{dat.roof}}</p>
+                      </div>
+                       </div>
+               
               </div>
             <div class="info">
                 <div class="one">
@@ -68,28 +93,7 @@
                         
                           </div> -->
           <!--        -->
+          </div>
         </div>
-     <!--   <div *ngIf="respQ">
-        <h3>Rate builder</h3>
-        <ionic3-star-rating #rating *ngIf="!average"
-        activeIcon = "ios-star"
-        defaultIcon = "ios-star-outline"
-        activeColor = "#488aff" 
-        defaultColor = "#f4f4f4"
-        readonly="false"
-        rating="1"
-        fontSize = "32px"
-        (ratingChanged)="logRatingChange($event)">
-      </ionic3-star-rating>
-       </div>
-       <ionic3-star-rating  *ngIf="average"
-       activeIcon = "ios-star"
-       defaultIcon = "ios-star-outline"
-       activeColor = "#FFC26E" 
-       defaultColor = "#f4f4f4"
-       readonly="true"
-       rating={{average}}
-       fontSize = "15px"
-       >
-       </ionic3-star-rating> -->
+    
 </ion-content>
