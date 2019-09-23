@@ -1,3 +1,4 @@
+import { BaccountSetupPage } from './../baccount-setup/baccount-setup';
 import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform, Slides, PopoverController } from 'ionic-angular';
 import * as firebase from 'firebase';
