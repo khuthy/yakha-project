@@ -85,7 +85,7 @@
   <div class="container">
     <div class="info-container">
        <div class="logo" padding>
-           <p>Hello buildername</p>
+           <p>Hello  {{profName}}</p>
           <img src="../../assets/imgs/logo.png" style="max-width: 100px; height: auto">
           <h5 id="descript" style="color: white">Requirements for this project</h5>
 
@@ -123,7 +123,7 @@
         <h5 class="class">I chose this wall type   : <span>{{brickType}}</span></h5>
            --><!-- extras -->
         
-           <h5 style="text-align: center;border:1px solid red;padding:1%">I also need the following done</h5>
+           <h5 style="text-align: center;padding:1%">I also need the following done</h5>
         
         <div class="extras">
              <p style="" id="looping" *ngFor="let e of extras">{{e}}</p>
@@ -136,24 +136,25 @@
      
  
    <div   [ngClass]="{'old': toggle, 'new': !toggle}"class="old">
-        <button class="btn-create" color="yakha" *ngIf="toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropup"></ion-icon></button>
-          <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown"></ion-icon></button>
+        <button class="btn-create" color="yakha" *ngIf="toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropup" style="color:white;font-size:4vh;"></ion-icon></button>
+          <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown" style="color:white;font-size:4vh;"></ion-icon></button>
           <div class="swipe-content" *ngIf="!toggle">
           <div class="image">
-              <img src="../../assets/imgs/gender.png" alt="">
+              <img src="{{houseImage}}"  (click)="viewHouse(houseImage)" alt="house plan">
           </div>
           <div class="message">
-            Please dont hesitate....
+        <p>   {{comment}}</p>
           </div>
-          <div class="response">
-            What is this
+         
+
+          <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
           </div>
-          </div>
+
         </div>
         
           
-        <ion-fab right bottom *ngIf="builda">
-            <button ion-fab color="light" (click)="quotesForm(docID)"><ion-icon name="create" ></ion-icon></button>
-          </ion-fab>  
+        <!-- <ion-fab right bottom *ngIf="builda">
+            <button ion-fab color="light"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>  --> 
   </div>
 </ion-content>
