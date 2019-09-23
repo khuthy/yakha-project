@@ -1,99 +1,59 @@
 
 <ion-content>
-   <!-- <ion-card *ngIf="isProfile">
-        <img src="{{HomeOwnerProfile.ownerImage}}"/>
-        <ion-card-content>
-         
-            <h1> Bricklayer FullName: {{HomeOwnerProfile.fullName}}</h1>
-            <p>Physical Address : {{bricklayerProfile.address}}</p>
-            <p>Price  :R {{bricklayerProfile.price}}p/m2</p>
-            <p>Location:{{bricklayerProfile.Location}}</p> <br>
-           <div class="bio">
-             <h4>Bio</h4>
-             <p>
-            The most popular guy ever, and largely
-            responsible for bringing the code to a njabulos audience.
-          </p>
-           </div> 
-           <br>
-           <p>Experience : {{bricklayerProfile.experiences}}</p>
-           <p>Certified :{{bricklayerProfile.certified}}</p>
-           
-            
-              -->
-          
-       
+  
       <div class="container">
-          <div class="profiles">
-              <div class="back">
-                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;color:black" name="arrow-back"></ion-icon></button>
-                  </div>
-        
-          <div class="avatar-images">   
-                <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
-                <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
-                <!-- <div class="back" (click)="navCtrl.pop()">
-                  <ion-icon style="font-size: 28px;color: black" name="arrow-round-back"></ion-icon>
-                </div> -->
+          
+              <div style="display: flex;">
+      
+                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="arrow-back"></ion-icon></button>
+                  <H5 style="text-align: center;width:80%"> Profile</H5>
               </div>
-              <h4 style="text-align: center">{{dat.fullName}}</h4>
 
-              <div class="name">
-                  <div class="one">
-                      <div >
-                        <h5 >Gender</h5>
-                        <p>{{dat.gender}}</p>
+              <div class="holder">
+                  <div class="background">
+                      <h5 style="color: white">{{dat.fullName}}</h5>
+
+                      <div class="propic">
+                          <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
+                          <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
                       </div>
-                      <div>
-                        <h5>Experience?</h5>
-                        <p>{{dat.experiences}} years.</p>
-                      </div>
-                   </div>
-                   <div class="two" >
-                      <div>
-                        <h5>Price</h5>
-                        <p>{{dat.price | currency:'&#82;'}}(p/&#13217;)</p>
-                      </div>
-                      <div>
-                        <h5>Roofing Included?</h5>
-                        <p> {{dat.roof}}</p>
-                      </div>
-                       </div>
-               
-              </div>
-            <div class="info">
-                <div class="one">
-                  <h5></h5>
-                </div>
-                <h2 style="color: rgba(197, 101, 66, 0.966); letter-spacing: .30em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">R{{dat.price}}.00 p/m<span class="squire">2</span></h2>
-                <p>{{dat.experiences}} year of experience</p>
-                <p>{{dat.certified}}</p>
-              </div>
-              <div class="location">
-                  <h6><ion-icon style="color:darkcyan" size="large" name="pin"></ion-icon></h6>
-                <p>{{dat.address}}</p>
-              </div>
-              <div class="button-request">
-                <button style="border-radius: 5px;" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
-               </div>
-             <!--  <div class="titles">
-                  <h3>{{dat.fullName}}</h3>
-                </div>
-                <div class="price">
-                    
-                  </div>
-                  <div class="experience">
-                    
-                    </div>
-                    
-                      <div class="Address">
+
+                      <div class="info">
+                          <!-- gender -->
+                            <div style="display:flex; text-align: center; justify-content:center; align-items: center">
+                                <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray">
+                                <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{dat.gender}}</h5>
+                             </div>
+                             <!-- experience-->
+                             <div style="display: flex">
+                                <h5 style="width: 50%">Experience?</h5>
+                                <p style="width: 50%">:  {{dat.experiences}} years.</p>
+                            </div>
                        
-                        </div>
-                        <div class="Certified">
-                        
-                          </div> -->
-          <!--        -->
-          </div>
+                            <!-- price -->
+                    
+                            <div style="display: flex">
+                                <h5  style="width: 50%">Price</h5>
+                                <p style=" width: 50%"> :  {{dat.price | currency:'&#82;'}}(p/&#13217;)</p>
+                              </div>
+                              <!-- roofing included -->
+                    <div style="display: flex">
+                        <h5  style="width: 50%">Roofing Included?</h5>
+                        <p style="width: 50%">:   {{dat.roof}}</p>
+                      </div>
+                      <div class="bio">
+                          <h6 style="margin-top: 0;"><ion-icon style="color:darkcyan;font-size:5vh" size="large" name="pin"></ion-icon></h6>
+                    <p style="font-size: 2vh; font-family: 'Segoe UI';margin-top:0">
+                        {{dat.address}}</p>
+                      </div>
+                    </div>
+                  <div class="button-request">
+                      <button primary style="background:rgba(197, 101, 66, 0.966);border-radius: 5px;width:90%;position:relative;left:5%;top:5%" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
+                     </div>
+                  </div>
+
+              </div>
+        
         </div>
     
 </ion-content>
