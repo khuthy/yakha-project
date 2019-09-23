@@ -140,7 +140,7 @@
           <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown" style="color:white;font-size:4vh;"></ion-icon></button>
           <div class="swipe-content" *ngIf="!toggle">
           <div class="image">
-              <img src="../../assets/imgs/gender.png" alt="">
+              <img src="{{houseImage}}" class="thumb" (click)="viewHouse(houseImage)" alt="house plan">
           </div>
           <div class="message">
         <p>   {{comment}}</p>
