@@ -51,9 +51,9 @@
       <div class="parent">
       <h5>Pricing of the overall house</h5>
 
-        <ion-item>
+        <ion-item >
             <ion-label stacked>Your Price p/m2</ion-label>
-            <ion-input disabled placeholder="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
+            <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
           </ion-item>
             <ion-item>
                 <ion-label stacked>Enter total of metres here</ion-label>
@@ -63,12 +63,11 @@
                  <ion-label stacked >Enter Discount (%) here</ion-label>
                  <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
                </ion-item>
-      <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span></p>
+      <p style="padding: 3%;text-align: end;">Overall house price: <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span></p>
       </div>
 
     </div>
-    
-    <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
+     <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
 <!-- </div> -->
     <p>Specify the price of the extras included by the owner</p>
     <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;" *ngFor="let item of extras; let i=index;">
@@ -105,7 +104,7 @@
         </div>
         <div class="discount">
           <p><strong>Discount(%)</strong></p>
-          <ion-item>
+          <ion-item style="background: transparent;">
             <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
           </ion-item>
           <p>%</p>

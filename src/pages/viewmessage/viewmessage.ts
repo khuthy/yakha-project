@@ -98,7 +98,7 @@ export class ViewmessagePage {
  
 }
     ionViewDidLoad() {
-    console.log(this.userDetails);
+    console.log(this.userDetails, 'extras', this.userDetails.extras);
     this.brickType = this.userDetails.brickType;
     this.comment = this.userDetails.comment;
     this.date = this.userDetails.date;
@@ -111,6 +111,7 @@ export class ViewmessagePage {
    
     
    this.extras = this.userDetails.extras;
+
     this.getRequest();
     this.getOwnerDetails();
   }
@@ -204,6 +205,7 @@ downloadAndOpenPdf() {
   }
  
 } 
+icon: string;
   getUser(){
    // let homeOwner = '';
    
@@ -211,6 +213,7 @@ downloadAndOpenPdf() {
   toggle:boolean = true;
   change(){
     this.toggle = !this.toggle;
+   
   }
   expand(){
     alert('hi');
