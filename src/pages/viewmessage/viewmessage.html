@@ -145,11 +145,9 @@
           <div class="message">
         <p>   {{comment}}</p>
           </div>
-          <!-- <div class="response">
-            What is this
-          </div> -->
+         
 
-          <button style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
+          <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
           </div>
 
         </div>
