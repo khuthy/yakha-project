@@ -152,15 +152,8 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.userMsg);
+  
     
-     /* this.dbRequest.where('builderUID', '==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
-      res.forEach((doc)=>{
-       // console.log(doc.id,'=>', doc.data());
-        this.buid = doc.id; */
- 
-    /*   })
-    }) */
  
     this.dbRequest.doc(this.userMsg).collection('extras').onSnapshot((res)=>{
       console.log(res.docs);
@@ -180,7 +173,7 @@ export class BuilderquotesPage {
       
 })
 
-console.log('yea: ', this.userMsg);
+
     
 this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
    this.quotes.hOwnerUID = res.data().hOwnerUid;
@@ -204,28 +197,7 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
     
     
 
-    // console.log(this.navParams.data);
-  /*   this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
-      if(res.exists) {
-         res.data();
-         this.quotes.fullName = res.data().fullName;
-         this.quotes.address = res.data().address;
-         this.quotes.price = res.data().price;
-      console.log('Extras ', this.extras);
-      
-      }else {
-        console.log('No extras yet');
-        
-      }
-     
-    }) */
-   /*  this.db.doc(this.quotes.hOwnerUID).onSnapshot((res) => {
-      this.quotes.ownerAddress = res.data().address;
-      let num = parseFloat((res.data().price) + this.quotes.dimension)
-      this.total = num;
-      //  this.quotes.price = num;
-      this.quotes.ownerName = res.data().ownerName;
-    }) */
+ 
 
     this.dbUsers.doc(firebase.auth().currentUser.uid).onSnapshot((doc) => {
      
@@ -234,14 +206,7 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
         this.quotes.price = doc.data().price;
     
     })
-   /*  this.dbUsers.doc(this.quotes.hOwnerUID).onSnapshot((doc) => {
-    
-        //this.quotes.ownerAddress = doc.data().ownerAddress;
-        //console.log(doc.data());
-        this.quotes.ownerName = doc.data().fullName;
-        // this.quotes.price = Number(doc.data().price) * (this.length*this.width*this.height)*2 + (Number(doc.data().price) * (this.length*this.width*this.height)*2)*.15;
-     
-    }) */
+ 
 
   }
   public handleAddressChange(addr: Address) {
@@ -299,23 +264,18 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
     
     
   } 
-  test(){
-   
-   
-    this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100)
-    this.quotes.total = ((this.quotes.price * this.quotes.meter) - (this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)) + (this.value) * this.quotes.discountAmount/100 ;
-    console.log(this.quotes.total);
-    console.log( this.quotes.subtotal);
-  }
+ 
   
   createPdf() {
     /* calculations */
     
     /* discount amount of extras */
+    this.quotes.overallHouse = ((this.quotes.price * this.quotes.meter) - ((this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)));
     this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount/100) 
-    this.quotes.total = ((this.quotes.price * this.quotes.meter) - (this.quotes.price * this.quotes.meter) * (this.quotes.discount/100)) + (this.value) * this.quotes.discountAmount/100 ;
-    this.quotes.discountPrice = (this.value) * this.quotes.discountAmount/100
-    console.log(this.quotes.total);
+    this.quotes.total = ((this.quotes.price * this.quotes.meter) - ((this.quotes.price * this.quotes.meter) * (this.quotes.discount/100))) + this.quotes.subtotal;
+    this.quotes.discountPrice = (this.value) * this.quotes.discountAmount/100;
+    console.log('total with extras: ',this.quotes.total, 'total without extras:', this.quotes.subtotal);
+
     
     var items = this.extras.map((item) => {
     
@@ -377,19 +337,24 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
             body: [
               [
                 '',
-                'Subtotal(of extras)',
-                'R' + this.quotes.subtotal.toFixed(2),
+                'Overall House Price(excl extras)',
+                'R' + this.quotes.overallHouse
               ],
               [
                 '',
-                'Discount(extras)',
-                'R' + this.quotes.discountPrice.toFixed(2),
+                'Subtotal(of extras)',
+                'R' + this.quotes.subtotal,
+              ],
+              [
+                '',
+                'Discount(of extras)',
+                'R' + this.quotes.discountPrice,
               ],
               
               [
                 '',
                 'Total(incl. extras)',
-                'R' + this.quotes.total.toFixed(2),
+                'R' + this.quotes.total,
               ]
             ]
           },
@@ -412,6 +377,7 @@ this.dbRequest.doc(this.userMsg).onSnapshot((res)=>{
         },
         subheader: {
           fontSize: 20,
+            widths: ['*', 75, 75],
           bold: true,
           margin: [0, 20, 0, 5]
         },
