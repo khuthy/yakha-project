@@ -1,4 +1,4 @@
-
+<!-- 
 
 <ion-content>
 
@@ -8,7 +8,7 @@
         </div>
     <div class="message">
       <div class="details">
-        <!-- <img *ngIf="profilePic" src="{{profilePic}}" class="images" alt="thumb"> -->
+       
         <img src="../../assets/imgs/Construction ncf-psp_516_d2210.jpg" class="images" alt="thumb">
         <div class="title">
           <h2>{{profName}}</h2>
@@ -69,4 +69,42 @@
       </ion-fab>  
   </div>
 
+</ion-content> -->
+
+<!-- new design -->
+<ion-content>
+  <div class="container">
+    <div class="info-container">
+       <div class="logo" padding>
+          <img src="../../assets/imgs/logo.png" style="max-width: 100px; height: auto">
+          <p>Hello buildername</p>
+        </div>
+
+        <div class="content">
+        <h5>Project should be complete between this dates please</h5>
+        <p>Start date   :</p>
+        <p>End  date   :</p>
+
+        <h5>My brick wall type is   : </h5>
+        <h5>I chose this wall type   : </h5>
+          <!-- extras -->
+        <h5>I also need the following done</h5>
+        <p></p>
+        
+        <button ion-button >View my houseplan here</button>
+        </div>
+    </div>
+     
+        <div class="swiper-container">
+                  <button ion-button  (click)="change()">change</button>
+            <div (click)="expand()" [ngClass]="{'old': toggle, 'new': !toggle}"class="old">
+          
+            </div>
+        </div>
+        
+          
+        <ion-fab right bottom *ngIf="builda">
+            <button ion-fab color="button2" (click)="quotesForm(docID)"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>  
+  </div>
 </ion-content>

@@ -3,11 +3,11 @@
      
  <div  class="image">
         <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: 'Roboto','Segoe UI'">Tell us a little about yourself</h4>
-      
+      <h5>Upload your image here</h5>
       <div class="thumb">
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
        <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
- <img *ngIf="!profileImage" width="75%"  src="../../assets/imgs/placeholder.png" (click)="selectImage()" class="thumb">
+ <img *ngIf="!profileImage" width="3vh" src="../../assets/imgs/placeholder.png" (click)="selectImage()" class="thumb">
 
       </div>
        
@@ -94,8 +94,67 @@
 
 <!-- view profile -->
 <div class="container" *ngIf="isProfile">
- 
-  <div class="profiles" >
+<div style="display: flex;">
+    
+        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="arrow-back"></ion-icon></button>
+   
+       <H5 style="text-align: center;width:80%">Your Profile</H5>
+</div>
+
+  <div class="holder">
+ <div class="background">
+   <h5 style="color: white">{{HomeOwnerProfile.fullName}}</h5>
+   <div class="propic">
+      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" (click)="viewProfile(HomeOwnerProfile.image)" class="thumbavatar">
+      <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
+    </div>
+    <!-- info starts here -->
+   <div class="info">
+     <!-- gender -->
+     <div style="display:flex; text-align: center; justify-content:center; align-items: center">
+        <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray">
+        <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{HomeOwnerProfile.gender}}</h5>
+     </div>
+<!-- phone numbers -->
+     <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
+        <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon>
+        <h5 style="padding-left:6%;font-size: 2.5vh">{{HomeOwnerProfile.personalNumber}}</h5>
+     </div>
+
+     
+    <!-- bio -->
+         <h5 style="text-align: center; padding-top:3%">About me</h5>
+         <p style="text-align: center;letter-spacing: 1px; padding:1%">  {{HomeOwnerProfile.About}} </p>
+
+<!-- address -->
+         <div id="address">
+          <p style="border: 1px sold green"> 
+           <ion-icon name="pin" style="color:#3c7f8b;font-size: 4vh" ></ion-icon>
+          </p>
+               <p >{{HomeOwnerProfile.ownerAddress}}</p>
+         </div>
+
+       <!--   <p style="1px solid pink"> {{HomeOwnerProfile.profile}} </p> -->
+      
+
+    <ion-fab right bottom>
+        <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
+      </ion-fab>
+
+      <ion-fab left bottom>
+          <button ion-fab style="background: green" ><ion-icon name="call" (click)="callJoint(HomeOwnerProfile.personalNumber)"></ion-icon></button>
+        </ion-fab>
+      
+
+        
+      
+
+        
+   </div>
+ </div>
+  </div>
+
+  <!-- <div class="profiles" >
    <div class="back">
      <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
    </div>
@@ -117,12 +176,16 @@
        <ion-fab right bottom>
         <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>
-     <!--   <div class="details" style="border: red">
+       <div class="details" style="border: red">
          <p (click)="callJoint(HomeOwnerProfile.personalNumber)"><ion-icon name="call"></ion-icon></p>
         
-       </div> -->
+       </div> 
     
-    </div>
+    </div> -->
+
+    <!-- new design profile -->
+
+
     </div>
 <!-- profile -->
 

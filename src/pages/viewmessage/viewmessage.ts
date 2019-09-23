@@ -208,6 +208,13 @@ downloadAndOpenPdf() {
    // let homeOwner = '';
    
   }
+  toggle:boolean = true;
+  change(){
+    this.toggle = !this.toggle;
+  }
+  expand(){
+    alert('hi');
+  }
   download(){
     if(this.quoteDoc!='')
   //  var blob = new Blob([buffer], { type: 'application/pdf' });

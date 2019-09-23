@@ -3,7 +3,10 @@
 <ion-content>
   <div class="container">
     <div class="logo">
-      <img src="../../assets/imgs/log.png" height="50%">
+        <ion-fab top left>
+        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;color: white;" name="arrow-back"></ion-icon></button>
+      </ion-fab>
+        <img src="../../assets/imgs/log.png" height="50%">
     </div>
 
     <div class="inputs" *ngIf="!data">

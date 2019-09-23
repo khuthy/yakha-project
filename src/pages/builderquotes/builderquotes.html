@@ -65,15 +65,22 @@
                </ion-item>
       <p style="padding: 3%;text-align: end;">Overall house price: <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span></p>
       </div>
-</div>
+
+    </div>
+    
+    <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
+<!-- </div> -->
     <p>Specify the price of the extras included by the owner</p>
     <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;" *ngFor="let item of extras; let i=index;">
        <h5 style="text-align: center;">{{item.item}}</h5>
        <div class="parent2">
         <div class="price">
-          <ion-item style="width: 40%;margin-left: -2%; box-shadow: none; background: transparent; display: flex;" >
-            <ion-label stacked>Price</ion-label>
-            <ion-input type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)"></ion-input>
+          <!-- extras -->
+            <ion-item style="    box-shadow: inset transparent;border-bottom:1px solid white;width: 40%;margin-left: 2%;padding-left: 3%; box-shadow: none;border-radius: 5px; background: transparent; display: flex;" >
+            <ion-label stacked style="padding-top:9px">Price</ion-label>
+            <ion-input style="border-radius:50px;background: #528d97;text-align:center;padding-left:10px;color:white" type="number" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)">
+     
+            </ion-input>
           </ion-item>
          <!-- fabs -->
           <div>
