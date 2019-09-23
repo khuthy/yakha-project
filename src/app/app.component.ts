@@ -36,6 +36,7 @@ export class MyApp {
   
 
   constructor(public platform: Platform, public splashScreen: SplashScreen) {
+    
     this.initializeApp();
    firebase.initializeApp(firebaseConfig);
    this.db = firebase.firestore().collection('Users');
