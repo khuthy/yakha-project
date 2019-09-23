@@ -2,6 +2,7 @@ import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { HomePage } from '../pages/home/home';
 import * as firebase from 'firebase/app';
 import { firebaseConfig } from './app.firebase.config';
