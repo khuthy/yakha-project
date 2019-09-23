@@ -1,3 +1,12 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-toolbar>
+      <ion-title>Quotation Request</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+
 <!-- 
 
 <ion-content>
@@ -76,35 +85,76 @@
   <div class="container">
     <div class="info-container">
        <div class="logo" padding>
+           <p>Hello  {{profName}}</p>
           <img src="../../assets/imgs/logo.png" style="max-width: 100px; height: auto">
-          <p>Hello buildername</p>
+          <h5 id="descript" style="color: white">Requirements for this project</h5>
+
         </div>
 
-        <div class="content">
-        <h5>Project should be complete between this dates please</h5>
-        <p>Start date   :</p>
-        <p>End  date   :</p>
+        <div class="content" >
+          <!-- start date -->
+          <div class="class">
+              <h5 >Start date   : </h5>
+              <p style="margin-left: 10%"> {{startDate}}</p>
+          </div>
+          
+           <!-- end date -->
+ <div class="class">
+    <h5>End date   : </h5>
+    <p style="margin-left: 10%"> {{endDate}}</p>
+</div>
 
-        <h5>My brick wall type is   : </h5>
-        <h5>I chose this wall type   : </h5>
-          <!-- extras -->
-        <h5>I also need the following done</h5>
-        <p></p>
+ <!-- wall wall type -->
+ <div class="class">
+    <h5>Wall type</h5>
+    <p style="margin-left: 10%"> {{wallType}}</p>
+</div>
+
+ <!-- brick type -->
+ <div class="class">
+    <h5 >Brick  : </h5>
+    <p style="margin-left: 10%"> {{brickType}}</p>
+</div>
+
+       <!-- 
+        <h5 class="class">End  date   :  <span></span></h5>
+
+        <h5 class="class">My brick wall type is   :<p> {{wallType}}</p> </h5>
+        <h5 class="class">I chose this wall type   : <span>{{brickType}}</span></h5>
+           --><!-- extras -->
         
-        <button ion-button >View my houseplan here</button>
+           <h5 style="text-align: center;padding:1%">I also need the following done</h5>
+        
+        <div class="extras">
+             <p style="" id="looping" *ngFor="let e of extras">{{e}}</p>
+        </div>
+         
+        
+     
         </div>
     </div>
      
-        <div class="swiper-container">
-                  <button ion-button  (click)="change()">change</button>
-            <div (click)="expand()" [ngClass]="{'old': toggle, 'new': !toggle}"class="old">
-          
-            </div>
+ 
+   <div   [ngClass]="{'old': toggle, 'new': !toggle}"class="old">
+        <button class="btn-create" color="yakha" *ngIf="toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropup" style="color:white;font-size:4vh;"></ion-icon></button>
+          <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown" style="color:white;font-size:4vh;"></ion-icon></button>
+          <div class="swipe-content" *ngIf="!toggle">
+          <div class="image">
+              <img src="{{houseImage}}"  (click)="viewHouse(houseImage)" alt="house plan">
+          </div>
+          <div class="message">
+        <p>   {{comment}}</p>
+          </div>
+         
+
+          <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
+          </div>
+
         </div>
         
           
-        <ion-fab right bottom *ngIf="builda">
-            <button ion-fab color="button2" (click)="quotesForm(docID)"><ion-icon name="create" ></ion-icon></button>
-          </ion-fab>  
+        <!-- <ion-fab right bottom *ngIf="builda">
+            <button ion-fab color="light"><ion-icon name="create" ></ion-icon></button>
+          </ion-fab>  --> 
   </div>
 </ion-content>
