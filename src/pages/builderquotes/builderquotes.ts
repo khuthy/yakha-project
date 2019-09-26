@@ -412,7 +412,7 @@ this.pdfObj = pdfMake.createPdf(docDefinition);
         console.log(results);
      }) */
 
-
+     this.navCtrl.setRoot(SuccessPage)
   }
   // selectFile() {
 

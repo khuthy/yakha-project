@@ -2,9 +2,6 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-
-
-// import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import * as firebase from 'firebase';
@@ -12,17 +9,11 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { WelcomePage } from '../welcome/welcome';
-//import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
-import { VerifyemailPage } from '../verifyemail/verifyemail';
+
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
 import { state, trigger, transition, animate, style } from '@angular/animations';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
