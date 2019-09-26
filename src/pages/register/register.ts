@@ -2,13 +2,13 @@ import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
-import { UserProvider } from '../../providers/user/user';
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountSetupPage } from '../account-setup/account-setup';
 import * as firebase from 'firebase';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BaccountSetupPage } from '../baccount-setup/baccount-setup';
-import { VerifyemailPage } from '../verifyemail/verifyemail';
+
 
 
 /**

@@ -6,7 +6,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import { WelcomePage } from '../welcome/welcome';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
-import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
@@ -535,17 +534,7 @@ export class HomePage implements OnInit {
     }
   }
   ionViewDidLoad() {
-    // console.log(this.person);
-
-    /* 
-    for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
-      let background = i % 2;
-      if(background) {
-
-      }else {
-
-      }
-    } */
+    
 
     if (this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -594,36 +583,14 @@ export class HomePage implements OnInit {
         })
 
 
-      /*   setTimeout(() => {
-          // this.getOwners();
-          let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
-          let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
-          for (var i = 0; i < cards; i++) {
-            console.log('for running');
-
-            let background = i % 2;
-
-            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
-            let randomColor = Math.floor((Math.random() * colors.length));
-            if (background) {
-              console.log(cards);
-
-              this.renderer.setStyle(cards, 'background', colors[randomColor])
-            } else {
-              console.log(cards);
-              this.renderer.setStyle(cards, 'background', colors[randomColor])
-            }
-          }
-          console.log('for done');
-          console.log(cards);
-        }, 500) */
+     
 
 
 
 
       })
 
-      // console.log('Owners: ', this.owner);
+      
     });
 
   }
@@ -638,13 +605,10 @@ export class HomePage implements OnInit {
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-  // viewRoom(room){
-  //   // receive the room data from the html and navigate to the next page with it
-  //   this.navCtrl.push(OwnerViewHotelPage, {room});
+  
+  // viewOwner(owner) {
+  //   this.navCtrl.push(HomeOwnerProfilePage, owner);
   // }
-  viewOwner(owner) {
-    this.navCtrl.push(HomeOwnerProfilePage, owner);
-  }
   showSearch() {
 
     let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
