@@ -1,4 +1,4 @@
-import { Quotations, WallType, Extra, Comments } from "./bricks"
+import { Quotations, WallType, Extra, Comments, Information } from "./bricks"
 
 
 export const brickType : Quotations[] = [
@@ -31,3 +31,12 @@ export const comment: Comments[] = [
     {comment: 'I will not be around during working days'},
     {comment: ''}
 ];
+export const Informations: Information[] =  [
+    {icon: 'information-circle', info: 'About Us', description: ''}, 
+    {icon: 'information-circle', info: 'Terms Of Use', description: ''}, 
+    {icon: 'information-circle', info: 'Legal Information', description: ''}, 
+    {icon: 'information-circle', info: 'Open Source Licenses', description: ''},
+    {icon: 'logo-google',        info: 'Google Legal', description: ''},
+    {icon: 'information-circle', info: 'Privacy Policy', description: ''},
+    {icon: 'information-circle', info: 'Safety Information', description: ''}
+  ]

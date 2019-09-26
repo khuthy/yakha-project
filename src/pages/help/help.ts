@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
+import { Information } from '../../app/model/bricks';
+import { Informations } from '../../app/model/bricks.model';
 /**
  * Generated class for the HelpPage page.
  *
@@ -16,6 +18,7 @@ import * as firebase from 'firebase';
 })
 export class HelpPage {
   contactForm: FormGroup;
+  information: Information[] = Informations;
 
   contact =  {
     username: '',
@@ -54,6 +57,15 @@ export class HelpPage {
         this.data = doc.data().message;
       })
     })
+
+   
+   
+
+
+
+
+
+
   }
 
   ionViewDidLoad() {

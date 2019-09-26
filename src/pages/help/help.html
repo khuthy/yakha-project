@@ -1,7 +1,13 @@
 
-
-<ion-content>
-  <div class="container">
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-toolbar>
+      <ion-title>Help</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <!-- <div class="container">
     <div class="logo">
         <ion-fab top left>
         <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;color: white;" name="arrow-back"></ion-icon></button>
@@ -50,6 +56,25 @@
         <div>{{msg.message}}</div>
       </div>
     </div>
+  </div> -->
+
+  <h1 style="text-align: center">Yakha App</h1>
+  <p style="text-align: center">Verson 1.0</p>
+
+ <br>
+
+<div class="box">
+  <div class="card" *ngFor="let info of information">
+    <ion-icon name="{{info.icon}}"></ion-icon>
+    <p>{{info.info}}</p>
   </div>
+  
+</div>
+
+
 
 </ion-content>
+<ion-footer>
+  <p style="text-align: center;">Copyright 2019 by CodeTribe Soweto</p>
+  <p style="text-align: center;">All Rights Reserved</p>
+</ion-footer>
