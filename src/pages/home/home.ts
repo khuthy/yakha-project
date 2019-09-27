@@ -55,8 +55,12 @@ export class HomePage implements OnInit {
   ownerImage: any;
   bUID: string;
   price = 0;
-  display: string = 'none';
-  range: string = 'none';
+  
+  /* Search variables */
+  location = false;
+  name = false;
+  range = false;
+  /* Search variebles */
   constructor(public navCtrl: NavController,
     private modalCtrl: ModalController,
     public loader: LoadingController,
@@ -71,6 +75,23 @@ export class HomePage implements OnInit {
 
   ) {
   }
+
+  LocationSearch() {
+    this.location = !this.location;
+    this.name = false;
+    this.range = false;
+  }
+  nameSearch() {
+    this.name = !this.name;
+    this.location = false;
+    this.range = false;
+  }
+  RangeSearch() {
+    this.range = !this.range;
+    this.name = false;
+    this.location = false;
+  }
+
   ngOnInit() {
 
 
@@ -489,8 +510,9 @@ export class HomePage implements OnInit {
   }
 
   search(event) {
-    let searchKey: string = event.value;
-    let firstLetter = searchKey;
+    let searchKey: string = event;
+    
+       let firstLetter = searchKey;
     this.builder = [];
     this.db.where('fullName', '==', firstLetter)
       .where('builder', '==', true)
@@ -516,6 +538,8 @@ export class HomePage implements OnInit {
         }
 
       })
+    
+   
   }
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -606,38 +630,9 @@ export class HomePage implements OnInit {
     this.navCtrl.push(ViewmessagePage, user);
   }
   
-  // viewOwner(owner) {
-  //   this.navCtrl.push(HomeOwnerProfilePage, owner);
-  // }
-  showSearch() {
-
-    let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
-    if (this.display == 'none') {
-      this.display = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    } else {
-      this.display = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
 
 
-  }
- 
-  showRangeSearch() {
 
-    let search = this.elementref.nativeElement.children[1].children[1].children[2];
-    console.log(search);
-
-    if (this.range == 'none') {
-      this.range = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    } else {
-      this.range = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-
-
-  }
 
   moveMapEvent() {
     let currentIndex = this.slides.getActiveIndex();

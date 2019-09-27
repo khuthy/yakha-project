@@ -18,26 +18,41 @@
        <button class="menus"  ion-button clear menuToggle>
         <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
       </button>
+     <!-- Search by location --> 
+   <input type="text" id="search" class="controls" *ngIf="location"  placeholder="Search by Location" > 
+   <!-- Search by range -->
+   
+
+   <!-- Search by name -->
       
-   <input type="text" id="search" class="controls"  placeholder="Search by location" >  
-      <ion-fab right>
-        <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
+           <input *ngIf="name" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
+    
+
+  
+      
+      
+ 
+      <ion-fab right style="align-self:center; justify-self: flex-end">
+        <button class="searching" ion-fab mini><ion-icon name="search"></ion-icon></button>
         <ion-fab-list>
-          <button ion-fab style="background-color: chocolate; color: white; font-size: 30px;" (click)="showSearch()"><ion-icon  name="search"></ion-icon></button>
-          <button ion-fab style="background-color: chocolate; color: white; font-size: 30px;" (click)="showRangeSearch()"><ion-icon name="logo-usd"></ion-icon></button>
+          <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="LocationSearch()"><ion-icon  name="search"></ion-icon></button>
+          <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="nameSearch()"><ion-icon name="person"></ion-icon></button>
+          <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="RangeSearch()"><ion-icon name="cash"></ion-icon></button>
         </ion-fab-list>
       </ion-fab>
      </div>
+       <ion-item no-lines *ngIf="range">
+     <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
+      <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
+      <ion-label range-left>{{0 | currency:'&#82;'}}</ion-label>
+      <ion-label range-right>{{1000 | currency:'&#82;'}}</ion-label>
+    </ion-range>
+     </ion-item>
     
    </div> 
    
-   <ion-item class="list" *ngIf="maps">
-      <ion-input  (ionChange)='search($event)' style="background-color: antiquewhite" placeholder="Search by name"></ion-input>
-    <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
-      <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
-      <ion-label range-left>R0</ion-label>
-      <ion-label range-right>R1000</ion-label>
-    </ion-range>
+   <ion-item *ngIf="maps">
+      
   </ion-item> 
  
   <div class="slider" *ngIf="maps">
