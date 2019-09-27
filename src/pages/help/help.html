@@ -58,21 +58,59 @@
     </div>
   </div> -->
 
-  <h1 style="text-align: center">Yakha App</h1>
+
+<div class="container">
+    <h1 style="text-align: center">Yakha App</h1>
   <p style="text-align: center">Verson 1.0</p>
 
- <br>
-
 <div class="box">
-  <div class="card" *ngFor="let info of information">
+  <div class="card" *ngFor="let info of information;let i=index;" (click)="showDetails(i)">
     <ion-icon name="{{info.icon}}"></ion-icon>
     <p>{{info.info}}</p>
-    <div class="description">
-      <h3>{{info.info}}</h3>
-      <p>{{info.description}}</p>
-    </div>
   </div>
-  
+
+
+   <div [ngClass]="{'show': toggle, 'hide': !toggle}">
+     <div class="close">
+       <button ion-button clear (click)="hideInfo()"><ion-icon name="close"></ion-icon></button>
+     </div>
+     
+      <h3>{{info}}</h3>
+      <p>{{describe}}</p>
+      <div class="form" *ngIf="form">
+      <form [formGroup]="contactForm">
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text" formControlName="username" [(ngModel)]="contact.username"></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.username">
+          <div class="messages" *ngIf="contactForm.get('username').hasError(validate.type) && (contactForm.get('username').dirty || contactForm.get('username').touched)">
+            {{validate.message}}
+          </div>
+          </div>
+        <ion-item>
+          <ion-label floating>Email address</ion-label>
+          <ion-input type="email" formControlName="email" [(ngModel)]="contact.email"></ion-input>
+        </ion-item>
+        <div class="error" *ngFor="let validate of validation_messages.email">
+          <div class="messages" *ngIf="contactForm.get('email').hasError(validate.type) && (contactForm.get('email').dirty || contactForm.get('email').touched)">
+            {{validate.message}}
+          </div>
+          </div>
+        <ion-item>
+          <ion-label floating> Type Message </ion-label>
+          <ion-textarea  formControlName="message" [(ngModel)]="contact.message">
+    
+          </ion-textarea>
+          
+        </ion-item>
+       
+
+      </form>
+      </div>
+     
+    </div>
+</div>
 </div>
 
 

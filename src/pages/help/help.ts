@@ -19,7 +19,7 @@ import { Informations } from '../../app/model/bricks.model';
 export class HelpPage {
   contactForm: FormGroup;
   information: Information[] = Informations;
-
+  toggle: boolean = false;
   contact =  {
     username: '',
     email: firebase.auth().currentUser.email,
@@ -44,6 +44,9 @@ export class HelpPage {
   };
   feedMsg=[];
   data;
+  form: boolean;
+  describe: string;
+  info: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
     this.contactForm = this.formBuilder.group({
       username: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
@@ -70,6 +73,17 @@ export class HelpPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HelpPage');
+  }
+
+  showDetails(i) {
+    this.toggle = !this.toggle;
+    this.info = this.information[i].info;
+    this.describe = this.information[i].description;
+    this.form = this.information[i].form;
+    
+  }
+  hideInfo() {
+    this.toggle = false;
   }
 sendMessage(){
   this.dbContact.add({

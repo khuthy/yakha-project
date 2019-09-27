@@ -32,11 +32,11 @@ export const comment: Comments[] = [
     {comment: ''}
 ];
 export const Informations: Information[] =  [
-    {icon: 'information-circle', info: 'About Us', description: ''}, 
-    {icon: 'information-circle', info: 'Terms Of Use', description: ''}, 
-    {icon: 'information-circle', info: 'Legal Information', description: ''}, 
-    {icon: 'information-circle', info: 'Open Source Licenses', description: ''},
-    {icon: 'logo-google',        info: 'Google Legal', description: ''},
-    {icon: 'information-circle', info: 'Privacy Policy', description: ''},
-    {icon: 'information-circle', info: 'Safety Information', description: ''}
+    {icon: 'information-circle', info: 'About Us', description: '', form: false}, 
+    {icon: 'information-circle', info: 'Contact Us', description: '', form: true}, 
+    {icon: 'information-circle', info: 'Legal Information', description: '', form: false}, 
+    {icon: 'information-circle', info: 'Open Source Licenses', description: '', form: false},
+    {icon: 'logo-google',        info: 'Google Legal', description: '', form: false},
+    {icon: 'information-circle', info: 'Privacy Policy', description: '', form: false},
+    {icon: 'information-circle', info: 'Safety Information', description: '', form: false}
   ]

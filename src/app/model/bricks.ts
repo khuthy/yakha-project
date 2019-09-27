@@ -21,4 +21,5 @@ export interface Information {
    icon: string;
    info: string;
    description: string;
+   form: boolean;
 }
