@@ -1,10 +1,7 @@
 page-home {
     
 
-  ::marker {
-    color: blue;
-    font-size: 1.2em;
-  }
+  
 
  
   .scroll-content {
@@ -15,11 +12,11 @@ page-home {
      display: flex;
       width: 100%;
       justify-content: flex-start;
-      //border: 1px solid red;
+    
    }
    .control > input {
       order: 2;
-      display: none;
+      display: block;
       width: 70%;
    }
    .control > .menus {
@@ -36,8 +33,9 @@ page-home {
     box-shadow: 0 3px 6px rgba(95, 95, 95, 0.103);
     //box-shadow: 0 3px 6px #0000002c;
     font-size: 16px;
-  
-    border-radius: 50px;
+    background: #fff;
+    border-radius: 20px;
+    justify-self: center;
   }
   .btn-menu {
     position: relative;
@@ -49,12 +47,14 @@ page-home {
       font-size: 20px;
     }
   }
-  .btn-fab {
+/*   .btn-fab {
     position: absolute;
     right: -9px;
     top: -9px;
-  } 
-  
+  } */ 
+  .list {
+    margin: 0 auto;
+  }
   .menu {
  
     position: absolute;
@@ -74,6 +74,9 @@ page-home {
    bottom: 30%;
    display: none;
   
+ }
+ .hide {
+   display: none;
  }
   
   #map{
