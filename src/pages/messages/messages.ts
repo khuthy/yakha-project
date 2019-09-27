@@ -54,7 +54,7 @@ export class MessagesPage {
     })
   }
 
-  ionViewDidLoad() {
+ /*  ionViewDidLoad() {
     setTimeout(()=> {
       // this.getOwners();
      let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
@@ -80,7 +80,7 @@ export class MessagesPage {
      }, 500)
   // console.log(this.honwerUID);
   
-  }
+  } */
   downloadPDF(){
     this.fileOpener.open(this.qDoc, 'application/pdf')
     .then(() => console.log('File is opened'))

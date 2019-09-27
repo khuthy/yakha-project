@@ -1,5 +1,5 @@
 import { BaccountSetupPage } from './../baccount-setup/baccount-setup';
-import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, ViewChildren, Renderer2, QueryList } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform, Slides, PopoverController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -11,6 +11,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+
 declare var google;
 
 @Component({
@@ -25,6 +26,7 @@ export class HomePage implements OnInit {
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
   @ViewChild(Slides) slides: Slides;
+  @ViewChildren('bgColor', {read: ElementRef}) btn : QueryList<ElementRef>;
   person;
   //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
@@ -39,6 +41,7 @@ export class HomePage implements OnInit {
   info = false;
   builder = [];
   owner = [];
+  colors=[{coL:"#7b557f"},{col:"#7b558G"},{col:"#23557f"},{col:"#88557f"},{col:"#7b747f"}];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -71,7 +74,10 @@ export class HomePage implements OnInit {
     private localNotifications: LocalNotifications
 
   ) {
+    
+   
   }
+
   ngOnInit() {
 
 
@@ -580,21 +586,33 @@ export class HomePage implements OnInit {
         });
         this.requestFound = '';
         //  this.ownerUID = doc.data().uid; 
-
+       
 
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
           data.builder = doc.data();
-          // console.log(res.data());
+           console.log(res.data());
           this.owner.push(data);
           data = {
             builder: {},
             owner: {}
           }
+
+         
         })
+        console.log(this.btn.setDirty);
+        
+         this.btn.forEach(element => {
+          let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', ''];
+          let randomColor = Math.floor((Math.random() * colors.length));
+          this.renderer.setStyle(element, 'background', colors[randomColor]);
+          console.log('modany',element.nativeElement);
+          
+        }); 
+       
 
 
-      /*   setTimeout(() => {
+         setTimeout(() => {
           // this.getOwners();
           let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
@@ -603,7 +621,7 @@ export class HomePage implements OnInit {
 
             let background = i % 2;
 
-            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
+            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[0].children[2].children[i]
             let randomColor = Math.floor((Math.random() * colors.length));
             if (background) {
               console.log(cards);
@@ -616,7 +634,7 @@ export class HomePage implements OnInit {
           }
           console.log('for done');
           console.log(cards);
-        }, 500) */
+        }, 500) 
 
 
 

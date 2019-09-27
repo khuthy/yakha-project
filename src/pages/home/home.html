@@ -75,7 +75,7 @@
 
 
 <div class="homebuilder" *ngIf="request" >
-  <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
+  <div class="cards" *ngFor="let o of owner"   (click)="viewRequest(o.builder)">
   
     <div class="images">
     <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
