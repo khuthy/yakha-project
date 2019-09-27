@@ -51,9 +51,9 @@
       <div class="parent">
       <h5>Pricing of the overall house</h5>
 
-        <ion-item>
+        <ion-item >
             <ion-label stacked>Your Price p/m2</ion-label>
-            <ion-input disabled placeholder="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
+            <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
           </ion-item>
             <ion-item>
                 <ion-label stacked>Enter total of metres here</ion-label>
@@ -67,8 +67,7 @@
       </div>
 
     </div>
-    
-    <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
+     <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
 <!-- </div> -->
     <p>Specify the price of the extras included by the owner</p>
     <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;" *ngFor="let item of extras; let i=index;">
