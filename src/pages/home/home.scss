@@ -100,7 +100,7 @@ page-home {
   }
   .slider {
     width: 100%;
-    height: 25%;
+    height: 28%;
     //background: red;
     position: absolute;
     bottom: 0%;
@@ -124,7 +124,10 @@ page-home {
     font-size: 10px;
     position: relative;
     top: -9px;
-
+    color:chocolate;
+  }
+  span {
+    color:chocolate;
   }
  
 
@@ -133,8 +136,8 @@ page-home {
     border-radius: 12px;
     // border: 1px solid red;
    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: white;
-    height:23vh;
+    //background: white;
+    height:25vh;
 
     .info {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -144,14 +147,14 @@ page-home {
       left:7px;
       border-radius: 10px;
       div {
-       // border: 1px solid black;
+      //  border: 1px solid black;
         height:55%;
         position: relative;
-      top:48%;
-      margin:0;
+      top:42%;
+      
      
       p {
-      //  border: 1px solid blue;
+       // border: 1px solid blue;
         text-align: left;
         padding-left: 10%;
         padding-bottom: 0;

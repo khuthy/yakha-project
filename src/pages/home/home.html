@@ -56,10 +56,10 @@
                 <img *ngIf="b.image" src="{{b.image}}" alt="tough">
             </div>
           <div class="info">
-            <div>
-               <p style="font-size:2vh;font-weight:500">{{b.fullName}}</p>
-               <p style="font-size:2vh;margin-top:-4%;font-weight:400" class="price">{{b.price|  currency:'&#82;'}}p/m<span class="squire">2</span> excluding roofing</p>
-               <p style="color:balck;margin-top:-4%;padding-top:0;font-size:2vh;padding-bottom:2%" class="stars">{{b.experiences}} years in building experience</p>
+            <div style="margin-bottom:10px">
+               <p style="font-size:2vh;font-weight:700">{{b.fullName}}</p>
+               <p style="font-size:2vh;margin-top:-4%;font-weight:400;" class="price"><span>{{b.price|  currency:'&#82;'}}p/m</span><span class="squire">2</span> excluding roofing</p>
+               <p style="color:balck;margin-top:-4%;font-size:2vh;padding-bottom:5px" class="stars">{{b.experiences}} years in building experience</p>
             </div>
          
 
