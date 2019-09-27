@@ -18,6 +18,8 @@ import { Informations } from '../../app/model/bricks.model';
 })
 export class HelpPage {
   contactForm: FormGroup;
+  appName = 'Yakha App';
+  appVersion = 'Version 1.0';
   information: Information[] = Informations;
   toggle: boolean = false;
   contact =  {
