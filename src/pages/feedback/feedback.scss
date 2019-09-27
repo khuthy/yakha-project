@@ -1,5 +1,55 @@
 page-feedback {
-    // #rating{
-    //     margin: auto;
-    // }
+ion-content {
+   // border: 1px solid red;
+
+    h3{
+        color: rgb(0, 0, 0);
+        font-family: 'Segoe UI';
+        font-size: 3vh;
+      text-align: center;
+        padding: 3%;
+        letter-spacing: 1px;
+    }
+
+    .logo {
+        width: 100%;
+        height:20%;
+       // border: 1px solid red;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+    
+    }
+
+    #ratings {
+       // border: 1px solid blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+           
+    }
+    .content {
+       // border: 1px solid red;
+        height:45%;
+    }
+
+    .wave {
+        background-image: url(../../assets/imgs/wave.svg);
+        background-size: cover;
+        height:35%;
+        margin: 0;
+       
+      //  background-position: center center;
+        background-repeat: no-repeat;
+       // margin: auto;
+       // display: flex;
+       // flex-direction: column;
+       // align-items: center;
+        //justify-content: center;
+       // align-content: center;
+    }
+ 
+}
+
+
 }

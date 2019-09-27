@@ -94,11 +94,18 @@
 
 <!-- view profile -->
 <div class="container" *ngIf="isProfile">
+
+  <!--   <ion-header>
+        <ion-navbar color="primary">
+          <ion-title>version</ion-title>
+        </ion-navbar>
+      </ion-header> -->
+
 <div style="display: flex;">
     
-        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="arrow-back"></ion-icon></button>
+        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="close-circle-outline"></ion-icon></button>
    
-       <H5 style="text-align: center;width:80%">Your Profile</H5>
+       <H4 style="text-align: center;width:80%">Your Profile</H4>
 </div>
 
   <div class="holder">
@@ -112,12 +119,12 @@
    <div class="info">
      <!-- gender -->
      <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-        <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray">
+   <!--      <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray"> -->
         <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{HomeOwnerProfile.gender}}</h5>
      </div>
 <!-- phone numbers -->
      <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-        <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon>
+   <!--      <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon> -->
         <h5 style="padding-left:6%;font-size: 2.5vh">{{HomeOwnerProfile.personalNumber}}</h5>
      </div>
 
@@ -153,40 +160,7 @@
    </div>
  </div>
   </div>
-
-  <!-- <div class="profiles" >
-   <div class="back">
-     <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25 px;" name="arrow-back"></ion-icon></button>
-   </div>
-      <div class="avatar-images">
-      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" (click)="viewProfile(HomeOwnerProfile.image)" class="thumbavatar">
-      <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
-    </div>
-    
-         <h4 >{{HomeOwnerProfile.fullName}}</h4>
-       <div class="fifi">
-         <h5 style="text-align: center;" color="button2">{{HomeOwnerProfile.gender}}</h5>
-         <h5 style="text-align: center;">About me</h5>
-         <p style="text-align: center;color: rgb(195, 190, 190);letter-spacing: 1px">  {{HomeOwnerProfile.About}} </p>
-        
-         <p> {{HomeOwnerProfile.profile}} </p>
-        </div>
-           
-        
-       <ion-fab right bottom>
-        <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
-      </ion-fab>
-       <div class="details" style="border: red">
-         <p (click)="callJoint(HomeOwnerProfile.personalNumber)"><ion-icon name="call"></ion-icon></p>
-        
-       </div> 
-    
-    </div> -->
-
-    <!-- new design profile -->
-
-
-    </div>
+</div>
 <!-- profile -->
 
 </ion-content>

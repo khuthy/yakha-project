@@ -1,16 +1,16 @@
 import { BaccountSetupPage } from './../baccount-setup/baccount-setup';
-import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, ViewChildren, Renderer2, QueryList } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform, Slides, PopoverController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import { WelcomePage } from '../welcome/welcome';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
-import { HomeOwnerProfilePage } from '../home-owner-profile/home-owner-profile';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+
 declare var google;
 
 @Component({
@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
   @ViewChild(Slides) slides: Slides;
+  @ViewChildren('bgColor', {read: ElementRef}) btn : QueryList<ElementRef>;
   person;
   //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
@@ -39,6 +40,7 @@ export class HomePage implements OnInit {
   info = false;
   builder = [];
   owner = [];
+  colors=[{coL:"#7b557f"},{col:"#7b558G"},{col:"#23557f"},{col:"#88557f"},{col:"#7b747f"}];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -56,8 +58,12 @@ export class HomePage implements OnInit {
   ownerImage: any;
   bUID: string;
   price = 0;
-  display: string = 'none';
-  range: string = 'none';
+  
+  /* Search variables */
+  location = false;
+  name = false;
+  range = false;
+  /* Search variebles */
   constructor(public navCtrl: NavController,
     private modalCtrl: ModalController,
     public loader: LoadingController,
@@ -71,7 +77,26 @@ export class HomePage implements OnInit {
     private localNotifications: LocalNotifications
 
   ) {
+    
+   
   }
+
+  LocationSearch() {
+    this.location = !this.location;
+    this.name = false;
+    this.range = false;
+  }
+  nameSearch() {
+    this.name = !this.name;
+    this.location = false;
+    this.range = false;
+  }
+  RangeSearch() {
+    this.range = !this.range;
+    this.name = false;
+    this.location = false;
+  }
+
   ngOnInit() {
 
 
@@ -490,8 +515,9 @@ export class HomePage implements OnInit {
   }
 
   search(event) {
-    let searchKey: string = event.value;
-    let firstLetter = searchKey;
+    let searchKey: string = event;
+    
+       let firstLetter = searchKey;
     this.builder = [];
     this.db.where('fullName', '==', firstLetter)
       .where('builder', '==', true)
@@ -517,6 +543,8 @@ export class HomePage implements OnInit {
         }
 
       })
+    
+   
   }
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -535,17 +563,7 @@ export class HomePage implements OnInit {
     }
   }
   ionViewDidLoad() {
-    // console.log(this.person);
-
-    /* 
-    for(var i = 0; i < this.elementref.nativeElement.children[1].children[1].childElementCount; i++) {
-      let background = i % 2;
-      if(background) {
-
-      }else {
-
-      }
-    } */
+    
 
     if (this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -580,21 +598,33 @@ export class HomePage implements OnInit {
         });
         this.requestFound = '';
         //  this.ownerUID = doc.data().uid; 
-
+       
 
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
           data.builder = doc.data();
-          // console.log(res.data());
+           console.log(res.data());
           this.owner.push(data);
           data = {
             builder: {},
             owner: {}
           }
+
+         
         })
+        console.log(this.btn.setDirty);
+        
+         this.btn.forEach(element => {
+          let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', ''];
+          let randomColor = Math.floor((Math.random() * colors.length));
+          this.renderer.setStyle(element, 'background', colors[randomColor]);
+          console.log('modany',element.nativeElement);
+          
+        }); 
+       
 
 
-      /*   setTimeout(() => {
+         setTimeout(() => {
           // this.getOwners();
           let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
@@ -603,7 +633,7 @@ export class HomePage implements OnInit {
 
             let background = i % 2;
 
-            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
+            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[0].children[2].children[i]
             let randomColor = Math.floor((Math.random() * colors.length));
             if (background) {
               console.log(cards);
@@ -616,14 +646,14 @@ export class HomePage implements OnInit {
           }
           console.log('for done');
           console.log(cards);
-        }, 500) */
+        }, 500) 
 
 
 
 
       })
 
-      // console.log('Owners: ', this.owner);
+      
     });
 
   }
@@ -638,42 +668,10 @@ export class HomePage implements OnInit {
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-  // viewRoom(room){
-  //   // receive the room data from the html and navigate to the next page with it
-  //   this.navCtrl.push(OwnerViewHotelPage, {room});
-  // }
-  viewOwner(owner) {
-    this.navCtrl.push(HomeOwnerProfilePage, owner);
-  }
-  showSearch() {
-
-    let search = this.elementref.nativeElement.children[1].children[1].children[1].children[0].children[1];
-    if (this.display == 'none') {
-      this.display = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    } else {
-      this.display = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
+  
 
 
-  }
- 
-  showRangeSearch() {
 
-    let search = this.elementref.nativeElement.children[1].children[1].children[2];
-    console.log(search);
-
-    if (this.range == 'none') {
-      this.range = 'block';
-      this.renderer.setStyle(search, 'display', 'block');
-    } else {
-      this.range = 'none';
-      this.renderer.setStyle(search, 'display', 'none');
-    }
-
-
-  }
 
   moveMapEvent() {
     let currentIndex = this.slides.getActiveIndex();

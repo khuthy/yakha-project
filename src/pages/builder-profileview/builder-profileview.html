@@ -3,15 +3,15 @@
   
       <div class="container">
           
-              <div style="display: flex;">
+              <div style="display: flex;border:1px solid green;height:8%">
       
-                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="arrow-back"></ion-icon></button>
-                  <H5 style="text-align: center;width:80%"> Profile</H5>
+                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="close-circle-outline"></ion-icon></button>
+                  <H5 style="text-align: center;width:80%;padding-top:10px;font-size:2.5vh;color:black"> Profile</H5>
               </div>
 
               <div class="holder">
                   <div class="background">
-                      <h5 style="color: white">{{dat.fullName}}</h5>
+                      <h5 style="color: white;text-align: center;padding:5%">{{dat.fullName}}</h5>
 
                       <div class="propic">
                           <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
@@ -20,24 +20,24 @@
 
                       <div class="info">
                           <!-- gender -->
-                            <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-                                <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray">
-                                <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{dat.gender}}</h5>
+                            <div style="display:flex;height:10%">
+                                <h5 style="width: 50%;color:black">Gender</h5>
+                                <p style="text-align: center;font-size: 2.1vh; padding-left:3%" color="button2">:  {{dat.gender}}</p>
                              </div>
                              <!-- experience-->
-                             <div style="display: flex">
+                             <div style="display: flex;height:10%">
                                 <h5 style="width: 50%">Experience?</h5>
                                 <p style="width: 50%">:  {{dat.experiences}} years.</p>
                             </div>
                        
                             <!-- price -->
                     
-                            <div style="display: flex">
+                            <div style="display: flex;height:10%">
                                 <h5  style="width: 50%">Price</h5>
                                 <p style=" width: 50%"> :  {{dat.price | currency:'&#82;'}}(p/&#13217;)</p>
                               </div>
                               <!-- roofing included -->
-                    <div style="display: flex">
+                    <div style="display: flex;height:10%">
                         <h5  style="width: 50%">Roofing Included?</h5>
                         <p style="width: 50%">:   {{dat.roof}}</p>
                       </div>
@@ -46,10 +46,12 @@
                     <p style="font-size: 2vh; font-family: 'Segoe UI';margin-top:0">
                         {{dat.address}}</p>
                       </div>
-                    </div>
-                  <div class="button-request">
-                      <button primary style="background:rgba(197, 101, 66, 0.966);border-radius: 5px;width:90%;position:relative;left:5%;top:5%" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
-                     </div>
+                      <div class="button-request">
+                        <button primary style="padding:1%;background:rgba(197, 101, 66, 0.966);border-radius: 5px;width:90%;position:relative;left:5%;top:10%" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
+                       </div>
+
+                    </div><!-- info closes here -->
+                 
                   </div>
 
               </div>
