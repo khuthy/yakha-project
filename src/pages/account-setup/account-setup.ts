@@ -8,6 +8,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { CallNumber } from '@ionic-native/call-number';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ProfileComponent } from '../../components/profile/profile';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -43,7 +44,8 @@ export class AccountSetupPage {
     personalNumber:'',
     About:'',
     date: Date(),
-    ownerAddress: ''
+    ownerAddress: '',
+    tokenID:''
   }
   options = {
     componentRestrictions: {
@@ -60,7 +62,8 @@ export class AccountSetupPage {
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    oneSignal: OneSignal
     ) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -72,6 +75,9 @@ export class AccountSetupPage {
       About: [''],
       address: new  FormControl('', Validators.compose([Validators.required]))
     });
+    oneSignal.getIds().then((res)=>{
+      this.HomeOwnerProfile.tokenID = res.userId;
+    })
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address ;
