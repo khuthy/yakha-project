@@ -6,11 +6,11 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>messages</ion-title>
+    <ion-title>Messages</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div class="container">
       <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
       <!--  <div class="top">
@@ -23,10 +23,10 @@
         </article>
         </div> -->
         <div class="home-builder-top">
-            <article style="margin-left: 2%;">
-              <p style="font-size: 20px;font-weight:bold;height:60%;text-align: left;margin-top: 10px;padding-left: 20px; color: #000;">{{hownerName}}</p><br> 
-              <p style="font-size: 15px;font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{ m.comment }}</p><br>
-              <p style="font-size: 10px;font-weight:300;text-align: left;margin-top: -25px;padding-left: 20px;padding-top:5px; color: #000;">{{m.date}}</p>
+            <article style="margin-left: 2%;margin-top:3%">
+              <p style="font-weight: 600;padding-top:2%;font-size:1.9vh">{{hownerName}}</p>
+              <p>{{ m.comment }}</p>
+              <p >{{m.date}}</p>
               <br> 
           </article>
         </div>

@@ -197,7 +197,7 @@ h5 {
     // new design profile
     .container {
        // border: 1px solid red;
-        height: 100vh;
+        height: 90vh;
         margin: 0;
         padding: 0;
     }
@@ -208,8 +208,13 @@ h5 {
         position: relative;
         left: 5%;
     }
+    h4 {
+        letter-spacing: 1px;
+        font-family: 'Segoe UI';
+        font-weight: 500;
+    }
    h5 {
-    //  border: 1px solid red;
+      //border: 1px solid red;
       text-align: center;
       margin: 0;
       padding: 1%;

@@ -73,6 +73,7 @@ page-home {
    position: absolute;
    bottom: 30%;
    display: none;
+  
  }
  .hide {
    display: none;
@@ -84,9 +85,25 @@ page-home {
   
     object-fit: cover;
   }
+
+  .loader {
+   // border: 1px solid red;
+    height:80%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+   
+
+    img {
+     /*  width: 50%; */
+      height:30%;
+      margin:auto;
+      border-radius:50px;
+    }
+  }
   .slider {
     width: 100%;
-    height: 35%;
+    height: 25%;
     //background: red;
     position: absolute;
     bottom: 0%;
@@ -99,10 +116,11 @@ page-home {
   }
 
   .magic {
-    padding: 20px;
+    padding: 40px;
+    //background: green;
   }
   .price {
-    color: darkorange;
+    color: rgb(7, 9, 19);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   .squire {
@@ -114,65 +132,108 @@ page-home {
  
 
   .card {
-    padding: 1%;
+   // padding: 1%;
     border-radius: 12px;
-   // border: 1px solid rgba(20, 9, 19, 0.8);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    // border: 1px solid red;
+   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background: white;
-   .thumbnail {
-     display: flex;
-     flex-direction: column;
-     .thumbnail > * {
-       flex: 1 1 100%;
-     }
-     .top {
-       display: flex;
-       flex-direction: row;
-        .top > * {
-          flex: 1;
-        }
-       .images {
-        width: 50%;
-        height: 15vh;
-        //border: 1px solid #ddd;
-        img {
-        width: 100%;
-       height: 15vh;
-          object-fit: cover;
-          border-top-left-radius: 12px;
-        }
-      }
-      .title {
-        width: 50%;
-        margin: 0 3%;
+    height:23vh;
+
+    .info {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      height: 80%;
+      position: relative;
+      top:-40%;
+      left:7px;
+      border-radius: 10px;
+      div {
+       // border: 1px solid black;
+        height:55%;
+        position: relative;
+      top:48%;
+      margin:0;
+     
+      p {
+      //  border: 1px solid blue;
         text-align: left;
-        color: rgb(139, 139, 139);
-        display: flex;
-        
-        flex-direction: column;
-        justify-content: center;
-        .stars {
-          //max-width: 50%;
-          font-size: 7 px;
-        }
+        padding-left: 10%;
+        padding-bottom: 0;
+        color: rgb(64, 66, 75);
+        font-family:'Segoe UI';
+
       }
-     }
-     .bottom {
-       padding: 5px;
-      // border: 1px solid red;
-       display: flex;
-       /* align-items: center; */
-       flex-direction: row;
-       .view {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         width: 100%;
-         //border: 1px solid #216D7B;
+      }
+    }
+    .image {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      border-radius: 10px;
+      width:30%;
+      height: 55%;
+      position: relative;
+      left: 10%;
+      z-index:5;
+      img {
+        border-radius:10px;
+        height:100%;
+        width:100%;
+        object-fit: cover;
+      }
+    }
+  //  .thumbnail {
+  //    display: flex;
+  //    flex-direction: column;
+  //    .thumbnail > * {
+  //      flex: 1 1 100%;
+  //    }
+  //    .top {
+  //      display: flex;
+  //      flex-direction: row;
+  //       .top > * {
+  //         flex: 1;
+  //       }
+  //      .images {
+  //       width: 50%;
+  //       height: 15vh;
+  //       //border: 1px solid #ddd;
+  //       img {
+  //       width: 100%;
+  //      height: 15vh;
+  //         object-fit: cover;
+  //         border-top-left-radius: 12px;
+  //       }
+  //     }
+  //     .title {
+  //       width: 50%;
+  //       margin: 0 3%;
+  //       text-align: left;
+  //       color: rgb(139, 139, 139);
+  //       display: flex;
+        
+  //       flex-direction: column;
+  //       justify-content: center;
+  //       .stars {
+  //         //max-width: 50%;
+  //         font-size: 7 px;
+  //       }
+  //     }
+  //    }
+  //    .bottom {
+  //      padding: 5px;
+  //     // border: 1px solid red;
+  //      display: flex;
+  //      /* align-items: center; */
+  //      flex-direction: row;
+  //      .view {
+  //        display: flex;
+  //        justify-content: space-between;
+  //        align-items: center;
+  //        width: 100%;
+  //        //border: 1px solid #216D7B;
          
-       }
-     }
-   }
+  //      }
+  //    }
+  //  }
   }
  
   .nameBuilder{

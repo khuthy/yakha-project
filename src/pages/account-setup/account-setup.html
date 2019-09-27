@@ -94,11 +94,18 @@
 
 <!-- view profile -->
 <div class="container" *ngIf="isProfile">
+
+  <!--   <ion-header>
+        <ion-navbar color="primary">
+          <ion-title>version</ion-title>
+        </ion-navbar>
+      </ion-header> -->
+
 <div style="display: flex;">
     
-        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="arrow-back"></ion-icon></button>
+        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="close-circle-outline"></ion-icon></button>
    
-       <H5 style="text-align: center;width:80%">Your Profile</H5>
+       <H4 style="text-align: center;width:80%">Your Profile</H4>
 </div>
 
   <div class="holder">
@@ -112,12 +119,12 @@
    <div class="info">
      <!-- gender -->
      <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-        <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray">
+   <!--      <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray"> -->
         <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{HomeOwnerProfile.gender}}</h5>
      </div>
 <!-- phone numbers -->
      <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-        <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon>
+   <!--      <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon> -->
         <h5 style="padding-left:6%;font-size: 2.5vh">{{HomeOwnerProfile.personalNumber}}</h5>
      </div>
 

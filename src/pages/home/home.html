@@ -12,7 +12,12 @@
 <ion-content>
          <!-- <ion-input (ionChange)='search($event)' name="user"></ion-input> -->
          <!-- loading the map -->
-    <div #map id="map" *ngIf="maps"><img src="../../assets/imgs/ajax-loader.gif"/></div>
+    <div #map id="map" *ngIf="maps">
+      <div class="loader">
+          <img src="../../assets/imgs/ajax-loader.gif"/>
+      </div>
+    
+    </div>
     <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="menus"  ion-button clear menuToggle>
@@ -57,19 +62,32 @@
  
   <div class="slider" *ngIf="maps">
    
-    <ion-slides spaceBetween="-33" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
+    <ion-slides spaceBetween="-65" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
       <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
+        <!-- card starts here -->
         <div class="card" >
-     <div class="thumbnail">
+          
+            <div class="image">
+                <img *ngIf="b.image" src="{{b.image}}" alt="tough">
+            </div>
+          <div class="info">
+            <div>
+               <p style="font-size:2vh;font-weight:500">{{b.fullName}}</p>
+               <p style="font-size:2vh;margin-top:-4%;font-weight:400" class="price">{{b.price|  currency:'&#82;'}}p/m<span class="squire">2</span> excluding roofing</p>
+               <p style="color:balck;margin-top:-4%;padding-top:0;font-size:2vh;padding-bottom:2%" class="stars">{{b.experiences}} years in building experience</p>
+            </div>
+         
+
+          </div>
+     <!-- <div class="thumbnail">
        <div class="top">
          <div class="images">
            <img *ngIf="b.image" src="{{b.image}}" alt="tough">
            <img *ngIf="!b.image" src="../../assets/imgs/team-avatar.jpg" alt="tough">
          </div>
          <div class="title">
-           <p><strong>{{b.fullName}}</strong></p>
-           <p class="price"><strong>R{{b.price}}p/m<span class="squire">2</span></strong></p>
-           <p class="stars">{{b.experiences}} years</p>
+          
+        
            
          </div>
 
@@ -82,15 +100,16 @@
           <p><ion-icon style="color:black; font-size:3.5vh" name="arrow-forward"></ion-icon></p>
          </div>
        </div>
-     </div>
-   </div> 
+     </div> -->
+   </div> <!-- card ends here -->
+
    </ion-slide>
    </ion-slides>  
 </div>
 
 
 <div class="homebuilder" *ngIf="request" >
-  <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
+  <div class="cards" *ngFor="let o of owner"   (click)="viewRequest(o.builder)">
   
     <div class="images">
     <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
