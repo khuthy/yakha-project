@@ -60,7 +60,6 @@ import { PopoverPage } from '../pages/popover/popover';
 import { DescriptionComponent } from '../components/description/description';
 import { OneSignal } from '@ionic-native/onesignal';
 
-
 @NgModule({
   declarations: [
     MyApp,

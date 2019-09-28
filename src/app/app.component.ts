@@ -36,30 +36,30 @@ export class MyApp {
   }
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, oneSignal: OneSignal) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen,public oneSignal: OneSignal) {
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
 
-    oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    oneSignal.getIds().then((userID) => {
+    this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    this.oneSignal.getIds().then((userID) => {
       console.log("user ID ", userID);
 
     })
-    oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-    oneSignal.handleNotificationReceived().subscribe((res) => {
+    this.oneSignal.handleNotificationReceived().subscribe((res) => {
       // do something when notification is received
       console.log(res);
 
     });
 
 
-    oneSignal.handleNotificationOpened().subscribe((res) => {
+    this.oneSignal.handleNotificationOpened().subscribe((res) => {
       // do something when a notification is opened
       console.log(res);
     });
 
-    oneSignal.endInit();
+    this.oneSignal.endInit();
 
     // this.fireb.getToken()
     // .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device

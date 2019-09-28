@@ -126,7 +126,7 @@
            <h5 style="text-align: center;padding:1%">I also need the following done</h5>
         
         <div class="extras">
-             <p style="" id="looping" *ngFor="let e of extras">{{e}}</p>
+             <p id="looping" *ngFor="let e of extras">{{e}}</p>
         </div>
          
         
@@ -148,6 +148,13 @@
          
 
           <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
+          <div class="block2 owner" *ngIf="response">
+            <blockquote >
+              <p>
+                <ion-icon name="document"></ion-icon><a href="{{doc}}">{{userDetails.docID}}.pdf</a>
+              </p>
+            </blockquote>
+       </div>
           </div>
 
         </div>
