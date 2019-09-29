@@ -11,6 +11,7 @@ import { Quotations , WallType, Extra, Comments } from '../../app/model/bricks';
 import { brickType, wallTypes, Extras, comment } from '../../app/model/bricks.model';
 import { ProfileComponent } from '../../components/profile/profile';
 import { DescriptionComponent } from '../../components/description/description';
+import { OneSignal } from '@ionic-native/onesignal';
 /**
  * Generated class for the QuotationFormPage page.
  *
@@ -92,7 +93,7 @@ extraName;
      public alertCtrl:AlertController,
      public camera: Camera,
      public popoverCtrl: PopoverController,
-     private formBuilder: FormBuilder) {
+     private formBuilder: FormBuilder, public oneSignal: OneSignal) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
      this.HomeOwnerQuotation.hOwnerUid = this.uid;
@@ -201,28 +202,38 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
         content: 'submitting quotations ..'
       });
       load.present();
-  /* this.HomeOwnerQuotation.extras.map(n =>{
-    let obj =  {
-        //service: n,
-            price: 0,
-            quantity: 0
-    }
-      return obj
-    }) */
-  /*   return new Proxy(this, {
-      set: ( this.HomeOwnerQuotation.extras, )=>{
-
-      }
-    }) */
-
-    
-   // console.log(this.HomeOwnerQuotation.extras);
-    
+   
   const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
   
   // upon success...
-  user.then( (response) => {
+  user.then((response) => {
       response.update({docID: response.id});
+      response.onSnapshot((resBuilder)=>{
+      // resBuilder.data()
+      if(resBuilder.data().builderUID)
+      {
+        this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out)=>{
+          if(out.data().tokenID){
+            var notificationObj = {
+              contents: { en: "Hey " + out.data().fullName+" ," + "you have new request"},
+              include_player_ids: [out.data().tokenID],
+            };
+            this.oneSignal.postNotification(notificationObj).then(res => {
+             // console.log('After push notifcation sent: ' +res);
+            });
+          
+            }
+      })
+      }
+      
+
+
+
+
+
+
+
+      })
       this.HomeOwnerQuotation.extras.forEach((item) => {
       response.collection('extras').doc(item).set({price: 0, quantity: 0});
     }); 
@@ -244,13 +255,6 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
   })
 
    }
-   /*   console.log(this.HomeOwnerQuotation.extras);
-     let obj = [];
-     obj.push(this.HomeOwnerQuotation.extras);
-     firebase.firestore().collection('Array').doc('testing').set({obj}).then((res)=>{
-    //   console.log(res.update());
-       
-     }) */
         
   }
   remove(){
