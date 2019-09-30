@@ -157,7 +157,7 @@ import { SMS } from '@ionic-native/sms';
     Keyboard,
     LocalNotifications,
     FileTransfer,
-    OneSignal,
+     OneSignal,
     DocumentViewer,
     Base64ToGallery,
     SMS
