@@ -74,7 +74,6 @@ export class HomePage implements OnInit {
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
     public renderer: Renderer2,
-    private localNotifications: LocalNotifications
 
   ) {
     
@@ -592,10 +591,6 @@ export class HomePage implements OnInit {
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
       res.forEach((doc) => {
-        this.localNotifications.schedule({
-          text: 'You have new request',
-          led: 'FF0000'
-        });
         this.requestFound = '';
         //  this.ownerUID = doc.data().uid; 
        
