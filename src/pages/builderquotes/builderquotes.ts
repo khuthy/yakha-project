@@ -11,7 +11,6 @@ import * as firebase from 'firebase';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from '@ionic-native/onesignal';
 import { SMS } from '@ionic-native/sms';
 

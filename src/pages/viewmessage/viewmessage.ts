@@ -5,7 +5,7 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
-import { DocumentViewer } from '@ionic-native/document-viewer';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { ProfileComponent } from '../../components/profile/profile';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
@@ -188,25 +188,14 @@ export class ViewmessagePage {
   }
   
 downloadAndOpenPdf() {
-  if(this.doc !== null) {
-    let downloadUrl = this.doc;
-   let path = this.file.dataDirectory;
-  const transfer = this.ft.create();
- 
-  transfer.download(downloadUrl, path + this.userDetails.docID).then(entry => {
-    let url = entry.toURL();
- 
-    if (this.platform.is('ios')) {
-      this.document.viewDocument(url, 'application/pdf', {});
-    } else {
-      this.fileOpener.open(url, 'application/pdf')
-        .then(() => console.log('File is opened'))
-        .catch(e => console.log('Error opening file', e));
-    }
-  });
+  const options: DocumentViewerOptions = {
+    title: 'My PDF'
   }
+  this.document.viewDocument(this.doc, 'application/pdf', options)
+
+}
  
-} 
+ 
 icon: string;
   getUser(){
    // let homeOwner = '';

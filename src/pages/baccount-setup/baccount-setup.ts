@@ -11,7 +11,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';
 import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 import { ProfileComponent } from '../../components/profile/profile';
-//import { OneSignal } from '@ionic-native/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /**
  * Generated class for the BaccountSetupPage page.
@@ -77,7 +77,7 @@ export class BaccountSetupPage {
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
-    //oneSignal: OneSignal
+    oneSignal: OneSignal
     )
     {
      this.authUser.setUser(firebase.auth().currentUser.uid);
@@ -92,9 +92,9 @@ export class BaccountSetupPage {
       price: new  FormControl('', Validators.compose([Validators.required]))
     });
    
-    // oneSignal.getIds().then((res)=>{
-    //   this.builderProfile.tokenID = res.userId;
-    // })
+    oneSignal.getIds().then((res)=>{
+      this.builderProfile.tokenID = res.userId;
+    })
   }
 
   ionViewDidLoad() {
