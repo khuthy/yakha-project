@@ -13,7 +13,8 @@ import { VersionPage } from '../pages/version/version';
 import { MessagesPage } from '../pages/messages/messages';
 import { HelpPage } from '../pages/help/help';
 import { FeedbackPage } from '../pages/feedback/feedback';
-//import { OneSignal } from '@ionic-native/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
+
 
 
 
@@ -36,30 +37,30 @@ export class MyApp {
   }
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen,public oneSignal: OneSignal) {
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
 
-    // this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    // this.oneSignal.getIds().then((userID) => {
-    //   console.log("user ID ", userID);
+    this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    this.oneSignal.getIds().then((userID) => {
+      console.log("user ID ", userID);
 
-    // })
-    // this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+    })
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-    // this.oneSignal.handleNotificationReceived().subscribe((res) => {
-    //   // do something when notification is received
-    //   console.log(res);
+    this.oneSignal.handleNotificationReceived().subscribe((res) => {
+      // do something when notification is received
+      console.log(res);
 
-    // });
+    });
 
 
-    // this.oneSignal.handleNotificationOpened().subscribe((res) => {
-    //   // do something when a notification is opened
-    //   console.log(res);
-    // });
+    this.oneSignal.handleNotificationOpened().subscribe((res) => {
+      // do something when a notification is opened
+      console.log(res);
+    });
 
-    // this.oneSignal.endInit();
+    this.oneSignal.endInit();
 
     // this.fireb.getToken()
     // .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device

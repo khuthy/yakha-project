@@ -91,7 +91,7 @@
 
         </div>
 
-        <div style="border: 1px solid red;text-align: center" class="content" >
+        <div style="text-align: center;" class="content" >
           <!-- start date -->
        
               <h5 >Project duration  </h5>
@@ -136,6 +136,10 @@
         
      
         </div>
+
+        <div class="pdf">  
+          <button ion-button clear full (click)="downloadAndOpenPdf()"><ion-icon name="document"></ion-icon>Quotation.pdf</button>
+        </div>
     </div>
      
  
@@ -153,11 +157,7 @@
 
           <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
           <div class="block2 owner" *ngIf="response">
-            <blockquote >
-              <p>
-                <ion-icon name="document"></ion-icon><a href="{{doc}}">{{userDetails.docID}}.pdf</a>
-              </p>
-            </blockquote>
+          
        </div>
           </div>
 
