@@ -3,7 +3,7 @@
   <ion-navbar color="primary" *ngIf="request">
     <ion-title middle>Home</ion-title>
     <button ion-button clear menuToggle>
-      <ion-icon name="menu" style="font-size:3vh"></ion-icon>
+      <ion-icon name="menu" style="font-size:3vh; color: #fff;"></ion-icon>
     </button>    
   </ion-navbar>
   
@@ -118,13 +118,16 @@
       <article >
         <p >{{o.owner.fullName}}</p>
       <!--   <p style="font-weight:400;text-align: left;margin-top: -25px;padding-left: 20px; color: #000;">{{o.builder.comment}}</p><br> -->
-        <p style="font-size:1.4vh;padding:2.5%">{{o.builder.date}}</p>
+        <p style="font-size:1.4vh;padding:2.5%">{{o.builder.date | date}}</p>
         <br> 
         <p></p>
     </article> 
-     <div class="btn">
+    <div class="parent">
+       <div class="btn">
       <p>View Request</p>
     </div> 
+    </div>
+    
   
     
     </div> 

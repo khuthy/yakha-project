@@ -1,22 +1,22 @@
 page-viewmessage {
+    .scroll-content {
+        overflow: hidden !important;
+    }
 .container {
     margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      height: 100%;
+      padding: 0 !important;
+      //display: flex;
+      //flex-direction: column;
+      //height: 100%;
       width: 100%;
       //background: red;
       .logo {
        // border: 1px solid green;
-        width: 100%;
-        padding-top: 30px;
-        padding-bottom: 50px;
-        background-image: url(../../assets/imgs/waverotate.svg);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
+        height:20vh;
+        // background-image: url(../../assets/imgs/waverotate.svg);
+        // background-size: cover;
+        // background-position: center -30px;
+        // background-repeat: no-repeat;
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -25,7 +25,7 @@ page-viewmessage {
         align-content: center;
       }
       p {
-          color: white;
+          color: #3c7f8b;
           font-family: 'Segoe UI';
           font-size: 3vh;
       }
@@ -71,19 +71,20 @@ span {
     display: flex;
 
     h5 {
-        width: 50%;
+        width: 30%;
     }
     p {
-        color:#3c7f8b;
+        color:#a5bfc4;
         border-left: 2px solid gray;
         width: 50%;
         font-size: 2vh;
-        padding-left: 2%;
+        //padding-left: 2%;
     }
 }
 .extras {
-   // border: 1px solid green;
+   //border: 1px solid green;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 
     p {
@@ -99,7 +100,8 @@ span {
     margin-bottom: 0;
 }
 #looping {
-    width: 30%;
+  //  background: RED;
+    min-width: 30%;
     height:13vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -119,10 +121,10 @@ span {
 
 }
 .image {
-   // border: 1px solid red;
+  //  border: 1px solid red;
     height:50vh;
     border-radius: 10px;
-    margin-top:1%;
+    margin-top:-15%;
     img {
         object-fit: cover;
         width: 100%;
@@ -149,9 +151,14 @@ span {
     padding-left: 3%;
 }
 .btn-create {
-    position: absolute;
-    left: 0%;
-
+//     position: absolute;
+//     left: 15%;
+//    // top: -20%;
+//     color: white;
+display: grid;
+justify-content: center;
+align-content: center;
+align-items:center; 
    
 }
 .message {
@@ -169,320 +176,4 @@ span {
         font-size:2.5vh;
         padding: 2%;
     }
-}
-//     .container {
-//         height: 100%;
-//         width: 100%;
-       
-       
-//     }
-//     .container {
-//         display: flex;
-//         //height: 100%;
-//         width: 100%;
-//         flex-direction: column;
-      
-//     }
-   
-//     .message {
-//      position: relative;
-//      height: 25vh;
-    
-     
-//      top: 0;
-//      //border: 1px solid #000;
-//      width: 100%;
-//     }
-// .details {
-//     position: absolute;
-//     bottom: 0;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//    // border: 1px solid #0cc;
-//     .images {
-//         width: 100%;
-//         height: 100%;
-//         object-fit: cover;
-//         object-position: center;
-//     }
-// }
-//     .expand{
-//         position: absolute;
-//         width: 30px;
-//         height: 30px;
-//         right: 45%;
-//         text-align: center;
-//         bottom: -15px;
-//         border-radius: 200px;
-//         background: white;
-//         box-shadow: 0px 0px 3px #1717179f;
-//         display: grid;
-//         padding-top: 3px;
-//         align-content: center;
-//         p{
-//               margin: 0;
-//               padding: 0;
-//         }
-//     }
-//     .title {
-//         position: absolute;
-//         bottom: 0;
-//         width: 100%;
-//         background: rgba(255, 255, 255, 0.411);
-//         text-align: center;
-//         color: rgb(58, 58, 58);
-//         padding: 2%;
-//         border-radius: 50px 50px 0 0;
-//     }
-//     .textMessages {
-//         margin: 0 auto;
-//         width: 100%;
-//         background: #fff;
-//         height: 75vh;
-//         overflow: hidden;
-//        // border: 1px solid #000;
-//         position: fixed;
-//         overflow-y: scroll;
-//         bottom: 0;
-//         z-index: -2;
-//         padding: 20px;
-        
-//         .block2 {
-//             padding: 10px;
-//             background: rgba(31, 19, 1, 0.767);
-//             position: relative;
-//             border-radius: 10px 10px 10px 10px;
-//             box-shadow: 0px 0px 6px rgba(131, 131, 131, 0.383);
-//             margin-bottom: 15px;
-//             margin-top: 25px;
-//             color: #fff;
-
-
-
-//         }
-//         .house {
-//             background: rgb(255, 255, 255);
-//             box-shadow: 0 0 3px rgba(131, 131, 131, 0.383);
-//             position: absolute;
-//             top: -13%;
-//             z-index: 1000;
-//             right: 0;
-//             left: 0;
-//             padding: 20px;
-//             height: auto;
-
-            
-//         }
-
-//         .block {
-//             //border: 1px solid red;
-//             padding: 10px;
-//             background: rgb(255, 255, 255);
-//             position: relative;
-//             border-radius: 10px 10px 10px 10px;
-//             box-shadow: 0px 0px 6px rgba(131, 131, 131, 0.383);
-//             margin-bottom: 15px;
-//             margin-top: 25px;
-
-//             .imgs {
-//                 display: flex;
-//                 justify-content: center;
-//                 align-items: center;
-//                 flex-direction: column;
-//             }
-//           .thumb {
-//               height: 100px;
-//               width: 200px;
-//               object-fit: cover;
-//               border-radius: 12px;
-//           }
-//             .img {
-//                 height: 50px;
-//                 position: absolute;
-//                 bottom: -10%;
-               
-//                 right: 10%;
-//                 img {
-//                     height: 50px;
-//                     border-radius: 50px;
-//                 }
-//             }
-//           /*   &::after {
-//                 position: absolute;
-//                 content: '';
-//                 bottom: -8%;
-//                 left: 0;
-               
-                
-//                 z-index: -4;
-//                 border-right: 20px solid transparent;
-//                 border-top: 20px solid rgb(236, 236, 236);
-
-//             } */
-//             blockquote {
-//                 display: flex;
-//             flex-direction: column;
-//             .measure {
-//                 display: flex;
-//                 flex-direction: row;
-//                 flex-wrap: wrap;
-//                 width: 100%;
-//                 justify-content: space-between;
-//                 margin-bottom: 1%;
-//                 box-sizing: border-box;
-//             }
-//             #quotes1 {
-//                 display: flex;
-//                 width: 100%;
-               
-//                 justify-content: space-between;
-//                 #date1 {
-//                     color: rgb(138, 138, 138);
-//                     font-size: 15px;
-//                     font-weight: 400;
-//                 }
-//                 #date2 {
-//                     color: rgb(138, 138, 138);
-//                     font-size: 15px;
-//                     font-weight: 400;
-//                 }
-//             }
-//             #quotes3 {
-            
-//                padding: 10px;
-//               box-shadow: 0 0 3px rgba(179, 179, 179, 0.918);
-//                font-weight: 200;
-//                font-size: 16px; 
-//                margin: 1%; 
-//                border-radius: 4px;
-//                flex-basis: 100%;
-
-//              }
-            
-//             #quotes7 {
-//                 font-weight: 200;
-//                 padding: 2%;
-//                 font-size: 17px;
-//                 text-align: center;
-//             }
-//             }
-
-           
-
-
-//         }
-//     }
-//     @keyframes slideUp {
-//         0% {
-//             height: -75vh;
-//         }
-//         100% {
-//             height: 0;
-//         }
-//     }
-//     .fet {
-//         margin: 1%;
-//         display: flex;
-//         flex-wrap: wrap;
-//         > p {
-//             background: rgba(255, 140, 0, 0.609); 
-//             color: rgb(255, 255, 255);
-//             border-radius: 5px;
-            
-//             padding: 2%;
-//             margin: 1%;       
-//         }
-//     }
-
-//     .booking-inactive{
-//         width: 100%;
-//         height: 10%;
-//         position: absolute;
-//         bottom: 0;
-//         background: rgba(76, 10, 10, 0.89);
-//         z-index:3;
-//         animation-name: slideOutDown;
-//         .toggler{
-//               width: 100%;
-//               height: 20px;
-//               text-align: center;
-//               color: white;
-//               padding: 2px 0px;
-//         }
-//     }
-//     .booking-active{
-//         width: 100%;
-//         height: 95%;
-//         position: absolute;
-//         bottom: 0;
-//         background: rgba(76, 10, 10, 0.89);
-//         z-index:3;
-//         animation-name: slideInUp;
-//         overflow: hidden;
-//         .toggler{
-//               width: 100%;
-//               height: 20px;
-//               text-align: center;
-//               color: white;
-//               padding: 2px 0px;
-//               overflow: hidden;
-//         }
-//     }
-
-//     .house::before {
-//         position: absolute;
-//         content: '';
-       
-//         top: -2%;
-//         left: 39%;
-//         text-align: center;
-//         margin-left: 30px;
-//         margin-top: 0px;
-//         margin-right: 25px;
-//         right: 25px;
-//         width: 0;
-//         height: 0;
-//         z-index: -20000;
-//         border-color: rgb(92, 94, 92) transparent;
-//         border-style: solid;
-//         border-width: 0 10px 10px 10px;
-
-       
-//     }
-//     .back {
-//         position: fixed;
-//         top: 1%;
-//         left: 2%;
-//         z-index: 4;
-//         .icon {
-//             color: #fff;
-//             font-size: 20px;
-//         }
-//     }
-    
-/* .old{
-    width:100%;
-    border:1px solid;
-    //cursor:pointer;
-    background:rgb(255, 255, 255);
-    transition: 1.5s;
-    
-}
-.new{
-    width:100%;
-    border:1px solid;
-    height:100%;
-    cursor:pointer;
-    background:rgb(255, 255, 255);
-    transition: 1.5s;
-}
-.swiper-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 90%;
-    background: linear-gradient(90deg, red, blue);
-} */
-}
+}}

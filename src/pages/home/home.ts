@@ -626,14 +626,14 @@ export class HomePage implements OnInit {
 
          setTimeout(() => {
           // this.getOwners();
-          let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
+          let colors = ['yellow', 'purple', 'red', 'blue']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
           for (var i = 0; i < cards; i++) {
-            console.log('for running');
+            console.table('for running:', {i: this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2]});
 
             let background = i % 2;
 
-            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[0].children[2].children[i]
+            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2].children[0]
             let randomColor = Math.floor((Math.random() * colors.length));
             if (background) {
               console.log(cards);
@@ -642,7 +642,7 @@ export class HomePage implements OnInit {
             } else {
               console.log(cards);
               this.renderer.setStyle(cards, 'background', colors[randomColor])
-            }
+            } 
           }
           console.log('for done');
           console.log(cards);

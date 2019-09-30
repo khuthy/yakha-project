@@ -4,8 +4,8 @@
       <div class="profile" (click)="viewProfile()">
           <img *ngIf="userLoggedinNow.image" src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
           <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" class="thumb" alt="profile">
-          <article>
-            <p style="font-size: 17px;">{{userLoggedinNow.fullname}}</p>
+          <article style="padding:0;margin:0;">
+            <p style="font-size: 13px;margin-bottom:0;">{{userLoggedinNow.fullname}}</p>
             <p style="font-size: 13px;">{{userLoggedinNow.email}}</p>
           </article>
           

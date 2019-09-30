@@ -1,10 +1,10 @@
-<ion-header>
+ <ion-header>
   <ion-navbar color="primary">
-    <ion-toolbar>
-      <ion-title>Quotation Request</ion-title>
-    </ion-toolbar>
+
+      <ion-title>Requests</ion-title>
+
   </ion-navbar>
-</ion-header>
+</ion-header> 
 
 
 <!-- 
@@ -84,24 +84,24 @@
 <ion-content>
   <div class="container">
     <div class="info-container">
-       <div class="logo" padding>
+       <div class="logo" >
            <p>Hello  {{profName}}</p>
-          <img src="../../assets/imgs/logo.png" style="max-width: 100px; height: auto">
-          <h5 id="descript" style="color: white">Requirements for this project</h5>
+          
+          <h5 id="descript" style="color: #3c7f8b">Requirements for this project</h5>
 
         </div>
 
-        <div class="content" >
+        <div style="border: 1px solid red;text-align: center" class="content" >
           <!-- start date -->
-          <div class="class">
-              <h5 >Start date   : </h5>
-              <p style="margin-left: 10%"> {{startDate}}</p>
-          </div>
+       
+              <h5 >Project duration  </h5>
+              <p >From {{startDate}} To {{endDate}}</p>
+        
           
            <!-- end date -->
  <div class="class">
     <h5>End date   : </h5>
-    <p style="margin-left: 10%"> {{endDate}}</p>
+    <p style="margin-left: 10%"> </p>
 </div>
 
  <!-- wall wall type -->
@@ -123,10 +123,14 @@
         <h5 class="class">I chose this wall type   : <span>{{brickType}}</span></h5>
            --><!-- extras -->
         
-           <h5 style="text-align: center;padding:1%">I also need the following done</h5>
+           <h5 style="text-align: center;padding:1%;color:#3c7f8b">I also need the following done</h5>
         
         <div class="extras">
-             <p id="looping" *ngFor="let e of extras">{{e}}</p>
+          <div  id="looping" *ngFor="let e of extras">
+              <p>{{e}}</p>
+              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="50px">
+          </div>
+            
         </div>
          
         
@@ -135,8 +139,8 @@
     </div>
      
  
-   <div   [ngClass]="{'old': toggle, 'new': !toggle}"class="old">
-        <button class="btn-create" color="yakha" *ngIf="toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropup" style="color:white;font-size:4vh;"></ion-icon></button>
+   <div [ngClass]="{'old': toggle, 'new': !toggle}"class="old" style="position: absolute">
+        <button class="btn-create" style="color:white" *ngIf="toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropup" style="color:white;font-size:4vh;"></ion-icon>More here</button>
           <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown" style="color:white;font-size:4vh;"></ion-icon></button>
           <div class="swipe-content" *ngIf="!toggle">
           <div class="image">

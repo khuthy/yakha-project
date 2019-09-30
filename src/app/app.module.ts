@@ -58,7 +58,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { PopoverPage } from '../pages/popover/popover';
 import { DescriptionComponent } from '../components/description/description';
-import { OneSignal } from '@ionic-native/onesignal';
+//import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -155,7 +155,7 @@ import { OneSignal } from '@ionic-native/onesignal';
     Keyboard,
     LocalNotifications,
     FileTransfer,
-    OneSignal,
+  //  OneSignal,
     DocumentViewer,
    // Firebase
   ]
