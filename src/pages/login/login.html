@@ -5,7 +5,7 @@
       <p style="color: rgb(247, 247, 247); font-size: 18px">{{getUser}}</p>
     </div>
 
-    <p class="inputs">
+    <div class="inputs">
       <form class="forms" [formGroup]="loginForm">
         <ion-list no-lines style="background: transparent">
 
@@ -19,10 +19,11 @@
             <ion-input
               formControlName="email" type="email" ngDefaultControl>
             </ion-input>
-               </ion-item>
-          <p
+            <div
               *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
-              The email/password combination you entered is incorrect.</p>
+              The email/password combination you entered is incorrect.</div>
+               </ion-item>
+          
           
 
          
@@ -55,5 +56,6 @@
         </ion-list>
       </form>
     </div>
+    </div> 
   
 </ion-content>

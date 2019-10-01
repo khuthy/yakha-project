@@ -17,10 +17,10 @@
   <div class="logo">
     <img src="../../assets/imgs/logo.png" height="100">
   </div>
-  <div class="content">
+  <div class="content" *ngIf="!rateValue">
       <h3>Having a great experience with Yakha?</h3>
       <h3>Rate Us</h3>
-      <ionic3-star-rating #rating id="ratings"
+      <ionic3-star-rating #rating id="ratings" 
       activeIcon = "ios-star"
       defaultIcon = "ios-star-outline"
       activeColor = "#3c7f8b" 
@@ -32,6 +32,24 @@
     </ionic3-star-rating>
   </div>
 
+  <div class="content" *ngIf="rateValue">
+      <h3></h3>
+      <h3>You've rated</h3>
+      <ionic3-star-rating #rating id="ratings" 
+      activeIcon = "ios-star"
+      defaultIcon = "ios-star-outline"
+      activeColor = "#3c7f8b" 
+      defaultColor = "#3c7f8b"
+      readonly="true"
+      rating="{{rateValue}}"
+      fontSize = "32px"
+       >
+    </ionic3-star-rating>
+  </div>
+
+  <div class="content" *ngIf="!rateBuilderNow">
+      <h3>Please wait until you recieve from builder</h3>
+  </div>
 
 <div class="wave">
 <!--   <img src="../../assets/imgs/wave.svg" width="100%" height="100%">

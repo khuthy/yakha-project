@@ -15,7 +15,7 @@ import { HelpPage } from '../pages/help/help';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 //import { OneSignal } from '@ionic-native/onesignal';
-import { OneSignal } from '@ionic-native/onesignal';
+//import { OneSignal } from '@ionic-native/onesignal';
 
 
 
@@ -39,7 +39,7 @@ export class MyApp {
   }
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar, oneSignal: OneSignal) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar) {
     
       this.statusBar.overlaysWebView(false); 
   
@@ -48,17 +48,19 @@ export class MyApp {
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
-    oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    oneSignal.getIds().then((userID) => {
-    })
-      oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
-      oneSignal.handleNotificationReceived().subscribe((res) => {
-    
-      })
-      oneSignal.handleNotificationOpened().subscribe((res) => {
+   // oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    // oneSignal.getIds().then((userID) => {
+    //   console.log(userID.userId);
       
-      })
-      oneSignal.endInit();
+    // })
+       //oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+    //   oneSignal.handleNotificationReceived().subscribe((res) => {
+    
+    //   })
+    //   oneSignal.handleNotificationOpened().subscribe((res) => {
+      
+    //   })
+     // oneSignal.endInit();
 
     this.db = firebase.firestore().collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
@@ -74,7 +76,10 @@ export class MyApp {
                 this.pages = [
                   { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle' },
+                  { title: 'Help', component: HelpPage, icon: 'help' },
+                  { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
+                  { title: 'Version', component: VersionPage, icon: 'information-circle' }
+
                 ];
               } else {
                 this.rootPage = HomePage;

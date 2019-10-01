@@ -9,7 +9,7 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+import { StatusBar } from '@ionic-native/status-bar';
 
 declare var google;
 
@@ -74,6 +74,7 @@ export class HomePage implements OnInit {
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
     public renderer: Renderer2,
+    public statusBar: StatusBar
 
   ) {
     
@@ -97,16 +98,8 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-
-
-
-
     this.menuCtrl.swipeEnable(true);
-    if (this.isSearchbarOpened) {
-      this.color = 'primary';
-    } else {
-      this.color = 'yakha';
-    }
+    
     //console.log(this.platform.width());
 
 
@@ -128,6 +121,9 @@ export class HomePage implements OnInit {
 
         }
         else {
+          this.statusBar.overlaysWebView(true);
+          this.statusBar.backgroundColorByHexString('#ffffff71');
+          
           this.geolocation.getCurrentPosition().then((resp) => {
             let NEW_ZEALAND_BOUNDS = {
               north: -22.0913127581,

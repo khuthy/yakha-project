@@ -187,11 +187,14 @@ export class ViewmessagePage {
     return this.doc;
   }
   
-downloadAndOpenPdf() {
+  downloadAndOpenPdf(){
   const options: DocumentViewerOptions = {
-    title: 'My PDF'
+    title: this.userDetails.docID+'.pdf'
   }
-  this.document.viewDocument(this.doc, 'application/pdf', options)
+  let url = this.doc;
+  console.log(this.doc);
+  
+  this.document.viewDocument(url, 'application/pdf', options)
 
 }
  
