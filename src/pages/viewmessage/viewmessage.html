@@ -6,129 +6,40 @@
   </ion-navbar>
 </ion-header> 
 
-
-<!-- 
-
-<ion-content>
-
-  <div class="container">
-      <div class="back" (click)="navCtrl.pop()">
-          <ion-icon style="font-size: 28px;" name="arrow-round-back"></ion-icon>
-        </div>
-    <div class="message">
-      <div class="details">
-       
-        <img src="../../assets/imgs/Construction ncf-psp_516_d2210.jpg" class="images" alt="thumb">
-        <div class="title">
-          <h2>{{profName}}</h2>
-        </div>
-      </div>
-      <div class="expand" (click)="togglePanel()">
-          <p><ion-icon name="arrow-dropdown-circle"></ion-icon></p>
-      </div>
-    </div>
-    <div class="textMessages">
-      <div class="block owner" >
-        <blockquote class="house" [@slideDown]="stateSlideDown">
-            
-          <span id="quotes1"><strong id="date1">start date: {{startDate}}</strong> <strong id="date2">end date: {{endDate}}</strong></span>
-          <p class="info">
-          <strong class="measure">
-          <span id="quotes3"><strong>Wall type</strong> {{wallType}} </span>
-          <span id="quotes3"><strong>Brick type </strong> {{brickType}} </span>
-          </strong>
-          </p>
-          <div class="imgs">
-              <img src="{{houseImage}}" class="thumb" (click)="viewHouse(houseImage)" alt="house plan">
-              <p>House plan</p>
-          </div>
-          <div class="extras">
-            <h3>Extras</h3>
-            <hr>
-            <div class="fet">
-               <p *ngFor="let e of extras">{{e}}</p> 
-            </div>
-             <p>Created: {{date}}</p> 
-          </div>
-        </blockquote>
-       
-          <blockquote>
-          <p>
-            <span>
-              <strong>Additional comment</strong><br>
-            {{comment}}
-            </span>
-            </p>
-            </blockquote>
-</div>
-      <div class="block2 owner" *ngIf="response">
-          <blockquote >
-            <p>
-              <ion-icon name="document"></ion-icon><a href="{{doc}}">{{userDetails.docID}}.pdf</a>
-            </p>
-          </blockquote>
-     </div>
-      <div class="block builder" style="background:cornsilk;" *ngIf="!response">
-          <p>Please wait for a respond</p>
-      </div>
-     
-    </div>
-    <ion-fab right bottom *ngIf="builda">
-        <button ion-fab color="button2" (click)="quotesForm(docID)"><ion-icon name="create" ></ion-icon></button>
-      </ion-fab>  
-  </div>
-
-</ion-content> -->
-
 <!-- new design -->
 <ion-content>
   <div class="container">
     <div class="info-container">
        <div class="logo" >
-           <p>Hello  {{profName}}</p>
+           <p style="font-weight:600;font-size: 3vh">Hello  {{profName}}</p>
           
-          <h5 id="descript" style="color: #3c7f8b">Requirements for this project</h5>
+          <h5 id="descript" style="color: #3c7f8b;font-size: 2.5vh">Requirements for this project</h5>
 
         </div>
 
-        <div style="text-align: center;" class="content" >
-          <!-- start date -->
+        <div style="text-align: center" class="content" >
+          <!-- dates-->
        
               <h5 >Project duration  </h5>
-              <p >From {{startDate}} To {{endDate}}</p>
+              <p style="font-size:2vh;text-align: center" >From {{startDate}} To {{endDate}}</p>
         
-          
-           <!-- end date -->
- <div class="class">
-    <h5>End date   : </h5>
-    <p style="margin-left: 10%"> </p>
-</div>
-
- <!-- wall wall type -->
- <div class="class">
+         <!-- wall wall type -->
+ 
     <h5>Wall type</h5>
-    <p style="margin-left: 10%"> {{wallType}}</p>
-</div>
+    <p > {{wallType}}</p>
+
 
  <!-- brick type -->
- <div class="class">
-    <h5 >Brick  : </h5>
-    <p style="margin-left: 10%"> {{brickType}}</p>
-</div>
+ 
+    <h5 >Brick   </h5>
+    <p > {{brickType}}</p>
 
-       <!-- 
-        <h5 class="class">End  date   :  <span></span></h5>
-
-        <h5 class="class">My brick wall type is   :<p> {{wallType}}</p> </h5>
-        <h5 class="class">I chose this wall type   : <span>{{brickType}}</span></h5>
-           --><!-- extras -->
-        
-           <h5 style="text-align: center;padding:1%;color:#3c7f8b">I also need the following done</h5>
+ <h5 style="text-align: center;padding:1%;color:rgb(58, 55, 55);margin-bottom:4%">I also need the following done</h5>
         
         <div class="extras">
           <div  id="looping" *ngFor="let e of extras">
-              <p>{{e}}</p>
-              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="50px">
+              <p style="color:#3c7f8b ;">{{e}}</p>
+              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="60px" style="margin-top:-5%">
           </div>
             
         </div>

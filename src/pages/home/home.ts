@@ -621,7 +621,7 @@ export class HomePage implements OnInit {
 
          setTimeout(() => {
           // this.getOwners();
-          let colors = ['yellow', 'purple', 'red', 'blue']
+          let colors = ['#3c7f8b', '#0071BC', '#c76a49']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
           for (var i = 0; i < cards; i++) {
             console.table('for running:', {i: this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2]});
