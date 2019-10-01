@@ -32,10 +32,10 @@ export const comment: Comments[] = [
     {comment: ''}
 ];
 export const Informations: Information[] =  [
-    {icon: 'mail', info: 'Contact Us',form: true, description: ' Pleas feel free to contact us'},
-    {icon: 'person', info: 'Terms Of Use', form: false,description: 'You need to accept our terms Once you have access to our Application, you are required to abide by our policies and regulations and include our Privacy Policy.'},
-    {icon: 'information-circle', info: 'Legal Information',form: false, description: ' By using this application, you agree to Yakha use of cookies to enhance site functionality and performance and to show you ads for yakha products other application'  },
+    {icon: 'mail', info: 'Contact Us',form: true, description: ' Pleas feel free to contact us'}, 
+    {icon: 'person', info: 'Terms Of Use', form: false,description: 'You need to accept our terms Once you have access to our Application, you are required to abide by our policies and regulations and include our Privacy Policy.'}, 
+    {icon: 'information-circle', info: 'Legal Information',form: false, description: ' By using this application, you agree to Yakha use of cookies to enhance site functionality and performance and to show you ads for yakha products other application'  }, 
     {icon: 'open', info: 'Open Source Licenses',form: false, description: 'Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.A few require that we include their licence Agreements within our product.'},
     {icon: 'lock', info: 'Privacy Policy', form: false,description: 'This privacy policy governs your use of the software Application YAKHA for mobile devices that was created by GEEKYVIBES. The application is basic description of the app (features, functionality and content)'},
-    {icon: 'information-circle-outline', info: 'Safety Information',form: false, description: 'We keep your personal information private and safe and put you in control'}
+    {icon: 'information-circle', info: 'Safety Information',form: false, description: 'We keep your personal information private and safe and put you in control'}
   ]
