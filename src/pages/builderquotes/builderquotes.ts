@@ -75,7 +75,7 @@ export class BuilderquotesPage {
   }
   meter = 2;
   pdfObj = null;
-  db = firebase.firestore().collection('Respond');
+  db = firebase.firestore().collection('Respond'); //sdk
   dbUsers = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
   dbMessages = firebase.firestore().collection('Messages');
