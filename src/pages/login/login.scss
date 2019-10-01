@@ -5,16 +5,17 @@ page-login {
       // border: 1px solid red;
       margin: 0;
       padding: 0;
-      
+     // overflow: hidden;
 
       .logo {
-       // border: 1px solid green;
+        //height:40%;
+       //border: 1px solid green;
         width: 100%;
         padding-top: 50px;
         padding-bottom: 70px;
         background-image: url(../../assets/imgs/waverotate.svg);
         background-size: cover;
-        background-position: center center;
+        background-position: 25% center;
         background-repeat: no-repeat;
         margin: auto;
         display: flex;
@@ -38,7 +39,7 @@ ion-list > .item {
         border: 1px solid #3c7f8b;
         border-radius: 10px;
         margin-top: 3%;
-      
+      outline: none;
 
         ion-label {
           color: #4D4D4D; 
