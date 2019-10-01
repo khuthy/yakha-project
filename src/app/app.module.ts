@@ -161,7 +161,7 @@ import { SMS } from '@ionic-native/sms';
      OneSignal,
     DocumentViewer,
     Base64ToGallery,
-    SMS
+    SMS,
    // Firebase
    StatusBar
   ]
