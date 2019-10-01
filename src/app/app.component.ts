@@ -75,11 +75,10 @@ export class MyApp {
                 this.pages = [
                   { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
                   { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
                   { title: 'Version', component: VersionPage, icon: 'information-circle' }
-                  
+
                 ];
               } else {
                 this.rootPage = HomePage;
