@@ -49,15 +49,17 @@ export class MyApp {
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
     oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    oneSignal.getIds().then((userID) => {
-    })
-      oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
-      oneSignal.handleNotificationReceived().subscribe((res) => {
-    
-      })
-      oneSignal.handleNotificationOpened().subscribe((res) => {
+    // oneSignal.getIds().then((userID) => {
+    //   console.log(userID.userId);
       
-      })
+    // })
+       oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+    //   oneSignal.handleNotificationReceived().subscribe((res) => {
+    
+    //   })
+    //   oneSignal.handleNotificationOpened().subscribe((res) => {
+      
+    //   })
       oneSignal.endInit();
 
     this.db = firebase.firestore().collection('Users');

@@ -9,8 +9,6 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-
 declare var google;
 
 @Component({
@@ -97,10 +95,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-
-
-
-
     this.menuCtrl.swipeEnable(true);
     if (this.isSearchbarOpened) {
       this.color = 'primary';
