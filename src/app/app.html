@@ -14,6 +14,7 @@
       <button class="btn-side-menu" style="background: transparent; color: #fff;" menuClose ion-button *ngFor="let p of pages"  (click)="openPage(p)">
         <ion-icon  name="{{p.icon}}"></ion-icon>
        {{p.title}}
+       <hr style="">
       </button>
      <button class="signout" color="primary" menuClose block ion-button (click)="SignOut()"> 
        <ion-icon style="font-size: 20px;" name="log-out"></ion-icon> Sign Out</button>

@@ -19,8 +19,7 @@
             <ion-input
               formControlName="email" type="email" ngDefaultControl>
             </ion-input>
-          <p 
-              *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
+          <p  *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
               The email/password combination you entered is incorrect}</p>
              </ion-item>
 
