@@ -66,6 +66,8 @@ export class BaccountSetupPage {
    }
  }
   location: string;
+  isuploaded: boolean = false;
+  imageSelected: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -146,11 +148,14 @@ export class BaccountSetupPage {
           this.builderProfile.image = downUrl;
           this.profileImage = downUrl;
           console.log('Image downUrl', downUrl);
+          this.isuploaded = true;
         })
       })
     }, err => {
       console.log("Something went wrong: ", err);
+      
     })
+    this.imageSelected = true;
   }
   async createprofile(profileForm: FormGroup): Promise<void> {
 
@@ -160,36 +165,45 @@ export class BaccountSetupPage {
         profileForm.value
       );
     }else {
-      const load = this.loadingCtrl.create({
-            content: 'Creating Profile..'
-          });
-          load.present();
-          console.log(this.builderProfile.lat, this.builderProfile.lng);
-          console.log(this.builderProfile);
-          let num = parseFloat(this.builderProfile.price.toString())
-          this.builderProfile.price = num;
-    
-
-      // upon success...
-      this.db.doc(firebase.auth().currentUser.uid).update(this.builderProfile).then( () => {
-        this.navCtrl.setRoot(HomePage)
+      if(!this.imageSelected) {
         this.toastCtrl.create({
-          message: 'User profile saved.',
-          duration: 2000,
-        }).present();
-        // ...get the profile that just got created...
-        // this.isProfile = true;
-        load.dismiss();
-        // catch any errors.
-        
-      }).catch( err=> {
-        this.toastCtrl.create({
-          message: 'Error creating Profile.',
+          message: 'Not Yet!. Profile image is required.',
           duration: 2000
         }).present();
-        this.isProfile = false;
-        load.dismiss();
-      })
+
+      }else {
+        const load = this.loadingCtrl.create({
+          content: 'Creating Profile..'
+        });
+        load.present();
+        console.log(this.builderProfile.lat, this.builderProfile.lng);
+        console.log(this.builderProfile);
+        let num = parseFloat(this.builderProfile.price.toString())
+        this.builderProfile.price = num;
+  
+
+    // upon success...
+    this.db.doc(firebase.auth().currentUser.uid).update(this.builderProfile).then( () => {
+      this.navCtrl.setRoot(HomePage)
+      this.toastCtrl.create({
+        message: 'User profile saved.',
+        duration: 2000,
+      }).present();
+      // ...get the profile that just got created...
+      // this.isProfile = true;
+      load.dismiss();
+      // catch any errors.
+      
+    }).catch( err=> {
+      this.toastCtrl.create({
+        message: 'Error creating Profile.',
+        duration: 2000
+      }).present();
+      this.isProfile = false;
+      load.dismiss();
+    })
+      }
+     
     }
            // load the profile creation process
   }

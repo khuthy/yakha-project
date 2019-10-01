@@ -66,7 +66,7 @@
  
         <ion-item class="item">
           <ion-label stacked> CellPhone Number</ion-label>
-          <ion-input  type="tel" maxLength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
+          <ion-input  type="Tel" maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.personalNumber">
          <p class="messages" *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
@@ -86,7 +86,7 @@
          <div class="btn">
             <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
            <button id="skip" block (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>
-      </div>
+        </div>
        </form>
      </div>
      
@@ -103,7 +103,7 @@
 
 <div style="display: flex;">
     
-        <button secondary ion-button (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;color:black" name="close-circle-outline"></ion-icon></button>
+        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px; color: #3c7f8b" name="close-circle-outline"></ion-icon></button>
    
      <!--   <H4 style="text-align: center;width:80%;border:1px solid red">Your Profile</H4> -->
 </div>
