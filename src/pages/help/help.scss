@@ -1,81 +1,81 @@
 page-help {
    
-        /* .container {
-            width: 100%;
-            height: 100%;
-          //  border: 1px solid red;
-          
-            .logo {
-                //border: 1px solid green;
-                position: fixed;
-                height: 35%;
-                width: 100%;
-                background-image: url(../../assets/imgs/waverotate.svg);
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-                img {
-                   // border: 1px solid red;
-                   position: relative;
-                   left: 35%;
-                   top: 25%;
-                    
-                }
-            }
-           .inputs {
-               position: relative;
-               top: 35%;
- form {
-                margin:0;
-                padding:0;
-              // border: 1px solid blue;
-                width: 80%;
-                height: 45%;
-                position: relative;
-                left: 10%;
-              
-            }
-
-            .btn {
-                 height: 20%;
-                width: 80%;
-               // border: 1px solid black;
-                position: relative;
-                top:15%;
-                left: 10%;
-            }
-
-            }
-           
-         
-        }
-    } */
     .container {
         height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        h1 {
+            color:#216D7B;
+            font-family:'Segoe UI';
+            font-size: 4vh;
+            letter-spacing: 1px;
+        }
+
+        .form {
+           // border: 1px solid yellow;
+            width:90%;
+            position: relative;
+            left:5%;
+        }
+        h3 {border:1px solid red;
+            text-align:center;
+        }
+        #describe{
+            border:1px solid green;
+        }
+        ion-list > .item {
+            box-shadow: 0 4px 8px 0 rgba(168, 165, 165, 0.2), 0 6px 20px 0 rgba(150, 144, 144, 0.19);
+            border-radius: 10px;
+            margin-top: 3%;
+          
+    
+            ion-label {
+              color: #4D4D4D; 
+              letter-spacing: 1px;
+              font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            ion-input {
+              color: #4D4D4D;
+              letter-spacing: 1px;
+              font-weight:300;
+              border-bottom: none;
+            }
+            p {
+              color: rgb(246, 22, 22);
+              font-size: 3vw;
+              text-align: center;
+              margin-top:-5%;
+            }
+          }
         .box {
         display: flex;
         flex-wrap: wrap;
+       
 
         .card {
             width: 100%;
             padding: .5em;
-            border: 1px solid #ddd;
+            border: 1px solid #216D7B;
             margin: 1%;
             display: flex;
             align-items: center;
-            
+            border-radius:5px;
 
             .icon {
-                font-size: 25px;
+                font-size: 20px;
                 width: 30px;
+                color:#216D7B;
             }
             p{
                 font-weight: 600;
                 white-space: nowrap;
+               
+                font-size: 2vh;
+                font-family:'Segoe UI';
+                color:gray;
             }
         }
         .hide {
@@ -102,6 +102,7 @@ page-help {
             .close {
                 display: flex;
                 justify-content: flex-end;
+                border:1pz solid rgb(0, 255, 55);
                 button {
                     .icon {
                         font-size: 500%;
