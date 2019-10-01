@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, PopoverController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, PopoverController, Platform, ToastController } from 'ionic-angular';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
-import { DocumentViewer } from '@ionic-native/document-viewer';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { ProfileComponent } from '../../components/profile/profile';
 import { FileTransfer } from '@ionic-native/file-transfer';
-
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 /**
  * Generated class for the ViewmessagePage page.
  *
@@ -75,7 +75,9 @@ export class ViewmessagePage {
     private file: File,
     private platform: Platform, 
     private ft: FileTransfer, 
-    private document: DocumentViewer
+    private document: DocumentViewer,
+    private base64ToGallery: Base64ToGallery,
+    private toastCtrl: ToastController
     ) {
     this.userDetails = this.navParams.data;
     this.hOwnerUID = this.userDetails.uid;
@@ -186,25 +188,14 @@ export class ViewmessagePage {
   }
   
 downloadAndOpenPdf() {
-  if(this.doc !== null) {
-    let downloadUrl = this.doc;
-   let path = this.file.dataDirectory;
-  const transfer = this.ft.create();
- 
-  transfer.download(downloadUrl, path + this.userDetails.docID).then(entry => {
-    let url = entry.toURL();
- 
-    if (this.platform.is('ios')) {
-      this.document.viewDocument(url, 'application/pdf', {});
-    } else {
-      this.fileOpener.open(url, 'application/pdf')
-        .then(() => console.log('File is opened'))
-        .catch(e => console.log('Error opening file', e));
-    }
-  });
+  const options: DocumentViewerOptions = {
+    title: 'My PDF'
   }
+  this.document.viewDocument(this.doc, 'application/pdf', options)
+
+}
  
-} 
+ 
 icon: string;
   getUser(){
    // let homeOwner = '';
@@ -234,5 +225,23 @@ icon: string;
       ev: myEvent
     });
   }
+  //  downloadQR() {
+  //  // const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+  //  /* console.log('Doc '+this.doc);
+   
+  //   const imageData = this.doc.toDataURL('image/jpeg').toString();
+  //   console.log('data ', imageData);
+    
+  //   let data = imageData.split(',')[1]; */
 
+  //   this.base64ToGallery.base64ToGallery(this.doc.split(',')[1],
+  //     {prefix:'_img', mediaScanner:true})
+  //     .then(async res=>{
+  //       let toast = await this.toastCtrl.create({
+  //         message:'QR Code save in your Photolibrary'
+  //       });
+  //       toast.present();
+  //     }, err => console.log('err: ', err)
+  //     );
+  // }  
 }

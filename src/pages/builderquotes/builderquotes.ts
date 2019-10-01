@@ -11,9 +11,8 @@ import * as firebase from 'firebase';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 import { OneSignal } from '@ionic-native/onesignal';
-
+import { SMS } from '@ionic-native/sms';
 
 
 
@@ -124,9 +123,9 @@ export class BuilderquotesPage {
     private authUser: AuthServiceProvider,
     private loader: LoadingController,
     private cdRef: ChangeDetectorRef,
-    private localNotifications: LocalNotifications,
     public toastCtrl: ToastController,
-    public oneSignal: OneSignal
+    public oneSignal: OneSignal,
+    private sms: SMS
   ) {
     this.userMsg = this.navParams.data;
     // console.log(this.quotes.hOwnerUID);
@@ -446,7 +445,10 @@ export class BuilderquotesPage {
                   //this.oneSignal.
                   this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
                   //  console.log('User information ' +resUser.data());
+                  this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
+                    console.log(smsRes);
                     
+                  });
                    //this.oneSignal.getIds().then(ids => {
                      //console.log(ids);
                      //this.oneSignal.inFocusDisplaying
@@ -457,6 +459,7 @@ export class BuilderquotesPage {
                       };
                       this.oneSignal.postNotification(notificationObj).then(res => {
                        // console.log('After push notifcation sent: ' +res);
+                       
                       });
                     
                       }

@@ -59,7 +59,9 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { PopoverPage } from '../pages/popover/popover';
 import { DescriptionComponent } from '../components/description/description';
-//import { OneSignal } from '@ionic-native/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { SMS } from '@ionic-native/sms';
 
 @NgModule({
   declarations: [
@@ -156,8 +158,10 @@ import { DescriptionComponent } from '../components/description/description';
     Keyboard,
     LocalNotifications,
     FileTransfer,
-  //  OneSignal,
+     OneSignal,
     DocumentViewer,
+    Base64ToGallery,
+    SMS
    // Firebase
    StatusBar
   ]
