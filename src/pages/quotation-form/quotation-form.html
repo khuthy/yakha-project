@@ -80,7 +80,7 @@
         <h6>Which wall type would you prefer</h6>
         <ion-list class="interval" radio-group name="brickType" formControlName="wallType" [(ngModel)]="HomeOwnerQuotation.wallType">
             <ion-item no-lines *ngFor="let wall of walls; let i=index;">
-            <ion-label>{{wall.name}}</ion-label>
+            <ion-label style="color: rgb(58, 58, 58);">{{wall.name}}</ion-label>
             <ion-radio [value]="wall.name"  ></ion-radio>
           </ion-item>
           </ion-list>
@@ -124,7 +124,7 @@
         </div>
           <ion-list radio-group (ionChange)="commentNow($event)">
             <ion-item   *ngFor="let comment of comments; let i=index;">
-              <ion-label>{{comment.comment}}</ion-label>
+              <ion-label style="color: rgb(58, 58, 58);">{{comment.comment}}</ion-label>
               <ion-radio  [value]="comment.comment"></ion-radio>
             </ion-item>
           </ion-list>
