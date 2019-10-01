@@ -124,7 +124,7 @@
         </div>
           <ion-list radio-group (ionChange)="commentNow($event)">
             <ion-item   *ngFor="let comment of comments; let i=index;">
-              <ion-label>{{comment.comment}}</ion-label>
+              <ion-label style="font-size: 26px">{{comment.comment}}</ion-label>
               <ion-radio  [value]="comment.comment"></ion-radio>
             </ion-item>
           </ion-list>
