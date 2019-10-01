@@ -106,7 +106,7 @@
   <div class="btn">
     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
    <button id="skip" color="primary" (click)="createprofile(profileForm)" block type="submit" color="secondary"  [disabled]="!profileForm.valid"  ion-button>Done </button>
-</div>
+  </div>
   </ion-list>
 </form>
       </div>
@@ -117,7 +117,7 @@
 <div  class="profiles" *ngIf="isProfile">
     <div style="display: flex;">
       
-    <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px;" name="close"></ion-icon></button>
+    <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px; color: #3c7f8b;" name="close"></ion-icon></button>
     <H5 style="text-align: center;width:80%"> Profile</H5>
 </div>
 

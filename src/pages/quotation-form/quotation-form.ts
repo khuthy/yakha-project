@@ -84,6 +84,8 @@ type: 'required', message: 'Please include some features'
 };
 extraName;
   maxDate: string;
+  isUploaded: boolean = false;
+  imageSelected: boolean = false;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -187,17 +189,28 @@ async selectImage() {
       upload.snapshot.ref.getDownloadURL().then(downUrl => {
         this.HomeOwnerQuotation.houseImage = downUrl;
         console.log('Image downUrl', downUrl);
+        this.isUploaded = true;
       })
     })
   }, err => {
     console.log("Something went wrong: ", err);
+    
   })
+  this.imageSelected = true;
 }
 async createQuations(quotationForm: FormGroup): Promise<void> {
    if(!quotationForm.valid) {
       console.log('Please fill all the form fields', quotationForm.value)
    }else {
-      // load the profile creation process
+
+    if(!this.imageSelected) {
+        this.toastCtrl.create({
+          message: 'Not Yet!. House plan image is required',
+          duration: 2000
+        }).present();
+
+    }else {
+       // load the profile creation process
       const load = this.loadCtrl.create({
         content: 'submitting quotations ..'
       });
@@ -253,6 +266,8 @@ async createQuations(quotationForm: FormGroup): Promise<void> {
     this.isProfile = false;
     load.dismiss();
   })
+    }
+     
 
    }
         

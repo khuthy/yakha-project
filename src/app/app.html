@@ -11,12 +11,13 @@
           
         </div>
  
-      <button class="btn-side-menu" style="background: transparent; color: #fff;" menuClose ion-button *ngFor="let p of pages"  (click)="openPage(p)">
+      <button class="btn-side-menu" style="background: transparent; color: #fff;" clear menuClose ion-button *ngFor="let p of pages"  (click)="openPage(p)">
         <ion-icon  name="{{p.icon}}"></ion-icon>
        {{p.title}}
+       <hr style="border: rgba(0, 0, 0, 0.699); color: rgba(0, 0, 0, 0.685);">
       </button>
      <button class="signout" color="primary" menuClose block ion-button (click)="SignOut()"> 
-       <ion-icon style="font-size: 20px;" name="log-out"></ion-icon> Sign Out</button>
+       <ion-icon name="log-out"></ion-icon> Sign Out</button>
      
     
   </ion-content>

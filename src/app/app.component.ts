@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
+
 import { AccountSetupPage } from '../pages/account-setup/account-setup';
 import { VersionPage } from '../pages/version/version';
 import { MessagesPage } from '../pages/messages/messages';
@@ -16,8 +17,6 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 //import { OneSignal } from '@ionic-native/onesignal';
 import { OneSignal } from '@ionic-native/onesignal';
-
-
 
 
 @Component({
