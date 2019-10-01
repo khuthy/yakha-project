@@ -4,6 +4,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { HttpClient } from '@angular/common/http';
 import { PlacePage } from './../pages/place/place';
 //import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
+import { StatusBar } from '@ionic-native/status-bar';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
@@ -106,7 +107,7 @@ import { DescriptionComponent } from '../components/description/description';
       scrollPadding: false,
       scrollAssist: false,
       autoFocusAssist: false,
-      iconMode: 'ios'
+
       
     }),
 
@@ -158,7 +159,14 @@ import { DescriptionComponent } from '../components/description/description';
   //  OneSignal,
     DocumentViewer,
    // Firebase
+   StatusBar
   ]
 })
 
-export class AppModule {}
+export class AppModule {
+
+ 
+
+  // let status bar overlay webview
+  
+}

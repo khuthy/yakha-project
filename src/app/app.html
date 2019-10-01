@@ -10,14 +10,14 @@
           </article>
           
         </div>
-    <ion-list>
-      <button class="btn-side-menu" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon start style="width: 50px;" name="{{p.icon}}"></ion-icon>
+ 
+      <button class="btn-side-menu" style="background: transparent; color: #fff;" menuClose ion-button *ngFor="let p of pages"  (click)="openPage(p)">
+        <ion-icon  name="{{p.icon}}"></ion-icon>
        {{p.title}}
       </button>
-     <button class="signout" color="primary" menuClose ion-item (click)="SignOut()"> 
-       <ion-icon style="width: 50px;" name="log-out"></ion-icon> Sign Out</button>
-      </ion-list>
+     <button class="signout" color="primary" menuClose block ion-button (click)="SignOut()"> 
+       <ion-icon style="font-size: 20px;" name="log-out"></ion-icon> Sign Out</button>
+     
     
   </ion-content>
 

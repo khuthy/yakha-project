@@ -21,7 +21,7 @@
     <div class="menu" *ngIf="maps">
      <div class="control">
        <button class="menus"  ion-button clear menuToggle>
-        <ion-icon name="menu" style="font-size: 25px;"></ion-icon>
+        <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
       </button>
      <!-- Search by location --> 
    <input type="text" id="search" class="controls" *ngIf="location"  placeholder="Search by Location" > 
@@ -49,8 +49,8 @@
        <ion-item no-lines *ngIf="range">
      <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
       <!-- <ion-icon range-left small name="sunny"></ion-icon> -->
-      <ion-label range-left>{{0 | currency:'&#82;'}}</ion-label>
-      <ion-label range-right>{{1000 | currency:'&#82;'}}</ion-label>
+      <ion-label range-left color="primary">{{0 | currency:'&#82;'}}</ion-label>
+      <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
     </ion-range>
      </ion-item>
     

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
 import { Information } from '../../app/model/bricks';
@@ -49,7 +49,11 @@ export class HelpPage {
   form: boolean;
   describe: string;
   info: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private formBuilder: FormBuilder,
+    public toastCtrl: ToastController
+    ) {
     this.contactForm = this.formBuilder.group({
       username: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
      
@@ -95,5 +99,10 @@ sendMessage(){
     date: Date()
   })
   
+  this.hideInfo();
+  this.toastCtrl.create({
+    message: 'Your message has successfully been sent',
+    position: 'top'
+  }).present();
 }
 }
