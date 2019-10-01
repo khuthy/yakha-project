@@ -117,10 +117,7 @@
       "onesignal-cordova-plugin": {},
       "cordova-base64-to-gallery": {},
       "cordova-sms-plugin": {},
-      "phonegap-plugin-push": {
-        "ANDROID_SUPPORT_V13_VERSION": "27.+",
-        "FCM_VERSION": "17.0.+"
-      }
+      "phonegap-plugin-push": {}
     },
     "platforms": [
       "android",
