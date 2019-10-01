@@ -8,6 +8,7 @@ page-welcome {
          background-position: center center;
     }
     .top {
+        //border: 1px solid blue;
         display: flex;
         height: 50%;
         flex-wrap: wrap;
@@ -33,6 +34,10 @@ page-welcome {
         text-shadow: 1px 1px #ddd;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    #ownerbtn {
+        //border:1px solid red;
+        margin-top:10px;
+    }
     .bottomWelcome {
         background: url('../../assets/imgs/on-boarding.svg');
         background-size: cover;
@@ -50,6 +55,7 @@ page-welcome {
          display: flex;
          flex-wrap: wrap;
          justify-content: center;
+         margin-top:25px;
      }
      .btn {
          height: 40px;
