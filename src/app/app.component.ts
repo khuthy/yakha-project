@@ -39,7 +39,7 @@ export class MyApp {
   }
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar, oneSignal: OneSignal) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
       this.statusBar.overlaysWebView(false); 
   
@@ -48,19 +48,7 @@ export class MyApp {
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
-    oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    // oneSignal.getIds().then((userID) => {
-    //   console.log(userID.userId);
-      
-    // })
-       oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
-    //   oneSignal.handleNotificationReceived().subscribe((res) => {
-    
-    //   })
-    //   oneSignal.handleNotificationOpened().subscribe((res) => {
-      
-    //   })
-      oneSignal.endInit();
+   
 
     this.db = firebase.firestore().collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
@@ -122,9 +110,26 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
+         if (this.platform.is('cordova')) {
+      this.setupPush();
+    }
     });
   }
-
+  setupPush(){
+    this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    // oneSignal.getIds().then((userID) => {
+    //   console.log(userID.userId);
+      
+    // })
+       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+      this.oneSignal.handleNotificationReceived().subscribe((res) => {
+    
+      })
+      this.oneSignal.handleNotificationOpened().subscribe((res) => {
+      
+      })
+      this.oneSignal.endInit();
+  }
   openPage(page) {
     this.nav.push(page.component);
   }

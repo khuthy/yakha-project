@@ -4,22 +4,18 @@ import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
 //import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';
-import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 import { ProfileComponent } from '../../components/profile/profile';
 import { OneSignal } from '@ionic-native/onesignal';
-
 /**
  * Generated class for the BaccountSetupPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
 @IonicPage()
 @Component({
   selector: 'page-baccount-setup',
@@ -33,6 +29,8 @@ export class BaccountSetupPage {
   uid;
   icon: string;
   profileImage: any = "../../assets/imgs/team-avatar.jpg";
+  imageSelected= false;
+  isuploaded =false;
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -54,11 +52,8 @@ export class BaccountSetupPage {
    email: firebase.auth().currentUser.email,
    date:Date(),
    tokenID:''
-
  }
  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
-
-
  formattedAddress='';
  options = {
    componentRestrictions: {
@@ -66,7 +61,7 @@ export class BaccountSetupPage {
    }
  }
   location: string;
-
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -81,7 +76,6 @@ export class BaccountSetupPage {
     )
     {
      this.authUser.setUser(firebase.auth().currentUser.uid);
-
     this.profileForm = this.formBuilder.group({
       fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       gender: new  FormControl('', Validators.compose([Validators.required])),
@@ -96,7 +90,6 @@ export class BaccountSetupPage {
       this.builderProfile.tokenID = res.userId;
     })
   }
-
   ionViewDidLoad() {
   
     this.getStatus();
@@ -146,54 +139,62 @@ export class BaccountSetupPage {
           this.builderProfile.image = downUrl;
           this.profileImage = downUrl;
           console.log('Image downUrl', downUrl);
+          this.isuploaded = true;
         })
       })
     }, err => {
       console.log("Something went wrong: ", err);
+      
     })
+    this.imageSelected = true;
   }
   async createprofile(profileForm: FormGroup): Promise<void> {
-
     if(!profileForm.valid) {
       console.log(
         'Need to complete the form, current value: ',
         profileForm.value
       );
     }else {
-      const load = this.loadingCtrl.create({
-            content: 'Creating Profile..'
-          });
-          load.present();
-          console.log(this.builderProfile.lat, this.builderProfile.lng);
-          console.log(this.builderProfile);
-          let num = parseFloat(this.builderProfile.price.toString())
-          this.builderProfile.price = num;
-    
-
-      // upon success...
-      this.db.doc(firebase.auth().currentUser.uid).update(this.builderProfile).then( () => {
-        this.navCtrl.setRoot(HomePage)
+      if(!this.imageSelected) {
         this.toastCtrl.create({
-          message: 'User profile saved.',
-          duration: 2000,
-        }).present();
-        // ...get the profile that just got created...
-        // this.isProfile = true;
-        load.dismiss();
-        // catch any errors.
-        
-      }).catch( err=> {
-        this.toastCtrl.create({
-          message: 'Error creating Profile.',
+          message: 'Not Yet!. Profile image is required.',
           duration: 2000
         }).present();
-        this.isProfile = false;
-        load.dismiss();
-      })
+      }else {
+        const load = this.loadingCtrl.create({
+          content: 'Creating Profile..'
+        });
+        load.present();
+        console.log(this.builderProfile.lat, this.builderProfile.lng);
+        console.log(this.builderProfile);
+        let num = parseFloat(this.builderProfile.price.toString())
+        this.builderProfile.price = num;
+  
+    // upon success...
+    this.db.doc(firebase.auth().currentUser.uid).update(this.builderProfile).then( () => {
+      this.navCtrl.setRoot(HomePage)
+      this.toastCtrl.create({
+        message: 'User profile saved.',
+        duration: 2000,
+      }).present();
+      // ...get the profile that just got created...
+      // this.isProfile = true;
+      load.dismiss();
+      // catch any errors.
+      
+    }).catch( err=> {
+      this.toastCtrl.create({
+        message: 'Error creating Profile.',
+        duration: 2000
+      }).present();
+      this.isProfile = false;
+      load.dismiss();
+    })
+      }
+     
     }
            // load the profile creation process
   }
-
   validation_messages = {
 'fullName': [
       { type: 'required', message: 'Name is required.' },
@@ -238,7 +239,6 @@ export class BaccountSetupPage {
     load.present();
     // create a reference to the collection of HomeOwnerProfile...
     
-
     // ...query the profile that contains the uid of the currently logged in user...
     let query = this.db.doc(this.authUser.getUser());
     query.onSnapshot(doc => {
@@ -286,7 +286,6 @@ export class BaccountSetupPage {
   editProfile(){
     this.isProfile = false;
   }
-
   getStatus(){
     
     this.db.doc(this.authUser.getUser()).onSnapshot((check) => {
@@ -311,9 +310,7 @@ export class BaccountSetupPage {
       ev: myEvent
     });
   }
-
 }
-
 export interface  builderProfile{
   uid:string;
   image?:string;
@@ -324,5 +321,4 @@ export interface  builderProfile{
   experiences: string,
   address: string,
   price:number
-
 }
