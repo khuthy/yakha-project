@@ -15,16 +15,19 @@ page-help {
         }
 
         .form {
-           // border: 1px solid yellow;
+            //border: 1px solid yellow;
             width:90%;
             position: relative;
             left:5%;
         }
-        h3 {border:1px solid red;
+        h3 {//border:1px solid red;
             text-align:center;
+            //margin-top:100px;
+           
         }
         #describe{
-            border:1px solid green;
+           // border:1px solid green;
+            text-align:center;
         }
         ion-list > .item {
             box-shadow: 0 4px 8px 0 rgba(168, 165, 165, 0.2), 0 6px 20px 0 rgba(150, 144, 144, 0.19);
@@ -44,10 +47,10 @@ page-help {
               border-bottom: none;
             }
             p {
-              color: rgb(246, 22, 22);
+             // color: rgb(246, 22, 22);
               font-size: 3vw;
               text-align: center;
-              margin-top:-5%;
+              //margin-top:-15%;
             }
           }
         .box {
@@ -83,7 +86,7 @@ page-help {
             transition: 700ms;
         }
         .show {
-            display: block;
+            display: flex;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -92,8 +95,7 @@ page-help {
             overflow-y: scroll;
             height: 90%;
             color: #fff;
-           transition-delay: 1s;
-           transition-duration: 2s;
+          
            
            
             background: rgba(36, 35, 35, 0.925);
@@ -102,7 +104,7 @@ page-help {
             .close {
                 display: flex;
                 justify-content: flex-end;
-                border:1pz solid rgb(0, 255, 55);
+              //  border:1pz solid rgb(0, 255, 55);
                 button {
                     .icon {
                         font-size: 500%;

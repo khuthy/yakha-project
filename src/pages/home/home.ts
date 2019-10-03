@@ -9,7 +9,6 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { CallNumber } from '@ionic-native/call-number';
 import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 
 declare var google;
 
@@ -74,6 +73,7 @@ export class HomePage implements OnInit {
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
     public renderer: Renderer2,
+ 
 
   ) {
     

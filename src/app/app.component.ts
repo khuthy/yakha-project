@@ -8,16 +8,15 @@ import * as firebase from 'firebase/app';
 import { firebaseConfig } from './app.firebase.config';
 import { LoginPage } from '../pages/login/login';
 import { WelcomePage } from '../pages/welcome/welcome';
+
 import { AccountSetupPage } from '../pages/account-setup/account-setup';
 import { VersionPage } from '../pages/version/version';
 import { MessagesPage } from '../pages/messages/messages';
 import { HelpPage } from '../pages/help/help';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
-//import { OneSignal } from '@ionic-native/onesignal';
 import { OneSignal } from '@ionic-native/onesignal';
-
-
+//import { OneSignal } from '@ionic-native/onesignal';
 
 
 @Component({
@@ -64,11 +63,10 @@ export class MyApp {
                 this.pages = [
                   { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
                   { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
                   { title: 'Version', component: VersionPage, icon: 'information-circle' }
-                  
+
                 ];
               } else {
                 this.rootPage = HomePage;

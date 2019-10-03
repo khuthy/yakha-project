@@ -8,38 +8,22 @@
     <div class="inputs">
       <form class="forms" [formGroup]="loginForm">
         <ion-list no-lines style="background: transparent">
-
-      <!--     <ion-item  >
-            <ion-label stacked>Username</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item> -->
-
-          <ion-item class="item" >
-            <ion-label  stacked>    Email Address</ion-label>
-            <ion-input
-              formControlName="email" type="email" ngDefaultControl>
+          <ion-item class="item">
+            <ion-label stacked> Email Address</ion-label>
+            <ion-input formControlName="email" type="email" ngDefaultControl>
             </ion-input>
-          <p  *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
-              The email/password combination you entered is incorrect}</p>
-             </ion-item>
-
-         
-
-          <ion-item  class="item">
-            <ion-label stacked>  Password</ion-label>
-              <ion-input 
-              formControlName="password" type="password"  ngDefaultControl>
+            <p style ="color:red"  *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
+              Please enter a valid email address}</p>
+              <!-- <p style ="color:red">please enter a valid email address</p> -->
+          </ion-item>
+          <ion-item class="item">
+            <ion-label stacked> Password</ion-label>
+            <ion-input formControlName="password" type="password" ngDefaultControl>
             </ion-input>
-             <p 
-              *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
-              The email/password combination you entered is incorrect.</p>
-            </ion-item>
-           
-
-        
-
-
-
+            <p style ="color:red" *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
+              your password needs more than 6 characters.</p>
+              <!-- <p style ="color:red">your password needs more than 6 characters </p> -->
+          </ion-item>
           <p style="color: rgb(71, 162, 179);text-align:center;margin-top: 3%; " (click)="forgotpassword()">Forgot
             password?</p>
 

@@ -126,11 +126,13 @@ export class AccountSetupPage {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.HomeOwnerProfile.image = downUrl;
           console.log('Image downUrl', downUrl);
+          this.isuploaded = true;
         })
       })
     }, err => {
       console.log("Something went wrong: ", err);
     })
+    this.imageSelected = true;
   }
  async createprofile(profileForm: FormGroup): Promise<void> {
     if (!profileForm.valid) {
@@ -139,7 +141,14 @@ export class AccountSetupPage {
         profileForm.value
       );
     } else {
-           // load the profile creation process
+      if(!this.imageSelected) {
+        this.toastCtrl.create({
+          message: 'Not Yet!. Profile image is required.',
+          duration: 2000
+        }).present();
+        
+      }else {
+         // load the profile creation process
            const load = this.loadingCtrl.create({
             content: 'Proccessing...'
           });
@@ -165,6 +174,8 @@ export class AccountSetupPage {
         this.isProfile = false;
         load.dismiss();
       })
+      }
+          
     }
   }
  validation_messages = {
