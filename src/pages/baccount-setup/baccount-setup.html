@@ -8,8 +8,7 @@
             <h5 style="padding:2%;color: white">Upload your image here</h5>
       <!--  <h4 style="text-align: center; color: #fff;">Manage Profile</h4> -->
       <div class="thumb">
-
-        <img (click)="selectImage()" *ngIf="profileImage" src="{{profileImage}}" class="thumb">
+        <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
         <img *ngIf="!profileImage"  src="../../assets/imgs/team-avatar.jpg" class="thumb">
        <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
       </div>
@@ -46,13 +45,8 @@
            {{validate.message}}
          </div>
          </div>
-      <!-- <ion-item>
-        <ion-label position="floating">Features</ion-label>
-        <ion-select [(ngModel)]="room.features" okText="Okay" multiple="true"   cancelText="Dismiss">
-          <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
-        </ion-select>
-      </ion-item> -->
-     <ion-item >
+      
+     <ion-item>
           <ion-label floating>Price (p/m2)</ion-label>
           <ion-input type="tel" maxLength="6" formControlName="price" name="price" [(ngModel)]="builderProfile.price"></ion-input>
         </ion-item>
@@ -61,14 +55,8 @@
            {{validate.message}}
          </div>
          </div>
-        <!-- <ion-item>
-          <ion-label floating>Does price include roofing?</ion-label>
-          <ion-select >
-            <ion-option value="y">Yes</ion-option>
-            <ion-option value="n">No</ion-option>
-          </ion-select>
-        </ion-item> -->
-        <ion-item >
+       
+        <ion-item>
           <ion-label floating>Does price include roofing?</ion-label>
           <ion-select formControlName="roof" name="roof" [(ngModel)]="builderProfile.roof"  cancelText="Dismiss">
               <ion-option value="true">Yes</ion-option>

@@ -33,6 +33,8 @@ export class BaccountSetupPage {
   uid;
   icon: string;
   profileImage: any = "../../assets/imgs/team-avatar.jpg";
+  imageSelected= false;
+  isuploaded =false;
   profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -66,8 +68,7 @@ export class BaccountSetupPage {
    }
  }
   location: string;
-  isuploaded: boolean = false;
-  imageSelected: boolean = false;
+  
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
