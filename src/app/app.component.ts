@@ -145,6 +145,6 @@ export class MyApp {
     this.nav.push(AccountSetupPage);
   }
   viewProfileB() {
-    this.nav.push(BaccountSetupPage);
+   this.nav.push(BaccountSetupPage);
   }
 }
