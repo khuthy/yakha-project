@@ -1,55 +1,28 @@
-import { BaccountSetupPage } from './../baccount-setup/baccount-setup';
-import { Component, ViewChild, ElementRef, OnInit, ViewChildren, Renderer2, QueryList } from '@angular/core';
-import { NavController, ModalController, LoadingController, MenuController, Platform, Slides, PopoverController } from 'ionic-angular';
-import * as firebase from 'firebase';
-import { Geolocation } from '@ionic-native/geolocation';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NavController, MenuController, Platform, Slides, PopoverController, AlertController } from 'ionic-angular';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
-import { WelcomePage } from '../welcome/welcome';
-import { ViewmessagePage } from '../viewmessage/viewmessage';
+import * as firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
-import { LoginPage } from '../login/login';
 import { ProfileComponent } from '../../components/profile/profile';
-
-
+import { ViewmessagePage } from '../viewmessage/viewmessage';
 declare var google;
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit {
-  // brightness: number = 20;
-  // contrast: number = 0;
-  // warmth: number = 1300;
-  // structure: any = { lower: 33, upper: 60 };
-  // text: number = 0;
+export class HomePage {
+  @ViewChild('Slides') slides: Slides;
   @ViewChild("map") mapElement: ElementRef;
-  @ViewChild(Slides) slides: Slides;
-  @ViewChildren('bgColor', { read: ElementRef }) btn: QueryList<ElementRef>;
-  person;
-  //  @ViewChild("filterSearch") filterSearch: ElementRef;
-  sampleArr = [];
-  resultArr = [];
+
+  map: any;
+  //input: any;
   db = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
-  isSearchbarOpened = false;
-  color: string = 'yakha';
-  slidesPerView: number = 1;
-  // changes if the content is empty
   items: any;
   info = false;
   builder = [];
   owner = [];
-  colors = [{ coL: "#7b557f" }, { col: "#7b558G" }, { col: "#23557f" }, { col: "#88557f" }, { col: "#7b747f" }];
-  // lat: number = -26.2609906;
-  // lng: number = 27.949579399999998;
-  places;
-  requestFound: string = '';
-  map: any;
-  //  marker: any;
-  public lat: any;
-  public lng: any;
-  geoloc;
   status: string = '';
   maps: boolean = false;
   request: boolean = false;
@@ -59,29 +32,25 @@ export class HomePage implements OnInit {
   ownerImage: any;
   bUID: string;
   price = 0;
-
   /* Search variables */
   location = false;
   name = false;
   range = false;
+  header = '';
+  uid = firebase.auth().currentUser.uid;
   /* Search variebles */
+  homeowner = false;
+  message='';
   constructor(public navCtrl: NavController,
-    private modalCtrl: ModalController,
-    public loader: LoadingController,
-    private geolocation: Geolocation,
+    public geolocation: Geolocation,
+
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
     public popoverCtrl: PopoverController,
-    public elementref: ElementRef,
-    public renderer: Renderer2,
-
-
-  ) {
-
+     public alertCtrl: AlertController) {
 
   }
-
   LocationSearch() {
     this.location = !this.location;
     this.name = false;
@@ -98,366 +67,223 @@ export class HomePage implements OnInit {
     this.location = false;
   }
 
-  ngOnInit() {
-    this.menuCtrl.swipeEnable(true);
-
-    //console.log(this.platform.width());
-
-
-    /* home page loads start here */
-    /*   this.loader.create({
-        content:"Loading..",
-        duration: 1000
-      }).present(); */
-    let user = firebase.auth().currentUser;
-    if (user) {
-      let userLoggedIn = this.db.doc(user.uid);
-      userLoggedIn.onSnapshot(getuserLoggedIn => {
-        if (getuserLoggedIn.data().builder == true) {
-
-          if (getuserLoggedIn.data().status == true) {
-            this.maps = false;
-            this.request = true;
-          }
-
-        }
-        else {
+  ionViewDidLoad() {
+    this.db.doc(this.uid).onSnapshot((res) => {
+      
+      if (res.data().builder == false) {
+       // document.getElementById('hideshow').style.display = "flex"
+        this.header = 'value';
+        this.loadMap();
+        this.getPosition();
+      } else {
+        this.getRequests();
+      }
+    })
+// this.getRequests();
+// this.loadMap();
+    
+  }
 
 
-          this.geolocation.getCurrentPosition().then((resp) => {
-            let NEW_ZEALAND_BOUNDS = {
-              north: -22.0913127581,
-              south: -34.8191663551,
-              west: 10.830120477,
-              east: 32.830120477,
-            };
-            let coords1 = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
-            //  console.log(resp.coords.latitude, resp.coords.longitude);
+  getPosition(): any {
+    this.geolocation.getCurrentPosition().then(resp => {
+      this.setCenter(resp);
 
-            let mapOptions = {
-              center: coords1,
-              zoom: 11,
-              draggable: false,
-              mapTypeId: google.maps.MapTypeId.ROADMAP,
-              restriction: {
-                latLngBounds: NEW_ZEALAND_BOUNDS,
-                strictBounds: false,
-              },
-              disableDefaultUI: true,
-              styles: [
-                {
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#f5f5f5"
-                    }
-                  ]
-                },
-                {
-                  "elementType": "labels.icon",
-                  "stylers": [
-                    {
-                      "visibility": "off"
-                    }
-                  ]
-                },
-                {
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#616161"
-                    }
-                  ]
-                },
-                {
-                  "elementType": "labels.text.stroke",
-                  "stylers": [
-                    {
-                      "color": "#f5f5f5"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "administrative.country",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                    {
-                      "color": "#216d7b"
-                    },
-                    {
-                      "visibility": "on"
-                    },
-                    {
-                      "weight": 5
-                    }
-                  ]
-                },
-                {
-                  "featureType": "administrative.land_parcel",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#bdbdbd"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#eeeeee"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#757575"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi.park",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#e5e5e5"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "poi.park",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#9e9e9e"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#ffffff"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.arterial",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#757575"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.highway",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#216d7b"
-                    },
-                    {
-                      "saturation": 100
-                    },
-                    {
-                      "visibility": "on"
-                    },
-                    {
-                      "weight": 1
-                    }
-                  ]
-                },
-                {
-                  "featureType": "road.local",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#9e9e9e"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "transit.line",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#e5e5e5"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "transit.station",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#eeeeee"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "water",
-                  "elementType": "geometry",
-                  "stylers": [
-                    {
-                      "color": "#c9c9c9"
-                    }
-                  ]
-                },
-                {
-                  "featureType": "water",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                    {
-                      "color": "#9e9e9e"
-                    }
-                  ]
-                }
-              ]
-            }
-
-            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-            let input = document.getElementById('search');
-            let searchBox = new google.maps.places.SearchBox(input);
-            this.map.addListener('bounds_changed', (res) => {
-              searchBox.setBounds(this.map.getBounds());
-            });
-            let markers = [];
-            searchBox.addListener('places_changed', (res) => {
-              var places = searchBox.getPlaces();
-              if (places.length == 0) {
-                return;
-              }
-              markers.forEach((marker) => {
-                marker.setMap(null);
-              });
-              markers = [];
-              let bounds = new google.maps.LatLngBounds();
-              places.forEach((place) => {
-                if (!place.geometry) {
-                  console.log("Returned place contains no geometry");
-                  return;
-                }
-                let icon = {
-                  url: place.icon,
-                  size: new google.maps.Size(71, 71),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(17, 34),
-                  scaledSize: new google.maps.Size(25, 25)
-                };
-
-                markers.push(new google.maps.Marker({
-                  map: this.map,
-                  icon: icon,
-                  title: place.name,
-                  position: place.geometry.location
-                }));
-
-                if (place.geometry.viewport) {
-                  // Only geocodes have viewport.
-                  bounds.union(place.geometry.viewport);
-                } else {
-                  bounds.extend(place.geometry.location);
-                }
-              });
-              this.map.fitBounds(bounds);
-            });
-            let marker1 = new google.maps.Marker({
-              map: this.map,
-              position: coords1,
-              title: 'Click to view details',
-            })
-            let infoWindow = new google.maps.InfoWindow({
-              content: 'My location'
-            });
-            google.maps.event.addListener(marker1, 'click', (resp) => {
-              infoWindow.open(this.map, marker1)
-            })
-
-            google.maps.event.addListener(marker1, 'click', (resp) => {
-              this.map.setZoom(15);
-              this.map.setCenter(marker1.getPosition());
-            });
-            this.db.where("builder", "==", true).onSnapshot((resp) => {
-              // if(this.slides.getActiveIndex()){
-              resp.forEach((doc) => {
-                let certified = (doc.data().certified == true) ? 'Certified' : 'Not certified';
-                let lat = "<br>Builder name: " + doc.data().fullName + "<br>Price: R" + doc.data().price + '<br>' + certified;
-                let coord = new google.maps.LatLng(doc.data().lat, doc.data().lng);
-
-                let marker = new google.maps.Marker({
-                  map: this.map,
-                  position: coord,
-                  draggable: true,
-                  animation: google.maps.Animation.DROP,
-                  title: 'Click to view details',
-                })
-                let infoWindow = new google.maps.InfoWindow({
-                  content: lat
-                });
-                google.maps.event.addListener(marker, 'click', (resp) => {
-                  //infoWindow.open(this.map, marker)
-                  this.viewBuilderInfo(doc.data());
-                })
-                google.maps.event.addListener(marker, 'click', (resp) => {
-                  this.map.setZoom(15);
-                  this.map.setCenter(marker.getPosition());
-                });
-
-              })
-              //     }
-              // doc.data() is never undefined for query doc snapshots
-
-
-            });
-
-          }).catch((error) => {
-            console.log('Error getting location', error);
-          });
-          // this.search(this.builder);
-          this.maps = true;
-          this.request = false;
-          /// this.builder = [];
-          this.db.where("builder", "==", true).onSnapshot(snapshot => {
-            if (snapshot.size)
-              snapshot.forEach(doc => {
-                this.builder.push(doc.data());
-                this.bUID = doc.id;
-              });
-            //this.builder = [];
-            //console.log('Builders: ', this.builder);
-
-          });
-        }
-        // else {
-        //   console.log('you are in the waiting list. please wait for 24 hours');
-
-        // }
-
+    }).catch((error) => {
+      this.errorMessage('Error code ' + error.code, error.message)
+    })
+  }
+  getBuilders() {
+    this.db.where('builder', '==', true).onSnapshot((res) => {
+      this.builder = [];
+      res.forEach((doc) => {
+        // this.errorMessage('User found',doc.id)
+        this.builder.push(doc.data());
+        // console.log(this.builder);
+        let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
+        let marker = new google.maps.Marker({
+          position: myLatLng,
+          map: this.map,
+          title: 'Hello World!'
+        });
+        google.maps.event.addListener(marker, 'click', (resp) => {
+          this.viewBuilderInfo(doc.data());
+        })
       })
-    } else {
-      this.navCtrl.setRoot(WelcomePage);
-    }
-    /* home page loads here */
+    })
   }
-  onInput(event) {
-    /*    console.log(event._value);
-       this.db.where('fullName','==',event._value).onSnapshot(snapshot => {
-         snapshot.forEach(doc => {
-         console.log(doc.data());
-       });
-       //console.log('Builders: ', this.builder);
-   
-     }); */
+  errorMessage(errCode, errMsg) {
+    const alert = this.alertCtrl.create({
+      title: errCode,
+      subTitle: errMsg,
+      buttons: ['OK']
+    });
+    alert.present();
   }
-  back() {
-    this.navCtrl.setRoot(LoginPage);
+  loadMap() {
+    this.message='Message of map';
+    let SA_BOUNDS = {
+      north: -22.0913127581,
+      south: -34.8191663551,
+      west: 10.830120477,
+      east: 32.830120477,
+    };
+    let latlng = new google.maps.LatLng(39.305, -76.617);
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      center: latlng,
+      draggable: true,
+      restriction: {
+        latLngBounds: SA_BOUNDS,
+        strictBounds: true,
+      },
+      zoom: 15,
+      disableDefaultUI: true,
+    });
+    this.getBuilders();
+
+
+    let input = document.getElementById('pac-input');
+    let searchBox = new google.maps.places.SearchBox(input);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    this.map.addListener('bounds_changed', (res) => {
+      searchBox.setBounds(this.map.getBounds());
+    });
+    let markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', (res) => {
+      let places = searchBox.getPlaces();
+      if (places.length == 0) {
+        return;
+      }
+      // Clear out the old markers.
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+      // For each place, get the icon, name and location.
+      let bounds = new google.maps.LatLngBounds();
+      places.forEach((place) => {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        let icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: this.map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      this.map.fitBounds(bounds);
+    });
+  }
+
+
+  setCenter(position: Geoposition) {
+    let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+    this.map.setCenter(myLatLng);
+
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: this.map,
+        title: 'Hello World!'
+      });
+      this.map.classList.add('show-map');
+    });
+  }
+  initAutocomplete() {
+    let input = document.getElementById('pac-input');
+    let searchBox = new google.maps.places.SearchBox(input);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    this.map.addListener('bounds_changed', (res) => {
+      searchBox.setBounds(this.map.getBounds());
+    });
+    let markers = [];
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', (res) => {
+      let places = searchBox.getPlaces();
+      if (places.length == 0) {
+        return;
+      }
+      // Clear out the old markers.
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+      // For each place, get the icon, name and location.
+      let bounds = new google.maps.LatLngBounds();
+      places.forEach((place) => {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+        let icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25)
+        };
+        // Create a marker for each place.
+        markers.push(new google.maps.Marker({
+          map: this.map,
+          icon: icon,
+          title: place.name,
+          position: place.geometry.location
+        }));
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      this.map.fitBounds(bounds);
+    });
+  }
+  search(event) {
+    let searchKey: string = event;
+    // let firstLetter = searchKey;
+    // this.builder = [];
+    // this.db.where('fullName', '==', firstLetter)
+    //   .where('builder', '==', true)
+    //   .onSnapshot((res) => {
+    //     if (res.size > 0) {
+    //       this.builder = [];
+    //       res.forEach((doc) => {
+    //         this.builder.push(doc.data());
+    //       })
+    //     } else {
+    //       //  console.log(this.builder);
+    //       this.builder = [];
+    //       this.db.where("builder", "==", true).onSnapshot(snapshot => {
+    //         snapshot.forEach(doc => {
+    //           this.builder.push(doc.data());
+    //           this.bUID = doc.id;
+    //         });
+    //         //console.log('Builders: ', this.builder);
+    //       });
+    //     }
+    //   })
   }
   setPriceRange(param) {
     this.price = param;
@@ -474,25 +300,10 @@ export class HomePage implements OnInit {
             this.bUID = doc.id;
             //   });
             //   console.log('Builders: ', this.builder);
-
             // });
           })
         })
     }
-  }
-  callJoint(phoneNumber) {
-    this.callNumber.callNumber(phoneNumber, true);
-  }
-  // this.callNumber.callNumber("18001010101", true)
-  //   .then(res => console.log('Launched dialer!', res))
-  //   .catch(err => console.log('Error launching dialer', err));
-  initializeItems() {
-
-    this.items = [
-      'Amsterdam',
-      'Bogota',
-
-    ];
   }
   viewProfile(myEvent) {
     let popover = this.popoverCtrl.create(ProfileComponent, { image: myEvent });
@@ -502,167 +313,55 @@ export class HomePage implements OnInit {
   }
   viewHouse(myEvent) {
     console.log('image', myEvent);
-
     let popover = this.popoverCtrl.create(ProfileComponent, { image: myEvent });
     popover.present({
       ev: myEvent
     });
   }
-
-  search(event) {
-    let searchKey: string = event;
-
-    let firstLetter = searchKey;
-    this.builder = [];
-    this.db.where('fullName', '==', firstLetter)
-      .where('builder', '==', true)
-      .onSnapshot((res) => {
-        if (res.size > 0) {
-          this.builder = [];
-          res.forEach((doc) => {
-            this.builder.push(doc.data());
-
-          })
-        } else {
-
-          //  console.log(this.builder);
-          this.builder = [];
-          this.db.where("builder", "==", true).onSnapshot(snapshot => {
-            snapshot.forEach(doc => {
-              this.builder.push(doc.data());
-              this.bUID = doc.id;
-            });
-            //console.log('Builders: ', this.builder);
-
-          });
-        }
-
-      })
-
-
+  callJoint(phoneNumber) {
+    this.callNumber.callNumber(phoneNumber, true);
   }
-  getItems(ev: any) {
-    // Reset items back to all of the items
-    this.initializeItems();
-
-    // set val to the value of the searchbar
-    const val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.items = [];
-    }
-  }
-  ionViewDidLoad() {
-
-
-    if (this.platform.width() > 1200) {
-      this.slidesPerView = 5;
-    }
-
-    // On a desktop, and is wider than 768px
-    else if (this.platform.width() > 768) {
-      this.slidesPerView = 3;
-    }
-
-    // On a desktop, and is wider than 400px
-    else if (this.platform.width() > 450) {
-      this.slidesPerView = 2;
-    }
-
-    // On a desktop, and is wider than 319px
-    else if (this.platform.width() > 319) {
-      this.slidesPerView = 1;
-    }
-
-    let data = {
-      builder: {},
-      owner: {}
-    }
-
-    this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
-      this.owner = [];
-      res.forEach((doc) => {
-        this.requestFound = '';
-        //  this.ownerUID = doc.data().uid; 
-
-
-        this.db.doc(doc.data().hOwnerUid).get().then((res) => {
-          data.owner = res.data();
-          data.builder = doc.data();
-          console.log(res.data());
-          this.owner.push(data);
-          data = {
-            builder: {},
-            owner: {}
-          }
-
-
-        })
-        console.log(this.btn.setDirty);
-
-        this.btn.forEach(element => {
-          let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', ''];
-          let randomColor = Math.floor((Math.random() * colors.length));
-          this.renderer.setStyle(element, 'background', colors[randomColor]);
-          console.log('modany', element.nativeElement);
-
-        });
-
-        setTimeout(() => {
-          // this.getOwners();
-          let colors = ['#3c7f8b', '#0071BC', '#c76a49']
-          let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
-          for (var i = 0; i < cards; i++) {
-            console.table('for running:', { i: this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2] });
-
-            let background = i % 2;
-
-            let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2].children[0]
-            let randomColor = Math.floor((Math.random() * colors.length));
-            if (background) {
-              console.log(cards);
-
-              this.renderer.setStyle(cards, 'background', colors[randomColor])
-            } else {
-              console.log(cards);
-              this.renderer.setStyle(cards, 'background', colors[randomColor])
-            }
-          }
-          console.log('for done');
-          console.log(cards);
-        }, 500)
-
-      })
-
-
-    });
-
-  }
-
-
   //viewmore
   viewBuilderInfo(builder) {
-
-
     this.navCtrl.push(BuilderProfileviewPage, builder);
   }
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-
   moveMapEvent() {
     let currentIndex = this.slides.getActiveIndex();
     let currentEvent = this.builder[currentIndex];
     this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
   }
+  getRequests() {
+   // this.request = true;
+    let data = {
+      builder: {},
+      owner: {}
+    }
+    this.builder = [];
+    this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
+      this.owner = [];
+      res.forEach((doc) => {
+        this.db.doc(doc.data().hOwnerUid).get().then((res) => {
+          data.owner = res.data();
+          data.builder = doc.data();
+          this.owner.push(data);
+          console.log(this.owner);
+          data = {
+            builder: {},
+            owner: {}
+          }
+        })
+      })
+    })
+  }
 
-
-
+  showmap(){
+    document.getElementById('hidemap').style.display = "flex"
+    document.getElementById('hideshow').style.display = "none"
+  }
 }
+
 
 

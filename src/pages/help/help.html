@@ -22,7 +22,7 @@
   </div>
 
 
-   <div [ngClass]="{'show': toggle, 'hide': !toggle}">
+   <div [ngClass]="{'show': toggle, 'hide': !toggle}"><!-- black div -->
      <div class="close">
        <button ion-button clear (click)="hideInfo()"><ion-icon name="close"></ion-icon></button>
      </div>
@@ -54,7 +54,7 @@
                 </div>
       
               <ion-item  class="item" >
-                <ion-label floating> Type Message </ion-label>
+                <ion-label stacked> Type Message </ion-label>
                 <ion-textarea  formControlName="message" [(ngModel)]="contact.message">
           
                 </ion-textarea>

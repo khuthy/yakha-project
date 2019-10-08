@@ -15,8 +15,8 @@ import { MessagesPage } from '../pages/messages/messages';
 import { HelpPage } from '../pages/help/help';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
-//import { OneSignal } from '@ionic-native/onesignal';
 import { OneSignal } from '@ionic-native/onesignal';
+//import { OneSignal } from '@ionic-native/onesignal';
 
 
 @Component({
@@ -38,7 +38,7 @@ export class MyApp {
   }
 
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar, oneSignal: OneSignal) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
       this.statusBar.overlaysWebView(false); 
   
@@ -120,9 +120,26 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
+         if (this.platform.is('cordova')) {
+      this.setupPush();
+    }
     });
   }
-
+  setupPush(){
+    this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    // oneSignal.getIds().then((userID) => {
+    //   console.log(userID.userId);
+      
+    // })
+       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+      this.oneSignal.handleNotificationReceived().subscribe((res) => {
+    
+      })
+      this.oneSignal.handleNotificationOpened().subscribe((res) => {
+      
+      })
+      this.oneSignal.endInit();
+  }
   openPage(page) {
     this.nav.push(page.component);
   }
@@ -140,6 +157,6 @@ export class MyApp {
     this.nav.push(AccountSetupPage);
   }
   viewProfileB() {
-    this.nav.push(BaccountSetupPage);
+   this.nav.push(BaccountSetupPage);
   }
 }

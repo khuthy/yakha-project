@@ -11,7 +11,7 @@
 
               <div class="holder">
                   <div class="background">
-                      <h5 style="color: white;text-align: center;padding:5%">{{dat.fullName}}</h5>
+                      <h5 style="color: white;text-align: center;padding:5%"><!-- {{dat.fullName}} --></h5>
 
                       <div class="propic">
                           <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
@@ -20,37 +20,41 @@
 
                       <div class="info">
                           <!-- gender -->
-                            <div style="display:flex;height:10%">
-                                <h5 style="width: 50%;color:black">Gender</h5>
-                                <p style="text-align: center;font-size: 2.1vh; padding-left:3%" color="button2">:  {{dat.gender}}</p>
+                          <div style="display:flex; text-align: center; justify-content:center; align-items: center">
+                                <h5  style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2"><!-- {{dat.gender}} --></h5>
+                             
                              </div>
                              <!-- experience-->
-                             <div style="display: flex;height:10%">
-                                <h5 style="width: 50%">Experience?</h5>
-                                <p style="width: 50%">:  {{dat.experiences}} years.</p>
+                             <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
+                                <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.experiences}} years.</h5>
+                               
                             </div>
                        
                             <!-- price -->
-                    
-                            <div style="display: flex;height:10%">
-                                <h5  style="width: 50%">Price</h5>
-                                <p style=" width: 50%"> :  {{dat.price | currency:'&#82;'}}(p/&#13217;)</p>
-                              </div>
+
+                              <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
+                                    <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
+                                   
+                                </div>
+
+
                               <!-- roofing included -->
-                    <div style="display: flex;height:10%">
-                        <h5  style="width: 50%">Roofing Included?</h5>
-                        <p style="width: 50%">:   {{dat.roof}}</p>
-                      </div>
+                              <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
+                            <h5 style="padding-left:6%;font-size: 2.5vh"><!--  {{dat.roof}} --> Roofing Included </h5>
+                           
+                        </div>
+
                       <div class="bio">
-                          <h6 style="margin-top: 0;"><ion-icon style="color:darkcyan;font-size:5vh" size="large" name="pin"></ion-icon></h6>
+                          <h6 style="margin-top: 0;"><ion-icon style="color:darkcyan;font-size:5vh;padding-top:2%" size="large" name="pin"></ion-icon></h6>
                     <p style="font-size: 2vh; font-family: 'Segoe UI';margin-top:0">
                         {{dat.address}}</p>
                       </div>
-                      <div class="button-request">
+
+                      <div style="margin-top:7%" class="button-request">
                         <button primary style="padding:1%;background:rgba(197, 101, 66, 0.966);border-radius: 5px;width:90%;position:relative;left:5%;top:10%" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
                        </div>
 
-                    </div><!-- info closes here -->
+                    </div>
                  
                   </div>
 
