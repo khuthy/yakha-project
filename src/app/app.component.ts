@@ -76,7 +76,6 @@ export class MyApp {
                   { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
-                  // { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
                   { title: 'Version', component: VersionPage, icon: 'information-circle' }
 
                 ];

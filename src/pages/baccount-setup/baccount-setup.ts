@@ -160,17 +160,11 @@ export class BaccountSetupPage {
   }
   async createprofile(profileForm: FormGroup): Promise<void> {
 
-    if(!profileForm.valid) {
+    if(!profileForm.valid){
       console.log(
         'Need to complete the form, current value: ',
         profileForm.value
       );
-    }else {
-      if(!this.imageSelected) {
-        this.toastCtrl.create({
-          message: 'Not Yet!. Profile image is required.',
-          duration: 2000
-        }).present();
 
       }else {
         const load = this.loadingCtrl.create({
@@ -207,7 +201,8 @@ export class BaccountSetupPage {
      
     }
            // load the profile creation process
-  }
+  
+
 
   validation_messages = {
 'fullName': [

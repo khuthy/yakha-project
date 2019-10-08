@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
   // text: number = 0;
   @ViewChild("map") mapElement: ElementRef;
   @ViewChild(Slides) slides: Slides;
-  @ViewChildren('bgColor', {read: ElementRef}) btn : QueryList<ElementRef>;
+  @ViewChildren('bgColor', { read: ElementRef }) btn: QueryList<ElementRef>;
   person;
   //  @ViewChild("filterSearch") filterSearch: ElementRef;
   sampleArr = [];
@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
   info = false;
   builder = [];
   owner = [];
-  colors=[{coL:"#7b557f"},{col:"#7b558G"},{col:"#23557f"},{col:"#88557f"},{col:"#7b747f"}];
+  colors = [{ coL: "#7b557f" }, { col: "#7b558G" }, { col: "#23557f" }, { col: "#88557f" }, { col: "#7b747f" }];
   // lat: number = -26.2609906;
   // lng: number = 27.949579399999998;
   places;
@@ -53,12 +53,13 @@ export class HomePage implements OnInit {
   status: string = '';
   maps: boolean = false;
   request: boolean = false;
+
   ownerUID: string;
   ownerName;
   ownerImage: any;
   bUID: string;
   price = 0;
-  
+
   /* Search variables */
   location = false;
   name = false;
@@ -74,11 +75,11 @@ export class HomePage implements OnInit {
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
     public renderer: Renderer2,
- 
+
 
   ) {
-    
-   
+
+
   }
 
   LocationSearch() {
@@ -99,7 +100,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.menuCtrl.swipeEnable(true);
-    
+
     //console.log(this.platform.width());
 
 
@@ -121,7 +122,7 @@ export class HomePage implements OnInit {
 
         }
         else {
-        
+
 
           this.geolocation.getCurrentPosition().then((resp) => {
             let NEW_ZEALAND_BOUNDS = {
@@ -510,8 +511,8 @@ export class HomePage implements OnInit {
 
   search(event) {
     let searchKey: string = event;
-    
-       let firstLetter = searchKey;
+
+    let firstLetter = searchKey;
     this.builder = [];
     this.db.where('fullName', '==', firstLetter)
       .where('builder', '==', true)
@@ -537,8 +538,8 @@ export class HomePage implements OnInit {
         }
 
       })
-    
-   
+
+
   }
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -557,7 +558,7 @@ export class HomePage implements OnInit {
     }
   }
   ionViewDidLoad() {
-    
+
 
     if (this.platform.width() > 1200) {
       this.slidesPerView = 5;
@@ -588,38 +589,36 @@ export class HomePage implements OnInit {
       res.forEach((doc) => {
         this.requestFound = '';
         //  this.ownerUID = doc.data().uid; 
-       
+
 
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
           data.builder = doc.data();
-           console.log(res.data());
+          console.log(res.data());
           this.owner.push(data);
           data = {
             builder: {},
             owner: {}
           }
 
-         
+
         })
         console.log(this.btn.setDirty);
-        
-         this.btn.forEach(element => {
+
+        this.btn.forEach(element => {
           let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', ''];
           let randomColor = Math.floor((Math.random() * colors.length));
           this.renderer.setStyle(element, 'background', colors[randomColor]);
-          console.log('modany',element.nativeElement);
-          
-        }); 
-       
+          console.log('modany', element.nativeElement);
 
+        });
 
-         setTimeout(() => {
+        setTimeout(() => {
           // this.getOwners();
           let colors = ['#3c7f8b', '#0071BC', '#c76a49']
           let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
           for (var i = 0; i < cards; i++) {
-            console.table('for running:', {i: this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2]});
+            console.table('for running:', { i: this.elementref.nativeElement.children[1].children[1].children[0].children[i].children[2] });
 
             let background = i % 2;
 
@@ -632,18 +631,15 @@ export class HomePage implements OnInit {
             } else {
               console.log(cards);
               this.renderer.setStyle(cards, 'background', colors[randomColor])
-            } 
+            }
           }
           console.log('for done');
           console.log(cards);
-        }, 500) 
-
-
-
+        }, 500)
 
       })
 
-      
+
     });
 
   }
@@ -658,10 +654,6 @@ export class HomePage implements OnInit {
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-  
-
-
-
 
   moveMapEvent() {
     let currentIndex = this.slides.getActiveIndex();
