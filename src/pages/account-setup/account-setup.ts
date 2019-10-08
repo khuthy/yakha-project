@@ -259,6 +259,10 @@ viewProfile(myEvent) {
     ev: myEvent
   });
 }
+
+getProfileImageStyle() {
+  return 'url(' + this.HomeOwnerProfile.image  + ')'
+}
 viewHouse(myEvent) {
   console.log('image',myEvent);
   

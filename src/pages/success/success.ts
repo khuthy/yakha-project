@@ -16,6 +16,8 @@ import { HomePage } from '../home/home';
 })
 export class SuccessPage {
 
+  success = 'Success';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

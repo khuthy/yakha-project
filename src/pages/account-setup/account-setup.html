@@ -92,20 +92,16 @@
      
  </div>
 
-<!-- view profile -->
+<!-- view profile --><!-- 
 <div class="container" *ngIf="isProfile">
 
-  <!--   <ion-header>
-        <ion-navbar color="primary">
-          <ion-title>version</ion-title>
-        </ion-navbar>
-      </ion-header> -->
+ 
 
 <div style="display: flex;">
     
         <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px; color: #3c7f8b" name="close-circle-outline"></ion-icon></button>
    
-     <!--   <H4 style="text-align: center;width:80%;border:1px solid red">Your Profile</H4> -->
+    
 </div>
 
   <div class="holder">
@@ -115,25 +111,25 @@
       <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" (click)="viewProfile(HomeOwnerProfile.image)" class="thumbavatar">
       <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
     </div>
-    <!-- info starts here -->
+
    <div class="info">
-     <!-- gender -->
+
      <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-   <!--      <img src="../../assets/imgs/gender.png" width="7%" height="7%" color="gray"> -->
+
         <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{HomeOwnerProfile.gender}}</h5>
      </div>
-<!-- phone numbers -->
+
      <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-   <!--      <ion-icon name="call" style="color: #3c7f8b;font-size:3vh"></ion-icon> -->
+
         <h5 style="padding-left:6%;font-size: 2.5vh">{{HomeOwnerProfile.personalNumber}}</h5>
      </div>
 
      
-    <!-- bio -->
+
          <h5 style="text-align: center; padding-top:3%">About me</h5>
          <p style="text-align: center;letter-spacing: 1px; padding:1%">  {{HomeOwnerProfile.About}} </p>
 
-<!-- address -->
+
          <div id="address">
           <p style="border: 1px sold green"> 
            <ion-icon name="pin" style="color:#3c7f8b;font-size: 4vh" ></ion-icon>
@@ -141,16 +137,14 @@
                <p >{{HomeOwnerProfile.ownerAddress}}</p>
          </div>
 
-       <!--   <p style="1px solid pink"> {{HomeOwnerProfile.profile}} </p> -->
+   
       
 
     <ion-fab right bottom>
         <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
       </ion-fab>
 
-      <!-- <ion-fab left bottom>
-          <button ion-fab style="background: green" ><ion-icon name="call" (click)="callJoint(HomeOwnerProfile.personalNumber)"></ion-icon></button>
-        </ion-fab> -->
+   
       
 
         
@@ -160,6 +154,38 @@
    </div>
  </div>
   </div>
+</div> -->
+<div class="container" *ngIf="isProfile">
+  <div class="header">
+    <button ion-fab><ion-icon color="light" name="arrow-back"></ion-icon></button>
+    <div class="group-button">
+      <p>Logout</p>
+      <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="wrap" [style.backgroundImage]="getProfileImageStyle()"></div>
+    <div class="image-wrap">
+        <img class="image-profile" src="{{HomeOwnerProfile.image}}" alt="{{HomeOwnerProfile.image}}">
+    </div>
+  <div class="homeOwner-info">
+    <button class="btn-edit" ion-button clear (click)="editProfile()"><ion-icon color="dark" name="create"></ion-icon></button>
+    <div class="title">
+      <h4>{{HomeOwnerProfile.fullName}}</h4>
+      <div class="contactInfo">
+        <p>{{HomeOwnerProfile.personalNumber}}</p>
+        <p>{{HomeOwnerProfile.gender}}</p>
+      </div>
+     
+
+    </div>
+    <div class="location">
+           <p>{{HomeOwnerProfile.ownerAddress}}</p>
+      </div>
+   
+  </div>
+  </div>
+  
 </div>
 <!-- profile -->
 
