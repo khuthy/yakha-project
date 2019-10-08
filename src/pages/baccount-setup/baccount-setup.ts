@@ -10,6 +10,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { HomePage } from '../home/home';
 import { ProfileComponent } from '../../components/profile/profile';
 import { OneSignal } from '@ionic-native/onesignal';
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the BaccountSetupPage page.
  *
@@ -190,7 +191,16 @@ export class BaccountSetupPage {
 
     }
            // load the profile creation process
-  
+           SignOut() {
+            firebase.auth().signOut().then(() => {
+              console.log('Signed Out');
+              this.navCtrl.setRoot(LoginPage);
+        
+            }).catch((err) => {
+              console.log('error occured while signing out');
+        
+            })
+          }
 
 
   validation_messages = {
