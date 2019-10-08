@@ -29,9 +29,9 @@ export class BaccountSetupPage {
   uid;
   icon: string;
   profileImage: any = "../../assets/imgs/team-avatar.jpg";
-  //imageSelected= false;
-  //isuploaded =false;
-  profileForm: FormGroup;
+  imageSelected= false;
+  isuploaded =false;
+  profileForm : FormGroup;
   uploadprogress = 0;
   isuploading: false
   displayProfile = [];
@@ -61,8 +61,7 @@ export class BaccountSetupPage {
     }
   }
   location: string;
-  isuploaded: boolean = false;
-  imageSelected: boolean = false;
+  
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -150,18 +149,14 @@ export class BaccountSetupPage {
     this.imageSelected = true;
   }
   async createprofile(profileForm: FormGroup): Promise<void> {
-    if (!profileForm.valid) {
+
+    if(!profileForm.valid){
       console.log(
         'Need to complete the form, current value: ',
         profileForm.value
       );
-    } else {
-      if (!this.imageSelected) {
-        this.toastCtrl.create({
-          message: 'Not Yet!. Profile image is required.',
-          duration: 2000
-        }).present();
-      } else {
+
+      }else {
         const load = this.loadingCtrl.create({
           content: 'Creating Profile..'
         });
@@ -194,8 +189,10 @@ export class BaccountSetupPage {
       }
 
     }
-    // load the profile creation process
-  }
+           // load the profile creation process
+  
+
+
   validation_messages = {
     'fullName': [
       { type: 'required', message: 'Name is required.' },

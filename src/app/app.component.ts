@@ -47,7 +47,19 @@ export class MyApp {
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
-   
+    oneSignal.startInit(this.signal_app_id, this.firebase_id);
+    // oneSignal.getIds().then((userID) => {
+    //   console.log(userID.userId);
+      
+    // })
+       oneSignal.inFocusDisplaying(oneSignal.OSInFocusDisplayOption.InAppAlert);
+      oneSignal.handleNotificationReceived().subscribe((res) => {
+    
+      })
+      oneSignal.handleNotificationOpened().subscribe((res) => {
+      
+      })
+      oneSignal.endInit();
 
     this.db = firebase.firestore().collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
@@ -64,7 +76,6 @@ export class MyApp {
                   { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
-                  { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
                   { title: 'Version', component: VersionPage, icon: 'information-circle' }
 
                 ];
@@ -96,6 +107,7 @@ export class MyApp {
       }
       else {
         this.rootPage = WelcomePage;
+
         console.log('User not logged in');
 
       }

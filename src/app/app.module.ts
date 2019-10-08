@@ -73,7 +73,6 @@ import { SMS } from '@ionic-native/sms';
     SignoutPage,
     OnboardingPage,
     AccountSetupPage,
-  
     MessagesPage,
     HelpPage,
     FeedbackPage,
@@ -104,7 +103,7 @@ import { SMS } from '@ionic-native/sms';
     CommonModule,
     HttpClientModule,
     GooglePlaceModule,
-    
+ 
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
       scrollAssist: false,

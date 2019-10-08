@@ -140,14 +140,7 @@ export class AccountSetupPage {
         'Need to complete the form, current value: ',
         profileForm.value
       );
-    } else {
-      if(!this.imageSelected) {
-        this.toastCtrl.create({
-          message: 'Not Yet!. Profile image is required.',
-          duration: 2000
-        }).present();
-        
-      }else {
+     }else {
          // load the profile creation process
            const load = this.loadingCtrl.create({
             content: 'Proccessing...'
@@ -177,7 +170,7 @@ export class AccountSetupPage {
       }
           
     }
-  }
+  
  validation_messages = {
     'fullName': [
       { type: 'required', message: 'Name is required.' },
@@ -282,3 +275,4 @@ viewHouse(myEvent) {
   About:string;
 
 } 
+
