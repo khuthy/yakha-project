@@ -9,6 +9,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ProfileComponent } from '../../components/profile/profile';
 import { OneSignal } from '@ionic-native/onesignal';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -140,14 +141,7 @@ export class AccountSetupPage {
         'Need to complete the form, current value: ',
         profileForm.value
       );
-    } else {
-      if(!this.imageSelected) {
-        this.toastCtrl.create({
-          message: 'Not Yet!. Profile image is required.',
-          duration: 2000
-        }).present();
-        
-      }else {
+     }else {
          // load the profile creation process
            const load = this.loadingCtrl.create({
             content: 'Proccessing...'
@@ -177,7 +171,7 @@ export class AccountSetupPage {
       }
           
     }
-  }
+  
  validation_messages = {
     'fullName': [
       { type: 'required', message: 'Name is required.' },
@@ -259,6 +253,20 @@ viewProfile(myEvent) {
     ev: myEvent
   });
 }
+
+getProfileImageStyle() {
+  return 'url(' + this.HomeOwnerProfile.image  + ')'
+}
+SignOut() {
+  firebase.auth().signOut().then(() => {
+    console.log('Signed Out');
+    this.navCtrl.setRoot(LoginPage);
+
+  }).catch((err) => {
+    console.log('error occured while signing out');
+
+  })
+}
 viewHouse(myEvent) {
   console.log('image',myEvent);
   
@@ -278,3 +286,4 @@ viewHouse(myEvent) {
   About:string;
 
 } 
+

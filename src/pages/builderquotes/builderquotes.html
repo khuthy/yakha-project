@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content padding>
-  
+
   <form [formGroup]="quotesForm">
-    <ion-item >
-      <ion-label stacked >Expiry date</ion-label>
+    <ion-item>
+      <ion-label stacked>Expiry date</ion-label>
       <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
@@ -23,7 +23,8 @@
 
     <ion-item>
       <ion-label stacked>Your Name</ion-label>
-      <ion-input type="text" formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName" ngDefaultControl>
+      <ion-input type="text" disabled formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName"
+        ngDefaultControl>
       </ion-input>
     </ion-item>
     <br>
@@ -36,7 +37,7 @@
       <p class="messages"
         *ngIf="quotesForm.get('address').hasError(validate.type) && (quotesForm.get('address').dirty || quotesForm.get('address').touched)">
         {{validate.message}}
-    </p>
+      </p>
     </ion-label>
     <div class="error" *ngFor="let validate of validation_messages.address">
       <div class="messages"
@@ -47,50 +48,60 @@
     <!-- Overall house -->
 
     <div class="houseOverall">
-      
-      <div class="parent">
-      <h5>Pricing of the overall house</h5>
 
-        <ion-item >
-            <ion-label stacked>Your Price p/m2</ion-label>
-            <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}">  </ion-input>
-          </ion-item>
-            <ion-item>
-                <ion-label stacked>Enter total of metres here</ion-label>
-                <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
-             </ion-item>
-               <ion-item>
-                 <ion-label stacked >Enter Discount (%) here</ion-label>
-                 <ion-input  type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
-               </ion-item>
-      <p style="padding: 3%;text-align: end;">Overall house price: <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span></p>
+      <div class="parent">
+        <h5>Pricing of the overall house</h5>
+
+        <ion-item>
+          <ion-label stacked>Your Price p/m2</ion-label>
+          <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}"> </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Enter total of metres here</ion-label>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Enter Discount (%) here</ion-label>
+          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
+        </ion-item>
+        <p style="padding: 3%;text-align: end;">Overall house price: <span
+            style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong>
+              {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span>
+        </p>
       </div>
 
     </div>
-     <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras</h5>
-<!-- </div> -->
+    <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras
+    </h5>
+    <!-- </div> -->
     <p>Specify the price of the extras included by the owner</p>
-    <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;" *ngFor="let item of extras; let i=index;">
-       <h5 style="text-align: center;">{{item.item}}</h5>
-       <div class="parent2">
+    <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;"
+      *ngFor="let item of extras; let i=index;">
+      <h5 style="text-align: center;">{{item.item}}</h5>
+      <div class="parent2">
         <div class="price">
           <!-- extras -->
-            <ion-item style="    box-shadow: inset transparent;border-bottom:1px solid white;width: 40%;margin-left: 2%;padding-left: 3%; box-shadow: none;border-radius: 5px; background: transparent; display: flex;" >
+          <ion-item
+            style="box-shadow: inset transparent;border-bottom:1px solid white;width: 40%;margin-left: 2%;padding-left: 3%; box-shadow: none;border-radius: 5px; background: transparent; display: flex;">
             <ion-label stacked style="padding-top:9px">Price</ion-label>
-            <ion-input style="border-radius:50px;background: #528d97;text-align:center;padding-left:10px;color:white" type="tel" maxLength="4" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)">
-     
+            <ion-input style="border-radius:50px;background: #528d97;text-align:center;padding-left:10px;color:white"
+              type="tel" maxLength="6" formControlName="dimension" [(ngModel)]="extras[i].data.price"
+              (ngModelChange)="onChange($event)">
+
             </ion-input>
           </ion-item>
-         <!-- fabs -->
+          <!-- fabs -->
           <div>
-              <p style="text-align: right;">Quantity</p>
-              <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;"  (click)="childMinus(item,i)">
-                  <ion-icon ios="ios-remove" md="md-remove" end></ion-icon>
-                </button>
-                <button ion-fab color="light">{{extras[i].data.quantity}}</button>
-                <button class="btn-border" style="background: transparent; box-shadow: none;color: #333;" ion-fab mini (click)="childPlus(item, i)">
-                  <ion-icon ios="ios-add" md="md-add"></ion-icon>
-                </button>
+            <p style="text-align: right;">Quantity</p>
+            <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;"
+              (click)="childMinus(item,i)">
+              <ion-icon ios="ios-remove" md="md-remove" end></ion-icon>
+            </button>
+            <button ion-fab color="light">{{extras[i].data.quantity}}</button>
+            <button class="btn-border" style="background: transparent; box-shadow: none;color: #333;" ion-fab mini
+              (click)="childPlus(item, i)">
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </button>
           </div>
         </div>
       </div>
@@ -119,9 +130,14 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-      <p style="padding: 3%;text-align: end;">The total amount : <span style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong> {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</strong></span></p>
+    <p style="padding: 3%;text-align: end;">The total amount : <span
+        style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong>
+          {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</strong></span>
+    </p>
     <ion-buttons end>
-         <button ion-fab class="btn-proceed"  (click)="createPdf()" color="primary"><ion-icon name="send"></ion-icon></button>
+      <button ion-fab class="btn-proceed" (click)="createPdf()" color="primary">
+        <ion-icon name="send"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

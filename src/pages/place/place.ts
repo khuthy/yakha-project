@@ -14,12 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'place.html',
 })
 export class PlacePage {
+  pdfUrl: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlacePage');
+    this.pdfUrl = this.navParams.get('pdfUrl');
   }
 
 }
