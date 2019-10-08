@@ -1,3 +1,4 @@
+import { QuotationFormPage } from './../quotation-form/quotation-form';
 import { BaccountSetupPage } from './../baccount-setup/baccount-setup';
 import { Component, ViewChild, ElementRef, OnInit, ViewChildren, Renderer2, QueryList } from '@angular/core';
 import { NavController, ModalController, LoadingController, MenuController, Platform, Slides, PopoverController } from 'ionic-angular';
@@ -96,7 +97,9 @@ export class HomePage implements OnInit {
     this.name = false;
     this.location = false;
   }
-
+goquotes(){
+  this.navCtrl.push(QuotationFormPage);
+}
   ngOnInit() {
     this.menuCtrl.swipeEnable(true);
     

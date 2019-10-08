@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="266" height="108" viewBox="0 0 266 108">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_114" data-name="Rectangle 114" width="54" height="54" transform="translate(-1786 1414)" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_115" data-name="Rectangle 115" width="54" height="54" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-4">
+      <rect id="Rectangle_119" data-name="Rectangle 119" width="54" height="54" transform="translate(-1813 1546)" fill="#015272"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path id="Rectangle_118" data-name="Rectangle 118" d="M27,0H54a0,0,0,0,1,0,0V54a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V27A27,27,0,0,1,27,0Z" transform="translate(109 54) rotate(-90)" fill="#015272"/>
+    </clipPath>
+  </defs>
+  <g id="Group_245" data-name="Group 245" transform="translate(-109)">
+    <path id="Rectangle_122" data-name="Rectangle 122" d="M27,0H54a0,0,0,0,1,0,0V54a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V27A27,27,0,0,1,27,0Z" transform="translate(109 54) rotate(-90)" fill="#015272"/>
+    <rect id="Rectangle_116" data-name="Rectangle 116" width="54" height="54" transform="translate(163)" fill="#ffedb7"/>
+    <g id="Group_165" data-name="Group 165" transform="translate(2030 -1353)">
+      <rect id="Rectangle_117" data-name="Rectangle 117" width="54" height="54" transform="translate(-1813 1353)" fill="#00719e"/>
+      <g id="Mask_Group_11" data-name="Mask Group 11" transform="translate(-27 -61)" clip-path="url(#clip-path)">
+        <circle id="Ellipse_26" data-name="Ellipse 26" cx="54" cy="54" r="54" transform="translate(-1840 1414)" fill="#f2d680"/>
+        <circle id="Ellipse_27" data-name="Ellipse 27" cx="31" cy="31" r="31" transform="translate(-1817 1437)" fill="#015272"/>
+      </g>
+    </g>
+    <g id="Group_166" data-name="Group 166" transform="translate(2134 -1299)">
+      <rect id="Rectangle_117-2" data-name="Rectangle 117" width="54" height="54" transform="translate(-1813 1353)" fill="#00719e"/>
+      <g id="Mask_Group_11-2" data-name="Mask Group 11" transform="translate(-27 -61)" clip-path="url(#clip-path)">
+        <circle id="Ellipse_26-2" data-name="Ellipse 26" cx="54" cy="54" r="54" transform="translate(-1840 1414)" fill="#f2d680"/>
+        <circle id="Ellipse_27-2" data-name="Ellipse 27" cx="31" cy="31" r="31" transform="translate(-1817 1437)" fill="#015272"/>
+      </g>
+    </g>
+    <g id="Mask_Group_12" data-name="Mask Group 12" transform="translate(163)" clip-path="url(#clip-path-3)">
+      <path id="Path_37" data-name="Path 37" d="M54,0A54,54,0,1,1,0,54,54,54,0,0,1,54,0Z" fill="#015272"/>
+      <circle id="Ellipse_29" data-name="Ellipse 29" cx="31" cy="31" r="31" transform="translate(23 23)" fill="#f2d680"/>
+    </g>
+    <g id="Group_162" data-name="Group 162" transform="translate(2084 -1433)">
+      <rect id="Rectangle_118-2" data-name="Rectangle 118" width="54" height="54" transform="translate(-1813 1433)" fill="#015272"/>
+      <path id="Polygon_2" data-name="Polygon 2" d="M27,0,54,27H0Z" transform="translate(-1786 1433) rotate(90)" fill="#f2d680"/>
+      <path id="Polygon_3" data-name="Polygon 3" d="M27,0,54,27H0Z" transform="translate(-1759 1433) rotate(90)" fill="#e9c717"/>
+    </g>
+    <path id="Polygon_3-2" data-name="Polygon 3" d="M27,0,54,27H0Z" transform="translate(109)" fill="#e9c717"/>
+    <g id="Group_167" data-name="Group 167" transform="translate(2026 -1353)">
+      <rect id="Rectangle_118-3" data-name="Rectangle 118" width="50" height="54" transform="translate(-1701 1353)" fill="#015272"/>
+      <path id="Path_38" data-name="Path 38" d="M54-27.348V21.658H0Z" transform="translate(-1679.342 1353) rotate(90)" fill="#f2d680"/>
+    </g>
+    <g id="Group_164" data-name="Group 164" transform="translate(2083 -1492)">
+      <path id="Rectangle_120" data-name="Rectangle 120" d="M0,0H54a0,0,0,0,1,0,0V54a0,0,0,0,1,0,0H27A27,27,0,0,1,0,27V0A0,0,0,0,1,0,0Z" transform="translate(-1813 1546)" fill="#015272"/>
+      <g id="Mask_Group_13" data-name="Mask Group 13" clip-path="url(#clip-path-4)">
+        <g id="Group_163" data-name="Group 163" transform="translate(-35 -35)">
+          <g id="Ellipse_30" data-name="Ellipse 30" transform="translate(-1752 1553)" fill="none" stroke="#f2d680" stroke-width="4">
+            <circle cx="28" cy="28" r="28" stroke="none"/>
+            <circle cx="28" cy="28" r="26" fill="none"/>
+          </g>
+          <g id="Ellipse_31" data-name="Ellipse 31" transform="translate(-1767 1538)" fill="none" stroke="#f2d680" stroke-width="4">
+            <circle cx="43" cy="43" r="43" stroke="none"/>
+            <circle cx="43" cy="43" r="41" fill="none"/>
+          </g>
+          <g id="Ellipse_32" data-name="Ellipse 32" transform="translate(-1778 1527)" fill="none" stroke="#f2d680" stroke-width="4">
+            <circle cx="54" cy="54" r="54" stroke="none"/>
+            <circle cx="54" cy="54" r="52" fill="none"/>
+          </g>
+          <g id="Ellipse_33" data-name="Ellipse 33" transform="translate(-1738 1567)" fill="none" stroke="#f2d680" stroke-width="4">
+            <circle cx="14" cy="14" r="14" stroke="none"/>
+            <circle cx="14" cy="14" r="12" fill="none"/>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g id="Mask_Group_15" data-name="Mask Group 15" clip-path="url(#clip-path-5)">
+      <path id="Polygon_2-2" data-name="Polygon 2" d="M27,0,54,27H0Z" transform="translate(109 27)" fill="#f2d680"/>
+    </g>
+  </g>
+</svg>

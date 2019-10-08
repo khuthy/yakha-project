@@ -70,7 +70,11 @@
             <div class="image">
                 <img *ngIf="b.image" src="{{b.image}}" alt="tough">
             </div>
+            
           <div class="info">
+          <!--     <div style="height:30%;width:60%;margin-left:auto;margin-bottom:auto">
+                <button (click)="goquotes()" ion-button style="color: white;background:white" >Request qoute</button>
+                </div> -->
             <div style="margin-bottom:10px">
                <p style="font-size:2vh;font-weight:700">{{b.fullName}}</p>
                <p style="font-size:2vh;margin-top:-4%;font-weight:400;" class="price"><span>{{b.price|  currency:'&#82;'}}p/m</span><span class="squire">2</span> excluding roofing</p>
