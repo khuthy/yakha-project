@@ -9,14 +9,50 @@
       </div>
      
     <div class="logo" >
-       <img src="../../assets/imgs/logo.png" width=35%>
-       <p style="color: rgb(247, 247, 247); font-size: 18px">Create an account to request services              </p>
-      </div>
+       <img src="../../assets/imgs/yellowlogo.svg" width=35%>
+<!--        <p style="color: rgb(247, 247, 247); font-size: 18px">Create an account to request services              </p>
+ -->      </div>
  
       <div class="inputs">
-        
+
+          <form class="forms"[formGroup]="signupForm"style="width:90%"  >
+              <ion-list no-lines style="background: transparent" >
+                
+          
+                 <ion-item class="item"  > 
+                  
+                  <ion-input placeholder="Email" formControlName="email" type="email" 
+                  [class.invalid]="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">
+                </ion-input>
+    <p class="error-message" *ngIf="!signupForm.controls['email'].valid
+                && signupForm.controls['email'].touched">
+                Please enter a valid email.</p>  
+       </ion-item> 
+  
+              
+    
+              
+                <ion-item class="item" style="margin-top:5%;">
+            
+                  <ion-input placeholder="Password" formControlName="password" type="password" 
+                  [class.invalid]="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">
+                </ion-input>
+  
+                 <p style="background: transparent; color: rgb(246, 22, 22);text-align: center; font-size: 3vw" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
+                signupForm.controls['password'].touched"> 
+                Your password needs more than 6 characters.</p>
+                </ion-item >
+</ion-list>
+   </form>
       </div>
-      
+ 
+          <div class="btn" hide-on-keyboard-open style="display: flex;">
+              <button  ion-button style="background:#015272;width:40%;border-top-right-radius:50px;border-bottom-right-radius:50px;letter-spacing: 1px;"  (click)="signupUser(signupForm)" ><button ion-fab mini start style="background:white;display: flex;justify-content: center;align-items: center;align-content: center"><ion-icon name="arrow-back"></ion-icon></button>Sign Up</button>
+              <button ion-button style="background:#F2BE22;width:40%;border-top-left-radius:50px;border-bottom-left-radius:50px;letter-spacing: 1px;margin-left:auto"  (click)="goLogin()">Sign In<button ion-fab mini start style="background:white;display: flex;justify-content: center;align-items: center;align-content: center"><ion-icon name="arrow-forward"></ion-icon></button></button>
+
+<!--                  <button  clear block  style="color:white;padding-top:3%;background: transparent;width:100%; text-align: center;color:#4D4D4D;font-family: 'Segoe UI'; font-size: 3.5vw">Already a member? Login.</button>
+-->              </div>
+   
     <!--  <div class="inputs">
         <form class="forms"[formGroup]="signupForm">
             <ion-list no-lines style="background: transparent" >

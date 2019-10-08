@@ -1,18 +1,21 @@
 page-login {
+ 
     .container {
       /*  width: 100%;
             height: 100%; */
       // border: 1px solid red;
       margin: 0;
       padding: 0;
-     // overflow: hidden;
+      background: #203959;
+
 
       .logo {
-        height:40%;
+
+        height:35%;
        //border: 1px solid green;
         width: 100%;
-        padding-top: 50px;
-        padding-bottom: 70px;
+       //padding-top: 10px;
+        padding-bottom: 2px;
         background-image: url(../../assets/imgs/waverotate.svg);
         background-size: cover;
         background-position: 25% center;
@@ -23,57 +26,72 @@ page-login {
         align-items: center;
         justify-content: center;
         align-content: center;
+
+        .topdeco {
+          //border: 1px solid rgb(0, 0, 0);
+          width:100%;
+          height:95%;
+          background:url(../../assets/imgs/ownerShape.svg); 
+          background-position: right;
+          background-repeat: no-repeat;
+        }
       }
 
       .inputs {
         margin: 0;
         padding: 0;
-       // border: 1px solid blue;
-        width: 80%;
-        height: 50%;
-        position: relative;
-        left: 10%;
-        top:20px;
+      //  border: 1px solid blue;
+        width: 100%;
+        height:46%;
+        /*   height: 50%;
+          position: relative;
+          left: 10%; */
+        //top:20px;
        
-ion-list > .item {
-        border: 1px solid #3c7f8b;
-        border-radius: 10px;
-        margin-top: 3%;
-      outline: none;
-
-        ion-label {
-          color: #4D4D4D; 
-          letter-spacing: 1px;
-          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        ion-input {
-          color: #4D4D4D;
-          letter-spacing: 1px;
-          font-weight:300;
-          border-bottom: none;
-        }
-        p {
-          color: rgb(246, 22, 22);
-          font-size: 3vw;
-          text-align: center;
-          margin-top:-5%;
-        }
-      }
+        .item {
+          background:#586B83;
+           //border: 1px solid red;
+  }
+  ion-item {
+    width:90%;
+    outline: none;
+    border-radius: 50px;
+   position: relative;
+   left: 5%;
+    ion-input {
+      color: white;
+      letter-spacing: 2px;
+      font-weight:250;
+      border-bottom: none;
+    }
+  }
       }
      
       .btn {
-        width: 100%;
-        height: 100px;
-        // position: relative;
-        display: flex;
-        flex-direction: column;
-
-        // border: 1px solid black;
-        #login {
-          width: 100%;
-        }
-
-
-      }
+      //  border:1px solid rgb(255, 255, 255);
+           width: 100%;
+           height:49px;
+           margin:0 !important;
+           padding:0 !important;
+       
+           button {
+             width:40%;
+             height:80%;
+             font-weight:300;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+           }
+         }
+         .bottomdeco {
+          // border:1px solid red;
+           height:12%;
+           width: 100%;
+           background:url(../../assets/imgs/OwnerShapes.svg); 
+           background-position: left;
+           background-repeat: no-repeat;
+           position: relative;
+           bottom:0;
+         }
     }
 }

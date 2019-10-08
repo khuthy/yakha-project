@@ -1,9 +1,10 @@
 page-welcome {
+    background: linear-gradient(rgba(32, 57, 89, 0.733)),url('../../assets/imgs/builders.png');
     .container {
         width: 100%;
         height: 100%;
         position: fixed;
-         background: linear-gradient(#20395978),url('../../assets/imgs/builders.png');
+         background: linear-gradient(rgba(32, 57, 89, 0.561)),url('../../assets/imgs/builders.png');
          background-size: cover;
          background-position: center;
          -webkit-filter: blur(5px);

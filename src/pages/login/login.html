@@ -1,41 +1,51 @@
-<ion-content>
+<ion-content >
   <div class="container">
-    <div class="logo" padding>
-      <img src="../../assets/imgs/logo.png" style="max-width: 100px; height: auto">
+    
+    <div class="logo">
+      <div class="topdeco">
+
+    </div>
+      <img src="../../assets/imgs/yellowlogo.svg" style="max-width: 80px; height: auto">
       <p style="color: rgb(247, 247, 247); font-size: 18px">{{getUser}}</p>
     </div>
 
     <div class="inputs">
       <form class="forms" [formGroup]="loginForm">
         <ion-list no-lines style="background: transparent">
-          <ion-item class="item">
-            <ion-label stacked> Email Address</ion-label>
-            <ion-input formControlName="email" type="email" ngDefaultControl>
+
+          <ion-item class="item"  style="margin-top:10%" >
+          <!--   <ion-label stacked> Address</ion-label> -->
+            <ion-input placeholder="Email" formControlName="email" type="email" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input>
             <p style ="color:red"  *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
               Please enter a valid email address}</p>
               <!-- <p style ="color:red">please enter a valid email address</p> -->
           </ion-item>
-          <ion-item class="item">
-            <ion-label stacked> Password</ion-label>
-            <ion-input formControlName="password" type="password" ngDefaultControl>
+
+          <ion-item class="item" style="margin-top:5%">
+            <!-- <ion-label stacked> Password</ion-label> -->
+            <ion-input placeholder="Password" formControlName="password" type="password" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input>
             <p style ="color:red" *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
               your password needs more than 6 characters.</p>
               <!-- <p style ="color:red">your password needs more than 6 characters </p> -->
           </ion-item>
-          <p style="color: rgb(71, 162, 179);text-align:center;margin-top: 3%; " (click)="forgotpassword()">Forgot
+
+          <p *ngIf="!isKeyOpen" id="hide-p" class="password" style="color: rgb(71, 162, 179);text-align:right;margin-top: 3%;width:90%;position: relative;left:5% " (click)="forgotpassword()">Forgot
             password?</p>
 
-          <div class="btn" hide-on-keyboard-open>
-            <button id="login" ion-button block style="border-radius:5px;letter-spacing: 1px;width: 100%"
-              class="btn-custom" (click)="loginUser(loginForm)">Login</button>
-            <button clear block (click)="createAcc()"
-              style="color: rgb(8, 8, 46);padding-top:3%;background: transparent;width:100%; text-align: center;color:#4D4D4D;font-family: 'Segoe UI';">Don't
-              have an account? Sign-Up.</button>
+          <div class="buttons" id="hide-div" class="btn" hide-on-keyboard-open >
+<div class="signup">
+  <button ion-fab ><ion-icon name="arrow-left"></ion-icon></button>
+</div>
           </div>
+
         </ion-list>
       </form>
+    </div><!-- end of inputs -->
+
+    <div id="hide-bottom" class="bottomdeco" >
+
     </div>
   </div>
 </ion-content>
