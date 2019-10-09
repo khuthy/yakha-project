@@ -25,6 +25,7 @@ page-home {
 
   #map #infowindow-content {
     display: inline;
+  
   }
 
   .pac-card {
@@ -55,18 +56,18 @@ page-home {
   }
 
   #pac-input {
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
+  /*  padding: 10px;
+   width: 100%;
+   border-radius: 50px;
+   border: none;
+   box-shadow: 0 1px 2px #00000083;
+   margin: 5px 5px; */
+   
+
   }
 
   #pac-input:focus {
-    border-color: #4d90fe;
+    border-color: none;
   }
 
   #title {
@@ -78,5 +79,96 @@ page-home {
   }
   #target {
     width: 345px;
+  }
+
+  /* card and search */
+ /*  .search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10%;
+    right: 0;
+    padding: 20px;
+    .searchbar {
+        padding: 20px;
+    }
+   
+  } */
+
+   
+    
+    .slider {
+      width: 100%;
+      height: 28%;
+      //background: red;
+      position: absolute;
+      bottom: 0%;
+      z-index: 100;
+      font-family: 'Montserrat', sans-serif;
+    }
+  
+  
+    .magic {
+      padding: 40px;
+
+    }
+    
+   
+  
+  
+    .card {
+     // padding: 1%;
+      border-radius: 120px;
+      // border: 1px solid red;
+     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //background: white;
+      height:25vh;
+  
+      .info {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 80%;
+        position: relative;
+        top:-40%;
+        left:7px;
+        border-radius: 10px;
+        background: color($colors, light);
+        
+        div {
+        //  border: 1px solid black;
+          height:55%;
+          position: relative;
+        top:42%;
+        
+       
+        p {
+         // border: 1px solid blue;
+          text-align: left;
+          padding-left: 10%;
+          padding-bottom: 0;
+          color: rgb(64, 66, 75);
+          font-family:'Segoe UI';
+  
+        }
+        }
+      }
+      .image {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+        border-radius: 10px;
+        width:30%;
+        height: 55%;
+        position: relative;
+        left: 10%;
+        z-index:5;
+        img {
+          border-radius:10px;
+          height:100%;
+          width:100%;
+          object-fit: cover;
+        }
+      }
+    
+  
+    
   }
   }

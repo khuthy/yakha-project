@@ -129,98 +129,111 @@ h5 {
    
     /* create or update ends */
 
+
+    
   /* view profile code */
   .container {
-       // border: 1px solid red;
+        //border: 1px solid red;
        height: 100vh;
        margin: 0;
        padding: 0;
+       overflow: hidden;
          }//end of container
-
-         .holder {
-          border-left:2px solid #3c7f8b;
-          height: 90vh;
-          width: 95%;
-          position: relative;
-          left: 5%;
-
-      }
-     h5 {
-       // border: 1px solid red;
-       // padding: 1%;
-        letter-spacing: 1px;
-        font-family: 'Segoe UI';
-        font-weight: 400;
-        font-size: 2.1vh;
-        text-align: left;
-        margin:0;
-        //color:red;
-    } 
+.propic {
+  border: 1px solid black;
+  height:40%;
+  width:100%;
+ 
+  img {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    position:relative;
+     z-index:-2;
+  }
+  .names {
+  background: rgba(8, 8, 8, 0.555);
+    height: 30%;
+    margin-top:-25%;
+    z-index:5;
+    position: relative;
+h4 {
+  letter-spacing: 1px;
+  color:white;
+  padding-left:3%;
+}
     p {
-      padding: 1%;
+      color: white;
       letter-spacing: 1px;
-      font-family: 'Segoe UI';
-      font-weight: 400;
-      font-size: 2.1vh;
+      padding-left:3%;
     }
-  
-     .background{
-       // border: 1px solid green;
-        width:95%;
-        height: 75vh;
-        position: relative;
-        left: 5%;
-        background:#3c7f8b;
-    } 
-    .propic {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
-        width:95%;
-        position: relative;
-        left: 5%;
-        height: 50%;
-        img {
-          object-fit: cover;
-          width: 100%;
-           height: 100%;
-        }
-    }
-  
-    .info {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
-      width:95%;
-      position: relative;
-      left: 5%;
-      margin-top:3%;
-      height: 60%;
-      background: white;
-  
-      #address {
+  }
+}
+   .infocontent {
+     margin:0;
+    height:42%;
+    width:100%;
+    //border: 1px solid rgb(15, 65, 231);
+
+    h3 {
+      text-align: center;
       //border: 1px solid red;
-      
-          padding: 3%;
-          width: 80%;
-          position: relative;
-          left: 10%;
-          margin-top: 2%;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          border-radius: 10px;
-  
-        /*   justify-content: center;
-          align-content: center;
-          align-items: center; */
-          p {
-              //border: 1px solid red;
-              text-align: center;
-              font-size: 1.9vh;
-              letter-spacing: 1px;
-              font-weight: 400;
-              padding:0;
-              margin:0;
-          }
-      }
+      letter-spacing: 1px;
+      font-weight:330;
     }
+    p {
+      font-size: 2.2vh;
+      color:gray;
+      font-weight:250;
+      padding-left: 4%;
+     // border: 1px solid red;
+      letter-spacing: 1px;
+    }
+    h5 {
+      padding-left: 8%;
+     margin-top:-3%;
+      //border: 1px solid rgb(0, 47, 255);
+      letter-spacing: 1px;
+    }
+   }
+  .button {
+    width: 100%;
+    height:12%;
+   //border:1px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    .btn {
+     // border:1px solid rgb(218, 28, 3);
+      width: 60%;
+      height:65%;
+      margin-left: auto;
+      border-bottom-left-radius: 50px;
+      border-top-left-radius: 50px;
+      background: rgb(204, 158, 20);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+   p {
+     color:white;
+     font-size: 2.5vh;
+     letter-spacing: 1px;
+    // border: 1px solid rgb(0, 47, 255);
+  margin-top:3%;
+   
+   }
+   button {
+     margin-left: auto;
+     position: relative;
+     left:7%;
+     bottom:35%;
+     background: white;
+
+   }
+    }
+  }
+   
 
   .details {
       //padding: 5px;

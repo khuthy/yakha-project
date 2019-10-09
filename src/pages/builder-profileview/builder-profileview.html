@@ -2,8 +2,43 @@
 <ion-content>
   
       <div class="container">
+
+        <div class="propic">
+            <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
+            <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
+            <button (click)="navCtrl.pop()" style="position:absolute;top:0;left:0;z-index:5" ion-fab mini top right edge><ion-icon name="arrow-back" ></ion-icon></button>
+
+            <div class="names">
+           <h4>{{dat.fullName}}</h4>
+           <p>{{dat.address}}</p>
+         </div>
+        </div>
+
+        <div class="infocontent">
+        <h3>PROFILE</h3>
+
+        <p>Gender</p>
+        <h5>{{dat.gender}}</h5>
+
+        <p>Experience</p>
+        <h5>{{dat.experiences}} years.</h5>
+
+        <p>Cost</p>
+        <h5>{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
+
+        <p>Cost include roofing</p>
+        <h5>{{dat.roof}}</h5>
+        </div>
+
+        <div class="button">
+          <div class="btn" (click)="next()">
+            <p>Request Quotation</p>
+            <button ion-fab mini><ion-icon name="arrow-forward" ></ion-icon></button>
           
-              <div style="display: flex;height:4%">
+          </div>
+        </div>
+          
+           <!--    <div style="display: flex;height:4%">
       
                   <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="close-circle-outline"></ion-icon></button>
  
@@ -11,7 +46,7 @@
 
               <div class="holder">
                   <div class="background">
-                      <h5 style="color: white;text-align: center;padding:5%"><!-- {{dat.fullName}} --></h5>
+                      <h5 style="color: white;text-align: center;padding:5%"></h5>
 
                       <div class="propic">
                           <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
@@ -19,18 +54,18 @@
                       </div>
 
                       <div class="info">
-                          <!-- gender -->
+                                           
                           <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-                                <h5  style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2"><!-- {{dat.gender}} --></h5>
+                                <h5  style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2"> </h5>
                              
                              </div>
-                             <!-- experience-->
+                      
                              <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
                                 <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.experiences}} years.</h5>
                                
                             </div>
                        
-                            <!-- price -->
+                       
 
                               <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
                                     <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
@@ -38,9 +73,9 @@
                                 </div>
 
 
-                              <!-- roofing included -->
+                            
                               <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-                            <h5 style="padding-left:6%;font-size: 2.5vh"><!--  {{dat.roof}} --> Roofing Included </h5>
+                            <h5 style="padding-left:6%;font-size: 2.5vh"> Roofing Included </h5>
                            
                         </div>
 
@@ -58,7 +93,7 @@
                  
                   </div>
 
-              </div>
+              </div> -->
         
         </div>
     
