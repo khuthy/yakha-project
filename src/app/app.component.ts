@@ -114,7 +114,6 @@ export class MyApp {
 
     });
 
-
   }
 
   initializeApp() {
