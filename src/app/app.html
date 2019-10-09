@@ -1,6 +1,6 @@
 <ion-menu [content]="content" type="overlay">
 
-  <ion-content class="side-menu" padding>
+  <ion-content class="side-menu" [style.backgroundColor]="userLoggedinNow.builder ? '#464137'  : '#203959'" padding>
         <div class="profile">
           <img *ngIf="userLoggedinNow.image" src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
           <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" class="thumb" alt="profile">

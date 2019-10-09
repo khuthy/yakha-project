@@ -34,7 +34,8 @@ export class MyApp {
   userLoggedinNow = {
     fullname: '',
     email: '',
-    image: ''
+    image: '',
+    builder: false,
   }
 
   version = 'v1.0.0';
@@ -74,6 +75,7 @@ export class MyApp {
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName
                 this.userLoggedinNow.email = user.email;
+                this.userLoggedinNow.builder = profile.data().builder;
                 this.pages = [
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
@@ -91,6 +93,7 @@ export class MyApp {
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName
                 this.userLoggedinNow.email = user.email;
+                this.userLoggedinNow.builder = false;
               }
 
             } else {
