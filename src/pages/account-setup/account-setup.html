@@ -157,10 +157,11 @@
 </div> -->
 <div class="container" *ngIf="isProfile">
   <div class="header">
-    <button ion-fab><ion-icon color="light" name="arrow-back"></ion-icon></button>
-    <div class="group-button">
+    <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+   
+      <div class="group-button" (click)="SignOut()">
       <p>Logout</p>
-      <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
+      <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
     </div>
   </div>
   <div class="wrapper">

@@ -9,6 +9,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ProfileComponent } from '../../components/profile/profile';
 import { OneSignal } from '@ionic-native/onesignal';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -255,6 +256,16 @@ viewProfile(myEvent) {
 
 getProfileImageStyle() {
   return 'url(' + this.HomeOwnerProfile.image  + ')'
+}
+SignOut() {
+  firebase.auth().signOut().then(() => {
+    console.log('Signed Out');
+    this.navCtrl.setRoot(LoginPage);
+
+  }).catch((err) => {
+    console.log('error occured while signing out');
+
+  })
 }
 viewHouse(myEvent) {
   console.log('image',myEvent);
