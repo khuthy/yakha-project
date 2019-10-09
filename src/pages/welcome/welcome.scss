@@ -1,5 +1,7 @@
 page-welcome {
-    background: linear-gradient(rgba(32, 57, 89, 0.733)),url('../../assets/imgs/builders.png');
+    margin:0;
+padding:0;
+   // background: linear-gradient(rgba(32, 57, 89, 0.733)),url('../../assets/imgs/builders.png');
     .container {
         width: 100%;
         height: 100%;
@@ -12,14 +14,14 @@ page-welcome {
          -o-filter: blur(5px);
          -ms-filter: blur(5px);
          filter: blur(5px);
-         z-index: -5;
+         z-index: -2;
     }
 
 
     .logo {
          height: 35%;
          width: 100%;
-         //border: 1px solid red;
+         border: 1px solid red;
          z-index:7;
           display: flex;
         justify-content: center;
