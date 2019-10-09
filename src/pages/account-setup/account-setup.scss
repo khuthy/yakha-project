@@ -1,5 +1,5 @@
 page-account-setup {
-    /* View builder profile css code */
+    /* View owner profile css code */
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
    .container {
        height: 100%;
@@ -15,12 +15,13 @@ page-account-setup {
         
        .header {
            position: absolute;
-           top: 0;
-           left: 0;
+           top: 1%;
+           left: 1%;
            right: 0;
            display: flex;
            justify-content: space-between;
            z-index: 4;
+           
         .group-button {
             background: color($colors, danger);
             padding: 0 0 0 2em;
@@ -57,9 +58,8 @@ page-account-setup {
            width: 100%;
            background-position: center;
            background-size: cover;
-           
-           
-             filter: blur(5px);
+           //background-color: #0000001f;
+           filter: blur(5px);
 
        
        }
@@ -75,8 +75,8 @@ page-account-setup {
 
            .image-profile {
             border-radius: 50%;
-            width: 179px;
-            height: 179px;
+            width: 130px;
+            height: 130px;
             object-fit: cover;
             border: 4px solid color($colors, light);
             box-shadow: 0 3px 2% #FFFFFF;
@@ -109,7 +109,9 @@ page-account-setup {
                 .contactInfo {
                     display: flex;
                     justify-content: space-evenly;
-                    flex-wrap: wrap-reverse;
+                    width: 100%;
+
+                    //flex-wrap: wrap-reverse;
                     //border: 1px solid #ddd;
           
                     &::after {
@@ -137,9 +139,10 @@ page-account-setup {
                 flex-direction: column;
                 justify-content: center;
                 text-align: center;
+
                 background: #ffffff;
                 border-radius: 10px;
-                box-shadow: 0 0 3px #0000001f;
+                border: 1px solid #ddd;
                 &::before {
                     content: '';
                     background: url('../../assets/icon/Group\ 254.svg') no-repeat;
@@ -148,8 +151,8 @@ page-account-setup {
                    // box-shadow: 0 0 3px #00000077;
                     position: absolute;
                     width: 100%;
-                    height: 40%;
-                    top: -20%;
+                    height: 60%;
+                    top: -30%;
 
                 }
               

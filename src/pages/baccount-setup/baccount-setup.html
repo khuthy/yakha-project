@@ -118,45 +118,45 @@
 
 
     <!-- profile for builder starts here -->
-    <div class="profiles" *ngIf="isProfile">
+  <!--   <div class="profiles" *ngIf="isProfile">
       <div style="display: flex;">
 
         <button ion-button clear (click)="navCtrl.pop()">
           <ion-icon style="font-size: 30px; color: #3c7f8b;" name="close"></ion-icon>
         </button>
         <H5 style="text-align: center;width:80%"> Profile</H5>
-      </div>
+      </div> -->
 
-      <div class="holder">
+   <!--    <div class="holder">
         <div class="background">
           <h5 style="color: white">{{builderProfile.fullName}}</h5>
           <div class="propic">
             <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" (click)="viewProfile(builderProfile.image)"
               class="thumbavatar">
             <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
-          </div>
+          </div> -->
           <!-- info starts here -->
-          <div cla ss="info">
+         <!--  <div cla ss="info"> -->
             <!-- gender -->
-            <div style="display:flex; text-align: center; justify-content:center; align-items: center">
+           <!--  <div style="display:flex; text-align: center; justify-content:center; align-items: center">
               <h5>Gender</h5>
               <p style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{builderProfile.gender}}
               </p>
-            </div>
+            </div> -->
             <!-- experience-->
-            <div style="display: flex">
+           <!--  <div style="display: flex">
               <h5 style="width: 50%">Experience?</h5>
               <p style="width: 50%">: {{builderProfile.experiences}} years.</p>
-            </div>
+            </div> -->
 
             <!-- price -->
-
+<!-- 
             <div style="display: flex">
               <h5 style="width: 50%">Price</h5>
               <p style=" width: 50%"> : {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-            </div>
+            </div> -->
             <!-- roofing included -->
-            <div style="display: flex">
+          <!--   <div style="display: flex">
               <h5 style="width: 50%">Roofing Included?</h5>
               <p style="width: 50%">: {{builderProfile.roof}}</p>
             </div>
@@ -183,6 +183,28 @@
       </ion-fab>
 
 
+    </div> -->
+
+    <div class="container" *ngIf="isProfile">
+      <div class="header">
+        <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+       
+          <div class="group-button" (click)="SignOut()">
+          <p>Logout</p>
+          <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
+      </div>
+      <div class="wrapper">
+         <div class="wrap" [style.backgroundImage]="getProfileImageStyle()">
+          <div class="address">
+          <h4>{{builderProfile.fullName}}</h4>
+          <p>{{this.builderProfile.fullName}}</p>
+          </div>
+        </div>
+      </div>
+     
+
+   
     </div>
   </div>
 

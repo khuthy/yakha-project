@@ -300,6 +300,9 @@ export class BaccountSetupPage {
       ev: myEvent
     });
   }
+  getProfileImageStyle() {
+    return 'url(' + this.builderProfile.image + ')';
+  }
   viewHouse(myEvent) {
     console.log('image', myEvent);
 
