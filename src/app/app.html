@@ -16,7 +16,7 @@
       </button> -->
       <div class="boxes">
         <div class="box" *ngFor="let p of pages;" menuClose (click)="openPage(p)">
-          <span *ngIf="p.title == 'Messages'" class="badge move">{{4 | number}}</span>
+          <span *ngIf="p.title == 'Messages'" class="badge move">{{messages | number}}</span>
           <ion-icon name="{{p.icon}}"></ion-icon>
           <p style=" font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{p.title}}</p>
         </div>

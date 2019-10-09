@@ -12,8 +12,15 @@ export class AuthServiceProvider {
  user;
  predefined: boolean;
  status: boolean;
+ unreadMessages = []
  public userProfile: firebase.firestore.DocumentReference;
- constructor() {}
+ constructor() {
+   setTimeout(()=> {
+     console.log('b');
+     
+    
+   }, 1000)
+ }
 
  manageUsers() {
    return this.predefined;
@@ -48,5 +55,11 @@ setUser(val){
 }
 getUser(){
  return this.user;
+}
+unreadMess(param) {
+  this.unreadMessages.push(param);
+}
+getUnreadMessages() {
+  return this.unreadMessages.length
 }
 }

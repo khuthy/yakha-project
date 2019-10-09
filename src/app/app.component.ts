@@ -39,7 +39,7 @@ export class MyApp {
   }
 
   version = 'v1.0.0';
-
+  messages = 0
 
   constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
@@ -50,6 +50,7 @@ export class MyApp {
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
+    this.db =firebase.firestore();
     // oneSignal.startInit(this.signal_app_id, this.firebase_id);
     // // oneSignal.getIds().then((userID) => {
     // //   console.log(userID.userId);
@@ -64,11 +65,32 @@ export class MyApp {
     //   })
     //   oneSignal.endInit();
 
-    this.db = firebase.firestore().collection('Users');
+    
+
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.splashScreen.hide();
+         if (this.platform.is('cordova')) {
+      //this.setupPush();
+    }
+    this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
+     
       if (user) {
-        this.db.doc(user.uid).onSnapshot((profile) => {
+        firebase.firestore().collection('Users').doc(user.uid).onSnapshot((profile) => {
+          
+          
+          
           if (profile.exists) {
+            firebase.firestore().collection('Request').where('viewed','==', false).onSnapshot( res => {
+              this.messages = 0;
+                res.forEach(doc => {
+                  this.messages = this.messages + 1;
+                })
+      
+    })
             if (profile.data().isProfile == true && profile.data().status == true) {
               if (profile.data().builder == true) {
                 this.rootPage = HomePage;
@@ -115,15 +137,6 @@ export class MyApp {
       }
 
     });
-
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.splashScreen.hide();
-         if (this.platform.is('cordova')) {
-      //this.setupPush();
-    }
     });
   }
   setupPush(){
