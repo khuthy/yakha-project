@@ -55,7 +55,7 @@ export class LoginPage {
   bottomdeco = true;
   buttons = true;
   isKeyOpen: boolean = false;
-
+  hid='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -87,13 +87,9 @@ export class LoginPage {
   //  this.keyBoard.onKeyboardHide
     console.log(data);
     if (data =='open') {
-      document.getElementById('hide-div').style.display = "none"
-      document.getElementById('hide-p').style.display = "none"
-      document.getElementById('hide-bottom').style.display = "none"
+      this.hid='value';
     } else {
-      document.getElementById('hide-div').style.display = "flex"
-      document.getElementById('hide-p').style.display = "flex"
-      document.getElementById('hide-bottom').style.display = "flex"
+      this.hid=''
     }
   }
   // set this to false by default
