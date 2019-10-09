@@ -26,6 +26,7 @@ export class HomePage {
   status: string = '';
   maps: boolean = false;
   request: boolean = false;
+
   ownerUID: string;
   ownerName;
   ownerImage: any;
@@ -46,7 +47,8 @@ export class HomePage {
     private menuCtrl: MenuController,
     private callNumber: CallNumber,
     public platform: Platform,
-    public popoverCtrl: PopoverController, public alertCtrl: AlertController) {
+    public popoverCtrl: PopoverController,
+     public alertCtrl: AlertController) {
 
   }
   LocationSearch() {

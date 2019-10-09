@@ -51,6 +51,10 @@ export class LoginPage {
 
   }
   getUser: string;
+  password = true;
+  bottomdeco = true;
+  buttons = true;
+  isKeyOpen: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,7 +63,7 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private authService: AuthServiceProvider,
     private menuCtrl: MenuController,
-    private keyboard: Keyboard,
+    public keyBoard: Keyboard,
 
   ) {
     this.loginForm = this.formBuilder.group({
@@ -71,13 +75,29 @@ export class LoginPage {
   }
   ionViewDidLoad() {
     this.authService.manageUsers();
-    console.log( 'check if the user is a builder: ',this.authService.manageUsers());
-    if(this.authService.manageUsers() == true) {
+    console.log('check if the user is a builder: ', this.authService.manageUsers());
+    if (this.authService.manageUsers() == true) {
       this.getUser = "Home Builder";
-    }else {
+    } else {
       this.getUser = "Aspiring Home Owner"
+
     }
   }
+  checkKeyboard(data) {
+  //  this.keyBoard.onKeyboardHide
+    console.log(data);
+    if (data =='open') {
+      document.getElementById('hide-div').style.display = "none"
+      document.getElementById('hide-p').style.display = "none"
+      document.getElementById('hide-bottom').style.display = "none"
+    } else {
+      document.getElementById('hide-div').style.display = "flex"
+      document.getElementById('hide-p').style.display = "flex"
+      document.getElementById('hide-bottom').style.display = "flex"
+    }
+  }
+  // set this to false by default
+
 
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -102,38 +122,38 @@ export class LoginPage {
         buttons: ['Ok']
       }).present();
     } else {
-      
-     let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
-     let loading = this.loadingCtrl.create({
-      content: 'Please wait...',
-      duration: 3500
-    })
-    loading.present();
+
+      let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...',
+        duration: 3500
+      })
+      loading.present();
       signIn.then((getUid) => {
         this.authService.setUser(getUid.user.uid);
-       this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
-         if(!profile.exists) {
-           this.alertCtrl.create({
-             title: 'Create a profile',
-             subTitle: 'Please create an account before we log you in.',
-             buttons: ['Ok']
-           }).present();
-           if(profile.data().builder == true) {
+        this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
+          if (!profile.exists) {
+            this.alertCtrl.create({
+              title: 'Create a profile',
+              subTitle: 'Please create an account before we log you in.',
+              buttons: ['Ok']
+            }).present();
+            if (profile.data().builder == true) {
               this.navCtrl.setRoot(BaccountSetupPage);
               loading.dismiss();
-           }else {
-            this.navCtrl.setRoot(AccountSetupPage);
+            } else {
+              this.navCtrl.setRoot(AccountSetupPage);
+              loading.dismiss();
+            }
+          } else {
+            this.navCtrl.setRoot(HomePage);
             loading.dismiss();
-           }
-         }else {
-           this.navCtrl.setRoot(HomePage);
-           loading.dismiss();
-         }
-       })
+          }
+        })
       }).catch(error => {
         this.alertCtrl.create({
-          title : error.code,
-          subTitle : error.message,
+          title: error.code,
+          subTitle: error.message,
           buttons: ['Try again']
         }).present();
       })

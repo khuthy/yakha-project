@@ -168,7 +168,7 @@ export class ViewmessagePage {
         })
         //this.hOwnerUID = doc.data().length + 'x' + doc.data().width + 'x' + doc.data().height;
      
-      console.log('Requests: ', this.request);
+    console.log('Requests: ', this.request);
     
     });
     firebase.firestore().collection('Respond').doc(this.userDetails.docID).onSnapshot((pdfDownloadUrl) => {
