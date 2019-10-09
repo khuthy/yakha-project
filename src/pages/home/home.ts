@@ -1,11 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController, MenuController, Platform, Slides, PopoverController, AlertController } from 'ionic-angular';
+import { NavController, MenuController, Platform, Slides, PopoverController, AlertController, NavParams } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
 import * as firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../../components/profile/profile';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 declare var google;
 @Component({
   selector: 'page-home',
@@ -36,19 +37,22 @@ export class HomePage {
   location = false;
   name = false;
   range = false;
-  header = '';
+  header = 'value';
   uid = firebase.auth().currentUser.uid;
   /* Search variebles */
   homeowner = false;
-  message='';
+  message = '';
+  isBuilder;
+  input = '';
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
-
+    public navParams: NavParams,
     private menuCtrl: MenuController,
+    private authService: AuthServiceProvider,
     private callNumber: CallNumber,
     public platform: Platform,
     public popoverCtrl: PopoverController,
-     public alertCtrl: AlertController) {
+    public alertCtrl: AlertController) {
 
   }
   LocationSearch() {
@@ -69,19 +73,28 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.db.doc(this.uid).onSnapshot((res) => {
-      
       if (res.data().builder == false) {
-       // document.getElementById('hideshow').style.display = "flex"
-        this.header = 'value';
+        //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-      } else {
+      }
+      if (res.data().builder == true) {
         this.getRequests();
       }
     })
-// this.getRequests();
-// this.loadMap();
-    
+
+    // console.log(this.navParams.data);
+
+    // this.getRequests();
+    // this.loadMap();
+    this.isBuilder = firebase.auth().currentUser.uid;
+    console.log('check if the user is a builder: ', this.isBuilder);
+    // if (this.authService.manageUsers() == true) {
+    //   this.getUser = "Home Builder";
+    // } else {
+    //   this.getUser = "Aspiring Home Owner"
+
+    // }
   }
 
 
@@ -121,7 +134,8 @@ export class HomePage {
     alert.present();
   }
   loadMap() {
-    this.message='Message of map';
+    this.input = 'Message of the input search show';
+    this.header = '';
     let SA_BOUNDS = {
       north: -22.0913127581,
       south: -34.8191663551,
@@ -334,14 +348,18 @@ export class HomePage {
     this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
   }
   getRequests() {
-   // this.request = true;
+    // this.request = true;
     let data = {
       builder: {},
       owner: {}
     }
+   
+    //  document.getElementById('map').style.display = "block";
     this.builder = [];
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
+      document.getElementById('req').style.display = "flex";
+      document.getElementById('map').style.display = "none";     
       res.forEach((doc) => {
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
@@ -357,10 +375,10 @@ export class HomePage {
     })
   }
 
-  showmap(){
-    document.getElementById('hidemap').style.display = "flex"
-    document.getElementById('hideshow').style.display = "none"
-  }
+  // showmap(){
+  //   document.getElementById('hidemap').style.display = "flex"
+
+  // }
 }
 
 
