@@ -83,6 +83,14 @@ page-login {
        align-items: center;
            }
          }
+        #hide-div{
+           display: flex;
+      
+         }
+         #hide-div > div {
+            background-color: #586B83;
+            flex: 1;
+         }
          .bottomdeco {
           // border:1px solid red;
            height:12%;
