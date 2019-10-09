@@ -127,10 +127,12 @@ export class BuilderProfileviewPage {
 export interface builderProfile {
   uid: '',
   image: '',
-  fullname: '',
+  fullName: '',
   certified: false,
   experiences: '',
   address: '',
   price: '',
-  location: ''
+  location: '',
+  roof: '',
+  gender: ''
 }
