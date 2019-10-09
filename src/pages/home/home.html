@@ -1,5 +1,5 @@
 
-<ion-header >
+<ion-header *ngIf="header">
   <ion-navbar color="primary">
     <ion-title middle>Home</ion-title>
     <button ion-button clear menuToggle>
@@ -10,8 +10,11 @@
 </ion-header>
 
 <ion-content >
-  
-  <div class="homebuilder" >
+    <div #map id="map">
+ 
+      </div>
+      <input type="text" id="pac-input" *ngIf="input" placeholder="Search by Location" > 
+  <div class="homebuilder" id="req">
     <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
     
       <div class="images">
@@ -32,16 +35,9 @@
       </div>
       </div> 
       </div>
-</ion-content>
 
 
-<ion-content>
-
-  <div #map id="map">
- 
-  </div>
-  <input type="text" id="pac-input" class="controls"  placeholder="Search by Location" > 
-<div class="menu" *ngIf="header">
+<div class="menu" >
 <div class="control" >
   <button class="menus"  ion-button clear menuToggle>
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
@@ -72,7 +68,7 @@
 
 
  
-      <input *ngIf="name" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
+      <input *ngIf="!header" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
 
  <ion-fab right style="align-self:center; justify-self: flex-end" >
    <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
