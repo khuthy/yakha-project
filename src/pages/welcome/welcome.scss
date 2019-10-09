@@ -3,9 +3,13 @@ page-welcome {
 padding:0;
    // background: linear-gradient(rgba(32, 57, 89, 0.733)),url('../../assets/imgs/builders.png');
     .container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
         height: 100%;
-        position: fixed;
          background: linear-gradient(rgba(32, 57, 89, 0.561)),url('../../assets/imgs/builders.png');
          background-size: cover;
          background-position: center;
@@ -16,51 +20,66 @@ padding:0;
          filter: blur(5px);
          z-index: -2;
     }
-
-
-    .logo {
-         height: 35%;
-         width: 100%;
-         border: 1px solid red;
-         z-index:7;
-          display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .slogan {
-        height: 25%;
+    .contain {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
-        //border: 1px solid red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        p {
-           // border:1px solid green;
-            width:90%;
-            text-align: center;
-            font-size:2.5vh;
-            color:white;
-            font-family:'Segoe UI';
+        height: 100%;
+        .slogan {
+            height: 20%;
+            width: 100%;
+            
+            //border: 1px solid rgb(15, 14, 14);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            p {
+               // border:1px solid green;
+                width:90%;
+                text-align: center;
+                font-size:2.5vh;
+                color:white;
+                font-family:'Segoe UI';
+            }
         }
-    }
-   .buttons {
-      // border:1px solid blue;
-       height:40%;
-       display: flex;
-       flex-direction: column;
+
+        
+    .logo {
+        height: 35%;
+        width: 100%;
+       // border: 1px solid red;
+        z-index:7;
+        position: relative;
+         display: flex;
        justify-content: center;
        align-items: center;
-
-       button {
-           border-radius: 50px;
-          // border: 2px solid gold;
-          font-size:2vh;
-          width:80%;
-           
-       }
-
    }
+       .continue {
+           //border:1px solid blue;
+           height:45%;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+      //  z-index: -5;/
+           button {
+               border-radius: 50px;
+              // border: 2px solid gold;
+              font-size:2vh;
+              width:80%;
+               color:white;
+               letter-spacing: 1px;
+           }
+    
+       }
+    }
+
+
+
     
     @media only screen and(min-width: 600px) {
         .bottomWelcome {
