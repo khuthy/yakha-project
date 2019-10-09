@@ -34,8 +34,11 @@ export class MyApp {
   userLoggedinNow = {
     fullname: '',
     email: '',
-    image: ''
+    image: '',
+    builder: false,
   }
+
+  version = 'v1.0.0';
 
 
   constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
@@ -72,8 +75,8 @@ export class MyApp {
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName
                 this.userLoggedinNow.email = user.email;
+                this.userLoggedinNow.builder = profile.data().builder;
                 this.pages = [
-                  { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
                   { title: 'Help', component: HelpPage, icon: 'help' },
                   { title: 'Version', component: VersionPage, icon: 'information-circle' }
@@ -82,16 +85,15 @@ export class MyApp {
               } else {
                 this.rootPage = HomePage;
                 this.pages = [
-                  { title: 'Home', component: HomePage, icon: 'home' },
                   { title: 'View Profile', component: AccountSetupPage, icon: 'person' },
                   { title: 'Messages', component: MessagesPage, icon: 'mail' },
-                  { title: 'Help', component: HelpPage, icon: 'help' },
-                  { title: 'Feedback', component: FeedbackPage, icon: 'paper' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle' },
+                  { title: 'Tips', component: FeedbackPage, icon: 'help' },
+                  { title: 'Help', component: HelpPage, icon: 'paper' }
                 ];
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName
                 this.userLoggedinNow.email = user.email;
+                this.userLoggedinNow.builder = false;
               }
 
             } else {
