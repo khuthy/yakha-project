@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -25,6 +25,7 @@ import { OneSignal } from '@ionic-native/onesignal';
   templateUrl: 'quotation-form.html',
 })
 export class QuotationFormPage {
+  @ViewChild('slides') slides: Slides;
   isProfile = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
@@ -142,7 +143,9 @@ extraName;
     }
 
   ionViewDidLoad() {
- 
+    this.slides.lockSwipes(true); // when the page loads
+    
+  
     console.log(this.extras);
     
     //let arr = [{objExtra, objPrice, objQuantity}]
