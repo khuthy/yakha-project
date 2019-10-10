@@ -117,75 +117,53 @@
     </div>
 
 
-    <!-- profile for builder starts here -->
-  <!--   <div class="profiles" *ngIf="isProfile">
-      <div style="display: flex;">
-
-        <button ion-button clear (click)="navCtrl.pop()">
-          <ion-icon style="font-size: 30px; color: #3c7f8b;" name="close"></ion-icon>
-        </button>
-        <H5 style="text-align: center;width:80%"> Profile</H5>
-      </div> -->
-
-   <!--    <div class="holder">
-        <div class="background">
-          <h5 style="color: white">{{builderProfile.fullName}}</h5>
-          <div class="propic">
-            <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" (click)="viewProfile(builderProfile.image)"
-              class="thumbavatar">
-            <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
-          </div> -->
-          <!-- info starts here -->
-         <!--  <div cla ss="info"> -->
-            <!-- gender -->
-           <!--  <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-              <h5>Gender</h5>
-              <p style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{builderProfile.gender}}
-              </p>
-            </div> -->
-            <!-- experience-->
-           <!--  <div style="display: flex">
-              <h5 style="width: 50%">Experience?</h5>
-              <p style="width: 50%">: {{builderProfile.experiences}} years.</p>
-            </div> -->
-
-            <!-- price -->
-<!-- 
-            <div style="display: flex">
-              <h5 style="width: 50%">Price</h5>
-              <p style=" width: 50%"> : {{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</p>
-            </div> -->
-            <!-- roofing included -->
-          <!--   <div style="display: flex">
-              <h5 style="width: 50%">Roofing Included?</h5>
-              <p style="width: 50%">: {{builderProfile.roof}}</p>
-            </div>
-
-            <div class="bio">
-              <h6 style="margin-top: 0;">
-                <ion-icon style="color:darkcyan;font-size:5vh" size="large" name="pin"></ion-icon>
-              </h6>
-              <p style="font-size: 2vh; font-family: 'Segoe UI';margin-top:0">
-                {{profileForm.value.address}}
-              </p>
-            </div>
-
+     <!-- profile for builder starts here  -->
+    <div class="profiles" *ngIf="isProfile">
+        <button (click)="navCtrl.pop()" style="position:absolute;top:0;left:0;z-index:5" ion-fab mini top right edge><ion-icon name="arrow-back" ></ion-icon></button>
+        <div class="group-button" (click)="SignOut()">
+            <p>Logout</p>
+            <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
           </div>
+      
+      <div class="propic">
+        <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar" >
+        <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
+       
 
+        <div class="names">
+       <h4>{{builderProfile.fullName}}</h4>
+       <p>{{builderProfile.address}}</p>
+     </div>
+    </div>
+    <div class="infocontent">
+      <h3>PROFILE</h3>
 
-        </div>
+      <p>Gender</p>
+      <h5>{{builderProfile.gender}}</h5>
+
+      <p>Experience</p>
+      <h5>{{builderProfile.experiences}} years.</h5>
+
+      <p>Cost</p>
+      <h5>{{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</h5>
+
+      <p>Cost include roofing</p>
+      <h5>{{builderProfile.roof}}</h5>
+      </div>
+      
+
+      
 
       </div>
-      <ion-fab bottom bottom right>
+      <!-- <ion-fab bottom bottom right>
         <button ion-fab color="button2" (click)="editProfile()">
           <ion-icon name="create"></ion-icon>
         </button>
-      </ion-fab>
+      </ion-fab> -->
 
+    </div> 
 
-    </div> -->
-
-    <div class="container" *ngIf="isProfile">
+    <!-- <div class="container" *ngIf="isProfile">
       <div class="header">
         <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
        
@@ -194,19 +172,17 @@
           <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
         </div>
       </div>
-      <div class="wrapper">
+       <div class="wrapper">
          <div class="wrap" [style.backgroundImage]="getProfileImageStyle()">
           <div class="address">
           <h4>{{builderProfile.fullName}}</h4>
           <p>{{this.builderProfile.fullName}}</p>
           </div>
         </div>
-      </div>
+      </div> 
      
+    </div> -->
 
-   
-    </div>
-  </div>
 
   <div class="statusApproval" *ngIf="!status">
     <div class="top">
