@@ -15,7 +15,7 @@
     <div #map id="map">
  
       </div>
-      <input type="text" id="pac-input" *ngIf="input" placeholder="Search by Location" > 
+      <!-- <input type="text" id="pac-input" *ngIf="input" placeholder="Search by Location" >  -->
   <div class="homebuilder" id="req">
     <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
       <div class="i-cards"></div>
@@ -37,12 +37,12 @@
 
 <div class="menu" >
 <div class="control" >
-  <button class="menus" *ngIf="!header"  ion-button clear menuToggle>
+  <button class="menus" *ngIf="!header"  ion-button clear menuToggle slot="start">
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button>
  <div class="slider">
    
-  <ion-slides spaceBetween="-65" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
+  <ion-slides #slides spaceBetween="-65"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
       <div class="card" >
         
@@ -66,7 +66,7 @@
 
 
  
-      <input *ngIf="!header" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
+      <!-- <input *ngIf="!header" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
 
  <ion-fab *ngIf="!header" right style="align-self:center; justify-self: flex-end" >
    <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
@@ -75,15 +75,15 @@
      <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="nameSearch()"><ion-icon name="person"></ion-icon></button>
      <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="RangeSearch()"><ion-icon name="cash"></ion-icon></button>
    </ion-fab-list>
- </ion-fab>
+ </ion-fab> -->
 </div>
-  <ion-item no-lines *ngIf="range">
+  <!-- <ion-item no-lines *ngIf="range">
 <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
 
  <ion-label range-left color="primary">{{0 | currency:'&#82;'}}</ion-label>
  <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
 </ion-range>
-</ion-item>
+</ion-item> -->
 
 </div> 
 </ion-content>
