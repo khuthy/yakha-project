@@ -95,6 +95,107 @@ page-home {
    
   } */
 
+
+  /* Builder side */
+    .header {
+      height: 30%;
+      width: 100%;
+      position: relative;
+      background: color($colors, secondary);
+      border-radius: 0 0 20px 20px;
+      color: color($colors, light);
+      //margin-bottom: 20px;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      .title {
+        display: flex;
+        width: 100%;
+        //border: 1px solid red;
+        padding: 20px;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+       .button {
+         //border: 1px solid green;
+         width: auto;
+           .icon {
+             color: color($colors, light);
+             font-size: 25px;
+           }
+         
+       }
+       .titlecase {
+         h3 {
+           letter-spacing: .2em;
+           font-weight: 200;
+         }
+         
+       }
+      }
+      .fixed-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: .2;
+      }
+    }
+
+    .homebuilder {
+      top: 30%;
+      height: 70vh;
+      position: fixed;
+      overflow: hidden;
+      overflow-y: scroll;
+      //border: 1px solid #4d90fe;
+      display: flex;
+      background: transparent;
+      padding: 20px;
+      width: 100%;
+
+      flex-direction: column;
+      .cards {
+       margin-top: 5%;
+       //border: 1px solid #ddd;
+       box-shadow: 0 0px 6px #00000a2c;
+       border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding-top: 20px;
+        padding-bottom: 20px;
+       
+        .images {
+          .thumb-home-builder {
+            width: 10vh;
+            height: 10vh;
+            border-radius: 50%;
+          }
+        }
+        .informative p {
+          position: absolute;
+          top: 1%;
+          right: 1%;
+          color: #b8b8b8;
+        }
+        .button-group {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 40px;
+          background: color($colors, primary);
+          border-radius: 50px 0 0 50px;
+          padding-left: 10px;
+         
+          p {
+            margin: auto;
+          }
+
+        }
+      }
+      
+    }
    
     
     .slider {

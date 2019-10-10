@@ -1,35 +1,14 @@
- <ion-header>
-  <ion-navbar color="primary">
-
-      <ion-title>Requests</ion-title>
-
-  </ion-navbar>
-</ion-header> 
-
-<!-- new design -->
 <ion-content>
-  <div class="container">
-    <div class="info-container">
-       <div class="logo" >
-           <p style="font-weight:600;font-size: 3vh">Hello  {{profName}}</p>
-          
-          <h5 id="descript" style="color: #3c7f8b;font-size: 2.5vh">Requirements for this project</h5>
-
-        </div>
-
-        <div style="text-align: center" class="content" >
-          <!-- dates-->
-       
+ <!--  
               <h5 >Project duration  </h5>
               <p style="font-size:2vh;text-align: center" >From {{startDate}} To {{endDate}}</p>
-        
-         <!-- wall wall type -->
+  
  
     <h5>Wall type</h5>
     <p > {{wallType}}</p>
 
 
- <!-- brick type -->
+
  
     <h5 >Brick   </h5>
     <p > {{brickType}}</p>
@@ -72,8 +51,41 @@
         </div>
         
           
-        <!-- <ion-fab right bottom *ngIf="builda">
-            <button ion-fab color="light"><ion-icon name="create" ></ion-icon></button>
-          </ion-fab>  --> 
+      
+  </div> -->
+  <div class="container">
+    <div class="header">
+      <div class="button-back">
+        <button ion-fab><ion-icon name="arrow-back"></ion-icon></button>
+      </div>
+      <div class="titlecase"><h6>REQUESTS</h6></div>
+      <p></p>
+    </div>
+    <div class="request-content">
+        <div class="titlecase"><h6>PROJECT REQUIREMENT</h6></div>
+        <div class="projects">
+          <button ion-button clear (click)="viewHouse(houseImage)">SEE HOUSE PLAN</button>
+          <div class="duration">
+            <p><small>Project Duration</small></p>
+            <p style="font-size:2vh;text-align: center" >From {{startDate}} To {{endDate}}</p>
+          </div>
+          <div class="wallType">
+              <p><small>wall Type</small></p>
+              <p > {{wallType}}</p>
+              <p > {{brickType}}</p>
+          </div>
+          <div class="extras">
+            <div class="extra" *ngFor="let e of extras">
+                  <p style="color:#3c7f8b ;">{{e}}</p>
+              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="30px" style="margin-top:-5%">
+                </div>
+           </div>
+           <div class="comment">
+             <p><small>comments</small></p>
+             <p>{{comment}}</p>
+           </div>
+        </div>
+
+    </div>
   </div>
 </ion-content>
