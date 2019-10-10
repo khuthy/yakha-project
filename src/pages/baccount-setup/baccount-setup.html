@@ -119,23 +119,30 @@
 
      <!-- profile for builder starts here  -->
     <div class="profiles" *ngIf="isProfile">
-        <button (click)="navCtrl.pop()" style="position:absolute;top:0;left:0;z-index:5" ion-fab mini top right edge><ion-icon name="arrow-back" ></ion-icon></button>
-        <div class="group-button" (click)="SignOut()">
-            <p>Logout</p>
-            <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
+        <div class="header">
+            <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+           
+              <div class="group-button" (click)="SignOut()">
+              <p>Logout</p>
+              <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
+            </div>
           </div>
       
       <div class="propic">
         <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar" >
         <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
-       
-
         <div class="names">
        <h4>{{builderProfile.fullName}}</h4>
        <p>{{builderProfile.address}}</p>
      </div>
+     <div class="certify" *ngIf="builderProfile.certified">
+        <p>C</p>
+     </div>
+       
     </div>
+   
     <div class="infocontent">
+        
       <h3>PROFILE</h3>
 
       <p>Gender</p>
@@ -147,9 +154,19 @@
       <p>Cost</p>
       <h5>{{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</h5>
 
-      <p>Cost include roofing</p>
-      <h5>{{builderProfile.roof}}</h5>
+      <p>Roofing</p>
+      <h5 *ngIf="builderProfile.roof">Including roofing</h5>
+      <h5 *ngIf="!builderProfile.roof">Do not include roofing</h5>
       </div>
+
+      
+      <div class="button">
+          <div class="btn" (click)="next()">
+            <p>Edit</p>
+            <button ion-fab mini><ion-icon name="arrow-forward" ></ion-icon></button>
+          
+          </div>
+        </div>
       
 
       

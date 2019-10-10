@@ -61,20 +61,9 @@ export class HomePage {
     public alertCtrl: AlertController) {
 
   }
-  LocationSearch() {
-    this.location = !this.location;
-    this.name = false;
-    this.range = false;
-  }
-  nameSearch() {
-    this.name = !this.name;
-    this.location = false;
-    this.range = false;
-  }
+  
   RangeSearch() {
     this.range = !this.range;
-    this.name = false;
-    this.location = false;
   }
 
   ionViewDidLoad() {
