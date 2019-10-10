@@ -56,18 +56,18 @@ page-home {
   }
 
   #pac-input {
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
+  /*  padding: 10px;
+   width: 100%;
+   border-radius: 50px;
+   border: none;
+   box-shadow: 0 1px 2px #00000083;
+   margin: 5px 5px; */
+   
+
   }
 
   #pac-input:focus {
-    border-color: #4d90fe;
+    border-color: none;
   }
 
   #title {
@@ -79,5 +79,197 @@ page-home {
   }
   #target {
     width: 345px;
+  }
+
+  /* card and search */
+ /*  .search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10%;
+    right: 0;
+    padding: 20px;
+    .searchbar {
+        padding: 20px;
+    }
+   
+  } */
+
+
+  /* Builder side */
+    .header {
+      height: 30%;
+      width: 100%;
+      position: relative;
+      background: color($colors, secondary);
+      border-radius: 0 0 20px 20px;
+      color: color($colors, light);
+      //margin-bottom: 20px;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      .title {
+        display: flex;
+        width: 100%;
+        //border: 1px solid red;
+        padding: 20px;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+       .button {
+         //border: 1px solid green;
+         width: auto;
+           .icon {
+             color: color($colors, light);
+             font-size: 25px;
+           }
+         
+       }
+       .titlecase {
+         h3 {
+           letter-spacing: .2em;
+           font-weight: 200;
+         }
+         
+       }
+      }
+      .fixed-image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: .2;
+      }
+    }
+
+    .homebuilder {
+      top: 30%;
+      height: 70vh;
+      position: fixed;
+      overflow: hidden;
+      overflow-y: scroll;
+      //border: 1px solid #4d90fe;
+      display: flex;
+      background: transparent;
+      padding: 20px;
+      width: 100%;
+
+      flex-direction: column;
+      .cards {
+       margin-top: 5%;
+       //border: 1px solid #ddd;
+       box-shadow: 0 0px 6px #00000a2c;
+       border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding-top: 20px;
+        padding-bottom: 20px;
+       
+        .images {
+          .thumb-home-builder {
+            width: 10vh;
+            height: 10vh;
+            border-radius: 50%;
+          }
+        }
+        .informative p {
+          position: absolute;
+          top: 1%;
+          right: 1%;
+          color: #b8b8b8;
+        }
+        .button-group {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 40px;
+          background: color($colors, primary);
+          border-radius: 50px 0 0 50px;
+          padding-left: 10px;
+         
+          p {
+            margin: auto;
+          }
+
+        }
+      }
+      
+    }
+   
+    
+    .slider {
+      width: 100%;
+      height: 28%;
+      //background: red;
+      position: absolute;
+      bottom: 0%;
+      z-index: 100;
+      font-family: 'Montserrat', sans-serif;
+    }
+  
+  
+    .magic {
+      padding: 40px;
+
+    }
+    
+   
+  
+  
+    .card {
+     // padding: 1%;
+      border-radius: 120px;
+      // border: 1px solid red;
+     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //background: white;
+      height:25vh;
+  
+      .info {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 80%;
+        position: relative;
+        top:-40%;
+        left:7px;
+        border-radius: 10px;
+        background: color($colors, light);
+        
+        div {
+        //  border: 1px solid black;
+          height:55%;
+          position: relative;
+        top:42%;
+        
+       
+        p {
+         // border: 1px solid blue;
+          text-align: left;
+          padding-left: 10%;
+          padding-bottom: 0;
+          color: rgb(64, 66, 75);
+          font-family:'Segoe UI';
+  
+        }
+        }
+      }
+      .image {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+        border-radius: 10px;
+        width:30%;
+        height: 55%;
+        position: relative;
+        left: 10%;
+        z-index:5;
+        img {
+          border-radius:10px;
+          height:100%;
+          width:100%;
+          object-fit: cover;
+        }
+      }
+    
+  
+    
   }
   }

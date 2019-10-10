@@ -18,7 +18,7 @@ export interface Comments {
    comment: string;
 }
 export interface Information {
-   icon: string;
+  
    info: string;
    description: string;
    form: boolean;

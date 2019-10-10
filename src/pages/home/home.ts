@@ -142,7 +142,7 @@ export class HomePage {
       west: 10.830120477,
       east: 32.830120477,
     };
-    let latlng = new google.maps.LatLng(39.305, -76.617);
+    let latlng = new google.maps.LatLng(39.305, -76.617,"blue");
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       center: latlng,
       draggable: true,

@@ -50,33 +50,10 @@ export class MessagesPage {
     })
   }
 
- /*  ionViewDidLoad() {
-    setTimeout(()=> {
-      // this.getOwners();
-     let colors = ['rgba(197, 101, 66, 0.966)', '#3c7f8b', 'white', '']
-      let cards = this.elementref.nativeElement.children[1].children[1].children[0].children.length;
-      for(var i = 0; i < cards; i++) {
-        console.log('for running');
-        
-       let background = i % 2;
-       
-       let cards = this.elementref.nativeElement.children[1].children[1].children[0].children[i];
-       let randomColor = Math.floor((Math.random() * colors.length));
-       if(background) {
-         console.log(cards);
-         
-         this.renderer.setStyle(cards, 'background', colors[randomColor])
-       } else {
-         console.log(cards);
-         this.renderer.setStyle(cards, 'background', colors[randomColor])
-       }
-     }
-     console.log('for done');
-     console.log(cards);
-     }, 500)
-  // console.log(this.honwerUID);
-  
-  } */
+  ionViewDidLoad() {
+    
+  }
+    
   downloadPDF(){
     this.fileOpener.open(this.qDoc, 'application/pdf')
     .then(() => console.log('File is opened'))
