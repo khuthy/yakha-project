@@ -12,50 +12,73 @@
       <p></p>
     </div>
   </div>
+  
+  <div class="homebuilder" id="req">
+      <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
+        <div class="i-cards"></div>
+           <div class="images">
+            <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
+            <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
+          </div>
+          <div class="informative">
+            <h6>{{o.owner.fullName}} </h6>
+            <p >{{o.builder.date | date}}</p>
+          </div>
+          <div class="button-group">
+            <p style="text-align: center; color: #fff;">View</p>
+            <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
+          </div>
+        </div>
+        </div>
     <div #map id="map">
  
       </div>
-      <!-- <input type="text" id="pac-input" *ngIf="input" placeholder="Search by Location" >  -->
-  <div class="homebuilder" id="req">
-    <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
-      <div class="i-cards"></div>
-         <div class="images">
-          <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
-          <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-        </div>
-        <div class="informative">
-          <h6>{{o.owner.fullName}} </h6>
-          <p >{{o.builder.date | date}}</p>
-        </div>
-        <div class="button-group">
-          <p style="text-align: center; color: #fff;">View</p>
-          <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
-        </div>
-      </div>
-      </div>
+     
+ 
+<div class="searchLocation">
+  <button ion-button class="child" small menuToggle><ion-icon name="menu"></ion-icon></button>
+  <input type="text" id="pac-input" *ngIf="input" placeholder="Search by Location"> 
+</div> 
 
 
-<div class="menu" >
-<div class="control" >
-  <button class="menus" *ngIf="!header"  ion-button clear menuToggle slot="start">
+<div class="control">
+<!--   <button class="menus" *ngIf="!header"  ion-button clear menuToggle slot="start">
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
- </button>
+ </button> -->
+ <div class="searchBar">
+   <button style="background-color: transparent;box-shadow: none;" ion-fab mini (click)="location()"><ion-icon name="pin"></ion-icon></button>
+   <ion-item no-lines style="border-radius: 50px;" *ngIf="range">
+      <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
+      
+       <ion-label range-left color="primary">{{0 | currency:'&#82;'}}</ion-label>
+       <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
+      </ion-range>
+      </ion-item> 
+      <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt="filter"></button>
+ </div>
+</div>
  <div class="slider">
-   
-  <ion-slides #slides spaceBetween="-65"  (ionSlideDidChange)="moveMapEvent($event)">
-    <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
-      <div class="card" >
+  <!--   <div class="searchByRang" *ngIf="!header">
         
+     </div> -->
+  <ion-slides #slides spaceBetween="-40" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
+    <ion-slide class="magic" *ngFor="let b of builder">
+      <div class="card" (click)="viewBuilderInfo(b)">
+
           <div class="image">
               <img *ngIf="b.image" src="{{b.image}}" alt="tough">
           </div>
+          <div class="rate"><p>{{4.5 | number}}</p></div>
         <div class="info">
-          <div style="margin-bottom:10px">
-             <p style="font-size:2vh;font-weight:700">{{b.fullName}}</p>
-             <p style="font-size:2vh;margin-top:-4%;font-weight:400;" class="price"><span>{{b.price|  currency:'&#82;'}}p/m</span><span class="squire">2</span> excluding roofing</p>
+          <div>
+             <p style="font-size:3vh;font-weight:700">{{b.fullName}}</p>
+             <p style="font-size:2vh;margin-top:-4%;font-weight:400;" class="price"><span style="color: #F2BE22">{{b.price|  currency:'&#82;'}}p/m</span><span class="squire">2</span> excluding roofing</p>
              <p style="color:balck;margin-top:-4%;font-size:2vh;padding-bottom:5px" class="stars">{{b.experiences}} years in building experience</p>
           </div>
-       
+          <div class="button-group">
+            <p>Request</p>
+            <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
+          </div>
 
         </div>
  </div> 
@@ -76,7 +99,7 @@
      <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="RangeSearch()"><ion-icon name="cash"></ion-icon></button>
    </ion-fab-list>
  </ion-fab> -->
-</div>
+
   <!-- <ion-item no-lines *ngIf="range">
 <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
 
@@ -85,7 +108,7 @@
 </ion-range>
 </ion-item> -->
 
-</div> 
+
 </ion-content>
 
 <!-- <button ion-button clear style="font-size: 25px;float: right;top:5px;" (click)="callJoint(o.hOwnerPhone)"><ion-icon name="call"></ion-icon> </button>
