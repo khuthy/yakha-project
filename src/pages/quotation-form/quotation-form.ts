@@ -127,6 +127,10 @@ extraName;
    console.log(this.quotationForm.value.endDate.valid);
    
     }
+
+    nextslide(){
+      this.nextslide();
+    }
     formatDate(date) {
       let d = new Date(date),
         day = '' + d.getDate(),

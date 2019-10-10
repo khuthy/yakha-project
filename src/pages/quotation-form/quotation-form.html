@@ -63,7 +63,7 @@
     <input type="radio" name="gender" value="male" style="font-size:2.3vh"> Male<br>
     <input type="radio" name="gender" value="female" style="margin-left: 8%"> Female<br>
 </div>
-          <div class="btn"><p>Next</p> </div>
+          <div (click)="nextslide()" class="btn"><p>Next</p> </div>
        </div>
             </ion-slide>
 <!-- end of slide one -->
@@ -226,7 +226,7 @@
   <ion-toolbar>
       
     <ion-buttons end>
-      <button ion-fab  (click)="createQuations(quotationForm)"><ion-icon name="send"></ion-icon></button>
+      <button ion-fab                                      ><ion-icon name="send"></ion-icon></button>
     </ion-buttons>
 
   </ion-toolbar>
