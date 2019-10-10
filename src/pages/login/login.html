@@ -19,16 +19,16 @@
             <ion-input placeholder="Email" formControlName="email" type="email" (ionFocus)="checkKeyboard('open')"
               (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input><ion-icon name="ios-at-outline" color="light" item-left></ion-icon>
-            <p style="color:red; margin-top: -5px;"
+            <p style="color:red; "
               *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
               Please enter a valid email address}</p>
 
             <!-- <p style ="color:red">please enter a valid email address</p> -->
           </ion-item>
           <p *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red;margin-top:  -5px;">Email address is required</p>
+            style="color:red;">Email address is required</p>
           <p *ngIf="loginForm.get('email').hasError('pattern') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red; margin-top: -5px;">Please enter a valid email address</p>
+            style="color:red; ">Please enter a valid email address</p>
           <ion-item class="item">
             <!-- <ion-label stacked> Password</ion-label> -->
             <ion-input placeholder="Password" formControlName="password" type="password"
@@ -47,7 +47,7 @@
             style="color:red">Password must be more than 6 characters </p>
 
 
-          <p id="hide-p" (click)="forgotpassword()" *ngIf="!hid">
+          <p id="hide-p" style="text-align: right;color: white" (click)="forgotpassword()" *ngIf="!hid">
             Forgot
             password?</p>
 
