@@ -193,6 +193,7 @@ align-items:center;
 .container {
     height: 100%;
     width: 100%;
+  
 
     .header {
         display: flex;
@@ -216,6 +217,38 @@ align-items:center;
          }
          
        }
+      }
+      .request-content {
+          .projects {
+              background: #F2F2F2;
+              padding: 20px;
+              .extras {
+                  display: flex;
+                  flex-wrap: wrap;
+                  
+                  .extra {
+                      background: color($colors, custom);
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      border-radius: 5px;
+                      padding: 10px;
+                      margin: 1%;
+                      p{
+                          margin: auto;
+                          color: color($colors, light);
+                      }
+                  }
+              }
+
+          }
+      }
+      .builder {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: -1;
+          width: 200px;
       }
 }
 }

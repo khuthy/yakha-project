@@ -56,28 +56,29 @@
   <div class="container">
     <div class="header">
       <div class="button-back">
-        <button ion-fab><ion-icon name="arrow-back"></ion-icon></button>
+        <button ion-fab (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
       </div>
       <div class="titlecase"><h6>REQUESTS</h6></div>
       <p></p>
     </div>
     <div class="request-content">
-        <div class="titlecase"><h6>PROJECT REQUIREMENT</h6></div>
+        <div class="titlecase"><h6 style="text-align: center;">PROJECT REQUIREMENT</h6></div>
         <div class="projects">
           <button ion-button clear (click)="viewHouse(houseImage)">SEE HOUSE PLAN</button>
           <div class="duration">
             <p><small>Project Duration</small></p>
-            <p style="font-size:2vh;text-align: center" >From {{startDate}} To {{endDate}}</p>
+            <p>From {{startDate}} To {{endDate}}</p>
           </div>
           <div class="wallType">
               <p><small>wall Type</small></p>
-              <p > {{wallType}}</p>
-              <p > {{brickType}}</p>
+              <p> {{wallType}}</p>
+              <p> {{brickType}}</p>
           </div>
+          <p><small>Extras</small></p>
           <div class="extras">
+
             <div class="extra" *ngFor="let e of extras">
-                  <p style="color:#3c7f8b ;">{{e}}</p>
-              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="30px" style="margin-top:-5%">
+                  <p>{{e}}</p>
                 </div>
            </div>
            <div class="comment">
@@ -87,5 +88,8 @@
         </div>
 
     </div>
+
+      <img src="../../assets/icon/Yakha-assets/BuilderShapes.svg" alt="builder" class="builder">
+    
   </div>
 </ion-content>
