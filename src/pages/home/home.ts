@@ -40,7 +40,6 @@ export class HomePage {
   header = 'value';
   uid = firebase.auth().currentUser.uid;
   /* Search variebles */
-  b: boolean;
   homeowner = false;
   message = '';
   isBuilder;
@@ -78,11 +77,11 @@ export class HomePage {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-        this.b = false;
+  
       }
       if (res.data().builder == true) {
         this.getRequests();
-        this.b = true;
+
       }
     })
 
