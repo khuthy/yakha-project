@@ -42,11 +42,11 @@
   </div>
   <input type="text" id="pac-input" class="controls"  placeholder="Search by Location" > 
 <div class="menu" *ngIf="header">
-<div class="control" >
+<div class="control">
   <button class="menus"  ion-button clear menuToggle>
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button>
- <div class="slider" >
+ <div class="slider">
    
   <ion-slides spaceBetween="-65" [slidesPerView]="slidesPerView" (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder" (click)="viewBuilderInfo(b)">
