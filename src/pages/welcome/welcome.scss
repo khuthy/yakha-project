@@ -7,14 +7,13 @@ page-welcome {
         right: 0;
         width: 100%;
         height: 100%;
-         background: linear-gradient(#707a7c8c), url('../../assets/imgs/builders.png');
+         background:   url('../../assets/imgs/builders.png');
          background-size: cover;
          background-position: center;
-         
          z-index: -2;
-         overflow: hidden;   
+
          &::before, &::after {
-             background-image: linear-gradient(#707a7c8c),url('../../assets/imgs/builders.png');
+             background: url('../../assets/imgs/builders.png') no-repeat;
              background-size: cover;
              background-position: center;
              -webkit-filter: blur(10px);
@@ -26,13 +25,15 @@ page-welcome {
              position: absolute;
              top: 0;
              left: 0%;
-             width: 100%;
-             height: 100%;
+             width: 100vw;
+             height: 100vh;
+
 
          }
          &::before {
              transform: scale(1,1);
          }
+
     }
     .contain {
         position: absolute;
@@ -55,7 +56,7 @@ page-welcome {
                // border:1px solid green;
                 width:90%;
                 text-align: center;
-                font-size:2.5vh;
+                font-size: 3vh;
                 color:color($colors, light);
                 font-family:'Segoe UI';
             }
@@ -86,7 +87,7 @@ page-welcome {
               font-size:2vh;
               width:70%;
               margin-top: 3.5%;
-              height: 50px;
+              height: 48px;
                color:white;
                letter-spacing: 1px;
                outline:none;

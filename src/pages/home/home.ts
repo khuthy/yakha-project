@@ -13,7 +13,7 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild('Slides') slides: Slides;
+  @ViewChild('slides') slides: Slides;
   @ViewChild("map") mapElement: ElementRef;
 
   map: any;
@@ -44,6 +44,12 @@ export class HomePage {
   message = '';
   isBuilder;
   input = '';
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  geoData = {
+    lat: 0,
+    lng: 0
+  }
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -55,20 +61,9 @@ export class HomePage {
     public alertCtrl: AlertController) {
 
   }
-  LocationSearch() {
-    this.location = !this.location;
-    this.name = false;
-    this.range = false;
-  }
-  nameSearch() {
-    this.name = !this.name;
-    this.location = false;
-    this.range = false;
-  }
+  
   RangeSearch() {
     this.range = !this.range;
-    this.name = false;
-    this.location = false;
   }
 
   ionViewDidLoad() {
@@ -77,9 +72,11 @@ export class HomePage {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
+
       }
       if (res.data().builder == true) {
         this.getRequests();
+
       }
     })
 
@@ -97,10 +94,38 @@ export class HomePage {
     // }
   }
 
+  moveMapEvent() {
+    let currentIndex = this.slides.getActiveIndex();
+    let currentEvent = this.builder[currentIndex];
+    // this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng })
 
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let geoData = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
+
+      let start = new google.maps.LatLng(geoData.lat, geoData.lng);
+      let end = new google.maps.LatLng(currentEvent.lat, currentEvent.lng)
+      const that = this;
+      this.directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+      },
+        function (response, status) {
+          if (status === 'OK') {
+            that.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+    })
+  } 
   getPosition(): any {
     this.geolocation.getCurrentPosition().then(resp => {
-      this.setCenter(resp);
+      this.setMapCenter(resp);
 
     }).catch((error) => {
       this.errorMessage('Error code ' + error.code, error.message)
@@ -134,6 +159,7 @@ export class HomePage {
     alert.present();
   }
   loadMap() {
+
     this.input = 'Message of the input search show';
     this.header = '';
     let SA_BOUNDS = {
@@ -145,7 +171,6 @@ export class HomePage {
     let latlng = new google.maps.LatLng(26.2708, 28.1123);
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       center: latlng,
-      draggable: true,
       restriction: {
         latLngBounds: SA_BOUNDS,
         strictBounds: true,
@@ -206,10 +231,11 @@ export class HomePage {
       });
       this.map.fitBounds(bounds);
     });
+    this.directionsDisplay.setMap(this.map);
+   // this.directionsDisplay.setPanel(document.getElementById('right-panel'));
   }
 
-
-  setCenter(position: Geoposition) {
+  setMapCenter(position: Geoposition) {
     let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
     this.map.setCenter(myLatLng);
 
@@ -342,24 +368,20 @@ export class HomePage {
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-  moveMapEvent() {
-    let currentIndex = this.slides.getActiveIndex();
-    let currentEvent = this.builder[currentIndex];
-    this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
-  }
+
   getRequests() {
     // this.request = true;
     let data = {
       builder: {},
       owner: {}
     }
-   
+
     //  document.getElementById('map').style.display = "block";
     this.builder = [];
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
       document.getElementById('req').style.display = "flex";
-      document.getElementById('map').style.display = "none";     
+      document.getElementById('map').style.display = "none";
       res.forEach((doc) => {
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
