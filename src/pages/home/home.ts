@@ -13,7 +13,7 @@ declare var google;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  @ViewChild('Slides') slides: Slides;
+  @ViewChild('slides') slides: Slides;
   @ViewChild("map") mapElement: ElementRef;
 
   map: any;
@@ -76,7 +76,7 @@ export class HomePage {
       if (res.data().builder == false) {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
-        this.getPosition();
+       // this.getPosition();
   
       }
       if (res.data().builder == true) {
@@ -100,14 +100,14 @@ export class HomePage {
   }
 
 
-  getPosition(): any {
-    this.geolocation.getCurrentPosition().then(resp => {
-      this.setCenter(resp);
+  // getPosition(): any {
+  //   this.geolocation.getCurrentPosition().then(resp => {
+  //     this.setCenter(resp);
 
-    }).catch((error) => {
-      this.errorMessage('Error code ' + error.code, error.message)
-    })
-  }
+  //   }).catch((error) => {
+  //     this.errorMessage('Error code ' + error.code, error.message)
+  //   })
+  // }
   getBuilders() {
     this.db.where('builder', '==', true).onSnapshot((res) => {
       this.builder = [];
@@ -147,7 +147,6 @@ export class HomePage {
     let latlng = new google.maps.LatLng(26.2708, 28.1123);
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       center: latlng,
-      draggable: true,
       restriction: {
         latLngBounds: SA_BOUNDS,
         strictBounds: true,
@@ -211,19 +210,19 @@ export class HomePage {
   }
 
 
-  setCenter(position: Geoposition) {
-    let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
-    this.map.setCenter(myLatLng);
+  // setCenter(position: Geoposition) {
+  //   let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+  //   this.map.setCenter(myLatLng);
 
-    google.maps.event.addListenerOnce(this.map, 'idle', () => {
-      let marker = new google.maps.Marker({
-        position: myLatLng,
-        map: this.map,
-        title: 'Hello World!'
-      });
-      this.map.classList.add('show-map');
-    });
-  }
+  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
+  //     let marker = new google.maps.Marker({
+  //       position: myLatLng,
+  //       map: this.map,
+  //       title: 'Hello World!'
+  //     });
+  //     this.map.classList.add('show-map');
+  //   });
+  // }
   initAutocomplete() {
     let input = document.getElementById('pac-input');
     let searchBox = new google.maps.places.SearchBox(input);
@@ -345,7 +344,7 @@ export class HomePage {
     this.navCtrl.push(ViewmessagePage, user);
   }
   moveMapEvent() {
-    let currentIndex = this.slides.getActiveIndex();
+     let currentIndex = this.slides.getActiveIndex();
     let currentEvent = this.builder[currentIndex];
     this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
   }
