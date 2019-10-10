@@ -49,6 +49,7 @@ export class QuotationFormPage {
     houseImage:'',
     comment:'',
     date:Date(),
+    view:false,
     builderUID: '',
   };
   docID;

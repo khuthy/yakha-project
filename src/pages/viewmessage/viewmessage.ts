@@ -67,6 +67,7 @@ export class ViewmessagePage {
   builda = '';
   docID: any;
   response: boolean = false;
+  name: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -110,6 +111,7 @@ export class ViewmessagePage {
     this.startDate = this.userDetails.startDate;
     this.wallType = this.userDetails.wallType;
     this.docID = this.userDetails.docID;
+   
    
     
    this.extras = this.userDetails.extras;
