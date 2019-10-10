@@ -37,7 +37,7 @@
 
 <div class="menu" >
 <div class="control" >
-  <button class="menus"  ion-button clear menuToggle>
+  <button class="menus" *ngIf="!header"  ion-button clear menuToggle>
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button>
  <div class="slider">
@@ -68,7 +68,7 @@
  
       <input *ngIf="!header" class="controls" (ngModelChange)="search($event)" placeholder="Search by Name">
 
- <ion-fab right style="align-self:center; justify-self: flex-end" >
+ <ion-fab *ngIf="!header" right style="align-self:center; justify-self: flex-end" >
    <button class="searching" ion-fab><ion-icon name="search"></ion-icon></button>
    <ion-fab-list>
      <button ion-fab mini style="background-color: chocolate; color: white; font-size: 30px;" (click)="LocationSearch()"><ion-icon  name="search"></ion-icon></button>

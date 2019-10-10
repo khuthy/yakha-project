@@ -1,256 +1,130 @@
 page-quotation-form {
-
-    .container {
-       // border:1px solid red;
-        width: 100%;
-        height:100%;
-        margin:0;padding:0;
-        .step-one {
-            height:100%;
-
-        }
-        h5 {
-          //  border:1px solid blue;
-            //margin-top:-25%;
-            text-align: center;
-            color:#3c7f8b;
-            font-size: 4vh;
-            font-family: serif;
-            width:90%;
-            position:relative;
-            left:5%;
-            top:-3%;
-        }
-        #houseplan {
-            border:1px solid green;
-            position: relative;
-            width: 90%;
-            left:5%;
-            top:0;
-            height:200px;
-        }
-       #inputs {
-           //border:1px solid blue;
-           width: 90%;
-           position: relative;
-           left:5%;
-           height:170px;
-       }
-
-       h6 {
-           color:#3c7f8b;
-           letter-spacing: 1px;
-       }
-       .item {
-           //height:25px;
-        border: 1px solid #3c7f8b;
-        border-radius: 10px;
-      //  margin-top: 3%;
-      margin:0 !important;
-      padding:0 !important;
-      outline: none;
-ion-datetime {
-    color:#4D4D4D;
-    padding-left:10px;
-    font-size:2.4vh;
-    letter-spacing: 1px;
-}
-        ion-label {
-            font-size:2vh;
-          color: #4D4D4D; 
-          letter-spacing: 1px;
-          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        ion-input {
-          color: rgb(85, 83, 83);
-          letter-spacing: 1px;
-          font-weight:300;
-          border-bottom: none;
-         margin-left: 10px;
-        }
-        p {
-          color: rgb(246, 22, 22);
-          font-size: 2vw;
-          text-align: center;
-          margin-top:-5%;
-        }
-      }//end of item
-      .form-group {
-        box-shadow: 0 1px 2px 0 #ddd;
-        padding: 1%;
-        border-radius: 5px;
-        background: #fff;
-        position: relative;
-        margin-bottom: 5%;
-        align-items: center;
-      }
-      
-#walltype {
-   // border:1px solid red;
-    width: 96%;
-    position: relative;
-    left:2%;
-}   
-   /*    .interval {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .child {
-            width: 50%;
-        }
-    } */
-    .bricks {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        width: auto;
-        
-        overflow-x: scroll;
-        
-        .card {
-            width: 30%;
-           height:20%;
-           margin-bottom: 2%;
-           // border:1px solid red;
-            box-shadow:0 1px 2px 0 #ddd; 
-            //padding: 2%;
-            background: #fff;
-           // margin: 1%;
-           // height:10%;
-        }
-    }
-    .image {
-        height: 50px;
-        width: 50px;
- 
-    }
-    .brickImage{
-        height: 50px;
-        width: 80%;
-        padding-bottom: 3%;
-    }
-
-    #extras {
-      //  border:1px solid blue;
-    }
-
-    #messages {
-       // border:1px solid blue;
-        width:90%;
-        position: relative;
-        left:5%;
- 
-    }
-}
-
-
-
- /*    .content {
-      
-       
-        background: #f9f9f9;
-      
-        .container {
-         margin: 0 auto;
-         position: relative;  
-         max-width: 100%;
-
-         
-        
-        
-        .form-group {
-            box-shadow: 0 1px 2px 0 #ddd;
-            padding: 1%;
-            border-radius: 5px;
-            background: #fff;
-            position: relative;
-            margin-bottom: 5%;
-            align-items: center;
-            .comment {
-                width: 100%;
-                padding: 10px;
-            }
-            .btn-upload {
-                border: 1px solid #ddd;
-                max-width: 80%;
-                margin: 0 auto;
-                .icon {
-                    width: 25px;
-                }
-            }
-            h6 {
-                color: rgb(110, 110, 110);
-                text-align: center;
-            }
-
-            .interval {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                .child {
-                    width: 50%;
-                }
-            }
-            .bricks {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
-                width: 100%;
-                .card {
-                    width: 45%;
-                    box-shadow:0 1px 2px 0 #ddd; 
-                    padding: 2%;
-                    background: #fff;
-                    margin: 1%;
-                }
-            }
-            .image {
-                height: 50px;
-                width: 50px;
-                
-            }
-            .brickImage{
-                height: auto;
-                width: 100%;
-            }
-        }
-    }
-  
- }
- */
-    /* Progress bar code css */
-/*     #progress {
-        background: rgb(22, 22, 22);
-        border-radius: 13px;
-        height: 10px;
-        width: 70%;
-        padding: 3px;
-    }
- #progress:after {
-        content: '';
-        display: block;
-        background: rgb(96, 116, 133);
-        width: 50%;
+.container {
+    height: 100vh;
+    width: 100vw;
+    form {
         height: 100%;
-        border-radius: 9px;
-    }
-    .proceed {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        ion-slides {
+            height: 100%;
+            ion-slide {
+                height: 100%;
+                .topdeco {
+                 //border:1px solid rgb(255, 187, 0);
+                height: 10%;
+                width: 100%;
+                background:url(../../assets/imgs/ownerShape.svg); 
+                background-position: right;
+                background-repeat: no-repeat;
+                position: absolute;
+                top: 0;
+                }
 
-    
-    @media only screen and (min-width: 900px)  {
-     
-        .bricks{
-            justify-content: initial;
-        }        
-       .card {
-          justify-self: flex-start;
-           max-width: 250px;
-       }
-    
-} */
+                .houseplan {
+                    width: 90%;
+                    height:21%;
+                    border: 2px dotted rgb(71, 68, 68);
+                    position: absolute;
+                    top:13%;
+                    left:5%;
+                    border-radius: 20px;
+                }
+                .inputs {
+                    // border: 1px solid blue;
+                    background: whitesmoke;
+                    height: 30%;
+                    p {
+                        color: rgb(0, 0, 0);
+                        font-size: 2vh;
+                        letter-spacing: 1px;
+                        text-align: center;
+                        padding-top: 2%;
+                        }
+                   ion-item {
+                       width: 90%;
+                       border-radius: 50px;
+                       position: relative;
+                       left: 5%;
+                       background: rgb(211, 205, 205);
+                   }
+
+
+                }
+
+                .bricks {
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    width: 100%; 
+                    position: absolute;
+                    height: 18%;
+                    overflow-x: auto;
+                    p {
+                        font-size: 2vh;
+                        text-align: center;
+                        letter-spacing: 1px;
+                    }
+                    .card {
+                        min-width: 30%;
+                        height:60%;
+                        box-shadow: 0px 2px 2px rgba(23, 23, 23, 0.294);
+                        margin-left: 5px;
+                        background: red;
+                        border-radius: 10px;
+                    }
+                   /*  .cards {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow: hidden;
+                        overflow-x: scroll;
+                        
+                   
+                    } */
+                }
+
+            .walls {
+                // border: 1px solid red;
+                height: 20%;
+                width: 100%; 
+                position: absolute;
+                bottom:0;
+                p {
+                    font-size: 2vh;
+                }
+
+                .btn {
+                     //border:1px solid rgb(218, 28, 3);
+                     width: 50%;
+                     height:35%;
+                     //margin-left: auto;
+                    position: absolute;
+                 right: 0;
+                 bottom:5px;
+                     border-bottom-left-radius: 50px;
+                     border-top-left-radius: 50px;
+                     background: rgb(204, 158, 20);
+                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                  
+                  p {
+                    color:white;
+                    font-size: 2vh;
+                    letter-spacing: 1px;
+                   // border: 1px solid rgb(0, 47, 255);
+                 margin-top:3%;
+                  
+                  }
+                  button {
+                    margin-left: auto;
+                    position: relative;
+                    left:7%;
+                    bottom:35%;
+                    background: white;
+               
+                  }
+                   }
+            }
+            }  
+        } 
+    }
+}
    
 }
