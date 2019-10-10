@@ -1,6 +1,6 @@
 <ion-content>
   <div class="container" *ngIf="!isProfile">
-     
+     <!-- original form for homeowner to create profile -->
  <div  class="image">
         <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: 'Roboto','Segoe UI'">Tell us a little about yourself</h4>
       <h5>Upload your image here</h5>
@@ -91,70 +91,8 @@
      </div>
      
  </div>
-
-<!-- view profile --><!-- 
-<div class="container" *ngIf="isProfile">
-
  
-
-<div style="display: flex;">
-    
-        <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 30px; color: #3c7f8b" name="close-circle-outline"></ion-icon></button>
-   
-    
-</div>
-
-  <div class="holder">
- <div class="background">
-   <h5 style="color: white">{{HomeOwnerProfile.fullName}}</h5>
-   <div class="propic">
-      <img *ngIf="HomeOwnerProfile.image" src="{{HomeOwnerProfile.image}}" (click)="viewProfile(HomeOwnerProfile.image)" class="thumbavatar">
-      <img *ngIf="!HomeOwnerProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar">
-    </div>
-
-   <div class="info">
-
-     <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-
-        <h5 style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2">{{HomeOwnerProfile.gender}}</h5>
-     </div>
-
-     <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-
-        <h5 style="padding-left:6%;font-size: 2.5vh">{{HomeOwnerProfile.personalNumber}}</h5>
-     </div>
-
-     
-
-         <h5 style="text-align: center; padding-top:3%">About me</h5>
-         <p style="text-align: center;letter-spacing: 1px; padding:1%">  {{HomeOwnerProfile.About}} </p>
-
-
-         <div id="address">
-          <p style="border: 1px sold green"> 
-           <ion-icon name="pin" style="color:#3c7f8b;font-size: 4vh" ></ion-icon>
-          </p>
-               <p >{{HomeOwnerProfile.ownerAddress}}</p>
-         </div>
-
-   
-      
-
-    <ion-fab right bottom>
-        <button ion-fab color="button2" (click)="editProfile()"><ion-icon name="create" ></ion-icon></button>
-      </ion-fab>
-
-   
-      
-
-        
-      
-
-        
-   </div>
- </div>
-  </div>
-</div> -->
+<!-- homeowner views profile here and the fab will take them to edit profile -->
 <div class="container" *ngIf="isProfile">
   <div class="header">
     <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>

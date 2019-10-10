@@ -2,12 +2,15 @@
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
   <div class="container">
 
-    <div class="logo">
+    <div class="logo" id="hide-div2" *ngIf="!hid">
       <div class="topdeco">
 
       </div>
-      <img src="../../assets/imgs/yellowlogo.svg" style="max-width: 80px; height: auto">
+      <div id="logo">
+        <img src="../../assets/imgs/yellowlogo.svg" style="max-width: 80px; height: auto">
       <p style="color: rgb(247, 247, 247); font-size: 18px">{{getUser}}</p>
+      </div>
+      
     </div>
 
     <div class="inputs">
@@ -21,14 +24,14 @@
             </ion-input><ion-icon name="ios-at-outline" color="light" item-left></ion-icon>
             <p style="color:red; "
               *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
-              Please enter a valid email address}</p>
+              Please enter a valid email address</p>
 
             <!-- <p style ="color:red">please enter a valid email address</p> -->
           </ion-item>
           <p *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red;">Email address is required</p>
+            style="color:red;text-align:center">Email address is required</p>
           <p *ngIf="loginForm.get('email').hasError('pattern') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red; ">Please enter a valid email address</p>
+            style="color:red;text-align:center">Please enter a valid email address</p>
           <ion-item class="item">
             <!-- <ion-label stacked> Password</ion-label> -->
             <ion-input placeholder="Password" formControlName="password" type="password"
@@ -37,22 +40,22 @@
             <!-- <i class="fas fa-lock" ></i> -->
             <ion-icon name="key" color="light" item-left></ion-icon>
             <!-- <i class="fas fa-lock-alt" ></i> -->
-            <p style="color:red" *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
+            <p style="color:red;text-align:center" *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
               your password needs more than 6 characters.</p>
             <!-- <p style ="color:red">your password needs more than 6 characters </p> -->
           </ion-item>
           <p *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
-            style="color:red">password is required</p>
+            style="color:red;text-align:center">password is required</p>
           <p *ngIf="loginForm.get('password').hasError('minlength') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
-            style="color:red">Password must be more than 6 characters </p>
+            style="color:red;text-align:center">Password must be more than 6 characters </p>
 
 
-          <p id="hide-p" style="text-align: right;color: white" (click)="forgotpassword()" *ngIf="!hid">
+          <p id="hide-p" style="text-align: right;color: white;width:90%;margin-left:5%" (click)="forgotpassword()" *ngIf="!hid">
             Forgot
             password?</p>
 
 
-          <div id="hide-div" *ngIf="!hid">
+          <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
             <div class="div-fab" style="background-color: #015272">
 
@@ -82,7 +85,7 @@
     </div><!-- end of inputs -->
 
     <div id="hide-bottom" class="bottomdeco" *ngIf="!hid">
-        <img src="../../assets/imgs/OwnerShapes.svg" style="margin-top: -10%">
+     <!--    <img src="../../assets/imgs/OwnerShapes.svg" height="55%" > -->
       </div>
   </div>
 </ion-content>

@@ -1,130 +1,256 @@
 page-quotation-form {
-.container {
-    height: 100vh;
-    width: 100vw;
-    form {
+  .backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .topDecor {
+    background: url(../../assets/imgs/ownerShape.svg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 20vw;
+    background-size: 100%;
+
+  }
+
+  .bottomDecor {
+    background: url(../../assets/imgs/OwnerShapes.svg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50vw;
+    height: 20vw;
+    background-size: 100% 100%;
+    background-position: -6vw 0px;
+    background-repeat: no-repeat;
+  }
+
+  .btn {
+    //border:1px solid rgb(218, 28, 3);
+    width: 40%;
+    height:10vw;
+    //margin-left: auto;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    background: rgb(204, 158, 20);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    p {
+      color: white;
+      font-size: 4vw;
+      letter-spacing: 1px;
+      // border: 1px solid rgb(0, 47, 255);
+    //   margin: 3% 0px;
+
+    }
+    .nextFab {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
         height: 100%;
-        ion-slides {
-            height: 100%;
-            ion-slide {
-                height: 100%;
-                .topdeco {
-                 //border:1px solid rgb(255, 187, 0);
-                height: 10%;
-                width: 100%;
-                background:url(../../assets/imgs/ownerShape.svg); 
-                background-position: right;
-                background-repeat: no-repeat;
+        width: 40%;
+        // background: red;
+        display: grid;
+        align-content: center;
+        padding: 0px 6px;
+    }
+    button {
+      margin-left: auto;
+      position: relative;
+      right: 0;
+    //   bottom: 35%;
+      background: white;
+
+    }
+  }
+  .information {
+      position: absolute;
+      top: 10vh;
+      bottom: 10vh;
+      width: 100%;
+    //   height: 100%;
+      background: white;
+      .imageCont {
+          width: 90%;
+          height: 20%;
+          overflow: hidden;
+          margin: 10px auto;
+          border: dashed 2px black;
+          border-radius:10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+img {
+    object-fit: cover;
+    width:100%;
+    height:100%;
+}
+          p {
+         //  text-align: center;
+            font-size: 3vw;
+            letter-spacing: 1px;  
+          }
+      }
+      .dates {
+          background: red;
+          text-align: center;
+        //  background: #F5F5F5;
+          padding: 5px 0px;
+          p{
+              margin: 0;
+              padding: 5px 0px;
+              font-size: 3vw;
+          }
+          .item  {
+              background: rgb(223, 223, 223) !important;
+            //   border: solid 1px ;
+              border-radius: 200px;
+              padding: 0 !important;
+              margin: 2px auto;
+              width: 90vw;
+           
+              .label {
+                  text-align: left;
+                  padding: 0px 10px;
+                  letter-spacing: 1px;
+                  height:2vh;
+                
+              }
+              ion-datetime {
+                  letter-spacing: 1px;
+                  font-size:3.5vw;
+                  height:5vh;
+              }
+          }
+      }
+      .bricks {
+          width: 100%;
+        //   background: blue;
+          overflow-x: auto;
+          display: flex;
+          .cards {
+              min-width: 40vw;
+              max-width: 40vw;
+              height: 25vw;
+              background: red;
+              border-radius: 20px;
+              overflow: hidden;
+              margin: 5px;
+              position: relative;
+              img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+              }
+              .brickName {
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  background: rgba(255, 255, 255, 0.938);
+                  color: black;
+                  text-align: center;
+                  z-index: 2;
+                  p {
+                      margin: 0;
+                      padding: 5px;
+                  }
+              }
+              .details {
+                transition: 0.3s;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  overflow-y: auto;
+                  padding: 10px 5px;
+                  transform: scale(1);
+                  z-index: 5;
+                  .closeB {
+                      display: grid;
+                      align-items: center;
+                      text-align: center;
+                      width: 30px;
+                      height: 30px;
+                      position: absolute;
+                      background: white;
+                      color: black;
+                      border-radius: 200px;
+                      z-index: 10;
+                      top: 5px;
+                      right: 5px;
+                  }
+                  p {
+                      font-size: 3vw;
+                      padding: 0;
+                  }
+              }
+              .details-inactive {
+                transition: 0.3s;
                 position: absolute;
                 top: 0;
-                }
-
-                .houseplan {
-                    width: 90%;
-                    height:21%;
-                    border: 2px dotted rgb(71, 68, 68);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                overflow-y: auto;
+                padding: 10px 5px;
+                transform: scale(0);
+                z-index: 5;
+                .closeB {
+                    display: grid;
+                    align-items: center;
+                    text-align: center;
+                    width: 30px;
+                    height: 30px;
                     position: absolute;
-                    top:13%;
-                    left:5%;
-                    border-radius: 20px;
-                }
-                .inputs {
-                    // border: 1px solid blue;
-                    background: whitesmoke;
-                    height: 30%;
-                    p {
-                        color: rgb(0, 0, 0);
-                        font-size: 2vh;
-                        letter-spacing: 1px;
-                        text-align: center;
-                        padding-top: 2%;
-                        }
-                   ion-item {
-                       width: 90%;
-                       border-radius: 50px;
-                       position: relative;
-                       left: 5%;
-                       background: rgb(211, 205, 205);
-                   }
-
-
-                }
-
-                .bricks {
-                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                    width: 100%; 
-                    position: absolute;
-                    height: 18%;
-                    overflow-x: auto;
-                    p {
-                        font-size: 2vh;
-                        text-align: center;
-                        letter-spacing: 1px;
-                    }
-                    .card {
-                        min-width: 30%;
-                        height:60%;
-                        box-shadow: 0px 2px 2px rgba(23, 23, 23, 0.294);
-                        margin-left: 5px;
-                        background: red;
-                        border-radius: 10px;
-                    }
-                   /*  .cards {
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-wrap: nowrap;
-                        overflow: hidden;
-                        overflow-x: scroll;
-                        
-                   
-                    } */
-                }
-
-            .walls {
-                // border: 1px solid red;
-                height: 20%;
-                width: 100%; 
-                position: absolute;
-                bottom:0;
-                p {
-                    font-size: 2vh;
-                }
-
-                .btn {
-                     //border:1px solid rgb(218, 28, 3);
-                     width: 50%;
-                     height:35%;
-                     //margin-left: auto;
-                    position: absolute;
-                 right: 0;
-                 bottom:5px;
-                     border-bottom-left-radius: 50px;
-                     border-top-left-radius: 50px;
-                     background: rgb(204, 158, 20);
-                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                  
-                  p {
-                    color:white;
-                    font-size: 2vh;
-                    letter-spacing: 1px;
-                   // border: 1px solid rgb(0, 47, 255);
-                 margin-top:3%;
-                  
-                  }
-                  button {
-                    margin-left: auto;
-                    position: relative;
-                    left:7%;
-                    bottom:35%;
                     background: white;
-               
-                  }
-                   }
+                    color: black;
+                    border-radius: 200px;
+                    z-index: 10;
+                    top: 5px;
+                    right: 5px;
+                }
+                p {
+                    font-size: 3vw;
+                    padding: 0;
+                }
             }
-            }  
-        } 
-    }
-}
-   
+          }
+      }
+      .walltype {
+          p {
+            margin: 0;
+            padding: 5px 0px;
+            font-size: 3.5vw;
+            text-align: center;
+
+          }
+          .inputs {
+              display: flex;
+              div {
+                  width: 50%;
+                .item {
+                    width: 100%;
+                    ion-label {
+                      color:black;
+                        font-weight: 400;
+                    }
+                    .radio { 
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+              }
+          }
+      }
+  }
 }
