@@ -29,6 +29,11 @@ export class RegisterPage {
   public signupForm: FormGroup;
   public loading: any;
   getUser: string;
+  password = true;
+  bottomdeco = true;
+  buttons = true;
+  isKeyOpen: boolean = false;
+  hid='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthServiceProvider,
@@ -53,6 +58,16 @@ export class RegisterPage {
       this.getUser = "Aspiring Home Owner"
     }
   }
+
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+      console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
 
   goLogin() {
     this.navCtrl.push(LoginPage);

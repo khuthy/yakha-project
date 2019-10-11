@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
@@ -88,7 +89,7 @@ extraName;
   maxDate: string;
   isUploaded: boolean = false;
   imageSelected: boolean = false;
-
+  brickDetails = false;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private authUser: AuthServiceProvider,
@@ -129,8 +130,13 @@ extraName;
    
     }
 
-    nextslide(){
-      this.nextslide();
+     nextslide(){
+        this.slides.lockSwipes(false);
+        this.slides.slideNext();
+       this.slides.lockSwipes(true); 
+     }
+    gohome(){
+      this.navCtrl.push(HomePage);
     }
     formatDate(date) {
       let d = new Date(date),
@@ -148,7 +154,7 @@ extraName;
     }
 
   ionViewDidLoad() {
-    this.slides.lockSwipes(true); // when the page loads
+     this.slides.lockSwipes(true); // when the page loads
     
   
     console.log(this.extras);
@@ -162,6 +168,9 @@ extraName;
    // this. HomeOwnerQuotation.uid = this.authUser.getUser().uid;
   this.authUser.getUser();
   console.log(this.authUser.getUser());
+  }
+  detailBricks() {
+    this.brickDetails = !this.brickDetails;
   }
   highlight(event){
    console.log('tapped', event);

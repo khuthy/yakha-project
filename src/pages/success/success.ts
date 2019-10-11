@@ -24,7 +24,9 @@ export class SuccessPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SuccessPage');
   }
-
+  gonext(){
+    this.navCtrl.push(SuccessPage);
+  }
   complete() {
     this.navCtrl.setRoot(HomePage);
   }

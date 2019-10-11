@@ -1,233 +1,66 @@
 <ion-content>
-
-    
-    <div class="container">
-       <form [formGroup]="quotationForm" style="height:100%">
-          <ion-slides width="100%" height="100vh" #slides>
-            <ion-slide>
-              <div class="topdeco">
-                  <button  style="background: rgb(204, 158, 20)" ion-fab mini top left edge><ion-icon style="color:white" name="arrow-back"></ion-icon></button>
-              </div>
-<!--house plan image holder -->
-
-<div class="houseplan">
+<div (click)="gohome()" class="backButton">
+  <button ion-fab >Back</button>
+</div>
+<div class="topDecor">
 
 </div>
-
-<div class="inputs">
-  <p>I prefer the starting dates to be around :</p>
-    <ion-item class="item"no-lines>
-             <ion-datetime placeholder="Start Date" [(ngModel)]="HomeOwnerQuotation.startDate" formControlName="startDate" name="startDate" [min]="maxDate" max="2022-01-01" displayFormat="MM/DD/YYYY"></ion-datetime>
-         </ion-item>
-
-         <div class="error" *ngFor="let validate of validation_messages.startDate">
-           <div class="messages" style=" border: 1px solid white"
-             *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
-             {{validate.message}}
-           </div>
-         </div>
-
-        
-         
-    
-         
-         <ion-item style="margin:0 !important" no-lines>
-     
-        <ion-datetime placeholder="End Date" [(ngModel)]="HomeOwnerQuotation.endDate" formControlName="endDate" [min]="maxDate" max="2022-01-01" name="endDate" displayFormat="MM/DD/YYYY"></ion-datetime>
-        </ion-item>
-
-        <div class="error" *ngFor="let validate of validation_messages.endDate">
-         <div class="messages"
-           *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
-           {{validate.message}}
-         </div>
-       </div>
-</div>
-       <div class="bricks">
-         <p>Select the brick type for your wall</p>
-         <ion-scroll scrollX="true" style="width:100vw; height:50px;border: 1px solid red" >
-            <ion-row nowrap class="headerChip">
-              <div class="card" *ngFor="let n of bricks" (tap)="highlight($event)" >
-              <ion-chip >
-              <ion-label></ion-label>
-              <div></div>
-              </ion-chip>
-              </div>
-            </ion-row>
-            </ion-scroll>
-       </div>
-            
-       <div class="walls">
-          <p>Select wall type</p>
-<div style="display: flex;justify-content: center;align-content: center;align-items: center">
-    <input type="radio" name="gender" value="male" style="font-size:2.3vh"> Male<br>
-    <input type="radio" name="gender" value="female" style="margin-left: 8%"> Female<br>
-</div>
-          <div (click)="nextslide()" class="btn"><p>Next</p> </div>
-       </div>
-            </ion-slide>
-<!-- end of slide one -->
-
-
-            <ion-slide style="background: rgb(0, 81, 255)">
-
-              </ion-slide>
-
-              <ion-slide style="background: rgb(255, 0, 170)">
-
-                </ion-slide>
-
-         <!--  <ion-slide style="width: 100%;height: 100%,background:red">
-
-              <div class="stepOne" *ngIf="stepOne">
-                <div class="topdeco">
-
-                </div>
-                <h5 style="font-size:3vh">lets get started with that dream house</h5>
-                  <div id="houseplan" class="form-group" *ngIf="!HomeOwnerQuotation.houseImage">
-                 <h6>Please upload the house plan</h6>
-                   <button ion-button block clear class="btn-upload" (click)="selectImage()"><ion-icon name="camera"> </ion-icon> image</button>
-               </div>
-
-               <div class="form-group" *ngIf="HomeOwnerQuotation.houseImage">
-                   <div class="interval">
-                   <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
-                   <p>House plan successful</p>
-                   <button ion-fab mini (click)="remove()" color="light"><ion-icon name="close"></ion-icon></button>
-                   </div>
-               </div>
-
-               <div id="inputs" class="form-group">
-                 <h6>Please specify the dates for your house project</h6>
-                 <div class="interval">
-                   <div class="child">
-                   <ion-item class="item"no-lines>
-             
-                  <ion-datetime placeholder="Start Date" [(ngModel)]="HomeOwnerQuotation.startDate" formControlName="startDate" name="startDate" [min]="maxDate" max="2022-01-01" displayFormat="MM/DD/YYYY"></ion-datetime>
-                   </ion-item>
-                   <div class="error" *ngFor="let validate of validation_messages.startDate">
-                     <div class="messages"
-                       *ngIf="quotationForm.get('startDate').hasError(validate.type) && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">
-                       {{validate.message}}
-                     </div>
-                   </div>
-                   </div>
-                 <div class="child">
-                   <ion-item style="margin:0 !important" no-lines>
-               
-                  <ion-datetime placeholder="End Date" [(ngModel)]="HomeOwnerQuotation.endDate" formControlName="endDate" [min]="maxDate" max="2022-01-01" name="endDate" displayFormat="MM/DD/YYYY"></ion-datetime>
-                  </ion-item>
-                  <div class="error" *ngFor="let validate of validation_messages.endDate">
-                   <div class="messages"
-                     *ngIf="quotationForm.get('endDate').hasError(validate.type) && (quotationForm.get('endDate').dirty || quotationForm.get('endDate').touched)">
-                     {{validate.message}}
-                   </div>
-                 </div>
-              
-                 </div>
-       
-               
-                 </div>
-               </div>
-               </div>
-            </ion-slide>
-     
-            <ion-slide >
-              
-        <div *ngIf="stepTwo">
-            <div id="bricks" class="form-group" style="background: rgb(250, 250, 250);">
-             <h6>Please select the bricks you'd prefer</h6>
-             <ion-list class="bricks" radio-group name="brickType" formControlName="brickType" [(ngModel)]="HomeOwnerQuotation.brickType">
-               <div class="card" (tap)="highlight($event)" *ngFor="let brick of  bricks; let i=index;">
-              <ion-radio class="radio" [value]="brick.name" name="brickType"></ion-radio>
-               <p style="text-align: center;color:rgb(54, 53, 53);font-size:1.5vh;flex-wrap:nowrap"><strong>{{brick.name}}</strong></p>
-               <img (click)="viewProfile(brick)" src="{{brick.image}}" class="brickImage">
-             <p>{{brick.description}}</p> 
-             </div>
-           </ion-list>
-           <div class="error" *ngFor="let validate of validation_messages.brickType">
-             <div class="messages" style="font-size:2vh;margin-top:-5%;letter-spacing:1px"
-               *ngIf="quotationForm.get('brickType').hasError(validate.type) && (quotationForm.get('brickType').dirty || quotationForm.get('brickType').touched)">
-               {{validate.message}}
-             </div>
-           </div>
-         </div>
-
-         <div id="walltype" class="form-group">
-         <h6>Which wall type would you prefer</h6>
-         <ion-list class="interval" radio-group name="brickType" formControlName="wallType" [(ngModel)]="HomeOwnerQuotation.wallType">
-             <ion-item no-lines *ngFor="let wall of walls; let i=index;">
-             <ion-label style="font-size: 2vh;font-weight:400; color: #333; letter-spacing: 1px">{{wall.name}}</ion-label>
-             <ion-radio [value]="wall.name"  ></ion-radio>
-           </ion-item>
-           </ion-list>
-           <div class="error" *ngFor="let validate of validation_messages.wallType">
-             <div class="messages" style="font-size:2vh;margin-top:-5%;letter-spacing:1px"
-               *ngIf="quotationForm.get('wallType').hasError(validate.type) && (quotationForm.get('wallType').dirty || quotationForm.get('wallType').touched)">
-               {{validate.message}}
-             </div>
-           </div>
-            </div>
-         </div>
-              </ion-slide>
-            
-              <ion-slide >
-                  <div>
-                      <div id="extras" class="form-group">
-                        <h6>Do you want to include the following?</h6>
-                      <ion-item style="width:90%;position: relative;left:5%         ">
-                        <ion-label stacked >Extras</ion-label>
-                        <ion-select multiple="true" cancelText="Cancel" okText="Ok" formControlName="extras" [(ngModel)]="HomeOwnerQuotation.extras">
-                            <ion-option style="font-size: 2vh;letter-spacing: 1px;color:gray" *ngFor ="let e of extras" value="{{e.service}}" >{{e.service}}</ion-option>
-                          </ion-select>
-                      </ion-item>
-                      <div class="error" *ngFor="let validate of validation_messages.extras">
-                        <div class="messages"
-                          *ngIf="quotationForm.get('extras').hasError(validate.type) && (quotationForm.get('extras').dirty || quotationForm.get('extras').touched)">
-                          {{validate.message}}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div id="messages" >
-                      <h5 style="font-size:3vh">Want to add something?</h5> 
-                      <ion-list>
-                      <ion-item>
-                     
-                        <ion-textarea stacked style="color:#333;font-size:2vh;letter-spacing: 1px;" placeholder="Type message here" row="4" formControlName="comment" [(ngModel)]="HomeOwnerQuotation.comment" name="comment" class="comment"></ion-textarea>
-                      </ion-item>
-                    </ion-list>
-                    <div class="error" *ngFor="let validate of validation_messages.comment">
-                      <div class="messages"
-                        *ngIf="quotationForm.get('comment').hasError(validate.type) && (quotationForm.get('comment').dirty || quotationForm.get('comment').touched)">
-                        {{validate.message}}
-                      </div>
-                    </div>
-                    <h5 style="font-size:3vh">Or select from below</h5>
-                      <div radio-group (ionChange)="commentNow($event)">
-                        <div style="margin-bottom:2%;height: 4vh; display:flex;border: 1px solid #3c7f8b;border-radius:5px"  *ngFor="let comment of comments; let i=index;">
-                          <p style="height:100%;width:70%;font-size: 2vh; color: #333;text-align:left ">{{comment.comment}} </p>
-                          <ion-radio style="margin-top:1%" [value]="comment.comment"></ion-radio>
-                         
-                        </div>
-                      </div>
-                      
-                      
-                    </div>
-                   </div>
-                </ion-slide> -->
+<div  (click)="nextslide()"  class="btn"><p>Next</p> <div class="nextFab">
+  <button ion-fab ><ion-icon name="arrow-forward"></ion-icon></button>
+</div> </div>
+<ion-slides width="100%" height="100vh" #slides>
+  <ion-slide>
+<div class="information">
   
-       </ion-slides>
-      </form>
-    
-    </div>
-</ion-content>
-<!-- <ion-footer>
-  <ion-toolbar>
+  <div class="imageCont" >
+      <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
+      <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center" (click)="selectImage()" name="cloud-download"></ion-icon>
+      <p *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
+  </div>
+  <div class="dates">
+    <p>I prefer the starting date to be around:</p>
+    <ion-item no-lines >
+      <ion-label >Start</ion-label>
+      <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item no-lines>
+        <ion-label>End</ion-label>
+        <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY"></ion-datetime>
+      </ion-item>
+  </div>
+  <p style="text-align:center; font-size:3vw;letter-spacing: 1px">Please select your brick type</p>
+  <div class="bricks">
+   
+    <div class="cards"  *ngFor="let n of bricks" (tap)="highlight($event)" (click)="detailBricks()">
+      <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}">
+        
       
-    <ion-buttons end>
-      <button ion-fab                                      ><ion-icon name="send"></ion-icon></button>
-    </ion-buttons>
-
-  </ion-toolbar>
-</ion-footer> -->
+        <div class="closeB" (click)="detailBricks()">
+          <ion-icon name="close"></ion-icon>
+        </div>
+        <p>{{n.description}}</p>
+      </div>
+      <div class="brickName">
+        <p><small>{{n.name}}</small></p>
+      </div>
+      <img src="{{n.image}}">
+    </div>
+      
+  </div>
+  <div class="walltype">
+      <p>Select wall type</p>
+    <div class="inputs">
+      <div><ion-item no-lines>
+        <ion-label>Double wall</ion-label>
+        <ion-radio checked="" value=""></ion-radio>
+      </ion-item></div>
+      <div><ion-item no-lines>
+          <ion-label>Single wall</ion-label>
+          <ion-radio checked="false" value=""></ion-radio>
+        </ion-item></div>
+    </div>
+  </div>
+</div>
+</ion-slide>
+</ion-slides>
+</ion-content>
