@@ -5,11 +5,10 @@
   <ion-content [style.backgroundColor]="builder ? '#f2f2f2': '#203959'">
     <div class="container">
         <div class="logo" id="hide-div2" *ngIf="!hid">
-            <div class="topdeco">
-      
-            </div>
+            <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
             <div id="logo">
-              <img src="../../assets/imgs/yellowlogo.svg" style="max-width: 80px; height: auto">
+                <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 80px; height: auto">
+                <img *ngIf="builder"  src="../../assets/icon/Yakha-assets/Group 180.svg" style="max-width: 80px; height: auto">
               <p [style.color]="builder ? '#000': '#f2f2f2'">{{getUser}}</p>
             </div>
             
@@ -52,9 +51,9 @@
 
           <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
-              <div class="div-fab" style="background-color: #015272">
+              <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'">
   
-                <button ion-fab class="arr-fwd" (click)="goLogin()" style="height: 6vh; width: 40px;margin: 5px;">
+                <button ion-fab class="arr-fwd"  (click)="goLogin()" style="height: 6vh; width: 40px;margin: 5px;">
                   <ion-icon name="arrow-round-back"></ion-icon>
                 </button>
                 <p style="color: white">Sign In </p>
@@ -63,7 +62,7 @@
   
   
   
-              <div class="div-fab" style="border-radius: 30px 0px 0px 30px; background-color: #F2BE22 ">
+              <div class="div-fab" style="border-radius: 30px 0px 0px 30px;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
                 <p style="color: white">Sign Up </p>
                 <button ion-fab class="arr-fwd" (click)="signupUser(signupForm)" style="height: 6vh; width: 40px;margin: 5px;">
                   <ion-icon name="arrow-round-forward"></ion-icon>
@@ -80,7 +79,7 @@
    </form>
       </div>
  
-      <div  *ngIf="!hid" class="bottomdeco">
+      <div  *ngIf="!hid" [ngClass]="{'bottomdecoBuilder' : builder, 'bottomdecoOwner': !builder }" >
 
         </div>
     </div>
