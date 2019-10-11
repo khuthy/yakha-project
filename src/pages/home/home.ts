@@ -64,8 +64,7 @@ export class HomePage {
   }
   
   RangeSearch() {
-    this.range = !this.range;
-  }
+    this.range = !this.range;   }
 
   ionViewDidLoad() {
     this.db.doc(this.uid).onSnapshot((res) => {

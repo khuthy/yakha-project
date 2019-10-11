@@ -53,14 +53,14 @@
       </ion-range>
       </ion-item>
       <p *ngIf="!range">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus et sequi</p> 
-      <button ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
+      <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt=""></button>
  </div>
 </div>
  <div class="slider">
   <!--   <div class="searchByRang" *ngIf="!header">
         
      </div> -->
-  <ion-slides #slides spaceBetween="-40" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
+  <ion-slides #slides spaceBetween="-45" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
       <div class="card" (click)="viewBuilderInfo(b)">
 
