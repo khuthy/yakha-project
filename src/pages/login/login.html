@@ -56,9 +56,9 @@
 
           <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
-            <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'">
+            <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'" (click)="createAcc()">
 
-              <button ion-fab class="arr-fwd" (click)="createAcc()" style="height: 6vh; width: 40px;margin: 5px;">
+              <button ion-fab class="arr-fwd" style="height: 6vh; width: 40px;margin: 5px;">
                 <ion-icon name="arrow-round-back"></ion-icon>
               </button>
               <p style="color: white">Sign Up </p>
