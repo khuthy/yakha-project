@@ -44,7 +44,7 @@
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button> -->
  <div class="searchBar">
-   <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
+   <button style="background-color: transparent;box-shadow: none;" ion-fab clear (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
    <ion-item no-lines style="border-radius: 50px;" *ngIf="range">
       <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
       

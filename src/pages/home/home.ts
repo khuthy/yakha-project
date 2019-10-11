@@ -188,7 +188,7 @@ setTimeout(()=>{
   console.log('search input',input[0])
 
 
-let searchBox = new google.maps.places.Autocomplete(input[0]);
+let searchBox = new google.maps.places.SearchBox(input[0]);
  //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input[0]);
 // Bias the SearchBox results towards current map's viewport.
 this.map.addListener('bounds_changed', (res) => {
