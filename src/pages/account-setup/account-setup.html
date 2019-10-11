@@ -18,8 +18,8 @@
       <form  [formGroup]="profileForm">
 
          <ion-item class="item">
-          <ion-label  stacked style="letter-spacing: 1px;"> Full Names</ion-label>
-          <ion-input type="text" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
+         
+          <ion-input type="text" placeholder="Full Names" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
         </ion-item>
         <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('required') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
          <p class="messages">
@@ -42,9 +42,9 @@
                     </p>
                     </ion-label>
  
-         <ion-item class="item">
-          <ion-label stacked>Gender</ion-label>
-          <ion-select formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
+         <ion-item >
+          
+          <ion-select placeholder="Gender" formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
               <ion-option value="Female">Female</ion-option>
               <ion-option value="Male">Male</ion-option>
             </ion-select>
@@ -54,8 +54,16 @@
            {{validate.message}}
          </p>
          </ion-label> 
+         <ion-item >
+            <ion-input placeholder="Personal Number" type="Tel" maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
+          </ion-item>
+          <ion-label class="error" *ngFor="let validate of validation_messages.personalNumber">
+           <p class="messages" *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
+             {{validate.message}}
+           </p>
+           </ion-label>
          
-         <ion-item class="item">
+         <ion-item>
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.address">
@@ -64,25 +72,8 @@
          </p>
          </ion-label> 
  
-        <ion-item class="item">
-          <ion-label stacked> CellPhone Number</ion-label>
-          <ion-input  type="Tel" maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
-        </ion-item>
-        <ion-label class="error" *ngFor="let validate of validation_messages.personalNumber">
-         <p class="messages" *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
-           {{validate.message}}
-         </p>
-         </ion-label> 
-          <ion-item class="item">
-          <ion-label  stacked>Bio</ion-label>
-          <ion-input  type="text" formControlName="About"  [(ngModel)]="HomeOwnerProfile.About" ngDefaultControl></ion-input>
-        </ion-item>
-        <ion-label class="error" *ngFor="let validate of validation_messages.About">
-         <p class="messages" *ngIf="profileForm.get('About').hasError(validate.type) && (profileForm.get('About').dirty || profileForm.get('About').touched)">
-           {{validate.message}}
-         </p>
-         </ion-label>
-        <br>
+         
+         
          <div class="btn">
             <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
            <button id="skip" block (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>

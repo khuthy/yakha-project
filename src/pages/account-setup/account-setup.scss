@@ -30,11 +30,32 @@ page-account-setup {
             
 
            }
-
+ 
        }
        .inputs{
            height:50%;
-        border: 1px solid Red;
+            border: 1px solid Red;
+            form {
+
+                .item {
+                    border-radius: 50px;
+                    border: 1px solid brown;
+                }
+                  ion-item {
+                width:90%;
+                outline: none;
+                border-radius: 50px;
+               position: relative;
+               left: 5%;
+                ion-input {
+                  color: white;
+                  letter-spacing: 2px;
+                  font-weight:250;
+                  border-bottom: none;
+                }
+              }
+            }
+          
         .btn{
             border: 1px solid purple;
         }
