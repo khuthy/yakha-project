@@ -45,8 +45,8 @@
   </div>
 
   <div class="messages">
-      <div [ngClass]="{'message homebuilder': homebuilder, 'message homeowner' : !homebuilder}" >
-          <div class="homeOwnerDiv" *ngIf="!homebuilder">
+      <div class="message homeowner">
+          <div class="homeOwnerDiv">
             <div class="time">
               <h5>Nathaniel</h5>
               <P>25 Jul, 2019</P>
@@ -62,19 +62,23 @@
             </div>
           </div>
 
-          <div class="homeBuilderDiv" *ngIf="homebuilder">
-            <div class="time">
-              <h4>HomeonerName</h4>
-              <P>12 JUN, 2019</P>
-            </div>
-            <div class="info">
-              <h6>Project Details</h6>
-              <p>I'll be able to start immediately. Here's the
-                quotation you oderd.</p>
-              <p>View The Quote : Quotation.pdf</p>
-            </div>
-          </div>
+         
       </div>
+      <div class="message homebuilder">
+         <div class="homeBuilderDiv">
+          <div class="time">
+            <h4>HomeBuilder Name</h4>
+            <P>12 JUN, 2019</P>
+          </div>
+          <div class="info">
+            <h6>Project Details</h6>
+            <p>I'll be able to start immediately. Here's the
+              quotation you oderd.</p>
+            <p>View The Quote : Quotation.pdf</p>
+          </div>
+        </div>
+      </div>
+     
   </div>
 </ion-content>
 

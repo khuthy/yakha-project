@@ -5,7 +5,6 @@ page-register {
   // border: 3px solid red;
   margin: 0;
   padding: 0;
-  background: #203959;
 
 .arr-fwd{
 background-color: aliceblue;
@@ -40,7 +39,7 @@ margin-bottom: auto;
       height: 65%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-evenly;
       align-content: center;
       align-items: center; 
     }
@@ -62,6 +61,10 @@ margin-bottom: auto;
       margin-top: 20px;
        //border: 1px solid red;
      //  line-height: 20px;
+}
+.itemBuilder {
+      background:color($colors, dark);
+      margin-top: 20px;
 }
 ion-item {
 width:90%;
