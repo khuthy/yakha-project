@@ -46,7 +46,7 @@ export class MyApp {
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-  this.statusBar.backgroundColorByHexString('#28545c');
+  this.statusBar.backgroundColorByHexString('#fff');
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);

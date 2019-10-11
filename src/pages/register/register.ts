@@ -31,6 +31,7 @@ export class RegisterPage {
   getUser: string;
   password = true;
   bottomdeco = true;
+  builder;
   buttons = true;
   isKeyOpen: boolean = false;
   hid='';
@@ -54,8 +55,10 @@ export class RegisterPage {
   ionViewDidLoad() {
     if(this.authService.manageUsers() == true) {
       this.getUser = "Home Builder";
+      this.builder = true;
     }else {
-      this.getUser = "Aspiring Home Owner"
+      this.getUser = "Aspiring Home Owner";
+      this.builder = false;
     }
   }
 

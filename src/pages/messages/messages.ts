@@ -4,6 +4,7 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the MessagesPage page.
@@ -28,29 +29,30 @@ export class MessagesPage {
   qDoc;
   honwerUID;
   hownerName;
-  homebuilder= true;
+  homebuilder: boolean; //testing if the css is working
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       private fileOpener: FileOpener,
       public elementref: ElementRef,
       public renderer: Renderer2,
+      public authServes: AuthServiceProvider
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
+        this.dbIncoming.doc(doc.id).update({viewed: true})
         this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
-        
        // this.qDoc = doc.id;
         console.log(this.messages);
 
         //this.honwerUID = doc.data().uid;
-        console.log(doc.data().hOwnerUid);
-        
+      //  console.log(doc.data().hOwnerUid);
+        this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
         this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-          let msgData = {incoming:info.data(), sent:doc.data(), user:res.data()}
+          let msgData = {incoming:info.data(), sent:doc.data(), user:res.data(), builder: builderData.data()}
           this.messages.push(msgData);
          // this.hownerName = ;
           console.log(this.messages);
-          
+        })
         })
         })
       })
@@ -58,7 +60,7 @@ export class MessagesPage {
   }
 
   ionViewDidLoad() {
-    
+    this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
   }
     
   downloadPDF(){
