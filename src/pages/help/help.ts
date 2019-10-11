@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import * as firebase from 'firebase';
 import { Information } from '../../app/model/bricks';
 import { Informations } from '../../app/model/bricks.model';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 /**
  * Generated class for the HelpPage page.
  *
@@ -49,10 +50,12 @@ export class HelpPage {
   form: boolean;
   describe: string;
   info: string;
+  builder: boolean;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public authService: AuthServiceProvider
     ) {
     this.contactForm = this.formBuilder.group({
       username: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
@@ -71,6 +74,10 @@ export class HelpPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HelpPage');
+    this.builder = this.authService.manageUsers();
+    console.log('User: ', this.builder);
+    
+    
   }
 
   showDetails(i) {
