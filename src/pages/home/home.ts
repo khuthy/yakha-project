@@ -55,7 +55,7 @@ export class HomePage {
     public navParams: NavParams,
     private menuCtrl: MenuController,
     private authService: AuthServiceProvider,
-    private callNumber: CallNumber,
+  //  private callNumber: CallNumber,
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
@@ -249,9 +249,9 @@ searchBox.addListener('places_changed', (res) => {
       let marker = new google.maps.Marker({
         position: myLatLng,
         map: this.map,
-        title: 'Hello World!'
+      //  title: 'Hello World!'
       });
-      this.map.classList.add('show-map');
+    //  this.map.classList.add('map');
     });
   }
  
@@ -313,9 +313,9 @@ searchBox.addListener('places_changed', (res) => {
       ev: myEvent
     });
   }
-  callJoint(phoneNumber) {
-    this.callNumber.callNumber(phoneNumber, true);
-  }
+  // callJoint(phoneNumber) {
+  //   this.callNumber.callNumber(phoneNumber, true);
+  // }
   //viewmore
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
