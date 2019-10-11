@@ -1,13 +1,15 @@
 <ion-content>
   <div class="container" *ngIf="!isProfile">
      <!-- original form for homeowner to create profile -->
+  <div class="topdeco">
+  </div>
  <div  class="image">
         <h4 style="text-align: center; color: #fff;letter-spacing: 1px;font-family: 'Roboto','Segoe UI'">Tell us a little about yourself</h4>
       <h5>Upload your image here</h5>
       <div class="thumb">
         <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
        <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
-  <img *ngIf="!profileImage" width="3vh" src="../../assets/imgs/placeholder.png" (click)="selectImage()" class="thumb">
+    <img *ngIf="!profileImage" width="3vh" src="../../assets/imgs/placeholder.png" (click)="selectImage()" class="thumb">
 
       </div>
        
