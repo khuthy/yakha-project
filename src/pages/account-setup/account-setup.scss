@@ -1,7 +1,61 @@
 page-account-setup {
+    /* Create profile*/
+   .container {
+    height: 100%;
+    max-width: 100%;
+    position: relative;
+     margin: 0 auto;
+       .topdeco {
+        width:100%;
+        height:13%;
+        background:url(../../assets/imgs/ownerShape.svg); 
+        background-position: right;
+        background-repeat: no-repeat;
+        top: 0%;
+
+       }
+       .image {
+           height: 25%;
+           border: 1px solid blue;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+
+           .thumb{
+            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border: 4px solid color($colors, light);
+            
+
+           }
+
+       }
+       .inputs{
+           height:50%;
+        border: 1px solid Red;
+        .btn{
+            border: 1px solid purple;
+        }
+       }
+       .bottomdeco{
+        width:100%;
+        
+        height: 12%;
+        background:url(../../assets/imgs/OwnerShapes.svg); 
+        background-position: left;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom:0; 
+       }
+   }
+
+
+     /* Create profile ends here */
     /* View owner profile css code */
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-   .container {
+   .ViewContainer {
        height: 100%;
        max-width: 100%;
        position: relative;
@@ -12,40 +66,7 @@ page-account-setup {
        transition-timing-function: ease-in-out;
        -o-transition-timing-function: ease-in-out;
        -moz-transition-timing-function: ease-in-out;
-       .topdeco{
-        width:100%;
-       height:13%;
-       background:url(../../assets/imgs/ownerShape.svg); 
-       background-position: right;
-       background-repeat: no-repeat;
-       top: 0%;
-        }
-        .image{
-            border: 1px solid blue;
-            height:25%;
-            .thumb{
-
-            }
-        }
-        .inputs{
-            height:50%;
-            border: 1px solid red;
-            .btn{
-                border: 1px solid purple;
-            }
-
-        }
-        .bottomdeco{
-        width:100%;
-       height: 12%;
-       background:url(../../assets/imgs/BuilderShapes.svg); 
-       background-position: left;
-       background-repeat: no-repeat;
-       position: absolute;
-       bottom:0;
-
-        }
-
+        
        .header {
            position: absolute;
            top: 1%;
