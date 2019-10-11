@@ -482,6 +482,8 @@ searchBox.addListener('places_changed', (res) => {
   }
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
+    //console.log(user);
+    
   }
 
   getRequests() {
