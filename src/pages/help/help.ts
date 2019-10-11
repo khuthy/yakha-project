@@ -67,14 +67,6 @@ export class HelpPage {
       })
     })
 
-   
-   
-
-
-
-
-
-
   }
 
   ionViewDidLoad() {

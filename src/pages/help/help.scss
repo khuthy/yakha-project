@@ -12,17 +12,18 @@ page-help {
         -o-transition-timing-function: ease-in-out;
         -moz-transition-timing-function: ease-in-out;
         .header { 
-            background:url(../../assets/imgs/BuilderShape2.svg); 
             width:100%;
             height:13%;
+            background:url(../../assets/imgs/BuilderShape2.svg); 
             background-position: right;
             background-repeat: no-repeat;
+            top: 0%;
             
         }
         .logo {
 
-            // height:35%;
-            border: 1px solid green;
+            height:15%;
+            // border: 1px solid green;
             width: 100%;
             // padding-top: 10px;
             // padding-bottom: 2px;
@@ -86,31 +87,29 @@ page-help {
           }
         .box {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
+        height: 50%;
        
 
         .card {
-            width: 100%;
-            padding: .5em;
-            border: 1px solid #216D7B;
-            margin: 1%;
-            display: flex;
-            align-items: center;
-            border-radius:5px;
+            background: rgba(36, 35, 35, 0.925);
         
+            width: 80%;
+            //padding: .5em;
+           // border: 1px solid #216D7B;
+            margin: 1%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+            border-radius:5px;
 
-            .icon {
-                font-size: 20px;
-                width: 30px;
-                color:#216D7B;
-            }
             p{
-                font-weight: 600;
-                white-space: nowrap;
-               
+             text-align: center;
                 font-size: 2vh;
                 font-family:'Segoe UI';
-                color:gray;
+                color:white;
+                letter-spacing: 1px;
             }
         }
         .hide {
@@ -138,6 +137,8 @@ page-help {
                 justify-content: flex-end;
               //  border:1pz solid rgb(0, 255, 55);
                 button {
+                    background: rgba(36, 35, 35, 0.925);
+                    text-align: center; 
                     .icon {
                         font-size: 500%;
                     }
@@ -147,14 +148,14 @@ page-help {
     }
     }
     .bottomdeco {
-        // border:1px solid red;
-         height:12%;
-         width: 100%;
-         background:url(../../assets/imgs/BuilderShapes.svg); 
-         background-position: left;
-         background-repeat: no-repeat;
-         position: relative;
-         bottom:0;
+        width:100%;
+        
+       height: 12%;
+       background:url(../../assets/imgs/BuilderShapes.svg); 
+       background-position: left;
+       background-repeat: no-repeat;
+       position: absolute;
+       bottom:0;
        }
  
     
