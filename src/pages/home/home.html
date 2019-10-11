@@ -15,7 +15,6 @@
   
   <div class="homebuilder" id="req">
       <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.builder)">
-        <div class="i-cards"></div>
            <div class="images">
             <img *ngIf="o.owner.image" src="{{o.owner.image}}" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
             <img *ngIf="!o.owner.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
@@ -41,20 +40,21 @@
 </div> 
 
 
-<div class="control">
+<div class="control" *ngIf="!header">
 <!--   <button class="menus" *ngIf="!header"  ion-button clear menuToggle slot="start">
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button> -->
  <div class="searchBar">
-   <button style="background-color: transparent;box-shadow: none;" ion-fab mini (click)="location()"><ion-icon name="pin"></ion-icon></button>
+   <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
    <ion-item no-lines style="border-radius: 50px;" *ngIf="range">
       <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
       
        <ion-label range-left color="primary">{{0 | currency:'&#82;'}}</ion-label>
        <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
       </ion-range>
-      </ion-item> 
-      <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt="filter"></button>
+      </ion-item>
+      <p *ngIf="!range">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus et sequi</p> 
+      <button ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
  </div>
 </div>
  <div class="slider">

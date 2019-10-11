@@ -162,14 +162,15 @@ page-home {
       .cards {
        margin-top: 5%;
        //border: 1px solid #ddd;
-       box-shadow: 0 0px 6px #00000a2c;
+       box-shadow: 0 0px 6px rgba(0, 0, 10, 0.173);
        border-radius: 5px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: relative;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 3em;
+        padding-bottom: 3em;
+        padding-left: 1em;
        
         .images {
           .thumb-home-builder {
@@ -236,9 +237,9 @@ page-home {
       }
     } 
     .control {
-      position: fixed;
+      position: absolute;
       bottom: 0;
-      z-index: 99;
+      z-index: 100;
       background: rgba(255, 255, 255, 0.664);
       padding: 20px;
       height: 45%;
@@ -252,6 +253,7 @@ page-home {
         justify-content: space-between;
         align-items: center;
         position: relative;
+        z-index: 1000;
          
       &::before {
         content: '';
