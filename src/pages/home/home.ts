@@ -27,7 +27,7 @@ export class HomePage {
   status: string = '';
   maps: boolean = false;
   request: boolean = false;
-  
+
   ownerUID: string;
   ownerName;
   ownerImage: any;
@@ -44,6 +44,12 @@ export class HomePage {
   message = '';
   isBuilder;
   input = '';
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  geoData = {
+    lat: 0,
+    lng: 0
+  }
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -65,8 +71,8 @@ export class HomePage {
       if (res.data().builder == false) {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
-       // this.getPosition();
-  
+        this.getPosition();
+
       }
       if (res.data().builder == true) {
         this.getRequests();
@@ -88,15 +94,43 @@ export class HomePage {
     // }
   }
 
+  moveMapEvent() {
+    let currentIndex = this.slides.getActiveIndex();
+    let currentEvent = this.builder[currentIndex];
+    // this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng })
 
-  // getPosition(): any {
-  //   this.geolocation.getCurrentPosition().then(resp => {
-  //     this.setCenter(resp);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      let geoData = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      }
 
-  //   }).catch((error) => {
-  //     this.errorMessage('Error code ' + error.code, error.message)
-  //   })
-  // }
+      let start = new google.maps.LatLng(geoData.lat, geoData.lng);
+      let end = new google.maps.LatLng(currentEvent.lat, currentEvent.lng)
+      const that = this;
+      this.directionsService.route({
+        origin: start,
+        destination: end,
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC
+      },
+        function (response, status) {
+          if (status === 'OK') {
+            that.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+    })
+  } 
+  getPosition(): any {
+    this.geolocation.getCurrentPosition().then(resp => {
+      this.setMapCenter(resp);
+
+    }).catch((error) => {
+      this.errorMessage('Error code ' + error.code, error.message)
+    })
+  }
   getBuilders() {
     this.db.where('builder', '==', true).onSnapshot((res) => {
       this.builder = [];
@@ -125,6 +159,7 @@ export class HomePage {
     alert.present();
   }
   loadMap() {
+
     this.input = 'Message of the input search show';
     this.header = '';
     let SA_BOUNDS = {
@@ -196,22 +231,23 @@ export class HomePage {
       });
       this.map.fitBounds(bounds);
     });
+    this.directionsDisplay.setMap(this.map);
+   // this.directionsDisplay.setPanel(document.getElementById('right-panel'));
   }
 
+  setMapCenter(position: Geoposition) {
+    let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
+    this.map.setCenter(myLatLng);
 
-  // setCenter(position: Geoposition) {
-  //   let myLatLng = { lat: position.coords.latitude, lng: position.coords.longitude };
-  //   this.map.setCenter(myLatLng);
-
-  //   google.maps.event.addListenerOnce(this.map, 'idle', () => {
-  //     let marker = new google.maps.Marker({
-  //       position: myLatLng,
-  //       map: this.map,
-  //       title: 'Hello World!'
-  //     });
-  //     this.map.classList.add('show-map');
-  //   });
-  // }
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: this.map,
+        title: 'Hello World!'
+      });
+      this.map.classList.add('show-map');
+    });
+  }
   initAutocomplete() {
     let input = document.getElementById('pac-input');
     let searchBox = new google.maps.places.SearchBox(input);
@@ -332,24 +368,20 @@ export class HomePage {
   viewRequest(user) {
     this.navCtrl.push(ViewmessagePage, user);
   }
-  moveMapEvent() {
-     let currentIndex = this.slides.getActiveIndex();
-    let currentEvent = this.builder[currentIndex];
-    this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng });
-  }
+
   getRequests() {
     // this.request = true;
     let data = {
       builder: {},
       owner: {}
     }
-   
+
     //  document.getElementById('map').style.display = "block";
     this.builder = [];
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
       this.owner = [];
       document.getElementById('req').style.display = "flex";
-      document.getElementById('map').style.display = "none";     
+      document.getElementById('map').style.display = "none";
       res.forEach((doc) => {
         this.db.doc(doc.data().hOwnerUid).get().then((res) => {
           data.owner = res.data();
