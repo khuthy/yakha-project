@@ -55,7 +55,7 @@ export class HomePage {
     public navParams: NavParams,
     private menuCtrl: MenuController,
     private authService: AuthServiceProvider,
-    private callNumber: CallNumber,
+  //  private callNumber: CallNumber,
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
@@ -187,7 +187,7 @@ setTimeout(()=>{
   console.log('search input',input[0])
 
 
-let searchBox = new google.maps.places.Autocomplete(input[0]);
+let searchBox = new google.maps.places.SearchBox(input[0]);
  //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input[0]);
 // Bias the SearchBox results towards current map's viewport.
 this.map.addListener('bounds_changed', (res) => {
@@ -249,9 +249,9 @@ searchBox.addListener('places_changed', (res) => {
       let marker = new google.maps.Marker({
         position: myLatLng,
         map: this.map,
-        title: 'Hello World!'
+      //  title: 'Hello World!'
       });
-      this.map.classList.add('show-map');
+    //  this.map.classList.add('map');
     });
   }
  
@@ -313,9 +313,9 @@ searchBox.addListener('places_changed', (res) => {
       ev: myEvent
     });
   }
-  callJoint(phoneNumber) {
-    this.callNumber.callNumber(phoneNumber, true);
-  }
+  // callJoint(phoneNumber) {
+  //   this.callNumber.callNumber(phoneNumber, true);
+  // }
   //viewmore
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
