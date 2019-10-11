@@ -26,6 +26,7 @@ export class MessagesPage {
   qDoc;
   honwerUID;
   hownerName;
+  homebuilder =  true;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       private fileOpener: FileOpener,

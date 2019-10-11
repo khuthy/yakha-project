@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 
-<ion-content>
+<ion-content padding>
   <!-- <div class="container">
       <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
  <div class="top">
@@ -40,7 +40,43 @@
     <div class="button-back">
       <button ion-fab (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
     </div>
-    <div class="titlecase"><h6>REQUESTS</h6></div>
+    <div class="titlecase"><h6>RESPONSES</h6></div>
     <p></p>
   </div>
+
+  <div class="messages">
+      <div [ngClass]="{'message homebuilder': homebuilder, 'message homeowner' : !homebuilder}" >
+          <div class="homeOwnerDiv" *ngIf="!homebuilder">
+            <div class="time">
+              <h5>Nathaniel</h5>
+              <P>25 Jul, 2019</P>
+            </div>
+            <div>
+              <h6>Project Details</h6>
+              <p>From 03 Sept, 2019 to 03 Oct, 2019</p>
+              <p>Single wall type</p>
+              <p> Common burnt clay bricks</p>
+              <p> Extras:</p>
+              <p> Doors, Plumbing, Windows</p>
+
+            </div>
+          </div>
+
+          <div class="homeBuilderDiv" *ngIf="homebuilder">
+            <div class="time">
+              <h4>HomeonerName</h4>
+              <P>12 JUN, 2019</P>
+            </div>
+            <div class="info">
+              <h6>Project Details</h6>
+              <p>I'll be able to start immediately. Here's the
+                quotation you oderd.</p>
+              <p>View The Quote : Quotation.pdf</p>
+            </div>
+          </div>
+      </div>
+  </div>
 </ion-content>
+
+               
+               
