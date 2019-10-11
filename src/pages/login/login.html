@@ -1,14 +1,13 @@
-<ion-content>
+<ion-content [style.backgroundColor]="builder ? '#f2f2f2': '#203959'">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
   <div class="container">
 
     <div class="logo" id="hide-div2" *ngIf="!hid">
-      <div class="topdeco">
-
-      </div>
+      <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
       <div id="logo">
-        <img src="../../assets/imgs/yellowlogo.svg" style="max-width: 80px; height: auto">
-      <p style="color: rgb(247, 247, 247); font-size: 18px">{{getUser}}</p>
+        <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 80px; height: auto">
+        <img *ngIf="builder"  src="../../assets/icon/Yakha-assets/Group 180.svg" style="max-width: 80px; height: auto">
+      <p class="check" [style.color]="builder ? '#000': '#f2f2f2'">{{getUser}}</p>
       </div>
       
     </div>
@@ -17,7 +16,7 @@
       <form class="forms" [formGroup]="loginForm">
         <ion-list no-lines style="background: transparent">
 
-          <ion-item class="item">
+          <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}">
             <!-- <ion-label stacked> Email</ion-label>  -->
             <ion-input placeholder="Email" formControlName="email" type="email" (ionFocus)="checkKeyboard('open')"
               (ionBlur)="checkKeyboard('close')" ngDefaultControl>
@@ -32,7 +31,7 @@
             style="color:red;text-align:center">Email address is required</p>
           <p *ngIf="loginForm.get('email').hasError('pattern') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
             style="color:red;text-align:center">Please enter a valid email address</p>
-          <ion-item class="item">
+          <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}">
             <!-- <ion-label stacked> Password</ion-label> -->
             <ion-input placeholder="Password" formControlName="password" type="password"
               (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')" ngDefaultControl>
@@ -50,14 +49,14 @@
             style="color:red;text-align:center">Password must be more than 6 characters </p>
 
 
-          <p id="hide-p" style="text-align: right;color: white;width:90%;margin-left:5%" (click)="forgotpassword()" *ngIf="!hid">
+          <p id="hide-p" style="text-align: right;width:90%;" [style.color]="builder ? '#000' : '#fff'" (click)="forgotpassword()" *ngIf="!hid">
             Forgot
             password?</p>
 
 
           <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
-            <div class="div-fab" style="background-color: #015272">
+            <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'">
 
               <button ion-fab class="arr-fwd" (click)="createAcc()" style="height: 6vh; width: 40px;margin: 5px;">
                 <ion-icon name="arrow-round-back"></ion-icon>
@@ -68,7 +67,7 @@
 
 
 
-            <div class="div-fab" style="border-radius: 30px 0px 0px 30px; background-color: #F2BE22 ">
+            <div class="div-fab" style="border-radius: 30px 0px 0px 30px;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
               <p style="color: white">Sign In </p>
               <button ion-fab class="arr-fwd" (click)="loginUser()" style="height: 6vh; width: 40px;margin: 5px;">
                 <ion-icon name="arrow-round-forward"></ion-icon>
@@ -84,7 +83,7 @@
       </form>
     </div><!-- end of inputs -->
 
-    <div id="hide-bottom" class="bottomdeco" *ngIf="!hid">
+    <div id="hide-bottom" [ngClass]="{'bottomdecoBuilder' : builder, 'bottomdecoOwner': !builder }" *ngIf="!hid">
      <!--    <img src="../../assets/imgs/OwnerShapes.svg" height="55%" > -->
       </div>
   </div>

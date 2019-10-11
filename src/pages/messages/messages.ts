@@ -4,6 +4,7 @@ import { ViewmessagePage } from '../viewmessage/viewmessage';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the MessagesPage page.
@@ -26,11 +27,13 @@ export class MessagesPage {
   qDoc;
   honwerUID;
   hownerName;
+  homebuilder: boolean; //testing if the css is working
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       private fileOpener: FileOpener,
       public elementref: ElementRef,
       public renderer: Renderer2,
+      public authServes: AuthServiceProvider
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
@@ -51,7 +54,7 @@ export class MessagesPage {
   }
 
   ionViewDidLoad() {
-    
+    this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
   }
     
   downloadPDF(){
