@@ -165,7 +165,7 @@ export class HomePage {
     let SA_BOUNDS = {
       north: -22.0913127581,
       south: -34.8191663551,
-      west: 10.830120477,
+      west: 13.830120477,
       east: 32.830120477,
     };
     let latlng = new google.maps.LatLng(26.2708, 28.1123);
@@ -190,7 +190,7 @@ setTimeout(()=>{
 let searchBox = new google.maps.places.SearchBox(input[0]);
  //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input[0]);
 // Bias the SearchBox results towards current map's viewport.
-this.map.addListener('bounds_changed', (res) => {
+this.map.addListener('SA_BOUNDS', (res) => {
   searchBox.setBounds(this.map.getBounds());
 });
 let markers = [];
