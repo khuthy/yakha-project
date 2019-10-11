@@ -100,7 +100,7 @@ img {
           }
       }
       .dates {
-          background: red;
+          //background: red;
           text-align: center;
         //  background: #F5F5F5;
           padding: 5px 0px;
@@ -137,10 +137,11 @@ img {
           overflow-x: auto;
           display: flex;
           .cards {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
               min-width: 40vw;
               max-width: 40vw;
               height: 25vw;
-              background: red;
+             // background: red;
               border-radius: 20px;
               overflow: hidden;
               margin: 5px;
@@ -252,5 +253,126 @@ img {
               }
           }
       }
+  }//end of informationstyle
+
+  .extrawork {
+  //border:1px solid blue;
+    position: absolute;
+    top: -2px;
+    width:100%;
+
+    h2 {
+      font-size: 2vw;
+      letter-spacing: 1px;
+    }
+    ion-item {
+      ion-label {
+        text-align: left;
+        font-size: 4vw;
+        letter-spacing: 1px;
+        font-weight:450;
+        color:rgb(197, 189, 189);
+        .check {
+          //border-radius: 1px solid blue;
+        }
+      }
+    }
+    
+    .gray {
+      background:#EDEDED;
+      margin-top: -12px;
+      margin-bottom: -12px;
+      ion-label {
+        color:black;
+      }
+    }
+    .white {
+      background:#ffffff;
+      ion-label {
+        color:black;
+      }
+    }
+
+    ion-textarea {
+      background:#EDEDED;      position: absolute;
+    left:5%;
+    top:55vh;
+    width:90%;
+    border-radius: 10px;
+    font-size:3.5vw;
+    height: 25vh;
+    letter-spacing: 1px;
+   overflow-y:scroll;
+
+  }
+  
+  }
+
+  .confirm {
+   //background:black;
+    height:40%;
+    width: 100%;
+    position: absolute;
+    top: -1px;
+   // margin-top:0!important;
+    h4 {
+      border: 1px solid red;
+     // margin-top:-0px;
+     letter-spacing: 1px;
+     font-size: 5vh;
+     font-weight: 350;
+    }
+    p {
+      margin-top:-8px;
+      letter-spacing: 1px;
+      font-size: 2.5vh;
+      font-weight: 350;
+      border: 1px solid rgb(255, 255, 255);
+    }
+.plan {
+  background: aqua;
+  width:100%;
+  height: 45vh;
+  display:flex;
+
+  .houseplan {
+    border: 1px solid green;
+    width:40vw;
+  }
+
+  .details {
+    border: 1px solid rgb(255, 255, 255);
+    width:60vw;
+    h5 {
+      font-weight: 300;
+      letter-spacing: 1px;
+      font-size: 5vw;
+    }
+    p {
+      font-weight: 300;
+      letter-spacing: 1px;
+      font-size: 4vw;
+      text-align: left;
+      width:100%;
+      padding-left:4px;
+    }
+    h6 {
+
+    }
+  }
+}
+
+.extraz {
+  border: 1px solid red;
+  height:15vh;
+}
+
+.confirm2 {
+  background: yellow;
+  height:5vh;
+  position: absolute;
+  top:-44vh;
+  left:10vh;
+}
   }
 }
