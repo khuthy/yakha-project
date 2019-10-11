@@ -44,7 +44,7 @@
    <ion-icon name="menu" style="font-size: 25px; color: rgba(197, 101, 66, 0.966)"></ion-icon>
  </button> -->
  <div class="searchBar">
-   <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
+   <button style="background-color: transparent;box-shadow: none;" ion-fab clear (click)="getPosition()"><ion-icon name="pin"></ion-icon></button>
    <ion-item no-lines style="border-radius: 50px;" *ngIf="range">
       <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
       
@@ -52,15 +52,15 @@
        <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
       </ion-range>
       </ion-item>
-      <p *ngIf="!range">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus et sequi</p> 
-      <button ion-fab (click)="RangeSearch()"><ion-icon name="pin"></ion-icon></button>
+      <p *ngIf="!range" style="font-size: 12px;">These are the builders we found around this location</p> 
+      <button style="background-color: transparent;box-shadow: none;" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt=""></button>
  </div>
 </div>
  <div class="slider">
   <!--   <div class="searchByRang" *ngIf="!header">
         
      </div> -->
-  <ion-slides #slides spaceBetween="-40" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
+  <ion-slides #slides spaceBetween="-45" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
       <div class="card" (click)="viewBuilderInfo(b)">
 

@@ -1,73 +1,64 @@
 page-messages {
-    .container {
-        font-family: 'Montserrat', sans-serif;
 
-        .profiles {
-          //border:1px solid red;
-            height: 10%;
-            width: 92%;
-            background: rgb(255, 255, 255);
-            box-shadow: 0px 2px 13px rgba(0, 0, 0, 0.13);
-            display: flex;
-            flex-direction: column;
-          margin:4%;
-            align-items: center;
-            justify-content:  center;
-           
-            color: rgb(53, 53, 53);
-            //padding-left: 20px;
-            //font-weight: 100;
-           // font-size: 20px;
-            //position: relative;
-           // margin-bottom: 5%;
-            border-radius: 10px ;
-    
-    
-            .home-builder-top {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                height: 100%;
-                padding-left: 5px;
-                align-items: center;
-                border-radius: 10px 10px 10px 10px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-             //background: rgba(197, 101, 66, 0.966);
-             // background: rgba(33, 109, 123, 0.78);
-             p {
-               color: rgb(42, 40, 40);
-               font-size:1.5vh;
-               font-weight: 400;
-               margin:0;
-               padding:0;
-               display: flex;
-               flex-direction: column;
-               flex-wrap: wrap;
-             } 
-             .home-builder-top:nth-child(2n){
-               background:  rgba(197, 101, 66, 0.966);
-             }
-             .home-builder-top:nth-child(3n){
-               background:  white;
-             }
-             .home-builder-top:nth-child(4n){
-               background:  rgba(197, 101, 66, 0.966);
-             }
-             }
-
-              
-    .profiles > span:nth-child(2) {
-        background: linear-gradient(rgb(255, 102, 0), rgba(185, 90, 0, 0.4));
-        border-radius: 10px 10px 0 0;
-        width: 100%;
-        height: 50px;
-        position: absolute;
-        top: -20%;
-        z-index: -1;
-    }
-          
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 5%;
+    .button-back {
+      button {
+        .icon {
+          color: color($colors, light);
         }
+      }
+    }
+  }
+  .messages {
+    display: flex;
+    flex-direction: column;
+  }
+  .message {
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(80, 80, 80, 0.123);
+    color: color($colors, light);
+    margin-top: 10px;
+
+  }
+  .homeowner {
+    background: color($colors, primary);
+    border-radius: 29px 29px 0 29px;
+    align-self: flex-end;
+    width: 80%;
+
+    .homeOwnerDiv {
+      width: 100%;
+       
 
     }
-  
+    
+    
+  }
+  .homebuilder {
+    background: #247FA2;
+    border-radius: 29px 29px 29px 0;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(80, 80, 80, 0.123);
+    color: color($colors, light);
+    margin-top: 10px;
+    align-self: flex-start;
+    width: 80%;
+
+    .homeBuilderDiv{
+      
+    }
+ 
+  }
+  .sub-content {
+    .date {
+      p {
+        white-space: pre-wrap;
+      }
+    }
+  }
 }

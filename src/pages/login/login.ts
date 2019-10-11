@@ -34,7 +34,7 @@ export class LoginPage {
   db = firebase.firestore().collection('Users');
   public loginForm: FormGroup;
   loading: Loading;
-  builder;
+  builder: boolean;
 
 
   validation_messages = {
@@ -56,6 +56,7 @@ export class LoginPage {
   buttons = true;
   isKeyOpen: boolean = false;
   hid='';
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -74,7 +75,9 @@ export class LoginPage {
 
   }
   ionViewDidLoad() {
-    this.authService.manageUsers();
+   this.builder = this.authService.manageUsers();
+   console.log(this.builder, 'builder info');
+   
     console.log('check if the user is a builder: ', this.authService.manageUsers());
     if (this.authService.manageUsers() == true) {
       this.getUser = "Home Builder";

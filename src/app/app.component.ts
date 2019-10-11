@@ -47,6 +47,7 @@ export class MyApp {
   
       // set status bar to white
   this.statusBar.backgroundColorByHexString('#28545c');
+  
     
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);

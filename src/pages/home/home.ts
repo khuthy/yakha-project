@@ -55,7 +55,7 @@ export class HomePage {
     public navParams: NavParams,
     private menuCtrl: MenuController,
     private authService: AuthServiceProvider,
-    private callNumber: CallNumber,
+  //  private callNumber: CallNumber,
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
@@ -64,8 +64,7 @@ export class HomePage {
   }
   
   RangeSearch() {
-    this.range = !this.range;
-  }
+    this.range = !this.range;   }
 
   ionViewDidLoad() {
     this.db.doc(this.uid).onSnapshot((res) => {
@@ -166,7 +165,7 @@ export class HomePage {
     let SA_BOUNDS = {
       north: -22.0913127581,
       south: -34.8191663551,
-      west: 10.830120477,
+      west: 13.830120477,
       east: 32.830120477,
     };
     let latlng = new google.maps.LatLng(26.2708, 28.1123);
@@ -188,10 +187,10 @@ setTimeout(()=>{
   console.log('search input',input[0])
 
 
-let searchBox = new google.maps.places.Autocomplete(input[0]);
+let searchBox = new google.maps.places.SearchBox(input[0]);
  //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input[0]);
 // Bias the SearchBox results towards current map's viewport.
-this.map.addListener('bounds_changed', (res) => {
+this.map.addListener('SA_BOUNDS', (res) => {
   searchBox.setBounds(this.map.getBounds());
 });
 let markers = [];
@@ -250,9 +249,9 @@ searchBox.addListener('places_changed', (res) => {
       let marker = new google.maps.Marker({
         position: myLatLng,
         map: this.map,
-        title: 'Hello World!'
+      //  title: 'Hello World!'
       });
-      this.map.classList.add('show-map');
+    //  this.map.classList.add('map');
     });
   }
  
@@ -314,9 +313,9 @@ searchBox.addListener('places_changed', (res) => {
       ev: myEvent
     });
   }
-  callJoint(phoneNumber) {
-    this.callNumber.callNumber(phoneNumber, true);
-  }
+  // callJoint(phoneNumber) {
+  //   this.callNumber.callNumber(phoneNumber, true);
+  // }
   //viewmore
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);

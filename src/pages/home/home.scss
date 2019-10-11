@@ -253,7 +253,7 @@ page-home {
       bottom: 0;
       z-index: 100;
       background: rgba(255, 255, 255, 0.664);
-      padding: 20px;
+      padding: 10px;
       height: 45%;
       width: 100%;
       border-radius: 15px;
@@ -270,7 +270,7 @@ page-home {
       &::before {
         content: '';
         position: absolute;
-        bottom: -5%;
+        bottom: -15%;
         left: 0;
         height: 1px;
         width: 100%;
@@ -284,24 +284,22 @@ page-home {
     
     .slider {
       width: 100%;
-      height: 40%;
+      height: 35%;
+      
       //background: rgba(202, 36, 36, 0.911);
       position: fixed;
+      padding-top: 10px;
       bottom: 0%;
       left: 0;
       z-index: 100;
       font-family: 'Montserrat', sans-serif;
-    
+      
      
     }
   
-  ion-slides {
-     margin-top: 10%;
-    // margin-left: -10px;
-  }
+ 
     .magic {
       padding: 30px;
-   
      
     }
     
@@ -316,7 +314,7 @@ page-home {
       background: white;
       height:20vh;
       position: relative;
-
+   
       .rate {
         position: absolute;
         width: 35px;

@@ -1,11 +1,13 @@
 page-register {
-  .container {      
-    width: 100%;
-        height: 100%; 
-  // border: 3px solid red;
-  margin: 0;
-  padding: 0;
-  background: #203959;
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+
+.container {      
+  width: 100%;
+  height: 100%; 
+// border: 3px solid red;
+margin: 0;
+padding: 0;
+font-family: 'Montserrat', sans-serif;
 
 .arr-fwd{
 background-color: aliceblue;
@@ -14,54 +16,77 @@ width: 20px;
 margin:auto;
 // height: 2vh;
 }
-  .logo {
+.logo {
 margin-bottom: auto;
+  height:35%;
+ //border: 1px solid green;
+  width: 100%;
+ //padding-top: 10px;
+ // padding-bottom: 2px;
+/*   background-image: url(../../assets/imgs/waverotate.svg);
+  background-size: cover; */
+
+
+  .topdeco {
+   // border: 1px solid rgb(255, 247, 247);
+    width:100%;
     height:35%;
-   //border: 1px solid green;
-    width: 100%;
-   //padding-top: 10px;
-   // padding-bottom: 2px;
-  /*   background-image: url(../../assets/imgs/waverotate.svg);
-    background-size: cover; */
+    background-position: right;
+    background-repeat: no-repeat;
  
+  }
+.ownerTopShape {
+    background:url(../../assets/imgs/ownerShape.svg); 
+    width:100%;
+    height:35%;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+.builderTopShape {
+    background:url(../../assets/icon/Yakha-assets/BuilderShape2.svg); 
+    width:100%;
+    height:35%;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    
+}  
 
-    .topdeco {
-     // border: 1px solid rgb(255, 247, 247);
-      width:100%;
-      height:35%;
-      background:url(../../assets/imgs/ownerShape.svg); 
-      background-position: right;
-      background-repeat: no-repeat;
-   
-    }
-
-    #logo {
-     // border: 1px solid white;
-      height: 65%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-      align-items: center; 
+  #logo {
+   // border: 1px solid white;
+   height: 65%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-content: center;
+   align-items: center; 
+    p {
+      font-size: 19px;
     }
   }
+}
 
-  .inputs {
-    margin: 0;
-    padding: 0;
-  //  border: 1px solid blue;
-    width: 100%;
-    height:50%;
-    /*   height: 50%;
-      position: relative;
-      left: 10%; */
-    //top:20px;
-   
-    .item {
-      background:#586B83;
-      margin-top: 20px;
-       //border: 1px solid red;
-     //  line-height: 20px;
+.inputs {
+  margin: 0;
+  padding: 0;
+//  border: 1px solid blue;
+  width: 100%;
+  height:50%;
+  /*   height: 50%;
+    position: relative;
+    left: 10%; */
+  //top:20px;
+ 
+  .item {
+    background:#586B83;
+    margin-top: 20px;
+     //border: 1px solid red;
+   //  line-height: 20px;
+}
+.itemBuilder {
+    background:color($colors, dark);
+    margin-top: 20px;
 }
 ion-item {
 width:90%;
@@ -70,83 +95,95 @@ border-radius: 50px;
 position: relative;
 left: 5%;
 ion-input {
-  color: white;
-  letter-spacing: 2px;
-  font-weight:250;
-  border-bottom: none;
+color: white;
+letter-spacing: 2px;
+font-weight:250;
+border-bottom: none;
 }
 }
-  }
+}
 
+
+
+.bottomdecoOwner {
+  background:url(../../assets/imgs/ownerShapes.svg); 
+ 
+  height: 12%;
+   background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 40%;
+  position: relative;
+  bottom:0;
+}
+.bottomdecoBuilder {
+  background:url(../../assets/icon/Yakha-assets/BuilderShapes.svg); 
   
-  .bottomdeco {
-   // border:1px solid red;
-   margin-left:-8%;
-   height: 12%;
-   background:url(../../assets/imgs/ownerShapes.svg); 
-   background-position: left;
-   background-repeat: no-repeat;
-   position: relative;
-   bottom:0;
-  }
- .div-fab{
-  border-radius: 0px 30px 30px 0px;
- // display: inline;
- }
-  .btn {
-  //  border:1px solid rgb(255, 255, 255);
-       width: 100%;
-       height:49px;
-       margin:0 !important;
-       padding:0 !important;
-   
-       button {
-         width:40%;
-         height:80%;
-         font-weight:300;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-       }
-     }
-    #hide-div{
-       display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-    //  margin-top: 15%;
-     }
-     #hide-div2{
-    /*   display: flex;
-     justify-content: space-between;
-     flex-direction: row; */
-   //  margin-top: 15%;
-    }
-     #hide-div > div {
-      // background-color: #586B83;
-       // flex: 1;
-        width: 150px;
-        height: 6vh;
-     }
-     #hide-div > .div-fab{
-     // background-color: antiquewhite;
-      height: 15%;
-      width: 35% ;
-     }
-
-     .div-fab{
-       display: flex;
-       word-wrap: wrap none;
-       //justify-content: center;
-     }
-     .div-fab> p{
-     //  align-items: center;
-     margin:auto;
-     //word-wrap: normal;
-  // text-align: center;
-       //word-wrap: none;
-       //width: 100px;
-     }
-   
+  height: 12%;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  position: relative;
+  bottom:0;
 }
+
+.div-fab{
+border-radius: 0px 30px 30px 0px;
+// display: inline;
+}
+.btn {
+//  border:1px solid rgb(255, 255, 255);
+     width: 100%;
+     height:49px;
+     margin:0 !important;
+     padding:0 !important;
+ 
+     button {
+       width:40%;
+       height:80%;
+       font-weight:300;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+     }
+   }
+  #hide-div{
+     display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  //  margin-top: 15%;
+   }
+   #hide-div2{
+  /*   display: flex;
+   justify-content: space-between;
+   flex-direction: row; */
+ //  margin-top: 15%;
+  }
+   #hide-div > div {
+    // background-color: #586B83;
+     // flex: 1;
+      width: 150px;
+      height: 6vh;
+   }
+   #hide-div > .div-fab{
+   // background-color: antiquewhite;
+    height: 15%;
+    width: 35% ;
+   }
+
+   .div-fab{
+     display: flex;
+     word-wrap: wrap none;
+     //justify-content: center;
+   }
+   .div-fab> p{
+   //  align-items: center;
+   margin:auto;
+   //word-wrap: normal;
+// text-align: center;
+     //word-wrap: none;
+     //width: 100px;
+   }
+ 
+  }
 }
 
