@@ -63,6 +63,7 @@ stepTwo = true;
 stepThree = true;
 
 
+
 /* validations starts here */
 validation_messages = {
 'startDate': [
@@ -90,6 +91,8 @@ extraName;
   isUploaded: boolean = false;
   imageSelected: boolean = false;
   brickDetails = false;
+  backButton: boolean = true;
+  nextbutton: boolean = true;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private authUser: AuthServiceProvider,
@@ -120,7 +123,7 @@ extraName;
         })
       }) */
      
-      
+     
      
       this.date = new Date();
     this.maxDate = this.formatDate(this.date);
@@ -131,9 +134,15 @@ extraName;
     }
 
      nextslide(){
+       console.log('cluicked');
+       
         this.slides.lockSwipes(false);
         this.slides.slideNext();
        this.slides.lockSwipes(true); 
+       if(this.slides.isEnd()){
+        this.backButton = false;
+        this.nextbutton = false;
+      }
      }
     gohome(){
       this.navCtrl.push(HomePage);

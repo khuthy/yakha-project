@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { OnboardingPage } from '../onboarding/onboarding';
 import {Storage} from '@ionic/storage';
+import { StatusBar } from '@ionic-native/status-bar';
 /**
  * Generated class for the WelcomePage page.
  *
@@ -19,17 +20,27 @@ import {Storage} from '@ionic/storage';
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthServiceProvider, private menuCtrl: MenuController, private storage: Storage) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private authService: AuthServiceProvider, 
+    private menuCtrl: MenuController, private storage: Storage, public statusBar: StatusBar) {
+      
+  
+      // set status bar to white
+  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
+    this.statusBar.overlaysWebView(true); 
   }
   ionViewWillEnter(){
     this.menuCtrl.swipeEnable(false);
   }
   ionViewWillLeave(){
     this.menuCtrl.swipeEnable(false);
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.backgroundColorByHexString('#203550') 
   }
 
 
