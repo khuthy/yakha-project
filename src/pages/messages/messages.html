@@ -46,7 +46,7 @@
 
   <div class="messages">
       <div [ngClass]="{'message homebuilder': homebuilder, 'message homeowner' : !homebuilder}" >
-          <div class="homeOwnerDiv" *ngIf="!homebuilder">
+          <div class="homeOwnerDiv" *ngIf="!homebuilder" >
             <div class="time">
               <h5>Nathaniel</h5>
               <P>25 Jul, 2019</P>
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <div class="homeBuilderDiv" *ngIf="homebuilder">
+          <div class="homeBuilderDiv" *ngIf="homebuilder" >
             <div class="time">
               <h4>HomeonerName</h4>
               <P>12 JUN, 2019</P>
