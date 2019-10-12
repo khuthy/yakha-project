@@ -70,14 +70,10 @@ form {
     padding: 20px;
 }
 
-.parent {
+.parent, .accumulatedAmount {
     padding: 20px;
 }
-ion-footer {
-    ion-toolbar {
-        padding: 0 !important;
-    }
-}
+
 .button-group {
     margin-top: 30px;
     margin-bottom: 30px;

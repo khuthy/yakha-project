@@ -84,18 +84,8 @@ export class BuilderquotesPage {
   uid: any;
 
   validation_messages = {
-    'fullName': [
-      { type: 'required', message: 'Name is required.' },
-      { type: 'minlength', message: 'Name must be at least 4 characters long.' },
-      { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
-      { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
-      { type: 'validUsername', message: 'Your username has already been taken.' }
-    ],
     'expiry': [
       { type: 'required', message: 'Expiry date is required.' }
-    ],
-    'address': [
-      { type: 'required', message: 'Address is required.' }
     ],
     'dimension': [{
       type: 'required', message: 'Extra costs are required'
@@ -135,9 +125,7 @@ export class BuilderquotesPage {
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
     this.quotesForm = this.forms.group({
-      fullName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       expiry: new FormControl('', Validators.compose([Validators.required])),
-      address: new FormControl('', Validators.compose([Validators.required])),
       dimension: new FormControl('', Validators.compose([Validators.required])),
 
     })
