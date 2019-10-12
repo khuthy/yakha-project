@@ -42,7 +42,7 @@
                     </p>
                     </ion-label>
  
-         <ion-item >
+         <ion-item class="item">
           
           <ion-select placeholder="Gender" formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
               <ion-option value="Female">Female</ion-option>
@@ -63,7 +63,7 @@
            </p>
            </ion-label>
          
-         <ion-item>
+         <ion-item class="item">
           <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" style="border: none; width: 100%"/>
         </ion-item>
         <ion-label class="error" *ngFor="let validate of validation_messages.address">
@@ -72,11 +72,9 @@
          </p>
          </ion-label> 
  
-         
-         
          <div class="btn">
             <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-           <button id="skip" block (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>
+           <button style="width: 50%;" round id="skip" small (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>
         </div>
        </form>
      </div>
