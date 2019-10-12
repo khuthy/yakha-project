@@ -1,5 +1,5 @@
 <ion-content>
-  <div *ngIf="nextbutton" class="nextbutton" (click)="nextslide()" class="btn">
+  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
   <p>Next</p>
   <div class="nextFab">
   <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>
@@ -14,10 +14,10 @@
 </div>
 <!-- next button -->
 <div class="information">
-<ion-slides #slides>
-  <!-- slide one starts here -->
-  <ion-slide>
 
+  <!-- slide one starts here -->
+<div class="slideone">
+  
       <div class="imageCont" >
           <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
           <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center" (click)="selectImage()" name="cloud-download"></ion-icon>
@@ -66,12 +66,10 @@
             </ion-item></div>
         </div>
       </div>
-
-</ion-slide><!-- slide one ends here -->
-
+</div>
 
 <!-- start of info2  slide -->
-<ion-slide>
+<div class="secon">
     <div class="extrawork">
         <h2 style="font-size:2vh;margin-top:3%;padding-bottom: 4px">Would you like to include the following?</h2>
 
@@ -120,10 +118,9 @@
       </div>
 
       <!-- comment area -->
-  </ion-slide><!-- slide two ends here -->
+  </div><!-- slide two ends here -->
 
 <!-- slide three starts here -->
-  <ion-slide>
       <div class="confirm">
           <h4>CONFIRM</h4>
      <P>Please confirm if everything is <br> as you need it to be.</P>
@@ -158,10 +155,9 @@
      </div>
          </div>
      
-  </ion-slide>
 
 <!-- end of info2 slide -->
-</ion-slides>
+
 </div><!-- info div -->
 <!-- <div  class="btn">
     <p>Next</p>

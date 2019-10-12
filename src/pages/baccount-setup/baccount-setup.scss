@@ -44,7 +44,7 @@ h5 {
 
 
     .container {
-      border: 1px solid red;
+     // border: 1px solid red;
       height: 100vh;
       width: 100vw;
     //create profile for builder starts here
@@ -59,7 +59,8 @@ h5 {
     }
   
     .topDecor {
-      background: url(../../assets/imgs/ownerShape.svg);
+      background: url(../../assets/imgs/BuilderShape2.svg);
+      background-repeat: no-repeat;
       position: absolute;
       top: 0;
       right: 0;
@@ -70,14 +71,14 @@ h5 {
     }
   
     .bottomDecor {
-      background: url(../../assets/imgs/OwnerShapes.svg);
+      background: url(../../assets/imgs/BuilderShapes.svg);
       position: absolute;
       bottom: 0;
       left: 0;
       width: 50vw;
       height: 20vw;
       background-size: 100% 100%;
-      background-position: -6vw 0px;
+      background-position: 0vw 0px;
       background-repeat: no-repeat;
     }
   
@@ -128,39 +129,139 @@ h5 {
     form {
       height:74%;
       width:100%;
-      background: black;
-      border: 1px solid rgb(25, 0, 255);
+     // background: black;
+    //  border: 1px solid rgb(25, 0, 255);
       position: absolute;
       top:13vh;
 
       ion-slides {
         ion-slide {
-          border: 1px solid red;
-          background: rgba(255, 255, 0, 0.233);
+         // border: 1px solid red;
+         // background: rgba(255, 255, 0, 0.233);
+         h4 {
+          position: absolute;
+          top:-11px;
+          border: 1p solid red;
+        }
+         
+         .image {
+           // border: 1px solid green;
+            height:22vh;
+            position: absolute;
+            top:-1px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;;;;
+          }
+        
+      .inputs {
+       // border:1px solid blue;
+        height: 40vh;
+        position: absolute;
+        top: 20vh;
+        input {
+          width: 80%;
+          height: 20%;
+          outline:none;
+          border:1.2px solid #262014;
+          margin-top: 3%;
+          border-radius: 50px;
+          font-size:4vw;
+          letter-spacing: 1px;
+          padding-left: 3%;
+         // background: rgba(128, 128, 128, 0.5);
+          color:#262014;
+          font-weight: 500;
+        }
 
-          .item {
-            background:#586B83;
-            margin-top: 20px;
-             //border: 1px solid red;
-           //  line-height: 20px;
-    }
-    ion-item {
-      height: 3px;
-      width:90%;
-      outline: none;
-      border-radius: 50px;
-     position: relative;
-     left: 5%;
-      ion-input {
-        color: white;
-        letter-spacing: 2px;
-        font-weight:250;
-        border-bottom: none;
-        margin-top:-3px;
-        margin-bottom:-3px;
-        padding: 0 !important;
+        button {
+          width:60%;
+          border-radius:50px;
+          margin-left:20%;
+          background: #262014;
+          color: white;
+          letter-spacing: 1.5px;
+          margin-top: 5%;
+          padding-top: 3%;
+          padding-bottom: 3%;
+          font-size: 5vw;
+          font-weight:300;
+        }
+        .error {
+          font-size: 3.5vw;
+          letter-spacing: 1px;;
+          color:red;
+          font-weight: 400;
+         // border:1px solid red;
+          margin-top:-1%;
+        }
       }
-    }
+   
+        }//end of slide
+      }
+
+      //strat iof slide 2
+      #slide2 {
+      //  border:1px solid red;
+        h3 {
+          font-size:4vh;
+          letter-spacing: 1px;
+          font-weight: 300;
+          margin-top: -1%;
+       //   border: 1px solid black;
+        }
+        p {
+          font-size:2.5vh;
+          letter-spacing: 1px;
+          font-weight: 300;
+          margin-top:-5px;
+         // border:1px solid red;
+        }
+        input {
+          width: 80%;
+          height: 8vh;
+          outline:none;
+          border:1.2px solid #262014;
+        // margin-top: 3%;
+          border-radius: 50px;
+          font-size:4vw;
+          letter-spacing: 1px;
+          padding-left: 3%;
+         // background: rgba(128, 128, 128, 0.5);
+          color:#0e0c0b;
+          font-weight: 400;
+
+        }
+
+        ion-list {
+         height:20vh;
+         width:80%;
+         margin-left:5%;
+      // border:1px solid blue;
+            ion-item {
+              ion-label {
+                text-align: left;
+                font-size: 4vw;
+                letter-spacing: 1px;
+                font-weight:450;
+                color:rgb(80, 78, 78);
+               margin-left:-3px;
+              }
+            }
+        }
+        button {
+          width:60%;
+          border-radius:50px;
+          margin-left:20%;
+         // background: #262014;
+          color: white;
+          letter-spacing: 1.5px;
+          margin-top: 5%;
+          padding-top: 3%;
+          padding-bottom: 3%;
+          font-size: 5vw;
+          font-weight:300;
         }
       }
 
