@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController, PopoverController,Slides } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -54,6 +54,7 @@ export class BaccountSetupPage {
     date: Date(),
     tokenID: ''
   }
+  @ViewChild('slides') slides: Slides;
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
   formattedAddress = '';
   options = {
@@ -74,7 +75,8 @@ export class BaccountSetupPage {
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
-    public oneSignal: OneSignal
+    public oneSignal: OneSignal,
+   /*  public Slides: Slides */
   ) {
     this.authUser.setUser(firebase.auth().currentUser.uid);
     this.profileForm = this.formBuilder.group({
@@ -84,12 +86,15 @@ export class BaccountSetupPage {
       experience: new FormControl('', Validators.compose([Validators.required])),
       roof: new FormControl('', Validators.compose([Validators.required])),
       address: new FormControl('', Validators.compose([Validators.required])),
-      price: new FormControl('', Validators.compose([Validators.required]))
+      price: new FormControl('', Validators.compose([Validators.required])),
+     /*   this.slides.lockSwipes(true); */
     });
-
+   
+    // when the page loads
+    
   }
   ionViewDidLoad() {
-
+   //this.slides.lockSwipes(true) // when the page loads
     this.oneSignal.getIds().then((res) => {
       this.builderProfile.tokenID = res.userId;
     })
@@ -98,7 +103,17 @@ export class BaccountSetupPage {
     this.builderProfile.price = 0;
     this.getProfile();
     console.log(this.builderProfile.price);
+    console.log(this.slides.getActiveIndex);
+   // this.slides.lockSwipes(true);
+   
+  }
 
+  nextslides(){
+  //  this.slides.lockSwipes(true);
+    this.slides.slideNext();
+    console.log('Clicked');
+    
+   // this.slides.lockSwipes(true);
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
