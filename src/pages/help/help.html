@@ -11,27 +11,31 @@
 
 
 <div class="container">
-  <div class ="header">
+  <div [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
       <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
       </div>
       <div class="logo">
           <img src="../../assets/icon/Group 180.svg" style="max-width: 100px; height: auto">
          </div>
 
-<div class="box">
-  <div class="card" [style.backgroundColor]="builder ? '#262014' : '#203959'" *ngFor="let info of information;let i=index;" (click)="showDetails(i)">
+<!-- <div class="box" *ngFor="let info of information;let i=index;">
+  <div class="card" [style.backgroundColor]="builder ? '#262014' : '#203959'"  (click)="showDetails(i)">
     <ion-icon name="{{info.icon}}"></ion-icon>
-    <p>{{info.info}}</p>
+    <p style="color: #fff;">{{info.info}}</p>
+ 
   </div>
+  <div class="accordia">
 
+  </div>
+ 
 
-   <div [ngClass]="{'show': toggle, 'hide': !toggle}"><!-- black div -->
+   <div>
      <div class="close">
        <button ion-button clear (click)="hideInfo()"><ion-icon name="close"></ion-icon></button>
      </div>
      
-      <h3>{{info}}</h3>
-      <p id="describe">{{describe}}</p>
+      <h3>{{info.info}}</h3>
+      <p id="describe">{{info.describe}}</p>
       <div class="form" *ngIf="form">
       <form [formGroup]="contactForm">
         <ion-list>
@@ -70,10 +74,22 @@
       </form>
       </div>
      
-    </div>
+    </div>  -->
    
+<div class="box">
+  <div [ngClass]="{'cardBuilder' : builder, 'card': !builder}"  *ngFor="let info of information;let i=index;">
+    <div class="card-header" (click)="showDetails(i)">
+   {{info.info}}
+    </div>
+    <div [ngClass]="{'card-info show' : toggle, 'hide' : !toggle}" [style.border]="builder ? '2px solid #262014' : '2px solid #203959'">
+    <p>{{describe}}</p> </div>
+   
+
+
+  </div>
 </div>
-<div id="hide-bottom" class="bottomdeco">
+
+<div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
 
   </div>
 

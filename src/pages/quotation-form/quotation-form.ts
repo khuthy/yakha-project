@@ -1,5 +1,5 @@
 import { HomePage } from './../home/home';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Renderer2 } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
@@ -58,11 +58,11 @@ export class QuotationFormPage {
  date: any;
  
 /* Three steps to take */
-stepOne = true;
-stepTwo = true;
-stepThree = true;
+steps = 'stepone';
 
-
+slideone = document.getElementsByClassName('slideone')
+slidetwo = document.getElementsByClassName('secon')
+slidethree = document.getElementsByClassName('confirm')
 
 /* validations starts here */
 validation_messages = {
@@ -101,7 +101,8 @@ extraName;
      public alertCtrl:AlertController,
      public camera: Camera,
      public popoverCtrl: PopoverController,
-     private formBuilder: FormBuilder, public oneSignal: OneSignal) {
+     private formBuilder: FormBuilder, public oneSignal: OneSignal,
+     private renderer: Renderer2) {
       this.uid = firebase.auth().currentUser.uid;
       this.authUser.setUser(this.uid);
      this.HomeOwnerQuotation.hOwnerUid = this.uid;
@@ -130,19 +131,52 @@ extraName;
    console.log(this.selectedComment);
 
    console.log(this.quotationForm.value.endDate.valid);
-   
+   this.steps = 'stepone';
+   setTimeout(()=>{
+     console.log(this.slidethree[0]);
+     
+     this.renderer.setStyle(this.slideone[0],'width', '100%');
+     this.renderer.setStyle(this.slideone[0],'transition', '0s');
+          this.renderer.setStyle(this.slidetwo[0],'width', '0px');
+          this.renderer.setStyle(this.slidethree[0],'width', '0px');
+   }, 100)
     }
-
-     nextslide(){
-       console.log('cluicked');
-       
-        this.slides.lockSwipes(false);
-        this.slides.slideNext();
-       this.slides.lockSwipes(true); 
-       if(this.slides.isEnd()){
-        this.backButton = false;
-        this.nextbutton = false;
+    slideState() {
+      console.log(this.steps);
+      
+      if (this.steps == 'stepone') {
+        this.steps = 'steptwo';
+        setTimeout(()=> {
+          this.nextslide()
+        },500)
+      } else if (this.steps == 'steptwo') {
+        this.steps = 'stepthree';
+        setTimeout(()=> {
+          this.nextslide()
+        },500)
       }
+    }
+     nextslide(){
+       switch (this.steps) {
+         case 'stepone':
+           this.renderer.setStyle(this.slideone[0],'width', '100%');
+           this.renderer.setStyle(this.slidetwo[0],'width', '0%');
+           this.renderer.setStyle(this.slidethree[0],'width', '0%');
+           break;
+           case 'steptwo':
+            this.renderer.setStyle(this.slideone[0],'width', '0%');
+           this.renderer.setStyle(this.slidetwo[0],'width', '100%');
+           this.renderer.setStyle(this.slidethree[0],'width', '0%');
+            break;
+            case 'stepthree':
+              this.renderer.setStyle(this.slideone[0],'width', '0%');
+              this.renderer.setStyle(this.slidetwo[0],'width', '0%');
+              this.renderer.setStyle(this.slidethree[0],'width', '100%');
+           break;
+         default:
+           break;
+       }
+
      }
     gohome(){
       this.navCtrl.push(HomePage);
@@ -163,9 +197,7 @@ extraName;
     }
 
   ionViewDidLoad() {
-     this.slides.lockSwipes(true); // when the page loads
     
-  
     console.log(this.extras);
     
     //let arr = [{objExtra, objPrice, objQuantity}]
