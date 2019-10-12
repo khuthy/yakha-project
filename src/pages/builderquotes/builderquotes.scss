@@ -22,6 +22,79 @@ page-builderquotes {
 .toolbar-title {
     font-weight: 200;
 }
+.content {
+    background: color($colors, light);
+}
+.item {
+    border-radius: 50px;
+    box-shadow: 2px 1px 4px rgb(167, 167, 167);
+    width: 90%;
+    margin: auto;
+
+ 
+}
+form {
+    margin-top: 10px;
+}
+.houseOverall {
+    background: #fff;
+}
+.extras {
+    padding-bottom: 20px;
+}
+.extra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   // border: 1px solid #fff;
+    margin: 1%;
+
+    .quantity {
+        align-self: flex-end;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+   
+}
+.extra > div {
+    flex: 1;
+    flex-basis: 50%;
+}
+.calculations {
+    background: #fff;
+}
+.discountAmount {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.parent, .accumulatedAmount {
+    padding: 20px;
+}
+
+.button-group {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+    background: color($colors, primary);
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    float: right;
+    border-radius: 50px 0 0 50px;
+    p {
+        margin: auto;
+        color: #fff;
+    }
+    &:active {
+        background: rgb(255, 211, 18);
+    }
+
+}
 
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the SuccessPage page.
@@ -17,12 +18,15 @@ import { HomePage } from '../home/home';
 export class SuccessPage {
 
   success = 'Success';
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  builder;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SuccessPage');
+   this.builder = this.authService.manageUsers();
+   console.log(this.builder, 'builder');
+   
   }
   gonext(){
     this.navCtrl.push(SuccessPage);

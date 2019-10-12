@@ -2,7 +2,7 @@
   <ion-content>
     <div class="contain">
         
-      <div class="logo">
+      <div [ngClass]="{'logoBuilder': builder,'logo' : !builder}">
   </div>
   
       <div class="slogan">
@@ -10,14 +10,14 @@
         <p>Your request to  has been sent.<br> 
           Isaack will respond shortly with a quotation information</p>
      
-        <img src="../../assets/icon/success.svg">
+        <img src="../../assets/icon/Yakha-assets/success.svg">
       </div>
   
   
       <div class="continue">
        
   
-        <button ion-button style="margin-top:3.5%;background:rgb(204, 158, 20)" class="btn warning" color="custom" >Thank You</button>
+        <button (click)="complete()" ion-button style="margin-top:3.5%;background:rgb(204, 158, 20)" class="btn warning" color="custom" >Thank You</button>
   
       </div>
   
