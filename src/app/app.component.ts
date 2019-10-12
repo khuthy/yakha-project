@@ -41,12 +41,12 @@ export class MyApp {
   version = 'v1.0.0';
   messages = 0
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal, private screenOrientation: ScreenOrientation) {
     
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-  this.statusBar.backgroundColorByHexString('#28545c');
+  this.statusBar.backgroundColorByHexString('#203550');
   
     
     this.initializeApp();
@@ -74,7 +74,9 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-      //this.setupPush();
+        //this.setupPush();
+        console.log(this.screenOrientation.type);
+        
     }
     this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
