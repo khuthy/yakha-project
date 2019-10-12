@@ -44,40 +44,43 @@
     <p></p>
   </div>
 
-  <div class="messages">
+  <div class="messages" *ngFor="let item of messages">
       <div class="message homeowner">
           <div class="homeOwnerDiv">
             <div class="time">
-              <h5>Nathaniel</h5>
-              <P>25 Jul, 2019</P>
+              <h5>{{item.user.fullName}}</h5>
+              <P>{{item.sent.date}}</P>
             </div>
             <div>
               <h6>Project Details</h6>
-              <p>From 03 Sept, 2019 to 03 Oct, 2019</p>
-              <p>Single wall type</p>
-              <p> Common burnt clay bricks</p>
+              <p>From {{item.sent.startDate}} to {{item.sent.endDate}}</p>
+              <p>{{item.sent.wallType}}</p>
+              <p>{{item.sent.brickType}}</p>
               <p> Extras:</p>  
-              <p> Doors, Plumbing, Windows</p>
+              <p> {{item.sent.extras}}</p>
 
             </div>
           </div>
 
          
       </div>
-      <div class="message homebuilder">
+      <div class="message homebuilder" *ngIf="item.incoming">
          <div class="homeBuilderDiv">
           <div class="time">
-            <h4>HomeBuilder Name</h4>
-            <P>12 JUN, 2019</P>
+            <h4>{{item.builder.fullName}}</h4>
+            <P>{{item.incoming.dateCreated}}</P>
           </div>
           <div class="info">
-            <h6>Project Details</h6>
-            <p>I'll be able to start immediately. Here's the
-              quotation you oderd.</p>
+            <h6>Get your quote here</h6>
+            
             <p>View The Quote : Quotation.pdf</p>
           </div>
         </div>
       </div>
+
+      <div class="message homebuilder" *ngIf="!item.incoming" [style.display]="'none'">
+       
+     </div>
      
   </div>
 </ion-content>

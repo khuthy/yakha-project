@@ -21,9 +21,11 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class MessagesPage {
 
   dbMessage = firebase.firestore().collection('Request');
+  dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
   slidesPerView : number = 1;
   messages = [];
+  incomingRes=[];
   qDoc;
   honwerUID;
   hownerName;
@@ -37,17 +39,21 @@ export class MessagesPage {
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
-        this.messages.push(doc.data());
-        this.qDoc = doc.id;
+        this.dbIncoming.doc(doc.id).update({viewed: true})
+        this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
+       // this.qDoc = doc.id;
         console.log(this.messages);
 
         //this.honwerUID = doc.data().uid;
-        console.log(doc.data().hOwnerUid);
-        
+      //  console.log(doc.data().hOwnerUid);
+        this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
         this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-          this.hownerName = res.data().fullName;
-          console.log(this.hownerName);
-          
+          let msgData = {incoming:info.data(), sent:doc.data(), user:res.data(), builder: builderData.data()}
+          this.messages.push(msgData);
+         // this.hownerName = ;
+          console.log(this.messages);
+        })
+        })
         })
       })
     })

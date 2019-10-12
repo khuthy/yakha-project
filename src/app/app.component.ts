@@ -87,11 +87,9 @@ export class MyApp {
           
           
           if (profile.exists) {
-            firebase.firestore().collection('Request').where('viewed','==', false).onSnapshot( res => {
-              this.messages = 0;
-                res.forEach(doc => {
-                  this.messages = this.messages + 1;
-                })
+            firebase.firestore().collection('Respond').where('viewed','==', false).onSnapshot( res => {
+              this.messages = res.size;
+               
       
     })
             if (profile.data().isProfile == true && profile.data().status == true) {
