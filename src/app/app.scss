@@ -14,13 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200&display=swap');
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
     
-    
+}
+.content {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .scroll-content {
@@ -28,13 +31,9 @@
 }
 
 .error {
-    color: rgb(255, 0, 0);
-    
-    font-weight: lighter;
-    text-align: center;
-    margin-top: 3%;
-    margin-left: 5%;
-
+    color: color($colors, danger);
+    font-weight: 200;
+    font-family: Arial, Helvetica, sans-serif;
 }
 /* 
  .side-menu {

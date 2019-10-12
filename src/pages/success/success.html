@@ -2,7 +2,7 @@
   <ion-content>
     <div class="contain">
         
-      <div class="logo">
+      <div [ngClass]="{'logoBuilder': builder,'logo' : !builder}">
   </div>
   
       <div class="slogan">
@@ -10,7 +10,7 @@
         <p>Your request to  has been sent.<br> 
           Isaack will respond shortly with a quotation information</p>
      
-        <img src="../../assets/icon/success.svg">
+        <img src="../../assets/icon/Yakha-assets/success.svg">
       </div>
   
   

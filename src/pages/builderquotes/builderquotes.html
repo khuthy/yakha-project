@@ -10,31 +10,27 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content color="light" padding>
+<ion-content>
 
   <form [formGroup]="quotesForm">
-    <ion-item>
-      <ion-label stacked>Expiry date</ion-label>
-      <ion-datetime formControlName="expiry" displayFormat="DD-MMM-YYYY" [min]="maxDate" max="2022-01-01"
+    <ion-item no-lines>
+      <ion-datetime placeholder="Expiry date" formControlName="expiry" displayFormat="DD MMMM YYYY" [min]="maxDate" max="2022-01-01"
         pickerFormat="DD MMM YYYY" [(ngModel)]="quotes.expiry"></ion-datetime>
     </ion-item>
-    <ion-label style="font-size: 2vh" class="error" *ngFor="let validate of validation_messages.expiry">
-      <p class="messages"
-        *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
+    <p class="error" *ngFor="let validate of validation_messages.expiry">
+      <span class="messages" *ngIf="quotesForm.get('expiry').hasError(validate.type) && (quotesForm.get('expiry').dirty || quotesForm.get('expiry').touched)">
         {{validate.message}}
-      </p>
-    </ion-label>
+    </span>
+    </p>
 
-    <ion-item>
-      <ion-label stacked>Your Name</ion-label>
-      <ion-input type="text" disabled formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName"
+    <ion-item no-lines>
+      <ion-input placeholder="Full name" type="text" disabled formControlName="fullName" name="fullName" [(ngModel)]="quotes.fullName"
         ngDefaultControl>
       </ion-input>
     </ion-item>
     <br>
-    <ion-item>
-      <ion-label stacked>Your Address</ion-label>
-      <ion-input formControlName="address" [(ngModel)]="quotes.address"></ion-input>
+    <ion-item no-lines>
+      <ion-input placeholder="Physical Address" formControlName="address" [(ngModel)]="quotes.address"></ion-input>
     </ion-item>
 
     <ion-label class="error" *ngFor="let validate of validation_messages.address">
@@ -54,37 +50,30 @@
     <div class="houseOverall">
 
       <div class="parent">
-        <h5>Pricing of the overall house</h5>
+        <h5 style="text-align: center">Pricing of the overall house</h5>
 
-        <ion-item>
-          <ion-label stacked>Your Price p/m2</ion-label>
-          <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}"> </ion-input>
+        <ion-item no-lines>
+          <ion-input placeholder="Price per square meter" class="price" disabled value="{{quotes.price  | currency:'&#82;'}}"> </ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label stacked>Enter total of metres here</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
+        <br>
+        <ion-item no-lines>
+          <ion-input placeholder="total of metres here" type="number" formControlName="dimension" [(ngModel)]="quotes.meter"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label stacked>Enter Discount (%) here</ion-label>
-          <ion-input type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
+        <br>
+        <ion-item no-lines>
+         
+          <ion-input placeholder="Enter Discount (%) here" type="number" formControlName="dimension" [(ngModel)]="quotes.discount"></ion-input>
         </ion-item>
-        <p style="padding: 3%;text-align: end;">Overall house price: <span
-            style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong>
-              {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</strong></span>
-        </p>
+        <p style="padding: 3%;text-align: end;">Overall house price: <span style="color: #8D5729;">{{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) | currency:'&#82;'}}</span> </p>
       </div>
 
     </div>
-    <h5 style="text-align: center; font-family: 'Segoe UI'; letter-spacing: 1px; font-weight:400">Pricing on the extras
-    </h5>
     <!-- </div> -->
-    <p>Specify the price of the extras included by the owner</p>
-    <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;"
-      *ngFor="let item of extras; let i=index;">
+
+  <!--   <div style="background: rgb(255, 255, 255); margin-top: 5%; box-shadow:  0 0 3px #ddd;">
       <h5 style="text-align: center;">{{item.item}}</h5>
       <div class="parent2">
         <div class="price">
-          <!-- extras -->
           <ion-item
             style="box-shadow: inset transparent;border-bottom:1px solid white;width: 40%;margin-left: 2%;padding-left: 3%; box-shadow: none;border-radius: 5px; background: transparent; display: flex;">
             <ion-label stacked style="padding-top:9px">Price</ion-label>
@@ -94,7 +83,7 @@
 
             </ion-input>
           </ion-item>
-          <!-- fabs -->
+        
           <div>
             <p style="text-align: right;">Quantity</p>
             <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;"
@@ -109,39 +98,54 @@
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="extras">
+      <h5 style="text-align: center;">Pricing on Extras</h5>
+        <p style="text-align: center;">Specify the price of the extras included by the owner</p>
+      <div class="extra"  *ngFor="let item of extras; let i=index;">
+        <div class="pricing">
+             <h5 style="text-align: center;">{{item.item}}</h5>
+          <ion-item no-lines>
+          <ion-input placeholder="Price" type="tel" maxLength="6" formControlName="dimension" [(ngModel)]="extras[i].data.price" (ngModelChange)="onChange($event)"></ion-input>
+        </ion-item>
+        </div>
+        <div class="quantity">
+            <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;" (click)="childMinus(item,i)">
+            <ion-icon ios="ios-remove" md="md-remove" end></ion-icon>
+          </button>
+          <button ion-fab color="customize">{{extras[i].data.quantity}}</button>
+          <button class="btn-border" style="background: transparent; box-shadow: none;color: #333;" ion-fab mini
+          (click)="childPlus(item, i)">
+          <ion-icon ios="ios-add" md="md-add"></ion-icon>
+        </button>
+        </div>
+      </div>
     </div>
-    <div class="calculations">
+    <div class="calculations" *ngIf="extras">
       <!-- subtotal and discount -->
       <div class="accumulatedAmount">
-        <div class="subtotal">
-          <p><strong>Subtotal</strong></p>
-          <p><strong>{{value - (value * quotes.discountAmount/100)  | currency:'&#82;'}}</strong></p>
-        </div>
-        <div class="discount">
-          <p><strong>Discount(%)</strong></p>
-          <ion-item style="background: transparent;">
-            <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
-          </ion-item>
-          <p>%</p>
-        </div>
+          <div class="discount">
+              <p style="text-align: center;"><strong>Discount(%) for Extras</strong></p>
+              <ion-item no-lines>
+                <ion-input formControlName="dimension" [(ngModel)]="quotes.discountAmount"></ion-input>
+              </ion-item>
+              <p>%</p>
+            </div>
+        
         <div class="discountAmount" style="color: grey">
-          <p><strong>Discount Amount</strong></p>
+          <p><strong>Discounted Amount</strong></p>
           <p><strong>{{ (value) * quotes.discountAmount/100 | currency:'&#82;' }}</strong></p>
         </div>
       </div>
     </div>
+    <div class="button-group" (click)="createPdf()">
+        <p>Send Quotes</p>
+         <button class="send-quotes" ion-fab  color="light">
+          <ion-icon name="arrow-forward"></ion-icon>
+         
+        </button>
+      </div>
   </form>
+  
+ 
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <p style="padding: 3%;text-align: end;">The total amount : <span
-        style="background:#528d97; color: white;padding:1% ;padding-left: 8%;padding-right: 8%;border-radius: 50px"><strong>
-          {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</strong></span>
-    </p>
-    <ion-buttons end>
-      <button ion-fab class="btn-proceed" (click)="createPdf()" color="primary">
-        <ion-icon name="send"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
