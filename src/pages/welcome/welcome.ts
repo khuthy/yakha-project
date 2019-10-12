@@ -40,7 +40,7 @@ export class WelcomePage {
   ionViewWillLeave(){
     this.menuCtrl.swipeEnable(false);
     this.statusBar.overlaysWebView(false);
-    this.statusBar.backgroundColorByHexString('#203550') 
+    this.statusBar.backgroundColorByHexString('#203550'); 
   }
 
 

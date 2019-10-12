@@ -71,14 +71,15 @@ export class BuilderquotesPage {
     //ownerUID: null,
     hOwnerUID: null,
     subtotal: 0,
-    dateCreated: Date()
+    dateCreated: Date(),
+    viewed : false
   }
   meter = 2;
   pdfObj = null;
   db = firebase.firestore().collection('Respond'); //sdk
   dbUsers = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
-  dbMessages = firebase.firestore().collection('Messages');
+  //dbMessages = firebase.firestore().collection('Messages');
   storage = firebase.storage().ref();
   uid: any;
 

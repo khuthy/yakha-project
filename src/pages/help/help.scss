@@ -1,8 +1,7 @@
 page-help {
    
     .container {
-        height: 100%;
-        max-width: 100%;
+     
         position: relative;
          margin: 0 auto;
         background: color($colors, light);
@@ -14,16 +13,28 @@ page-help {
         .header { 
             width:100%;
             height:13%;
-            background:url(../../assets/imgs/BuilderShape2.svg); 
-            background-position: right;
+            background-position: top right;
             background-repeat: no-repeat;
-            top: 0%;
+            background-size: 50%;
+            border: none;
+
+            
+        }
+        .headerOwner { 
+            background:url(../../assets/imgs/ownerShape.svg); 
+            width:100%;
+            height:13%;
+            background-position: top right;
+            background-repeat: no-repeat;
+            background-size: 50%;
+            border: none;
+
             
         }
         .logo {
 
-            height:15%;
-            // border: 1px solid green;
+            // height:35%;
+            //border: 1px solid green;
             width: 100%;
             // padding-top: 10px;
             // padding-bottom: 2px;
@@ -85,32 +96,38 @@ page-help {
               //margin-top:-15%;
             }
           }
-        .box {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        height: 50%;
-       
-
+    /*     .box {
+            margin: 0 auto;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
         .card {
-            background: rgba(36, 35, 35, 0.925);
-        
-            width: 80%;
-            //padding: .5em;
-           // border: 1px solid #216D7B;
+            width: 85%;
             margin: 1%;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-            border-radius:5px;
-
+            display: flex;
+            align-items: center;
+            height: 8vh;
+            border-radius: 5px;
+                .icon {
+                font-size: 20px;
+                width: 30px;
+                color:#216D7B;
+               
+            }
             p{
-             text-align: center;
+                font-weight: 600;
+                white-space: nowrap;
+                text-align: left;
+           
                 font-size: 2vh;
                 font-family:'Segoe UI';
                 color:white;
                 letter-spacing: 1px;
             }
+        }
+        .accordia {
+            border: 1px solid #216D7B;
+            padding: 20px;
         }
         .hide {
             display: none;
@@ -145,17 +162,79 @@ page-help {
                 }
             }
         }
+    } */
+    .box {
+        position: relative;
+        margin: 0 auto;
+        width: 85%;
+        
+     
+
+        .card {
+            border-radius: 10px;
+            margin: 2%;
+           .card-header {
+               padding: 20px;
+               background: #203959;
+                color: #fff;
+           }
+           .card-info {
+               padding: 10px;
+           }
+           .show {
+               display: block;
+           }
+           .hide {
+               display: none;
+           } 
+        }
+        .cardBuilder  {
+            margin: 2%;
+            border-radius: 10px;
+            .card-header {
+                padding: 20px;
+                background: #464137;
+                 color: #fff;
+            }
+            .card-info {
+                padding: 10px;
+            }
+            .show {
+                display: block;
+            } 
+            .hide {
+                display: none;
+            }
+        }
     }
     }
     .bottomdeco {
-        width:100%;
-        
-       height: 12%;
-       background:url(../../assets/imgs/BuilderShapes.svg); 
-       background-position: left;
-       background-repeat: no-repeat;
-       position: absolute;
-       bottom:0;
+        // border:1px solid red;
+         background:url(../../assets/imgs/BuilderShapes.svg); 
+         background-position: left;
+         background-repeat: no-repeat;
+         width:100%;
+         height:35%;
+         background-position: bottom left;
+         background-repeat: no-repeat;
+         background-size: 50%;
+         position: absolute;
+         bottom:0;
+         left: -1px;
+       }
+       .bottomdecoOwner {
+        // border:1px solid red;
+         background:url(../../assets/icon/Yakha-assets/OwnerShapes.svg); 
+         background-position: left;
+         background-repeat: no-repeat;
+         width:100%;
+         height:35%;
+         background-position: bottom left;
+         background-repeat: no-repeat;
+         background-size: 50%;
+         position: absolute;
+         bottom:0;
+         left: -6%;
        }
  
     

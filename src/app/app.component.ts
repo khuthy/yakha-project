@@ -46,7 +46,7 @@ export class MyApp {
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-  this.statusBar.backgroundColorByHexString('#28545c');
+  this.statusBar.backgroundColorByHexString('#203550');
   
     
     this.initializeApp();
@@ -74,7 +74,9 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-      //this.setupPush();
+        //this.setupPush();
+      
+        
     }
     this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
@@ -85,11 +87,9 @@ export class MyApp {
           
           
           if (profile.exists) {
-            firebase.firestore().collection('Request').where('viewed','==', false).onSnapshot( res => {
-              this.messages = 0;
-                res.forEach(doc => {
-                  this.messages = this.messages + 1;
-                })
+            firebase.firestore().collection('Respond').where('viewed','==', false).onSnapshot( res => {
+              this.messages = res.size;
+               
       
     })
             if (profile.data().isProfile == true && profile.data().status == true) {
