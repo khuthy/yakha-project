@@ -1,12 +1,16 @@
-<ion-header>
-  <ion-navbar color="primary">
+<ion-header no-border>
+  <ion-navbar color="dark">
     <ion-toolbar>
-      <ion-title>Quotation</ion-title>
+      <ion-title>
+        Making a quote for <br>
+        Mary Munyai <br>
+        <p style="color: #FFD787;">Cost: {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</p> </ion-title>
+
     </ion-toolbar>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content color="light" padding>
 
   <form [formGroup]="quotesForm">
     <ion-item>
