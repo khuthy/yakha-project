@@ -3,24 +3,42 @@ page-success {
     margin:0;
 padding:0;
    // background: linear-gradient(rgba(32, 57, 89, 0.733)),url('../../assets/imgs/builders.png');
-    .container {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-         background: linear-gradient(rgba(32, 57, 89, 0.561)),url('../../assets/imgs/builders.png');
+   .container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+     background:   url('../../assets/imgs/builders.png');
+     background-size: cover;
+     background-position: center;
+     z-index: -2;
+
+     &::before, &::after {
+         background: url('../../assets/imgs/builders.png') no-repeat;
          background-size: cover;
          background-position: center;
-         -webkit-filter: blur(5px);
-         -moz-filter: blur(5px);
-         -o-filter: blur(5px);
-         -ms-filter: blur(5px);
-         filter: blur(5px);
-         z-index: -2;
-    }
+         -webkit-filter: blur(10px);
+         -moz-filter: blur(10px);
+         -o-filter: blur(10px);
+         -ms-filter: blur(10px);
+         filter: blur(10px);
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0%;
+         width: 100vw;
+         height: 100vh;
+
+
+     }
+     &::before {
+         transform: scale(1,1);
+     }
+
+}
     .contain {
         position: absolute;
         top: 0;
@@ -36,7 +54,7 @@ padding:0;
             //border: 1px solid rgb(15, 14, 14);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
 
             h2 {
@@ -50,12 +68,12 @@ padding:0;
             }
             img {
                 width:40%;
-                margin-top: 7%;
             }
            p {
                text-align: center;
                color: white;
                padding:3%;
+               font-weight: 500;
           letter-spacing: 1px;
           font-size: 2vh;
           font-weight:250;
@@ -68,9 +86,19 @@ padding:0;
        // border:1px solid rgb(255, 187, 0);
         height:13%;
         background:url(../../assets/imgs/ownerShape.svg); 
-        background-position: right;
+        background-position: top right;
+        background-size: 50%;
         background-repeat: no-repeat;
    }
+   .logoBuilder {
+   
+    // border:1px solid rgb(255, 187, 0);
+     height:13%;
+     background:url(../../assets/imgs/BuilderShape2.svg); 
+     background-repeat: no-repeat;
+     background-position: top right;
+     background-size: 50%;
+}
        .continue {
          //  border:1px solid blue;
            height:30%;

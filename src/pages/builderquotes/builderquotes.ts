@@ -76,7 +76,7 @@ export class BuilderquotesPage {
   }
   meter = 2;
   pdfObj = null;
-  db = firebase.firestore().collection('Respond'); //sdk
+  dbRespond = firebase.firestore().collection('Respond'); //sdk
   dbUsers = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
   //dbMessages = firebase.firestore().collection('Messages');
@@ -84,18 +84,8 @@ export class BuilderquotesPage {
   uid: any;
 
   validation_messages = {
-    'fullName': [
-      { type: 'required', message: 'Name is required.' },
-      { type: 'minlength', message: 'Name must be at least 4 characters long.' },
-      { type: 'maxlength', message: 'Name cannot be more than 25 characters long.' },
-      { type: 'pattern', message: 'Your Name must not contain numbers and special characters.' },
-      { type: 'validUsername', message: 'Your username has already been taken.' }
-    ],
     'expiry': [
       { type: 'required', message: 'Expiry date is required.' }
-    ],
-    'address': [
-      { type: 'required', message: 'Address is required.' }
     ],
     'dimension': [{
       type: 'required', message: 'Extra costs are required'
@@ -135,9 +125,7 @@ export class BuilderquotesPage {
     this.authUser.setUser(this.uid);
     this.quotes.uid = this.uid;
     this.quotesForm = this.forms.group({
-      fullName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       expiry: new FormControl('', Validators.compose([Validators.required])),
-      address: new FormControl('', Validators.compose([Validators.required])),
       dimension: new FormControl('', Validators.compose([Validators.required])),
 
     })
@@ -404,7 +392,7 @@ export class BuilderquotesPage {
       pageOrientation: 'portrait'
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
-    console.log(this.pdfObj);
+    //console.log(this.pdfObj);
     this.quotes.pdfLink =
       this.downloadUrl();
     this.downloadPdf();
@@ -423,13 +411,8 @@ export class BuilderquotesPage {
         let user = firebase.auth().currentUser.email;
         // Save the PDF to the data Directory of our App
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
-          console.log(results);
+        //  console.log(results);
           // results.downloadURL
-
-
-
-
-
           firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
             console.log(url);
             this.pdfDoc = url;
@@ -438,7 +421,9 @@ export class BuilderquotesPage {
               duration: 2000,
               content: 'Loading'
             }).present();
-            this.db.doc(this.userMsg).set(this.quotes).then((resDoc) => {
+            
+            
+            this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
               this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
                // console.log(resReq.data());
                 
@@ -446,10 +431,12 @@ export class BuilderquotesPage {
                   //this.oneSignal.
                   this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
                   //  console.log('User information ' +resUser.data());
-                  this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
-                    console.log(smsRes);
+                  // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
+                  //   console.log(smsRes);
                     
-                  });
+                  // });
+                  console.log('user found...........................................................................');
+                  
                    //this.oneSignal.getIds().then(ids => {
                      //console.log(ids);
                      //this.oneSignal.inFocusDisplaying
@@ -470,7 +457,7 @@ export class BuilderquotesPage {
                 }
               })
             });
-            this.navCtrl.setRoot(SuccessPage);
+            //this.navCtrl.setRoot(SuccessPage);
 
           })
           console.log('pdf', this.pdfDoc);

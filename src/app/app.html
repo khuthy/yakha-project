@@ -1,7 +1,7 @@
 <ion-menu [content]="content" type="overlay">
 
   <ion-content class="side-menu" [style.backgroundColor]="userLoggedinNow.builder ? '#464137'  : '#203959'">
-        <div class="profile">
+     <!--    <div class="profile">
           <img *ngIf="userLoggedinNow.image" src="{{userLoggedinNow.image}}" class="thumb" alt="profile">
           <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" class="thumb" alt="profile">
           <p style="font-size: 19px;">{{userLoggedinNow.fullname}}</p>
@@ -9,20 +9,42 @@
         </div>
 
  
-    <!--   <button class="btn-side-menu" style="background: transparent; color: #fff;" clear menuClose ion-button >
+      <button class="btn-side-menu" style="background: transparent; color: #fff;" clear menuClose ion-button >
         <ion-icon  name="{{p.icon}}"></ion-icon>
        
        <hr style="border: rgba(0, 0, 0, 0.699); color: rgba(0, 0, 0, 0.685);">
-      </button> -->
+      </button> 
       <div class="boxes">
         <div class="box" *ngFor="let p of pages;" menuClose (click)="openPage(p)">
           <span *ngIf="p.title == 'Messages'" class="badge move">{{messages | number}}</span>
           <ion-icon name="{{p.icon}}"></ion-icon>
           <p style=" font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{p.title}}</p>
         </div>
-        <p class="version">{{version}}</p>
+      
       </div>
-     
+      -->
+
+      <div class="sidemenu">
+        <div class="profile">
+            <img *ngIf="userLoggedinNow.image" src="{{userLoggedinNow.image}}" [ngClass]="{'builder': userLoggedinNow.builder, 'owner': !userLoggedinNow.builder}" alt="profile">
+            <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" [ngClass]="{'builder': userLoggedinNow.builder, 'owner': !userLoggedinNow.builder}" alt="profile">
+            <article>
+               <p>{{userLoggedinNow.fullname}}</p>
+            <p>{{userLoggedinNow.email}}</p>
+            </article>
+           
+        </div>
+        <div class="list">
+            <div class="box" *ngFor="let p of pages;" menuClose (click)="openPage(p)">
+                <span *ngIf="p.title == 'Messages'" class="badge move">{{messages | number}}</span>
+                <ion-icon name="{{p.icon}}"></ion-icon>
+                <p style=" font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{p.title}}</p>
+            </div>
+        </div>
+        <div class="versions">
+            <p class="version">{{version}}</p>
+        </div>
+      </div>
      
     
   </ion-content>

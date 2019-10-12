@@ -27,11 +27,11 @@
         <p>I prefer the starting date to be around:</p>
         <ion-item no-lines >
           <ion-label >Start</ion-label>
-          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY"></ion-datetime>
+          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
         </ion-item>
         <ion-item no-lines>
             <ion-label>End</ion-label>
-            <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY"></ion-datetime>
+            <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
           </ion-item>
       </div>
       <p style="text-align:center; font-size:3vw;letter-spacing: 1px">Please select your brick type</p>
