@@ -41,7 +41,7 @@ export class MyApp {
   version = 'v1.0.0';
   messages = 0
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal, private screenOrientation: ScreenOrientation) {
+  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
       this.statusBar.overlaysWebView(false); 
   
@@ -75,7 +75,7 @@ export class MyApp {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
         //this.setupPush();
-        console.log(this.screenOrientation.type);
+      
         
     }
     this.db.collection('Users');
