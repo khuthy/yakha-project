@@ -26,9 +26,9 @@
              
                     <div class="thumb">
                       <img *ngIf="profileImage" src="{{profileImage}}" class="thumb" (click)="selectImage()">
-                      <img *ngIf="!profileImage" src="../../assets/imgs/team-avatar.jpg" class="thumb">
-                      <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
-                    </div>
+                      <img *ngIf="!profileImage" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" class="thumb">
+<!--                         <button class="thumb" ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> 
+ -->                     </div>
                   </div><!-- end of image -->
 <!-- inputs for the form goes here -->
 
@@ -37,7 +37,7 @@
                    
                      <input formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName"
                      ngDefaultControl type="text" placeholder="Fullname" name="Fullname">
-                     <div class="error" style="color:blue" *ngFor="let validate of validation_messages.fullName">
+                     <div class="error" style="color:red" *ngFor="let validate of validation_messages.fullName">
                         <div class="messages"
                           *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
                           {{validate.message}}
@@ -45,8 +45,15 @@
                       </div><!-- end of validation for fullname -->
 
                  
-                        <input  type="text" placeholder="Gender" name="email">
-                      
+                        <!-- <input  type="text" placeholder="Gender" name="email"> -->
+                        <ion-item>
+                            <ion-label >Gender</ion-label>
+                            <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"
+                              cancelText="Dismiss">
+                              <ion-option value="Female">Female</ion-option>
+                              <ion-option value="Male">Male</ion-option>
+                            </ion-select>
+                          </ion-item>
 
                   
                           <input  type="text" placeholder="Phone number" name="email">
@@ -55,7 +62,7 @@
                           <input formControlName="address" ngx-google-places-autocomplete [options]='options'
                           #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
 
-                            <button ion-button (click)="nextslides()">Next</button>
+                            <button id=skip ion-button (click)="nextslides()">Next</button>
                    
        
                   </div>
@@ -87,7 +94,7 @@
                     
               <ion-item >
                   <ion-label >Price include roofing?</ion-label>
-                  <ion-checkbox></ion-checkbox>
+                  <ion-checkbox formControlName="roof" name="roof" [(ngModel)]="builderProfile.roof" cancelText="Dismiss" ></ion-checkbox>
                 </ion-item>
                 <div class="error" *ngFor="let validate of validation_messages.roof">
                     <div class="messages"
@@ -112,7 +119,7 @@
 
                     <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
               <button id="skip" (click)="createprofile(profileForm)" block type="submit"
-              color="secondary" [disabled]="!profileForm.valid" ion-button>Done </button>
+              color="secondary"  ion-button>Done </button>
  
                 </ion-slide>
                 <!-- slide two ends here -->
