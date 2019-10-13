@@ -41,12 +41,13 @@ form {
 }
 .extras {
     padding-bottom: 20px;
+    margin: auto;
 }
 .extra {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   // border: 1px solid #fff;
+    justify-content: center;
     margin: 1%;
 
     .quantity {
