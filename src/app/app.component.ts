@@ -74,7 +74,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-        //this.setupPush();
+        this.setupPush();
       
         
     }

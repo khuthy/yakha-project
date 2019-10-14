@@ -393,7 +393,8 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-      this.downloadUrl();
+    this.downloadUrl();
+    this.saveData();    
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
   }
@@ -420,42 +421,6 @@ export class BuilderquotesPage {
               duration: 2000,
               content: 'Loading'
             }).present();
-            
-            
-            this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
-              this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
-               // console.log(resReq.data());
-                
-                if (resReq.data().hOwnerUid) {
-                  //this.oneSignal.
-                  this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
-                  //  console.log('User information ' +resUser.data());
-                  // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
-                  //   console.log(smsRes);
-                    
-                  // });
-                  console.log('user found...........................................................................');
-                  
-                   //this.oneSignal.getIds().then(ids => {
-                     //console.log(ids);
-                     //this.oneSignal.inFocusDisplaying
-                      if(resUser.data().tokenID){
-                      var notificationObj = {
-                        contents: { en: "Hey " + resUser.data().fullName+" ," + "the builder has responded to your qoutation"},
-                        include_player_ids: [resUser.data().tokenID],
-                      };
-                      this.oneSignal.postNotification(notificationObj).then(res => {
-                       // console.log('After push notifcation sent: ' +res);
-                       
-                      });
-                    
-                      }
-
-                    });
-                 // })
-                }
-              })
-            });
             //this.navCtrl.setRoot(SuccessPage);
 
           //})
@@ -477,5 +442,41 @@ export class BuilderquotesPage {
     /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{
     
         }) */
+  }
+  saveData(){
+    this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
+      this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
+       // console.log(resReq.data());
+        
+        if (resReq.data().hOwnerUid) {
+          //this.oneSignal.
+          this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
+          //  console.log('User information ' +resUser.data());
+          // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
+          //   console.log(smsRes);
+            
+          // });
+          console.log('user found...........................................................................');
+          
+           //this.oneSignal.getIds().then(ids => {
+             //console.log(ids);
+             //this.oneSignal.inFocusDisplaying
+              if(resUser.data().tokenID){
+              var notificationObj = {
+                contents: { en: "Hey " + resUser.data().fullName+" ," + "the builder has responded to your qoutation"},
+                include_player_ids: [resUser.data().tokenID],
+              };
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+               
+              });
+            
+              }
+
+            });
+         // })
+        }
+      })
+    });
   }
 }
