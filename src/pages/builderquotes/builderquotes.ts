@@ -418,6 +418,8 @@ export class BuilderquotesPage {
             console.log(results);
             this.pdfDoc = results.downloadURL;
             this.quotes.pdfLink = results.downloadURL;
+            console.log('pdf link............:',results);
+            
             this.loader.create({
               duration: 2000,
               content: 'Loading'
