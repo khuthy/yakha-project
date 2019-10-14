@@ -58,7 +58,7 @@
 </div> -->
  <div class="slider" *ngIf="!header">
     <div class="searchRange">
-        <button class="btn1" ion-fab mini><ion-icon name="pin"></ion-icon></button>
+        <button class="btn1" ion-fab mini (click)="getPosition()"><ion-icon name="pin"></ion-icon></button>
       <ion-item no-lines *ngIf="range">
         <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
         

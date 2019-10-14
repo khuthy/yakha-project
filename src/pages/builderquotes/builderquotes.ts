@@ -393,8 +393,8 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.quotes.pdfLink =
-      this.downloadUrl();
+    this.downloadUrl();
+    this.saveData();    
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
   }
@@ -413,65 +413,26 @@ export class BuilderquotesPage {
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
         //  console.log(results);
           // results.downloadURL
-          console.log('PDF url.................',results.downloadURL);
-          
-        //  firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
-           // console.log(url);
+         // firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+            console.log(results);
             this.pdfDoc = results.downloadURL;
             this.quotes.pdfLink = results.downloadURL;
             this.loader.create({
               duration: 2000,
               content: 'Loading'
             }).present();
-            
-            
-            this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
-              this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
-               // console.log(resReq.data());
-                
-                if (resReq.data().hOwnerUid) {
-                  //this.oneSignal.
-                  this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
-                  //  console.log('User information ' +resUser.data());
-                  // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
-                  //   console.log(smsRes);
-                    
-                  // });
-                  //console.log('user found...........................................................................');
-                  
-                   //this.oneSignal.getIds().then(ids => {
-                     //console.log(ids);
-                     //this.oneSignal.inFocusDisplaying
-                      if(resUser.data().tokenID){
-                      var notificationObj = {
-                        contents: { en: "Hey " + resUser.data().fullName+" ," + "the builder has responded to your qoutation"},
-                        include_player_ids: [resUser.data().tokenID],
-                      };
-                      this.oneSignal.postNotification(notificationObj).then(res => {
-                       // console.log('After push notifcation sent: ' +res);
-                       
-                      });
-                    
-                      }
-
-                    });
-                 // })
-                }
-              })
-            });
             //this.navCtrl.setRoot(SuccessPage);
 
-        //  })
-          console.log('pdf.........', this.pdfDoc);
-          console.log('..........................pdf from array',this.quotes.pdfLink);
+          //})
+          console.log('pdf', this.pdfDoc);
+          console.log(this.quotes.pdfLink);
         })
         this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
         })
       });
-    } 
-    else {
+    } else {
       // On a browser simply use download!
       this.pdfObj.download();
       /* this.pdfObj.upload(); */
@@ -481,5 +442,41 @@ export class BuilderquotesPage {
     /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{
     
         }) */
+  }
+  saveData(){
+    this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
+      this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
+       // console.log(resReq.data());
+        
+        if (resReq.data().hOwnerUid) {
+          //this.oneSignal.
+          this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
+          //  console.log('User information ' +resUser.data());
+          // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
+          //   console.log(smsRes);
+            
+          // });
+          console.log('user found...........................................................................');
+          
+           //this.oneSignal.getIds().then(ids => {
+             //console.log(ids);
+             //this.oneSignal.inFocusDisplaying
+              if(resUser.data().tokenID){
+              var notificationObj = {
+                contents: { en: "Hey " + resUser.data().fullName+" ," + "the builder has responded to your qoutation"},
+                include_player_ids: [resUser.data().tokenID],
+              };
+              this.oneSignal.postNotification(notificationObj).then(res => {
+               // console.log('After push notifcation sent: ' +res);
+               
+              });
+            
+              }
+
+            });
+         // })
+        }
+      })
+    });
   }
 }

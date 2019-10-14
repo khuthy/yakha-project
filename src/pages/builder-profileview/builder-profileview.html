@@ -6,11 +6,11 @@
         <div class="propic">
             <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
             <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
-            <button (click)="navCtrl.pop()" style="position:absolute;top:0;left:0;z-index:5" ion-fab mini top right edge><ion-icon name="arrow-back" ></ion-icon></button>
+            <button (click)="navCtrl.pop()" style="position:absolute;top:0;left:0;z-index:5;background:rgb(204, 158, 20)" ion-fab mini top right  edge><ion-icon name="arrow-back" ></ion-icon></button>
 
             <div class="names">
            <h4>{{dat.fullName}}</h4>
-           <p>{{dat.address}}</p>
+           <p id="adres">{{dat.address}}</p>
          </div>
         </div>
 
@@ -32,8 +32,8 @@
 
         <div class="button">
           <div class="btn" (click)="next()">
-            <p>Request Quotation</p>
-            <button ion-fab mini><ion-icon name="arrow-forward" ></ion-icon></button>
+            <p>Request Quote</p>
+            <button ion-fab mini><ion-icon name="arrow-forward" style="color: black" ></ion-icon></button>
           
           </div>
         </div>
