@@ -258,8 +258,6 @@ export class BuilderquotesPage {
 
 
   createPdf() {
-    /* save to database */
-   
     /* calculations */
 
     /* discount amount of extras */
@@ -395,7 +393,8 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.downloadUrl();
+    this.quotes.pdfLink =
+      this.downloadUrl();
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
   }
@@ -405,7 +404,7 @@ export class BuilderquotesPage {
       duration: 2000,
       content: 'Loading'
     }).present();
-
+    if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
         let date = Date();
@@ -414,10 +413,10 @@ export class BuilderquotesPage {
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
         //  console.log(results);
           // results.downloadURL
-          firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
-            console.log(url);
-            this.pdfDoc = url;
-            this.quotes.pdfLink = url;
+         // firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+            console.log(results);
+            this.pdfDoc = results.downloadURL;
+            this.quotes.pdfLink = results.downloadURL;
             this.loader.create({
               duration: 2000,
               content: 'Loading'
@@ -460,7 +459,7 @@ export class BuilderquotesPage {
             });
             //this.navCtrl.setRoot(SuccessPage);
 
-          })
+          //})
           console.log('pdf', this.pdfDoc);
           console.log(this.quotes.pdfLink);
         })
@@ -469,7 +468,11 @@ export class BuilderquotesPage {
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
         })
       });
-  
+    } else {
+      // On a browser simply use download!
+      this.pdfObj.download();
+      /* this.pdfObj.upload(); */
+    }
   }
   downloadPdf() {
     /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{
