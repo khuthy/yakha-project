@@ -68,12 +68,13 @@
           <div class="image">
               <img *ngIf="b.image" src="{{b.image}}" alt="tough">
           </div>
-          <div class="rate"><p>{{4.5 | number}}</p></div>
+          <div class="rate"><p>{{b.experiences | number}}</p></div>
         <div class="info">
           <div>
              <p style="font-size:3vh;font-weight:700">{{b.fullName}}</p>
              <p style="font-size:2vh;margin-top:-4%;font-weight:400;" class="price"><span style="color: #F2BE22">{{b.price|  currency:'&#82;'}}p/m</span><span class="squire">2</span> excluding roofing</p>
              <p style="color:balck;margin-top:-4%;font-size:2vh;padding-bottom:5px" class="stars">{{b.experiences}} years in building experience</p>
+             <p style="font-size:10px; line-height: 5px;margin-top: -12px;color:blue" *ngIf="total">{{total}} km away driving</p>
           </div>
           <div class="button-group">
             <p>Request</p>

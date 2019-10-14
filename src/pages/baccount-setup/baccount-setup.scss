@@ -160,6 +160,20 @@ h5 {
         height: 40vh;
         position: absolute;
         top: 20vh;
+        .item {
+          background: rgba(251, 251, 251, 0);;
+          padding: 0px !important;
+          width: 80%;
+          margin: 3% auto 0% auto !important;
+          border: solid 1px black;;
+          height: 20% !important;
+          border-radius: 200px;
+          .label {
+            text-align: left !important;
+            padding-left: 3% !important;
+            margin: 0px !important;
+          }
+        }
         input {
           width: 80%;
           height: 20%;
@@ -175,7 +189,7 @@ h5 {
           font-weight: 500;
         }
 
-        button {
+        #skip {
           width:60%;
           border-radius:50px;
           margin-left:20%;
