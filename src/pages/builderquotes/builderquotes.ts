@@ -258,6 +258,8 @@ export class BuilderquotesPage {
 
 
   createPdf() {
+    /* save to database */
+   
     /* calculations */
 
     /* discount amount of extras */
@@ -393,8 +395,7 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.quotes.pdfLink =
-      this.downloadUrl();
+    this.downloadUrl();
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
   }
