@@ -149,10 +149,11 @@ export class QuotationFormPage {
     if (this.steps == 'stepone') {
       this.steps = 'steptwo';
      // console.log('....................1');
-      
+     this.nextbutton = true;
       setTimeout(() => {
         this.nextslide();
        // 
+       this.nextbutton = true;
       }, 500)
     } else if (this.steps == 'steptwo') {
       this.steps = 'stepthree';

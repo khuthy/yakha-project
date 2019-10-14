@@ -71,9 +71,10 @@
             <P>{{item.incoming.dateCreated}}</P>
           </div>
           <div class="info">
-            <h6>Get your quote here</h6>
+            <!-- <h6>Get your quote here</h6> -->
             
             <p>View The Quote : <button ion-button clear (click)="downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button> </p>
+            <p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p>
           </div>
         </div>
       </div>
