@@ -1,5 +1,66 @@
+
+
+
 page-help {
+
+    .header {
+        text-align: center;
+        padding: 10px;
+        .img{
+              width: 25%;
+        }
+        
+  }
+  
+  .divtop{
+   border-radius: 0px 0px 30px 30px;
+  
+   height: 25%; 
+   background: #4D4D4D;
    
+  }
+  
+  
+  
+    
+    .con{
+          display: flex;
+          flex-direction: column;
+          margin:  5 auto;
+    }
+    .aboutus1 {
+        height: auto;
+        border: solid linear-gradient(#4D4D4D, #4D4D4D);
+        overflow: hidden;
+        margin:  5px auto;
+        width: 70%; 
+        }
+    .aboutus2 {
+        height: 60px;
+        border: black;
+        overflow: hidden;
+        margin:  5px auto;
+        width: 70%;
+        border-radius: 10px 10px 10px 10px;
+        }
+        .aboutus{
+              height: 40px;
+                border: #4D4D4D;
+              width: 100%;
+              border-radius: 10px 10px 10px 10px; 
+              background: #4D4D4D;
+        }
+        .inform{
+        height: 75%;
+        background:linear-gradient(rgb(255, 255, 255),rgba(255, 255, 255, 0)),url('../../assets/dims\ \(1\).jpg');
+          background-size: 100% auto;
+          background-repeat:no-repeat;
+          background-position:center 45vh ;
+       
+        }
+        h4{
+              color: white;
+        }
     .container {
      
         position: relative;
