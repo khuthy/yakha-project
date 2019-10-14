@@ -68,7 +68,7 @@
       </div>
       <div class="walltype">
         <p>Select wall type</p>
-        <ion-list radio-group class="inputs">
+        <ion-list radio-group class="inputs"  [(ngModel)]="HomeOwnerQuotation.wallType">
           <!-- <div><ion-item no-lines> -->
           <!-- <ion-label>Double wall</ion-label>
             <ion-radio  value=""></ion-radio>
@@ -80,12 +80,12 @@
 
           <ion-item>
             <ion-label>Double</ion-label>
-            <ion-radio checked="true" value="go" style="width: 30px;"></ion-radio>
+            <ion-radio style="width: 30px;" value="double"></ion-radio>
           </ion-item>
 
           <ion-item>
             <ion-label>Single</ion-label>
-            <ion-radio value="rust" style="width: 30px;"></ion-radio>
+            <ion-radio style="width: 30px;" value="single"></ion-radio>
           </ion-item>
           <!-- </ion-item> -->
         </ion-list>
