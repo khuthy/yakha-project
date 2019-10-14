@@ -393,7 +393,6 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.quotes.pdfLink =
       this.downloadUrl();
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
