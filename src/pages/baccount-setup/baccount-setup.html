@@ -61,7 +61,7 @@
                                *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
                                {{validate.message}}
                              </div>
-                           </div>>
+                           </div>
                     
                           <input formControlName="address" ngx-google-places-autocomplete [options]='options'
                           #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
