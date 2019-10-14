@@ -50,6 +50,7 @@ export class HomePage {
     lat: 0,
     lng: 0
   }
+  total: number;
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -67,6 +68,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
+        //this.loadCtrl();
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
@@ -116,7 +118,14 @@ export class HomePage {
         (response, status) => {
           if (status === 'OK') {
             that.directionsDisplay.setDirections(response);
-         
+            this.total = 0;
+            let myroute = response.routes[0];
+            for (let i = 0; i < myroute.legs.length; i++) {
+              this.total += myroute.legs[i].distance.value;
+            }
+            this.total = this.total / 1000;
+            //console.log(this.total);
+            
           }
           else {
             const alert = this.alertCtrl.create({
@@ -130,6 +139,7 @@ export class HomePage {
         });
     })
   }
+
   getPosition(): any {
     this.geolocation.getCurrentPosition().then(resp => {
       this.setMapCenter(resp);
@@ -143,12 +153,7 @@ export class HomePage {
     }).present()
   }
   getBuilders() {
-    let loader = this.loadingCtrl.create({
-      content: 'Please wait..',
-      duration: 2000
-    })
     this.db.where('builder', '==', true).onSnapshot((res) => {
-      loader.present()
       this.builder = [];
       
       res.forEach((doc) => {
