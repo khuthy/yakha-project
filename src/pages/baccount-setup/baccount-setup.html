@@ -54,13 +54,23 @@
                               <ion-option value="Male">Male</ion-option>
                             </ion-select>
                           </ion-item>
-
-                  
-                          <input  type="text" placeholder="Phone number" name="email">
+                          
+                          <input  formControlName="personalNumber" placeholder="Phone number" name="personalNumber" [(ngModel)]="builderProfile.personalNumber" ngDefaultControl type="tel" maxlength="10">
+                          <div class="error" style="color:red" *ngFor="let validate of validation_messages.personalNumber">
+                             <div class="messages"
+                               *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
+                               {{validate.message}}
+                             </div>
+                           </div>
                     
-
                           <input formControlName="address" ngx-google-places-autocomplete [options]='options'
                           #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                          <div class="error" style="color:red" *ngFor="let validate of validation_messages.address">
+                            <div class="messages"
+                              *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+                              {{validate.message}}
+                            </div>
+                          </div>
 
                             <button id=skip ion-button (click)="nextslides()">Next</button>
                    
@@ -68,6 +78,15 @@
                   </div>
           
                 </ion-list>
+                <!-- <ion-item class="item">
+                  <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" 
+                  style="border: none; width: 100%"/>
+                </ion-item>
+                <ion-label class="error" *ngFor="let validate of validation_messages.address">
+                 <p class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+                   {{validate.message}}
+                 </p>
+                 </ion-label>  -->
                 
               </ion-slide>
 

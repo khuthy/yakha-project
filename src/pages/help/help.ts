@@ -18,6 +18,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'help.html',
 })
 export class HelpPage {
+  tsProperty = '';
   contactForm: FormGroup;
   appName = 'Yakha App';
   appVersion = 'Version 1.0';
@@ -70,14 +71,6 @@ export class HelpPage {
       })
     })
 
-   
-   
-
-
-
-
-
-
   }
 
   ionViewDidLoad() {
@@ -112,4 +105,26 @@ sendMessage(){
     position: 'top'
   }).present();
 }
+activate(cmd) {
+  switch (cmd) {
+    case 'about':
+      this.tsProperty = 'about';
+      break;
+      case 'terms':
+        this.tsProperty = 'terms';
+        break;
+        case 'contact':
+          this.tsProperty = 'contact';
+      break;
+      case 'disclaimer':
+        this.tsProperty = 'disclaimer';
+      break;
+      case 'safety':
+        this.tsProperty = 'safety';
+      break;
+    default:
+      break;
+  }
+}
+
 }

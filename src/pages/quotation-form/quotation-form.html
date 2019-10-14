@@ -1,52 +1,59 @@
 <ion-content>
-  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn" >
-  <p>Next</p>
-  <div class="nextFab">
-  <button  ion-fab   ><ion-icon name="arrow-forward" style="color:black"></ion-icon></button>
-</div>
-</div>
-<div *ngIf="!nextbutton" class="nextbutton" (click)="createQuations(quotationForm)" class="btn" >
-  <p>Done</p>
-  <div class="nextFab">
-  <button  ion-fab   ><ion-icon name="arrow-forward" style="color:black"></ion-icon></button>
-</div>
-</div>
+  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
+    <p>Next</p>
+    <div class="nextFab">
+      <button ion-fab>
+        <ion-icon name="arrow-forward"  ></ion-icon>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!nextbutton" class="nextbutton" (click)="createQuations()" class="btn">
+      <p>Submit</p>
+      <div class="nextFab">
+        <button ion-fab>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
+    </div>
 
-<div *ngIf="backButton" (click)="gohome()" class="backButton">
-  <button ion-fab style="background:rgb(204, 158, 20);" ><ion-icon name="arrow-back"></ion-icon></button>
-</div>
-<div class="topDecor">
+  <div *ngIf="backButton" (click)="gohome()" class="backButton">
+    <button ion-fab>Back</button>
+  </div>
+  <div class="topDecor">
 
-</div>
-<!-- next button -->
-<div class="information">
+  </div>
+  <!-- next button -->
+  <div class="information">
 
-  <!-- slide one starts here -->
-<div class="slideone">
-  
-      <div class="imageCont" >
-          <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
-          <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center" (click)="selectImage()" name="cloud-download"></ion-icon>
-          <p *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
+    <!-- slide one starts here -->
+    <div class="slideone">
+
+      <div class="imageCont">
+        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
+        <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center"
+          (click)="selectImage()" name="cloud-download"></ion-icon>
+        <p *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
       </div>
       <div class="dates">
         <p>I prefer the starting date to be around:</p>
-        <ion-item no-lines >
-          <ion-label >Start</ion-label>
-          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
+        <ion-item no-lines>
+          <ion-label>Start</ion-label>
+          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
+            [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
-        <ion-item no-lines style="margin-top:2%">
-            <ion-label>End</ion-label>
-            <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
-          </ion-item>
+        <ion-item no-lines>
+          <ion-label>End</ion-label>
+          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
+            [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
+        </ion-item>
       </div>
       <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
       <div class="bricks">
-       
-        <div class="cards"  *ngFor="let n of bricks" (tap)="highlight($event)" (click)="detailBricks()">
+
+        <div class="cards" *ngFor="let n of bricks" (tap)="highlight(n)">
           <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}">
-            
-          
+
+
             <div class="closeB" (click)="detailBricks()">
               <ion-icon name="close"></ion-icon>
             </div>
@@ -57,116 +64,129 @@
           </div>
           <img src="{{n.image}}">
         </div>
-          
+
       </div>
       <div class="walltype">
-          <p>Select wall type</p>
-        <div class="inputs">
-        <ion-item no-lines>
-            <ion-label style="color:black;letter-spacing: 0.5px;">Double wall</ion-label>
-            <ion-radio checked="" value=""></ion-radio>
+        <p>Select wall type</p>
+        <ion-list radio-group class="inputs"  [(ngModel)]="HomeOwnerQuotation.wallType">
+          <!-- <div><ion-item no-lines> -->
+          <!-- <ion-label>Double wall</ion-label>
+            <ion-radio  value=""></ion-radio>
+          </ion-item></div>
+          <div><ion-item no-lines>
+              <ion-label>Single wall</ion-label>
+              <ion-radio  value=""></ion-radio>
+            </ion-item></div> -->
+
+          <ion-item>
+            <ion-label>Double</ion-label>
+            <ion-radio style="width: 30px;" value="double"></ion-radio>
           </ion-item>
-         <ion-item no-lines>
-              <ion-label style="color:black;letter-spacing: 0.5px;">Single wall</ion-label>
-              <ion-radio style="font-size:2vw" checked="false" value=""></ion-radio>
-            </ion-item>
-        </div>
+
+          <ion-item>
+            <ion-label>Single</ion-label>
+            <ion-radio style="width: 30px;" value="single"></ion-radio>
+          </ion-item>
+          <!-- </ion-item> -->
+        </ion-list>
+
       </div>
-</div>
+    </div>
 
-<!-- start of info2  slide -->
-<div class="secon">
-    <div class="extrawork">
-        <h2 style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the following?</h2>
+    <!-- start of info2  slide -->
+    <div class="secon">
+      <div class="extrawork">
+        <h2 style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
+          following?</h2>
 
-          <ion-list style="height:5px;">
+        <ion-list style="height:5px;" >
 
-              <ion-item class="gray" style="background: #EDEDED;">
-                <ion-label >Roof</ion-label>
-                <ion-checkbox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
-                "></ion-checkbox>
-              </ion-item>
-            
-              <ion-item class="white">
-                <ion-label>Doors</ion-label>
-                <ion-checkbox></ion-checkbox>
-              </ion-item>
-            
-              <ion-item class="gray">
-                <ion-label>Windows</ion-label>
-                <ion-checkbox class="check"></ion-checkbox>
-              </ion-item>
+          <ion-item class="gray" style="background: #EDEDED;" *ngFor="let e of extras; let i=index">
+            <ion-label>{{e.service}}</ion-label>
+            <ion-checkbox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+                " (click)="checkClicked(e.service)"></ion-checkbox>
+          </ion-item>
 
-              <ion-item class="white">
-                  <ion-label>Plasting</ion-label>
-                  <ion-checkbox></ion-checkbox>
-                </ion-item>
-              
-              <ion-item class="gray">
-                  <ion-label>Electrical wiring</ion-label>
-                  <ion-checkbox style="border:transparent"></ion-checkbox>
-                </ion-item>
-              
-                <ion-item class="white">
-                  <ion-label>Ceiling</ion-label>
-                  <ion-checkbox></ion-checkbox>
-                </ion-item>
-              
-                <ion-item class="gray">
-                  <ion-label>Plumbing</ion-label>
-                  <ion-checkbox></ion-checkbox>
-                </ion-item>
-            
-            </ion-list>
+          <!-- <ion-item class="white">
+            <ion-label>{{extras[1].service}}</ion-label>
+            <ion-checkbox [(ngModel)]="extras[1].service"></ion-checkbox>
+          </ion-item>
 
-   <!-- textarea -->
-   <ion-textarea  placeholder="Type message here" row="4" name="comment" class="comment"></ion-textarea>
+          <ion-item class="gray">
+            <ion-label>{{extras[2].service}}</ion-label>
+            <ion-checkbox class="check" [(ngModel)]="extras[2].service"></ion-checkbox>
+          </ion-item>
+
+          <ion-item class="white">
+            <ion-label>{{extras[3].service}}</ion-label>
+            <ion-checkbox [(ngModel)]="extras[3].service"></ion-checkbox>
+          </ion-item>
+
+          <ion-item class="gray">
+            <ion-label>{{extras[4].service}} wiring</ion-label>
+            <ion-checkbox style="border:transparent" [(ngModel)]="extras[4].service"></ion-checkbox>
+          </ion-item>
+
+          <ion-item class="white">
+            <ion-label>{{extras[5].service}}</ion-label>
+            <ion-checkbox [(ngModel)]="extras[5].service"></ion-checkbox>
+          </ion-item>
+
+          <ion-item class="gray">
+            <ion-label>{{extras[6].service}}</ion-label>
+            <ion-checkbox [(ngModel)]="extras[6].service"></ion-checkbox>
+          </ion-item> -->
+
+        </ion-list>
+
+        <!-- textarea -->
+        <ion-textarea placeholder="Type message here" row="4" name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
+        
       </div>
 
       <!-- comment area -->
-  </div><!-- slide two ends here -->
+    </div><!-- slide two ends here -->
 
-<!-- slide three starts here -->
-      <div class="confirm">
-          <h4>CONFIRM</h4>
-     <P>Please confirm if everything is <br> as you need it to be.</P>
-     
-     <!-- div containing houseplan and details -->
-     <div class="plan">
-       <!-- houseplan -->
-     <div class="houseplan">
-         <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
-     </div>
-     
-     <!-- request details -->
-     <div class="details">
-       <h5>Request Details <br>Project Duration</h5>
-      
-       <h6></h6>
-     
-       <p>Wall Type</p>
-       <h6></h6>
-     
-       <p>Brick Type</p>
-       <h6></h6>
-     
-       <p>Roofing</p>
-       <h6></h6>
-     
-     </div>
-     </div> <!-- end of houseplan -->
-     
-     <div class="extraz">
-       <p id="headex">Extras</p>
-           <p></p>                         
-     </div>
-         </div>
-     
+    <!-- slide three starts here -->
+    <div class="confirm">
+      <h4>CONFIRM</h4>
+      <P>Please confirm if everything is <br> as you need it to be.</P>
 
-<!-- end of info2 slide -->
+      <!-- div containing houseplan and details -->
+      <div class="plan">
+        <!-- houseplan -->
+        <div class="houseplan">
+          <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
+        </div>
 
-</div><!-- info div -->
-<!-- <div  class="btn">
+        <!-- request details -->
+        <div class="details">
+          <h5>Request Details <br>Project Duration</h5>
+
+          <h6></h6>
+
+          <p>Wall Type</p>
+          <h6></h6>
+
+          <p>Brick Type</p>
+          <h6></h6>
+
+          <p>Roofing</p>
+          <h6></h6>
+
+        </div>
+      </div> <!-- end of houseplan -->
+
+      <div class="extraz">
+        <p>Extras</p>
+      </div>
+    </div>
+
+
+    <!-- end of info2 slide -->
+
+  </div><!-- info div -->
+  <!-- <div  class="btn">
     <p>Next</p>
     <div class="nextFab">
     <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>

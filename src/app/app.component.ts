@@ -40,6 +40,7 @@ export class MyApp {
 
   version = 'v1.0.0';
   messages = 0
+  token: string;
 
   constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
@@ -74,7 +75,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-        //this.setupPush();
+        this.setupPush();
       
         
     }
@@ -92,6 +93,8 @@ export class MyApp {
                
       
     })
+            
+            firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             if (profile.data().isProfile == true && profile.data().status == true) {
               if (profile.data().builder == true) {
                 this.rootPage = HomePage;
@@ -141,6 +144,7 @@ export class MyApp {
     });
   }
   setupPush(){
+    
     this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
     // oneSignal.getIds().then((userID) => {
     //   console.log(userID.userId);
@@ -153,8 +157,12 @@ export class MyApp {
       this.oneSignal.handleNotificationOpened().subscribe((res) => {
       
       })
+      this.oneSignal.getIds().then((token)=>{
+        this.token = token.userId;
+      })
       this.oneSignal.endInit();
   }
+ 
   openPage(page) {
     this.nav.push(page.component);
   }
