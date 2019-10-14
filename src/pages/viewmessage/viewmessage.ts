@@ -147,7 +147,6 @@ export class ViewmessagePage {
   quotesForm() {
     this.navCtrl.push(BuilderquotesPage, this.docID);
  //  console.log(value);
-   
   }
   getRequest(){
     this.db.collection('Request').doc(this.userDetails.docID).onSnapshot(doc => {

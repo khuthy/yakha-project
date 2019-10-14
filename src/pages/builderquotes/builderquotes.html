@@ -118,9 +118,9 @@
         </div>
       </div>
     </div>
-    <div class="button-group" (click)="createPdf()">
+    <div class="button-group" >
         <p>Send Quotes</p>
-         <button class="send-quotes" ion-fab  color="light">
+         <button class="send-quotes" ion-fab (click)="createPdf()" color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
