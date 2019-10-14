@@ -1,13 +1,19 @@
 <ion-content>
-  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
+  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn" >
   <p>Next</p>
   <div class="nextFab">
-  <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>
+  <button  ion-fab   ><ion-icon name="arrow-forward" style="color:black"></ion-icon></button>
+</div>
+</div>
+<div *ngIf="!nextbutton" class="nextbutton" (click)="createQuations(quotationForm)" class="btn" >
+  <p>Done</p>
+  <div class="nextFab">
+  <button  ion-fab   ><ion-icon name="arrow-forward" style="color:black"></ion-icon></button>
 </div>
 </div>
 
 <div *ngIf="backButton" (click)="gohome()" class="backButton">
-  <button ion-fab >Back</button>
+  <button ion-fab style="background:rgb(204, 158, 20);" ><ion-icon name="arrow-back"></ion-icon></button>
 </div>
 <div class="topDecor">
 
@@ -29,12 +35,12 @@
           <ion-label >Start</ion-label>
           <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
         </ion-item>
-        <ion-item no-lines>
+        <ion-item no-lines style="margin-top:2%">
             <ion-label>End</ion-label>
             <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"></ion-datetime>
           </ion-item>
       </div>
-      <p style="text-align:center; font-size:3vw;letter-spacing: 1px">Please select your brick type</p>
+      <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
       <div class="bricks">
        
         <div class="cards"  *ngFor="let n of bricks" (tap)="highlight($event)" (click)="detailBricks()">
@@ -56,14 +62,14 @@
       <div class="walltype">
           <p>Select wall type</p>
         <div class="inputs">
-          <div><ion-item no-lines>
-            <ion-label>Double wall</ion-label>
+        <ion-item no-lines>
+            <ion-label style="color:black;letter-spacing: 0.5px;">Double wall</ion-label>
             <ion-radio checked="" value=""></ion-radio>
-          </ion-item></div>
-          <div><ion-item no-lines>
-              <ion-label>Single wall</ion-label>
-              <ion-radio checked="false" value=""></ion-radio>
-            </ion-item></div>
+          </ion-item>
+         <ion-item no-lines>
+              <ion-label style="color:black;letter-spacing: 0.5px;">Single wall</ion-label>
+              <ion-radio style="font-size:2vw" checked="false" value=""></ion-radio>
+            </ion-item>
         </div>
       </div>
 </div>
@@ -151,7 +157,8 @@
      </div> <!-- end of houseplan -->
      
      <div class="extraz">
-       <p>Extras</p>
+       <p id="headex">Extras</p>
+           <p></p>                         
      </div>
          </div>
      

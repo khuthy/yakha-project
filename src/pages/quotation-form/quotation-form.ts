@@ -59,6 +59,7 @@ export class QuotationFormPage {
  
 /* Three steps to take */
 steps = 'stepone';
+label = 'Next';
 
 slideone = document.getElementsByClassName('slideone')
 slidetwo = document.getElementsByClassName('secon')
@@ -146,11 +147,14 @@ extraName;
       
       if (this.steps == 'stepone') {
         this.steps = 'steptwo';
+        this.nextbutton = true;
         setTimeout(()=> {
           this.nextslide()
         },500)
       } else if (this.steps == 'steptwo') {
         this.steps = 'stepthree';
+        this.nextbutton = false;
+       
         setTimeout(()=> {
           this.nextslide()
         },500)
