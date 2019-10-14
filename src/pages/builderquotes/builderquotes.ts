@@ -119,7 +119,7 @@ export class BuilderquotesPage {
     private sms: SMS
   ) {
     this.userMsg = this.navParams.data;
-    // console.log(this.quotes.hOwnerUID);
+     console.log('data',this.userMsg);
 
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -404,7 +404,7 @@ export class BuilderquotesPage {
       duration: 2000,
       content: 'Loading'
     }).present();
-    if (this.plt.is('cordova')) {
+    
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
         let date = Date();
@@ -434,11 +434,7 @@ export class BuilderquotesPage {
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
         })
       });
-    } else {
-      // On a browser simply use download!
       this.pdfObj.download();
-      /* this.pdfObj.upload(); */
-    }
   }
   downloadPdf() {
     /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{

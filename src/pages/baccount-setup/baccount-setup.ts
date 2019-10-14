@@ -42,6 +42,7 @@ export class BaccountSetupPage {
     image: '',
     fullName: '',
     isProfile: true,
+    personalNumber: null,
     gender: '',
     certified: false,
     roof: false,
@@ -82,6 +83,7 @@ export class BaccountSetupPage {
     this.profileForm = this.formBuilder.group({
       fullName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
       gender: new FormControl('', Validators.compose([Validators.required])),
+      personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
       certified: new FormControl('', Validators.compose([Validators.required])),
       experience: new FormControl('', Validators.compose([Validators.required])),
       roof: new FormControl('', Validators.compose([Validators.required])),
@@ -229,6 +231,9 @@ export class BaccountSetupPage {
     'gender': [{
       type: 'required', message: 'Field is required'
     }],
+    'personalNumber': [
+      { type: 'required', message: 'Cellnumber is required.' }
+    ],
     'image': [{
       type: 'required', message: 'Field is required'
     }],
@@ -276,6 +281,7 @@ export class BaccountSetupPage {
           this.profileImage = doc.data().image;
           this.builderProfile.fullName = doc.data().fullName;
           this.builderProfile.gender = doc.data().gender;
+          this.builderProfile.personalNumber  = doc.data().personalNumber;
           this.builderProfile.certified = doc.data().certified;
           this.builderProfile.roof = doc.data().roof;
           this.builderProfile.experiences = doc.data().experiences;
@@ -343,6 +349,7 @@ export interface builderProfile {
   image?: string;
   fullName: string,
   gender: string,
+  personalNumber :number,
   certified: string,
   roof: string,
   experiences: string,
