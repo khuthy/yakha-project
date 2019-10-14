@@ -413,10 +413,12 @@ export class BuilderquotesPage {
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
         //  console.log(results);
           // results.downloadURL
-          firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
-            console.log(url);
-            this.pdfDoc = url;
-            this.quotes.pdfLink = url;
+          console.log('PDF url.................',results.downloadURL);
+          
+        //  firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+           // console.log(url);
+            this.pdfDoc = results.downloadURL;
+            this.quotes.pdfLink = results.downloadURL;
             this.loader.create({
               duration: 2000,
               content: 'Loading'
@@ -435,7 +437,7 @@ export class BuilderquotesPage {
                   //   console.log(smsRes);
                     
                   // });
-                  console.log('user found...........................................................................');
+                  //console.log('user found...........................................................................');
                   
                    //this.oneSignal.getIds().then(ids => {
                      //console.log(ids);
@@ -459,16 +461,17 @@ export class BuilderquotesPage {
             });
             //this.navCtrl.setRoot(SuccessPage);
 
-          })
-          console.log('pdf', this.pdfDoc);
-          console.log(this.quotes.pdfLink);
+        //  })
+          console.log('pdf.........', this.pdfDoc);
+          console.log('..........................pdf from array',this.quotes.pdfLink);
         })
         this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
         })
       });
-    } else {
+    } 
+    else {
       // On a browser simply use download!
       this.pdfObj.download();
       /* this.pdfObj.upload(); */

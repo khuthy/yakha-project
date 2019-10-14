@@ -1,6 +1,6 @@
 // http://ionicframework.com/docs/theming/
 
-
+@import '~magic.css/magic.min.css';
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,7 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-@import url('https://fonts.googleapis.com/css?family=Montserrat:200&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -22,9 +22,7 @@
 
     
 }
-.content {
-    font-family: 'Montserrat', sans-serif;
-}
+
 
 .scroll-content {
     padding-bottom: 0 !important;
@@ -186,11 +184,9 @@
         }
         .builder {
             height: 15vh;
-            width: 100%;
+            width: 15vh;
             object-fit: cover;
-            align-self: flex-start;
-            justify-self: flex-start;
-            margin: 0;
+            border-radius: 50%;
         }
         article {
             height: 30%;
@@ -209,7 +205,7 @@
              }      
 
             p {
-                font-size: 100%;
+                font-size: 2.6vh;
                 line-height: 0.9;
                 text-align: center;
                 margin: auto;
@@ -238,10 +234,14 @@
             flex-direction: column;
             p {
                 margin: 2%;
-                font-size: 100%;
+                font-size: 3vh;
                 }
               .icon {
-               font-size: 100%;
+               font-size: 4.5vh
+               
+            }
+            .badge {
+               font-size: 2vh;
             }
             .move {
               position: relative;

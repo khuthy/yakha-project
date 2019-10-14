@@ -93,7 +93,7 @@
             <button end class="btn-border" ion-fab mini style="background: transparent; box-shadow: none;color: #333;" (click)="childMinus(item,i)">
             <ion-icon ios="ios-remove" md="md-remove" end></ion-icon>
           </button>
-          <button ion-fab color="customize">{{extras[i].data.quantity}}</button>
+          <button ion-fab color="light">{{extras[i].data.quantity}}</button>
           <button class="btn-border" style="background: transparent; box-shadow: none;color: #333;" ion-fab mini
           (click)="childPlus(item, i)">
           <ion-icon ios="ios-add" md="md-add"></ion-icon>
@@ -118,9 +118,9 @@
         </div>
       </div>
     </div>
-    <div class="button-group" (click)="createPdf()">
+    <div class="button-group" >
         <p>Send Quotes</p>
-         <button class="send-quotes" ion-fab  color="light">
+         <button class="send-quotes" ion-fab (click)="createPdf()" color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
