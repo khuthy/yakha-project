@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { BuilderquotesPage } from '../builderquotes/builderquotes';
 
 /**
  * Generated class for the MessagesPage page.
@@ -38,23 +39,25 @@ export class MessagesPage {
       public authServes: AuthServiceProvider
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
-      res.forEach((doc)=>{
-        this.dbIncoming.doc(doc.id).update({viewed: true})
+      res.forEach((doc)=>{ 
+        if(doc.data().viewed==false){
+           this.dbIncoming.doc(doc.id).update({viewed: true})
+        }
         this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
-       // this.qDoc = doc.id;
-        console.log(this.messages);
-
-        //this.honwerUID = doc.data().uid;
-      //  console.log(doc.data().hOwnerUid);
-        this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
-        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-          let msgData = {incoming:info.data(), sent:doc.data(), user:res.data(), builder: builderData.data()}
-          this.messages.push(msgData);
-         // this.hownerName = ;
-          console.log(this.messages);
-        })
-        })
-        })
+          // this.qDoc = doc.id;
+          // console.log(this.messages);
+         // this.qDoc = info.data().pdfLink;
+           //this.honwerUID = doc.data().uid;
+         //  console.log(doc.data().hOwnerUid);
+           this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
+           this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
+             let msgData = {incoming:info.data(), sent:doc.data(), user:res.data(), builder: builderData.data()}
+             this.messages.push(msgData);
+            // this.hownerName = ;
+           //  console.log(this.messages);
+           })
+           })
+           })
       })
     })
   }
@@ -63,10 +66,12 @@ export class MessagesPage {
     this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
   }
     
-  downloadPDF(){
-    this.fileOpener.open(this.qDoc, 'application/pdf')
+  downloadPDF(file){
+    this.fileOpener.open(file, 'application/pdf')
     .then(() => console.log('File is opened'))
-    .catch(e => console.log('Error opening file', e));
+    .catch(e => console.log('Error opening file', e)); 
+   // console.log(file);
+    
 }
 
 

@@ -42,7 +42,6 @@ $colors: (
   button      : #0071BC,
   button2     : #F15A24,
   custom      : #216D7B,
-  customize: #fff,
   transparent : rgba(0, 0, 0, 0.24),
   yakha       : (
     base      : rgba(197, 101, 66, 0.966),
@@ -63,11 +62,11 @@ $fab-size: 39px;
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-$range-md-padding-horizontal: 0;
-$range-md-padding-vertical: 0;
+$range-md-padding-horizontal: 10px;
+$range-md-padding-vertical: -10px;
 $range-md-pin-padding-vertical: 0;
 $range-md-pin-padding-horizontal: 5px;
-
+$range-md-hit-height: 4px;
 $alert-md-list-border-bottom: 0px;
 // App Windows Variables
 // --------------------------------------------------
