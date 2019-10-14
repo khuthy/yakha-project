@@ -78,7 +78,9 @@ form {
 .button-group {
     margin-top: 30px;
     margin-bottom: 30px;
-    
+    position: sticky;
+    bottom: 0;
+    right: 0;
     background: color($colors, primary);
     padding-left: 15px;
     display: flex;
