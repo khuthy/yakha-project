@@ -394,6 +394,7 @@ export class BuilderquotesPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
     this.downloadUrl();
+    this .quotes.pdfLink =
     this.saveData();    
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
