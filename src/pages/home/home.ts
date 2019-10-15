@@ -50,6 +50,7 @@ export class HomePage {
     lat: 0,
     lng: 0
   }
+   msgStatus;
   total: number;
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
@@ -66,6 +67,8 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+   
+   
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
@@ -201,7 +204,7 @@ export class HomePage {
         latLngBounds: SA_BOUNDS,
         strictBounds: true,
       },
-      zoom: 15,
+      zoom: 11,
       disableDefaultUI: true,
       styles: [
         {
@@ -523,13 +526,14 @@ export class HomePage {
     //  document.getElementById('map').style.display = "block";
     this.builder = [];
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
-      this.owner = [];
+      
       document.getElementById('req').style.display = "flex";
       document.getElementById('map').style.display = "none";
       res.forEach((doc) => {
-        this.db.doc(doc.data().hOwnerUid).get().then((res) => {
+        this.db.doc(doc.data().hOwnerUid).onSnapshot((res) => {
           data.owner = res.data();
           data.builder = doc.data();
+          this.owner = [];
           this.owner.push(data);
           console.log(this.owner);
           data = {

@@ -6,10 +6,24 @@
 -->
 
 <ion-content>
-    <ion-item no-lines>
-        <ion-input type="text" placeholder="Write a message.."></ion-input>
+  <h3>Reviews</h3>
+    <ionic3-star-rating #rating id="ratings" *ngIf="!rateValue"
+      activeIcon = "ios-star"
+      defaultIcon = "ios-star-outline"
+      activeColor = "#3c7f8b" 
+      defaultColor = "#3c7f8b"
+      readonly="false"
+      rating="1"
+      fontSize = "32px"
+      (ratingChanged)="logRatingChange($event)" style="margin: auto;">
+    </ionic3-star-rating>
+    <div *ngIf="rateValue">
+          <ion-item no-lines>
+        <ion-input type="text" [(ngModel)]="msg" placeholder="Write a message.."></ion-input>
       </ion-item>    
       <ion-item no-lines>
           <button ion-button (click)="save()">Comment</button>
         </ion-item> 
+    </div>
+
 </ion-content>

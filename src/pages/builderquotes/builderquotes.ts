@@ -73,7 +73,7 @@ export class BuilderquotesPage {
     subtotal: 0,
     dateCreated: Date(),
     viewed : false,
-    msgStatus: false
+    msgStatus: ''
   }
   meter = 2;
   pdfObj = null;
