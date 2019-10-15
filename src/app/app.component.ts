@@ -148,10 +148,7 @@ export class MyApp {
   setupPush(){
     
     this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
-    // oneSignal.getIds().then((userID) => {
-    //   console.log(userID.userId);
-      
-    // })
+   
        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
       this.oneSignal.handleNotificationReceived().subscribe((res) => {
     
