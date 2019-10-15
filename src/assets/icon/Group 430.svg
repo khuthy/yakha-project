@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="633" height="1370" viewBox="0 0 633 1370">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1c3452"/>
+      <stop offset="1" stop-color="#0c1e35"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_430" data-name="Group 430" transform="translate(3144.151 -2547)">
+    <g id="Rectangle_233" data-name="Rectangle 233" transform="translate(-3144.151 2547)" stroke="#707070" stroke-width="1" fill="url(#linear-gradient)">
+      <rect width="633" height="1370" stroke="none"/>
+      <rect x="0.5" y="0.5" width="632" height="1369" fill="none"/>
+    </g>
+    <g id="Group_427" data-name="Group 427" transform="translate(-2892.608 3183.072)">
+      <g id="logo" transform="translate(0 0)">
+        <g id="Layer_1" data-name="Layer 1" transform="translate(0 0)">
+          <path id="Path_28" data-name="Path 28" d="M980.5,266.9V245.5h29.578s7.929-.126,7.929,8.181V278.1l-18.753-18.376-9.943,16.236S987.674,271.427,980.5,266.9Z" transform="translate(-918.45 -245.499)" fill="#ffedb7"/>
+          <path id="Path_29" data-name="Path 29" d="M745.3,272.114s-8.558-3.4-14.1-2.391v12.964H719.5v-8.307L745.3,255.5Z" transform="translate(-690.3 -254.241)" fill="#ffedb7"/>
+          <path id="Path_30" data-name="Path 30" d="M533.188,245.5,491.4,275.707h-3.9l29.2-19.383v-3.9s-.881-6.922,7.8-6.922Z" transform="translate(-487.5 -245.5)" fill="#ffedb7"/>
+          <path id="Path_31" data-name="Path 31" d="M875.6,479.429H860.5v33.983h6.041a12.247,12.247,0,0,0,9.062-3.995,26.1,26.1,0,0,0,3.272-5.067H866.541l14.474-24.921c.063-1.7-3.587-6.734-5.412-7.929Z" transform="translate(-813.553 -443.055)" fill="#ffedb7"/>
+          <path id="Path_32" data-name="Path 32" d="M1023.5,744.185h26.431a8.865,8.865,0,0,0,5.034-6.293l30.836,2.391s-1.888.378-5.034-4.783h-51.855S1025.64,742.422,1023.5,744.185Z" transform="translate(-956.038 -673.827)" fill="#ffedb7"/>
+          <path id="Path_33" data-name="Path 33" d="M1084.626,473.826l24.291-.126v-9.691l9.755,9.754h4.72L1091.8,444.5l-7.3,13.216S1087.9,464.134,1084.626,473.826Z" transform="translate(-1009.36 -419.453)" fill="#ffedb7"/>
+          <path id="Path_34" data-name="Path 34" d="M860.5,427.793V421.5s6.671.126,8.055,3.147v3.147Z" transform="translate(-813.553 -399.348)" fill="#ffedb7"/>
+          <path id="Path_35" data-name="Path 35" d="M1004.535,595.5a31.722,31.722,0,0,1-1.007,9.314H999.5Z" transform="translate(-935.059 -551.448)" fill="#ffedb7"/>
+          <path id="Path_36" data-name="Path 36" d="M581.224,534.5H548.5l21.522,2.014v24.291s0,7.552,9.817,6.671v9.44h1.384Z" transform="translate(-540.822 -498.126)" fill="#ffedb7"/>
+          <line id="Line_12" data-name="Line 12" x1="1.53" y2="1.559" transform="translate(98.048 32.664)" fill="none"/>
+          <line id="Line_13" data-name="Line 13" x1="0.982" y2="0.999" transform="translate(97.699 31.783)" fill="none"/>
+          <line id="Line_14" data-name="Line 14" x1="0.983" y2="1.001" transform="translate(96.802 30.901)" fill="none"/>
+          <line id="Line_15" data-name="Line 15" x1="0.983" y2="0.999" transform="translate(95.905 30.02)" fill="none"/>
+          <line id="Line_16" data-name="Line 16" x1="0.982" y2="0.999" transform="translate(95.008 29.138)" fill="none"/>
+          <line id="Line_17" data-name="Line 17" x1="1.532" y2="1.559" transform="translate(93.561 28.257)" fill="none"/>
+          <line id="Line_18" data-name="Line 18" x1="0.982" y2="1.001" transform="translate(93.123 27.287)" fill="none"/>
+          <line id="Line_19" data-name="Line 19" x1="0.982" y2="0.999" transform="translate(92.226 26.406)" fill="none"/>
+          <line id="Line_20" data-name="Line 20" x1="0.983" y2="0.999" transform="translate(91.328 25.525)" fill="none"/>
+          <line id="Line_21" data-name="Line 21" x1="0.983" y2="0.999" transform="translate(90.431 24.644)" fill="none"/>
+          <line id="Line_22" data-name="Line 22" x1="1.532" y2="1.559" transform="translate(88.985 23.762)" fill="none"/>
+          <line id="Line_23" data-name="Line 23" x1="0.982" y2="0.999" transform="translate(88.637 22.881)" fill="none"/>
+          <line id="Line_24" data-name="Line 24" x1="0.982" y2="0.999" transform="translate(87.74 22)" fill="none"/>
+          <line id="Line_25" data-name="Line 25" x1="0.982" y2="0.999" transform="translate(86.842 21.119)" fill="none"/>
+          <line id="Line_26" data-name="Line 26" x1="0.982" y2="1.001" transform="translate(85.945 20.236)" fill="none"/>
+          <line id="Line_27" data-name="Line 27" x1="1.532" y2="1.559" transform="translate(84.498 19.355)" fill="none"/>
+          <line id="Line_28" data-name="Line 28" x1="0.982" y2="0.999" transform="translate(84.15 18.474)" fill="none"/>
+          <line id="Line_29" data-name="Line 29" x1="0.982" y2="0.999" transform="translate(83.253 17.593)" fill="none"/>
+          <line id="Line_30" data-name="Line 30" x1="0.982" y2="0.999" transform="translate(82.355 16.712)" fill="none"/>
+          <g id="Group_156" data-name="Group 156" transform="translate(14.311 1.218)">
+            <line id="Line_31" data-name="Line 31" x2="0.969" y2="1.343" transform="translate(26.611 2.21)" fill="#999"/>
+            <line id="Line_32" data-name="Line 32" x2="0.969" y2="1.343" transform="translate(27.631 1.474)" fill="#999"/>
+            <line id="Line_33" data-name="Line 33" x2="0.97" y2="1.343" transform="translate(28.65 0.736)" fill="#999"/>
+            <line id="Line_34" data-name="Line 34" x2="1.513" y2="2.096" transform="translate(29.67)" fill="#999"/>
+            <line id="Line_35" data-name="Line 35" x2="0.969" y2="1.343" transform="translate(25.592 2.946)" fill="#999"/>
+            <line id="Line_36" data-name="Line 36" x2="1.513" y2="2.096" transform="translate(24.572 3.683)" fill="#999"/>
+            <line id="Line_37" data-name="Line 37" x2="0.97" y2="1.343" transform="translate(23.551 4.419)" fill="#999"/>
+            <line id="Line_38" data-name="Line 38" x2="0.97" y2="1.343" transform="translate(22.532 5.155)" fill="#999"/>
+            <line id="Line_39" data-name="Line 39" x2="0.97" y2="1.343" transform="translate(21.512 5.893)" fill="#999"/>
+            <line id="Line_40" data-name="Line 40" x2="0.97" y2="1.343" transform="translate(20.493 6.629)" fill="#999"/>
+            <line id="Line_41" data-name="Line 41" x2="1.514" y2="2.096" transform="translate(19.473 7.365)" fill="#999"/>
+            <line id="Line_42" data-name="Line 42" x2="0.97" y2="1.343" transform="translate(18.454 8.102)" fill="#999"/>
+            <line id="Line_43" data-name="Line 43" x2="0.97" y2="1.343" transform="translate(17.434 8.838)" fill="#999"/>
+            <line id="Line_44" data-name="Line 44" x2="0.97" y2="1.343" transform="translate(16.415 9.576)" fill="#999"/>
+            <line id="Line_45" data-name="Line 45" x2="0.97" y2="1.343" transform="translate(15.395 10.312)" fill="#999"/>
+            <line id="Line_46" data-name="Line 46" x2="1.513" y2="2.094" transform="translate(14.376 11.048)" fill="#999"/>
+            <line id="Line_47" data-name="Line 47" x2="0.97" y2="1.343" transform="translate(13.255 11.859)" fill="#999"/>
+            <line id="Line_48" data-name="Line 48" x2="0.97" y2="1.343" transform="translate(12.235 12.595)" fill="#999"/>
+            <line id="Line_49" data-name="Line 49" x2="0.97" y2="1.343" transform="translate(11.216 13.331)" fill="#999"/>
+            <line id="Line_50" data-name="Line 50" x2="0.969" y2="1.343" transform="translate(10.196 14.068)" fill="#999"/>
+            <line id="Line_51" data-name="Line 51" x2="1.513" y2="2.096" transform="translate(9.177 14.804)" fill="#999"/>
+            <line id="Line_52" data-name="Line 52" x2="0.969" y2="1.343" transform="translate(8.157 15.541)" fill="#999"/>
+            <line id="Line_53" data-name="Line 53" x2="0.969" y2="1.343" transform="translate(7.138 16.278)" fill="#999"/>
+            <line id="Line_54" data-name="Line 54" x2="0.97" y2="1.343" transform="translate(6.117 17.014)" fill="#999"/>
+            <line id="Line_55" data-name="Line 55" x2="0.97" y2="1.343" transform="translate(5.097 17.75)" fill="#999"/>
+            <line id="Line_56" data-name="Line 56" x2="1.514" y2="2.096" transform="translate(4.078 18.487)" fill="#999"/>
+            <line id="Line_57" data-name="Line 57" x2="0.97" y2="1.343" transform="translate(3.058 19.224)" fill="#999"/>
+            <line id="Line_58" data-name="Line 58" x2="0.97" y2="1.343" transform="translate(2.039 19.961)" fill="#999"/>
+            <line id="Line_59" data-name="Line 59" x2="0.97" y2="1.343" transform="translate(1.019 20.697)" fill="#999"/>
+            <line id="Line_60" data-name="Line 60" x2="1.514" y2="2.096" transform="translate(0 21.433)" fill="#999"/>
+          </g>
+          <line id="Line_61" data-name="Line 61" x1="0.02" y1="2.186" transform="translate(75.901 59.592)" fill="none"/>
+          <line id="Line_62" data-name="Line 62" x1="0.013" y1="1.401" transform="translate(77.166 60.366)" fill="none"/>
+          <line id="Line_63" data-name="Line 63" x1="0.013" y1="1.401" transform="translate(78.425 60.355)" fill="none"/>
+          <line id="Line_64" data-name="Line 64" x1="0.013" y1="1.401" transform="translate(79.682 60.344)" fill="none"/>
+          <line id="Line_65" data-name="Line 65" x1="0.013" y1="1.401" transform="translate(80.94 60.332)" fill="none"/>
+          <line id="Line_66" data-name="Line 66" x1="0.019" y1="2.186" transform="translate(82.191 59.535)" fill="none"/>
+          <line id="Line_67" data-name="Line 67" x1="0.013" y1="1.401" transform="translate(83.581 60.308)" fill="none"/>
+          <line id="Line_68" data-name="Line 68" x1="0.013" y1="1.401" transform="translate(84.839 60.297)" fill="none"/>
+          <line id="Line_69" data-name="Line 69" x1="0.013" y1="1.401" transform="translate(86.096 60.286)" fill="none"/>
+          <line id="Line_70" data-name="Line 70" x1="0.013" y1="1.401" transform="translate(87.355 60.274)" fill="none"/>
+          <line id="Line_71" data-name="Line 71" x1="0.02" y1="2.186" transform="translate(88.605 59.478)" fill="none"/>
+          <line id="Line_72" data-name="Line 72" x1="0.013" y1="1.401" transform="translate(89.869 60.252)" fill="none"/>
+          <line id="Line_73" data-name="Line 73" x1="0.013" y1="1.401" transform="translate(91.127 60.24)" fill="none"/>
+          <line id="Line_74" data-name="Line 74" x1="0.013" y1="1.401" transform="translate(92.385 60.229)" fill="none"/>
+          <line id="Line_75" data-name="Line 75" x1="0.013" y1="1.401" transform="translate(93.643 60.218)" fill="none"/>
+          <line id="Line_76" data-name="Line 76" x1="0.019" y1="2.186" transform="translate(94.894 59.421)" fill="none"/>
+          <line id="Line_77" data-name="Line 77" x1="0.013" y1="1.401" transform="translate(96.158 60.195)" fill="none"/>
+          <line id="Line_78" data-name="Line 78" x1="0.013" y1="1.401" transform="translate(97.416 60.184)" fill="none"/>
+          <line id="Line_79" data-name="Line 79" x1="0.013" y1="1.401" transform="translate(98.674 60.172)" fill="none"/>
+          <g id="Group_157" data-name="Group 157" transform="translate(40.399 38.732)">
+            <line id="Line_80" data-name="Line 80" x2="1.656" y2="0.003" transform="translate(0.074 3.773)" fill="#999"/>
+            <line id="Line_81" data-name="Line 81" x2="1.658" y2="0.004" transform="translate(0.077 2.515)" fill="#999"/>
+            <line id="Line_82" data-name="Line 82" x2="1.656" y2="0.004" transform="translate(0.081 1.257)" fill="#999"/>
+            <line id="Line_83" data-name="Line 83" x2="2.584" y2="0.005" transform="translate(0.083)" fill="#999"/>
+            <line id="Line_84" data-name="Line 84" x2="1.656" y2="0.004" transform="translate(0.072 5.031)" fill="#999"/>
+            <line id="Line_85" data-name="Line 85" x2="2.584" y2="0.006" transform="translate(0.069 6.288)" fill="#999"/>
+            <line id="Line_86" data-name="Line 86" x2="1.658" y2="0.004" transform="translate(0.065 7.545)" fill="#999"/>
+            <line id="Line_87" data-name="Line 87" x2="1.656" y2="0.004" transform="translate(0.063 8.804)" fill="#999"/>
+            <line id="Line_88" data-name="Line 88" x2="1.656" y2="0.004" transform="translate(0.06 10.061)" fill="#999"/>
+            <line id="Line_89" data-name="Line 89" x2="1.656" y2="0.004" transform="translate(0.058 11.319)" fill="#999"/>
+            <line id="Line_90" data-name="Line 90" x2="2.585" y2="0.005" transform="translate(0.054 12.577)" fill="#999"/>
+            <line id="Line_91" data-name="Line 91" x2="1.656" y2="0.004" transform="translate(0.052 13.835)" fill="#999"/>
+            <line id="Line_92" data-name="Line 92" x2="1.656" y2="0.004" transform="translate(0.049 15.092)" fill="#999"/>
+            <line id="Line_93" data-name="Line 93" x2="1.658" y2="0.004" transform="translate(0.045 16.351)" fill="#999"/>
+            <line id="Line_94" data-name="Line 94" x2="1.658" y2="0.004" transform="translate(0.043 17.608)" fill="#999"/>
+            <line id="Line_95" data-name="Line 95" x2="2.584" y2="0.006" transform="translate(0.04 18.865)" fill="#999"/>
+            <line id="Line_96" data-name="Line 96" x2="1.658" y2="0.004" transform="translate(0.036 20.25)" fill="#999"/>
+            <line id="Line_97" data-name="Line 97" x2="1.658" y2="0.004" transform="translate(0.034 21.507)" fill="#999"/>
+            <line id="Line_98" data-name="Line 98" x2="1.656" y2="0.004" transform="translate(0.031 22.765)" fill="#999"/>
+            <line id="Line_99" data-name="Line 99" x2="1.656" y2="0.004" transform="translate(0.029 24.022)" fill="#999"/>
+            <line id="Line_100" data-name="Line 100" x2="2.585" y2="0.005" transform="translate(0.025 25.281)" fill="#999"/>
+            <line id="Line_101" data-name="Line 101" x2="1.656" y2="0.004" transform="translate(0.023 26.538)" fill="#999"/>
+            <line id="Line_102" data-name="Line 102" x2="1.656" y2="0.004" transform="translate(0.02 27.795)" fill="#999"/>
+            <line id="Line_103" data-name="Line 103" x2="1.656" y2="0.004" transform="translate(0.018 29.054)" fill="#999"/>
+            <line id="Line_104" data-name="Line 104" x2="1.658" y2="0.004" transform="translate(0.014 30.311)" fill="#999"/>
+            <line id="Line_105" data-name="Line 105" x2="2.585" y2="0.006" transform="translate(0.011 31.569)" fill="#999"/>
+            <line id="Line_106" data-name="Line 106" x2="1.656" y2="0.004" transform="translate(0.009 32.827)" fill="#999"/>
+            <line id="Line_107" data-name="Line 107" x2="1.656" y2="0.004" transform="translate(0.006 34.085)" fill="#999"/>
+            <line id="Line_108" data-name="Line 108" x2="1.658" y2="0.004" transform="translate(0.003 35.342)" fill="#999"/>
+            <line id="Line_109" data-name="Line 109" x2="2.585" y2="0.005" transform="translate(0 36.601)" fill="#999"/>
+          </g>
+        </g>
+      </g>
+      <text id="Yakha" transform="translate(23.621 92.981)" fill="#ffedb7" font-size="13" font-family="SegoeUI, Segoe UI" letter-spacing="0.743em"><tspan x="0" y="0">YAKHA</tspan></text>
+    </g>
+  </g>
+</svg>

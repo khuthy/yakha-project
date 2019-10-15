@@ -2,12 +2,12 @@
   <div class="status" *ngIf="status">
     <div class="container" *ngIf="!isProfile">
 
-       <!--  <div  class="nextbutton"  class="btn">
+ <div  class="nextbutton"  class="btn">
             <p>Next</p>
             <div class="nextFab">
             <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>
           </div>
-          </div> -->
+          </div> 
           
           <div  class="steps">
            <p>Step 1/2</p>
@@ -149,14 +149,14 @@
 
 
      <!-- profile for builder starts here view and edit -->
-    <div class="profiles" *ngIf="isProfile">
+    <div id="pro" class="profiles" *ngIf="isProfile">
         <div class="header">
-            <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
-           
-              <div class="group-button" (click)="SignOut()">
+<!--             <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+ -->           
+             <!--  <div class="group-button" (click)="SignOut()">
               <p>Logout</p>
               <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
-            </div>
+            </div> -->
           </div>
       
       <div class="propic">
@@ -164,17 +164,21 @@
         <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
         <div class="names">
        <h4>{{builderProfile.fullName}}</h4>
-       <p>{{builderProfile.address}}</p>
+       <p id="adres">{{builderProfile.address}}</p>
      </div>
-     <div class="certify" *ngIf="builderProfile.certified">
-        <p>C</p>
-     </div>
+     
        
     </div>
    
     <div class="infocontent">
-        
-      <h3>PROFILE</h3>
+      <div class="certify" *ngIf="builderProfile.certified">
+          <h3>PROFILE</h3>
+        <p><img src="../../assets/icon/Path 123.svg" height="100%">
+        <span id="certy" style="font-size: 3vh; font-weight: 600;">C</span>
+        </p>
+  
+     </div>
+    
 
       <p>Gender</p>
       <h5>{{builderProfile.gender}}</h5>
@@ -194,7 +198,7 @@
       <div class="button">
           <div class="btn" (click)="editProfile()">
             <p>Edit</p>
-            <button ion-fab mini><ion-icon name="arrow-forward" ></ion-icon></button>
+            <button ion-fab mini><ion-icon name="arrow-forward" style="color:black;" ></ion-icon></button>
           
           </div>
         </div>

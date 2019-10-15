@@ -1,3 +1,9 @@
+<ion-header no-border>
+  <ion-navbar color="primary">
+    <ion-title>version</ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content>
   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
@@ -47,7 +53,7 @@
             [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
         </ion-item>
       </div>
-      <p style="text-align:center; font-size:3vw;letter-spacing: 1px">Please select your brick type</p>
+      <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
       <div class="bricks">
 
         <div class="cards" *ngFor="let n of bricks" (tap)="highlight(n)">
@@ -69,15 +75,6 @@
       <div class="walltype">
         <p>Select wall type</p>
         <ion-list radio-group class="inputs"  [(ngModel)]="HomeOwnerQuotation.wallType">
-          <!-- <div><ion-item no-lines> -->
-          <!-- <ion-label>Double wall</ion-label>
-            <ion-radio  value=""></ion-radio>
-          </ion-item></div>
-          <div><ion-item no-lines>
-              <ion-label>Single wall</ion-label>
-              <ion-radio  value=""></ion-radio>
-            </ion-item></div> -->
-
           <ion-item>
             <ion-label>Double</ion-label>
             <ion-radio style="width: 30px;" value="double"></ion-radio>
@@ -87,7 +84,6 @@
             <ion-label>Single</ion-label>
             <ion-radio style="width: 30px;" value="single"></ion-radio>
           </ion-item>
-          <!-- </ion-item> -->
         </ion-list>
 
       </div>
