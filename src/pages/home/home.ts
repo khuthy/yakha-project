@@ -20,6 +20,7 @@ export class HomePage {
   //input: any;
   db = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
+  dbFeeback = firebase.firestore().collection('Feedback');
   items: any;
   info = false;
   builder = [];
@@ -52,6 +53,7 @@ export class HomePage {
   }
    msgStatus;
   total: number;
+  avgRate;
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -67,15 +69,14 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-   
-   
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-
+       
+        
       }
       if (res.data().builder == true) {
         this.getRequests();
@@ -98,6 +99,7 @@ export class HomePage {
   }
 
   moveMapEvent() {
+     
     let currentIndex = this.slides.getActiveIndex();
     let currentEvent = this.builder[currentIndex];
     // this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng })
@@ -155,14 +157,33 @@ export class HomePage {
       duration: 2000
     }).present()
   }
+  
   getBuilders() {
+    
+    
     this.db.where('builder', '==', true).onSnapshot((res) => {
       this.builder = [];
       
       res.forEach((doc) => {
         if (doc.data().address) {
           // this.errorMessage('User found',doc.id)
+
+       
+            this.dbFeeback.where('builder','==',doc.data().uid).onSnapshot((res)=>{
+              let sumRate = 0;
+              let numRated = 0;
+              numRated = res.size;
+              for (let index = 0; index < res.docs.length; index++) {
+               // const element = res.docs[index].data();
+                sumRate = res.docs[index].data().rating;
+                this.avgRate = sumRate/numRated;
+                console.log(this.avgRate);
+                
+              }
+            })
           this.builder.push(doc.data());
+        
+        
           // console.log(this.builder);
           let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
           let marker = new google.maps.Marker({
@@ -368,7 +389,8 @@ export class HomePage {
       ]
     });
     this.getBuilders();
-
+    
+    
 
     setTimeout(() => {
       let input = document.getElementsByClassName('pac-input')
@@ -529,11 +551,12 @@ export class HomePage {
       
       document.getElementById('req').style.display = "flex";
       document.getElementById('map').style.display = "none";
+      this.owner = [];
       res.forEach((doc) => {
         this.db.doc(doc.data().hOwnerUid).onSnapshot((res) => {
           data.owner = res.data();
           data.builder = doc.data();
-          this.owner = [];
+         
           this.owner.push(data);
           console.log(this.owner);
           data = {

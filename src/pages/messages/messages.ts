@@ -50,6 +50,7 @@ export class MessagesPage {
   //  console.log('doc id.................', data);
    
     this.dbIncoming.doc(data).update({msgStatus:"Accepted"}).then((res)=>{
+      document.getElementById('accept').style.display="none";
       // this.messages = [];
     //  console.log('Updated document results',res);
      this.dbProfile.doc(uid).onSnapshot((msg)=>{
@@ -109,7 +110,12 @@ export class MessagesPage {
       })
     })
   this.dbFeed.where('owner','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
-    this.hideRev = res.docs;
+    res.forEach((doc)=>{
+      console.log('Feedback data for this user', doc.data());
+      
+    })
+    document.getElementById('accept').style.display="none";
+    document.getElementById('review').style.display="none";
   })
   }
  
