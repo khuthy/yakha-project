@@ -100,18 +100,18 @@ export class MyApp {
                 this.userLoggedinNow.email = user.email;
                 this.userLoggedinNow.builder = profile.data().builder;
                 this.pages = [
-                  { title: 'View Profile', component: BaccountSetupPage, icon: 'person' },
-                  { title: 'Help', component: HelpPage, icon: 'help' },
-                  { title: 'Version', component: VersionPage, icon: 'information-circle' }
+                  { title: 'View Profile', component: BaccountSetupPage, icon: 'ios-person' },
+                  { title: 'Tips', component: HelpPage, icon: 'information-circle' },
+                  { title: 'Version', component: VersionPage, icon: 'help' }
 
                 ];
               } else {
                 this.rootPage = HomePage;
                 this.pages = [
-                  { title: 'View Profile', component: AccountSetupPage, icon: 'person' },
-                  { title: 'Messages', component: MessagesPage, icon: 'mail' },
-                  { title: 'Tips', component: FeedbackPage, icon: 'help' },
-                  { title: 'Help', component: HelpPage, icon: 'paper' }
+                  { title: 'View Profile', component: AccountSetupPage, icon: 'ios-person' },
+                  { title: 'Messages', component: MessagesPage, icon: 'chatbubbles' },
+                  { title: 'Tips', component: FeedbackPage, icon: 'information-circle' },
+                  { title: 'Help', component: HelpPage, icon: 'help' }
                 ];
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName

@@ -1,6 +1,6 @@
 // http://ionicframework.com/docs/theming/
 
-@import '~magic.css/magic.min.css';
+
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,6 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@import '~magic.css/magic.min.css';
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -191,25 +192,32 @@
         article {
             height: 30%;
             //border: 1px solid rgb(43, 43, 99);
+            width: 90%;
             display: flex;
             align-items: center;
             flex-direction: column;
             position: relative;
             &::after {
                height: 1px;
-               width: 100%;
+            
                background: #707070;
                position: absolute;
                content: '';
-                 bottom: -50%;
+                 bottom: -20%;
+                left: 0;
+                right: 0;
              }      
 
             p {
-                font-size: 2.6vh;
+                font-size: 3vh;
                 line-height: 0.9;
                 text-align: center;
                 margin: auto;
                 color: #fff;
+                font-weight: 500;
+                letter-spacing: .1em;
+                font-family: Arial, Helvetica, sans-serif;
+
             }
         }
 
@@ -224,9 +232,9 @@
         justify-content: center;
         .box {
             height: 20%;
-            width: 90%;
+            width: 80%;
             background: #fff;   
-            margin: 1%;
+            margin: 3%;
             border-radius: 6px;
             display: flex;
             justify-content: center;
@@ -234,10 +242,11 @@
             flex-direction: column;
             p {
                 margin: 2%;
-                font-size: 3vh;
+                font-size: 2.5vh;
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
                 }
               .icon {
-               font-size: 4.5vh
+               font-size: 6.5vh
                
             }
             .badge {
@@ -260,6 +269,7 @@
             text-align: right;
             width: 90%;
             margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
         }
     }
 }
