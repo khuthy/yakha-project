@@ -87,6 +87,16 @@
                </div>
           </div>
           <div class="rate" *ngIf="b.certified"><p style="font-size: 2.5vh;">C</p></div>
+          <ionic3-star-rating #rating id="ratings"
+                 activeIcon = "ios-star"
+                 defaultIcon = "ios-star-outline"
+                 activeColor = "#3c7f8b"
+                 defaultColor = "#3c7f8b"
+                 readonly="false"
+                 rating="1"
+                 fontSize = "15px"
+                 (ratingChanged)="logRatingChange($event)">
+               </ionic3-star-rating>
           <div class="button-group">
               <p>Request</p>   
               <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
