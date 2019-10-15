@@ -1,3 +1,5 @@
+import { HomePage } from './../pages/home/home';
+import { TestPage } from './../pages/test/test';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -75,7 +77,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-        this.setupPush();
+         this.setupPush();
       
         
     }
@@ -94,7 +96,7 @@ export class MyApp {
       
     })
             
-            firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
+           // firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             if (profile.data().isProfile == true && profile.data().status == true) {
               if (profile.data().builder == true) {
                 this.rootPage = HomePage;
@@ -114,7 +116,7 @@ export class MyApp {
                   { title: 'View Profile', component: AccountSetupPage, icon: 'person' },
                   { title: 'Messages', component: MessagesPage, icon: 'mail' },
                   { title: 'Tips', component: FeedbackPage, icon: 'help' },
-                  { title: 'Help', component: HelpPage, icon: 'paper' }
+                  { title: 'Help', component: TestPage, icon: 'paper' }
                 ];
                 this.userLoggedinNow.image = profile.data().image
                 this.userLoggedinNow.fullname = profile.data().fullName
