@@ -3,300 +3,325 @@
 
 page-help {
 
-    .header {
-        text-align: center;
-        padding: 10px;
-        .img{
-              width: 25%;
-        }
+//     .header {
+//         text-align: center;
+//         padding: 10px;
+//         .img{
+//               width: 25%;
+//         }
         
-  }
+//   }
   
-  .divtop{
-   border-radius: 0px 0px 30px 30px;
+//   .divtop{
+//    border-radius: 0px 0px 30px 30px;
   
-   height: 25%; 
-   background: #4D4D4D;
+//    height: 25%; 
+//    background: #4D4D4D;
    
-  }
+//   }
   
   
   
     
-    .con{
-          display: flex;
-          flex-direction: column;
-          margin:  5 auto;
-    }
-    .aboutus1 {
-        height: auto;
-        border: solid linear-gradient(#4D4D4D, #4D4D4D);
-        overflow: hidden;
-        margin:  5px auto;
-        width: 70%; 
-        }
-    .aboutus2 {
-        height: 60px;
-        border: black;
-        overflow: hidden;
-        margin:  5px auto;
-        width: 70%;
-        border-radius: 10px 10px 10px 10px;
-        }
-        .aboutus{
-              height: 40px;
-                border: #4D4D4D;
-              width: 100%;
-              border-radius: 10px 10px 10px 10px; 
-              background: #4D4D4D;
-        }
-        .inform{
-        height: 75%;
-        background:linear-gradient(rgb(255, 255, 255),rgba(255, 255, 255, 0)),url('../../assets/dims\ \(1\).jpg');
-          background-size: 100% auto;
-          background-repeat:no-repeat;
-          background-position:center 45vh ;
-       
-        }
-        h4{
-              color: white;
-        }
-    .container {
+//     .con{
+//           display: flex;
+//           flex-direction: column;
+//           margin:  5 auto;
+//     }
+//     .aboutus1 {
+//         height: auto;
+//         border: solid linear-gradient(#4D4D4D, #4D4D4D);
+//         overflow: hidden;
+//         margin:  5px auto;
+//         width: 70%; 
+//         }
+//     .aboutus2 {
+//         height: 60px;
+//         border: black;
+//         overflow: hidden;
+//         margin:  5px auto;
+//         width: 70%;
+//         border-radius: 10px 10px 10px 10px;
+//         }
+//         .aboutus{
+//               height: 40px;
+//                 border: #4D4D4D;
+//               width: 100%;
+//               border-radius: 10px 10px 10px 10px; 
+//               background: #4D4D4D;
+//         }
+//         .inform{
+//         height: 90%;
+//         background:linear-gradient(rgb(255, 255, 255),rgba(255, 255, 255, 0)),url('../../assets/dims\ \(1\).jpg');
+//           background-size: 100% auto;
+//           background-repeat:no-repeat;
+//           background-position:center 45vh ;
+//        }
+//         h4{
+//               color: white;
+//         }
+//     .container {
      
-        position: relative;
-         margin: 0 auto;
-        background: color($colors, light);
-        transition-property: all;
-        transition-duration: 2s;
-        transition-timing-function: ease-in-out;
-        -o-transition-timing-function: ease-in-out;
-        -moz-transition-timing-function: ease-in-out;
-        .header { 
-            width:100%;
-            height:13%;
-            background-position: top right;
-            background-repeat: no-repeat;
-            background-size: 50%;
-            border: none;
+//         position: relative;
+//          margin: 0 auto;
+//         background: color($colors, light);
+//         transition-property: all;
+//         transition-duration: 2s;
+//         transition-timing-function: ease-in-out;
+//         -o-transition-timing-function: ease-in-out;
+//         -moz-transition-timing-function: ease-in-out;
+//         .header { 
+//             width:100%;
+//             height:13%;
+//             background-position: top right;
+//             background-repeat: no-repeat;
+//             background-size: 50%;
+//             border: none;
 
             
-        }
-        .headerOwner { 
-            background:url(../../assets/imgs/ownerShape.svg); 
-            width:100%;
-            height:13%;
-            background-position: top right;
-            background-repeat: no-repeat;
-            background-size: 50%;
-            border: none;
+//         }
+//         .headerOwner { 
+//             background:url(../../assets/imgs/ownerShape.svg); 
+//             width:100%;
+//             height:13%;
+//             background-position: top right;
+//             background-repeat: no-repeat;
+//             background-size: 50%;
+//             border: none;
 
             
-        }
-        .logo {
+//         }
+//         .logo {
 
-            // height:35%;
-            //border: 1px solid green;
-            width: 100%;
-            // padding-top: 10px;
-            // padding-bottom: 2px;
-            background-image: url(../../assets/imgs/waverotate.svg);
-            background-size: cover;
-            background-position: 25% center;
-            background-repeat: no-repeat;
-            // margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            align-content: center;
-    }
+//             // height:35%;
+//             //border: 1px solid green;
+//             width: 100%;
+//             // padding-top: 10px;
+//             // padding-bottom: 2px;
+//             background-image: url(../../assets/imgs/waverotate.svg);
+//             background-size: cover;
+//             background-position: 25% center;
+//             background-repeat: no-repeat;
+//             // margin: auto;
+//             display: flex;
+//             flex-direction: column;
+//             align-items: center;
+//             justify-content: center;
+//             align-content: center;
+//     }
 
-        h1 {
-            color:#216D7B;
-            font-family:'Segoe UI';
-            font-size: 4vh;
-            letter-spacing: 1px;
-        }
+//         h1 {
+//             color:#216D7B;
+//             font-family:'Segoe UI';
+//             font-size: 4vh;
+//             letter-spacing: 1px;
+//         }
 
-        .form {
-            //border: 1px solid yellow;
-            width:90%;
-            position: relative;
-            left:5%;
-        }
-        h3 {//border:1px solid red;
-            text-align:center;
-            //margin-top:100px;
+//         .form {
+//             //border: 1px solid yellow;
+//             width:90%;
+//             position: relative;
+//             left:5%;
+//         }
+//         h3 {//border:1px solid red;
+//             text-align:center;
+//             //margin-top:100px;
            
-        }
-        #describe{
-           // border:1px solid green;
-            text-align:center;
-        }
-        ion-list > .item {
-            // box-shadow: 0 4px 8px 0 rgba(168, 165, 165, 0.2), 0 6px 20px 0 rgba(150, 144, 144, 0.19);
-            border-radius: 10px;
-            margin-top: 3%;
+//         }
+//         #describe{
+//            // border:1px solid green;
+//             text-align:center;
+//         }
+//         ion-list > .item {
+//             // box-shadow: 0 4px 8px 0 rgba(168, 165, 165, 0.2), 0 6px 20px 0 rgba(150, 144, 144, 0.19);
+//             border-radius: 10px;
+//             margin-top: 3%;
           
     
-            ion-label {
-              color: #4D4D4D; 
-              letter-spacing: 1px;
-              font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            }
-            ion-input {
-              color: #4D4D4D;
-              letter-spacing: 1px;
-              font-weight:300;
-              border-bottom: none;
-            }
-            p {
-             // color: rgb(246, 22, 22);
-              font-size: 3vw;
-              text-align: center;
-              //margin-top:-15%;
-            }
-          }
-    /*     .box {
-            margin: 0 auto;
-            max-width: 100%;
-            display: flex;
-            justify-content: center;
-        .card {
-            width: 85%;
-            margin: 1%;
-            display: flex;
-            align-items: center;
-            height: 8vh;
-            border-radius: 5px;
-                .icon {
-                font-size: 20px;
-                width: 30px;
-                color:#216D7B;
+//             ion-label {
+//               color: #4D4D4D; 
+//               letter-spacing: 1px;
+//               font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+//             }
+//             ion-input {
+//               color: #4D4D4D;
+//               letter-spacing: 1px;
+//               font-weight:300;
+//               border-bottom: none;
+//             }
+//             p {
+//              // color: rgb(246, 22, 22);
+//               font-size: 3vw;
+//               text-align: center;
+//               //margin-top:-15%;
+//             }
+//           }
+//     /*     .box {
+//             margin: 0 auto;
+//             max-width: 100%;
+//             display: flex;
+//             justify-content: center;
+//         .card {
+//             width: 85%;
+//             margin: 1%;
+//             display: flex;
+//             align-items: center;
+//             height: 8vh;
+//             border-radius: 5px;
+//                 .icon {
+//                 font-size: 20px;
+//                 width: 30px;
+//                 color:#216D7B;
                
-            }
-            p{
-                font-weight: 600;
-                white-space: nowrap;
-                text-align: left;
+//             }
+//             p{
+//                 font-weight: 600;
+//                 white-space: nowrap;
+//                 text-align: left;
            
-                font-size: 2vh;
-                font-family:'Segoe UI';
-                color:white;
-                letter-spacing: 1px;
-            }
-        }
-        .accordia {
-            border: 1px solid #216D7B;
-            padding: 20px;
-        }
-        .hide {
-            display: none;
-            transition: 700ms;
-        }
-        .show {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            overflow-y: scroll;
-            height: 90%;
-            color: #fff;
+//                 font-size: 2vh;
+//                 font-family:'Segoe UI';
+//                 color:white;
+//                 letter-spacing: 1px;
+//             }
+//         }
+//         .accordia {
+//             border: 1px solid #216D7B;
+//             padding: 20px;
+//         }
+//         .hide {
+//             display: none;
+//             transition: 700ms;
+//         }
+//         .show {
+//             display: flex;
+//             position: fixed;
+//             bottom: 0;
+//             left: 0;
+//             right: 0;
+//             overflow: hidden;
+//             overflow-y: scroll;
+//             height: 90%;
+//             color: #fff;
           
            
            
-            background: rgba(36, 35, 35, 0.925);
-            padding: 1em;
+//             background: rgba(36, 35, 35, 0.925);
+//             padding: 1em;
            
-            .close {
-                display: flex;
-                justify-content: flex-end;
-              //  border:1pz solid rgb(0, 255, 55);
-                button {
-                    background: rgba(36, 35, 35, 0.925);
-                    text-align: center; 
-                    .icon {
-                        font-size: 500%;
-                    }
-                }
-            }
-        }
-    } */
-    .box {
-        position: relative;
-        margin: 0 auto;
-        width: 85%;
+//             .close {
+//                 display: flex;
+//                 justify-content: flex-end;
+//               //  border:1pz solid rgb(0, 255, 55);
+//                 button {
+//                     background: rgba(36, 35, 35, 0.925);
+//                     text-align: center; 
+//                     .icon {
+//                         font-size: 500%;
+//                     }
+//                 }
+//             }
+//         }
+//     } */
+//     .box {
+//         position: relative;
+//         margin: 0 auto;
+//         width: 85%;
         
      
 
-        .card {
-            border-radius: 10px;
-            margin: 2%;
-           .card-header {
-               padding: 20px;
-               background: #203959;
-                color: #fff;
-           }
-           .card-info {
-               padding: 10px;
-           }
-           .show {
-               display: block;
-           }
-           .hide {
-               display: none;
-           } 
-        }
-        .cardBuilder  {
-            margin: 2%;
-            border-radius: 10px;
-            .card-header {
-                padding: 20px;
-                background: #464137;
-                 color: #fff;
-            }
-            .card-info {
-                padding: 10px;
-            }
-            .show {
-                display: block;
-            } 
-            .hide {
-                display: none;
-            }
-        }
-    }
-    }
-    .bottomdeco {
-        // border:1px solid red;
-         background:url(../../assets/imgs/BuilderShapes.svg); 
-         background-position: left;
-         background-repeat: no-repeat;
-         width:100%;
-         height:35%;
-         background-position: bottom left;
-         background-repeat: no-repeat;
-         background-size: 50%;
-         position: absolute;
-         bottom:0;
-         left: -1px;
-       }
-       .bottomdecoOwner {
-        // border:1px solid red;
-         background:url(../../assets/icon/Yakha-assets/OwnerShapes.svg); 
-         background-position: left;
-         background-repeat: no-repeat;
-         width:100%;
-         height:35%;
-         background-position: bottom left;
-         background-repeat: no-repeat;
-         background-size: 50%;
-         position: absolute;
-         bottom:0;
-         left: -6%;
-       }
+//         .card {
+//             border-radius: 10px;
+//             margin: 2%;
+//            .card-header {
+//                padding: 20px;
+//                background: #203959;
+//                 color: #fff;
+//            }
+//            .card-info {
+//                padding: 10px;
+//            }
+//            .show {
+//                display: block;
+//            }
+//            .hide {
+//                display: none;
+//            } 
+//         }
+//         .cardBuilder  {
+//             margin: 2%;
+//             border-radius: 10px;
+//             .card-header {
+//                 padding: 20px;
+//                 background: #464137;
+//                  color: #fff;
+//             }
+//             .card-info {
+//                 padding: 10px;
+//             }
+//             .show {
+//                 display: block;
+//             } 
+//             .hide {
+//                 display: none;
+//             }
+//         }
+//     }
+//     }
+//     .bottomdeco {
+//         // border:1px solid red;
+//          background:url(../../assets/imgs/BuilderShapes.svg); 
+//          background-position: left;
+//          background-repeat: no-repeat;
+//          width:100%;
+//          height:35%;
+//          background-position: bottom left;
+//          background-repeat: no-repeat;
+//          background-size: 50%;
+//          position: absolute;
+//          bottom:0;
+//          left: -1px;
+//        }
+//        .bottomdecoOwner {
+//         // border:1px solid red;
+//          background:url(../../assets/icon/Yakha-assets/OwnerShapes.svg); 
+//          background-position: left;
+//          background-repeat: no-repeat;
+//          width:100%;
+//          height:35%;
+//          background-position: bottom left;
+//          background-repeat: no-repeat;
+//          background-size: 50%;
+//          position: absolute;
+//          bottom:0;
+//          left: -6%;
+//        }
  
     
+.toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+​
+  /* .navbar {
+    .toolbar-background {
+      background: greenyellow;
+    }
+  } */
+​
+  .toolbar {
+    .toolbar-background {
+      background: color($colors, primary);
+      min-height: 45px;
+      border-radius: 50px;
+    }
+}
+.top-div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: red;
+}
+
 }
