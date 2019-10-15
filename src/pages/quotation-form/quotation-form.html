@@ -172,25 +172,25 @@
 
           <h6></h6>
 
-          <p>Wall Type</p>
-          <h6></h6>
+          <p>WallType</p>
+          <h6>{{HomeOwnerQuotation.wallType}}</h6>
 
-          <p>Brick Type</p>
-          <h6></h6>
+          <p>BrickType</p>
+          <h6>{{HomeOwnerQuotation.brickType}}</h6>
 
-          <p>Roofing</p>
-          <h6></h6>
+          <!-- <p>Roofing</p>
+          <h6></h6> -->
 
         </div>
       </div> <!-- end of houseplan -->
-
-      <div class="extraz">
-        <h4>Extras</h4>
-        <p></p>
+      <!-- <div class="extraz">
+        <p>Extras</p>
+      </div> -->
+      <div class="extraz" >
+        <!-- <h4>Extras</h4> -->
+        <p *ngFor="let e of HomeOwnerQuotation.extras">{{e}}</p>
       </div>
     </div>
-
-
     <!-- end of info2 slide -->
 
   </div><!-- info div -->

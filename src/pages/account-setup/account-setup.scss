@@ -39,14 +39,16 @@ page-account-setup {
                 .item {
                     border-radius: 50px;
                     border: 1px solid brown;
+                    color: rgb(20, 20, 20);
                 }
                 ion-item {
                 outline: none;
                 border-radius: 50px;
                 position: relative;
+                // color:rgb(20, 20, 20);
                 left: 5%;
                 ion-input {
-                  color: white;
+                  color: rgb(20, 20, 20);
                   letter-spacing: 2px;
                   font-weight:250;
                   border-bottom: none;
@@ -55,7 +57,7 @@ page-account-setup {
             }
           
         .btn{
-            // border: 1px solid purple;
+            border: 1px solid purple;
         }
        }
        .bottomdeco{

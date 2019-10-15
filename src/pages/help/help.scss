@@ -51,21 +51,21 @@ page-help {
               background: #4D4D4D;
         }
         .inform{
-        height: 75%;
+        height: 90%;
         background:linear-gradient(rgb(255, 255, 255),rgba(255, 255, 255, 0)),url('../../assets/dims\ \(1\).jpg');
           background-size: 100% auto;
           background-repeat:no-repeat;
           background-position:center 45vh ;
-       
-        }
+       }
         h4{
               color: white;
         }
     .container {
-     
+        height: 100%;
         position: relative;
          margin: 0 auto;
         background: color($colors, light);
+        
         transition-property: all;
         transition-duration: 2s;
         transition-timing-function: ease-in-out;
@@ -299,4 +299,29 @@ page-help {
        }
  
     
+/* .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+    .toolbar-content {
+      .title {
+        .toolbar-title {color: #333;}
+      }
+    }
+    
+  }
+
+  
+.top-div {
+  background: color($colors, light);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background: url('../../assets/imgs/BuilderShape2.svg');
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: top right;
+}
+ */
 }

@@ -73,7 +73,7 @@ export class BuilderquotesPage {
     subtotal: 0,
     dateCreated: Date(),
     viewed : false,
-    msgStatus: false
+    msgStatus: ''
   }
   meter = 2;
   pdfObj = null;
@@ -120,7 +120,7 @@ export class BuilderquotesPage {
     private sms: SMS
   ) {
     this.userMsg = this.navParams.data;
-     console.log('data',this.userMsg);
+     console.log('data =>',this.userMsg);
 
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -144,9 +144,6 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-
-
-
     this.dbRequest.doc(this.userMsg).collection('extras').onSnapshot((res) => {
       console.log(res.docs);
 
@@ -158,14 +155,9 @@ export class BuilderquotesPage {
         this.extras.push({ item: doc.id, data: doc.data() });
 
         console.log(this.extras);
-
-
-
       })
 
     })
-
-
 
     this.dbRequest.doc(this.userMsg).onSnapshot((res) => {
       this.quotes.hOwnerUID = res.data().hOwnerUid;
@@ -412,7 +404,7 @@ export class BuilderquotesPage {
         let user = firebase.auth().currentUser.email;
         // Save the PDF to the data Directory of our App
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
-        //  console.log(results);
+          console.log('results url: ',results);
           // results.downloadURL
          firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
            // console.log(results);

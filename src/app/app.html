@@ -30,19 +30,19 @@
             <img *ngIf="!userLoggedinNow.image" src="../assets/imgs/team-avatar.jpg" [ngClass]="{'builder': userLoggedinNow.builder, 'owner': !userLoggedinNow.builder}" alt="profile">
             <article>
                <p>{{userLoggedinNow.fullname}}</p>
-            <p>{{userLoggedinNow.email}}</p>
+            <p style="font-weight: lighter; font-size:2vh;">{{userLoggedinNow.email}}</p>
             </article>
            
         </div>
         <div class="list">
             <div class="box" *ngFor="let p of pages;" menuClose (click)="openPage(p)">
                 <span *ngIf="p.title == 'Messages'" class="badge move">{{messages | number}}</span>
-                <ion-icon name="{{p.icon}}"></ion-icon>
-                <p style=" font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">{{p.title}}</p>
+                <ion-icon [name]="p.icon"></ion-icon>
+                <p>{{p.title | uppercase}}</p>
             </div>
         </div>
         <div class="versions">
-            <p class="version">{{version}}</p>
+            <p class="version"><small>{{version}}</small></p>
         </div>
       </div>
      

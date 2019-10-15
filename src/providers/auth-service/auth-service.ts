@@ -30,6 +30,7 @@ export class AuthServiceProvider {
  }
 
  loginUser(email: string,password: string): Promise<firebase.auth.UserCredential> {
+   
    return firebase.auth().signInWithEmailAndPassword(email, password);
  }
  signupUser(email: string, password: string): Promise<any> {
