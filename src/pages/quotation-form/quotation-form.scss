@@ -1,9 +1,29 @@
 page-quotation-form {
+
+  #top-div {
+    background: turquoise;
+    height: 50%;
+    position: absolute;
+    top: 0;
+  }
+   
+  #bottom-div {
+    background: turquoise;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+  }
+
   .backButton {
     position: absolute;
     top: 10px;
     left: 10px;
 
+  }
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
   }
 
   .topDecor {

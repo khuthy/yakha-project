@@ -1,3 +1,4 @@
+import { TestPage } from './../pages/test/test';
 import { OnboardingBuilderPage } from './../pages/onboarding-builder/onboarding-builder';
 import { Keyboard } from '@ionic-native/keyboard';
 /* import { GoogleMapsComponent } from './../components/google-maps/google-maps'; */
@@ -92,7 +93,8 @@ import { SMS } from '@ionic-native/sms';
     OnboardingBuilderPage,
     ProfileComponent,
     PopoverPage,
-    DescriptionComponent
+    DescriptionComponent,
+    TestPage
 
    
   ],
@@ -142,7 +144,8 @@ import { SMS } from '@ionic-native/sms';
     OnboardingBuilderPage,
     ProfileComponent,
     PopoverPage,
-    DescriptionComponent
+    DescriptionComponent,
+    TestPage,
   ],
   providers: [
     SplashScreen,

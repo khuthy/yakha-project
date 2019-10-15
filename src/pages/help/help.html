@@ -1,16 +1,22 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Header</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<!-- <ion-header>
-  <ion-navbar color="primary">
-    <ion-toolbar>
-      <ion-title>Help</ion-title>
-    </ion-toolbar>
-  </ion-navbar>
-</ion-header> -->
 <ion-content>
- 
+   <div class="top-div">
+    
+   </div>
+</ion-content>
 
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
 
-<div class="container">
+<!-- <div class="container">
   <div [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
       <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
       </div>
@@ -23,14 +29,9 @@
               <div class="aboutus" (click)="activate('about')">
                   <h4 text-center>about us</h4>
                     </div>
-                    <p>
-                      Found in May of 2018 and based in South Afica, Chris Hani Rd, Diepkloof, Johannesburg, 1862 and Johannesburg is a trusted community
-                       marketplace for people to list, discover and accept or decline bookings to unique clients around their nearest location or within
-                       their radar from a mobile phone or tablet.
-                  
-                       Whether lessons for a day or the entire week, or even the whole month, instructors even get the opportunity to enlist their specials on the app itself,
-                       which provides them with free marketing and at the same time saving them money on marketing as well as keep their business convient in other words StepDrive 
-                       is the easiest way for people to monetize their driving lessons and showcase it to the world 
+                    <p> yakha application is a platform where homeOwners and Builders meet.
+                    The homeOwner  create a request quotation to the homeBuilder Off their choice that they will find registered in the application,
+                      The homeBuilder will receive request form from homeOwner and respond  to the requested quotation in form off pdf.
                       </p>
             
           </div>
@@ -40,7 +41,8 @@
                   <h4 text-center>Terms of use</h4>
                     </div>
               
-              <p>You need to accept our terms Once you have access to our Application, you are required to abide by our policies and regulations and include our Privacy Policy.</p>
+              <p>You need to accept our terms Once you have access to our Application,
+                you are required to abide by our policies and regulations and include our Privacy Policy.</p>
           </div>
           <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
               <div class="aboutus" (click)="activate('contact')">
@@ -58,8 +60,6 @@
                       Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
                       A few require that we include their licence Agreements within our product.
                   </p>
-      
-      
           </div>
           <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
               <div class="aboutus" (click)="activate('safety')">
@@ -70,127 +70,19 @@
           </div>
       
 
-<!-- <div class="box" *ngFor="let info of information;let i=index;">
-  <div class="card" [style.backgroundColor]="builder ? '#262014' : '#203959'"  (click)="showDetails(i)">
-    <ion-icon name="{{info.icon}}"></ion-icon>
-    <p style="color: #fff;">{{info.info}}</p>
- 
-  </div>
-  <div class="accordia">
-
-  </div>
- 
-
-   <div>
-     <div class="close">
-       <button ion-button clear (click)="hideInfo()"><ion-icon name="close"></ion-icon></button>
-     </div>
-     
-      <h3>{{info.info}}</h3>
-      <p id="describe">{{info.describe}}</p>
-      <div class="form" *ngIf="form">
-      <form [formGroup]="contactForm">
-        <ion-list>
-
-            <ion-item  class="item" >
-                <ion-label stacked>Username</ion-label>
-                <ion-input type="text" formControlName="username" [(ngModel)]="contact.username"></ion-input>
-              </ion-item>
-              <div class="error" *ngFor="let validate of validation_messages.username">
-                <div class="messages" *ngIf="contactForm.get('username').hasError(validate.type) && (contactForm.get('username').dirty || contactForm.get('username').touched)">
-                  {{validate.message}}
-                </div>
-                </div>
-      
-              <ion-item  class="item" >
-                <ion-label stacked>Email address</ion-label>
-                <ion-input type="email" formControlName="email" [(ngModel)]="contact.email"></ion-input>
-              </ion-item>
-              <div class="error" *ngFor="let validate of validation_messages.email">
-                <div class="messages" *ngIf="contactForm.get('email').hasError(validate.type) && (contactForm.get('email').dirty || contactForm.get('email').touched)">
-                  {{validate.message}}
-                </div>
-                </div>
-      
-              <ion-item  class="item" >
-                <ion-label stacked> Type Message </ion-label>
-                <ion-textarea  formControlName="message" [(ngModel)]="contact.message">
-          
-                </ion-textarea>
-                
-              </ion-item>
-             
-              <button ion-button block [disabled]="!contactForm.valid" (click)="sendMessage()">Send</button>
-        </ion-list>
-       
-      </form>
-      </div>
-     
-    </div>  -->
-   
-<!-- <div class="box">
-  <div [ngClass]="{'cardBuilder' : builder, 'card': !builder}"  *ngFor="let info of information;let i=index;">
-    <div class="card-header" (click)="showDetails(i)">
-   {{info.info}}
-    </div>
-    <div [ngClass]="{'card-info show' : toggle, 'hide' : !toggle}" [style.border]="builder ? '2px solid #262014' : '2px solid #203959'">
-    <p>{{describe}}</p> </div>
-   
-
-
-  </div>
-</div> -->
 
 <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
 
   </div>
 
 </div>
-
-<!-- </ion-content> -->
-<!-- <ion-footer>
-  <p style="text-align: center;"><small><strong>All Rights Reserved</strong></small></p>
-</ion-footer> -->
-<!-- <ion-content (click)="showTab()">
-  <div class="divtop">
-      <div class="header">
-          <img src="../../assets/icon/ColorLogo-02.png" class="img">
-          <p>v1.1.0</p>
-        </div>
-  
-  
-  </div> -->
-  
-  
-  <!-- <div class="contacts">
-  <div class="number">
-    <p>Contact us: (015)-610-6358</p>
-  </div>
-   
-  </div> -->
   
   
   
   
       
-  <!-- 
-     <div class="information">
-      <h3>About Us</h3>
-      <p>
-             Whether lessons for a day or the entire week, or even the whole month, instructors even get the opportunity to enlist their specials on the app itself,
-             which provides them with free marketing and at the same time saving them money on marketing as well as keep their business convient in other words StepDrive 
-             is the easiest way for people to monetize their driving lessons and showcase it to the world 
-            </p>
-            <h3>Disclaimer</h3>
-            <p>
-                The StepDrive app stores and processes personal data that you have provided to us so that you can accept or decline bookings 
-                requests from client, It's your responsibility to keep your phone and access to the app secure.
-                We recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations
-                imposed by the official Operating System of your device. It could make your phone vulnerable to malware/viruses/malicious programs, 
-                compromise your phone's security features and it could mean that the easy that the StepDrive app won't work properly.
-            </p>
-        </div> -->
   
-  </div>
-  </ion-content>
+  
+  </div> -->
+
   

@@ -28,10 +28,12 @@
             <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
           </div>
         </div>
+        <p *ngIf="!owner">You have no requests yet</p>
         </div>
     <div #map id="map">
  
       </div>
+      
       
 <div class="searchLocation">
   <div class="yakha-search">
@@ -62,11 +64,11 @@
       <ion-item no-lines *ngIf="range">
         <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
         
-         <ion-label range-left color="primary">{{0 | currency:'&#82;'}}</ion-label>
+         <ion-label range-left color="primary">{{price | currency:'&#82;'}}</ion-label>
          <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
         </ion-range>
         </ion-item>
-        <p *ngIf="!range">These are the builders we found around this location</p> 
+        <p *ngIf="!range" style="font-size: 1.6vh; color: #000;">These are the builders we found around this location</p> 
         <button class="btn2" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt=""></button>
 </div>
     <div class="main-slide">
@@ -84,7 +86,7 @@
                   <p style="font-size:2vh; color:rgb(61, 61, 61);" *ngIf="total">{{total}} km away driving</p>
                </div>
           </div>
-          <div class="rate"><p style="font-size: 2.5vh;">{{b.experiences | number}}</p></div>
+          <div class="rate" *ngIf="b.certified"><p style="font-size: 2.5vh;">C</p></div>
           <div class="button-group">
               <p>Request</p>   
               <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
