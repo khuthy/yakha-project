@@ -19,7 +19,8 @@ page-test {
     }
     .back-button {
       background: red;
-      border-radius: 50px;  
+      border-radius: 50%;
+      min-height: 45px;  
     }
    
   }
@@ -32,22 +33,25 @@ page-test {
    // background: url(../../assets/imgs/engineering-bricks-600x263.jpg);
     top: 0;
     right:0;
-    background: url(../../assets/imgs/ownerShape.svg);
+/*     background: url(../../assets/imgs/ownerShape.svg);
     width: 50vw;
     height: 20vw;
-    background-size: 100%;
+    background-size: 100%; */
   }
   
-/*   #bottom-div {
+  #bottom-div {
    border:1px solid red;
-   width: 50vw;
-   height: 20vw;
+   /* width: 50vw;
+   height: 20vw; */
     position: absolute;
     top: 0;
-   margin-left:auto;
+    background: rgb(161, 69, 69);
+    height:100%;
+    width:100%;
+/*    margin-left:auto;
     background: url(../../assets/imgs/ownerShape.svg);
     background-repeat: no-repeat;
-    background-size: 100%;
-  } */
+    background-size: 100%; */
+  } 
 
 }
