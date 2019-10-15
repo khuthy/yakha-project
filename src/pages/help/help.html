@@ -17,6 +17,58 @@
       <div class="logo">
           <img src="../../assets/icon/Group 180.svg" style="max-width: 100px; height: auto">
          </div>
+         <div class="inform">
+  
+          <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
+              <div class="aboutus" (click)="activate('about')">
+                  <h4 text-center>about us</h4>
+                    </div>
+                    <p>
+                      Found in May of 2018 and based in South Afica, Chris Hani Rd, Diepkloof, Johannesburg, 1862 and Johannesburg is a trusted community
+                       marketplace for people to list, discover and accept or decline bookings to unique clients around their nearest location or within
+                       their radar from a mobile phone or tablet.
+                  
+                       Whether lessons for a day or the entire week, or even the whole month, instructors even get the opportunity to enlist their specials on the app itself,
+                       which provides them with free marketing and at the same time saving them money on marketing as well as keep their business convient in other words StepDrive 
+                       is the easiest way for people to monetize their driving lessons and showcase it to the world 
+                      </p>
+            
+          </div>
+         
+          <div [ngClass]="{'aboutus1': tsProperty=='terms' , 'aboutus2': tsProperty!='terms'}">
+              <div class="aboutus" (click)="activate('terms')">
+                  <h4 text-center>Terms of use</h4>
+                    </div>
+              
+              <p>You need to accept our terms Once you have access to our Application, you are required to abide by our policies and regulations and include our Privacy Policy.</p>
+          </div>
+          <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
+              <div class="aboutus" (click)="activate('contact')">
+                  <h4 text-center>Contact</h4>
+                    </div>
+                    <p>Contact us: (015)-610-6358</p>
+      
+          </div>
+          <div [ngClass]="{'aboutus1': tsProperty=='disclaimer' , 'aboutus2': tsProperty!='disclaimer'}">
+              <div class="aboutus" (click)="activate('disclaimer')">
+                  <h4 text-center> Disclaimer</h4>
+                    </div>
+              
+                    <p>
+                      Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
+                      A few require that we include their licence Agreements within our product.
+                  </p>
+      
+      
+          </div>
+          <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
+              <div class="aboutus" (click)="activate('safety')">
+                  <h4 text-center>safety information</h4>
+                    </div>
+              
+              <p>We keep your personal information private and safe and put you in control</p>
+          </div>
+      
 
 <!-- <div class="box" *ngFor="let info of information;let i=index;">
   <div class="card" [style.backgroundColor]="builder ? '#262014' : '#203959'"  (click)="showDetails(i)">
@@ -76,7 +128,7 @@
      
     </div>  -->
    
-<div class="box">
+<!-- <div class="box">
   <div [ngClass]="{'cardBuilder' : builder, 'card': !builder}"  *ngFor="let info of information;let i=index;">
     <div class="card-header" (click)="showDetails(i)">
    {{info.info}}
@@ -87,7 +139,7 @@
 
 
   </div>
-</div>
+</div> -->
 
 <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
 
@@ -95,7 +147,50 @@
 
 </div>
 
-</ion-content>
+<!-- </ion-content> -->
 <!-- <ion-footer>
   <p style="text-align: center;"><small><strong>All Rights Reserved</strong></small></p>
 </ion-footer> -->
+<!-- <ion-content (click)="showTab()">
+  <div class="divtop">
+      <div class="header">
+          <img src="../../assets/icon/ColorLogo-02.png" class="img">
+          <p>v1.1.0</p>
+        </div>
+  
+  
+  </div> -->
+  
+  
+  <!-- <div class="contacts">
+  <div class="number">
+    <p>Contact us: (015)-610-6358</p>
+  </div>
+   
+  </div> -->
+  
+  
+  
+  
+      
+  <!-- 
+     <div class="information">
+      <h3>About Us</h3>
+      <p>
+             Whether lessons for a day or the entire week, or even the whole month, instructors even get the opportunity to enlist their specials on the app itself,
+             which provides them with free marketing and at the same time saving them money on marketing as well as keep their business convient in other words StepDrive 
+             is the easiest way for people to monetize their driving lessons and showcase it to the world 
+            </p>
+            <h3>Disclaimer</h3>
+            <p>
+                The StepDrive app stores and processes personal data that you have provided to us so that you can accept or decline bookings 
+                requests from client, It's your responsibility to keep your phone and access to the app secure.
+                We recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations
+                imposed by the official Operating System of your device. It could make your phone vulnerable to malware/viruses/malicious programs, 
+                compromise your phone's security features and it could mean that the easy that the StepDrive app won't work properly.
+            </p>
+        </div> -->
+  
+  </div>
+  </ion-content>
+  

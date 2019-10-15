@@ -72,7 +72,8 @@ export class BuilderquotesPage {
     hOwnerUID: null,
     subtotal: 0,
     dateCreated: Date(),
-    viewed : false
+    viewed : false,
+    msgStatus: false
   }
   meter = 2;
   pdfObj = null;
@@ -119,7 +120,7 @@ export class BuilderquotesPage {
     private sms: SMS
   ) {
     this.userMsg = this.navParams.data;
-    // console.log(this.quotes.hOwnerUID);
+     console.log('data',this.userMsg);
 
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -393,7 +394,7 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.downloadUrl();
+    
     this.saveData();    
     this.downloadPdf();
     this.navCtrl.setRoot(SuccessPage)
@@ -404,7 +405,7 @@ export class BuilderquotesPage {
       duration: 2000,
       content: 'Loading'
     }).present();
-   
+    
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
         let date = Date();
@@ -413,28 +414,28 @@ export class BuilderquotesPage {
         firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
         //  console.log(results);
           // results.downloadURL
-         // firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
-            console.log(results);
-            this.pdfDoc = results.downloadURL;
-            this.quotes.pdfLink = results.downloadURL;
-            console.log('url', results.downloadURL);
-            
+         firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+           // console.log(results);
+            this.pdfDoc = url;
+           // this.quotes.pdfLink = this.pdfDoc;
+            console.log('pdf link from storage............:',this.pdfDoc);
+           // console.log('pdf link............:', this.quotes.pdfLink);
             this.loader.create({
               duration: 2000,
               content: 'Loading'
             }).present();
             //this.navCtrl.setRoot(SuccessPage);
 
-          //})
-          console.log('pdf', this.pdfDoc);
-          console.log(this.quotes.pdfLink);
+          })
+          // console.log('pdf', this.pdfDoc);
+          // console.log(this.quotes.pdfLink);
         })
         this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
           // Open the PDf with the correct OS tools
           this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
         })
       });
-   
+      this.pdfObj.download();
   }
   downloadPdf() {
     /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{
@@ -442,6 +443,10 @@ export class BuilderquotesPage {
         }) */
   }
   saveData(){
+    this.downloadUrl();
+    this.quotes.pdfLink = this.pdfDoc;
+    console.log('doc found...........................................................................', this.pdfDoc);
+    console.log('quotes pdf link found>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.pdfDoc);
     this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
       this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
        // console.log(resReq.data());
@@ -454,7 +459,7 @@ export class BuilderquotesPage {
           //   console.log(smsRes);
             
           // });
-          console.log('user found...........................................................................');
+          
           
            //this.oneSignal.getIds().then(ids => {
              //console.log(ids);

@@ -1,0 +1,53 @@
+page-test {
+
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+
+  /* .navbar {
+    .toolbar-background {
+      background: greenyellow;
+    }
+  } */
+
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+      
+    }
+    .back-button {
+      background: red;
+      border-radius: 50px;  
+    }
+   
+  }
+
+  #top-div {
+    //border:5px solid green;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+   // background: url(../../assets/imgs/engineering-bricks-600x263.jpg);
+    top: 0;
+    right:0;
+    background: url(../../assets/imgs/ownerShape.svg);
+    width: 50vw;
+    height: 20vw;
+    background-size: 100%;
+  }
+  
+/*   #bottom-div {
+   border:1px solid red;
+   width: 50vw;
+   height: 20vw;
+    position: absolute;
+    top: 0;
+   margin-left:auto;
+    background: url(../../assets/imgs/ownerShape.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+  } */
+
+}

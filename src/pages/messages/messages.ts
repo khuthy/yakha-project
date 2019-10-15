@@ -6,6 +6,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /**
  * Generated class for the MessagesPage page.
@@ -36,7 +37,8 @@ export class MessagesPage {
       private fileOpener: FileOpener,
       public elementref: ElementRef,
       public renderer: Renderer2,
-      public authServes: AuthServiceProvider
+      public authServes: AuthServiceProvider,
+      public oneSignal: OneSignal
       ) {
     this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{ 
@@ -51,7 +53,7 @@ export class MessagesPage {
          //  console.log(doc.data().hOwnerUid);
            this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
            this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-             let msgData = {incoming:info.data(), sent:doc.data(), user:res.data(), builder: builderData.data()}
+             let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
              this.messages.push(msgData);
             // this.hownerName = ;
            //  console.log(this.messages);
@@ -61,7 +63,40 @@ export class MessagesPage {
       })
     })
   }
-
+  acceptQoute(data, uid){
+    console.log('doc id.................', data);
+    
+    this.dbMessage.doc(data).update({msgStatus:true}).then((res)=>{
+      console.log('Updated document results',res);
+     this.dbProfile.doc(uid).onSnapshot((msg)=>{
+      var notificationObj = {
+        contents: { en: "Hey " + msg.data().fullName+" ," + "your qoutation response has been accepted"},
+        include_player_ids: [msg.data().tokenID],
+      };
+      this.oneSignal.postNotification(notificationObj).then(res => {
+        // console.log('After push notifcation sent: ' +res);
+        
+       });
+     }) 
+    });
+  }
+  declineQoute(data,uid){
+    console.log('data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data);
+    
+    this.dbMessage.doc(data).delete().then((res)=>{
+      console.log('Deleted document results',res); 
+      this.dbProfile.doc(uid).onSnapshot((msg)=>{
+        var notificationObj = {
+          contents: { en: "Hey " + msg.data().fullName+" ," + "your qoutation response has been declined"},
+          include_player_ids: [msg.data().tokenID],
+        };
+        this.oneSignal.postNotification(notificationObj).then(res => {
+          // console.log('After push notifcation sent: ' +res);
+          
+         });
+       }) 
+    });
+  }
   ionViewDidLoad() {
     this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
   }

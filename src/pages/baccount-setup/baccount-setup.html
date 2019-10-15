@@ -2,12 +2,12 @@
   <div class="status" *ngIf="status">
     <div class="container" *ngIf="!isProfile">
 
-       <!--  <div  class="nextbutton"  class="btn">
+ <div  class="nextbutton"  class="btn">
             <p>Next</p>
             <div class="nextFab">
             <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>
           </div>
-          </div> -->
+          </div> 
           
           <div  class="steps">
            <p>Step 1/2</p>
@@ -54,13 +54,23 @@
                               <ion-option value="Male">Male</ion-option>
                             </ion-select>
                           </ion-item>
-
-                  
-                          <input  type="text" placeholder="Phone number" name="email">
+                          
+                          <input  formControlName="personalNumber" placeholder="Phone number" name="personalNumber" [(ngModel)]="builderProfile.personalNumber" ngDefaultControl type="tel" maxlength="10">
+                          <div class="error" style="color:red" *ngFor="let validate of validation_messages.personalNumber">
+                             <div class="messages"
+                               *ngIf="profileForm.get('personalNumber').hasError(validate.type) && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">
+                               {{validate.message}}
+                             </div>
+                           </div>
                     
-
                           <input formControlName="address" ngx-google-places-autocomplete [options]='options'
                           #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                          <div class="error" style="color:red" *ngFor="let validate of validation_messages.address">
+                            <div class="messages"
+                              *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+                              {{validate.message}}
+                            </div>
+                          </div>
 
                             <button id=skip ion-button (click)="nextslides()">Next</button>
                    
@@ -68,6 +78,15 @@
                   </div>
           
                 </ion-list>
+                <!-- <ion-item class="item">
+                  <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" 
+                  style="border: none; width: 100%"/>
+                </ion-item>
+                <ion-label class="error" *ngFor="let validate of validation_messages.address">
+                 <p class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
+                   {{validate.message}}
+                 </p>
+                 </ion-label>  -->
                 
               </ion-slide>
 
@@ -130,14 +149,14 @@
 
 
      <!-- profile for builder starts here view and edit -->
-    <div class="profiles" *ngIf="isProfile">
+    <div id="pro" class="profiles" *ngIf="isProfile">
         <div class="header">
-            <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
-           
-              <div class="group-button" (click)="SignOut()">
+<!--             <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+ -->           
+             <!--  <div class="group-button" (click)="SignOut()">
               <p>Logout</p>
               <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
-            </div>
+            </div> -->
           </div>
       
       <div class="propic">
@@ -145,17 +164,21 @@
         <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
         <div class="names">
        <h4>{{builderProfile.fullName}}</h4>
-       <p>{{builderProfile.address}}</p>
+       <p id="adres">{{builderProfile.address}}</p>
      </div>
-     <div class="certify" *ngIf="builderProfile.certified">
-        <p>C</p>
-     </div>
+     
        
     </div>
    
     <div class="infocontent">
-        
-      <h3>PROFILE</h3>
+      <div class="certify" *ngIf="builderProfile.certified">
+          <h3>PROFILE</h3>
+        <p><img src="../../assets/icon/Path 123.svg" height="100%">
+        <span id="certy" style="font-size: 3vh; font-weight: 600;">C</span>
+        </p>
+  
+     </div>
+    
 
       <p>Gender</p>
       <h5>{{builderProfile.gender}}</h5>
@@ -175,7 +198,7 @@
       <div class="button">
           <div class="btn" (click)="editProfile()">
             <p>Edit</p>
-            <button ion-fab mini><ion-icon name="arrow-forward" ></ion-icon></button>
+            <button ion-fab mini><ion-icon name="arrow-forward" style="color:black;" ></ion-icon></button>
           
           </div>
         </div>

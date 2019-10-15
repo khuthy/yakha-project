@@ -3,11 +3,7 @@
     <name>yakha-project</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
     <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
@@ -124,4 +120,5 @@
     <allow-navigation href="http://192.168.1.111:8100" />
     <allow-navigation href="http://192.168.1.105:8100" />
     <allow-navigation href="http://192.168.137.1:8101" />
+    <allow-navigation href="http://192.168.1.105:8101" />
 </widget>
