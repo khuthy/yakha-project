@@ -1,6 +1,13 @@
 
 <ion-content >
- 
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+            <div class="lds-hourglass"></div>
+        </div>
+        <div class="loading-text">
+          <p>Loading Map</p>
+        </div>
+      </div>
   <div class="header" *ngIf="header">
      <img src="../../assets/icon/Yakha-assets/BuilderShape2.svg" alt="" class="fixed-image"> 
   
@@ -35,7 +42,7 @@
  
       </div>
       
-      
+     
 <div class="searchLocation">
   <div class="yakha-search">
    
@@ -76,9 +83,9 @@
     <div class="main-slide">
 <ion-slides class="slide-moment" #slides spaceBetween="-65" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
-      <div class="card">
+      <div class="card" >
 
-          <div class="image">
+          <div class="image" (click)="viewBuilderInfo(b)">
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
               <img *ngIf="!b.image" src="../../assets/imgs/team-avatar.jpg" class="thumbnail-image" alt="tough">
             <div class="text-holder" text-left style="font-size: 2.5vh;">
@@ -104,7 +111,7 @@
           </div>
           
              
-          <div class="button-group">
+          <div class="button-group" (click)="rShortcut(b.uid)">
               <p>Request</p>   
               <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          

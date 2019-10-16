@@ -30,7 +30,7 @@ export class HomePage {
   status: string = '';
   maps: boolean = false;
   request: boolean = false;
-
+  loaderAnimate = true
   ownerUID: string;
   ownerName;
   ownerImage: any;
@@ -75,6 +75,10 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+    setTimeout(() => {
+      
+      this.loaderAnimate = false
+    }, 2000);
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
@@ -109,7 +113,7 @@ export class HomePage {
     let currentIndex = this.slides.getActiveIndex();
     let currentEvent = this.builder[currentIndex];
     // this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng })
-    this.loadCtrl();
+    //this.loadCtrl();
     this.geolocation.getCurrentPosition().then((resp) => {
       let geoData = {
         lat: resp.coords.latitude,
@@ -179,7 +183,8 @@ export class HomePage {
 
       //>>>>>>> get the reviews made for this builder
       res.forEach(async (doc) => {
-        data.builder = doc.data()
+        if (doc.data().address!=="") {
+           data.builder = doc.data()
         this.builder.push(doc.data())
         // data.builder
        
@@ -209,11 +214,13 @@ export class HomePage {
         // data.builder = {}
         data.rate.average = null
         
+        }
+       
         
       })
-      console.log('Loop 2 done');
+   //   console.log('Loop 2 done');
       
-      console.log(this.builder);
+     // console.log(this.builder);
       this.calcAvg()
     })
   }
@@ -244,7 +251,7 @@ export class HomePage {
 
             
           })
-          console.log('Loop 1 done');
+        //  console.log('Loop 1 done');
           //>>>>>>> calculate the average
           Average = avgSum / avgTotal.length;
           build.avg = Average
@@ -262,7 +269,7 @@ export class HomePage {
         
       })
       
-          console.log('AVG CALCULATION >>>>>>>>>',this.buildesAverage);
+        //  console.log('AVG CALCULATION >>>>>>>>>',this.buildesAverage);
       
     }
 
@@ -607,7 +614,9 @@ export class HomePage {
   requestForm(){
     this.navCtrl.push(QuotationFormPage)
   }
-
+  rShortcut(uid) {
+    this.navCtrl.push(QuotationFormPage, uid);
+  }
   getRequests() {
     // this.request = true;
     let data = {

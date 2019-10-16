@@ -96,7 +96,7 @@ export class MyApp {
       
     })
             
-            firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
+         //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             if (profile.data().isProfile == true && profile.data().status == true) {
               if (profile.data().builder == true) {
                 this.rootPage = HomePage;
