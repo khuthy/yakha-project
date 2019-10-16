@@ -7,6 +7,7 @@
     <div class="title">
       <div class="button" >
          <ion-icon menuToggle name="menu"></ion-icon>
+         <button ion-button (click)="gotwst()">gotest</button> 
       </div>
       <div class="titlecase"><h3 style="font-size: 3.5vh;">REQUESTS</h3></div>
       <p></p>
@@ -37,6 +38,7 @@
       
 <div class="searchLocation">
   <div class="yakha-search">
+   
     <button ion-fab small menuToggle><ion-icon name="menu"></ion-icon></button>
    <input type="text" class="pac-input" id="pac-input" placeholder="Search by Location">
 </div> 
@@ -74,7 +76,7 @@
     <div class="main-slide">
 <ion-slides class="slide-moment" #slides spaceBetween="-65" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
-      <div class="card" (click)="viewBuilderInfo(b)">
+      <div class="card">
 
           <div class="image">
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
@@ -104,7 +106,7 @@
              
           <div class="button-group">
               <p>Request</p>   
-              <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
+              <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          
             </div>
         <!-- <div class="info">
@@ -114,6 +116,7 @@
           </div>
 
         </div> -->
+        
  </div> 
  </ion-slide>
  </ion-slides>  
