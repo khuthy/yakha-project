@@ -65,6 +65,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { SMS } from '@ionic-native/sms';
 import { ChannelsPage } from '../pages/channels/channels';
+import { PasswordResetComponent } from '../components/password-reset/password-reset';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,7 @@ import { ChannelsPage } from '../pages/channels/channels';
     BaccountSetupPage,
     SuccessPage,
     PlacePage,
-    
+    PasswordResetComponent,
     WelcomePage,
     ViewmessagePage,
     
@@ -131,7 +132,7 @@ import { ChannelsPage } from '../pages/channels/channels';
     MessagesPage,
     HelpPage,
     FeedbackPage,
-   
+    PasswordResetComponent,
     VersionPage,
     ForgotPasswordPage,
     SignoutPage,

@@ -41,7 +41,8 @@ margin-bottom: auto;
           height:35%;
           background-position: top right;
           background-repeat: no-repeat;
-          background-size: 50%;
+          background-size: 40%;
+          z-index: -1;
       }
       .builderTopShape {
           background:url(../../assets/icon/Yakha-assets/BuilderShape2.svg); 
@@ -49,7 +50,8 @@ margin-bottom: auto;
           height:35%;
           background-position: top right;
           background-repeat: no-repeat;
-          background-size: 50%;
+          background-size: 40%;
+          z-index: -1;
           
       }  
 
@@ -81,6 +83,7 @@ margin-bottom: auto;
         .item {
           background:#586B83;
           margin-top: 20px;
+          color: #fff;
            //border: 1px solid red;
          //  line-height: 20px;
   }
@@ -114,6 +117,7 @@ margin-bottom: auto;
         background-size: 40%;
         position: relative;
         bottom:0;
+        z-index: -1;
       }
       .bottomdecoBuilder {
         background:url(../../assets/icon/Yakha-assets/BuilderShapes.svg); 
@@ -124,6 +128,7 @@ margin-bottom: auto;
         background-size: 50%;
         position: relative;
         bottom:0;
+        z-index: -1;
       }
 
      .div-fab{
@@ -162,17 +167,20 @@ margin-bottom: auto;
           // background-color: #586B83;
            // flex: 1;
             width: 150px;
-            height: 6vh;
+            //height: 10vh;
          }
          #hide-div > .div-fab{
          // background-color: antiquewhite;
-          height: 15%;
+          height: 7vh;
           width: 35% ;
+          
          }
 
          .div-fab{
            display: flex;
-           word-wrap: wrap none;
+           flex-direction: row;
+           justify-content: space-evenly;
+           align-items: center;
            //justify-content: center;
          }
          .div-fab> p{
@@ -184,6 +192,10 @@ margin-bottom: auto;
            //width: 100px;
          }
        
+        }
+        .message-error {
+          max-width: 80%;
+          margin: auto;
         }
   
 }

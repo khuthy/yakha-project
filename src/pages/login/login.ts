@@ -15,6 +15,7 @@ import { state, trigger, transition, animate, style } from '@angular/animations'
 
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -111,6 +112,40 @@ export class LoginPage {
   }
   forgotpassword() {
     this.navCtrl.push(ForgotPasswordPage)
+  }
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Reset Password',
+      inputs: [
+        {
+          name: 'Enter Email address',
+          placeholder: 'Email address'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset Password',
+          handler: data => {
+            if (data) {
+              // logged in!
+              console.log('check your email', data);
+              
+            } else {
+              // invalid login
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   loginUser() {

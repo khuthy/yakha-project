@@ -7,7 +7,7 @@
         <div class="logo" id="hide-div2" *ngIf="!hid">
             <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
             <div id="logo">
-                <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 80px; height: auto">
+                <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 100px; height: auto">
                 <img *ngIf="builder"  src="../../assets/icon/Yakha-assets/Group 180.svg" style="max-width: 100px; height: auto">
               <p [style.color]="builder ? '#000': '#f2f2f2'">{{getUser}}</p>
             </div>
@@ -25,35 +25,27 @@
                     <ion-input placeholder="Email" formControlName="email" type="email" (ionFocus)="checkKeyboard('open')"
                     (ionBlur)="checkKeyboard('close')" ngDefaultControl>
                   </ion-input><ion-icon name="ios-at-outline" color="light" item-left></ion-icon>
-                 <p  style="color:red;text-align:center"   *ngIf="!signupForm.controls['email'].valid
-                && signupForm.controls['email'].touched">  Please enter a valid email.</p> 
                </ion-item> 
-       <p *ngIf="signupForm.get('email').hasError('required') && (signupForm.get('email').dirty || signupForm.get('email').touched)"
-       style="color:red;text-align:center">Email address is required</p>
-     <p *ngIf="signupForm.get('email').hasError('pattern') && (signupForm.get('email').dirty || signupForm.get('email').touched)"
-       style="color:red;text-align:center">Please enter a valid email address</p>
+              <p class="error message-error" *ngIf="signupForm.get('email').hasError('required') && (signupForm.get('email').dirty || signupForm.get('email').touched)">Email address is required</p>
+              <p class="error message-error" *ngIf="signupForm.get('email').hasError('pattern') && (signupForm.get('email').dirty || signupForm.get('email').touched)">Please enter a valid email address</p>
               <!-- end of first item -->
 
            <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}" style="margin-top:5%;">
               <ion-input placeholder="Password" formControlName="password" type="password"
               (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input> <ion-icon name="key" color="light" item-left></ion-icon>
-            <p style="background: transparent; color: rgb(246, 22, 22);text-align: center;" class="error-message" *ngIf="!signupForm.controls['password'].valid  &&
-            signupForm.controls['password'].touched">   Your password needs more than 6 characters.</p>
-            </ion-item >
-            <p *ngIf="signupForm.get('password').hasError('required') && (signupForm.get('password').dirty || signupForm.get('password').touched)"
-            style="color:red;text-align:center">password is required</p>
-          <p *ngIf="signupForm.get('password').hasError('minlength') && (signupForm.get('password').dirty || signupForm.get('password').touched)"
-            style="color:red;text-align:center">Password must be more than 6 characters </p>
+            </ion-item>
+            <p class="error message-error" *ngIf="signupForm.get('password').hasError('required') && (signupForm.get('password').dirty || signupForm.get('password').touched)">password is required</p>
+            <p class="error message-error" *ngIf="signupForm.get('password').hasError('minlength') && (signupForm.get('password').dirty || signupForm.get('password').touched)">Password must be more than 6 characters </p>
              
             <!-- bottom styling and buttons -->
             
 
           <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
-              <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'">
+              <div class="div-fab" style=" padding-left: 2%;" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'">
   
-                <button ion-fab class="arr-fwd"  (click)="goLogin()" style="height: 6vh; width: 40px;margin: 5px;">
+                <button ion-fab color="light"  (click)="goLogin()" style="height: 6vh; width: 6vh;">
                   <ion-icon name="arrow-round-back"></ion-icon>
                 </button>
                 <p style="color: white">Sign In </p>
@@ -62,9 +54,9 @@
   
   
   
-              <div class="div-fab" style="border-radius: 30px 0px 0px 30px;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
+              <div class="div-fab" style="border-radius: 50px 0px 0px 50px;  padding-right: 2%;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
                 <p style="color: white">Sign Up </p>
-                <button ion-fab class="arr-fwd" (click)="signupUser(signupForm)" style="height: 6vh; width: 40px;margin: 5px;">
+                <button ion-fab color="light" (click)="signupUser(signupForm)" style="height: 6vh; width: 6vh;">
                   <ion-icon name="arrow-round-forward"></ion-icon>
                 </button>
   

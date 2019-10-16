@@ -1,17 +1,29 @@
-<ion-header no-border>
-  <ion-navbar>
-    <ion-title>Quotation</ion-title>
+<ion-header no-border style="background: transparent;">
+  <ion-navbar color="primary" *ngIf="nextbutton==true">
+   
   </ion-navbar>
+  
 </ion-header>
+
+
+
 <ion-content fullscreen>
-   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
+    <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
+        <p>Send Quotes</p>
+         <button class="send-quotes" ion-fab color="light">
+          <ion-icon name="arrow-forward"></ion-icon>
+         
+        </button>
+      </div>
+ <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
       <button ion-fab mini>
-        <ion-icon name="arrow-forward"  ></ion-icon>
+        <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </div>
-  </div> 
+ 
+  </div>  -->
 <!--   <ion-footer >
     <ion-toolbar >
      
@@ -81,9 +93,13 @@
             <p>{{n.description}}</p>
           </div>
           <div class="brickName">
-            <p style="font-size:5vw"><small>{{n.name}}</small></p>
+            <p style="font-size:5vw" id="brickName"><small>{{n.name}}</small></p>
           </div>
-          <img src="{{n.image}}">
+          <div id="imageDiv">
+            <img src="{{n.image}}">
+          </div>
+
+          
         </div>
 
       </div>
@@ -105,7 +121,7 @@
     </div>
 
     <!-- start of info2  slide -->
-    <div class="secon" scroll>
+    <div class="secon" scroll id="step2">
       <div class="extrawork"  >
         <!-- hide this whole div when the keyboard opens -->
         <div class="hidethis">
@@ -134,7 +150,7 @@
     </div><!-- slide two ends here -->
 
     <!-- slide three starts here -->
-    <div class="confirm" style="overflow:auto">
+    <div class="confirm" style="overflow:auto" id="step3">
       <h4>CONFIRM</h4>
       <P>Please confirm if everything is <br> as you need it to be.</P>
 
@@ -172,6 +188,14 @@
       </div>
     </div>
     <!-- end of info2 slide -->
-
+    
   </div>
+  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+      <div class="maploader">
+          <div class="lds-hourglass"></div>
+      </div>
+      <div class="loading-text">
+        <p>Loading Map</p>
+      </div>
+    </div>
 </ion-content>
