@@ -123,7 +123,7 @@ export class MessagesPage {
              let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
              this.messages.push(msgData);
             // this.hownerName = ;
-            console.log(this.messages);
+            console.log('jjjjjjjjjjjjjjjjj',this.messages);
            })
            })
            })

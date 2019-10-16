@@ -1,9 +1,8 @@
-<ion-header no-border style="background: transparent;">
-  <ion-navbar color="primary">
-    <ion-title>version</ion-title>
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>Quotation</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content fullscreen>
    <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
@@ -72,7 +71,7 @@
       <div class="bricks">
 
         <div class="cards" *ngFor="let n of bricks" (tap)="highlight(n)">
-          <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}">
+          <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}" >
 
 
             <div class="closeB" (click)="detailBricks()">

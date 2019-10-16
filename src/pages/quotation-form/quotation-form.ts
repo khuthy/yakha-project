@@ -1,5 +1,5 @@
 import { HomePage } from './../home/home';
-import { Component, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
@@ -27,6 +27,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 })
 export class QuotationFormPage {
   @ViewChild('slides') slides: Slides;
+
   isProfile = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
@@ -251,8 +252,10 @@ export class QuotationFormPage {
   }
   highlight(event) {
     this.HomeOwnerQuotation.brickType = event.name;
-    // console.log('tapped', this.HomeOwnerQuotation.brickType);
+    console.log('tapped', this.HomeOwnerQuotation.brickType,'event', event);
 
+ 
+    
   }
   // selectAll(){
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
