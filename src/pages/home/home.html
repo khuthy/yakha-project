@@ -76,7 +76,7 @@
     <div class="main-slide">
 <ion-slides class="slide-moment" #slides spaceBetween="-65" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
-      <div class="card" (click)="viewBuilderInfo(b)">
+      <div class="card">
 
           <div class="image">
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
@@ -99,9 +99,9 @@
                  fontSize = "15px"
                  (ratingChanged)="logRatingChange($event)">
                </ionic3-star-rating>
-          <div class="button-group">
+          <div class="button-group" (click)="requestForm()">
               <p>Request</p>   
-              <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
+              <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          
             </div>
         <!-- <div class="info">

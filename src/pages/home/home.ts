@@ -7,6 +7,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { ProfileComponent } from '../../components/profile/profile';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { QuotationFormPage } from '../quotation-form/quotation-form';
 declare var google;
 @Component({
   selector: 'page-home',
@@ -536,6 +537,9 @@ export class HomePage {
     this.navCtrl.push(ViewmessagePage, user);
     //console.log(user);
 
+  }
+  requestForm(){
+    this.navCtrl.push(QuotationFormPage)
   }
 
   getRequests() {
