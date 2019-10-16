@@ -103,7 +103,7 @@ export class MessagesPage {
              let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
              this.messages.push(msgData);
             // this.hownerName = ;
-           //  console.log(this.messages);
+            console.log(this.messages);
            })
            })
            })
@@ -114,8 +114,8 @@ export class MessagesPage {
       console.log('Feedback data for this user', doc.data());
       
     })
-    document.getElementById('accept').style.display="none";
-    document.getElementById('review').style.display="none";
+   /*  document.getElementById('accept').style.display="none";
+    document.getElementById('review').style.display="none"; */
   })
   }
  
