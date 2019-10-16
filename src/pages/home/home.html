@@ -1,6 +1,13 @@
 
 <ion-content >
- 
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+            <div class="lds-hourglass"></div>
+        </div>
+        <div class="loading-text">
+          <p>Loading Map</p>
+        </div>
+      </div>
   <div class="header" *ngIf="header">
      <img src="../../assets/icon/Yakha-assets/BuilderShape2.svg" alt="" class="fixed-image"> 
   
@@ -35,7 +42,7 @@
  
       </div>
       
-      
+     
 <div class="searchLocation">
   <div class="yakha-search">
    
@@ -76,9 +83,9 @@
     <div class="main-slide">
 <ion-slides class="slide-moment" #slides spaceBetween="-65" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
-      <div class="card">
+      <div class="card" >
 
-          <div class="image">
+          <div class="image" (click)="viewBuilderInfo(b)">
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
               <img *ngIf="!b.image" src="../../assets/imgs/team-avatar.jpg" class="thumbnail-image" alt="tough">
             <div class="text-holder" text-left style="font-size: 2.5vh;">
@@ -89,17 +96,22 @@
                </div>
           </div>
           <div class="rate" *ngIf="b.certified"><p style="font-size: 2.5vh;">C</p></div>
-          <ionic3-star-rating #rating id="ratings"
-                 activeIcon = "ios-star"
-                 defaultIcon = "ios-star-outline"
-                 activeColor = "#F2BE22"
-                 defaultColor = "#F2BE22"
-                 readonly="false"
-                 rating="1"
-                 fontSize = "15px"
-                 (ratingChanged)="logRatingChange($event)">
-               </ionic3-star-rating>
-          <div class="button-group" (click)="requestForm()">
+          <div *ngFor="let a of buildesAverage" >
+            <ionic3-star-rating #rating id="ratings" *ngIf="b.uid==a.uid"
+            activeIcon = "ios-star"
+            defaultIcon = "ios-star-outline"
+            activeColor = "#F2BE22"
+            defaultColor = "#F2BE22"
+            readonly="true"
+            rating="{{a.avg}}"
+            fontSize = "15px"
+            >
+          </ionic3-star-rating>
+        
+          </div>
+          
+             
+          <div class="button-group" (click)="rShortcut(b.uid)">
               <p>Request</p>   
               <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          
