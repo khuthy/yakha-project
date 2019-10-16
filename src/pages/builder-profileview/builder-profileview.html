@@ -31,7 +31,7 @@
         </div>
 
         <div class="button">
-            <button *ngIf="!hideRev" slot="start" ion-button (click)="presentPopover()">Review</button>
+            <button *ngIf="hideRev" slot="start" ion-button (click)="presentPopover()">Review</button>
           <div class="btn" (click)="next()">
             <p>Request Quote</p>
             <button ion-fab mini><ion-icon name="arrow-forward" style="color: black" ></ion-icon></button>
