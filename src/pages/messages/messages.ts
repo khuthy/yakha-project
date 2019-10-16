@@ -22,7 +22,7 @@ import { PopoverPage } from '../popover/popover';
   templateUrl: 'messages.html',
 })
 export class MessagesPage {
-
+ db = firebase.firestore();
   dbMessage = firebase.firestore().collection('Request');
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
@@ -35,7 +35,23 @@ export class MessagesPage {
   honwerUID;
   hownerName;
   homebuilder: boolean; //testing if the css is working
+  
   msg: any;
+  /* testing */
+  autoUid: any;
+  homeOwner: any;
+  homeDetails: any;
+  homeUid;
+  projectRequirement = {
+    brickType: '',
+    wallType: '',
+    date: '',
+    comment: '',
+    startDate: '',
+    endDate: '',
+    extras: []
+
+  }
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       private fileOpener: FileOpener,
@@ -44,6 +60,10 @@ export class MessagesPage {
       public authServes: AuthServiceProvider,
       public oneSignal: OneSignal, public popoverCtrl: PopoverController
       ) {
+
+        this.autoUid = this.navParams.data;
+        console.log(this.autoUid);
+        
  
   }
   acceptQoute(data, uid){
@@ -116,7 +136,21 @@ export class MessagesPage {
     })
    /*  document.getElementById('accept').style.display="none";
     document.getElementById('review').style.display="none"; */
+
   })
+  /* get request */
+   this.db.collection('Request').doc(this.autoUid).onSnapshot((getRequest) => {
+          if(getRequest.exists){
+            this.projectRequirement.brickType = getRequest.data().brickType;
+            this.projectRequirement.startDate = getRequest.data().startDate;
+            this.projectRequirement.wallType = getRequest.data().wallType;
+            this.projectRequirement.comment = getRequest.data().comment;
+            this.projectRequirement.endDate = getRequest.data().endDate;
+            this. projectRequirement.date = getRequest.data().date;
+          }
+     
+   })
+  
   }
  
   presentPopover(uid) {

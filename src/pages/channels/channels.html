@@ -17,15 +17,15 @@
 
 <ion-content padding>
   <div class="homebuilder">
-    <div class="cards"> <!-- Put a forloop here -->
+    <div class="cards" *ngFor =" let b of respond"> <!-- Put a forloop here -->
          <div class="images">
-          <img src="../../assets/imgs/builder1 - Copy.svg" class="thumb-home-builder" (click)="viewProfile(o.owner.image)" alt="profile">
+          <img src="{{b.user.image}}" class="thumb-home-builder" (click)="viewProfile(o.user.image)" alt="profile">
            </div>
         <div class="informative" >
-          <h6 style="font-size: 2.5vh;">Mary makheba</h6>
-          <p style="font-size: 2vh;">21 Jun 2032</p>
+          <h6 style="font-size: 2.5vh;">{{b.user.fullName}}</h6>
+          <p style="font-size: 2vh;">{{b.user.date | date}} </p>
         </div>
-        <div class="button-group" (click)="gotoMessages()">
+        <div class="button-group" (click)="gotoMessages(b.autoId)">
           <p style="text-align: center; color: #fff;">View</p>
           <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
         </div>
