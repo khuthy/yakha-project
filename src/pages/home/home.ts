@@ -24,6 +24,7 @@ export class HomePage {
   items: any;
   info = false;
   builder = [];
+  buildesAverage = []
   owner = [];
   status: string = '';
   maps: boolean = false;
@@ -46,14 +47,18 @@ export class HomePage {
   isBuilder;
   input = '';
   directionsService = new google.maps.DirectionsService();
-  directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+  directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
   geoData = {
     lat: 0,
     lng: 0
   }
-   msgStatus;
+  msgStatus;
   total: number;
-  avgRate;
+  avgRate: number;
+  ratingArr = [];
+  sumRated = 0;
+  // sumRate=0;
+  noReviews = 'No reviews yet';
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -75,8 +80,8 @@ export class HomePage {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-       
-        
+
+
       }
       if (res.data().builder == true) {
         this.getRequests();
@@ -99,7 +104,7 @@ export class HomePage {
   }
 
   moveMapEvent() {
-     
+
     let currentIndex = this.slides.getActiveIndex();
     let currentEvent = this.builder[currentIndex];
     // this.map.setCenter({ lat: currentEvent.lat, lng: currentEvent.lng })
@@ -110,7 +115,7 @@ export class HomePage {
         lng: resp.coords.longitude
       }
 
-      let start = new google.maps.LatLng(geoData.lat, geoData.lng); 
+      let start = new google.maps.LatLng(geoData.lat, geoData.lng);
       let end = new google.maps.LatLng(currentEvent.lat, currentEvent.lng)
       const that = this;
       this.directionsService.route({
@@ -118,7 +123,7 @@ export class HomePage {
         destination: end,
         travelMode: 'DRIVING',
         unitSystem: google.maps.UnitSystem.METRIC,
-       // icon: 'https://img.icons8.com/color/24/000000/worker-male--v2.png'
+        // icon: 'https://img.icons8.com/color/24/000000/worker-male--v2.png'
       },
         (response, status) => {
           if (status === 'OK') {
@@ -130,7 +135,7 @@ export class HomePage {
             }
             this.total = this.total / 1000;
             //console.log(this.total);
-            
+
           }
           else {
             const alert = this.alertCtrl.create({
@@ -157,48 +162,109 @@ export class HomePage {
       duration: 2000
     }).present()
   }
-  
-  getBuilders() {
-    
-    
-    this.db.where('builder', '==', true).onSnapshot((res) => {
+
+  async getBuilders() {
+
+    let numRated = 0;
+    let arr = [];
+    let avgSum = 0
+    let avgTotal = []
+    let data = {builder:{}, rate:{average: null}}
+
+    //>>>>>>> get the builder
+    await this.db.where('builder', '==', true).get().then(async (res) => {
       this.builder = [];
-      
-      res.forEach((doc) => {
-        if (doc.data().address) {
-          // this.errorMessage('User found',doc.id)
+      let info = { rate: {} ,builder: {}};
 
+      //>>>>>>> get the reviews made for this builder
+      res.forEach(async (doc) => {
+        data.builder = doc.data()
+        this.builder.push(doc.data())
+        // data.builder
        
-            this.dbFeeback.where('builder','==',doc.data().uid).onSnapshot((res)=>{
-              let sumRate = 0;
-              let numRated = 0;
-              numRated = res.size;
-              for (let index = 0; index < res.docs.length; index++) {
-               // const element = res.docs[index].data();
-                sumRate = res.docs[index].data().rating;
-                this.avgRate = sumRate/numRated;
-                console.log(this.avgRate);
-                
-              }
-            })
-          this.builder.push(doc.data());
-        
-        
-          // console.log(this.builder);
-          let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
-          let marker = new google.maps.Marker({
-            position: myLatLng,
-            map: this.map,
-            title: 'Hello World!',
-            icon: "https://img.icons8.com/color/40/000000/worker-male--v2.png"
-          });
-          google.maps.event.addListener(marker, 'click', (resp) => {
-            this.viewBuilderInfo(doc.data());
-          })
-        }
+        // this.errorMessage('User found',doc.id)
 
+        // console.log('>>>>>>>>>>>>>>>',doc.data());
+       
+        let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
+        let marker = new google.maps.Marker({
+          position: myLatLng,
+          map: this.map,
+          title: 'Hello World!',
+          icon: "https://img.icons8.com/color/40/000000/worker-male--v2.png"
+        });
+        google.maps.event.addListener(marker, 'click', (resp) => {
+          this.viewBuilderInfo(doc.data());
+        })
+        // data = {builder: doc.data()}
+
+        //>>>>>>>>>> push for display
+        // console.log('DOC DISPLAY >>>>>>>>>', data);
+        // this.builder.push(data);
+
+        // clear the stores
+        avgSum = 0
+        avgTotal.length = 0
+        // data.builder = {}
+        data.rate.average = null
+        
+        
       })
+      console.log('Loop 2 done');
+      
+      console.log(this.builder);
+      this.calcAvg()
     })
+  }
+ async calcAvg() {
+   let avgTotal = []
+   let avgSum = 0;
+   let Average = 0;
+
+   let arrBuild = [];
+   let build = {
+     uid: '',
+     avg: null
+   }
+    for (let i = 0; i < this.builder.length; i++) {
+      await this.dbFeeback.where('builder', '==', this.builder[i].uid).get().then((res1) => {
+        if (!res1.empty) {
+          res1.forEach((doc) => {
+
+              //>>>>>>> store the total number of reviews made
+              avgTotal.push(doc.data())
+
+              //>>>>>>> store the sum of the ratings given by the user
+              avgSum = avgSum + doc.data().rating;
+              
+              // this.ratingArr.push(doc.data().rating);
+              // this.avgRate = this.sumRated / this.ratingArr.length;     
+              build.uid = this.builder[i].uid
+
+            
+          })
+          console.log('Loop 1 done');
+          //>>>>>>> calculate the average
+          Average = avgSum / avgTotal.length;
+          build.avg = Average
+          this.buildesAverage.push(build)
+          Average = 0
+          avgTotal = []
+          avgSum = 0
+          build = {
+            uid: '',
+            avg: null
+          }
+        } else {
+          this.noReviews;
+        }
+        
+      })
+      
+          console.log('AVG CALCULATION >>>>>>>>>',this.buildesAverage);
+      
+    }
+
   }
   errorMessage(errCode, errMsg) {
     const alert = this.alertCtrl.create({
@@ -389,8 +455,8 @@ export class HomePage {
       ]
     });
     this.getBuilders();
-    
-    
+
+
 
     setTimeout(() => {
       let input = document.getElementsByClassName('pac-input')
@@ -548,7 +614,7 @@ export class HomePage {
     //  document.getElementById('map').style.display = "block";
     this.builder = [];
     this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
-      
+
       document.getElementById('req').style.display = "flex";
       document.getElementById('map').style.display = "none";
       this.owner = [];
@@ -556,7 +622,7 @@ export class HomePage {
         this.db.doc(doc.data().hOwnerUid).onSnapshot((res) => {
           data.owner = res.data();
           data.builder = doc.data();
-         
+
           this.owner.push(data);
           console.log(this.owner);
           data = {

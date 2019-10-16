@@ -33,8 +33,8 @@ export class BuilderProfileviewPage {
   rating;
   numRate: number;
   sum: number;
-  average : number;
-  hideRev='';
+  average: number;
+  hideRev = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtlr: LoadingController, private authUser: AuthServiceProvider,
     public alertCtrl: AlertController, public popoverCtrl: PopoverController) {
     this.dat = this.navParams.data;
@@ -58,70 +58,36 @@ export class BuilderProfileviewPage {
       }
       //console.log(res.size);
     })
+
+   // console.log('Date for today', this.formatDate(Date()).toString().substring(8, 11));
     //  console.log(this.displayProfile);
-    this.db.collection('Feedback').where('owner','==',this.uid).where('builder','==', this.dat.uid).onSnapshot((res1)=>{
-        res1.forEach((doc)=>{
-          console.log('Feedback doc........:',doc.data());
-          this.hideRev = doc.data().owner
+    this.db.collection('Feedback').where('owner', '==', this.uid).where('builder', '==', this.dat.uid).onSnapshot((res1) => {
+      res1.forEach((doc) => {
+       
+        this.dbRes.where('uid', '==', doc.data().builder).onSnapshot((res) => {
+          res.forEach((doc) => {
+           // console.log('Feedback doc........:', this.formatDate(doc.data().expiry).toString().substring(8, 11));
+            if (this.formatDate(doc.data().expiry).toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11)) {
+             
+          // this.hideRev = doc.data().uid;
+            }
+          })
         })
+      })
     })
-    this.db.collection('feedback').where('builderuid', '==', this.dat.uid).onSnapshot((res) => {
-     // console.log(res.size);
-     // this.numRate = res.size;
-      if (!res.empty) {
-     /*    res.forEach((doc) => {
-          console.log(doc.data().rating);
-          
-        }) */
-        var total = 0;
-        for (let index = 0; index < res.docs.length; index++) {
-          const element = res.docs[index].data();
-          total += Number(res.docs[index].data().rating);
-          this.sum = total;
-         this.average = this.sum / this.numRate;
-         console.log(this.average); 
-        }
-      }
-    })
-
-
- /*    this.db.collection('feedback').where('builderuid', '==', this.dat.uid).onSnapshot((res) => {
-      if (!res.empty) {
-        res.forEach((doc) => {
-          this.rating = doc.data().rating;
-        })
-      }
-    }) */
   }
-  // logRatingChange(rating) {
-  //   // console.log("changed rating: ",rating);
-  //   // this.db.add({ rating: rating, uid: this.uid, date: Date() });
+  formatDate(date) {
+    let d = new Date(date),
+      day = '' + d.getDate(),
+      month = '' + (d.getMonth() + 1),
+      year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
 
-  //   this.alertCtrl.create({
-  //     title: 'Thanks for feedback',
-  //     inputs: [
-  //       {
-  //         name: this.msg,
-  //         placeholder: 'Please write message'
-  //       }],
-  //     buttons: [{
-  //       text: 'Cancel',
-  //       handler: data => {
-  //         // this.toastCtrl.create({ message: 'Rating comment has just cancelled..', duration: 1000 }).present();
-  //       }
-  //     }, {
-  //       text: 'Save',
-  //       handler: data => {
-  //         // console.log(data[0]);
-  //         this.db.collection('feedback').add({ rating: rating, msg: data[0], builderuid: this.dat.uid, uid: this.uid, date: Date(), docId: '' }).then((res) => {
-  //           res.update({ docId: res.id })
-  //         });
-  //       }
-  //     }]
-  //   }).present();
-  // }
   presentPopover() {
-    const popover = this.popoverCtrl.create(PopoverPage, {key1:this.dat.uid});
+    const popover = this.popoverCtrl.create(PopoverPage, { key1: this.dat.uid });
     popover.present();
   }
   next() {
