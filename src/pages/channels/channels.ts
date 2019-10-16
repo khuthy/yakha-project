@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MessagesPage } from '../messages/messages';
 
 /**
  * Generated class for the ChannelsPage page.
@@ -20,6 +21,9 @@ export class ChannelsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChannelsPage');
+  }
+  gotoMessages() {
+    this.navCtrl.push(MessagesPage);
   }
 
 }
