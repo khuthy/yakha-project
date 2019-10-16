@@ -59,17 +59,18 @@ export class BuilderProfileviewPage {
       //console.log(res.size);
     })
 
-   // console.log('Date for today', this.formatDate(Date()).toString().substring(8, 11));
+    console.log('Date for today', this.formatDate(Date()).toString().substring(8, 11));
     //  console.log(this.displayProfile);
     this.db.collection('Feedback').where('owner', '==', this.uid).where('builder', '==', this.dat.uid).onSnapshot((res1) => {
+
       res1.forEach((doc) => {
-       
+        this.hideRev = doc.data().owner;
         this.dbRes.where('uid', '==', doc.data().builder).onSnapshot((res) => {
-          res.forEach((doc) => {
+          res.forEach((docRes) => {
            // console.log('Feedback doc........:', this.formatDate(doc.data().expiry).toString().substring(8, 11));
-            if (this.formatDate(doc.data().expiry).toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11)) {
+            if (this.formatDate(docRes.data().expiry).toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11)) {
              
-          // this.hideRev = doc.data().uid;
+          //
             }
           })
         })
