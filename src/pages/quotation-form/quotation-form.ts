@@ -93,6 +93,15 @@ export class QuotationFormPage {
   brickDetails = false;
   backButton: boolean = true;
   nextbutton: boolean = true;
+
+  //variables/divs to be hidden when keyboard shows in the quotation form
+  hidepara = true;
+  hidelist = true;
+  isKeyOpen: boolean = false;
+  hid='';
+//new test
+
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -143,6 +152,8 @@ export class QuotationFormPage {
     // console.log(this.extras);
 
   }
+
+
   slideState() {
    // console.log(this.steps);
 
@@ -221,6 +232,20 @@ export class QuotationFormPage {
     this.authUser.getUser();
     console.log(this.authUser.getUser());
   }
+
+  //method to hide divs on keyboard show
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+      console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
+//test coe
+/*  */
+    
   detailBricks() {
     this.brickDetails = !this.brickDetails;
   }
