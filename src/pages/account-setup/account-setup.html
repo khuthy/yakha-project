@@ -1,19 +1,65 @@
 
 <ion-content>
-  <div class="container" *ngIf="!isProfile">
+  <div class="info-profile" *ngIf="!isProfile">
      <!-- original form for homeowner to create profile -->
   <div class="topdeco">
   </div>
- <div  class="image">
-         <div class="thumb">
-        <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
-       <!--  <button ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> -->
-    <img *ngIf="!profileImage" width="3vh" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" (click)="selectImage()" class="thumb">
+  <form class="info-profile" [formGroup]="profileForm"> 
+    <div class="image-holder">
+        <div class="thumb">
+            <img *ngIf="profileImage"  src="{{profileImage}}">
+            <img *ngIf="!profileImage" width="3vh" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" >
+            <button color="light" ion-fab mini class="upload-image" (click)="selectImage()"><ion-icon name="create"></ion-icon></button>
+          </div>
+    </div>
+    <div class="inputs-profile">
+        <div class="form-group">
+          <input type="text" placeholder="Name" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl>
+            <p class="error"  *ngIf="profileForm.get('fullName').hasError('required') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name is required.</p>
+            <p class="error"  *ngIf="profileForm.get('fullName').hasError('minlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name must be at least 4 characters long.</p>
+            <p class="error"  *ngIf="profileForm.get('fullName').hasError('maxlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)"> Name cannot be more than 25 characters long.</p>
+            <p class="error"  *ngIf="profileForm.get('fullName').hasError('pattern') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Your Name must not contain numbers and special characters. </p>
+          </div>
+          <div class="form-group">
+            <ion-list>
+              <ion-item>
+             <ion-select  placeholder="Gender" formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
+           <ion-option style="font-size: 2.6vh;"  value="Female">Female</ion-option>
+           <ion-option style="font-size: 2.6vh;" value="Male">Male</ion-option>
+           </ion-select>
+           </ion-item>
+            </ion-list>
+           
+            <p class="error" *ngIf="profileForm.get('gender').hasError('required') && (profileForm.get('gender').dirty || profileForm.get('gender').touched)">Gender is required. </p>
+          </div>
+          <div class="form-group">
+              <input type="Tel" placeholder="Cell Number"  maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl>
+              <p class="error" *ngIf="profileForm.get('personalNumber').hasError('required') && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">Cell number is required.</p>
+          </div>
+          <div class="form-group">
+            <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+            <p class="error" *ngIf="profileForm.get('address').hasError('required') && (profileForm.get('address').dirty || profileForm.get('address').touched)"> Please specify your Address.</p>
+           </div>
+         
+    </div>
+    <div class="btn-profile">
+        <button round class="btn-profile-x" ion-button (click)="createprofile(profileForm)" [disabled]="!profileForm.valid"> Done </button>
+    </div>
+  </form>
+  <div class="bottomdeco">
+    
+  </div>
+  </div>
+ <!--  <div  class="image">
+      <div class="thumb">
+     <img *ngIf="profileImage"  src="{{profileImage}}" class="thumb" (click)="selectImage()">
+ 
+ <img *ngIf="!profileImage" width="3vh" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" (click)="selectImage()" class="thumb">
 
-      </div>
-       
-       
-    </div> 
+   </div>
+    
+    
+ </div> 
      
      <div class="inputs">
       <form  [formGroup]="profileForm">
@@ -29,7 +75,7 @@
          </ion-label> 
          <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('minlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
             <p class="messages">
-                Name must be at least 4 characters long.
+               
             </p>
             </ion-label>
             <ion-label  class="error"  *ngIf="profileForm.get('fullName').hasError('maxlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
@@ -55,7 +101,7 @@
            {{validate.message}}
          </p>
          </ion-label> 
-         <ion-item >
+         <ion-item class="item">
             <ion-input placeholder="Personal Number" type="Tel" maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
           </ion-item>
           <ion-label class="error" *ngFor="let validate of validation_messages.personalNumber">
@@ -74,17 +120,15 @@
          </ion-label> 
  
          <div class="btn">
-            <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
-           <button round id="skip" large (click)="createprofile(profileForm)"  type="submit" [disabled]="!profileForm.valid" ion-button> Done </button>
-        </div>
+          
+         </div>
        </form>
-     </div>
-     <div class="bottomdeco">
-      </div>
+     </div> 
+    
      
      
  </div>
- 
+  -->
 <!-- homeowner views profile here and the fab will take them to edit profile -->
 <div class="ViewContainer" *ngIf="isProfile">
   <div class="header">
