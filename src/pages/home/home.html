@@ -5,7 +5,7 @@
             <div class="lds-hourglass"></div>
         </div>
         <div class="loading-text">
-          <p>Loading Map</p>
+          <p color="light">Loading Map</p>
         </div>
       </div>
   <div class="header" *ngIf="header">
@@ -89,9 +89,9 @@
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
               <img *ngIf="!b.image" src="../../assets/imgs/team-avatar.jpg" class="thumbnail-image" alt="tough">
             <div class="text-holder" text-left style="font-size: 2.5vh;">
-                  <p style="font-weight: 700;">{{b.fullName}}</p>
-                  <p class="price" style="color: #F2BE22;font-weight: 500;">{{b.price  | currency:'&#82;'}}(p/&#13217;)<span style="color: rgb(87, 86, 86); font-size: 2vh;"> excluding roofing</span> </p>
-                  <p  class="stars">{{b.experiences}} years in building experience</p>
+                  <p style="font-weight: 700; font-size: 2.7vh;">{{b.fullName}}</p>
+                  <p class="price" style="color: #F2BE22;font-weight: 500;">{{b.price  | currency:'&#82;'}}(p/&#13217;)<span style="color: rgb(141, 141, 141); font-size: 2vh;"> excluding roofing</span> </p>
+                  <p  class="stars" style="font-size: 2vh;">{{b.experiences}} years in building experience</p>
                   <p style="font-size:2vh; color:rgb(61, 61, 61);" *ngIf="total">{{total}} km away driving</p>
                </div>
           </div>
