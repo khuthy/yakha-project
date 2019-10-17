@@ -68,7 +68,8 @@
         <h5>{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
 
         <p>Cost include roofing</p>
-        <h5>{{dat.roof}}</h5>
+        <h5 *ngIf="dat.roof">Yes</h5>
+        <h5 *ngIf="!dat.roof">No</h5>
         </div>
 
    <!--      <div class="button">

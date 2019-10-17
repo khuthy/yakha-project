@@ -16,13 +16,17 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'success.html',
 })
 export class SuccessPage {
-
+  loaderAnimate = true;
   success = 'Success';
   builder;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
   }
 
   ionViewDidLoad() {
+    setTimeout(() => {
+      
+      this.loaderAnimate = false
+    }, 2000);
     console.log('ionViewDidLoad SuccessPage');
    this.builder = this.authService.manageUsers();
    console.log(this.builder, 'builder');

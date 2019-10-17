@@ -36,26 +36,26 @@
       {{ item }}
     </button>
   </ion-list>  -->
-  <div class="header">
+<!--   <div class="header">
     <div class="button-back">
       <button ion-fab (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
     </div>
     <div class="titlecase"><h6>RESPONSES</h6></div>
     <p></p>
-  </div>
+  </div> -->
   <div class="messages" *ngFor="let item of messages">
       <div class="message homeowner">
           <div class="homeOwnerDiv">
              <div class="time">
-               <h5>{{item.user?.fullName}}</h5> 
+               <h5>{{item.user?.fullName | uppercase}}</h5> 
               <P>{{item.sent.date | date}}</P>
             </div> 
-            <div>
+            <div class="project">
               <h6>Project Details</h6>
               <p>From {{item.sent.startDate}} to {{item.sent.endDate}}</p>
               <p>{{item.sent.wallType}}</p>
               <p>{{item.sent.brickType}}</p>
-              <p> Extras:</p>
+              <h6> Extras:</h6>
               <p> {{item.sent.extras}}</p>
             </div>
           </div>
@@ -69,7 +69,7 @@
           <div class="info">
             <!-- <h6>Get your quote here</h6> -->
             
-            <p>View The Quote : <button ion-button clear (click)=" downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button> </p>
+        <span>View The Quote:</span>  <button ion-button small clear (click)=" downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button>
             <div class="accept" *ngIf="!item.incoming.msgStatus"><p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p></div>
           </div>
         </div>
