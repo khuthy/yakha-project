@@ -183,7 +183,7 @@ export class HomePage {
 
       //>>>>>>> get the reviews made for this builder
       res.forEach(async (doc) => {
-       // console.log('All builders............',doc.data());
+        console.log('All builders............',doc.data().lat);
         
         if (doc.data().address!="") {
            data.builder = doc.data()
