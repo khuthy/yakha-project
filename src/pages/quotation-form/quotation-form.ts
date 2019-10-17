@@ -171,7 +171,7 @@ export class QuotationFormPage {
     this.maxDate = this.formatDate(this.date);
     console.log(this.selectedComment);
 
-    console.log(this.quotationForm.value.endDate.valid);
+  //  console.log(this.quotationForm.value.endDate.valid);
     this.steps = 'stepone';
     setTimeout(() => {
       console.log(this.slidethree[0]);
