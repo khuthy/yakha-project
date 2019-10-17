@@ -680,7 +680,7 @@ div {
   position: absolute;
   bottom: 2%;
   right: 0;
-  background: color($colors, primary);
+  background: #cc9e14;
   padding-left: 15px;
   display: flex;
   z-index: 100;
@@ -695,7 +695,7 @@ div {
       padding: 2px;
   }
   &:active {
-      background: rgb(255, 211, 18);
+      background:#cc9e14;
   }
 
   .loader {

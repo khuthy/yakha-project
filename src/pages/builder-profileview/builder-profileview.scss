@@ -168,7 +168,7 @@ height:13vh;
 h4 {
 //  border: 1px solid green;
   letter-spacing: 2px;
-  color:white;
+  color:whitesmoke;
   padding-left:3%;
   padding-top: 6px;
   font-size:6vw;
@@ -177,9 +177,13 @@ h4 {
   
 
 }
+p {
+  font-family:'Lucida Sans Unicode';
+font-weight:300;
+}
    #adres {
     //  border: 1px solid rgb(128, 0, 0);
-      color: white;
+    color:whitesmoke;
       letter-spacing: 1px;
       padding-left:3%;
       font-size:3.5vw;
@@ -237,6 +241,7 @@ h4 {
       letter-spacing: 1px;
       margin-top:0%;
       font-size:3vh;
+      font-family:'Lucida Sans Unicode';
     }
     h5 {
       padding-left: 8%;
@@ -247,6 +252,8 @@ h4 {
       margin-top:-2%;
       font-size: 4.2vw;
       font-weight:600;
+      font-family:'Lucida Sans Unicode';
+
     }
    }
   .button {
