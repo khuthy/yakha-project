@@ -9,14 +9,14 @@
 
 <ion-content fullscreen>
     <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
-        <p>Next</p>
+        <p>Next step</p>
          <button class="send-quotes" ion-fab color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
       </div>
       <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
-          <p>Done</p>
+          <p>Submit</p>
            <button class="send-quotes" ion-fab color="light">
             <ion-icon name="arrow-forward"></ion-icon>
            
