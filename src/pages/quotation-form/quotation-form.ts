@@ -188,7 +188,7 @@ export class QuotationFormPage {
   backState() {
     if (this.steps == 'stepone') {
       this.navCtrl.pop();
-      
+
     }else if(this.steps == 'steptwo') {
       
       document.getElementById('step1').style.overflow="auto";
@@ -218,14 +218,9 @@ export class QuotationFormPage {
 
     if (this.steps == 'stepone') {
       if (this.quotationForm.get('firstCountValid').invalid) {
-        console.log(this.steps, 'goog');
-        console.log('error first run');
-        let firstSlide = this.alertCtrl.create({
-          title: 'You cannot do that',
-          message: 'please fill the form',
-          buttons: ['Ok']
-        });
-        firstSlide.present();
+          this.quotationForm.get('firstCountValid').get('startDate').markAsTouched();
+          this.quotationForm.get('firstCountValid').get('endDate').markAsTouched();
+          this.quotationForm.get('firstCountValid').get('wallType').markAsTouched();
       } else {
         this.steps = 'steptwo';
         document.getElementById('step2').style.display = "flex";
