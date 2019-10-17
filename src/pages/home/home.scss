@@ -423,6 +423,7 @@ page-home {
                 
             }
             }
+            
             .button-group {
               position: absolute;
               bottom: 0;
@@ -585,4 +586,128 @@ page-home {
       0% {top : 0}
       100% {top: 5%}
     }
+    .loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 20;
+      background: rgb(22, 13, 0);
+      background-repeat: repeat-x;
+      transform: scale(1);
+      overflow: hidden;
+      transition: 0.4s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      animation: backgroundmover 30s linear infinite;
+      .maploader {
+        .lds-hourglass {
+          display: inline-block;
+          position: relative;
+          width: 64px;
+          height: 64px;
+        }
+        .lds-hourglass:after {
+          content: " ";
+          display: block;
+          border-radius: 50%;
+          width: 0;
+          height: 0;
+          margin: 6px;
+          box-sizing: border-box;
+          border: 26px solid #fff;
+          border-color: #fff transparent #fff transparent;
+          animation: lds-hourglass 1.2s infinite;
+        }
+        @keyframes lds-hourglass {
+          0% {
+            transform: rotate(0);
+            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          }
+          50% {
+            transform: rotate(900deg);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+          }
+          100% {
+            transform: rotate(1800deg);
+          }
+        }
+        
+      }
+     }
+     .loading-text {
+      // color: yellow;
+      position: absolute;
+      bottom: 50vh;
+      left: 0px;
+      width: 100vw;
+      text-align: center;
+      // background: red;
+      height: 50vh;
+      z-index: 50;
+     }
+     .loader-hide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 20;
+      background: rgb(255, 255, 255);
+      transform: scale(0);
+      overflow: hidden;
+      transition: 0.4s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      .maploader {
+        .lds-hourglass {
+          display: inline-block;
+          position: relative;
+          width: 64px;
+          height: 64px;
+        }
+        .lds-hourglass:after {
+          content: " ";
+          display: block;
+          border-radius: 50%;
+          width: 0;
+          height: 0;
+          margin: 6px;
+          box-sizing: border-box;
+          border: 26px solid #fff;
+          border-color: #fff transparent #fff transparent;
+          animation: lds-hourglass 1.2s infinite;
+        }
+        @keyframes lds-hourglass {
+          0% {
+            transform: rotate(0);
+            animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          }
+          50% {
+            transform: rotate(900deg);
+            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+          }
+          100% {
+            transform: rotate(1800deg);
+          }
+        }
+        
+      }
+     }
+     @keyframes maploader {
+      0% {
+        // transform: rotate(0deg);
+        border-color: rgb(182, 70, 95);
+        // background: rgb(255, 192, 192);
+      }
+      50% {
+        // background: rgb(206, 206, 255);
+        // transform: rotate(360deg);
+        border-color: rgb(42, 50, 75);
+      }
+      100% {
+        border-color: rgb(250, 182, 43);
+        // background: rgb(255, 167, 167);
+        // transform: rotate(360deg);
+      }
+     }
   }

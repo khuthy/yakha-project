@@ -40,7 +40,7 @@
       <p>Submit</p>
       <div class="nextFab">
         <button ion-fab>
-          <ion-icon name="arrow-forward"></ion-icon>
+          <ion-icon name="arrow-forward" (click)="createQuations()"></ion-icon>
         </button>
       </div>
     </div>
@@ -58,6 +58,7 @@
     <div class="slideone">
 
       <div class="imageCont">
+        
         <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
           (click)="selectImage()" name="cloud-download"></ion-icon>
@@ -117,7 +118,7 @@
       <div class="extrawork"  >
         <!-- hide this whole div when the keyboard opens -->
         <div class="hidethis">
-   <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
+          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
           following?</h2>
 
         <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" >
@@ -127,7 +128,7 @@
             <ion-checkbox id="hide-div" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
                 " (click)="checkClicked(e.service)"></ion-checkbox>
           </ion-item>
- </ion-list>
+      </ion-list>
         </div>
 
      
