@@ -17,48 +17,30 @@
         <ion-list no-lines style="background: transparent">
 
           <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}">
-            <!-- <ion-label stacked> Email</ion-label>  -->
             <ion-input placeholder="Email" formControlName="email" type="email" (ionFocus)="checkKeyboard('open')"
               (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input><ion-icon name="ios-at-outline" color="light" item-left></ion-icon>
-            <p style="color:red; "
-              *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched)">
-              Please enter a valid email address</p>
-
-            <!-- <p style ="color:red">please enter a valid email address</p> -->
           </ion-item>
-          <p *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red;text-align:center">Email address is required</p>
-          <p *ngIf="loginForm.get('email').hasError('pattern') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
-            style="color:red;text-align:center">Please enter a valid email address</p>
+          <p class="error message-error" *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)">Email address is required</p>
+          <p class="error message-error" *ngIf="loginForm.get('email').hasError('pattern') && (loginForm.get('email').dirty || loginForm.get('email').touched)">Please enter a valid email address</p>
           <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}">
-            <!-- <ion-label stacked> Password</ion-label> -->
             <ion-input placeholder="Password" formControlName="password" type="password"
               (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')" ngDefaultControl>
             </ion-input>
-            <!-- <i class="fas fa-lock" ></i> -->
             <ion-icon name="key" color="light" item-left></ion-icon>
-            <!-- <i class="fas fa-lock-alt" ></i> -->
-            <p style="color:red;text-align:center" *ngIf=" (loginForm.get('password').dirty || loginForm.get('password').touched)">
-              your password needs more than 6 characters.</p>
-            <!-- <p style ="color:red">your password needs more than 6 characters </p> -->
           </ion-item>
-          <p *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
-            style="color:red;text-align:center">password is required</p>
-          <p *ngIf="loginForm.get('password').hasError('minlength') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
-            style="color:red;text-align:center">Password must be more than 6 characters </p>
+          <p class="error message-error" *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)">password is required</p>
+          <p class="error message-error" *ngIf="loginForm.get('password').hasError('minlength') && (loginForm.get('password').dirty || loginForm.get('password').touched)">Password must be more than 6 characters </p>
 
 
-          <p id="hide-p" style="text-align: right;width:90%;" [style.color]="builder ? '#000' : '#fff'" (click)="forgotpassword()" *ngIf="!hid">
-            Forgot
-            password?</p>
+          <p id="hide-p" style="text-align: right;width:90%;" [style.color]="builder ? '#000' : '#fff'" (click)=" presentPrompt()" *ngIf="!hid">Forgot password?</p>
 
 
           <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
-            <div class="div-fab" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'" (click)="createAcc()">
+            <div class="div-fab" style="padding-left: 2%;" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'" (click)="createAcc()">
 
-              <button ion-fab class="arr-fwd" style="height: 6vh; width: 40px;margin: 5px;">
+              <button ion-fab  color="light" style="height: 6vh; width: 6vh;">
                 <ion-icon name="arrow-round-back"></ion-icon>
               </button>
               <p style="color: white">Sign Up </p>
@@ -67,9 +49,9 @@
 
 
 
-            <div class="div-fab" style="border-radius: 30px 0px 0px 30px;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
+            <div class="div-fab" color="light"  style="border-radius: 30px 0px 0px 30px;padding-right: 2%;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
               <p style="color: white">Sign In </p>
-              <button ion-fab class="arr-fwd" (click)="loginUser()" style="height: 6vh; width: 40px;margin: 5px;">
+              <button ion-fab color="light"  (click)="loginUser()" style="height: 6vh; width: 6vh;">
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </button>
 

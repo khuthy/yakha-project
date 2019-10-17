@@ -4,8 +4,13 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header no-border align-title="center">
+    <ion-navbar color="primary">
+      <ion-title>Isaac Dikutle</ion-title>
+    </ion-navbar>
+  </ion-header>
 
-<ion-content padding>
+<ion-content padding fullscreen>
   <!-- <div class="container">
       <div class="profiles" *ngFor="let m of messages" (click)="itemSelected(m)">
  <div class="top">
@@ -14,7 +19,6 @@
             <p style="font-size: 17px;"><strong> {{ m.comment }}</strong> </p>
             <br>
             <p style="font-size: 9px;">{{m.date}}</p>
-          
         </article>
         </div> -->
      <!--    <div class="home-builder-top">
@@ -22,20 +26,16 @@
               <p style="font-weight: 600;padding-top:2%;font-size:1.9vh">{{hownerName}}</p>
               <p>{{ m.comment }}</p>
               <p >{{m.date | date}}</p>
-              <br> 
+              <br>
           </article>
         </div>
-
-        
-        </div> 
-       
-               
+        </div>
   </div> -->
   <!-- <ion-list>
     <button ion-item *ngFor="let item of messages" (click)="itemSelected(item)">
       {{ item }}
-    </button>  
-  </ion-list>  --> 
+    </button>
+  </ion-list>  -->
   <div class="header">
     <div class="button-back">
       <button ion-fab (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
@@ -43,48 +43,41 @@
     <div class="titlecase"><h6>RESPONSES</h6></div>
     <p></p>
   </div>
-
   <div class="messages" *ngFor="let item of messages">
       <div class="message homeowner">
           <div class="homeOwnerDiv">
-            <div class="time">
-              <h5>{{item.user.fullName}}</h5>
-              <P>{{item.sent.date}}</P>
-            </div>
+             <div class="time">
+               <h5>{{item.user?.fullName}}</h5> 
+              <P>{{item.sent.date | date}}</P>
+            </div> 
             <div>
               <h6>Project Details</h6>
               <p>From {{item.sent.startDate}} to {{item.sent.endDate}}</p>
               <p>{{item.sent.wallType}}</p>
               <p>{{item.sent.brickType}}</p>
-              <p> Extras:</p>  
+              <p> Extras:</p>
               <p> {{item.sent.extras}}</p>
-
             </div>
           </div>
-
-         
       </div>
       <div class="message homebuilder" *ngIf="item.incoming">
          <div class="homeBuilderDiv">
           <div class="time">
-            <h4>{{item.builder.fullName}}</h4>
-            <P>{{item.incoming.dateCreated}}</P>
+             <h4>{{item.builder?.fullName}}</h4> 
+            <P>{{item.incoming.dateCreated | date}}</P>
           </div>
           <div class="info">
             <!-- <h6>Get your quote here</h6> -->
             
-            <p>View The Quote : <button ion-button clear (click)="downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button> </p>
-            <div class="accept" *ngIf="!item.incoming.msgStatus"><p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p></div> 
+            <p>View The Quote : <button ion-button clear (click)=" downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button> </p>
+            <div class="accept" *ngIf="!item.incoming.msgStatus"><p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p></div>
           </div>
         </div>
       </div>
-
       <div class="message homebuilder" *ngIf="!item.incoming" [style.display]="'none'">
-       
      </div>
-     
   </div>
-</ion-content>
+ </ion-content>
 
                
                

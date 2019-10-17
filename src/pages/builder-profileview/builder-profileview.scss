@@ -133,14 +133,15 @@ h5 {
     
   /* view profile code */
   .container {
-    // border: 1px solid red;
-       height: 100vh;
-       margin: 0;
+    //  border: 1px solid red;
+       height: 100%;
+       width: 100%;
+       margin: 0 auto;
        padding: 0;
        overflow: hidden;
          }//end of container
 .propic {
-  border: 1px solid black;
+  //@extendborder: 1px solid black;
   height:40%;
   width:100%;
   position: relative;
@@ -150,15 +151,20 @@ h5 {
     object-fit: cover;
     position:relative;
      z-index:-2;
+    
   }
   .names {
-  background: rgba(8, 8, 8, 0.555);
+  background: rgba(8, 8, 8, 0.774);
     left: 0;
     right: 0;
 height:12vh;
     bottom: 0;
     z-index:5;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
 h4 {
 //  border: 1px solid green;
   letter-spacing: 1px;
@@ -166,6 +172,7 @@ h4 {
   padding-left:3%;
   font-size:6vw;
   margin-top:1%;
+
 }
    #adres {
     //  border: 1px solid rgb(128, 0, 0);
@@ -177,12 +184,36 @@ h4 {
       font-weight:300;
     }
   }
+  .certified {
+    position: absolute;
+    bottom: -80%;
+    height: 8vh;
+    right: 5%;
+    width: 5vh;
+    background: url('../../assets/icon/Path\ 123.svg');
+    background-position: bottom;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin: auto;
+      font-weight: 700;
+      text-align: center;
+    }
+
+  }
 }
    .infocontent {
      margin-top:2%;
     height:47%;
     width:100%;
-    //border: 1px solid rgb(15, 65, 231);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   // border: 1px solid rgb(15, 65, 231);
 
     h3 {
       text-align: center;
@@ -342,4 +373,48 @@ h4 {
           font-size: 20px;
       }
   }
+  .button-group {
+    position: sticky;
+    bottom: 2%;
+    right: 0;
+    background: color($colors, primary);
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    float: right;
+    border-radius: 50px 0 0 50px;
+    p {
+        margin: auto;
+        color: #fff;
+        padding: 2px;
+    }
+    &:active {
+        background: rgb(255, 211, 18);
+    }
+
+}
+.button-group2{
+  position: sticky;
+  bottom: 2%;
+  left: 0;
+  background: color($colors, custom);
+  padding-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  float: left;
+  border-radius: 0 50px 50px 0;
+  p {
+      margin: auto;
+      color: #fff;
+      padding: 2px;
+  }
+  &:active {
+      background: rgb(255, 211, 18);
+  }
+
+}
 }

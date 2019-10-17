@@ -1,13 +1,19 @@
 
 <ion-content >
- 
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+            <div class="lds-hourglass"></div>
+        </div>
+        <div class="loading-text">
+          <p color="light">Loading Map</p>
+        </div>
+      </div>
   <div class="header" *ngIf="header">
      <img src="../../assets/icon/Yakha-assets/BuilderShape2.svg" alt="" class="fixed-image"> 
   
     <div class="title">
-      <div class="button" >
-         <ion-icon menuToggle name="menu"></ion-icon>
-         <button ion-button (click)="gotwst()">gotest</button> 
+      <div class="button">
+        <button ion-button clear menuToggle><ion-icon name="menu"></ion-icon></button> 
       </div>
       <div class="titlecase"><h3 style="font-size: 3.5vh;">REQUESTS</h3></div>
       <p></p>
@@ -35,7 +41,7 @@
  
       </div>
       
-      
+     
 <div class="searchLocation">
   <div class="yakha-search">
    
@@ -76,32 +82,37 @@
     <div class="main-slide">
 <ion-slides class="slide-moment" #slides spaceBetween="-65" centeredSlides="true"  (ionSlideDidChange)="moveMapEvent($event)">
     <ion-slide class="magic" *ngFor="let b of builder">
-      <div class="card" (click)="viewBuilderInfo(b)">
+      <div class="card" >
 
-          <div class="image">
+          <div class="image" (click)="viewBuilderInfo(b)">
               <img *ngIf="b.image" src="{{b.image}}" class="thumbnail-image" alt="tough">
               <img *ngIf="!b.image" src="../../assets/imgs/team-avatar.jpg" class="thumbnail-image" alt="tough">
             <div class="text-holder" text-left style="font-size: 2.5vh;">
-                  <p style="font-weight: 700;">{{b.fullName}}</p>
-                  <p class="price" style="color: #F2BE22;font-weight: 500;">{{b.price  | currency:'&#82;'}}(p/&#13217;)<span style="color: rgb(87, 86, 86); font-size: 2vh;"> excluding roofing</span> </p>
-                  <p  class="stars">{{b.experiences}} years in building experience</p>
+                  <p style="font-weight: 700; font-size: 2.7vh;">{{b.fullName}}</p>
+                  <p class="price" style="color: #F2BE22;font-weight: 500;">{{b.price  | currency:'&#82;'}}(p/&#13217;)<span style="color: rgb(141, 141, 141); font-size: 2vh;"> excluding roofing</span> </p>
+                  <p  class="stars" style="font-size: 2vh;">{{b.experiences}} years in building experience</p>
                   <p style="font-size:2vh; color:rgb(61, 61, 61);" *ngIf="total">{{total}} km away driving</p>
                </div>
           </div>
           <div class="rate" *ngIf="b.certified"><p style="font-size: 2.5vh;">C</p></div>
-          <ionic3-star-rating #rating id="ratings"
-                 activeIcon = "ios-star"
-                 defaultIcon = "ios-star-outline"
-                 activeColor = "#3c7f8b"
-                 defaultColor = "#3c7f8b"
-                 readonly="false"
-                 rating="1"
-                 fontSize = "15px"
-                 (ratingChanged)="logRatingChange($event)">
-               </ionic3-star-rating>
-          <div class="button-group">
+          <div *ngFor="let a of buildesAverage" >
+            <ionic3-star-rating #rating id="ratings" *ngIf="b.uid==a.uid"
+            activeIcon = "ios-star"
+            defaultIcon = "ios-star-outline"
+            activeColor = "#F2BE22"
+            defaultColor = "#F2BE22"
+            readonly="true"
+            rating="{{a.avg}}"
+            fontSize = "15px"
+            >
+          </ionic3-star-rating>
+        
+          </div>
+          
+             
+          <div class="button-group" (click)="rShortcut(b.uid)">
               <p>Request</p>   
-              <button ion-fab mini color="light" (click)="request()"><ion-icon name="arrow-forward"></ion-icon></button>
+              <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          
             </div>
         <!-- <div class="info">

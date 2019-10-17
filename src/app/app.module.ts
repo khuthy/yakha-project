@@ -12,6 +12,7 @@ import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-p
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
 
+
 import { FeedbackPage } from './../pages/feedback/feedback';
 import { HelpPage } from './../pages/help/help';
 import { MessagesPage } from './../pages/messages/messages';
@@ -63,6 +64,8 @@ import { DescriptionComponent } from '../components/description/description';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { SMS } from '@ionic-native/sms';
+import { ChannelsPage } from '../pages/channels/channels';
+import { PasswordResetComponent } from '../components/password-reset/password-reset';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,7 @@ import { SMS } from '@ionic-native/sms';
     MessagesPage,
     HelpPage,
     FeedbackPage,
-   
+    ChannelsPage,
     VersionPage,
     ForgotPasswordPage,
     BuilderProfileviewPage,
@@ -85,7 +88,7 @@ import { SMS } from '@ionic-native/sms';
     BaccountSetupPage,
     SuccessPage,
     PlacePage,
-    
+    PasswordResetComponent,
     WelcomePage,
     ViewmessagePage,
     
@@ -125,11 +128,11 @@ import { SMS } from '@ionic-native/sms';
     RegisterPage,
     OnboardingPage,
     AccountSetupPage,
-   
+    ChannelsPage,
     MessagesPage,
     HelpPage,
     FeedbackPage,
-   
+    PasswordResetComponent,
     VersionPage,
     ForgotPasswordPage,
     SignoutPage,

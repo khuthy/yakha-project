@@ -1,18 +1,25 @@
 page-messages {
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 5%;
-    .button-back {
-      button {
-        .icon {
-          color: color($colors, light);
-        }
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+      
+    }
+    .title {
+      .toolbar-title {
+        color: color($colors, dark);
+        font-weight: 100;
       }
     }
+    .back-button {
+  
+      background: color($colors, primary);
+      border-radius: 50px;
+      min-height: 45px; 
+     
+    } 
+    
+   
   }
   .messages {
     display: flex;

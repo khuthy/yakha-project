@@ -17,6 +17,7 @@ import { HelpPage } from '../pages/help/help';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { StatusBar } from '@ionic-native/status-bar';
 import { OneSignal } from '@ionic-native/onesignal';
+import { ChannelsPage } from '../pages/channels/channels';
 //import { OneSignal } from '@ionic-native/onesignal';
 
 
@@ -95,7 +96,7 @@ export class MyApp {
       
     })
             
-           // firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
+         //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             if (profile.data().isProfile == true && profile.data().status == true) {
               if (profile.data().builder == true) {
                 this.rootPage = HomePage;
@@ -113,7 +114,7 @@ export class MyApp {
                 this.rootPage = HomePage;
                 this.pages = [
                   { title: 'View Profile', component: AccountSetupPage, icon: 'ios-person' },
-                  { title: 'Messages', component: MessagesPage, icon: 'chatbubbles' },
+                  { title: 'Messages', component: ChannelsPage, icon: 'chatbubbles' },
                   { title: 'Tips', component: FeedbackPage, icon: 'information-circle' },
                   { title: 'Help', component: HelpPage, icon: 'help' }
                 ];

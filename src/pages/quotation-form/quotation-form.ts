@@ -1,5 +1,5 @@
 import { HomePage } from './../home/home';
-import { Component, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
@@ -27,6 +27,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 })
 export class QuotationFormPage {
   @ViewChild('slides') slides: Slides;
+
   isProfile = false;
   db = firebase.firestore();
   storage = firebase.storage().ref();
@@ -35,8 +36,9 @@ export class QuotationFormPage {
   extras: Extra[] = Extras;
   comments: Comments[] = comment;
   selectedComment: string;
-  uid
-  houseImage
+  uid;
+  houseImage;
+  loaderAnimate = false;
   quotationForm: FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -98,8 +100,9 @@ export class QuotationFormPage {
   hidepara = true;
   hidelist = true;
   isKeyOpen: boolean = false;
-  hid='';
-//new test
+  hid = '';
+ // duration: number = 0;
+  //new test
 
 
   constructor(public navCtrl: NavController,
@@ -110,7 +113,8 @@ export class QuotationFormPage {
     public alertCtrl: AlertController,
     public camera: Camera,
     public popoverCtrl: PopoverController,
-    private formBuilder: FormBuilder, public oneSignal: OneSignal,
+    private formBuilder: FormBuilder,
+    public oneSignal: OneSignal,
     private renderer: Renderer2) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -118,10 +122,11 @@ export class QuotationFormPage {
     this.HomeOwnerQuotation.builderUID = this.navParams.data;
     this.quotationForm = this.formBuilder.group({
       // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      // image: new FormControl('', Validators.compose([Validators.required])),
       startDate: new FormControl('', Validators.compose([Validators.required])),
       endDate: new FormControl('', Validators.compose([Validators.required])),
       wallType: new FormControl('', Validators.compose([Validators.required])),
-      brickType: new FormControl('', Validators.compose([Validators.required])),
+      // brickType: new FormControl('', Validators.compose([Validators.required])),
       extras: new FormControl('', Validators.compose([Validators.required])),
       comment: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
     });
@@ -155,29 +160,35 @@ export class QuotationFormPage {
 
 
   slideState() {
-   // console.log(this.steps);
+    // console.log(this.steps);
 
     if (this.steps == 'stepone') {
       this.steps = 'steptwo';
-     // console.log('....................1');
-     this.nextbutton = true;
+      document.getElementById('step2').style.display="flex";
+     // document.getElementById('step1').style.display="none";
+      //this.navCtrl.push()
+      // console.log('....................1');
+      this.nextbutton = true;
       setTimeout(() => {
         this.nextslide();
-       // 
-       this.nextbutton = true;
+        // 
+        this.nextbutton = true;
       }, 500)
     } else if (this.steps == 'steptwo') {
+      document.getElementById('step3').style.overflow="auto";
+     // document.getElementById('step2').style.display="none";
       this.steps = 'stepthree';
       setTimeout(() => {
         this.nextbutton = false;
         this.nextslide()
       }, 500)
-    }
+    } 
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);
     // console.log(this.HomeOwnerQuotation.extras);
   }
+ 
   nextslide() {
     switch (this.steps) {
       case 'stepone':
@@ -219,7 +230,7 @@ export class QuotationFormPage {
   }
 
   ionViewDidLoad() {
-
+ // this.duration =  Number(this.HomeOwnerQuotation.startDate.toString().substring(8, 11)) - Number(this.HomeOwnerQuotation.endDate.toString().substring(8, 11))
     console.log(this.extras);
 
     //let arr = [{objExtra, objPrice, objQuantity}]
@@ -236,23 +247,26 @@ export class QuotationFormPage {
   //method to hide divs on keyboard show
   checkKeyboard(data) {
     //  this.keyBoard.onKeyboardHide
-      console.log(data);
-      if (data =='open') {
-        this.hid='value';
-      } else {
-        this.hid=''
-      }
+    console.log(data);
+    if (data == 'open') {
+      this.hid = 'value';
+    } else {
+      this.hid = ''
     }
-//test coe
-/*  */
-    
+  }
+  //test coe
+  /*  */
+
   detailBricks() {
     this.brickDetails = !this.brickDetails;
   }
   highlight(event) {
     this.HomeOwnerQuotation.brickType = event.name;
-    // console.log('tapped', this.HomeOwnerQuotation.brickType);
-
+    while (this.HomeOwnerQuotation.brickType) {
+      document.getElementById('brickName').style.color="#2E98E8"; 
+    }
+    
+     console.log('tapped', event)
   }
   // selectAll(){
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
@@ -293,9 +307,17 @@ export class QuotationFormPage {
     })
     this.imageSelected = true;
   }
-  async createQuations(): Promise<void> {
-    if (!this.HomeOwnerQuotation) {
-      console.log('Please fill all the form fields')
+  alertContrl() {
+   return this.alertCtrl.create({
+      title: 'Empty field',
+      subTitle: 'Please check your information',
+      buttons: ['Ok']
+    }).present()
+  }
+  createQuations() {
+    if (this.HomeOwnerQuotation.startDate==''|| this.HomeOwnerQuotation.houseImage=='' ||this.HomeOwnerQuotation.endDate==''||this.HomeOwnerQuotation.brickType==''||this.HomeOwnerQuotation.wallType==''
+    ||this.HomeOwnerQuotation.comment=='') {
+      this.alertContrl();
     } else {
 
       if (!this.imageSelected) {
@@ -304,54 +326,65 @@ export class QuotationFormPage {
           duration: 2000
         }).present();
 
-      } else {
+      }
+      else {
         // load the profile creation process
-        const load = this.loadCtrl.create({
-          content: 'submitting quotations ..'
-        });
-        load.present();
+        setTimeout(() => {
+          this.loaderAnimate = true;
+        }, 3000);
+        //load.present();
+        if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
+          this.alertCtrl.create({
+            title: 'Invalid dates',
+            subTitle: 'Please check your dates',
+            buttons: ['Try again']
+          }).present()
+        } else {
+          const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
+          // upon success...
+          user.then((response) => {
+           
+            response.update({ docID: response.id });
+            response.onSnapshot((resBuilder) => {
+              // resBuilder.data()
+              if (resBuilder.data().builderUID) {
+                this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
+                  if (out.data().tokenID) {
+                    var notificationObj = {
+                      contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
+                      include_player_ids: [out.data().tokenID],
+                    };
+                    this.oneSignal.postNotification(notificationObj).then(res => {
+                      // console.log('After push notifcation sent: ' +res);
+                    });
 
-        const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
-
-        // upon success...
-        user.then((response) => {
-          response.update({ docID: response.id });
-          response.onSnapshot((resBuilder) => {
-            // resBuilder.data()
-            if (resBuilder.data().builderUID) {
-              this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
-                if (out.data().tokenID) {
-                  var notificationObj = {
-                    contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
-                    include_player_ids: [out.data().tokenID],
-                  };
-                  this.oneSignal.postNotification(notificationObj).then(res => {
-                    // console.log('After push notifcation sent: ' +res);
-                  });
-
-                }
-              })
-            }
+                  }
+                })
+              }
+            })
+            this.HomeOwnerQuotation.extras.forEach((item) => {
+              response.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+            });
+           
+            this.HomeOwnerQuotation.extras = [];
+            this.navCtrl.setRoot(SuccessPage)
+            this.toastCtrl.create({
+              message: '  Quotation submitted.',
+              duration: 2000,
+            }).present();
+            // ...get the profile that just got created...
+            //load.dismiss();
+            // catch any errors.
+          }).catch(err => {
+            this.toastCtrl.create({
+              message: 'Error submitting Quotation.',
+              duration: 2000
+            }).present();
+            this.isProfile = false;
+            // load.dismiss();
           })
-          this.HomeOwnerQuotation.extras.forEach((item) => {
-            response.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-          });
-          this.navCtrl.setRoot(SuccessPage)
-          this.toastCtrl.create({
-            message: '  Quotation submitted.',
-            duration: 2000,
-          }).present();
-          // ...get the profile that just got created...
-          load.dismiss();
-          // catch any errors.
-        }).catch(err => {
-          this.toastCtrl.create({
-            message: 'Error submitting Quotation.',
-            duration: 2000
-          }).present();
-          this.isProfile = false;
-          load.dismiss();
-        })
+        }
+
       }
     }
 
