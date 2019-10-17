@@ -124,7 +124,7 @@ page-quotation-form {
       top: 12vh;
       height: 100%;
       width: 100%;
-      margin-bottom: 50px;
+      //margin-bottom: 50px;
       overflow-y: scroll;
    // height: 79%;
       background: white;
@@ -668,28 +668,5 @@ div {
   }
  }
 }
-.button-group {
-  margin-top: 30px;
-  position: absolute;
-  bottom: 2%;
-  right: 0;
-  background: color($colors, primary);
-  padding-left: 15px;
-  display: flex;
-  z-index: 100;
-  justify-content: space-between;
-  align-items: center;
-  height: 45px;
-  float: right;
-  border-radius: 50px 0 0 50px;
-  p {
-      margin: auto;
-      color: #fff;
-      padding: 2px;
-  }
-  &:active {
-      background: rgb(255, 211, 18);
-  }
 
-}
 

@@ -18,7 +18,7 @@ page-channels {
          border-radius: 5px;
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          align-items: center; 
           position: relative;
           padding-left: 1em;
           padding-top: .5em;
@@ -38,6 +38,9 @@ page-channels {
             top: 1%;
             right: 1%;
             color: #b8b8b8;
+          }
+          .informative h6 {
+            justify-self: center;
           }
           .button-group {
             display: flex;

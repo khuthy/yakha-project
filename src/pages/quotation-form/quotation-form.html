@@ -8,14 +8,7 @@
 
 
 <ion-content fullscreen>
-    <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
-        <p>Send Quotes</p>
-         <button class="send-quotes" ion-fab color="light">
-          <ion-icon name="arrow-forward"></ion-icon>
-         
-        </button>
-      </div>
- <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
+ <!--  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
       <button ion-fab mini>
@@ -24,7 +17,7 @@
     </div>
  
   </div>  -->
-<!--   <ion-footer >
+  <ion-footer >
     <ion-toolbar >
      
       <div *ngIf="nextbutton" class="btn" (click)="slideState()" >
@@ -37,7 +30,7 @@
        
       </div>
     </ion-toolbar>
-   </ion-footer> -->
+   </ion-footer> 
 
   <div style="background:transparent" *ngIf="!nextbutton" class="nextbutton" (click)="createQuations()" class="btn">
       <p>Submit</p>
