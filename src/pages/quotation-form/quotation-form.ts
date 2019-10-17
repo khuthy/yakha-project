@@ -189,7 +189,7 @@ export class QuotationFormPage {
      // document.getElementById('step2').style.display="none";
       this.steps = 'stepthree';
       setTimeout(() => {
-        this.nextbutton = true;
+        this.nextbutton = false;
         this.nextslide()
       }, 500)
     } 
