@@ -593,6 +593,9 @@ page-home {
       bottom: 0;
       right: 0;
       z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: rgb(22, 13, 0);
       background-repeat: repeat-x;
       transform: scale(1);
