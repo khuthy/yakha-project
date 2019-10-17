@@ -36,9 +36,13 @@ export class QuotationFormPage {
   extras: Extra[] = Extras;
   comments: Comments[] = comment;
   selectedComment: string;
+  selectedBrick = ""
+  bricksContainer: any = document.getElementsByClassName('bricks');
   uid;
+  loaderAnimate = true;
+  hide12 = 'qweqwerwrwr';
   houseImage;
-  loaderAnimate = false;
+ // loaderAnimate = false;
   quotationForm: FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -179,7 +183,7 @@ export class QuotationFormPage {
      // document.getElementById('step2').style.display="none";
       this.steps = 'stepthree';
       setTimeout(() => {
-        this.nextbutton = false;
+        this.nextbutton = true;
         this.nextslide()
       }, 500)
     } 
@@ -235,7 +239,12 @@ export class QuotationFormPage {
 
     //let arr = [{objExtra, objPrice, objQuantity}]
 
-
+    setTimeout(() => {
+      this.loaderAnimate = false;
+    //  this.hide12='';
+      //this.HomeOwnerQuotation.extras = [];
+      
+    }, 2000);
     // firebase.database().ref().child('hotels').
     // this.extras = firebase.firestore().collection('extras')
     console.log(this.uid);
@@ -260,13 +269,35 @@ export class QuotationFormPage {
   detailBricks() {
     this.brickDetails = !this.brickDetails;
   }
-  highlight(event) {
-    this.HomeOwnerQuotation.brickType = event.name;
-    while (this.HomeOwnerQuotation.brickType) {
-      document.getElementById('brickName').style.color="#2E98E8"; 
+  highlight(brick, event) {
+    this.HomeOwnerQuotation.brickType = brick.name;
+    //console.log(this.HomeOwnerQuotation.brickType);
+    for (let j = 0; j < this.bricksContainer[0].children.length; j++) {
+      // console.log('bricks', this.bricksContainer[0].children[j].children);
+      for (let a = 0; a < this.bricksContainer[0].children[j].children.length; a++) {
+        //console.log('brick class',this.bricksContainer[0].children[j].children[1].innerText);
+        if (this.HomeOwnerQuotation.brickType != this.bricksContainer[0].children[j].children[1].innerText) {
+          this.renderer.setStyle(this.bricksContainer[0].children[j].children[1], 'background', 'white');
+        }
+        
+      }
     }
     
-     console.log('tapped', event)
+    // change color of  selected div;
+     for (let i = 0; i < event.path.length; i++) {
+
+       if (event.path[i].className == 'cards') {
+        
+        this.selectedBrick = event.path[i].children[1].innerText
+
+          this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
+         //console.log(event.path[i].children[1].innerText);
+        // console.log(event.path[i].children);
+       }
+       
+       
+       
+     }
   }
   // selectAll(){
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
@@ -329,9 +360,7 @@ export class QuotationFormPage {
       }
       else {
         // load the profile creation process
-        setTimeout(() => {
-          this.loaderAnimate = true;
-        }, 3000);
+        
         //load.present();
         if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
           this.alertCtrl.create({
@@ -366,7 +395,7 @@ export class QuotationFormPage {
               response.collection('extras').doc(item).set({ price: 0, quantity: 0 });
             });
            
-            this.HomeOwnerQuotation.extras = [];
+           
             this.navCtrl.setRoot(SuccessPage)
             this.toastCtrl.create({
               message: '  Quotation submitted.',
