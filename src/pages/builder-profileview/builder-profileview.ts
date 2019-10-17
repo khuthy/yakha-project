@@ -132,6 +132,10 @@ export class BuilderProfileviewPage {
     this.isProfile = false;
   }
 
+  getProfileImageStyle() {
+    return 'url(' + this.dat.image  + ')'
+  }
+
 }
 export interface builderProfile {
   uid: '',

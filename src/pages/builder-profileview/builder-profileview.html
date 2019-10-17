@@ -1,6 +1,45 @@
+<!--    <ion-header no-border>
+        <ion-navbar>
+          <ion-title></ion-title>
+        </ion-navbar>
+      </ion-header> -->
+<ion-content fullscreen >
+ 
+  <!--   <div class="container">
+      <div class="image-holder" [style.backgroundImage]="getProfileImageStyle()">
+          <div class="address-info">
+            <div class="information">
+              <h2>{{dat.fullName}}</h2>
+              <p>{{dat.address}}</p>
+            </div>
+          </div>
+      </div>
+      <div class="request-info">
+            <div class="certified">
+              <div class="rate"></div>
+              <h4>Profile</h4>
+            </div>
+            <div class="infocontent">
+                 
+        
+                <p>Gender</p>
+                <h5>{{dat.gender}}</h5>
+        
+                <p>Experience</p>
+                <h5>{{dat.experiences}} years.</h5>
+        
+                <p>Cost</p>
+                <h5>{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
+        
+                <p>Cost include roofing</p>
+                <h5>{{dat.roof}}</h5>
+                </div>
+                <div class="group">
 
-<ion-content>
-  
+                </div>
+      </div>
+    </div> -->
+
       <div class="container">
 
         <div class="propic">
@@ -9,8 +48,10 @@
             <button (click)="navCtrl.pop()" style="position:absolute;top:10px;left:10px;z-index:5;background:rgb(204, 158, 20)" ion-fab ><ion-icon name="arrow-back" ></ion-icon></button>
 
             <div class="names">
-           <h4>{{dat.fullName}}</h4>
-           <p id="adres">{{dat.address}}</p>
+      
+                 <h4>{{dat.fullName}}</h4>
+                <p id="adres">{{ (dat.address.length>15)? (dat.address | slice:0:40)+'...':(dat.address) }}</p>
+          <div class="certified"><p>C</p></div>
          </div>
         </div>
 
@@ -30,8 +71,8 @@
         <h5>{{dat.roof}}</h5>
         </div>
 
-        <div class="button">
-            <button *ngIf="!hideRev" slot="start" ion-button (click)="presentPopover()">Review</button>
+   <!--      <div class="button">
+            <button slot="start" ion-button (click)="presentPopover()">Review</button>
           <div class="btn" (click)="next()">
             <p>Request Quote</p>
             <button ion-fab mini><ion-icon name="arrow-forward" style="color: black" ></ion-icon></button>
@@ -41,65 +82,21 @@
               
             
           
-        </div>
-          
-           <!--    <div style="display: flex;height:4%">
-      
-                  <button ion-button clear (click)="navCtrl.pop()"><ion-icon style="font-size: 25px;" name="close-circle-outline"></ion-icon></button>
- 
-              </div>
+        </div> -->
+        <div class="button-group" >
+            <p>Send Quotes</p>
+             <button class="send-quotes" ion-fab (click)="next()" color="light">
+              <ion-icon name="arrow-forward"></ion-icon>
+             
+            </button>
+          </div>
 
-              <div class="holder">
-                  <div class="background">
-                      <h5 style="color: white;text-align: center;padding:5%"></h5>
-
-                      <div class="propic">
-                          <img *ngIf="dat.image" src="{{dat.image}}" class="thumbavatar" >
-                          <img *ngIf="!dat.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
-                      </div>
-
-                      <div class="info">
-                                           
-                          <div style="display:flex; text-align: center; justify-content:center; align-items: center">
-                                <h5  style="text-align: center;font-size: 2.5vh; padding-left:3%" color="button2"> </h5>
-                             
-                             </div>
-                      
-                             <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-                                <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.experiences}} years.</h5>
-                               
-                            </div>
-                       
-                       
-
-                              <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-                                    <h5 style="padding-left:6%;font-size: 2.5vh">{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
-                                   
-                                </div>
-
-
-                            
-                              <div style="display:flex; text-align: center;justify-content:center; align-items: center" >
-                            <h5 style="padding-left:6%;font-size: 2.5vh"> Roofing Included </h5>
-                           
-                        </div>
-
-                      <div class="bio">
-                          <h6 style="margin-top: 0;"><ion-icon style="color:darkcyan;font-size:5vh;padding-top:2%" size="large" name="pin"></ion-icon></h6>
-                    <p style="font-size: 2vh; font-family: 'Segoe UI';margin-top:0">
-                        {{dat.address}}</p>
-                      </div>
-
-                      <div style="margin-top:7%" class="button-request">
-                        <button primary style="padding:1%;background:rgba(197, 101, 66, 0.966);border-radius: 5px;width:90%;position:relative;left:5%;top:10%" ion-button color="dark" class="btn" (click)="next()" block>Request Quotes</button>
-                       </div>
-
-                    </div>
-                 
-                  </div>
-
-              </div> -->
+          <div class="button-group2" *ngIf="!hideRev" (click)="presentPopover()">
+             <button class="send-quotes" ion-fab (click)="presentPopover()" color="light">
+                <ion-icon name="arrow-back"></ion-icon> </button> 
+              <p>Review</p>
+            </div>
         
-        </div>
+        </div> 
     
 </ion-content>
