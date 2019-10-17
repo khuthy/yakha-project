@@ -57,7 +57,7 @@ export class LoginPage {
   buttons = true;
   isKeyOpen: boolean = false;
   hid='';
-
+  loadAnimate = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -158,11 +158,9 @@ export class LoginPage {
     } else {
 
       let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
-      let loading = this.loadingCtrl.create({
-        content: 'Please wait...',
-        duration: 3500
-      })
-      loading.present();
+      setTimeout(() => {
+        this.loadAnimate = true;
+      }, 2000);
       signIn.then((getUid) => {
         this.authService.setUser(getUid.user.uid);
         this.db.doc(this.authService.getUser()).onSnapshot((profile) => {
@@ -174,14 +172,14 @@ export class LoginPage {
             }).present();
             if (profile.data().builder == true) {
               this.navCtrl.setRoot(BaccountSetupPage);
-              loading.dismiss();
+             // loading.dismiss();
             } else {
               this.navCtrl.setRoot(AccountSetupPage);
-              loading.dismiss();
+              //loading.dismiss();
             }
           } else {
             this.navCtrl.setRoot(HomePage);
-            loading.dismiss();
+            //loading.dismiss();
           }
         })
       }).catch(error => {

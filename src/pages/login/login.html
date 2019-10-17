@@ -1,6 +1,9 @@
 <ion-content [style.backgroundColor]="builder ? '#f2f2f2': '#203959'">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-  <div class="container">
+    <div class="loader" *ngIf="loadAnimate">
+        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+    <div class="container">
 
     <div class="logo" id="hide-div2" *ngIf="!hid">
       <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
@@ -14,6 +17,8 @@
 
     <div class="inputs">
       <form class="forms" [formGroup]="loginForm">
+        
+          
         <ion-list no-lines style="background: transparent">
 
           <ion-item [ngClass]="{'itemBuilder' : builder, 'item' : !builder}">
@@ -51,7 +56,7 @@
 
             <div class="div-fab" color="light"  style="border-radius: 30px 0px 0px 30px;padding-right: 2%;" [style.backgroundColor]="builder ?  '#262014' : '#F2BE22'">
               <p style="color: white">Sign In </p>
-              <button ion-fab color="light"  (click)="loginUser()" style="height: 6vh; width: 6vh;">
+              <button ion-fab color="light"  [disabled]="!loginForm.valid" (click)="loginUser()" style="height: 6vh; width: 6vh;">
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </button>
 
