@@ -133,7 +133,7 @@ h5 {
     
   /* view profile code */
   .container {
-    //  border: 1px solid red;
+    // border: 1px solid red;
        height: 100vh;
        margin: 0;
        padding: 0;
@@ -155,12 +155,12 @@ h5 {
   background: rgba(8, 8, 8, 0.555);
     left: 0;
     right: 0;
-height:10vh;
+height:12vh;
     bottom: 0;
     z-index:5;
     position: absolute;
 h4 {
- // border: 1px solid green;
+//  border: 1px solid green;
   letter-spacing: 1px;
   color:white;
   padding-left:3%;
@@ -173,7 +173,7 @@ h4 {
       letter-spacing: 1px;
       padding-left:3%;
       font-size:3.5vw;
-      margin-top:-1%;
+      margin-top:-3%;
       font-weight:300;
     }
   }
@@ -182,24 +182,26 @@ h4 {
      margin-top:2%;
     height:47%;
     width:100%;
-   // border: 1px solid rgb(15, 65, 231);
+    //border: 1px solid rgb(15, 65, 231);
 
     h3 {
       text-align: center;
       //border: 1px solid red;
       letter-spacing: 1px;
-      font-weight:330;
+      font-weight:400;
       margin-top:1%;
       font-size:6vw;
+      color: rgb(70, 67, 67);
     }
     p {
       font-size: 2.2vh;
-      color:rgb(61, 57, 57);
+      color:rgb(110, 106, 106);
       font-weight:400;
       padding-left: 4%;
      // border: 1px solid red;
       letter-spacing: 1px;
       margin-top:0%;
+      font-size:3vh;
     }
     h5 {
       padding-left: 8%;

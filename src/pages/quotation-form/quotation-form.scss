@@ -378,14 +378,12 @@ img {
                
               }
             }
-           /*  ion-list{
-              ion-item:nth-child(odd){
-                //background: blue;
-              }
-            } */
-          
+            .list .item-block:nth-child(even) {
+           
+              background: #fff!important;
+          }
             .gray {
-              background:#EDEDED;
+              background:rgb(219, 219, 219);
               margin-top: -12px;
               margin-bottom: -12px;
               ion-label {
