@@ -606,5 +606,39 @@ height:12vh;
     }
 }
     }
+      
+    .header {
+      position: absolute;
+      top: 1%;
+      left: 1%;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      z-index: 4;
+      
+   .group-button {
+       background: color($colors, danger);
+       padding: 0 0 0 2em;
+       border-radius: 50px 0 0 50px;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+
+       &:active {
+           background: red;
+       }
+
+       p {
+           color: color($colors, light);
+           font-size: $font-size;
+           white-space: nowrap;
+           margin: auto;
+       }
+       button {
+           box-shadow: $fab-box-shadow;
+       }
+
+   }
+  }
 
   }

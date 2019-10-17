@@ -14,9 +14,13 @@ page-quotation-form {
     bottom: 0;
   }
 
-  
+  .backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+  }
   .toolbar {
-  
     .toolbar-background {
       background: transparent;
       
@@ -49,7 +53,7 @@ page-quotation-form {
   }
 
   .bottomDecor {
-    background: linear-gradient(255,255,255,0.15),url(../../assets/imgs/OwnerShapes.svg);
+    background: url(../../assets/imgs/OwnerShapes.svg);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -117,8 +121,8 @@ page-quotation-form {
   .information {
       //border:2px solid green;
       position: absolute;
-      top: 0;
-      height: 100%;
+      top: 12vh;
+      bottom: 10vh;
       width: 100%;
       overflow-y: scroll;
    // height: 79%;
@@ -262,7 +266,7 @@ img {
                       width: 30px;
                       height: 30px;
                       position: absolute;
-                      background: red;
+                      background: white;
                       color: black;
                       border-radius: 200px;
                       z-index: 10;
@@ -384,14 +388,12 @@ img {
                
               }
             }
-           /*  ion-list{
-              ion-item:nth-child(odd){
-                //background: blue;
-              }
-            } */
-          
+            .list .item-block:nth-child(even) {
+           
+              background: #fff!important;
+          }
             .gray {
-              background:#EDEDED;
+              background:rgb(219, 219, 219);
               margin-top: -12px;
               margin-bottom: -12px;
               ion-label {
