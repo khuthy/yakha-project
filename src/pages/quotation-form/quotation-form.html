@@ -1,4 +1,4 @@
-<ion-header no-border style="background: transparent;">
+<ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary" *ngIf="nextbutton==true">
    
   </ion-navbar>
@@ -15,6 +15,13 @@
          
         </button>
       </div>
+      <div class="button-group"  *ngIf="!nextbutton" (click)="slideState()">
+          <p>Done</p>
+           <button class="send-quotes" ion-fab color="light">
+            <ion-icon name="arrow-forward"></ion-icon>
+           
+          </button>
+        </div>
  <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
