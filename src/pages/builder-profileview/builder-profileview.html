@@ -68,7 +68,8 @@
         <h5>{{dat.price | currency:'&#82;'}}(p/&#13217;)</h5>
 
         <p>Cost include roofing</p>
-        <h5>{{dat.roof}}</h5>
+        <h5 *ngIf="dat.roof">Yes</h5>
+        <h5 *ngIf="!dat.roof">No</h5>
         </div>
 
    <!--      <div class="button">
@@ -83,8 +84,8 @@
             
           
         </div> -->
-        <div class="button-group" (click)="next()">
-            <p>Send Quotes</p>
+        <div class="button-request" (click)="next()">
+            <p>Request Quote</p>
              <button class="send-quotes" ion-fab color="light">
               <ion-icon name="arrow-forward"></ion-icon>
              

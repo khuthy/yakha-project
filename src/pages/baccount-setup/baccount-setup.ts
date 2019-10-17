@@ -168,7 +168,7 @@ export class BaccountSetupPage {
   }
   async createprofile(profileForm: FormGroup): Promise<void> {
 
-    if(!profileForm.valid){
+    if(!profileForm.valid || this.builderProfile.address==""){
       console.log(
         'Need to complete the form, current value: ',
         profileForm.value

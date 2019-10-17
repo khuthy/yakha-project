@@ -25,12 +25,12 @@ page-quotation-form {
       background: transparent;
       
     }
-    .back-button {
+   /*  .back-button {
     
       background: rgb(204, 158, 20);
       border-radius: 50%;
       min-height: 45px;  
-    }
+    } */
    
   } 
 
@@ -49,6 +49,7 @@ page-quotation-form {
     width: 50vw;
     height: 20vw;
     background-size: 100%;
+    border:1px solid red;
 
   }
 
@@ -65,7 +66,7 @@ page-quotation-form {
   }
 
   .btn {
-   // border:1px solid rgb(218, 28, 3);
+    border:1px solid rgb(218, 28, 3);
     width: 50%;
     height:8%;
     padding:0.8vh;
@@ -700,7 +701,8 @@ div {
     // transform: rotate(360deg);
   }
  }
-}
+
+//next button
 .button-group {
   margin-top: 30px;
   position: absolute;
@@ -713,6 +715,7 @@ div {
   justify-content: space-between;
   align-items: center;
   height: 45px;
+  width: 45%;
   float: right;
   border-radius: 50px 0 0 50px;
   p {
@@ -729,5 +732,44 @@ div {
   }
 
 
-}
+}//close next button
 
+//edit quote before submit buttton
+.edit {
+  //border:1px solid red;
+  margin-top: 30px;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  background: #cc9e14;
+  padding-left: 15px;
+  display: flex;
+  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  float: right;
+  width: 45%;
+  border-radius:0 50px 50px 0;
+  p {
+    //border:1px solid red;
+      margin: auto;
+      color: #fff;
+      padding: 2px;
+      margin-left:4%;
+     text-align:center;
+  }
+  button {
+    //margin-right:5px;
+    background:white;
+    ion-icon {
+      color:black;
+    }
+  }
+  &:active {
+      background:#cc9e14;
+  }
+
+
+}
+}

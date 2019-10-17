@@ -57,7 +57,7 @@ export class LoginPage {
   buttons = true;
   isKeyOpen: boolean = false;
   hid='';
-  loadAnimate = false;
+ // loadAnimate = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -158,9 +158,7 @@ export class LoginPage {
     } else {
 
       let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
-      setTimeout(() => {
-        this.loadAnimate = true;
-      }, 2000);
+   
       signIn.then((getUid) => {
         this.authService.setUser(getUid.user.uid);
         this.db.doc(this.authService.getUser()).onSnapshot((profile) => {

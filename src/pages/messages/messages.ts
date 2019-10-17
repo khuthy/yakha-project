@@ -22,20 +22,21 @@ import { PopoverPage } from '../popover/popover';
   templateUrl: 'messages.html',
 })
 export class MessagesPage {
- db = firebase.firestore();
+  db = firebase.firestore();
   dbMessage = firebase.firestore().collection('Request');
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
   dbFeed = firebase.firestore().collection('Feedback');
   hideRev;
-  slidesPerView : number = 1;
+  slidesPerView: number = 1;
   messages = [];
-  incomingRes=[];
+  incomingRes = [];
   qDoc;
   honwerUID;
   hownerName;
   homebuilder: boolean; //testing if the css is working
-  
+  icon = 'arrow-dropdown';
+  toggle = false;
   msg: any;
   /* testing */
   autoUid: any;
@@ -52,124 +53,157 @@ export class MessagesPage {
     extras: []
 
   }
+  imageBuilder;
+  builderName = '';
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-      private fileOpener: FileOpener,
-      public elementref: ElementRef,
-      public renderer: Renderer2,
-      public authServes: AuthServiceProvider,
-      public oneSignal: OneSignal, public popoverCtrl: PopoverController
-      ) {
+    public navParams: NavParams,
+    private fileOpener: FileOpener,
+    public elementref: ElementRef,
+    public renderer: Renderer2,
+    public authServes: AuthServiceProvider,
+    public oneSignal: OneSignal, public popoverCtrl: PopoverController
+  ) {
+    this.autoUid = this.navParams.data;
+    console.log(this.autoUid);
+    this.builderName = this.autoUid.name;
+    this.imageBuilder = this.autoUid.img;
+  }
 
-        this.autoUid = this.navParams.data;
-        console.log(this.autoUid);
+  open() {
+    if(this.toggle == true) {
+      this.toggle = false;
+      this.icon = 'arrow-dropdown';
+    }else {
+      this.icon = 'arrow-dropup';
+      this.toggle = true;
+    }
+
   }
-  acceptQoute(data, uid){
-  //  console.log('doc id.................', data);
-   
-    this.dbIncoming.doc(data).update({msgStatus:"Accepted"}).then((res)=>{
-      document.getElementById('accept').style.display="none";
+  acceptQoute(data, uid) {
+    //  console.log('doc id.................', data);
+
+    this.dbIncoming.doc(data).update({ msgStatus: "Accepted" }).then((res) => {
+      document.getElementById('accept').style.display = "none";
       // this.messages = [];
-    //  console.log('Updated document results',res);
-     this.dbProfile.doc(uid).onSnapshot((msg)=>{
-      var notificationObj = {
-        contents: { en: "Hey " + msg.data().fullName+" ," + "your qoutation response has been accepted"},
-        include_player_ids: [msg.data().tokenID],
-      };
-      this.oneSignal.postNotification(notificationObj).then(res => {
-        // console.log('After push notifcation sent: ' +res);
-        
-       });
-     }) 
-    });
-  }
-  declineQoute(data,uid){
-    //console.log('data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data);
-    
-    this.dbIncoming.doc(data).update({msgStatus:"Declined"}).then((res)=>{
-     // this.messages = [];
-     // console.log('Declined document results',res) 
-      this.dbProfile.doc(uid).onSnapshot((msg)=>{
+      //  console.log('Updated document results',res);
+      this.dbProfile.doc(uid).onSnapshot((msg) => {
         var notificationObj = {
-          contents: { en: "Hey " + msg.data().fullName+" ," + "your qoutation response has been declined"},
+          contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been accepted" },
           include_player_ids: [msg.data().tokenID],
         };
         this.oneSignal.postNotification(notificationObj).then(res => {
           // console.log('After push notifcation sent: ' +res);
-          
-         });
-       }) 
+
+        });
+      })
+    });
+  }
+  declineQoute(data, uid) {
+    //console.log('data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data);
+
+    this.dbIncoming.doc(data).update({ msgStatus: "Declined" }).then((res) => {
+      // this.messages = [];
+      // console.log('Declined document results',res) 
+      this.dbProfile.doc(uid).onSnapshot((msg) => {
+        var notificationObj = {
+          contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been declined" },
+          include_player_ids: [msg.data().tokenID],
+        };
+        this.oneSignal.postNotification(notificationObj).then(res => {
+          // console.log('After push notifcation sent: ' +res);
+
+        });
+      })
     });
   }
   ionViewDidLoad() {
-    this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
-    this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
-      
-      res.forEach((doc)=>{ 
-        if(doc.data().viewed==false){
-           this.dbIncoming.doc(doc.id).update({viewed: true})
-        }
-        this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
-          // this.qDoc = doc.id;
-          // console.log(this.messages);
-         // this.qDoc = info.data().pdfLink;
-           //this.honwerUID = doc.data().uid;
-         //  console.log(doc.data().hOwnerUid);
-           this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
-            this.messages = [];
-           this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-             let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
-             this.messages.push(msgData);
-            // this.hownerName = ;
-            console.log('jjjjjjjjjjjjjjjjj',this.messages);
-           })
-           })
-           })
-      })
-    })
-  this.dbFeed.where('owner','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
-    res.forEach((doc)=>{
-      console.log('Feedback data for this user', doc.data());
-      
-    })
-   /*  document.getElementById('accept').style.display="none";
-    document.getElementById('review').style.display="none"; */
+    let data = { incoming: {}, sent: {} }
 
-  })
-  /* get request */
-   this.db.collection('Request').doc(this.autoUid).onSnapshot((getRequest) => {
-          if(getRequest.exists){
-            this.projectRequirement.brickType = getRequest.data().brickType;
-            this.projectRequirement.startDate = getRequest.data().startDate;
-            this.projectRequirement.wallType = getRequest.data().wallType;
-            this.projectRequirement.comment = getRequest.data().comment;
-            this.projectRequirement.endDate = getRequest.data().endDate;
-            this. projectRequirement.date = getRequest.data().date;
-          }
-     
-   })
-  
+    this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
+      data.sent = res.data();
+      data.incoming = {};
+    })
+
+    this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
+      data.incoming = doc.data();
+    })
+    this.messages = [];
+    this.messages.push(data);
+    console.log(this.messages);
+
+    // data = { incoming: {}, sent: {}}
+    //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
+    //   this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
+
+    //     res.forEach((doc)=>{ 
+    //       if(doc.data().viewed==false){
+    //          this.dbIncoming.doc(doc.id).update({viewed: true})
+    //       }
+    //       this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
+    //         // this.qDoc = doc.id;
+    //         // console.log(this.messages);
+    //        // this.qDoc = info.data().pdfLink;
+    //          //this.honwerUID = doc.data().uid;
+    //        //  console.log(doc.data().hOwnerUid);
+    //          this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
+    //           this.messages = [];
+    //          this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
+    //            let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
+    //            this.messages.push(msgData);
+    //           // this.hownerName = ;
+    //           console.log('jjjjjjjjjjjjjjjjj',this.messages);
+    //          })
+    //          })
+    //          })
+    //     })
+    //   })
+    // this.dbFeed.where('owner','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    //   res.forEach((doc)=>{
+    //     console.log('Feedback data for this user', doc.data());
+
+    //   })
+    //  /*  document.getElementById('accept').style.display="none";
+    //   document.getElementById('review').style.display="none"; */
+
+    // })
+    // /* get request */
+    //  this.db.collection('Request').doc(this.autoUid).onSnapshot((getRequest) => {
+    //         if(getRequest.exists){
+    //           this.projectRequirement.brickType = getRequest.data().brickType;
+    //           this.projectRequirement.startDate = getRequest.data().startDate;
+    //           this.projectRequirement.wallType = getRequest.data().wallType;
+    //           this.projectRequirement.comment = getRequest.data().comment;
+    //           this.projectRequirement.endDate = getRequest.data().endDate;
+    //           this. projectRequirement.date = getRequest.data().date;
+    //         }
+
+    //  })
+
   }
- 
+
   presentPopover(uid) {
-    const popover = this.popoverCtrl.create(PopoverPage, {key1:uid});
+    const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
     popover.present();
   }
-  downloadPDF(file){
+  downloadPDF(file) {
     this.fileOpener.open(file, 'application/pdf')
     .then(() => console.log('File is opened'))
     .catch(e => console.log('Error opening file', e)); 
    // console.log(file);
     
 }
+getProfileImageStyle() {
+   return 'url(' + this.imageBuilder  + ')'
+}
+
   // viewMessages() {
   //   this.navCtrl.push(ViewmessagePage);
   // }
-  itemSelected(item){
+  itemSelected(item) {
     this.navCtrl.push(ViewmessagePage, item);
   }
-  userProfile(){
-   
+  userProfile() {
+
     console.log(this.hownerName);
   }
 

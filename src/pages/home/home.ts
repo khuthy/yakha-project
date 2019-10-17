@@ -177,13 +177,15 @@ export class HomePage {
     let data = {builder:{}, rate:{average: null}}
 
     //>>>>>>> get the builder
-    await this.db.where('builder', '==', true).get().then(async (res) => {
+    await this.db.where('builder', '==', true).onSnapshot(async (res) => {
       this.builder = [];
       let info = { rate: {} ,builder: {}};
 
       //>>>>>>> get the reviews made for this builder
       res.forEach(async (doc) => {
-        if (doc.data().address!=="") {
+        console.log('All builders............',doc.data().lat);
+        
+        if (doc.data().address!="") {
            data.builder = doc.data()
         this.builder.push(doc.data())
         // data.builder

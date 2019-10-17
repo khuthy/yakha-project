@@ -16,42 +16,40 @@ import * as firebase from 'firebase'
   templateUrl: 'channels.html',
 })
 export class ChannelsPage {
-  db = firebase.firestore();
+  dbRequest = firebase.firestore().collection('Request');
+  dbUser = firebase.firestore().collection('Users');
   uid = firebase.auth().currentUser.uid;
   dat = {} as builderProfile;
   builder;
   respond = [];
   user;
+  docID;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-   /*  this.dat = this.navParams.data; */
-   this.db.collection('Respond').where('hOwnerUID', '==', this.uid).onSnapshot((response) => {
-      response.forEach(doc => {
-        this.db.collection('Users').where('uid', '==', doc.data().uid).onSnapshot((userDetails) => {
-          userDetails.forEach((users) => {
-            this.respond.push({user: users.data(), autoId: doc.id});
-            console.log('Users doc ', users.data());
-            
-          })
-        })
-       console.log('Response doc', doc.data());
-       
-      });
-   })
-   console.log('Document ', this.respond);
-   
-  
+    /*  this.dat = this.navParams.data; */
+
+    // console.log('Document ', this.respond);
+
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChannelsPage');
-   
+   firebase.firestore().collectionGroup('Request').where('fullName', '==', 'ysvBbHJI9FMcHQV').onSnapshot((res)=>{
+   //  console.log(res.docs);
+     
+   })
+    this.dbRequest.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
+        for (let i = 0; i < res.docs.length; i++) {
+          this.dbUser.doc(res.docs[i].data().builderUID).onSnapshot((result) => {
+           this.respond.push({user:result.data(), id:res.docs[i].id});
+          })
+        }
+      })
   }
-  gotoMessages(autoUid) {
-  this.navCtrl.push(MessagesPage , autoUid);
-  console.log(autoUid);
-  
+  gotoMessages(id, name, img) {
+    this.navCtrl.push(MessagesPage, {id,name,img});
+   // console.log(id);
   }
-  
+
 
 }
 export interface builderProfile {
