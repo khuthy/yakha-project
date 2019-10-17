@@ -50,6 +50,7 @@ export class MessagesPage {
     comment: '',
     startDate: '',
     endDate: '',
+
     extras: []
 
   }
@@ -180,6 +181,7 @@ export class MessagesPage {
     //  })
 
   }
+  brick = 'Engineering brick' //demo
 
   presentPopover(uid) {
     const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
@@ -195,6 +197,7 @@ export class MessagesPage {
 getProfileImageStyle() {
    return 'url(' + this.imageBuilder  + ')'
 }
+
 
   // viewMessages() {
   //   this.navCtrl.push(ViewmessagePage);

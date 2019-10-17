@@ -8,17 +8,41 @@
    </ion-navbar>
     <p>{{builderName}}
         <ion-buttons style="background:transparent">
-            <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  icon-only> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
+            <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  clear> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
           </ion-buttons>
-    </p>
-
-    
-  </ion-header>
+    </p> </ion-header>
   <!-- -->
 <ion-content fullscreen>
 
-  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}">
-  <p>House plan</p>
+  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of messages">
+ 
+    <div class="imageholder" *ngIf="toggle">
+      <img src="{{item.sent.houseImage}}" class="image">
+
+    </div>
+
+    <!-- bricks -->
+    <div class="bricks"  *ngIf="toggle">
+      <div>
+        <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="70%">
+        <p>{{brick}}</p>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label stacked>start date</ion-label>
+          <ion-label stacked>{{item.sent.startDate}}</ion-label>
+        </ion-item>
+
+        <ion-item >
+          <ion-label stacked>end date</ion-label>
+          <ion-label>{{item.sent.endDate}}</ion-label>
+        
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- wall type -->
+    <p>Wall type : {{item.sent.walltype}}</p>
   </div>
 
   <div class="chats">
