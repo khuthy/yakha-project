@@ -1,194 +1,188 @@
 <ion-header no-border style="background: transparent;">
-  <ion-navbar color="primary" *ngIf="nextbutton==true">
-   
-  </ion-navbar>
+    <ion-navbar color="primary">
+      <ion-title>version</ion-title>
+    </ion-navbar>
+  </ion-header>
   
-</ion-header>
-
-
-
-<ion-content fullscreen>
- <!--  <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
-    <p>Next</p>
-    <div class="nextFab">
-      <button ion-fab mini>
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </div>
- 
-  </div>  -->
-  <ion-footer >
-    <ion-toolbar >
+  <ion-content fullscreen>
+     <div transparent 
      
-      <div *ngIf="nextbutton" class="btn" (click)="slideState()" >
-         <p style="border:2px solid blue;width:60%;height:100%">next</p> 
-        <div style="border:2px solid yellow;width:40%;margin-left: auto">
-           <button ion-fab mini >
+     *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
+      <p>Next</p>
+      <div class="nextFab">
+        <button ion-fab mini>
           <ion-icon name="arrow-forward"  ></ion-icon>
         </button>
-        </div>
+      </div>
+    </div> 
+  <!--   <ion-footer >
+      <ion-toolbar >
        
+        <div *ngIf="nextbutton" class="btn" (click)="slideState()" >
+           <p style="border:2px solid blue;width:60%;height:100%">next</p> 
+          <div style="border:2px solid yellow;width:40%;margin-left: auto">
+             <button ion-fab mini >
+            <ion-icon name="arrow-forward"  ></ion-icon>
+          </button>
+          </div>
+         
+        </div>
+      </ion-toolbar>
+     </ion-footer> -->
+  
+    <div style="background:transparent" *ngIf="!nextbutton" class="nextbutton" (click)="createQuations()" class="btn">
+        <p>Submit</p>
+        <div class="nextFab">
+          <button ion-fab>
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </div>
       </div>
-    </ion-toolbar>
-   </ion-footer> 
-
-  <div style="background:transparent" *ngIf="!nextbutton" class="nextbutton" (click)="createQuations()" class="btn">
-      <p>Submit</p>
-      <div class="nextFab">
-        <button ion-fab>
-          <ion-icon name="arrow-forward" (click)="createQuations()"></ion-icon>
-        </button>
-      </div>
+  
+    <!-- <div *ngIf="backButton" (click)="gohome()" class="backButton">
+      <button ion-fab>Back</button>
+    </div> -->
+    <div class="topDecor">
+  
     </div>
-
-  <!-- <div *ngIf="backButton" (click)="gohome()" class="backButton">
-    <button ion-fab>Back</button>
-  </div> -->
-  <div class="topDecor">
-
-  </div>
-  <!-- next button -->
-  <div class="information">
-
-    <!-- slide one starts here -->
-    <div class="slideone">
-
-      <div class="imageCont">
-        
-        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
-        <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
-          (click)="selectImage()" name="cloud-download"></ion-icon>
-        <p *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
-      </div>
-      <div class="dates">
-        <p>I prefer the starting date to be around:</p>
-        <ion-item no-lines>
-          <ion-label style="padding-left:4px">Start</ion-label>
-          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
-            [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
-        </ion-item>
-        <ion-item no-lines style="margin-top:3%">
-          <ion-label >End</ion-label>
-          <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
-            [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
-        </ion-item>
-      </div>
-      <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
-      <div class="bricks">
-
-        <div class="cards" *ngFor="let n of bricks" (tap)="highlight(n)">
-          <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}" >
-
-
-            <div class="closeB" (click)="detailBricks()">
-              <ion-icon name="close"></ion-icon>
+    <!-- next button -->
+    <div class="information">
+  
+      <!-- slide one starts here -->
+      <div class="slideone">
+  
+        <div class="imageCont">
+          <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
+          <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
+            (click)="selectImage()" name="cloud-download"></ion-icon>
+          <p *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
+        </div>
+        <div class="dates">
+          <p>I prefer the starting date to be around:</p>
+          <ion-item no-lines>
+            <ion-label style="padding-left:4px">Start</ion-label>
+            <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
+              [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
+          </ion-item>
+          <ion-item no-lines style="margin-top:3%">
+            <ion-label >End</ion-label>
+            <ion-datetime displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
+              [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
+          </ion-item>
+        </div>
+        <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
+        <div class="bricks">
+  
+          <div class="cards" *ngFor="let n of bricks" (tap)="highlight(n)">
+            <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}">
+  
+  
+              <div class="closeB" (click)="detailBricks()">
+                <ion-icon name="close"></ion-icon>
+              </div>
+              <p>{{n.description}}</p>
             </div>
-            <p>{{n.description}}</p>
-          </div>
-          <div class="brickName">
-            <p style="font-size:5vw" id="brickName"><small>{{n.name}}</small></p>
-          </div>
-          <div id="imageDiv">
+            <div class="brickName">
+              <p style="font-size:5vw"><small>{{n.name}}</small></p>
+            </div>
             <img src="{{n.image}}">
           </div>
-
+  
+        </div>
+        <div class="walltype">
+          <p>Select wall type</p>
+          <ion-list radio-group class="inputs"  [(ngModel)]="HomeOwnerQuotation.wallType">
+            <ion-item no-lines style="width: 50%;color:white">
+              <ion-label style="color:black">Double</ion-label>
+              <ion-radio style="width:30px;" value="double"></ion-radio>
+            </ion-item>
+  
+            <ion-item no-lines style="width: 50%;">
+              <ion-label style="color:black">Single</ion-label>
+              <ion-radio  style="width:30px;"  value="single"></ion-radio>
+            </ion-item>
+          </ion-list>
+  
+        </div>
+      </div>
+  
+      <!-- start of info2  slide -->
+      <div class="secon" scroll>
+        <div class="extrawork"  >
+          <!-- hide this whole div when the keyboard opens -->
+          <div class="hidethis">
+     <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
+            following?</h2>
+  
+          <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" >
+  
+            <ion-item  class="gray" style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
+              <ion-label>{{e.service}}</ion-label>
+              <ion-checkbox id="hide-div" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+                  " (click)="checkClicked(e.service)"></ion-checkbox>
+            </ion-item>
+   </ion-list>
+          </div>
+  
+       
+  
+          <!-- textarea -->
+          <ion-textarea  (ionFocus)="checkKeyboard('open')"
+          (ionBlur)="checkKeyboard('close')"  placeholder="Type message here"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
           
         </div>
-
-      </div>
-      <div class="walltype">
-        <p>Select wall type</p>
-        <ion-list radio-group class="inputs"  [(ngModel)]="HomeOwnerQuotation.wallType">
-          <ion-item no-lines style="width: 50%;color:white">
-            <ion-label style="color:black">Double</ion-label>
-            <ion-radio style="width:30px;" value="double"></ion-radio>
-          </ion-item>
-
-          <ion-item no-lines style="width: 50%;">
-            <ion-label style="color:black">Single</ion-label>
-            <ion-radio  style="width:30px;"  value="single"></ion-radio>
-          </ion-item>
-        </ion-list>
-
-      </div>
-    </div>
-
-    <!-- start of info2  slide -->
-    <div class="secon" scroll id="step2">
-      <div class="extrawork"  >
-        <!-- hide this whole div when the keyboard opens -->
-        <div class="hidethis">
-          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
-          following?</h2>
-
-        <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" >
-
-          <ion-item  class="gray" style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
-            <ion-label>{{e.service}}</ion-label>
-            <ion-checkbox id="hide-div" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
-                " (click)="checkClicked(e.service)"></ion-checkbox>
-          </ion-item>
-      </ion-list>
-        </div>
-
-     
-
-        <!-- textarea -->
-        <ion-textarea  (ionFocus)="checkKeyboard('open')"
-        (ionBlur)="checkKeyboard('close')"  placeholder="Type message here"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
-        
-      </div>
-
-      <!-- comment area -->
-    </div><!-- slide two ends here -->
-
-    <!-- slide three starts here -->
-    <div class="confirm" style="overflow:auto" id="step3">
-      <h4>CONFIRM</h4>
-      <P>Please confirm if everything is <br> as you need it to be.</P>
-
-      <!-- div containing houseplan and details -->
-      <div class="plan">
-        <!-- houseplan -->
-        <div class="houseplan">
-          <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
-        </div>
-
-        <!-- request details -->
-        <div class="details">
-          <h4>Request Details</h4>
-          <h5>Project Duration</h5>
-
+  
+        <!-- comment area -->
+      </div><!-- slide two ends here -->
+  
+      <!-- slide three starts here -->
+      <div class="confirm" style="overflow:auto">
+        <h4>CONFIRM</h4>
+        <P>Please confirm if everything is <br> as you need it to be.</P>
+  
+        <!-- div containing houseplan and details -->
+        <div class="plan">
+          <!-- houseplan -->
+          <div class="houseplan">
+            <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
+          </div>
+  
+          <!-- request details -->
+          <div class="details">
+            <h4>Request Details</h4>
+            <h5>Project Duration</h5>
+  
+           
+  
+            <p>WallType</p>
+            <h3>{{HomeOwnerQuotation.wallType}}</h3>
+  
+            <p>BrickType</p>
+            <h3>{{HomeOwnerQuotation.brickType}}</h3>
+  
+            <p>Your message</p>
+            <h3 style="overflow:auto;height:13vh;font-size:3vw;font-weight:300">{{HomeOwnerQuotation.comment}}</h3> 
+  
+          </div>
+        </div> <!-- end of houseplan -->
+        <!-- <div class="extraz">
+          <p>Extras</p>
+        </div> -->
+        <div class="extraz" >
+       <h4>Extras</h4>  
+       <div >
+          <p *ngFor="let e of HomeOwnerQuotation.extras">{{e}}</p>
+       </div>
          
-
-          <p>WallType</p>
-          <h3>{{HomeOwnerQuotation.wallType}}</h3>
-
-          <p>BrickType</p>
-          <h3>{{HomeOwnerQuotation.brickType}}</h3>
-
-          <p>Your message</p>
-          <h3 style="overflow:auto;height:13vh;font-size:3vw;font-weight:300">{{HomeOwnerQuotation.comment}}</h3> 
-
         </div>
-      </div> 
-      <div class="extraz" >
-     <h4>Extras</h4>  
-     <div >
-        <p *ngFor="let e of HomeOwnerQuotation.extras">{{e}}</p>
-     </div>
-       
       </div>
+      <!-- end of info2 slide -->
+  
+    </div><!-- info div -->
+    <!-- <div  class="btn">
+      <p>Next</p>
+      <div class="nextFab">
+      <button  ion-fab   ><ion-icon name="arrow-forward"></ion-icon></button>
     </div>
-    <!-- end of info2 slide -->
-    
-  </div>
-  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
-      <div class="maploader">
-          <div class="lds-hourglass"></div>
-      </div>
-      <div class="loading-text">
-        <p>Loading Map</p>
-      </div>
-    </div>
-</ion-content>
+    </div> -->
+  </ion-content>
