@@ -35,8 +35,9 @@ export class QuotationFormPage {
   extras: Extra[] = Extras;
   comments: Comments[] = comment;
   selectedComment: string;
-  uid
-  houseImage
+  uid;
+  houseImage;
+  loaderAnimate = false;
   quotationForm: FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -99,6 +100,7 @@ export class QuotationFormPage {
   hidelist = true;
   isKeyOpen: boolean = false;
   hid = '';
+ // duration: number = 0;
   //new test
 
 
@@ -161,6 +163,9 @@ export class QuotationFormPage {
 
     if (this.steps == 'stepone') {
       this.steps = 'steptwo';
+      document.getElementById('step2').style.display="flex";
+     // document.getElementById('step1').style.display="none";
+      //this.navCtrl.push()
       // console.log('....................1');
       this.nextbutton = true;
       setTimeout(() => {
@@ -169,17 +174,20 @@ export class QuotationFormPage {
         this.nextbutton = true;
       }, 500)
     } else if (this.steps == 'steptwo') {
+      document.getElementById('step3').style.overflow="auto";
+     // document.getElementById('step2').style.display="none";
       this.steps = 'stepthree';
       setTimeout(() => {
         this.nextbutton = false;
         this.nextslide()
       }, 500)
-    }
+    } 
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);
     // console.log(this.HomeOwnerQuotation.extras);
   }
+ 
   nextslide() {
     switch (this.steps) {
       case 'stepone':
@@ -221,7 +229,7 @@ export class QuotationFormPage {
   }
 
   ionViewDidLoad() {
-
+ // this.duration =  Number(this.HomeOwnerQuotation.startDate.toString().substring(8, 11)) - Number(this.HomeOwnerQuotation.endDate.toString().substring(8, 11))
     console.log(this.extras);
 
     //let arr = [{objExtra, objPrice, objQuantity}]
@@ -253,8 +261,11 @@ export class QuotationFormPage {
   }
   highlight(event) {
     this.HomeOwnerQuotation.brickType = event.name;
-    // console.log('tapped', this.HomeOwnerQuotation.brickType);
-
+    while (this.HomeOwnerQuotation.brickType) {
+      document.getElementById('brickName').style.color="#2E98E8"; 
+    }
+    
+     console.log('tapped', event)
   }
   // selectAll(){
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
@@ -317,11 +328,10 @@ export class QuotationFormPage {
       }
       else {
         // load the profile creation process
-        const load = this.loadCtrl.create({
-          content: 'submitting quotations ..',
-          duration: 1000
-        });
-        load.present();
+        setTimeout(() => {
+          this.loaderAnimate = true;
+        }, 3000);
+        //load.present();
         if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
           this.alertCtrl.create({
             title: 'Invalid dates',
@@ -332,6 +342,7 @@ export class QuotationFormPage {
           const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
           // upon success...
           user.then((response) => {
+           
             response.update({ docID: response.id });
             response.onSnapshot((resBuilder) => {
               // resBuilder.data()
@@ -353,6 +364,7 @@ export class QuotationFormPage {
             this.HomeOwnerQuotation.extras.forEach((item) => {
               response.collection('extras').doc(item).set({ price: 0, quantity: 0 });
             });
+           
             this.HomeOwnerQuotation.extras = [];
             this.navCtrl.setRoot(SuccessPage)
             this.toastCtrl.create({
