@@ -131,8 +131,8 @@
     <div class="secon" scroll id="step2">
       <div class="extrawork"  >
         <!-- hide this whole div when the keyboard opens -->
-        <div class="hidethis">
-          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:2vh;margin-top:3%;padding-bottom: 4px;text-align:center">Would you like to include the
+        <div  id="extrajob" class="hidethis">
+          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:5vw;margin-top:2%;padding-bottom: 6px;text-align:center">Would you like to include the
           following?</h2>
 
         <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" >
@@ -146,10 +146,12 @@
         </div>
 
      
-
-        <!-- textarea -->
+<div class="textarea">
+     <!-- textarea -->
         <ion-textarea  (ionFocus)="checkKeyboard('open')"
         (ionBlur)="checkKeyboard('close')"  placeholder="Type message here"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
+</div>
+     
         
       </div>
 
