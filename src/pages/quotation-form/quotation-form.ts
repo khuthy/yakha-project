@@ -105,6 +105,8 @@ export class QuotationFormPage {
   hidelist = true;
   isKeyOpen: boolean = false;
   hid = '';
+  hideHeader = false;
+
  // duration: number = 0;
   //new test
 
@@ -141,6 +143,10 @@ export class QuotationFormPage {
          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
        })
      }) */
+
+     setTimeout(() => {
+       this.hideHeader = true;
+     }, 2000);
 
 
 
