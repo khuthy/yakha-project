@@ -26,21 +26,46 @@ page-messages {
     flex-direction: column;
   }
   .message {
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 0 6px rgba(80, 80, 80, 0.123);
     color: color($colors, light);
     margin-top: 10px;
 
   }
   .homeowner {
-    background: color($colors, primary);
+    background: #F2D680;
     border-radius: 29px 29px 0 29px;
     align-self: flex-end;
     width: 80%;
 
     .homeOwnerDiv {
       width: 100%;
-       
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      .time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        color: #000;
+        p {
+          font-size: 1.5vh;
+        }
+      }
+      .project {
+        flex: 1;
+        p {
+          line-height: 1vh;
+          color: #333;
+        }
+        h6 {
+          font-weight: 700;
+          line-height: 1.5;
+          color: #000;
+          font-size: 2vh;
+        }
+      }
 
     }
     
@@ -57,6 +82,17 @@ page-messages {
     width: 80%;
 
     .homeBuilderDiv{
+
+      .time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        color: #fff;
+        p {
+          font-size: 1.5vh;
+        }
+      }
       
     }
  

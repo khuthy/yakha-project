@@ -15,6 +15,7 @@
          
         </button>
       </div>
+      
       <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
           <p>Submit</p>
            <button class="send-quotes" ion-fab color="light">
@@ -22,6 +23,16 @@
            
           </button>
         </div>
+        <!-- edit button -->
+        <div class="edit"   >
+         
+           <button  ion-fab color="red" >
+            <ion-icon name="arrow-back"></ion-icon>
+           </button>
+           <p>Edit</p>
+        </div>
+
+
  <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
@@ -59,7 +70,11 @@
     <button ion-fab>Back</button>
   </div> -->
   <div class="topDecor">
-
+<!-- <div class="builder">
+  <p>Your choisen builder is:</p>
+  <p>isaak mfundisis</p>
+  pprice: 300 p/m
+</div> -->
   </div>
   <!-- next button -->
   <div class="information">
