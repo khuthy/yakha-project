@@ -2,7 +2,7 @@
   <ion-navbar color="primary">
       <ion-toolbar>
         <ion-buttons start>
-          <button ion-button (click)="backSlide()" icon-only><ion-icon name="arrow-back"></ion-icon></button>
+          <button ion-button (click)="backState()" icon-only><ion-icon name="arrow-back"></ion-icon></button>
         </ion-buttons>
       </ion-toolbar>
   </ion-navbar>
@@ -21,7 +21,6 @@
          
         </button>
       </div>
-      
       <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
           <p>Submit</p>
            <button class="send-quotes" ion-fab color="light">
@@ -29,16 +28,6 @@
            
           </button>
         </div>
-        <!-- edit button -->
-        <div class="edit"   >
-         
-           <button  ion-fab color="red" >
-            <ion-icon name="arrow-back"></ion-icon>
-           </button>
-           <p>Edit</p>
-        </div>
-
-
  <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
@@ -76,11 +65,7 @@
     <button ion-fab>Back</button>
   </div> -->
   <div class="topDecor">
-<!-- <div class="builder">
-  <p>Your choisen builder is:</p>
-  <p>isaak mfundisis</p>
-  pprice: 300 p/m
-</div> -->
+
   </div>
   <!-- next button -->
   <form class="information" [formGroup]="quotationForm">
@@ -102,9 +87,9 @@
           <ion-datetime name="startDate" formControlName="startDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
             [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
-        <p class="error" *ngIf="quotationForm.get({'firstCountValid' : 'startDate'}).hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
-        <ion-item no-lines style="margin-top:3%">
-          <ion-label >End</ion-label>
+       <!--  <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
+         --><ion-item no-lines style="margin-top:3%">
+          <ion-label >End</ion-label> 
           <ion-datetime formControlName="endDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
             [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
         </ion-item>
@@ -140,15 +125,15 @@
             <ion-label style="color:black">Double</ion-label>
             <ion-radio style="width:30px;" value="double"></ion-radio>
           </ion-item>
-          <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
-       
+         <!--  <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
+        -->
           <ion-item no-lines style="width: 50%;">
             <ion-label style="color:black">Single</ion-label>
             <ion-radio  style="width:30px;"  value="single"></ion-radio>
           </ion-item>
-          <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
+     <!--      <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
        
-        </ion-list>
+      -->   </ion-list>
 
       </div>
     </div>
