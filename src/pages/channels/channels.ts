@@ -33,6 +33,10 @@ export class ChannelsPage {
   }
 
   ionViewDidLoad() {
+   firebase.firestore().collectionGroup('Request').where('fullName', '==', 'ysvBbHJI9FMcHQV').onSnapshot((res)=>{
+   //  console.log(res.docs);
+     
+   })
     this.dbRequest.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
         for (let i = 0; i < res.docs.length; i++) {
           this.dbUser.doc(res.docs[i].data().builderUID).onSnapshot((result) => {
@@ -41,8 +45,8 @@ export class ChannelsPage {
         }
       })
   }
-  gotoMessages(id, name) {
-    this.navCtrl.push(MessagesPage, {id,name});
+  gotoMessages(id, name, img) {
+    this.navCtrl.push(MessagesPage, {id,name,img});
    // console.log(id);
   }
 
