@@ -157,7 +157,7 @@ h5 {
   background: rgba(8, 8, 8, 0.657);
     left: 0;
     right: 0;
-height:13vh;
+height:14vh;
     bottom: 0;
     z-index:5;
     position: absolute;
@@ -182,19 +182,19 @@ p {
 font-weight:300;
 }
    #adres {
-    //  border: 1px solid rgb(128, 0, 0);
+      //border: 1px solid rgb(128, 0, 0);
     color:whitesmoke;
       letter-spacing: 1px;
       padding-left:3%;
       font-size:3.5vw;
-      margin-top:-3%;
+      margin-top:-1%;
       font-weight:300;
     }
   }
   .certified {
    // border: 1px solid red;
     position: absolute;
-    bottom: -60.5%;
+    bottom: -56%;
     height: 8vh;
     right: 5%;
     width: 5vh;
@@ -384,7 +384,7 @@ font-weight:300;
           font-size: 20px;
       }
   }
-  .button-group {
+  .button-request {
     position: sticky;
     bottom: 2%;
     right: 0;
@@ -401,6 +401,7 @@ font-weight:300;
         color: #fff;
         padding: 2px;
         padding-right: 5px;
+        letter-spacing: 1px           ;
     }
     &:active {
         background: #cc9e14;
