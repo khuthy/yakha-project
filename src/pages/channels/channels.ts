@@ -29,11 +29,16 @@ export class ChannelsPage {
         this.db.collection('Users').where('uid', '==', doc.data().uid).onSnapshot((userDetails) => {
           userDetails.forEach((users) => {
             this.respond.push({user: users.data(), autoId: doc.id});
+            console.log('Users doc ', users.data());
+            
           })
         })
+       console.log('Response doc', doc.data());
        
       });
    })
+   console.log('Document ', this.respond);
+   
   
   }
 
