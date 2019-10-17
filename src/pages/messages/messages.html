@@ -6,7 +6,7 @@
 -->
 <ion-header no-border align-title="center">
     <ion-navbar color="primary">
-      <ion-title>Isaac Dikutle</ion-title>
+      <ion-title>{{builderName}}</ion-title>
     </ion-navbar>
   </ion-header>
 
@@ -47,7 +47,7 @@
       <div class="message homeowner">
           <div class="homeOwnerDiv">
              <div class="time">
-               <h5>{{item.user?.fullName}}</h5> 
+               <!-- <h5>{{item.user?.fullName}}</h5>  -->
               <P>{{item.sent.date | date}}</P>
             </div> 
             <div>
@@ -63,7 +63,7 @@
       <div class="message homebuilder" *ngIf="item.incoming">
          <div class="homeBuilderDiv">
           <div class="time">
-             <h4>{{item.builder?.fullName}}</h4> 
+             <!-- <h4>{{item.builder?.fullName}}</h4>  -->
             <P>{{item.incoming.dateCreated | date}}</P>
           </div>
           <div class="info">
