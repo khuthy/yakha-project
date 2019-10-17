@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, FormControlName, FormArray } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
 import { Quotations, WallType, Extra, Comments } from '../../app/model/bricks';
@@ -127,14 +127,20 @@ export class QuotationFormPage {
     this.HomeOwnerQuotation.hOwnerUid = this.uid;
     this.HomeOwnerQuotation.builderUID = this.navParams.data;
     this.quotationForm = this.formBuilder.group({
-      // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-      // image: new FormControl('', Validators.compose([Validators.required])),
-      startDate: new FormControl('', Validators.compose([Validators.required])),
-      endDate: new FormControl('', Validators.compose([Validators.required])),
-      wallType: new FormControl('', Validators.compose([Validators.required])),
-      // brickType: new FormControl('', Validators.compose([Validators.required])),
-      extras: new FormControl('', Validators.compose([Validators.required])),
-      comment: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
+      // // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      // // image: new FormControl('', Validators.compose([Validators.required])),
+      // startDate: new FormControl('', Validators.compose([Validators.required])),
+      // endDate: new FormControl('', Validators.compose([Validators.required])),
+      // wallType: new FormControl('', Validators.compose([Validators.required])),
+      // // brickType: new FormControl('', Validators.compose([Validators.required])),
+      // extras: new FormControl('', Validators.compose([Validators.required])),
+      // comment: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
+      firstValidation : new FormGroup({
+        startDate: new FormControl('', Validators.compose([Validators.required])),
+        endDate: new FormControl('', Validators.compose([Validators.required])),
+      }),
+      
+      
     });
     /*  firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
        resp.forEach((doc)=>{
@@ -154,7 +160,7 @@ export class QuotationFormPage {
     this.maxDate = this.formatDate(this.date);
     console.log(this.selectedComment);
 
-    console.log(this.quotationForm.value.endDate.valid);
+    //console.log(this.quotationForm.value.endDate.valid);
     this.steps = 'stepone';
     setTimeout(() => {
       console.log(this.slidethree[0]);
