@@ -68,5 +68,25 @@ page-channels {
         
       }
       
+      .toolbar {
+        .toolbar-background {
+          background: transparent;
+          
+        }
+        .title {
+          .toolbar-title {
+            color: color($colors, dark);
+            font-weight: 100;
+          }
+        }
+        .back-button {
       
+          background: color($colors, primary);
+          border-radius: 50px;
+          min-height: 45px; 
+         
+        } 
+        
+       
+      } 
 }

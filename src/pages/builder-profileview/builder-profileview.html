@@ -83,15 +83,15 @@
             
           
         </div> -->
-        <div class="button-group" >
+        <div class="button-group" (click)="next()">
             <p>Send Quotes</p>
-             <button class="send-quotes" ion-fab (click)="next()" color="light">
+             <button class="send-quotes" ion-fab color="light">
               <ion-icon name="arrow-forward"></ion-icon>
              
             </button>
           </div>
 
-          <div class="button-group2" *ngIf="!hideRev" (click)="presentPopover()">
+          <div class="button-group2" id="btnHide" (click)="presentPopover()">
              <button class="send-quotes" ion-fab (click)="presentPopover()" color="light">
                 <ion-icon name="arrow-back"></ion-icon> </button> 
               <p>Review</p>
