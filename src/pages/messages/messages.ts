@@ -56,6 +56,7 @@ export class MessagesPage {
   }
   imageBuilder;
   builderName = '';
+  //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,

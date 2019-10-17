@@ -439,10 +439,11 @@ export class BuilderquotesPage {
     this.quotes.pdfLink = this.pdfDoc;
     console.log('doc found...........................................................................', this.pdfDoc);
     console.log('quotes pdf link found>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.pdfDoc);
-    this.dbRespond.doc(this.userMsg).set(this.quotes).then((resDoc) => {
+    this.dbRespond.doc(this.uid).set(this.quotes).then((resDoc) => {
+      
       this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
        // console.log(resReq.data());
-        
+       firebase.firestore().collection('chat_msg').doc(this.uid).collection(resReq.data().hOwnerUID).add(this.quotes);
         if (resReq.data().hOwnerUid) {
           //this.oneSignal.
           this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
