@@ -62,8 +62,8 @@ export class MessagesPage {
     public oneSignal: OneSignal, public popoverCtrl: PopoverController
   ) {
     this.autoUid = this.navParams.data;
-     // console.log(this.autoUid.id);
-      this.builderName = this.autoUid.name
+    console.log(this.autoUid);
+    this.builderName = this.autoUid.name
   }
   acceptQoute(data, uid) {
     //  console.log('doc id.................', data);
@@ -103,17 +103,21 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-    let data = { incoming: {}, sent: {}}
-    this.dbMessage.doc(this.autoUid.id).onSnapshot((res)=>{
-     data.sent = res.data();
+    let data = { incoming: {}, sent: {} }
+
+    this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
+      data.sent = res.data();
+      data.incoming = {};
     })
-    this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc)=>{
-    data.incoming = doc.data();      
+
+    this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
+      data.incoming = doc.data();
     })
+    this.messages = [];
     this.messages.push(data);
-   // console.log(this.messages);
-    
-    data = { incoming: {}, sent: {}}
+    console.log(this.messages);
+
+    // data = { incoming: {}, sent: {}}
     //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
     //   this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
 
