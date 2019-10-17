@@ -102,7 +102,7 @@
           <ion-datetime name="startDate" formControlName="startDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
             [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
-        <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
+        <p class="error" *ngIf="quotationForm.get({'firstCountValid' : 'startDate'}).hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
         <ion-item no-lines style="margin-top:3%">
           <ion-label >End</ion-label>
           <ion-datetime formControlName="endDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
