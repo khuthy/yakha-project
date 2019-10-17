@@ -42,7 +42,7 @@ export class QuotationFormPage {
   loaderAnimate = true;
   hide12 = 'qweqwerwrwr';
   houseImage;
- // loaderAnimate = false;
+  // loaderAnimate = false;
   quotationForm: FormGroup;
   uploadprogress = 0;
   isuploading: false
@@ -107,7 +107,7 @@ export class QuotationFormPage {
   hid = '';
   hideHeader = false;
 
- // duration: number = 0;
+  // duration: number = 0;
   //new test
 
 
@@ -150,8 +150,8 @@ export class QuotationFormPage {
         comment: new FormControl('', Validators.compose([Validators.required]))
 
       })
-    
-      
+
+
     });
     /*  firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
        resp.forEach((doc)=>{
@@ -161,9 +161,9 @@ export class QuotationFormPage {
        })
      }) */
 
-     setTimeout(() => {
-       this.hideHeader = true;
-     }, 2000);
+    setTimeout(() => {
+      this.hideHeader = true;
+    }, 2000);
 
 
 
@@ -171,7 +171,7 @@ export class QuotationFormPage {
     this.maxDate = this.formatDate(this.date);
     console.log(this.selectedComment);
 
-  //  console.log(this.quotationForm.value.endDate.valid);
+    //  console.log(this.quotationForm.value.endDate.valid);
     this.steps = 'stepone';
     setTimeout(() => {
       console.log(this.slidethree[0]);
@@ -185,8 +185,8 @@ export class QuotationFormPage {
 
   }
 
-  backState(){
-    if(this.steps == 'stepone') {
+  backState() {
+    if (this.steps == 'stepone') {
       this.navCtrl.pop();
       
     }else if(this.steps == 'steptwo') {
@@ -213,35 +213,35 @@ export class QuotationFormPage {
   }
 
   slideState() {
-  
 
 
-   if (this.steps == 'stepone') {
-     if(this.quotationForm.get('firstCountValid').invalid) {
+
+    if (this.steps == 'stepone') {
+      if (this.quotationForm.get('firstCountValid').invalid) {
         console.log(this.steps, 'goog');
         console.log('error first run');
         let firstSlide = this.alertCtrl.create({
-      title: 'You cannot do that',
-      message: 'please fill the form',
-      buttons: ['Ok'] 
-          });
-      firstSlide.present();
-     }else {
-      this.steps = 'steptwo';
-      document.getElementById('step2').style.display="flex";
-       // document.getElementById('step1').style.display="none";
-      //this.navCtrl.push()
-      // console.log('....................1');
-      this.nextbutton = true;
-      setTimeout(() => {
-        this.nextslide();
-        // 
+          title: 'You cannot do that',
+          message: 'please fill the form',
+          buttons: ['Ok']
+        });
+        firstSlide.present();
+      } else {
+        this.steps = 'steptwo';
+        document.getElementById('step2').style.display = "flex";
+        // document.getElementById('step1').style.display="none";
+        //this.navCtrl.push()
+        // console.log('....................1');
         this.nextbutton = true;
-      }, 500)
-     }
-      
-      
-    
+        setTimeout(() => {
+          this.nextslide();
+          // 
+          this.nextbutton = true;
+        }, 500)
+      }
+
+
+
     } else if (this.steps == 'steptwo') {
       if(this.quotationForm.get('secondValid').invalid) {
         console.log(this.steps, 'goog');
@@ -256,24 +256,24 @@ export class QuotationFormPage {
       }else {
         document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
-         this.steps = 'stepthree';
-         setTimeout(() => {
+        this.steps = 'stepthree';
+        setTimeout(() => {
           this.nextbutton = false;
           this.nextslide()
         }, 500)
       }
-     
-     
+
+
     }
- 
-     
+
+
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);
     // console.log(this.HomeOwnerQuotation.extras);
   }
- 
-  nextslide() { 
+
+  nextslide() {
     switch (this.steps) {
       case 'stepone':
         this.renderer.setStyle(this.slideone[0], 'width', '100%');
@@ -314,16 +314,16 @@ export class QuotationFormPage {
   }
 
   ionViewDidLoad() {
- // this.duration =  Number(this.HomeOwnerQuotation.startDate.toString().substring(8, 11)) - Number(this.HomeOwnerQuotation.endDate.toString().substring(8, 11))
+    // this.duration =  Number(this.HomeOwnerQuotation.startDate.toString().substring(8, 11)) - Number(this.HomeOwnerQuotation.endDate.toString().substring(8, 11))
     console.log(this.extras);
 
     //let arr = [{objExtra, objPrice, objQuantity}]
 
     setTimeout(() => {
       this.loaderAnimate = false;
-    //  this.hide12='';
+      //  this.hide12='';
       //this.HomeOwnerQuotation.extras = [];
-      
+
     }, 2000);
     // firebase.database().ref().child('hotels').
     // this.extras = firebase.firestore().collection('extras')
@@ -359,25 +359,25 @@ export class QuotationFormPage {
         if (this.HomeOwnerQuotation.brickType != this.bricksContainer[0].children[j].children[1].innerText) {
           this.renderer.setStyle(this.bricksContainer[0].children[j].children[1], 'background', 'white');
         }
-        
+
       }
     }
-    
-    // change color of  selected div;
-     for (let i = 0; i < event.path.length; i++) {
 
-       if (event.path[i].className == 'cards') {
-        
+    // change color of  selected div;
+    for (let i = 0; i < event.path.length; i++) {
+
+      if (event.path[i].className == 'cards') {
+
         this.selectedBrick = event.path[i].children[1].innerText
 
-          this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
-         //console.log(event.path[i].children[1].innerText);
+        this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
+        //console.log(event.path[i].children[1].innerText);
         // console.log(event.path[i].children);
-       }
-       
-       
-       
-     }
+      }
+
+
+
+    }
   }
   // selectAll(){
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
@@ -419,15 +419,15 @@ export class QuotationFormPage {
     this.imageSelected = true;
   }
   alertContrl() {
-   return this.alertCtrl.create({
+    return this.alertCtrl.create({
       title: 'Empty field',
       subTitle: 'Please check your information',
       buttons: ['Ok']
     }).present()
   }
   createQuations() {
-    if (this.HomeOwnerQuotation.startDate==''|| this.HomeOwnerQuotation.houseImage=='' ||this.HomeOwnerQuotation.endDate==''||this.HomeOwnerQuotation.brickType==''||this.HomeOwnerQuotation.wallType==''
-    ||this.HomeOwnerQuotation.comment=='') {
+    if (this.HomeOwnerQuotation.startDate == '' || this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.endDate == '' || this.HomeOwnerQuotation.brickType == '' || this.HomeOwnerQuotation.wallType == ''
+      || this.HomeOwnerQuotation.comment == '') {
       this.alertContrl();
     } else {
 
@@ -440,7 +440,7 @@ export class QuotationFormPage {
       }
       else {
         // load the profile creation process
-        
+
         //load.present();
         if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
           this.alertCtrl.create({
@@ -449,49 +449,58 @@ export class QuotationFormPage {
             buttons: ['Try again']
           }).present()
         } else {
-          const user = this.db.collection('Request').add(this.HomeOwnerQuotation);
-          // upon success...
-          user.then((response) => {
-           
-            response.update({ docID: response.id });
-            response.onSnapshot((resBuilder) => {
-              // resBuilder.data()
-              if (resBuilder.data().builderUID) {
-                this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
-                  if (out.data().tokenID) {
-                    var notificationObj = {
-                      contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
-                      include_player_ids: [out.data().tokenID],
-                    };
-                    this.oneSignal.postNotification(notificationObj).then(res => {
-                      // console.log('After push notifcation sent: ' +res);
-                    });
-
-                  }
-                })
-              }
-            })
+         this.db.collection('Request').doc(this.uid).set(this.HomeOwnerQuotation).then(()=>{
+          this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res)=>{
+            console.log('Chat >>>>-----',res.id);
             this.HomeOwnerQuotation.extras.forEach((item) => {
-              response.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
             });
+            this.navCtrl.setRoot(SuccessPage);
+          })
+         });
            
-           
-            this.navCtrl.setRoot(SuccessPage)
-            this.toastCtrl.create({
-              message: '  Quotation submitted.',
-              duration: 2000,
-            }).present();
-            // ...get the profile that just got created...
-            //load.dismiss();
-            // catch any errors.
-          }).catch(err => {
-            this.toastCtrl.create({
-              message: 'Error submitting Quotation.',
-              duration: 2000
-            }).present();
+          // upon success...
+          // user.then((response) => {
+
+          //   response.update({ docID: response.id });
+          //   response.onSnapshot((resBuilder) => {
+          //     this.db.collection('chat_msg').doc(this.uid).collection(resBuilder.data().builderUID).add(this.HomeOwnerQuotation)
+          //     // resBuilder.data()
+          //     if (resBuilder.data().builderUID) {
+          //       this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
+          //         if (out.data().tokenID) {
+          //           var notificationObj = {
+          //             contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
+          //             include_player_ids: [out.data().tokenID],
+          //           };
+          //           this.oneSignal.postNotification(notificationObj).then(res => {
+          //             // console.log('After push notifcation sent: ' +res);
+          //           });
+
+          //         }
+          //       })
+          //     }
+          //   })
+          
+
+
+          //   this.navCtrl.setRoot(SuccessPage)
+          //   this.toastCtrl.create({
+          //     message: '  Quotation submitted.',
+          //     duration: 2000,
+          //   }).present();
+          //   // ...get the profile that just got created...
+          //   //load.dismiss();
+          //   // catch any errors.
+          // }).catch(err => {
+          //   this.toastCtrl.create({
+          //     message: 'Error submitting Quotation.',
+          //     duration: 2000
+          //   }).present();
             this.isProfile = false;
             // load.dismiss();
-          })
+         // })
+          
         }
 
       }
