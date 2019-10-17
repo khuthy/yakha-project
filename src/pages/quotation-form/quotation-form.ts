@@ -185,6 +185,17 @@ export class QuotationFormPage {
 
   }
 
+  backState(){
+    if(this.steps == 'stepone') {
+      this.navCtrl.pop();
+    }else if(this.steps == 'steptwo') {
+      this.steps = 'stepone';
+    }else if(this.steps == 'stepthree') {
+      this.steps = 'steptwo';
+    }else {
+      this.steps = 'stepone';
+    }
+  }
 
   slideState() {
   
@@ -192,7 +203,6 @@ export class QuotationFormPage {
 
    if (this.steps == 'stepone') {
      if(this.quotationForm.get('firstCountValid').invalid) {
-       this.quotationForm.get('firstCountValid').markAsTouched;
         console.log(this.steps, 'goog');
         console.log('error first run');
         let firstSlide = this.alertCtrl.create({
