@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { FormControl, Validators, FormGroup, FormBuilder, FormControlName, FormArray } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
 import { Quotations, WallType, Extra, Comments } from '../../app/model/bricks';
@@ -171,7 +171,7 @@ export class QuotationFormPage {
     this.maxDate = this.formatDate(this.date);
     console.log(this.selectedComment);
 
-    //console.log(this.quotationForm.value.endDate.valid);
+    console.log(this.quotationForm.value.endDate.valid);
     this.steps = 'stepone';
     setTimeout(() => {
       console.log(this.slidethree[0]);
@@ -337,7 +337,7 @@ export class QuotationFormPage {
         
         this.selectedBrick = event.path[i].children[1].innerText
 
-          this.renderer.setStyle(event.path[i].children[1], 'background', '#FFE098');
+          this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
          //console.log(event.path[i].children[1].innerText);
         // console.log(event.path[i].children);
        }
