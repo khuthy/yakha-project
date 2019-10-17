@@ -13,10 +13,10 @@ page-messages {
     }
     .back-button {
   
-      background: transparent;
-      border-radius: 50%;
+      background: color($colors, primary);
+      border-radius: 50px;
       min-height: 45px; 
-      color: #000; 
+     
     } 
     
    
