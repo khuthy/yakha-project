@@ -127,19 +127,30 @@ export class QuotationFormPage {
     this.HomeOwnerQuotation.hOwnerUid = this.uid;
     this.HomeOwnerQuotation.builderUID = this.navParams.data;
     this.quotationForm = this.formBuilder.group({
-      // // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-      // // image: new FormControl('', Validators.compose([Validators.required])),
-      // startDate: new FormControl('', Validators.compose([Validators.required])),
-      // endDate: new FormControl('', Validators.compose([Validators.required])),
-      // wallType: new FormControl('', Validators.compose([Validators.required])),
-      // // brickType: new FormControl('', Validators.compose([Validators.required])),
-      // extras: new FormControl('', Validators.compose([Validators.required])),
-      // comment: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
-      firstValidation : new FormGroup({
+      // // // fullName: new  FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+      // // // image: new FormControl('', Validators.compose([Validators.required])),
+      // // startDate: new FormControl('', Validators.compose([Validators.required])),
+      // // endDate: new FormControl('', Validators.compose([Validators.required])),
+      // // wallType: new FormControl('', Validators.compose([Validators.required])),
+      // // // brickType: new FormControl('', Validators.compose([Validators.required])),
+      // // extras: new FormControl('', Validators.compose([Validators.required])),
+      // // comment: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(200)])),
+      // firstValidation : new FormGroup({
+      //   startDate: new FormControl('', Validators.compose([Validators.required])),
+      //   endDate: new FormControl('', Validators.compose([Validators.required])),
+      // }),
+
+      firstCountValid: this.formBuilder.group({
         startDate: new FormControl('', Validators.compose([Validators.required])),
         endDate: new FormControl('', Validators.compose([Validators.required])),
+        wallType: new FormControl('', Validators.compose([Validators.required]))
       }),
-      
+      secondValid: this.formBuilder.group({
+        extra: new FormControl('', Validators.compose([Validators.required])),
+        comment: new FormControl('', Validators.compose([Validators.required]))
+
+      })
+    
       
     });
     /*  firebase.firestore().collection('HomeOwnerProfile').where('uid','==',firebase.auth().currentUser.uid).get().then((resp)=>{
@@ -176,12 +187,24 @@ export class QuotationFormPage {
 
 
   slideState() {
-    // console.log(this.steps);
+  
 
-    if (this.steps == 'stepone') {
+
+   if (this.steps == 'stepone') {
+     if(this.quotationForm.get('firstCountValid').invalid) {
+       this.quotationForm.get('firstCountValid').markAsTouched;
+        console.log(this.steps, 'goog');
+        console.log('error first run');
+        let firstSlide = this.alertCtrl.create({
+      title: 'You cannot do that',
+      message: 'please fill the form',
+      buttons: ['Ok'] 
+          });
+      firstSlide.present();
+     }else {
       this.steps = 'steptwo';
       document.getElementById('step2').style.display="flex";
-     // document.getElementById('step1').style.display="none";
+       // document.getElementById('step1').style.display="none";
       //this.navCtrl.push()
       // console.log('....................1');
       this.nextbutton = true;
@@ -190,15 +213,27 @@ export class QuotationFormPage {
         // 
         this.nextbutton = true;
       }, 500)
+     }
+      
+      
+    
     } else if (this.steps == 'steptwo') {
-      document.getElementById('step3').style.overflow="auto";
-     // document.getElementById('step2').style.display="none";
-      this.steps = 'stepthree';
-      setTimeout(() => {
-        this.nextbutton = false;
-        this.nextslide()
-      }, 500)
-    } 
+      if(this.quotationForm.get('secondValid').invalid) {
+      
+      }else {
+        document.getElementById('step3').style.overflow="auto";
+        // document.getElementById('step2').style.display="none";
+         this.steps = 'stepthree';
+         setTimeout(() => {
+          this.nextbutton = false;
+          this.nextslide()
+        }, 500)
+      }
+     
+     
+    }
+ 
+     
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);
