@@ -53,8 +53,9 @@ export class MessagesPage {
     extras: []
 
   }
-  builderName = '';
   imageBuilder;
+  builderName = '';
+  //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
@@ -193,8 +194,7 @@ export class MessagesPage {
     
 }
 getProfileImageStyle() {
-  //return 'linear-gradient(rgba(0,0,0,0.5)),url(../../assets/imgs/common-burnt-clay-bricks.jpg)'
-  return 'url(' + this.imageBuilder + ')'
+   return 'url(' + this.imageBuilder  + ')'
 }
 
   // viewMessages() {

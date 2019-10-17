@@ -188,11 +188,26 @@ export class QuotationFormPage {
   backState() {
     if (this.steps == 'stepone') {
       this.navCtrl.pop();
-    } else if (this.steps == 'steptwo') {
+      
+    }else if(this.steps == 'steptwo') {
+      
+      document.getElementById('step1').style.overflow="auto";
+      // document.getElementById('step2').style.display="none";
       this.steps = 'stepone';
-    } else if (this.steps == 'stepthree') {
+       setTimeout(() => {
+        this.nextbutton = false;
+        this.nextslide()
+      }, 500)
+    }else if(this.steps == 'stepthree') {
+     
+      document.getElementById('step2').style.overflow="auto";
+      // document.getElementById('step2').style.display="none";
       this.steps = 'steptwo';
-    } else {
+       setTimeout(() => {
+        this.nextbutton = false;
+        this.nextslide()
+      }, 500)
+    }else {
       this.steps = 'stepone';
     }
   }
@@ -228,10 +243,18 @@ export class QuotationFormPage {
 
 
     } else if (this.steps == 'steptwo') {
-      if (this.quotationForm.get('secondValid').invalid) {
-
-      } else {
-        document.getElementById('step3').style.overflow = "auto";
+      if(this.quotationForm.get('secondValid').invalid) {
+        console.log(this.steps, 'goog');
+        console.log('error first run');
+        let firstSlide = this.alertCtrl.create({
+      title: 'You cannot do that',
+      message: 'please fill the form',
+      buttons: ['Ok'] 
+          });
+      firstSlide.present();
+      
+      }else {
+        document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
         this.steps = 'stepthree';
         setTimeout(() => {
