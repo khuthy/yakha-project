@@ -63,8 +63,6 @@ export class MessagesPage {
 
         this.autoUid = this.navParams.data;
         console.log(this.autoUid);
-        
- 
   }
   acceptQoute(data, uid){
   //  console.log('doc id.................', data);
@@ -164,8 +162,6 @@ export class MessagesPage {
    // console.log(file);
     
 }
-
-
   // viewMessages() {
   //   this.navCtrl.push(ViewmessagePage);
   // }
