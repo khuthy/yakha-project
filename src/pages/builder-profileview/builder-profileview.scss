@@ -133,7 +133,7 @@ h5 {
     
   /* view profile code */
   .container {
-    //  border: 1px solid red;
+     //border: 1px solid red;
        height: 100%;
        width: 100%;
        margin: 0 auto;
@@ -154,10 +154,10 @@ h5 {
     
   }
   .names {
-  background: rgba(8, 8, 8, 0.774);
+  background: rgba(8, 8, 8, 0.657);
     left: 0;
     right: 0;
-height:12vh;
+height:13vh;
     bottom: 0;
     z-index:5;
     position: absolute;
@@ -167,16 +167,23 @@ height:12vh;
     
 h4 {
 //  border: 1px solid green;
-  letter-spacing: 1px;
-  color:white;
+  letter-spacing: 2px;
+  color:whitesmoke;
   padding-left:3%;
+  padding-top: 6px;
   font-size:6vw;
   margin-top:1%;
+  font-family:'impact';
+  
 
+}
+p {
+  font-family:'Lucida Sans Unicode';
+font-weight:300;
 }
    #adres {
     //  border: 1px solid rgb(128, 0, 0);
-      color: white;
+    color:whitesmoke;
       letter-spacing: 1px;
       padding-left:3%;
       font-size:3.5vw;
@@ -185,8 +192,9 @@ h4 {
     }
   }
   .certified {
+   // border: 1px solid red;
     position: absolute;
-    bottom: -80%;
+    bottom: -60.5%;
     height: 8vh;
     right: 5%;
     width: 5vh;
@@ -233,6 +241,7 @@ h4 {
       letter-spacing: 1px;
       margin-top:0%;
       font-size:3vh;
+      font-family:'Lucida Sans Unicode';
     }
     h5 {
       padding-left: 8%;
@@ -243,6 +252,8 @@ h4 {
       margin-top:-2%;
       font-size: 4.2vw;
       font-weight:600;
+      font-family:'Lucida Sans Unicode';
+
     }
    }
   .button {
@@ -377,7 +388,7 @@ h4 {
     position: sticky;
     bottom: 2%;
     right: 0;
-    background: color($colors, primary);
+    background: #cc9e14;
     padding-left: 15px;
     display: flex;
     justify-content: space-between;
@@ -389,11 +400,18 @@ h4 {
         margin: auto;
         color: #fff;
         padding: 2px;
+        padding-right: 5px;
     }
     &:active {
-        background: rgb(255, 211, 18);
+        background: #cc9e14;
     }
-
+button{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
 }
 .button-group2{
   position: sticky;
