@@ -105,6 +105,8 @@ export class QuotationFormPage {
   hidelist = true;
   isKeyOpen: boolean = false;
   hid = '';
+  hideHeader = false;
+
  // duration: number = 0;
   //new test
 
@@ -141,6 +143,10 @@ export class QuotationFormPage {
          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
        })
      }) */
+
+     setTimeout(() => {
+       this.hideHeader = true;
+     }, 2000);
 
 
 
@@ -183,7 +189,7 @@ export class QuotationFormPage {
      // document.getElementById('step2').style.display="none";
       this.steps = 'stepthree';
       setTimeout(() => {
-        this.nextbutton = true;
+        this.nextbutton = false;
         this.nextslide()
       }, 500)
     } 
