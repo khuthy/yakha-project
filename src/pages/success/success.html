@@ -1,5 +1,13 @@
-<ion-content>
+
   <ion-content>
+      <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+          <div class="maploader">
+              <div class="lds-hourglass"></div>
+          </div>
+          <div class="loading-text">
+            <p color="light">Loading Map</p>
+          </div>
+        </div>
     <div class="contain">
         
       <div [ngClass]="{'logoBuilder': builder,'logo' : !builder}">
@@ -28,5 +36,3 @@
   </div>
   </ion-content>
 
-
-</ion-content>
