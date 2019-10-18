@@ -62,8 +62,34 @@
  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
        <p id="content">{{chat.message}}</p>
        <p id="date">{{chat.date}} </p>
+     
+       
       </div>
-       <div class="chat right" id="outgoingMessages" *ngIf="chat.builder"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+
+      <!--the responce card that has quotation in it should have buttons for accept and decline -->
+       <div class="chat right" id="outgoing" *ngIf="chat.builder">
+         <ion-buttons  id="quotation">
+           <button>Quotation 004</button>
+           <ion-icon name="arrow-round-down"></ion-icon>
+         </ion-buttons>
+
+         <div id="buttons">
+            <ion-buttons  >
+                <button style="background:green">Accept</button>
+              </ion-buttons>
+  
+              <ion-buttons >
+                  <button style="background:red;">Decline</button>
+                </ion-buttons>
+         </div>
+
+         <p id="date">{{chat.date}} </p>
+
+       
+        </div>
+
+ <!--the responce card that does not have quotation in it should not have buttons for accept and decline -->
+
     </div>
      
 

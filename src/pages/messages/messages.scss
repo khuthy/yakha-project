@@ -254,6 +254,7 @@ background: #7FB7CE;
     }
 
     #date {
+      color:rgb(100, 98, 98);
       font-size:3vw;
       letter-spacing: 1px;
       text-align: right;
@@ -263,10 +264,78 @@ background: #7FB7CE;
   }
   //outgoing chats styling starts here
   .right {
-    border-bottom-right-radius: 0;
-   #outgoingMessages {
-     border: 1px solid green;
-     background: red;
+    border-bottom-right-radius: 0; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
+    padding:2%;
+    padding-left:2%;
+
+ 
+     p {
+        font-size:4vw;
+    letter-spacing: 1px;
+    color:white;
+     }
+     #date {
+      color:rgb(100, 98, 98);
+      font-size:3vw;
+      letter-spacing: 1px;
+      text-align: right;
+     // border: 1px solid red;
+      margin-bottom: 0 !important;
+    }
+   //buttons
+
+   #quotation {
+     //border: 1px solid red;
+     margin-bottom: 3%;
+   background: #dddddd;
+    // margin-left:5%;
+   border-radius: 5px;
+        display: flex;
+ button {
+      width: 70%;
+      height: 100%;
+      padding:5%;
+      color: rgb(121, 117, 117);
+      font-size:5vw;
+      letter-spacing: 1px;
+       border-radius: 4px;
+    
+     }
+     ion-icon {
+      width: 30%;
+       //border: 1px solid green;
+       font-size: 8vw;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       align-content:center;
+
+     }
+    
+   }
+   #buttons {
+     //border: 1px solid red;
+     display: flex;
+     justify-content: space-evenly;
+     margin-bottom : 2%;
+     ion-buttons {
+       //border: 1px solid green;
+       width: 40%;
+       border-radius: 5px;
+     
+       button{
+//background: blue;
+width: 100%;
+height: 100%;
+border-radius: 4px;
+padding:8%;
+color: white;
+font-size:3vw;
+letter-spacing: 1px;
+       }
+     }
+
    }
 
   }
@@ -383,7 +452,7 @@ background: #7FB7CE;
   } */
 
   ion-footer {
-    //height: 20%;
+    height: 15%;
     background: whitesmoke;
     ion-toolbar {
     //  background: blue;
