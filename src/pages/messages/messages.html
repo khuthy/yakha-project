@@ -1,26 +1,28 @@
 
 <!--   [style.backgroundImage]="getProfileImageStyle()"-->
-<ion-header class="head"  no-border align-title="center">
-  <ion-slides style="background: green;">
-    <ion-slide  [style.backgroundImage]="getProfileImageStyle()" >
-
+<ion-header class="head"  [style.backgroundImage]="getProfileImageStyle()" no-border align-title="center">
+    <ion-navbar color="red">
+        <ion-toolbar color="dark">
+           
+            </ion-toolbar>
+         </ion-navbar>
+  <ion-slides style="background: transparent;">
+    <ion-slide  >
+<h1>hello</h1>
     </ion-slide>
+
+    <ion-slide  >
+<h1>fifi</h1>
+      </ion-slide>
+      <ion-slide  >
+
+        </ion-slide>
   </ion-slides>
 <!--    <img src="../../assets/imgs/common-burnt-clay-bricks.jpg" width="100%" height="100"> -->
-  <ion-navbar color="primary">
-  <ion-toolbar color="dark">
-       
-      </ion-toolbar>
-   </ion-navbar>
-    <p>{{builderName}}
-        <ion-buttons style="background:red">
-            <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  clear> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
-          </ion-buttons>
-    </p>
-  <h6>12345</h6>
+
   </ion-header>
   <!-- -->
-<ion-content fullscreen>
+<ion-content                    >
 
   <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of msgSent">
  
