@@ -528,7 +528,7 @@ export class QuotationFormPage {
     this.db.collection('Users').doc(this.HomeOwnerQuotation.builderUID).onSnapshot((responding) => {
       this.homeBuilderName = responding.data().fullName;
       this.homeBuilderPrice = responding.data().price;
-    })
+    });
 
   }
   viewProfile(myEvent) {
