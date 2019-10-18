@@ -138,14 +138,13 @@ export class MessagesPage {
     this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res)=>{
       this.incomingRes=[];
       res.forEach((doc)=>{
-        this.incomingRes.push(doc.data);
+        this.incomingRes.push(doc.data());
       })
       console.log('Response message....', this.incomingRes );
     })
     this.dbMessage.doc(this.uid).onSnapshot((res)=>{
       this.msgSent.push(res.data());
       console.log('Message sent>>>>',this.msgSent);
-      
     })
    // this.messages.push(data);
     // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
