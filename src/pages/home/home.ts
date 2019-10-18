@@ -8,6 +8,7 @@ import { ProfileComponent } from '../../components/profile/profile';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { QuotationFormPage } from '../quotation-form/quotation-form';
+import { TestPage } from '../test/test';
 declare var google;
 @Component({
   selector: 'page-home',
@@ -184,7 +185,7 @@ export class HomePage {
 
       //>>>>>>> get the reviews made for this builder
       res.forEach(async (doc) => {
-        console.log('All builders............', doc.data().lat);
+        //  console.log('All builders............', doc.data().lat);
 
         if (doc.data().address != "") {
           data.builder = doc.data()
@@ -609,8 +610,8 @@ export class HomePage {
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
   }
-  viewRequest(docID,uid) {
-    this.navCtrl.push(ViewmessagePage, {docID,uid});
+  viewRequest(docID, uid) {
+    this.navCtrl.push(TestPage, { docID, uid });
     //console.log(user);
   }
   requestForm() {
@@ -623,21 +624,26 @@ export class HomePage {
     // this.request = true;
     //let data = {data: {}, id: {}, user:{}}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
-      // console.log('Results----', res.docs);
 
-      // this.owner = []
       for (let i = 0; i < res.docs.length; i++) {
-        this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
-          //  data.doc = doc.id;
-          //  console.log('Results--', result.docs[i].data());
-          result.forEach((doc) => {
-            this.db.doc(doc.data().hOwnerUid).onSnapshot((userDoc) => {
-               this.owner.push({id: doc.id, data: doc.data(), user: userDoc.data() })
-            })
-          })
+        // console.log('Info>>>>>>',);
 
-          this.owner = []
-          console.log('Messages from home owners...', this.owner)
+        this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
+          //  result.forEach((doc) => {
+          for (let i = 0; i < result.docs.length; i++) {
+            //console.log("docs found............",result.docs[i].data())  
+            firebase.firestore().collection('Users').doc(result.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
+              this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
+            // console.log('user doc...', this.owner);
+            })
+          }
+           //console.log('>>>>>>>>>>>>>>>>>>>>',result.docs );
+
+
+          // })
+      //    console.log('Messages from home owners...', this.owner)
+         // this.owner = []
+        
         })
       }
     })

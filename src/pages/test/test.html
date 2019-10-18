@@ -36,7 +36,7 @@
       <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}">
      
         <div class="imageholder" *ngIf="toggle">
-          <img src="../../assets/imgs/placeholder.png" class="image"><!-- House plan -->
+          <img src="../../assets/imgs/Plaster.png" class="image"><!-- House plan -->
     
         </div>
     
@@ -103,9 +103,9 @@
             </div>
     
      <!--the responce card that does not have quotation in it should not have buttons for accept and decline -->
-     <div class="chat right">
-      <p id="content">Hi home Owner!</p>
-      <p id="date">20:15AM </p>
+     <div class="chat right" *ngFor="let msg of messages">
+      <p id="content">{{msg.chat}}</p>
+      <p id="date">{{msg.date}}</p>
     
       
      </div>
