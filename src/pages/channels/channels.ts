@@ -33,14 +33,11 @@ export class ChannelsPage {
   }
 
   ionViewDidLoad() {
-   firebase.firestore().collectionGroup('Request').where('fullName', '==', 'ysvBbHJI9FMcHQV').onSnapshot((res)=>{
-   //  console.log(res.docs);
-     
-   })
     this.dbRequest.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
         for (let i = 0; i < res.docs.length; i++) {
           this.dbUser.doc(res.docs[i].data().builderUID).onSnapshot((result) => {
            this.respond.push({user:result.data(), id:res.docs[i].id});
+           console.log('Response>>>>>>>>>>>>>>>>>>>>',this.respond);
           })
         }
       })

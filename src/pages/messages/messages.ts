@@ -27,6 +27,8 @@ export class MessagesPage {
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
   dbFeed = firebase.firestore().collection('Feedback');
+  dbChat = firebase.firestore().collection('chat_msg');
+  uid = firebase.auth().currentUser.uid;
   hideRev;
   slidesPerView: number = 1;
   messages = [];
@@ -56,6 +58,7 @@ export class MessagesPage {
   }
   imageBuilder;
   builderName = '';
+  msgSent = [];
   footer: boolean;
   //imageBuilder;
   constructor(public navCtrl: NavController,
@@ -73,7 +76,7 @@ export class MessagesPage {
   }
 
   open() {
-    if(this.toggle == true) {
+    if (this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
       this.footer = false;
@@ -123,18 +126,39 @@ export class MessagesPage {
   }
   ionViewDidLoad() {
     let data = { incoming: {}, sent: {} }
-
-    this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
-      data.sent = res.data();
-      data.incoming = {};
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
+      this.messages = [];
+      resChat.forEach((doc) => {
+       // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
+        data.sent = doc.data();
+        this.messages.push(data.sent); 
+      })
+      console.log('All messages sent...',this.messages);
     })
-
-    this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
-      data.incoming = doc.data();
+    this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res)=>{
+      this.incomingRes=[];
+      res.forEach((doc)=>{
+        this.incomingRes.push(doc.data);
+      })
+      console.log('Response message....', this.incomingRes );
     })
-    this.messages = [];
-    this.messages.push(data);
-    console.log('messages',this.messages);
+    this.dbMessage.doc(this.uid).onSnapshot((res)=>{
+      this.msgSent.push(res.data());
+      console.log('Message sent>>>>',this.msgSent);
+      
+    })
+   // this.messages.push(data);
+    // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
+    //   data.sent = res.data();
+
+    //   data.incoming = {};
+    // })
+
+    // this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
+    //   data.incoming = doc.data();
+    // })
+    
+   
 
     // data = { incoming: {}, sent: {}}
     //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
@@ -193,14 +217,14 @@ export class MessagesPage {
   }
   downloadPDF(file) {
     this.fileOpener.open(file, 'application/pdf')
-    .then(() => console.log('File is opened'))
-    .catch(e => console.log('Error opening file', e)); 
-   // console.log(file);
-    
-}
-getProfileImageStyle() {
-   return 'url(' + this.imageBuilder  + ')'
-}
+      .then(() => console.log('File is opened'))
+      .catch(e => console.log('Error opening file', e));
+    // console.log(file);
+
+  }
+  getProfileImageStyle() {
+    return 'url(' + this.imageBuilder + ')'
+  }
 
 
   // viewMessages() {

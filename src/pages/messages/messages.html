@@ -14,10 +14,10 @@
   <!-- -->
 <ion-content fullscreen>
 
-  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of messages">
+  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of msgSent">
  
     <div class="imageholder" *ngIf="toggle">
-      <img src="{{item.sent.houseImage}}" class="image">
+      <img src="{{item.houseImage}}" class="image">
 
     </div>
 
@@ -28,8 +28,8 @@
         <p style=
         "text-align: center;">{{brick}}</p>
       </div>
-      <div>
-        <ion-item no-lines style="">
+      <div *ngIf="toggle">
+        <ion-item no-lines>
           <ion-label stacked>Start date</ion-label>
           <ion-label stacked>{{item.sent.startDate}}</ion-label>
         </ion-item>
@@ -43,7 +43,7 @@
     </div>
 
     <!-- wall type and extraz-->
-    <div class="extras">
+    <div class="extras" *ngIf="toggle">
 <!--  <p>Wall type :  {{item.sent.wallType}}<p>  -->
 
         <h5>Extras</h5>
@@ -58,10 +58,12 @@
   </div>
 
   <div class="chats">
-      <div class="chat left">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ducimus eaque at, totam exercitationem voluptatibus quos ratione voluptas odit iure? Magnam quaerat accusantium inventore impedit.
+      <div class="chat left" id="incomingMessages">
+       <p id="content">Content Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+       <p id="date">Date goes here </p>
       </div>
-      <div class="chat right"></div>
+
+      <div class="chat right" id="outgoingMessages"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
     
   </div>
 
