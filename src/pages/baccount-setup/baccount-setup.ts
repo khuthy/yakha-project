@@ -89,6 +89,7 @@ export class BaccountSetupPage {
       roof: new FormControl('', Validators.compose([Validators.required])),
       address: new FormControl('', Validators.compose([Validators.required])),
       price: new FormControl('', Validators.compose([Validators.required])),
+      builder: ['']
      /*   this.slides.lockSwipes(true); */
     });
    
@@ -156,6 +157,7 @@ export class BaccountSetupPage {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.builderProfile.image = downUrl;
           this.profileImage = downUrl;
+          this.profileForm.patchValue({builder : downUrl});
           console.log('Image downUrl', downUrl);
           this.isuploaded = true;
         })
