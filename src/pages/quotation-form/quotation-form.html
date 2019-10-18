@@ -80,7 +80,7 @@
         <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
           (click)="selectImage()" name="cloud-download"></ion-icon>
-        <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
+        <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!quotationForm.get('firstCountValid').get('houseImage').required">Please upload your house plan here</p>
       </div>
       <div class="dates">
         <p>I prefer the starting date to be around:</p>

@@ -150,6 +150,7 @@ export class QuotationFormPage {
         startDate: new FormControl('', Validators.compose([Validators.required])),
         endDate: new FormControl('', Validators.compose([Validators.required])),
         wallType: new FormControl('', Validators.compose([Validators.required])),
+        houseImage: ['']
        
       }),
       secondValid: this.formBuilder.group({
@@ -421,6 +422,7 @@ export class QuotationFormPage {
       }, () => {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.HomeOwnerQuotation.houseImage = downUrl;
+          this.quotationForm.get('firstCountValid').patchValue({houseImage : downUrl});
           console.log('Image downUrl', downUrl);
           this.isUploaded = true;
         })
