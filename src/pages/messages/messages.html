@@ -7,7 +7,7 @@
       </ion-toolbar>
    </ion-navbar>
     <p>{{builderName}}
-        <ion-buttons style="background:transparent">
+        <ion-buttons style="background:red">
             <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  clear> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
           </ion-buttons>
     </p> </ion-header>
@@ -23,26 +23,38 @@
 
     <!-- bricks -->
     <div class="bricks"  *ngIf="toggle">
-      <div>
-        <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="70%">
-        <p>{{brick}}</p>
+      <div id="card">
+        <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="80%">
+        <p style=
+        "text-align: center;">{{brick}}</p>
       </div>
       <div>
-        <ion-item>
-          <ion-label stacked>start date</ion-label>
+        <ion-item no-lines style="">
+          <ion-label stacked>Start date</ion-label>
           <ion-label stacked>{{item.sent.startDate}}</ion-label>
         </ion-item>
 
-        <ion-item >
-          <ion-label stacked>end date</ion-label>
+        <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
+          <ion-label stacked>End date</ion-label>
           <ion-label>{{item.sent.endDate}}</ion-label>
         
         </ion-item>
       </div>
     </div>
 
-    <!-- wall type -->
-    <p>Wall type : {{item.sent.walltype}}</p>
+    <!-- wall type and extraz-->
+    <div class="extras">
+<!--  <p>Wall type :  {{item.sent.wallType}}<p>  -->
+
+        <h5>Extras</h5>
+          <!-- <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" > -->
+              <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.sent.extras; let i=index">
+                <ion-label>{{e}}</ion-label>
+                <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
+                </ion-item>
+         
+   </div>
+   
   </div>
 
   <div class="chats">
@@ -91,7 +103,7 @@
  </ion-content>
 
          <!--  -->      
-         <ion-footer>
+         <ion-footer [style.display]="footer ? 'none': 'block'">
           <ion-toolbar>
             <ion-grid>
               <ion-row>
