@@ -44,7 +44,7 @@
 
         <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
           <ion-label stacked>End date</ion-label>
-          <ion-label>{{item.endDate}}</ion-label>
+          <ion-label>{{item.endDate | date}}</ion-label>
         
         </ion-item>
       </div>
@@ -69,7 +69,7 @@
     <div *ngFor="let chat of messages; let i=index;">
  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
        <p id="content">{{chat.chat}}</p>
-       <p id="date">{{chat.date}} </p>
+       <p id="date">{{chat.date | date:'h:mm' }} </p>
      
        
       </div>
@@ -91,7 +91,7 @@
                 </ion-buttons>
          </div>
 
-         <p id="date">{{chat.date}} </p>
+         <p id="date">{{chat.date | date}} </p>
 
        
         </div>

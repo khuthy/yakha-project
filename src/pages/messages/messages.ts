@@ -64,6 +64,7 @@ export class MessagesPage {
   myMsg='';
   manageUser: boolean;
   //imageBuilder;
+  chat: number = Date.now();
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
