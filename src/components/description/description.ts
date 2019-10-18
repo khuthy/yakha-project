@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the DescriptionComponent component.
@@ -21,13 +21,17 @@ export class DescriptionComponent {
   height;
   width;
 
-  constructor(public navParams: NavParams) {
+  constructor(public navParams: NavParams, private viewCtrl: ViewController) {
     console.log('Hello DescriptionComponent Component');
     
     this.text.push( this.navParams.get('data'));
     
    
     
+
+  }
+  dismiss() {
+  this.viewCtrl.dismiss();
 
   }
 

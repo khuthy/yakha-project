@@ -250,7 +250,7 @@ export class BuilderquotesPage {
   }
 
 
-  createPdf() {
+  createPdf(){
     /* calculations */
 
     /* discount amount of extras */
