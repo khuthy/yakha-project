@@ -62,6 +62,7 @@ export class MessagesPage {
   footer: boolean;
   chatMessage: string;
   myMsg='';
+  manageUser: boolean;
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -136,7 +137,8 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-     
+     /* builder loggedin??? */
+     this.manageUser = this.authServes.manageUsers();
     let data = { incoming: {}, sent: {} }
     this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
       this.messages = [];
