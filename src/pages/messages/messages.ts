@@ -56,6 +56,7 @@ export class MessagesPage {
   }
   imageBuilder;
   builderName = '';
+  footer: boolean;
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -75,9 +76,11 @@ export class MessagesPage {
     if(this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
+      this.footer = false;
     }else {
       this.icon = 'arrow-dropup';
       this.toggle = true;
+      this.footer = true;
     }
 
   }
@@ -131,7 +134,7 @@ export class MessagesPage {
     })
     this.messages = [];
     this.messages.push(data);
-    console.log(this.messages);
+    console.log('messages',this.messages);
 
     // data = { incoming: {}, sent: {}}
     //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working

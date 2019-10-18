@@ -1,6 +1,6 @@
 import { HomePage } from './../home/home';
 import { Component, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides, MenuController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
@@ -65,7 +65,8 @@ export class QuotationFormPage {
 
   /* Three steps to take */
   steps = 'stepone';
-
+  houseimage = false;
+  brickType = false;
   slideone = document.getElementsByClassName('slideone')
   slidetwo = document.getElementsByClassName('secon')
   slidethree = document.getElementsByClassName('confirm')
@@ -106,6 +107,8 @@ export class QuotationFormPage {
   isKeyOpen: boolean = false;
   hid = '';
   hideHeader = false;
+  homeBuilderName: any;
+  homeBuilderPrice: any;
 
   // duration: number = 0;
   //new test
@@ -121,7 +124,8 @@ export class QuotationFormPage {
     public popoverCtrl: PopoverController,
     private formBuilder: FormBuilder,
     public oneSignal: OneSignal,
-    private renderer: Renderer2) {
+    private renderer: Renderer2,
+    public menuCtrl: MenuController) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.HomeOwnerQuotation.hOwnerUid = this.uid;
@@ -140,10 +144,13 @@ export class QuotationFormPage {
       //   endDate: new FormControl('', Validators.compose([Validators.required])),
       // }),
 
+      
+
       firstCountValid: this.formBuilder.group({
         startDate: new FormControl('', Validators.compose([Validators.required])),
         endDate: new FormControl('', Validators.compose([Validators.required])),
-        wallType: new FormControl('', Validators.compose([Validators.required]))
+        wallType: new FormControl('', Validators.compose([Validators.required])),
+       
       }),
       secondValid: this.formBuilder.group({
         extra: new FormControl('', Validators.compose([Validators.required])),
@@ -184,6 +191,12 @@ export class QuotationFormPage {
     // console.log(this.extras);
 
   }
+  ionViewWillEnter() {
+    this.menuCtrl.swipeEnable(false);
+  }
+  ionViewWillLeave() {
+    this.menuCtrl.swipeEnable(false);
+  }
 
   backState() {
     if (this.steps == 'stepone') {
@@ -217,12 +230,17 @@ export class QuotationFormPage {
 
 
     if (this.steps == 'stepone') {
-      if (this.quotationForm.get('firstCountValid').invalid) {
+      if (this.quotationForm.get('firstCountValid').invalid || (this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.brickType == '')) {
+      
           this.quotationForm.get('firstCountValid').get('startDate').markAsTouched();
           this.quotationForm.get('firstCountValid').get('endDate').markAsTouched();
           this.quotationForm.get('firstCountValid').get('wallType').markAsTouched();
+          this.houseimage = true;
+          this.brickType = true;
       } else {
         this.steps = 'steptwo';
+        this.houseimage = false;
+          this.brickType = false;
         document.getElementById('step2').style.display = "flex";
         // document.getElementById('step1').style.display="none";
         //this.navCtrl.push()
@@ -311,7 +329,7 @@ export class QuotationFormPage {
   ionViewDidLoad() {
     // this.duration =  Number(this.HomeOwnerQuotation.startDate.toString().substring(8, 11)) - Number(this.HomeOwnerQuotation.endDate.toString().substring(8, 11))
     console.log(this.extras);
-
+    this.getBuilder();
     //let arr = [{objExtra, objPrice, objQuantity}]
 
     setTimeout(() => {
@@ -506,8 +524,11 @@ export class QuotationFormPage {
     this.HomeOwnerQuotation.houseImage = "";
   }
 
-  sendQuotation() {
-    console.log(this.HomeOwnerQuotation);
+  getBuilder() {
+    this.db.collection('Users').doc(this.HomeOwnerQuotation.builderUID).onSnapshot((responding) => {
+      this.homeBuilderName = responding.data().fullName;
+      this.homeBuilderPrice = responding.data().price;
+    })
 
   }
   viewProfile(myEvent) {

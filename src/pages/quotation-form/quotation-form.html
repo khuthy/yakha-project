@@ -1,6 +1,7 @@
  <ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary">
-    <ion-title>Request</ion-title>
+    <ion-title> <p>{{homeBuilderName}}, {{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p></ion-title>
+   
   </ion-navbar>
   
 </ion-header>
@@ -8,6 +9,8 @@
  
 
 <ion-content fullscreen>
+
+   
 
     <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
         <p>Next step</p>
@@ -60,22 +63,24 @@
   <!-- <div *ngIf="backButton" (click)="gohome()" class="backButton">
     <button ion-fab>Back</button>
   </div> -->
-  <div class="topDecor">
+<!--   <div class="topDecor">
 
-  </div>
+  </div> -->
   <!-- next button -->
  
   <form class="information" [formGroup]="quotationForm">
 
+  
+
     <!-- slide one starts here -->
     <div class="slideone" formGroupName="firstCountValid">
-
+       
       <div class="imageCont">
         
         <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
           (click)="selectImage()" name="cloud-download"></ion-icon>
-        <p class="error" *ngIf="quotationForm.get('firstCountValid').get('startDate').hasError('required') && (quotationForm.get('firstCountValid').get('startDate').dirty || quotationForm.get('firstCountValid').get('startDate').touched) && quotationForm.get('firstCountValid').get('endDate').hasError('required') && (quotationForm.get('firstCountValid').get('endDate').dirty || quotationForm.get('firstCountValid').get('endDate').touched)">Please upload your house plan here</p>
+        <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
       </div>
       <div class="dates">
         <p>I prefer the starting date to be around:</p>
@@ -97,13 +102,14 @@
       <div class="bricks">
 
         <div class="cards" *ngFor="let n of bricks" (click)="highlight(n, $event)">
-          <div [ngClass]="{'details': brickDetails, 'details-inactive': !brickDetails}" >
+          
+          <div class="details-inactive" >
 
-
-            <div class="closeB" (click)="detailBricks()">
-              <ion-icon name="close"></ion-icon>
-            </div>
-            <p>{{n.description}}</p>
+              <div class="closeB" (click)="viewProfile(n)">
+                  <ion-icon color="custom" name="information-circle"></ion-icon>
+                </div>
+         
+            <!-- <p>{{n.description}}</p> -->
           </div>
           <div class="brickName">
             <p style="font-size:5vw" id="brickName"><small>{{n.name}}</small></p>
@@ -116,7 +122,7 @@
         </div>
         
       </div>
-      <p class="error" *ngIf="!HomeOwnerQuotation.brickType">Please Specify the type of Wall Type</p>
+      <p [class]="brickType ? 'error': 'normal'" *ngIf="!HomeOwnerQuotation.brickType">Please Specify the type of Wall Type</p>
       <div class="walltype">
         <p>Select wall type</p>
         <ion-list radio-group class="inputs" formControlName="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
@@ -143,11 +149,11 @@
           <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:5vw;margin-top:2%;padding-bottom: 6px;text-align:center">Would you like to include the
           following?</h2>
 
-        <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" >
+        <ion-list id="hide-div"  *ngIf="!hid" class="hidelist" style="height:5px;">
 
-          <ion-item class="gray" style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
+          <ion-item class="gray"  style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
             <ion-label>{{e.service}}</ion-label>
-            <ion-checkbox id="hide-div" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+            <ion-checkbox id="hide-div"  *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
                 " (click)="checkClicked(e.service)"></ion-checkbox>
           </ion-item>
       </ion-list>

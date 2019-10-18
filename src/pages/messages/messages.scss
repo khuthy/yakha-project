@@ -1,4 +1,8 @@
 page-messages {
+  .label-md {
+    /*  padding-bottom:-5px !important; */
+   margin:0!important; 
+   }
 ion-header {
 // background:rgba(3, 3, 3, 0.322);
 ion-toolbar {
@@ -21,8 +25,9 @@ p {
    padding-top: -5px;
 
    ion-buttons {
+     
      button {
- 
+ border: 1px solid red;
        ion-icon {
          font-size: 5vw;
        }
@@ -83,7 +88,7 @@ button {
   }
  
   .content-head {
-    background: rgb(126, 56, 56);
+    background: rgb(15, 10, 10);
     border-radius: 50px;
     transition: 700ms;
     height: 30%;
@@ -93,23 +98,29 @@ button {
   }
   .info {
     transition: 700ms;
-    background: color($colors, light);
+    background: white;
     height: 90%;
     width: 100%;
     position: absolute;
     top: 0;
     border-radius: 50px;
     overflow-y: scroll;
-    z-index:5;
+    z-index:1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.171);
 
     //imageholder
     .imageholder {
-      border: 1px solid red;
+      border: 1px dotted rgb(66, 65, 65);
       width: 90%;
       height:35% ;
       position: relative;
       top:35%;
       left:5%;
+      border-radius: 10px;
+      img {
+         border-radius: 10px;
+      }
+     
 
       img {
         object-fit:cover;
@@ -120,7 +131,7 @@ button {
     }
 
     .bricks {
-      border: 1px solid red;
+      //border: 1px solid red;
       width: 90%;
       height:30%;
       position: relative;
@@ -128,19 +139,89 @@ button {
       left:5%;
       display: flex;
       justify-content: space-between;
+      #card {
+        border-radius:10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        img {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+      }
 
       div {
-        border: 1px solid green;
-        width:50%;
+ 
+    
+        width:48%;
         ion-item {
+          .item {
+            border: 1px solid red;
+          }
+          .input-wrapper {
+          
+         
+           // margin-bottom: -10px;
+          }
+         border-radius:10px;
+             border:1px solid rgb(121, 121, 121);
           ion-label {
             color: black;
+          
           }
           ion-input {
             color: gray;
           }
         }
+#seconditem {
+  //background: red;;
+  ion-item {
+  .item {
+    .input-wrapper {
+      margin-bottom: -10px;
+      background:yellow;
+    }
+  }
+  }
+}
+
       }
+
+    
+    }
+
+    .extras {
+      //border: 1px solid red;
+      position: relative;
+      width: 90%;
+      //height:30%;
+      top:40%;
+      left:5%;
+      //overflow-y: auto;
+
+      p {
+       padding:2%;
+       border: 1px solid blue;
+       font-size:3vh;
+       text-align: center;;
+      }
+      h5 {
+        //border: 1px solid rgb(173, 173, 173);
+        position: relative;
+        top:0;
+        text-align: center;;
+      }
+ion-item {
+ // background: red;
+}
+      ion-label {
+        color: black;
+        letter-spacing: 1px;;
+        
+      }
+
+     .item-block:nth-child(odd) {
+           
+        background: #fff!important;
+    }
     }
   }
 
@@ -307,4 +388,6 @@ ion-input {
       }
     }
   }
+
+
 }
