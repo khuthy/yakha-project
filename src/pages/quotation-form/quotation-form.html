@@ -1,10 +1,6 @@
  <ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary">
-      <ion-toolbar>
-        <ion-buttons position="start">
-          <button ion-button (click)="backState()" icon-only><ion-icon name="arrow-back"></ion-icon></button>
-        </ion-buttons>
-      </ion-toolbar>
+    <ion-title>Request</ion-title>
   </ion-navbar>
   
 </ion-header>
@@ -13,7 +9,6 @@
 
 <ion-content fullscreen>
 
-   
     <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
         <p>Next step</p>
          <button class="send-quotes" ion-fab color="light">
@@ -21,6 +16,7 @@
          
         </button>
       </div>
+  
       <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
           <p>Submit</p>
            <button class="send-quotes" ion-fab color="light">
@@ -68,6 +64,7 @@
 
   </div>
   <!-- next button -->
+ 
   <form class="information" [formGroup]="quotationForm">
 
     <!-- slide one starts here -->
@@ -78,7 +75,7 @@
         <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
           (click)="selectImage()" name="cloud-download"></ion-icon>
-        <p class="error" *ngIf="!HomeOwnerQuotation.houseImage">Please upload your house plan here</p>
+        <p class="error" *ngIf="quotationForm.get('firstCountValid').get('startDate').hasError('required') && (quotationForm.get('firstCountValid').get('startDate').dirty || quotationForm.get('firstCountValid').get('startDate').touched) && quotationForm.get('firstCountValid').get('endDate').hasError('required') && (quotationForm.get('firstCountValid').get('endDate').dirty || quotationForm.get('firstCountValid').get('endDate').touched)">Please upload your house plan here</p>
       </div>
       <div class="dates">
         <p>I prefer the starting date to be around:</p>
@@ -87,12 +84,14 @@
           <ion-datetime name="startDate" formControlName="startDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
             [(ngModel)]="HomeOwnerQuotation.startDate"></ion-datetime>
         </ion-item>
-       <!--  <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
-         --><ion-item no-lines style="margin-top:3%">
+      <p class="error" *ngIf="quotationForm.get('firstCountValid').get('startDate').hasError('required') && (quotationForm.get('firstCountValid').get('startDate').dirty || quotationForm.get('firstCountValid').get('startDate').touched)">Please specify the starting date.</p>
+         <ion-item no-lines style="margin-top:3%">
           <ion-label >End</ion-label> 
           <ion-datetime formControlName="endDate" displayFormat="MMM DDD,YYYY" pickerFormat="MMM/DDD/YYYY" [min]="maxDate" max="2022-01-01"
             [(ngModel)]="HomeOwnerQuotation.endDate"></ion-datetime>
         </ion-item>
+        <p class="error" *ngIf="quotationForm.get('firstCountValid').get('endDate').hasError('required') && (quotationForm.get('firstCountValid').get('endDate').dirty || quotationForm.get('firstCountValid').get('endDate').touched)">Please specify the Ending date.</p>
+        
       </div>
       <p style="text-align:center; font-size:4vw;letter-spacing: 1px;padding-top:3px">Please select your brick type</p>
       <div class="bricks">
@@ -117,7 +116,7 @@
         </div>
         
       </div>
-      <p class="error" *ngIf="!HomeOwnerQuotation.brickType">Please Specify the type of brick</p>
+      <p class="error" *ngIf="!HomeOwnerQuotation.brickType">Please Specify the type of Wall Type</p>
       <div class="walltype">
         <p>Select wall type</p>
         <ion-list radio-group class="inputs" formControlName="wallType"  [(ngModel)]="HomeOwnerQuotation.wallType">
@@ -125,16 +124,14 @@
             <ion-label style="color:black">Double</ion-label>
             <ion-radio style="width:30px;" value="double"></ion-radio>
           </ion-item>
-         <!--  <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
-        -->
+       
           <ion-item no-lines style="width: 50%;">
             <ion-label style="color:black">Single</ion-label>
             <ion-radio  style="width:30px;"  value="single"></ion-radio>
           </ion-item>
-     <!--      <p class="error" *ngIf="quotationForm.get('firstCountValid').hasError('required') && (quotationForm.get('startDate').dirty || quotationForm.get('startDate').touched)">Please specify the starting date.</p>
-       
-      -->   </ion-list>
-
+      </ion-list>
+      <p class="error" *ngIf="quotationForm.get('firstCountValid').get('wallType').hasError('required')  && (quotationForm.get('firstCountValid').get('wallType').dirty || quotationForm.get('firstCountValid').get('wallType').touched)">Please specify the Wall type</p>
+     
       </div>
     </div>
 
@@ -161,7 +158,8 @@
      <!-- textarea -->
         <ion-textarea  (ionFocus)="checkKeyboard('open')"
         (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
-</div>
+      <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
+      </div>
      
         
       </div>
@@ -203,6 +201,8 @@
      <h4>Extras</h4>  
      <div >
         <p *ngFor="let e of HomeOwnerQuotation.extras">{{e}}</p>
+
+   
      </div>
        
       </div>
@@ -210,6 +210,7 @@
     <!-- end of info2 slide -->
     
   </form>
+  
   <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
       <div class="maploader">
           <div class="lds-hourglass"></div>
@@ -218,4 +219,6 @@
         <p>Loading Map</p>
       </div>
     </div>
+
+   
 </ion-content>
