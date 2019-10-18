@@ -236,24 +236,39 @@ ion-item {
       z-index: -2;
     width: 90%;
     //height: 75px;
-    margin: 1em auto;
+   margin: 1em auto;
     border-radius: 12px;
-background: darkseagreen;
+background: #7FB7CE;
     position: relative;
   
   }
   .left {
     border-bottom-left-radius: 0;
-    border: 1px solid red;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
     padding:2%;
     padding-left:2%;
 
     #content {
-      
+      font-size:4vw;
+      letter-spacing: 1px;
+    }
+
+    #date {
+      font-size:3vw;
+      letter-spacing: 1px;
+      text-align: right;
+     // border: 1px solid red;
+      margin-bottom: 0 !important;
     }
   }
+  //outgoing chats styling starts here
   .right {
     border-bottom-right-radius: 0;
+   #outgoingMessages {
+     border: 1px solid green;
+     background: red;
+   }
+
   }
   .chat::after {
     content: '';
@@ -265,12 +280,12 @@ background: darkseagreen;
   .left::after {
     left: 0;
     transform: translateX(-100%);
-    background: radial-gradient(circle at 0 0, transparent, transparent 72%, darkseagreen 72%);
+    background: radial-gradient(circle at 0 0, transparent, transparent 72%, #7FB7CE 72%);
   }
   .right::after {
     right: 0;
     transform: translateX(100%);
-    background: radial-gradient(circle at 100% 0, transparent, transparent 72%, darkseagreen 72%);
+    background: radial-gradient(circle at 100% 0, transparent, transparent 72%, #7FB7CE 72%);
   }
   }
   

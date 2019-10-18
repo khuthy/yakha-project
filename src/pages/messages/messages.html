@@ -57,14 +57,16 @@
    
   </div>
 
-  <div class="chats">
-      <div class="chat left" id="incomingMessages">
-       <p id="content">Content Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-       <p id="date">Date goes here </p>
+  <div class="chats" >
+    <div *ngFor="let chat of chats; let i=index;">
+ <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
+       <p id="content">{{chat.message}}</p>
+       <p id="date">{{chat.date}} </p>
       </div>
+       <div class="chat right" id="outgoingMessages" *ngIf="chat.builder"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
+    </div>
+     
 
-      <div class="chat right" id="outgoingMessages"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
-    
   </div>
 
 <!--  
@@ -109,11 +111,11 @@
           <ion-toolbar>
             <ion-grid>
               <ion-row>
-                <ion-col col-9 class="message-box-textarea" >
-                  <ion-textarea placeholder="Enter your message..." ></ion-textarea>
+                <ion-col col-9 class="message-box-textarea">
+                  <ion-textarea placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-textarea>
                 </ion-col>
                 <ion-col col-3 class="message-box-textarea">
-                  <button ion-button icon-only clear float-right >
+                  <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats({'message' : chatMessage, builder : true, date: '21:06AM'})">
                       <ion-icon name="send"></ion-icon>
                   </button>
                 </ion-col>

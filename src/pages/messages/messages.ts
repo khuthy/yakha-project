@@ -60,6 +60,7 @@ export class MessagesPage {
   builderName = '';
   msgSent = [];
   footer: boolean;
+  chatMessage: string;
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -73,6 +74,7 @@ export class MessagesPage {
     console.log(this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
+    
   }
 
   open() {
@@ -87,6 +89,17 @@ export class MessagesPage {
     }
 
   }
+  /* Tesing if chats works */
+  chats = [];
+
+  getChats(chat) {
+    this.chats.push(chat);
+    this.chatMessage = ''
+  }
+
+
+
+  /* Ends here */
   acceptQoute(data, uid) {
     //  console.log('doc id.................', data);
 
@@ -125,6 +138,7 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
+     
     let data = { incoming: {}, sent: {} }
     this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
       this.messages = [];
@@ -132,6 +146,7 @@ export class MessagesPage {
        // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
         data.sent = doc.data();
         this.messages.push(data.sent); 
+
       })
       console.log('All messages sent...',this.messages);
     })
