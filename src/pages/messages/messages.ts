@@ -59,6 +59,7 @@ export class MessagesPage {
   imageBuilder;
   builderName = '';
   msgSent = [];
+  footer: boolean;
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -78,9 +79,11 @@ export class MessagesPage {
     if (this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
-    } else {
+      this.footer = false;
+    }else {
       this.icon = 'arrow-dropup';
       this.toggle = true;
+      this.footer = true;
     }
 
   }

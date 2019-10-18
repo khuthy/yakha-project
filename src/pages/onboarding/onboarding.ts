@@ -46,9 +46,8 @@ export class OnboardingPage {
   }
 
   /* navigate page  */
-  nextslides(){
-    this.slides.slideNext();
-  }
+  
+  
 
   getStarted(){
   // set a key/value
