@@ -106,6 +106,8 @@ export class ViewmessagePage {
       this.db.collection('chat_msg').doc(this.navParams.data.uid).collection(this.uid).doc(this.navParams.data.docID).onSnapshot((res)=>{
         this.chatMessage.push(res.data())
       })
+     // console.log(this.chatMessage);
+      
     // console.log(this.userDetails, 'extras', this.userDetails.extras);
   //   this.brickType = this.userDetails.brickType;
   //   this.comment = this.userDetails.comment;
@@ -149,9 +151,9 @@ export class ViewmessagePage {
       ev: myEvent
     });
   }
-  quotesForm() {
-    this.navCtrl.push(BuilderquotesPage, this.docID);
- //  console.log(value);
+  quotesForm(docID, uid) {
+    this.navCtrl.push(BuilderquotesPage, {docID, uid});
+   // console.log(docID);
   }
   getRequest(){
     this.db.collection('Request').doc(this.userDetails.docID).onSnapshot(doc => {

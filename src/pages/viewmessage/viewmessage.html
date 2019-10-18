@@ -53,7 +53,7 @@
           
       
   </div> -->
-  <div class="container">
+  <div class="container" *ngFor="let item of chatMessage">
     <div class="header">
       <div class="button-back">
         <button ion-fab (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
@@ -63,7 +63,7 @@
     </div>
     <div class="request-content">
         <div class="titlecase"><h6 style="text-align: center;">PROJECT REQUIREMENT</h6></div>
-        <div class="projects" *ngFor="let item of chatMessage">
+        <div class="projects" >
           <button ion-button clear (click)="viewHouse(item.houseImage)">SEE HOUSE PLAN</button>
           <div class="duration">
             <p><small>Project Duration</small></p>
@@ -88,7 +88,7 @@
         </div>
 
     </div>
-    <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(docID)">reply to this request</button>
+    <button *ngIf="builda" style="width:90%;position: relative;left:5%;color:white;" ion-button  (click)="quotesForm(userDetails.docID, item.hOwnerUid)">reply to this request</button>
 
      
     
