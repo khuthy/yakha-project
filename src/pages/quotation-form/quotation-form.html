@@ -1,7 +1,7 @@
  <ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary">
       <ion-toolbar>
-        <ion-buttons start>
+        <ion-buttons position="start">
           <button ion-button (click)="backState()" icon-only><ion-icon name="arrow-back"></ion-icon></button>
         </ion-buttons>
       </ion-toolbar>
@@ -150,7 +150,7 @@
 
           <ion-item class="gray" style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
             <ion-label>{{e.service}}</ion-label>
-            <ion-checkbox id="hide-div" formControlName="extra" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+            <ion-checkbox id="hide-div" *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
                 " (click)="checkClicked(e.service)"></ion-checkbox>
           </ion-item>
       </ion-list>
