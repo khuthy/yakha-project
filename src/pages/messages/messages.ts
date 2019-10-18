@@ -61,8 +61,9 @@ export class MessagesPage {
   msgSent = [];
   footer: boolean;
   chatMessage: string;
-  myMsg='';
+  myMsg = '';
   manageUser: boolean;
+  chatting = [];
   //imageBuilder;
   chat: number = Date.now();
   constructor(public navCtrl: NavController,
@@ -77,15 +78,15 @@ export class MessagesPage {
     console.log(this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
-    
+
   }
 
-  open(){
+  open() {
     if (this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
       this.footer = false;
-    }else {
+    } else {
       this.icon = 'arrow-dropup';
       this.toggle = true;
       this.footer = true;
@@ -138,31 +139,48 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-     /* builder loggedin??? */
-     this.manageUser = this.authServes.manageUsers();
+    this.dbMessage.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
+      for (let i = 0; i < res.docs.length; i++) {
+        this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((result) => {
+          for (let j = 0; j < result.docs.length; j++) {
+            this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).doc(result.docs[j].id).collection("chatting").onSnapshot((res)=>{
+              console.log('Res messages...', res.docs);
+              
+            })
+          }
+
+        })
+      }
+
+    })
+
+
+
+    /* builder loggedin??? */
+    this.manageUser = this.authServes.manageUsers();
     let data = { incoming: {}, sent: {} }
     this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
       this.messages = [];
       resChat.forEach((doc) => {
-       // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
+        // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
         data.sent = doc.data();
-        this.messages.push(data.sent); 
+        this.messages.push(data.sent);
 
       })
-      console.log('All messages sent...',this.messages);
+      //console.log('All messages sent...', this.messages);
     })
-    this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res)=>{
-      this.incomingRes=[];
-      res.forEach((doc)=>{
+    this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
+      this.incomingRes = [];
+      res.forEach((doc) => {
         this.incomingRes.push(doc.data());
       })
-      console.log('Response message....', this.incomingRes );
+      // console.log('Response message....', this.incomingRes);
     })
-    this.dbMessage.doc(this.uid).onSnapshot((res)=>{
+    this.dbMessage.doc(this.uid).onSnapshot((res) => {
       this.msgSent.push(res.data());
-      console.log('Message sent>>>>',this.msgSent);
+      //  console.log('Message sent>>>>', this.msgSent);
     })
-   // this.messages.push(data);
+    // this.messages.push(data);
     // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
     //   data.sent = res.data();
 
@@ -172,8 +190,8 @@ export class MessagesPage {
     // this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
     //   data.incoming = doc.data();
     // })
-    
-   
+
+
 
     // data = { incoming: {}, sent: {}}
     //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
@@ -226,12 +244,12 @@ export class MessagesPage {
   }
   brick = 'Engineering brick' //demo
   getChats() {
-    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({chat: this.chatMessage, date: Date(), builder: false}).then((res)=>{
-      res.onSnapshot((doc)=>{
-        this.chatMessage='';
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({ chat: this.chatMessage, date: Date(), builder: false }).then((res) => {
+      res.onSnapshot((doc) => {
+        this.chatMessage = '';
         this.myMsg = doc.data().chat
         console.log('This is what I sent now...', doc.data());
-      //  this.chatMessage = doc.data().chat
+        //  this.chatMessage = doc.data().chat
       })
 
     })

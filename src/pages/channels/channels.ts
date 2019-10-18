@@ -18,12 +18,14 @@ import * as firebase from 'firebase'
 export class ChannelsPage {
   dbRequest = firebase.firestore().collection('Request');
   dbUser = firebase.firestore().collection('Users');
+  dbChat = firebase.firestore().collection('chat_msg');
   uid = firebase.auth().currentUser.uid;
   dat = {} as builderProfile;
   builder;
   respond = [];
   user;
   docID;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     /*  this.dat = this.navParams.data; */
 
@@ -34,12 +36,27 @@ export class ChannelsPage {
 
   ionViewDidLoad() {
     this.dbRequest.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
-        for (let i = 0; i < res.docs.length; i++) {
-          this.dbUser.doc(res.docs[i].data().builderUID).onSnapshot((result) => {
-           this.respond.push({user:result.data(), id:res.docs[i].id});
-           console.log('Response>>>>>>>>>>>>>>>>>>>>',this.respond);
-          })
-        }
+      for (let i = 0; i < res.docs.length; i++) {
+        // console.log('Info>>>>>>',);
+       
+        this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((result) => {
+          //  result.forEach((doc) => {
+         // for (let i = 0; i < result.docs.length; i++) {
+            //console.log("docs found............",result.docs[i].data())  
+            firebase.firestore().collection('Users').doc(result.docs[i].data().builderUID).onSnapshot((userDoc) => {
+              this.respond.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
+            // console.log('user doc...', this.owner);
+            })
+        //  }
+          // console.log('>>>>>>>>>>>>>>>>>>>>',result.docs );
+
+
+          // })
+      //    console.log('Messages from home owners...', this.owner)
+         // this.owner = []
+        
+        })
+      }
       })
   }
   gotoMessages(id, name, img) {
