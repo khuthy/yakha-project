@@ -29,11 +29,12 @@
                       <img *ngIf="!profileImage" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" class="thumb">
 <!--                         <button class="thumb" ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> 
  -->                     </div>
+                        <p class="error" *ngIf="!this.profileForm.get('builder').value">Please Upload your profile picture</p>
                   </div><!-- end of image -->
 <!-- inputs for the form goes here -->
 
                   <div class="inputs">
-
+ 
                    
                      <input formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName"
                      ngDefaultControl type="text" placeholder="Fullname" name="Fullname">
