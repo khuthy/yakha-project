@@ -61,6 +61,8 @@ export class MessagesPage {
   msgSent = [];
   footer: boolean;
   chatMessage: string;
+  myMsg='';
+  manageUser: boolean;
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -77,7 +79,7 @@ export class MessagesPage {
     
   }
 
-  open() {
+  open(){
     if (this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
@@ -92,10 +94,7 @@ export class MessagesPage {
   /* Tesing if chats works */
   chats = [];
 
-  getChats(chat) {
-    this.chats.push(chat);
-    this.chatMessage = ''
-  }
+
 
 
 
@@ -138,7 +137,8 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-     
+     /* builder loggedin??? */
+     this.manageUser = this.authServes.manageUsers();
     let data = { incoming: {}, sent: {} }
     this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
       this.messages = [];
@@ -224,7 +224,17 @@ export class MessagesPage {
 
   }
   brick = 'Engineering brick' //demo
+  getChats() {
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({chat: this.chatMessage, date: Date(), builder: false}).then((res)=>{
+      res.onSnapshot((doc)=>{
+        this.chatMessage='';
+        this.myMsg = doc.data().chat
+        console.log('This is what I sent now...', doc.data());
+      //  this.chatMessage = doc.data().chat
+      })
 
+    })
+  }
   presentPopover(uid) {
     const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
     popover.present();
