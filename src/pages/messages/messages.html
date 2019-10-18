@@ -58,9 +58,9 @@
   </div>
 
   <div class="chats" >
-    <div *ngFor="let chat of chats; let i=index;">
+    <div *ngFor="let chat of messages; let i=index;">
  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-       <p id="content">{{chat.message}}</p>
+       <p id="content">{{chat.chat}}</p>
        <p id="date">{{chat.date}} </p>
       </div>
        <div class="chat right" id="outgoingMessages" *ngIf="chat.builder"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
@@ -105,7 +105,6 @@
      </div>
   </div> -->
  </ion-content>
-
          <!--  -->      
          <ion-footer [style.display]="footer ? 'none': 'block'">
           <ion-toolbar>
@@ -115,7 +114,7 @@
                   <ion-textarea placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-textarea>
                 </ion-col>
                 <ion-col col-3 class="message-box-textarea">
-                  <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats({'message' : chatMessage, builder : true, date: '21:06AM'})">
+                  <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats()">
                       <ion-icon name="send"></ion-icon>
                   </button>
                 </ion-col>

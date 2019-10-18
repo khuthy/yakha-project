@@ -191,6 +191,7 @@ export class ViewmessagePage {
      
     })
   }
+  
   getDPF(){
     return this.doc;
   }

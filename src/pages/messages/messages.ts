@@ -61,6 +61,7 @@ export class MessagesPage {
   msgSent = [];
   footer: boolean;
   chatMessage: string;
+  myMsg='';
   //imageBuilder;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -92,10 +93,7 @@ export class MessagesPage {
   /* Tesing if chats works */
   chats = [];
 
-  getChats(chat) {
-    this.chats.push(chat);
-    this.chatMessage = ''
-  }
+
 
 
 
@@ -157,10 +155,10 @@ export class MessagesPage {
       })
       console.log('Response message....', this.incomingRes );
     })
-    this.dbMessage.doc(this.uid).onSnapshot((res)=>{
-      this.msgSent.push(res.data());
-      console.log('Message sent>>>>',this.msgSent);
-    })
+    // this.dbMessage.doc(this.uid).onSnapshot((res)=>{
+    //   this.msgSent.push(res.data());
+    //   console.log('Message sent>>>>',this.msgSent);
+    // })
    // this.messages.push(data);
     // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
     //   data.sent = res.data();
@@ -224,7 +222,17 @@ export class MessagesPage {
 
   }
   brick = 'Engineering brick' //demo
+  getChats() {
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({chat: this.chatMessage, date: Date(), builder: false}).then((res)=>{
+      res.onSnapshot((doc)=>{
+        this.chatMessage='';
+        this.myMsg = doc.data().chat
+        console.log('This is what I sent now...', doc.data());
+      //  this.chatMessage = doc.data().chat
+      })
 
+    })
+  }
   presentPopover(uid) {
     const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
     popover.present();
