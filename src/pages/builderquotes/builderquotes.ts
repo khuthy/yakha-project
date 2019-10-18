@@ -437,8 +437,8 @@ export class BuilderquotesPage {
   saveData(){
     this.downloadUrl();
     this.quotes.pdfLink = this.pdfDoc;
-    console.log('doc found...........................................................................', this.pdfDoc);
-    console.log('quotes pdf link found>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.pdfDoc);
+   // console.log('doc found...........................................................................', this.pdfDoc);
+   // console.log('quotes pdf link found>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.pdfDoc);
     this.dbRespond.doc(this.uid).set(this.quotes).then((resDoc) => {
       
       this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {

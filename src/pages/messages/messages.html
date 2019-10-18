@@ -14,10 +14,10 @@
   <!-- -->
 <ion-content fullscreen>
 
-  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of messages">
+  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of msgSent">
  
     <div class="imageholder" *ngIf="toggle">
-      <img src="{{item.sent.houseImage}}" class="image">
+      <img src="{{item.houseImage}}" class="image">
 
     </div>
 
