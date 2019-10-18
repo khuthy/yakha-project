@@ -72,7 +72,7 @@ export class BuilderquotesPage {
     hOwnerUID: null,
     subtotal: 0,
     dateCreated: Date(),
-    viewed : false,
+    viewed: false,
     msgStatus: ''
   }
   meter = 2;
@@ -80,6 +80,7 @@ export class BuilderquotesPage {
   dbRespond = firebase.firestore().collection('Respond'); //sdk
   dbUsers = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
+  dbChat = firebase.firestore().collection('chat_msg');
   //dbMessages = firebase.firestore().collection('Messages');
   storage = firebase.storage().ref();
   uid: any;
@@ -105,6 +106,7 @@ export class BuilderquotesPage {
   itemtotals = {
 
   }
+  userUID = firebase.auth().currentUser.uid;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -120,7 +122,7 @@ export class BuilderquotesPage {
     private sms: SMS
   ) {
     this.userMsg = this.navParams.data;
-     console.log('data =>',this.userMsg);
+    console.log('data =>', this.userMsg);
 
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
@@ -144,24 +146,24 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    this.dbRequest.doc(this.userMsg).collection('extras').onSnapshot((res) => {
-      console.log(res.docs);
-
+    this.dbChat.doc(this.navParams.data.uid).collection(this.userUID).doc(this.navParams.data.docID).collection('extras').onSnapshot((res) => {
+      // console.log(res.docs);
       res.forEach((doc) => {
-        //   console.log(doc.id);
-        console.log(doc.data());
-
-        // this.extras=[];
+        console.log(doc.data())
         this.extras.push({ item: doc.id, data: doc.data() });
-
-        console.log(this.extras);
+        console.log('My extras......', this.extras);
       })
-
     })
-
-    this.dbRequest.doc(this.userMsg).onSnapshot((res) => {
+    // this.dbRequest.doc(this.userMsg).collection('extras').onSnapshot((res) => {
+    //   console.log(res.docs);
+    //   res.forEach((doc) => {
+    //     console.log(doc.data())
+    //     this.extras.push({ item: doc.id, data: doc.data() });
+    //     console.log(this.extras);
+    //   })
+    // })
+    this.dbRequest.doc(this.navParams.data.uid).onSnapshot((res) => {
       this.quotes.hOwnerUID = res.data().hOwnerUid;
-
       this.dbUsers.doc(res.data().hOwnerUid).onSnapshot((res) => {
         if (res.data().builder == false) {
           // this.quotes.ownerUID = this.quotes.hOwnerUID;
@@ -170,28 +172,14 @@ export class BuilderquotesPage {
           this.quotes.dimension = 'Whole House measurement' + this.quotes.meter + 'per meter squared';
         } else {
           console.log('this is a builder, sorry');
-
         }
-
       })
     })
-
-
-
-
-
-
-
-
     this.dbUsers.doc(firebase.auth().currentUser.uid).onSnapshot((doc) => {
-
       this.quotes.address = doc.data().address;
       this.quotes.fullName = doc.data().fullName;
       this.quotes.price = doc.data().price;
-
     })
-
-
   }
   public handleAddressChange(addr: Address) {
     this.quotes.address = addr.formatted_address;
@@ -250,7 +238,7 @@ export class BuilderquotesPage {
   }
 
 
-  createPdf(){
+  createPdf() {
     /* calculations */
 
     /* discount amount of extras */
@@ -259,17 +247,9 @@ export class BuilderquotesPage {
     this.quotes.total = ((this.quotes.price * this.quotes.meter) - ((this.quotes.price * this.quotes.meter) * (this.quotes.discount / 100))) + this.quotes.subtotal;
     this.quotes.discountPrice = (this.value) * this.quotes.discountAmount / 100;
     console.log('total with extras: ', this.quotes.total, 'total without extras:', this.quotes.subtotal);
-
-
     var items = this.extras.map((item) => {
-
       return [item.item, item.data.quantity, 'R' + item.data.price + '.00'];
-
-
     });
-
-
-
     var docDefinition = {
       watermark: { text: "YAKHA", color: "gray", opacity: 0.3, bold: true, alignment: "right" },
       content: [
@@ -386,93 +366,61 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
+    this.saveData();
     
-    this.saveData();    
-    this.downloadPdf();
-    this.navCtrl.setRoot(SuccessPage)
   }
 
   downloadUrl() {
-    this.loader.create({
-      duration: 2000,
-      content: 'Loading'
-    }).present();
-    
-      this.pdfObj.getBuffer((buffer) => {
-        var blob = new Blob([buffer], { type: 'application/pdf' });
-        let date = Date();
-        let user = firebase.auth().currentUser.email;
-        // Save the PDF to the data Directory of our App
-        firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
-          console.log('results url: ',results);
-          // results.downloadURL
-         firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
-           // console.log(results);
-            this.pdfDoc = url;
-           // this.quotes.pdfLink = this.pdfDoc;
-            console.log('pdf link from storage............:',this.pdfDoc);
-           // console.log('pdf link............:', this.quotes.pdfLink);
-            this.loader.create({
-              duration: 2000,
-              content: 'Loading'
-            }).present();
-            //this.navCtrl.setRoot(SuccessPage);
 
-          })
-          // console.log('pdf', this.pdfDoc);
-          // console.log(this.quotes.pdfLink);
+    this.pdfObj.getBuffer((buffer) => {
+      var blob = new Blob([buffer], { type: 'application/pdf' });
+      let date = Date();
+      let user = firebase.auth().currentUser.email;
+      // Save the PDF to the data Directory of our App
+      firebase.storage().ref('Quotations/').child(this.userMsg + '.pdf').put(blob).then((results) => {
+        console.log('results url: ', results);
+        // results.downloadURL
+        firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
+          // console.log(results);
+          this.pdfDoc = url;
+          // this.quotes.pdfLink = this.pdfDoc;
+          console.log('pdf link from storage............:', this.pdfDoc);
+          // console.log('pdf link............:', this.quotes.pdfLink);
+        
         })
-        this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
-          // Open the PDf with the correct OS tools
-          this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
-        })
-      });
-      this.pdfObj.download();
+      })
+      this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
+        this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
+      })
+    });
+    this.pdfObj.download();
   }
-  downloadPdf() {
-    /*     this.dbMessages.doc(this.uid).set({builderUID: this.quotes.uid, message: {qe:{}}}).then((res)=>{
-    
-        }) */
-  }
-  saveData(){
+
+  saveData() {
     this.downloadUrl();
     this.quotes.pdfLink = this.pdfDoc;
-   // console.log('doc found...........................................................................', this.pdfDoc);
-   // console.log('quotes pdf link found>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', this.pdfDoc);
-    this.dbRespond.doc(this.uid).set(this.quotes).then((resDoc) => {
-      
-      this.dbRequest.doc(this.userMsg).onSnapshot((resReq) => {
-       // console.log(resReq.data());
-       firebase.firestore().collection('chat_msg').doc(this.uid).collection(resReq.data().hOwnerUID).add(this.quotes);
-        if (resReq.data().hOwnerUid) {
-          //this.oneSignal.
-          this.dbUsers.doc(resReq.data().hOwnerUid).onSnapshot((resUser) => {
-          //  console.log('User information ' +resUser.data());
-          // this.sms.send(resUser.data().personalNumber, 'Hey, the builder has responded to your qoutation').then((smsRes)=>{
-          //   console.log(smsRes);
-            
-          // });
-          
-          
-           //this.oneSignal.getIds().then(ids => {
-             //console.log(ids);
-             //this.oneSignal.inFocusDisplaying
-              if(resUser.data().tokenID){
+    this.dbRespond.doc(this.uid).set(this.quotes).then((resReq) => {
+      this.dbChat.doc(this.uid).collection(this.navParams.data.uid).add(this.quotes).then(()=>{
+        this.navCtrl.setRoot(SuccessPage);
+      })
+      /* .then((resDoc)=>{
+        resDoc.onSnapshot((doc)=>{
+          this.dbUsers.doc(doc.data().hOwnerUid).onSnapshot((resUser) => {
+            if (resUser.data().tokenID) {
               var notificationObj = {
-                contents: { en: "Hey " + resUser.data().fullName+" ," + "the builder has responded to your qoutation"},
+                contents: { en: "Hey " + resUser.data().fullName + " ," + "the builder has responded to your qoutation" },
                 include_player_ids: [resUser.data().tokenID],
               };
               this.oneSignal.postNotification(notificationObj).then(res => {
-               // console.log('After push notifcation sent: ' +res);
-               
               });
-            
-              }
-
-            });
-         // })
-        }
-      })
-    });
+            }
+    
+          });
+        })
+      }); */
+      //if (resReq.data().hOwnerUid) {
+    
+      // })
+    })
   }
 }
