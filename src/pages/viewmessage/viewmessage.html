@@ -1,31 +1,31 @@
 <ion-content>
  <!--  
               <h5 >Project duration  </h5>
-              <p style="font-size:2vh;text-align: center" >From {{startDate}} To {{endDate}}</p>
+              <p style="font-size:2vh;text-align: center" >From startDate To endDate</p>
   
  
     <h5>Wall type</h5>
-    <p > {{wallType}}</p>
+    <p > wallType</p>
 
 
 
  
     <h5 >Brick   </h5>
-    <p > {{brickType}}</p>
+    <p > brickType</p>
 
  <h5 style="text-align: center;padding:1%;color:rgb(58, 55, 55);margin-bottom:4%">I also need the following done</h5>
         
         <div class="extras">
           <div  id="looping" *ngFor="let e of extras">
-              <p style="color:#3c7f8b ;">{{e}}</p>
-              <img src="../../assets/imgs/{{e}}.png" alt="{{e}}" width="30px" style="margin-top:-5%">
+              <p style="color:#3c7f8b ;">e</p>
+              <img src="../../assets/imgs/e.png" alt="e" width="30px" style="margin-top:-5%">
           </div>
             
         </div>
          
         </div>
         <div class="pdf">
-          <a href="{{doc}}"><ion-icon name="document"></ion-icon>Quotation.pdf</a>
+          <a href="doc"><ion-icon name="document"></ion-icon>Quotation.pdf</a>
         </div>
     </div>
      
@@ -35,10 +35,10 @@
           <button class="btn-create" color="yakha" *ngIf="!toggle" clear ion-button (click)="change()"><ion-icon name="arrow-dropdown" style="color:white;font-size:4vh;"></ion-icon></button>
           <div class="swipe-content" *ngIf="!toggle">
           <div class="image">
-              <img src="{{houseImage}}"  (click)="viewHouse(houseImage)" alt="house plan">
+              <img src="houseImage"  (click)="viewHouse(houseImage)" alt="house plan">
           </div>
           <div class="message">
-        <p>   {{comment}}</p>
+        <p>   comment</p>
           </div>
          
 
@@ -63,27 +63,27 @@
     </div>
     <div class="request-content">
         <div class="titlecase"><h6 style="text-align: center;">PROJECT REQUIREMENT</h6></div>
-        <div class="projects">
-          <button ion-button clear (click)="viewHouse(houseImage)">SEE HOUSE PLAN</button>
+        <div class="projects" *ngFor="let item of chatMessage">
+          <button ion-button clear (click)="viewHouse(item.houseImage)">SEE HOUSE PLAN</button>
           <div class="duration">
             <p><small>Project Duration</small></p>
-            <p>From {{startDate}} To {{endDate}}</p>
+            <p>From {{item.startDate}} To {{item.endDate}}</p>
           </div>
           <div class="wallType">
               <p><small>wall Type</small></p>
-              <p> {{wallType}}</p>
-              <p> {{brickType}}</p>
+              <p> {{item.wallType}}</p>
+              <p> {{item.brickType}}</p>
           </div>
           <p><small>Extras</small></p>
           <div class="extras">
 
-            <div class="extra" *ngFor="let e of extras">
+            <div class="extra" *ngFor="let e of item.extras">
                   <p>{{e}}</p>
                 </div>
            </div>
            <div class="comment">
              <p><small>comments</small></p>
-             <p>{{comment}}</p>
+             <p>{{item.comment}}</p>
            </div>
         </div>
 

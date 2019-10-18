@@ -68,7 +68,8 @@ export class ViewmessagePage {
   docID: any;
   response: boolean = false;
   name: any;
-
+  chatMessage = [];
+  uid = firebase.auth().currentUser.uid;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
      private fileOpener: FileOpener,
@@ -81,11 +82,11 @@ export class ViewmessagePage {
     private toastCtrl: ToastController
     ) {
     this.userDetails = this.navParams.data;
-    this.hOwnerUID = this.userDetails.uid;
-    console.log('data info: ',this.userDetails.docID);
+   // this.hOwnerUID = this.userDetails.uid;
+    console.log('data info: ',this.userDetails);
     
    
-    this.db.collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res)=>{
+    this.db.collection('Users').doc(this.uid).onSnapshot((res)=>{
      res.data();
     // this.bUid = res.data().builder == true;
     // this.hType = res.data().builder == false;
@@ -101,22 +102,26 @@ export class ViewmessagePage {
  
 }
     ionViewDidLoad() {
-    console.log(this.userDetails, 'extras', this.userDetails.extras);
-    this.brickType = this.userDetails.brickType;
-    this.comment = this.userDetails.comment;
-    this.date = this.userDetails.date;
-    this.email = this.userDetails.email;
-    this.endDate = this.userDetails.endDate;
-    this.houseImage = this.userDetails.houseImage;
-    this.startDate = this.userDetails.startDate;
-    this.wallType = this.userDetails.wallType;
-    this.docID = this.userDetails.docID;
+      this.chatMessage=[];
+      this.db.collection('chat_msg').doc(this.navParams.data.uid).collection(this.uid).doc(this.navParams.data.docID).onSnapshot((res)=>{
+        this.chatMessage.push(res.data())
+      })
+    // console.log(this.userDetails, 'extras', this.userDetails.extras);
+  //   this.brickType = this.userDetails.brickType;
+  //   this.comment = this.userDetails.comment;
+  //   this.date = this.userDetails.date;
+  //   this.email = this.userDetails.email;
+  //   this.endDate = this.userDetails.endDate;
+  //   this.houseImage = this.userDetails.houseImage;
+  //   this.startDate = this.userDetails.startDate;
+  //   this.wallType = this.userDetails.wallType;
+  //   this.docID = this.userDetails.docID;
    
    
     
-   this.extras = this.userDetails.extras;
+  //  this.extras = this.userDetails.extras;
 
-    this.getRequest();
+  //  this.getRequest();
     this.getOwnerDetails();
   }
   togglePanel(){
