@@ -28,27 +28,27 @@
         <p style=
         "text-align: center;">{{brick}}</p>
       </div>
-      <div>
-        <ion-item no-lines style="">
+      <div *ngIf="toggle">
+        <ion-item no-lines>
           <ion-label stacked>Start date</ion-label>
-          <ion-label stacked>{{item.sent.startDate}}</ion-label>
+          <ion-label stacked>{{item.startDate}}</ion-label>
         </ion-item>
 
         <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
           <ion-label stacked>End date</ion-label>
-          <ion-label>{{item.sent.endDate}}</ion-label>
+          <ion-label>{{item.endDate}}</ion-label>
         
         </ion-item>
       </div>
     </div>
 
     <!-- wall type and extraz-->
-    <div class="extras">
+    <div class="extras" *ngIf="toggle">
 <!--  <p>Wall type :  {{item.sent.wallType}}<p>  -->
 
         <h5>Extras</h5>
           <!-- <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" > -->
-              <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.sent.extras; let i=index">
+              <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.extras; let i=index">
                 <ion-label>{{e}}</ion-label>
                 <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
                 </ion-item>
@@ -58,10 +58,12 @@
   </div>
 
   <div class="chats">
-      <div class="chat left">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ducimus eaque at, totam exercitationem voluptatibus quos ratione voluptas odit iure? Magnam quaerat accusantium inventore impedit.
+      <div class="chat left" id="incomingMessages">
+       <p id="content">Content Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+       <p id="date">Date goes here </p>
       </div>
-      <div class="chat right"></div>
+
+      <div class="chat right" id="outgoingMessages"> Lorem ipsum dolor sit amet, consectetur adipisicing elit</div>
     
   </div>
 
