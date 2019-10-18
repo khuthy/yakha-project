@@ -78,7 +78,7 @@ export class MessagesPage {
     
   }
 
-  open() {
+  open(){
     if (this.toggle == true) {
       this.toggle = false;
       this.icon = 'arrow-dropdown';
@@ -155,10 +155,10 @@ export class MessagesPage {
       })
       console.log('Response message....', this.incomingRes );
     })
-    // this.dbMessage.doc(this.uid).onSnapshot((res)=>{
-    //   this.msgSent.push(res.data());
-    //   console.log('Message sent>>>>',this.msgSent);
-    // })
+    this.dbMessage.doc(this.uid).onSnapshot((res)=>{
+      this.msgSent.push(res.data());
+      console.log('Message sent>>>>',this.msgSent);
+    })
    // this.messages.push(data);
     // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
     //   data.sent = res.data();
