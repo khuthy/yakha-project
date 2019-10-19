@@ -20,9 +20,6 @@ page-help {
    
   }
   
-  
-  
-    
     .con{
           display: flex;
           flex-direction: column;
@@ -89,21 +86,15 @@ page-help {
             background-repeat: no-repeat;
             background-size: 50%;
             border: none;
-
-            
         }
         .logo {
 
-            // height:35%;
-            //border: 1px solid green;
+            
             width: 100%;
-            // padding-top: 10px;
-            // padding-bottom: 2px;
             background-image: url(../../assets/imgs/waverotate.svg);
             background-size: cover;
             background-position: 25% center;
             background-repeat: no-repeat;
-            // margin: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
