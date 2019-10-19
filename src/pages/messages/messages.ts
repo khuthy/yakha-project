@@ -142,7 +142,7 @@ export class MessagesPage {
       for (let i = 0; i < res.docs.length; i++) {
         this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((result) => {
           for (let j = 0; j < result.docs.length; j++) {
-            this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).doc(result.docs[j].id).collection("chatting").onSnapshot((res)=>{
+            this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((res)=>{
               console.log('Res messages...', res.docs);
               
             })
