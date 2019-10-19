@@ -29,21 +29,19 @@ export class TestPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TestPage', docID: , uid:);
     
-    this.dbChat.doc(this.uid).collection(this.navParams.data.uid).doc(this.navParams.data.docID).collection('chatting').onSnapshot((res) => {
+    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
-        //const element = array[i];
         this.messages.push(res.docs[i].data())
       }
     })
   }
   getChats() {
-    this.dbChat.doc(this.uid).collection(this.navParams.data.uid).doc(this.navParams.data.docID).collection('chatting').add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
+    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
         console.log('This is what I sent now...', doc.data());
-        //  this.chatMessage = doc.data().chat
       })
 
     })

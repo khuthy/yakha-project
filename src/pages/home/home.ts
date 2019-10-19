@@ -621,63 +621,18 @@ export class HomePage {
     this.navCtrl.push(QuotationFormPage, uid);
   }
   getRequests() {
-    // this.request = true;
-    //let data = {data: {}, id: {}, user:{}}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
-
       for (let i = 0; i < res.docs.length; i++) {
-        // console.log('Info>>>>>>',);
-
         this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
-          //  result.forEach((doc) => {
-          for (let i = 0; i < result.docs.length; i++) {
-            //console.log("docs found............",result.docs[i].data())  
-            firebase.firestore().collection('Users').doc(result.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
+            firebase.firestore().collection('Users').doc(res.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
               this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
-            // console.log('user doc...', this.owner);
             })
-          }
-           //console.log('>>>>>>>>>>>>>>>>>>>>',result.docs );
-
-
-          // })
-      //    console.log('Messages from home owners...', this.owner)
-         // this.owner = []
-        
         })
       }
     })
-
-    //  document.getElementById('map').style.display = "block";
     this.builder = [];
-    /*    this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
-         document.getElementById('req').style.display = "flex";
-         document.getElementById('map').style.display = "none";
-         this.owner = [];
-          res.forEach((doc) => {
-            
-           this.dbChat.doc(doc.data().hOwnerUid).collection(this.uid).onSnapshot((res) => {
-             res.forEach((doc)=>{
-               data.owner = doc.data();
-               data.doc = doc.id;
-             })
-             data.builder = doc.data();
-             this.owner.push(data);
-             console.log(this.owner);
-             data = {
-               builder: {},
-               owner: {},
-               doc:''
-             }
-           })
-         }) 
-       }) */
   }
 
-  // showmap(){
-  //   document.getElementById('hidemap').style.display = "flex"
-
-  // }
 }
 
 

@@ -138,26 +138,31 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-    this.dbMessage.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
-      for (let i = 0; i < res.docs.length; i++) {
-        this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((result) => {
-          for (let j = 0; j < result.docs.length; j++) {
-            this.dbChat.doc(this.uid).collection(res.docs[i].data().builderUID).onSnapshot((res)=>{
-              console.log('Res messages...', res.docs);
-              
-            })
-          }
+     //this.dbMessage.doc(this.uid).onSnapshot((res) => {
+      //for (let i = 0; i < res.docs.length; i++) {
+        // this.dbChat.doc(this.uid).collection(this.navParams.data.id).onSnapshot((result) => {
+        //   for (let j = 0; j < result.docs.length; j++) {
+        //     this.messages.push(result.docs[j].data())
+        //       console.log('Res messages...', result.docs[j].data());
+        //   } 
 
-        })
-      }
+        // })
+     // }
 
-    })
-
-
+   // }) 
+    
+   this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy("date").onSnapshot((res) => {
+    this.messages=[];
+    for (let i = 0; i < res.docs.length; i++) {
+      this.messages.push(res.docs[i].data())
+    }
+    console.log('Messagess.....', this.messages);
+    
+  })
 
     /* builder loggedin??? */
     this.manageUser = this.authServes.manageUsers();
-    let data = { incoming: {}, sent: {} }
+  /*   let data = { incoming: {}, sent: {} }
     this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
       this.messages = [];
       resChat.forEach((doc) => {
@@ -167,7 +172,7 @@ export class MessagesPage {
 
       })
       //console.log('All messages sent...', this.messages);
-    })
+    }) */
     this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
       this.incomingRes = [];
       res.forEach((doc) => {
@@ -247,7 +252,7 @@ export class MessagesPage {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
-        console.log('This is what I sent now...', doc.data());
+      //  console.log('This is what I sent now...', doc.data());
         //  this.chatMessage = doc.data().chat
       })
 

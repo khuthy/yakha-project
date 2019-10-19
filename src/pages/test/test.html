@@ -105,7 +105,7 @@
      <!--the responce card that does not have quotation in it should not have buttons for accept and decline -->
      <div class="chat right" *ngFor="let msg of messages">
       <p id="content">{{msg.chat}}</p>
-      <p id="date">{{msg.date}}</p>
+      <p id="date">{{msg.date | date}}</p>
     
       
      </div>
