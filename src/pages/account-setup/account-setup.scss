@@ -88,6 +88,9 @@ page-account-setup {
    .info-profile {
     height: 100%;
     width: 100%;
+    display: flex;
+  flex-wrap: wrap;
+    overflow-y: auto;
   
      .topdeco {
          height: 15%;
@@ -100,9 +103,6 @@ page-account-setup {
      .info-profile {
          height: 70%;
          width: 100%;
-        
-
-
          .image-holder {
              height: 30%;
              width: 100%;
