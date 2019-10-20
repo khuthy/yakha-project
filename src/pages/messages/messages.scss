@@ -16,33 +16,32 @@ page-messages {
 ion-header {
 //
 height:30%;
-//position: absolute;
-top:0;
+border-bottom-right-radius: 10%;
+border-bottom-left-radius: 10%;
+background-position: 50% 35%;
+background-repeat:no-repeat;
+background-size: cover;
+position: relative;
 ion-slides {
   height: 100%;
   width: 100%;
-  border:3px solid black;
+ // border:3px solid black;
   border-bottom-right-radius: 10%;
   border-bottom-left-radius: 10%;
  // position: absolute;
   top:0;
 
   //testing
-  .swiper-container {
+/*   .swiper-container {
     border:5px solid rgb(255, 255, 255);
     height: 100%;
     width: 100%
-  }
+  } */
   ion-slide {
     height: 100%;
     width: 100%;
-   // border: 5px solid blue;
-    border-bottom-right-radius: 10%;
-    border-bottom-left-radius: 10%;
-    background-position: 50% 35%;
-    background-repeat:no-repeat;
-    background-size: cover;
-    position: relative;
+    border: 5px solid blue;
+   
     top:0;
    
     img {
