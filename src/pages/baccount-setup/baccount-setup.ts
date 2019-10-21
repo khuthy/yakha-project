@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController, PopoverController,Slides } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
