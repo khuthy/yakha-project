@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <ion-toolbar class="tools-header">
+  <ion-toolbar class="tools-header" *ngIf="!isProfile">
     <ion-buttons left start>
       <p color="dark" style="font-size: 2.8vh; font-weight: 700;">{{current | number}}/2</p>
     </ion-buttons>
@@ -7,7 +7,7 @@
 </ion-header>
 <ion-content fullscreen>
 <!--  -->
-<form padding [formGroup]="profileForm" *ngIf="isProfile">
+<form padding [formGroup]="profileForm" *ngIf="!isProfile">
 
    <ion-slides (ionSlideDidChange)="currentSlide($event)" #slides>
     <ion-slide formGroupName="profileFormFirstSlide">
@@ -133,6 +133,80 @@
   </ion-slides>
 </form>
 
+ <div class="container"> 
+<div id="pro" class="profiles" *ngIf="isProfile">
+    <div class="header">
+       <button style="margin-left:8px;margin-top:5px" ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+        
+           <div class="group-button" (click)="SignOut()">
+          <p>Logout</p>
+          <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
+      </div>
+  
+  <div class="propic">
+    <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar" >
+    <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
+    <div class="names">
+   <h4>{{builderProfile.fullName}}</h4>
+   <p id="adres">{{builderProfile.address}}</p>
+ </div>
+ 
+   
+</div>
+
+<div class="infocontent">
+  <div class="certify" *ngIf="builderProfile.certified">
+      <h3>PROFILE</h3>
+    <p><img src="../../assets/icon/Path 123.svg" height="100%">
+    <span id="certy" style="font-size: 3vh; font-weight: 600;">C</span>
+    </p>
+
+ </div>
+
+
+  <p>Gender</p>
+  <h5>{{builderProfile.gender}}</h5>
+
+  <p>Experience</p>
+  <h5>{{builderProfile.experiences}} years.</h5>
+
+  <p>Cost</p>
+  <h5>{{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</h5>
+
+  <p>Roofing</p>
+  <h5 *ngIf="builderProfile.roof">Including roofing</h5>
+  <h5 *ngIf="!builderProfile.roof">Do not include roofing</h5>
+  </div>
+
+  
+  <div class="button">
+      <div class="group-button" (click)="editProfile()">
+        <p>Edit Profile</p>
+        <button ion-fab mini><ion-icon name="arrow-forward" style="color:black;" ></ion-icon></button>
+      
+      </div>
+    </div>
+  
+
+  
+
+  </div>
+ 
+
+</div> 
+
+
+<div class="statusApproval" *ngIf="!status">
+<div class="top">
+  <img src="../../assets/imgs/logo.png" width="35%">
+</div>
+<h5>Thank you for requesting an account with us.
+  Please wait while we process your application.
+  This might take up to 24 hours.</h5>
+<div class="bottom"></div>
+</div>
+
 <!-- View PProfile -->
 <!-- <div id="pro" class="profiles" *ngIf="isProfile">
     <div class="header">
@@ -198,7 +272,7 @@
    
 </ion-content>
 <ion-footer no-border>
-    <ion-toolbar class="tools-footer">
+    <ion-toolbar class="tools-footer" *ngIf="!isProfile">
       </ion-toolbar>
 </ion-footer>
 <!-- <ion-content>
