@@ -142,113 +142,101 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-     //this.dbMessage.doc(this.uid).onSnapshot((res) => {
-      //for (let i = 0; i < res.docs.length; i++) {
-        // this.dbChat.doc(this.uid).collection(this.navParams.data.id).onSnapshot((result) => {
-        //   for (let j = 0; j < result.docs.length; j++) {
-        //     this.messages.push(result.docs[j].data())
-        //       console.log('Res messages...', result.docs[j].data());
-        //   } 
+    //get Requests
+     this.dbChat.doc(this.uid).collection(this.navParams.data.name.builderUID).doc(this.navParams.data.id).onSnapshot((doc)=>{
+      // console.log('This doc ', doc.data());
+       this.msgSent.push(doc.data())
+     })
+    //get Chats
+    //get Response
 
-        // })
-     // }
-
-   // }) 
     
-   this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy('date').onSnapshot((res) => {
-    this.messages=[];
-    for (let i = 0; i < res.docs.length; i++) {
-      this.messages.push(res.docs[i].data())
-    }
-    console.log('Messagess.....', this.messages);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //  this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy('date').onSnapshot((res) => {
+  //   this.messages=[];
+  //   for (let i = 0; i < res.docs.length; i++) {
+  //     this.messages.push(res.docs[i].data())
+  //   }
+  //   console.log('Messagess.....', this.messages);
     
-  })
+  // })
 
-    /* builder loggedin??? */
-    this.manageUser = this.authServes.manageUsers();
-  /*   let data = { incoming: {}, sent: {} }
-    this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
-      this.messages = [];
-      resChat.forEach((doc) => {
-        // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
-        data.sent = doc.data();
-        this.messages.push(data.sent);
+  //   /* builder loggedin??? */
+  //   this.manageUser = this.authServes.manageUsers();
 
-      })
-      //console.log('All messages sent...', this.messages);
-    }) */
-    this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
-      this.incomingRes = [];
-      res.forEach((doc) => {
-        this.incomingRes.push(doc.data());
-      })
-      // console.log('Response message....', this.incomingRes);
-    })
-    this.dbMessage.doc(this.uid).onSnapshot((res) => {
-      this.msgSent.push(res.data());
-      console.log('Message sent>>>>', this.msgSent);
-    })
-    // this.messages.push(data);
-    // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
-    //   data.sent = res.data();
-
-    //   data.incoming = {};
-    // })
-
-    // this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
-    //   data.incoming = doc.data();
-    // })
-
-
-
-    // data = { incoming: {}, sent: {}}
-    //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
-    //   this.dbMessage.where('hOwnerUid','==', firebase.auth().currentUser.uid).onSnapshot((res)=>{
-
-    //     res.forEach((doc)=>{ 
-    //       if(doc.data().viewed==false){
-    //          this.dbIncoming.doc(doc.id).update({viewed: true})
-    //       }
-    //       this.dbIncoming.doc(doc.id).onSnapshot((info)=>{
-    //         // this.qDoc = doc.id;
-    //         // console.log(this.messages);
-    //        // this.qDoc = info.data().pdfLink;
-    //          //this.honwerUID = doc.data().uid;
-    //        //  console.log(doc.data().hOwnerUid);
-    //          this.dbProfile.doc(doc.data().builderUID).onSnapshot((builderData)=>{
-    //           this.messages = [];
-    //          this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((res)=>{
-    //            let msgData = {incoming:info.data(),incomingID: info.id, sent:doc.data(), user:res.data(), builder: builderData.data()}
-    //            this.messages.push(msgData);
-    //           // this.hownerName = ;
-    //           console.log('jjjjjjjjjjjjjjjjj',this.messages);
-    //          })
-    //          })
-    //          })
-    //     })
-    //   })
-    // this.dbFeed.where('owner','==',firebase.auth().currentUser.uid).onSnapshot((res)=>{
-    //   res.forEach((doc)=>{
-    //     console.log('Feedback data for this user', doc.data());
-
-    //   })
-    //  /*  document.getElementById('accept').style.display="none";
-    //   document.getElementById('review').style.display="none"; */
-
-    // })
-    // /* get request */
-    //  this.db.collection('Request').doc(this.autoUid).onSnapshot((getRequest) => {
-    //         if(getRequest.exists){
-    //           this.projectRequirement.brickType = getRequest.data().brickType;
-    //           this.projectRequirement.startDate = getRequest.data().startDate;
-    //           this.projectRequirement.wallType = getRequest.data().wallType;
-    //           this.projectRequirement.comment = getRequest.data().comment;
-    //           this.projectRequirement.endDate = getRequest.data().endDate;
-    //           this. projectRequirement.date = getRequest.data().date;
-    //         }
-
-    //  })
-
+  //   this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
+  //     this.incomingRes = [];
+  //     res.forEach((doc) => {
+  //       this.incomingRes.push(doc.data());
+  //     })
+  //     // console.log('Response message....', this.incomingRes);
+  //   })
+  //   this.dbMessage.doc(this.uid).onSnapshot((res) => {
+  //     this.msgSent.push(res.data());
+  //     console.log('Message sent>>>>', this.msgSent);
+  //   })
   }
   brick = 'Engineering brick' //demo
   getChats() {
