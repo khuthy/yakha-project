@@ -63,8 +63,8 @@ page-baccount-setup {
   }
 
     .image-profile-builder {
-      height: 130px;
-      width: 130px;
+      height: 100px;
+      width: 100px;
       border-radius: 50%;
       border: 2px solid color($colors, dark);
       margin: auto;
@@ -85,6 +85,8 @@ page-baccount-setup {
         position: absolute;
         bottom: 0;
         right: 0;
+        height: 30px;
+        width: 30px;
         .icon {
           font-size: 2.8vh;
         }

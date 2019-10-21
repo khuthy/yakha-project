@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar class="tools-header" *ngIf="!isProfile">
     <ion-buttons left start>
-      <p color="dark" style="font-size: 2.8vh; font-weight: 700;">{{current | number}}/2</p>
+      <p color="dark" style="font-size: 22px; font-weight: 700;">{{current | number}}/2</p>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar  *ngIf="isProfile">
@@ -67,8 +67,7 @@
                   </ion-col>
                   <ion-col col-12>
                  <ion-item no-lines>
-                  
-                         <input placeholder="Address" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" class="address">
+                   <input placeholder="Address" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" class="address">
          
                  </ion-item>
                   <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('address').hasError('required') && (profileForm.get('profileFormFirstSlide').get('address').dirty || profileForm.get('profileFormFirstSlide').get('address').touched)">Address is required</p>
