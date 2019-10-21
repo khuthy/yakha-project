@@ -4,23 +4,39 @@
               <ion-slide  *ngFor="let item of msgSent; let i=index;">
              <ion-header  no-border>
                         <ion-navbar>
+                          <!-- background image of the builder -->
                           <div class="pickimage">
                              <img src="{{imageBuilder}}" class="img-header" alt="">
                           </div>
                          
-                          <div class="countQoutes">
-                            <span>{{i + 1 | number}}</span>
-                          </div>
-                            <ion-buttons left>
-                                <button icon-only ion-button color="light" (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
+                       
+
+                          <div class="buttons">
+                             <!-- backbutton -->
+                            <ion-buttons left top id="backbtn">
+                                <button ion-fab medium  (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
                               </ion-buttons>
-                            <ion-title start>Quotation-Y00{{i}}</ion-title>
-                            <ion-buttons right>
-                              <button ion-fab mini color="secondary" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
+
+                                 <!-- counter for quotaions -->
+                          <div class="countQoutes">
+                              <span>{{i + 1 | number}}</span>
+                            </div>
+                                <!-- callbtn -->
+                            <ion-buttons right id="callbtn">
+                              <button ion-fab medium id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
                             </ion-buttons>
-                          <div class="button-drop">
-                            <button ion-button clear color="light" (click)="open()"><ion-icon [name]="icon"></ion-icon></button>
                           </div>
+                           
+                         
+
+                              <!--  -->
+                            <ion-title start>Quotation-Y00{{i}}</ion-title>
+
+
+                          <div class="button-drop">
+                            <button ion-button clear color="light" (click)="open()"><ion-icon style="font-size:10vw" [name]="icon"></ion-icon></button>
+                          </div>
+
                         </ion-navbar>
                       </ion-header>
                 <div class="container">
@@ -60,7 +76,7 @@
                 <div class="chats" >
                     <div *ngFor="let chat of messages; let i=index;">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-                   <p>Home owner</p>
+                 <!--   <p>Home owner</p> -->
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date}} </p>
                      
@@ -69,7 +85,7 @@
                 
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
                 
-                         <p>Builder</p>
+                         <!-- <p>Builder</p> -->
                          <p id="content">{{chat.chat}}</p>
                          <p id="date">{{chat.date | date}} </p>
                         
