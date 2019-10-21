@@ -184,8 +184,8 @@
                                     </p>
                                   </div>
                                 </div>  -->
-                                <div class="house-plan"></div>
-                                <div class="brick-time">
+                                <div class="house-plan" *ngIf="toggle"></div>
+                                <div class="brick-time" *ngIf="toggle">
                                   <div class="card">
                                     <img src="../../assets/imgs/Fly ash brick.jpg" class="img-brick" alt="">
                                     <p>{{item.brickType}}</p>
@@ -197,7 +197,7 @@
                                     <p>{{item.startDate}}</p>
                                   </div>
                                 </div>
-                                <div class="etras">
+                                <div class="etras" *ngIf="toggle">
                                   <p *ngFor="let e of item.extras; let i=index">{{e}}</p>
                                 </div>
                           </div>
