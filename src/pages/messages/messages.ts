@@ -58,6 +58,7 @@ export class MessagesPage {
 
   }
   imageBuilder;
+  phoneNumber ='';
   builderName = '';
   msgSent = [];
   footer: boolean;
@@ -81,6 +82,7 @@ export class MessagesPage {
     console.log('DATA=>', this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
+    this.phoneNumber = this.autoUid.phone;
 
   }
 
@@ -278,8 +280,8 @@ export class MessagesPage {
   getProfileImageStyle() {
     return 'url('+ this.imageBuilder +')';
   }
-  callJoint(phoneNumber) {
-    this.callNumber.callNumber(phoneNumber, true);
+  callJoint(personalNumber) {
+    this.callNumber.callNumber(personalNumber, true);
   }
 
 
