@@ -1,8 +1,8 @@
 
      <ion-content >
         <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
-          <ion-slide>
-         <ion-header  no-border>
+          <ion-slide *ngFor="let item of incomingMsg; let i=index;">
+         <ion-header  no-border >
                     <ion-navbar>
                       <!-- background image of the builder -->
                       <div class="pickimage">
@@ -74,21 +74,21 @@
             </div>
 
             <div class="chats" >
-                <div *ngFor="let msg of messages">
-             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-                   <p id="content">{{msg.chat}}</p>
-                   <p id="date">{{msg.date | date}} </p>
+                <div >
+             <div class="chat left" id="incomingMessages" >
+                   <p id="content">msg home owner</p>
+                   <p id="date">date home owner </p>
                  
                    
                   </div>
             
-                <div class="chat right" id="outgoing" *ngIf="chat.builder">
+                <div class="chat right" id="outgoing" >
                     <ion-buttons  id="quotation">
                         <button>Quotation 004</button>
                         <ion-icon name="arrow-round-down"></ion-icon>
                       </ion-buttons>
-                     <p id="content">{{msg.chat}}</p>
-                     <p id="date">{{msg.date | date}} </p>
+                     <p id="content">msg builder</p>
+                     <p id="date">date builder </p>
                  </div>
              </div>
                  

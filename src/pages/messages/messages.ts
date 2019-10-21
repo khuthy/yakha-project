@@ -115,7 +115,7 @@ export class MessagesPage {
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
       }
-      console.log('Message...', this.messages);
+    //  console.log('Message...', this.messages);
       
     })
   }
