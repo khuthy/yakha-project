@@ -169,7 +169,8 @@ export class QuotationFormPage {
          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
        })
      }) */
-
+     this.quotationForm.get('secondValid').get('extra').clearValidators();
+     this.quotationForm.get('secondValid').get('comment').clearValidators();
     setTimeout(() => {
       this.hideHeader = true;
     }, 2000);
@@ -258,20 +259,14 @@ export class QuotationFormPage {
 
 
     } else if (this.steps == 'steptwo') {
-      if(this.quotationForm.get('secondValid')) {
-        document.getElementById('step3').style.overflow="auto";
+      document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
         this.steps = 'stepthree';
         setTimeout(() => {
           this.nextbutton = false;
           this.nextslide()
         }, 500)
-      }
-
-
     }
-
-
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);

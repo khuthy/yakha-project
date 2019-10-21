@@ -119,7 +119,7 @@
                               </ion-buttons>
                             <ion-title start>Quotation-Y00{{i}}</ion-title>
                             <ion-buttons right>
-                              <button ion-fab mini color="secondary"><ion-icon name="call"></ion-icon></button>
+                              <button ion-fab mini color="secondary" (click)="callJoint(personalNumber)"><ion-icon name="call"></ion-icon></button>
                             </ion-buttons>
                           <div class="button-drop">
                             <button ion-button clear color="light" (click)="open()"><ion-icon [name]="icon"></ion-icon></button>
@@ -163,24 +163,43 @@
                                             </ion-item>
                                      
                                </div> -->
-                               <div class="house-plan" *ngIf="toggle" padding>
+                               <!-- <div class="house-plan" *ngIf="toggle">
                                  <img src="{{item.houseImage}}" alt="plan-{{i}}">
                                </div>
-                                <div class="info" *ngIf="toggle">
-                                  <div class="bricktype">
-                                    <img src="../../assets/imgs/{{item.brickType}}.jpg" alt="brick-{{i}}">
+                                <div class="info" *ngIf="toggle" >
+                                  <div class="top">
+                                      <div class="bricktype">
+                                    <img src="../../assets/imgs/Engineering brick.jpg" alt="brick-{{i}}">
                                     <p>{{item.brickType}}</p>
                                   </div>
                                   <div class="time">
                                     <p>Start Date <br> {{item.startDate | date}}</p>
                                     <p>End Date <br> {{item.endDate | date}}</p>
                                   </div>
+                                  </div>
+                                  
                                   <div class="extras">
                                     <p *ngFor="let e of item.extras; let i=index">
                                       {{e}}
                                     </p>
                                   </div>
-                                </div> 
+                                </div>  -->
+                                <div class="house-plan"></div>
+                                <div class="brick-time">
+                                  <div class="card">
+                                    <img src="../../assets/imgs/Fly ash brick.jpg" class="img-brick" alt="">
+                                    <p>{{item.brickType}}</p>
+                                  </div>
+                                  <div class="time">
+                                    <p><strong>Start Date</strong></p>
+                                    <p>{{item.endDate}}</p>
+                                    <p><strong>Start Date</strong></p>
+                                    <p>{{item.startDate}}</p>
+                                  </div>
+                                </div>
+                                <div class="etras">
+                                  <p *ngFor="let e of item.extras; let i=index">{{e}}</p>
+                                </div>
                           </div>
                  
                       </div>
