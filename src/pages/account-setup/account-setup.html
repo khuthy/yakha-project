@@ -132,10 +132,10 @@
 <!-- homeowner views profile here and the fab will take them to edit profile -->
 <div class="ViewContainer" *ngIf="isProfile">
   <div class="header">
-    <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+    <button style="background: #cc9e14;margin-left:10px;margin-top:5px"  ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
    
       <div class="group-button" (click)="SignOut()">
-      <p>Logout</p>
+      <p style="letter-spacing: 1px;">Logout</p>
       <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
     </div>
   </div>
@@ -145,7 +145,7 @@
         <img class="image-profile" src="{{HomeOwnerProfile.image}}" alt="{{HomeOwnerProfile.image}}">
     </div>
   <div class="homeOwner-info">
-    <button class="btn-edit" ion-button clear (click)="editProfile()"><ion-icon color="dark" name="create"></ion-icon></button>
+    <button class="btn-edit" ion-button clear (click)="editProfile()"><ion-icon style="color:#203959" name="create"></ion-icon></button>
     <div class="title">
       <h4>{{HomeOwnerProfile.fullName}}</h4>
       <div class="contactInfo">

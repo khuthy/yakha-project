@@ -1,7 +1,9 @@
  <ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary">
-    <ion-title> <p>{{homeBuilderName}}, {{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p></ion-title>
-   
+<!--     <ion-title> <p style="border:1px solid gold;margin-left: -5px;margin-top:5px;"> {{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)<br>{{homeBuilderName}}</p></ion-title>
+ -->   
+ <ion-title><p style="color:rgb(204, 158, 20)">{{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p></ion-title>
+ <ion-title><p style="letter-spacing: 1px;font-family:'impact'">{{homeBuilderName}}</p></ion-title>
   </ion-navbar>
   
 </ion-header>
@@ -9,9 +11,9 @@
  
 
 <ion-content fullscreen>
-
+<div class="topDecor"></div>
    
-
+<div class="footer">
     <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
         <p>Next step</p>
          <button class="send-quotes" ion-fab color="light">
@@ -19,6 +21,8 @@
          
         </button>
       </div>
+</div>
+   
   
       <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
           <p>Submit</p>
@@ -78,7 +82,7 @@
       <div class="imageCont">
         
         <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
-        <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:5vh;text-align: center"
+        <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center"
           (click)="selectImage()" name="cloud-download"></ion-icon>
         <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!quotationForm.get('firstCountValid').get('houseimage').value">Please upload your house plan here</p>
       </div>
@@ -106,7 +110,7 @@
           <div class="details-inactive" >
 
               <div class="closeB" (click)="viewProfile(n)">
-                  <ion-icon color="custom" name="information-circle"></ion-icon>
+                  <ion-icon color="custom" style="color: rgb(204, 158, 20)" name="information-circle"></ion-icon>
                 </div>
          
             <!-- <p>{{n.description}}</p> -->

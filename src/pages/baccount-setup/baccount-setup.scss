@@ -69,7 +69,7 @@ page-baccount-setup {
     .next {
       width: 50%;
     }
-}
+
 
 // page-baccount-setup {
 
@@ -467,98 +467,127 @@ page-baccount-setup {
 //    z-index:-2;
 // }
 
-// .names {
-// background: rgba(8, 8, 8, 0.555);
-//   left: 0;
-//   right: 0;
-// height:10vh;
-//   bottom: 0;
-//   z-index:5;
-//   position: absolute;
-// h4 {
-// // border: 1px solid green;
-// letter-spacing: 1px;
-// color:white;
-// padding-left:3%;
-// font-size:6vw;
-// margin-top:1%;
-// }
-//  #adres {
-//   //  border: 1px solid rgb(128, 0, 0);
-//     color: white;
-//     letter-spacing: 1px;
-//     padding-left:3%;
-//     font-size:3.5vw;
-//     margin-top:-1%;
-//     font-weight:300;
-//   }
-// }
-// }
-//  .infocontent {
-//    margin-top:0%;
-//   height:47%;
-//   width:100%;
-//  // border: 1px solid rgb(15, 65, 231);
-// .certify {
-//  // border: 1px solid red;
-//   display: flex;
-// height:12vh;
-// #certy {
-//   position: absolute;
-//   top:47%;
-//   right: 22px;
-//   color: rgb(255, 255, 255);
-//   font-size:8vh;
-//   z-index: 2;
-// }
-//   p {
-//    // border: 1px solid green;
-//     width:40%;
-//     text-align: right;
-//     padding-right:10px;
-//     //height:10%;
-//   }
-// }
-//   h3 {
-//     text-align: right;
-//    // border: 1px solid red;
-//     letter-spacing: 1px;
-//     font-weight:330;
-//     margin-top:1%;
-//     font-size:6vw;
-//     width:60%;
-//   }
-//   p {
-//     font-size: 2.2vh;
-//     color:rgb(61, 57, 57);
-//     font-weight:400;
-//     padding-left: 4%;
-//    // border: 1px solid red;
-//     letter-spacing: 1px;
-//     margin-top:0%;
-//   }
-//   h5 {
-//     padding-left: 8%;
-//    //margin-top:-3%;
-//    // border: 1px solid rgb(0, 47, 255);
-//     letter-spacing: 1px;
-//     text-align: left;
-//     margin-top:-2%;
-//     font-size: 4.2vw;
-//     font-weight:600;
-//   }
-//  }
-// .button {
-//   width: 100%;
-//   height:10%;
-//   position:absolute;
-//   bottom: 0%;
-  
-//  //border:1px solid green;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   align-content: center;
+.names {
+background: rgba(8, 8, 8, 0.555);
+  left: 0;
+  right: 0;
+height:13vh;
+  bottom: 0;
+  z-index:5;
+  position: absolute;
+h4 {
+// border: 1px solid green;
+letter-spacing: 1px;
+color:white;
+padding-left:3%;
+font-size:6vw;
+margin-top:1%;
+}
+ #adres {
+  //  border: 1px solid rgb(128, 0, 0);
+    color: white;
+    letter-spacing: 1px;
+    padding-left:3%;
+    font-size:3.5vw;
+    margin-top:-1%;
+    font-weight:300;
+  }
+}
+
+ .infocontent {
+   margin-top:0%;
+  height:45%;
+  width:100%;
+// border: 1px solid rgb(15, 65, 231);
+.certify {
+ // border: 1px solid red;
+  display: flex;
+height:12vh;
+#certy {
+  position: absolute;
+  top:47%;
+  right: 22px;
+  color: rgb(255, 255, 255);
+  font-size:8vh;
+  z-index: 2;
+}
+  p {
+   // border: 1px solid green;
+    width:40%;
+    text-align: right;
+    padding-right:10px;
+    //height:10%;
+  }
+}
+  h3 {
+    text-align: right;
+   // border: 1px solid red;
+    letter-spacing: 1px;
+    font-weight:330;
+    margin-top:1%;
+    font-size:6vw;
+    width:60%;
+  }
+  p {
+    font-size: 2.2vh;
+    color:rgb(61, 57, 57);
+    font-weight:400;
+    padding-left: 4%;
+   // border: 1px solid red;
+    letter-spacing: 1px;
+    margin-top:0%;
+  }
+  h5 {
+    padding-left: 8%;
+   //margin-top:-3%;
+   // border: 1px solid rgb(0, 47, 255);
+    letter-spacing: 1px;
+    text-align: left;
+    margin-top:-2%;
+    font-size: 4.2vw;
+    font-weight:600;
+  }
+ }
+.button {
+  width: 100%;
+  height:10%;
+  position:absolute;
+  bottom: 1%;
+ //border:1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  .btn {
+   // border:1px solid rgb(218, 28, 3);
+    width: 50%;
+    height:85%;
+    margin-left: auto;
+   // margin-bottom: 8%;
+    border-bottom-left-radius: 50px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 50px;
+    background:#d98e04;
+
+    ion-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+   
+ p {
+  font-weight:500;
+   color:white;
+   font-size: 5vw;
+   letter-spacing: 1px;
+   margin: auto;
+ }
+}
+}
+  // border: 1px solid rgb(0, 47, 255);
 
 //   .group-button {
 //     background: color($colors, primary);
@@ -704,3 +733,4 @@ page-baccount-setup {
 //   }
 
 //   }
+}

@@ -68,7 +68,7 @@
 </div> -->
  <div class="slider" *ngIf="!header">
     <div class="searchRange">
-        <button class="btn1" ion-fab mini (click)="getPosition()"><ion-icon name="pin"></ion-icon></button>
+        <button class="btn1" ion-fab mini (click)="getPosition()"><ion-icon name="pin" style="color:#203959"></ion-icon></button>
       <ion-item no-lines *ngIf="range">
         <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
         
@@ -76,7 +76,7 @@
          <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
         </ion-range>
         </ion-item>
-        <p *ngIf="!range" style="font-size: 1.6vh; color: #000;">These are the builders we found around this location</p> 
+        <p *ngIf="!range" style="font-size: 1.6vh;letter-spacing: 0.2px; color: #0c1624;">These are the builders we found around this location</p> 
         <button class="btn2" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt=""></button>
 </div>
     <div class="main-slide">
