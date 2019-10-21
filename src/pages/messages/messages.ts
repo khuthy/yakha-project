@@ -155,7 +155,7 @@ export class MessagesPage {
 
    // }) 
     
-   this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy("date").onSnapshot((res) => {
+   this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy('date').onSnapshot((res) => {
     this.messages=[];
     for (let i = 0; i < res.docs.length; i++) {
       this.messages.push(res.docs[i].data())

@@ -25,16 +25,21 @@ export class ChannelsPage {
 
   ionViewDidLoad() {
     this.dbRequest.doc(this.uid).onSnapshot((res) => {
-
-
+      let data = {id:{}, data:{}, user:{}}
       this.dbChat.doc(this.uid).collection(res.data().builderUID).onSnapshot((result) => {
         for (let i = 0; i < result.docs.length; i++) {
+          data.id = result.docs[i].id;
+          data.data = result.docs[i].data();
           this.dbUser.doc(res.data().builderUID).onSnapshot((userDoc) => {
-            this.respond.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
+            data.user = userDoc.data();
+            
           })
         }
       })
+      this.respond.push(data);
+     // data = {id:{}, data:{}, user:{}}
     })
+    
     console.log('Info>>>>>>', this.respond);
   }
   gotoMessages(id, name, img) {

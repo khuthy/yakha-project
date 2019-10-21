@@ -60,90 +60,83 @@ height: 90%;
 background: rgb(99, 99, 99);
 border-radius: 0 0 50px 50px;
 transition: 500ms;
+z-index: 2;
 
 .container-request {
 position: absolute;
-top: 35%;
+top: 40%;
 left: 0;
 width: 100%;
-height: 100%;
+height: 60%;
 border-radius: 0 0 50px 50px;
 overflow: auto;
-
- .image-hold{
- height: 25%;
- width: 100%;
- .image {
-    height: 100%;
-    width: 100%;
-    border-radius: 20px;
-    object-fit: cover;
-    border: 1px dotted #ddd;
-  } 
-   
- }
- .bricks {
-  width: 100%;
-//   background: blue;
-  overflow-x: auto;
-  display: flex;
-  .cards {
-    box-shadow: 0 2px 6px  rgba(0, 0, 0, 0.233);
-      min-width: 40vw;
-      max-width: 40vw;
-      height: 45vw;
-      //background: red;
-      border-radius: 5px;
-      overflow: hidden;
-      margin: 7px;
-      position: relative;
-      #imageDiv {
-        width: 100%;
-        height: 100%;;
-        img {
+border: 1px solid red;
+    .house-plan {
+      height: 35%;
+      width: 100%;
+      border: 1px solid rgb(179, 25, 25);
+    }
+    .brick-time {
+      height: 35%;
+      width: 100%;
+      border: 1px solid rgb(104, 39, 39);
+      .card {
+        height: 100%;
+        width: 50%;
+        background: red;
+        position: relative;
+        .img-brick {
+          width: 50vh;
+           height: 35vh;
+           object-fit: cover;
+           border-radius: 12px;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        p{
+          position: absolute;
           width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 5px;
+          left: 0;
+          bottom: 0;
+          border-radius: 0 0 12px 12px;
+          background: #fff;
+          padding: .3em;
+        }
       }
+      .time {
+        height: 100%;
+        width: 50%;
+        background: rgb(35, 10, 68);
+        font-size: 2.5vh;
+        p {
+          margin: 0;
+          padding: 0;
+          line-height: .9;
+        }
       }
     }
-  }
-}
-}
-
-  
-  
-
-.info {
-  height: 25%;
-  width: 100%;
-   display: flex;
-   justify-content: space-evenly;
-  border: 1px solid red;
-  .brick {
-    flex: 1;
-    height: 100%;
-    width: 50%;
-    border: 1px solid green;
-
-   
-      .brickImage {
-       width: 100%;
-       height: 100%;
-       object-fit: cover;
-       border-radius: 5px;
+    .etras {
+      height: 30%;
+      width: 100%;
+      border: 1px solid #000;
+      display: flex;
+      flex-wrap: wrap;
+      
+      p {
+          flex-basis: 30%;
+          padding: .5em;
+          margin: 1%;
+          border-radius: 15px;
       }
-    
-  }
-  .time-date {
-   flex: 1;
-   height: 100%;
-   width: 50%;
-   border: 1px solid green;
-   font-size: 2.5vh;
-  }
+    }
 }
+}
+
+  
+  
+
+
 
 
 
@@ -156,6 +149,7 @@ height: 35%;
 background: rgb(99, 99, 99);
 border-radius: 0 0 50px 50px;
 transition: 500ms;
+z-index: 2;
 }
 .chats {
 
@@ -174,8 +168,8 @@ ion-footer, ion-grid,ion-row, ion-col {
  //styling for chat boxes
  .chats {
   //border: 1px solid red;
-  height: 100vh;
-  z-index: -1;
+  height: 100%;
+  
   top: 35%;
   left: 0;
   width: 100%;
@@ -200,6 +194,7 @@ ion-footer, ion-grid,ion-row, ion-col {
       background: #7FB7CE;
       align-self: flex-end;
       justify-self: flex-end;
+      text-align: left;
       #content {
         font-size:4vw;
         letter-spacing: 1px;
@@ -222,6 +217,7 @@ ion-footer, ion-grid,ion-row, ion-col {
       padding-left:2%;
       align-self: flex-start;
       background: rgb(206, 206, 206);
+      text-align: left;
        p {
           font-size:4vw;
       letter-spacing: 1px;
