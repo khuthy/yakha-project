@@ -21,16 +21,17 @@
          
         </button>
       </div>
+      <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
+        <p>Submit</p>
+         <button class="send-quotes" ion-fab color="light">
+          <ion-icon name="arrow-forward"></ion-icon>
+         
+        </button>
+      </div>
 </div>
    
   
-      <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
-          <p>Submit</p>
-           <button class="send-quotes" ion-fab color="light">
-            <ion-icon name="arrow-forward"></ion-icon>
-           
-          </button>
-        </div>
+      
  <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
     <p>Next</p>
     <div class="nextFab">
