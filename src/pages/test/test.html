@@ -73,26 +73,22 @@
                  
             </div>
 
-            <div class="chats" >
-                <div >
-             <div class="chat left" id="incomingMessages" >
-                   <p id="content">msg home owner</p>
-                   <p id="date">date home owner </p>
-                 
-                   
-                  </div>
-            
-                <div class="chat right" id="outgoing" >
-                    <ion-buttons  id="quotation">
-                        <button>Quotation 004</button>
-                        <ion-icon name="arrow-round-down"></ion-icon>
-                      </ion-buttons>
-                     <p id="content">msg builder</p>
-                     <p id="date">date builder </p>
-                 </div>
-             </div>
-                 
-            
+            <div class="chats" *ngFor="let chat of msgInfo; ">
+            <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
+                       <p id="content">{{chat.chat}}</p>
+                       <p id="date">{{chat.date | date}} </p>
+                     
+                       
+                      </div>
+                
+                    <div class="chat right" id="outgoing" *ngIf="chat.builder">
+                      
+                       
+                         <p id="content">{{chat.chat}}</p>
+                         <p id="date">{{chat.date | date}} </p>
+
+                       
+                        </div>
               </div> 
           </ion-slide>
         </ion-slides>

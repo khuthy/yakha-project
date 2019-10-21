@@ -30,6 +30,8 @@ export class TestPage {
   };
   currentUid: any;
   incomingMsg = [];
+  msgInfo = [];
+  chat = []
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
@@ -40,38 +42,33 @@ export class TestPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TestPage', docID: , uid:);
     this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
-
+      this.incomingMsg = [];
+     // console.log('Requests......', res.docs); 
       res.forEach((doc)=>{
-        
         this.incomingMsg.push(doc.data());
       })
-      console.log('Responses...', this.incomingMsg);
-      
     })
      setTimeout(() => {
       this.getOwnerDetails();
      }, 3000);
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).where('id','==',this.navParams.data.docID).orderBy("date").onSnapshot((res) => {
-      this.messages=[];
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
+      this.chat=[];
       for (let i = 0; i < res.docs.length; i++) {
-        this.messages.push(res.docs[i].data(), {id: res.docs[i].id})
+        this.chat.push(res.docs[i].data())
       }
     })
   }
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
-    this.currentUid = this.incomingMsg[currentIndex];
-    console.log('Current information....', this.currentUid);
-    
+    this.currentUid = this.incomingMsg[currentIndex].builderUID;   
    // let curr = this.messages[currentIndex];
- /*    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.incomingMsg[currentIndex].id).orderBy('date').onSnapshot((res) => {
-      this.messages=[];
+     this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).where('id','==',this.chat[currentIndex].id).orderBy('date').onSnapshot((res) => {
+      this.msgInfo=[];
       for (let i = 0; i < res.docs.length; i++) {
-        this.messages.push(res.docs[i].data())
+        this.msgInfo.push(res.docs[i].data())
       }
-      console.log('Message...', this.messages);
-      
-    }) */
+      console.log('Message...', this.msgInfo);  
+    }) 
   }
   getChats() {
     this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true, id: this.navParams.data.docID }).then((res) => {
