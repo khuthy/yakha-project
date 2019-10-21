@@ -15,7 +15,7 @@
                         <ion-navbar>
                           <!-- background image of the builder -->
                           <div class="pickimage">
-                             <img src="{{imageBuilder}}" class="img-header" alt="">
+                             <img src="{{item.image}}" class="img-header" alt="">
                           </div>
                          
                        
@@ -49,11 +49,11 @@
                       </ion-header>
                 <div class="container">
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
-                          <div class="container-request" padding>
-                                <div class="house-plan" *ngIf="toggle">
+                          <div class="container-request" *ngIf="toggle" padding>
+                                <div class="house-plan">
                                     <img src="{{item.data.houseImage}}" alt="plan-{{i}}">
                                 </div>
-                                <div class="brick-time" *ngIf="toggle">
+                                <div class="brick-time" >
                                   <div class="card">
                                     <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
                                     <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="walltype"><p></p></div>
                                 <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
-                                <div class="etras" *ngIf="toggle">
+                                <div class="etras">
                                   <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
                                 </div>
                           </div>
