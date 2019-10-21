@@ -206,13 +206,13 @@
               <ion-grid>
                   <ion-row>
                     <ion-col col-9>
-                      <ion-input placeholder="Enter your message..."> </ion-input>
+                      <ion-input placeholder="Enter your message..." [(ngModel)]="chatMessage"> </ion-input>
                     </ion-col>
                     <ion-col col-1>
                         <button ion-button clear (click)="send()"><ion-icon name="attach"></ion-icon></button>
                       </ion-col>
-                    <ion-col col-2>
-                      <button ion-button clear (click)="send()"><ion-icon name="send"></ion-icon></button>
+                    <ion-col col-2 *ngIf="chatMessage">
+                      <button ion-button clear (click)="getchats()"><ion-icon name="send"></ion-icon></button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
