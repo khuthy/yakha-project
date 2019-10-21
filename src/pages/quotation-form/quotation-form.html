@@ -21,17 +21,10 @@
          
         </button>
       </div>
-      <div class="button-group"  *ngIf="secondNextButton" (click)="slideStateSecond()">
-          <p>Next</p>
-           <button class="send-quotes" ion-fab color="light">
-            <ion-icon name="arrow-forward"></ion-icon>
-           
-          </button>
-        </div>
 </div>
    
   
-      <div class="button-group"  *ngIf="submitButton" (click)="createQuations()">
+      <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
           <p>Submit</p>
            <button class="send-quotes" ion-fab color="light">
             <ion-icon name="arrow-forward"></ion-icon>
@@ -175,7 +168,7 @@
      <!-- textarea -->
         <ion-textarea  (ionFocus)="checkKeyboard('open')"
         (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
-      <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)">Please say something</p>
+      <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
       </div>
      
         

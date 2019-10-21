@@ -109,8 +109,6 @@ export class QuotationFormPage {
   hideHeader = false;
   homeBuilderName: any;
   homeBuilderPrice: any;
-  submitButton: boolean = false;
-  secondNextButton: boolean = false;
 
   // duration: number = 0;
   //new test
@@ -170,7 +168,8 @@ export class QuotationFormPage {
          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
        })
      }) */
-
+     this.quotationForm.get('secondValid').get('extra').clearValidators();
+     this.quotationForm.get('secondValid').get('comment').clearValidators();
     setTimeout(() => {
       this.hideHeader = true;
     }, 2000);
@@ -248,9 +247,7 @@ export class QuotationFormPage {
         // document.getElementById('step1').style.display="none";
         //this.navCtrl.push()
         // console.log('....................1');
-        this.nextbutton = false;
-        this.secondNextButton = true;
-        this.submitButton = false;
+        this.nextbutton = true;
         setTimeout(() => {
           this.nextslide();
           // 
@@ -260,31 +257,14 @@ export class QuotationFormPage {
 
 
 
-    } 
-
-
-  }
-  slideStateSecond() {
-       
-     if (this.steps == 'steptwo') {
-      if(this.quotationForm.get('secondValid').invalid) {
-       console.error('error');
-       
-      
-      }else {
-        document.getElementById('step3').style.overflow="auto";
+    } else if (this.steps == 'steptwo') {
+      document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
-        this.nextbutton = false;
-        this.secondNextButton = false;
-        this.submitButton = true;
         this.steps = 'stepthree';
         setTimeout(() => {
           this.nextbutton = false;
           this.nextslide()
         }, 500)
-      }
-
-
     }
   }
   checkClicked(event) {
