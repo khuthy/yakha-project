@@ -68,7 +68,7 @@ left: 0;
 width: 100%;
 height: 100%;
 border-radius: 0 0 50px 50px;
-
+overflow: auto;
 
  .image-hold{
  height: 25%;
@@ -174,14 +174,14 @@ ion-footer, ion-grid,ion-row, ion-col {
  //styling for chat boxes
  .chats {
   //border: 1px solid red;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
   top: 35%;
   left: 0;
   width: 100%;
 
-  overflow: auto;
-  position: absolute;
+  overflow-y: auto;
+  position: fixed;
   padding-bottom: 33vh;
       .chat {
         z-index: -2;
