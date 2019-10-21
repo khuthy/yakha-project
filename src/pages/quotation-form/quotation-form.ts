@@ -109,6 +109,8 @@ export class QuotationFormPage {
   hideHeader = false;
   homeBuilderName: any;
   homeBuilderPrice: any;
+  submitButton: boolean = false;
+  secondNextButton: boolean = false;
 
   // duration: number = 0;
   //new test
@@ -246,7 +248,9 @@ export class QuotationFormPage {
         // document.getElementById('step1').style.display="none";
         //this.navCtrl.push()
         // console.log('....................1');
-        this.nextbutton = true;
+        this.nextbutton = false;
+        this.secondNextButton = true;
+        this.submitButton = false;
         setTimeout(() => {
           this.nextslide();
           // 
@@ -256,20 +260,23 @@ export class QuotationFormPage {
 
 
 
-    } else if (this.steps == 'steptwo') {
+    } 
+
+
+  }
+  slideStateSecond() {
+       
+     if (this.steps == 'steptwo') {
       if(this.quotationForm.get('secondValid').invalid) {
-        console.log(this.steps, 'goog');
-        console.log('error first run');
-        let firstSlide = this.alertCtrl.create({
-      title: 'You cannot do that',
-      message: 'please fill the form',
-      buttons: ['Ok'] 
-          });
-      firstSlide.present();
+       console.error('error');
+       
       
       }else {
         document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
+        this.nextbutton = false;
+        this.secondNextButton = false;
+        this.submitButton = true;
         this.steps = 'stepthree';
         setTimeout(() => {
           this.nextbutton = false;
@@ -279,8 +286,6 @@ export class QuotationFormPage {
 
 
     }
-
-
   }
   checkClicked(event) {
     this.HomeOwnerQuotation.extras.push(event);
