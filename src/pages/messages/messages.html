@@ -1,5 +1,5 @@
+<!-- 
 
-<!--   [style.backgroundImage]="getProfileImageStyle()"-->
 <ion-header class="head"  [style.backgroundImage]="getProfileImageStyle()" no-border align-title="center">
     <ion-navbar color="red">
         <ion-toolbar color="dark">
@@ -18,21 +18,17 @@
 
         </ion-slide>
   </ion-slides>
-<!--    <img src="../../assets/imgs/common-burnt-clay-bricks.jpg" width="100%" height="100"> -->
+
 
   </ion-header>
-  <!-- -->
-<ion-content                    >
+  
+<ion-content>
 
   <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of msgSent">
  
-    <div class="imageholder" *ngIf="toggle">
-      <img src="{{item.houseImage}}" class="image">
+  
 
-    </div>
-
-    <!-- bricks -->
-    <div class="bricks"  *ngIf="toggle">
+  <div class="bricks"  *ngIf="toggle">
       <div id="card">
         <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="80%">
         <p style=
@@ -52,13 +48,10 @@
       </div>
     </div>
 
-    <!-- wall type and extraz-->
     <div class="extras" *ngIf="toggle">
-<!--  <p>Wall type :  {{item.sent.wallType}}<p>  -->
 
         <h5>Extras</h5>
-          <!-- <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" > -->
-              <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.extras; let i=index">
+           <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.extras; let i=index">
                 <ion-label>{{e}}</ion-label>
                 <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
                 </ion-item>
@@ -77,73 +70,22 @@
        
       </div>
 
-      <!--the responce card that has quotation in it should have buttons for accept and decline -->
-       <div class="chat right" id="outgoing" *ngIf="chat.builder">
-   <!--       <ion-buttons  id="quotation">
-           <button>Quotation 004</button>
-           <ion-icon name="arrow-round-down"></ion-icon>
-         </ion-buttons>
+    <div class="chat right" id="outgoing" *ngIf="chat.builder">
 
-         <div id="buttons">
-            <ion-buttons  >
-                <button style="background:green">Accept</button>
-              </ion-buttons>
-  
-              <ion-buttons >
-                  <button style="background:red;">Decline</button>
-                </ion-buttons>
-         </div> -->
          <p>Builder</p>
          <p id="content">{{chat.chat}}</p>
          <p id="date">{{chat.date | date}} </p>
 
        
         </div>
-
- <!--the responce card that does not have quotation in it should not have buttons for accept and decline -->
-
-    </div>
+ </div>
      
 
-  </div>
+  </div> 
 
-<!--  
-  <div class="messages" *ngFor="let item of messages">
-      <div class="message homeowner">
-          <div class="homeOwnerDiv">
-             <div class="time">
-               <h5>{{item.user?.fullName}}</h5>  
-              <P>{{item.sent.date | date}}</P>
-            </div> 
-            <div class="project">
-              <h6>Project Details</h6>
-              <p>From {{item.sent.startDate}} to {{item.sent.endDate}}</p>
-              <p>{{item.sent.wallType}}</p>
-              <p>{{item.sent.brickType}}</p>
-              <h6> Extras:</h6>
-              <p> {{item.sent.extras}}</p>
-            </div>
-          </div>
-      </div>
-      <div class="message homebuilder" *ngIf="item.incoming">
-         <div class="homeBuilderDiv">
-          <div class="time">
-             <h4>{{item.builder?.fullName}}</h4>  
-            <P>{{item.incoming.dateCreated | date}}</P>
-          </div>
-          <div class="info">
-          
-            
-        <span>View The Quote:</span>  <button ion-button small clear (click)=" downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button>
-            <div class="accept" *ngIf="!item.incoming.msgStatus"><p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p></div>
-          </div>
-        </div>
-      </div>
-      <div class="message homebuilder" *ngIf="!item.incoming" [style.display]="'none'">
-     </div>
-  </div> -->
+
  </ion-content>
-         <!--  -->      
+    
          <ion-footer [style.display]="footer ? 'none': 'block'">
           <ion-toolbar>
             <ion-grid>
@@ -159,4 +101,117 @@
               </ion-row>
             </ion-grid>
           </ion-toolbar>
-        </ion-footer>
+        </ion-footer> 
+-->
+     <ion-content >
+            <ion-slides pager>
+              <ion-slide  *ngFor="let item of msgSent; let i=index;">
+             <ion-header  no-border>
+                        <ion-navbar>
+                          <img src="{{imageBuilder}}" class="img-header" alt="">
+                          <div class="countQoutes">
+                            <span>{{i + 1 | number}}</span>
+                          </div>
+                            <ion-buttons left>
+                                <button ion-fab mini color="primary"><ion-icon name="arrow-back"></ion-icon></button>
+                              </ion-buttons>
+                            <ion-title start>Quotation-Y00{{i}}</ion-title>
+                            <ion-buttons right>
+                              <button ion-fab mini color="secondary"><ion-icon name="call"></ion-icon></button>
+                            </ion-buttons>
+                          <div class="button-drop">
+                            <button ion-button clear color="light" (click)="open()"><ion-icon [name]="icon"></ion-icon></button>
+                          </div>
+                        </ion-navbar>
+                      </ion-header>
+                <div class="container">
+                    <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
+                          <div class="container-request">
+                            
+                            <div class="image-hold" *ngIf="toggle">
+                         <img src="{{item.houseImage}}" class="image">
+  
+                                                </div>
+                              <div class="bricks"  *ngIf="toggle">
+                                  <div id="card">
+                                    <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="80%">
+                                    <p style=
+                                    "text-align: center;">{{brick}}</p>
+                                  </div>
+                                  <div *ngIf="toggle">
+                                    <ion-item no-lines>
+                                      <ion-label stacked>Start date</ion-label>
+                                      <ion-label stacked>{{item.startDate | date}}</ion-label>
+                                    </ion-item>
+                            
+                                    <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
+                                      <ion-label stacked>End date</ion-label>
+                                      <ion-label>{{item.endDate | date}}</ion-label>
+                                    
+                                    </ion-item>
+                                  </div>
+                                </div>
+                            
+                                <div class="extras" *ngIf="toggle">
+                            
+                                    <h5>Extras</h5>
+                                       <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.extras; let i=index">
+                                            <ion-label>{{e}}</ion-label>
+                                            <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
+                                            </ion-item>
+                                     
+                               </div>
+                          </div>
+                 
+                      </div>
+                     
+                </div>
+
+                <div class="chats" >
+                    <div *ngFor="let chat of messages; let i=index;">
+                 <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
+                   <p>Home owner</p>
+                       <p id="content">{{chat.chat}}</p>
+                       <p id="date">{{chat.date | date}} </p>
+                     
+                       
+                      </div>
+                
+                    <div class="chat right" id="outgoing" *ngIf="chat.builder">
+                
+                         <p>Builder</p>
+                         <p id="content">{{chat.chat}}</p>
+                         <p id="date">{{chat.date | date}} </p>
+                         <div id="buttons">
+                            <ion-buttons  >
+                                <button style="background:green">Accept</button>
+                              </ion-buttons>
+                  
+                              <ion-buttons >
+                                  <button style="background:red;">Decline</button>
+                                </ion-buttons>
+                         </div>
+                       
+                        </div>
+                 </div>
+                     
+                
+                  </div> 
+              </ion-slide>
+            </ion-slides>
+           </ion-content>
+           <ion-footer>
+              <ion-grid>
+                  <ion-row>
+                    <ion-col col-9>
+                      <ion-input placeholder="Enter your message..."> </ion-input>
+                    </ion-col>
+                    <ion-col col-1>
+                        <button ion-button clear (click)="send()"><ion-icon name="attach"></ion-icon></button>
+                      </ion-col>
+                    <ion-col col-2>
+                      <button ion-button clear (click)="send()"><ion-icon name="send"></ion-icon></button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+           </ion-footer>

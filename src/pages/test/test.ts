@@ -20,15 +20,22 @@ export class TestPage {
   chatMessage: any;
   myMsg: any;
   messages = [];
+  getowners = {
+    image: '',
+    fullName: ''
+  };
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
     this.messages = [];
+   
   }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TestPage', docID: , uid:);
-    
+     setTimeout(() => {
+      this.getOwnerDetails();
+     }, 3000);
     this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
@@ -46,7 +53,13 @@ export class TestPage {
 
     })
   }
+  getOwnerDetails() {
+    firebase.firestore().collection('Users').doc(this.navParams.data.uid).get().then(owners => {
+       this.getowners.image = owners.data().image;
+      this.getowners.fullName = owners.data().fullName;
+    })
+  }
   getProfileImageStyle() {
-    return 'url(' + this.imageBuilder + ')'
+    return 'url(' + this.getowners.image + ')'
   }
 }
