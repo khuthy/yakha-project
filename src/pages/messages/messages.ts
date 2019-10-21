@@ -8,6 +8,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { OneSignal } from '@ionic-native/onesignal';
 import { PopoverPage } from '../popover/popover';
+import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the MessagesPage page.
@@ -72,7 +73,9 @@ export class MessagesPage {
     public elementref: ElementRef,
     public renderer: Renderer2,
     public authServes: AuthServiceProvider,
-    public oneSignal: OneSignal, public popoverCtrl: PopoverController
+    public oneSignal: OneSignal,
+    public popoverCtrl: PopoverController,
+    private callNumber:CallNumber
   ) {
     this.autoUid = this.navParams.data;
     console.log(this.autoUid);
@@ -272,6 +275,9 @@ export class MessagesPage {
   }
   getProfileImageStyle() {
     return 'url('+ this.imageBuilder +')';
+  }
+  callJoint(phoneNumber) {
+    this.callNumber.callNumber(phoneNumber, true);
   }
 
 
