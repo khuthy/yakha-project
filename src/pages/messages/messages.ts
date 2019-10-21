@@ -1,5 +1,5 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController, Slides } from 'ionic-angular';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -24,11 +24,13 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class MessagesPage {
   db = firebase.firestore();
+  @ViewChild('slides') slides: Slides;
   dbMessage = firebase.firestore().collection('Request');
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
   dbFeed = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
+  dbChatting = firebase.firestore().collection('chatting');
   uid = firebase.auth().currentUser.uid;
   hideRev;
   slidesPerView: number = 1;
@@ -66,6 +68,7 @@ export class MessagesPage {
   manageUser: boolean;
   chatting = [];
   //imageBuilder;
+  currentUid = '';
   chat: number = Date.now();
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -75,7 +78,7 @@ export class MessagesPage {
     public authServes: AuthServiceProvider,
     public oneSignal: OneSignal,
     public popoverCtrl: PopoverController,
-    private callNumber:CallNumber
+    private callNumber: CallNumber
   ) {
     this.autoUid = this.navParams.data;
     console.log('DATA=>', this.autoUid);
@@ -100,7 +103,19 @@ export class MessagesPage {
   chats = [];
 
 
-
+  slideChanged() {
+    let currentIndex = this.slides.getActiveIndex();
+    this.currentUid = this.msgSent[currentIndex].id;
+   // let curr = this.messages[currentIndex];
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
+      this.messages=[];
+      for (let i = 0; i < res.docs.length; i++) {
+        this.messages.push(res.docs[i].data())
+      }
+      console.log('Message...', this.messages);
+      
+    })
+  }
 
 
   /* Ends here */
@@ -143,111 +158,24 @@ export class MessagesPage {
   }
   ionViewDidLoad() {
     //get Requests
-     this.dbChat.doc(this.uid).collection(this.navParams.data.name.builderUID).doc(this.navParams.data.id).onSnapshot((doc)=>{
+    this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
-       this.msgSent.push(doc.data())
-     })
-    //get Chats
-    //get Response
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy('date').onSnapshot((res) => {
-  //   this.messages=[];
-  //   for (let i = 0; i < res.docs.length; i++) {
-  //     this.messages.push(res.docs[i].data())
-  //   }
-  //   console.log('Messagess.....', this.messages);
-    
-  // })
-
-  //   /* builder loggedin??? */
-  //   this.manageUser = this.authServes.manageUsers();
-
-  //   this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
-  //     this.incomingRes = [];
-  //     res.forEach((doc) => {
-  //       this.incomingRes.push(doc.data());
-  //     })
-  //     // console.log('Response message....', this.incomingRes);
-  //   })
-  //   this.dbMessage.doc(this.uid).onSnapshot((res) => {
-  //     this.msgSent.push(res.data());
-  //     console.log('Message sent>>>>', this.msgSent);
-  //   })
+      res.forEach((doc) => {
+        this.msgSent.push({data:doc.data(), id: doc.id})
+      })
+
+    })
+  
   }
   brick = 'Engineering brick' //demo
   getChats() {
-    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({ chat: this.chatMessage, date: Date(), builder: false }).then((res) => {
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).add({ chat: this.chatMessage, date: Date(), builder: false, id: this.currentUid }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
-      //  console.log('This is what I sent now...', doc.data());
+        //  console.log('This is what I sent now...', doc.data());
         //  this.chatMessage = doc.data().chat
       })
-
     })
   }
   presentPopover(uid) {
@@ -262,7 +190,7 @@ export class MessagesPage {
 
   }
   getProfileImageStyle() {
-    return 'url('+ this.imageBuilder +')';
+    return 'url(' + this.imageBuilder + ')';
   }
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);

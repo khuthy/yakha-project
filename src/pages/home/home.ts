@@ -60,6 +60,8 @@ export class HomePage {
   avgRate: number;
   ratingArr = [];
   sumRated = 0;
+  fullName='';
+  userImg = '';
   // sumRate=0;
   noReviews = 'No reviews yet';
   constructor(public navCtrl: NavController,
@@ -621,15 +623,39 @@ export class HomePage {
     this.navCtrl.push(QuotationFormPage, uid);
   }
   getRequests() {
+    let data = {info: [], user: []}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
-      for (let i = 0; i < res.docs.length; i++) {
-        this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
-            firebase.firestore().collection('Users').doc(res.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
-              this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
-            })
-        })
+      this.owner = [];
+     
+      for (let j = 0; j < res.docs.length; j++) {
+        data.info.push(res.docs[j].data());
+        this.db.doc(res.docs[j].data().hOwnerUid).onSnapshot((doc)=>{
+          data.user.push(doc.data())
+          this.owner.push({info: res.docs[j].data(), user: doc.data()})
+         })
+         console.log('Owner details', this.owner);
       }
+     
+     // data.info.forEach((item)=>{
+         
+     // }) 
+      
+      
+     
     })
+
+    // this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
+    //   console.log('Incoming requests', res.docs);
+    //    for (let i = 0; i < res.docs.length; i++) {
+    //      console.log('Request doc----', res.docs[i].data());
+
+    //  /*    this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
+    //         firebase.firestore().collection('Users').doc(res.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
+    //           this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
+    //         })
+    //     }) */
+    //   } 
+    // })
     this.builder = [];
   }
 

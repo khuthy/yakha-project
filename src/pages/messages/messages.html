@@ -106,7 +106,7 @@
         </ion-footer> 
 -->
      <ion-content >
-            <ion-slides pager>
+            <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
               <ion-slide  *ngFor="let item of msgSent; let i=index;">
              <ion-header  no-border>
                         <ion-navbar>
@@ -133,21 +133,21 @@
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
                           <div class="container-request" padding>
                                 <div class="house-plan" *ngIf="toggle">
-                                    <img src="{{item.houseImage}}" alt="plan-{{i}}">
+                                    <img src="{{item.data.houseImage}}" alt="plan-{{i}}">
                                 </div>
                                 <div class="brick-time" *ngIf="toggle">
                                   <div class="card">
-                                    <img src="../../assets/imgs/{{item.brickType}}.jpg" class="img-brick" alt="">
-                                    <p style="font-size: 2.5vh;">{{item.brickType}}</p>
+                                    <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
+                                    <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
                                   </div>
                                   <div class="time">
                                     <article>
                                        <p><strong>Start Date</strong></p>
-                                    <p>{{item.endDate | date: 'shortDate'}}</p>
+                                    <p>{{item.data.endDate | date: 'shortDate'}}</p>
                                     </article>
                                     <article>
                                        <p><strong>Start Date</strong></p>
-                                      <p>{{item.startDate | date: 'shortDate'}}</p>
+                                      <p>{{item.data.startDate | date: 'shortDate'}}</p>
                                     </article>
                                    
                                    
@@ -155,7 +155,7 @@
                                 </div>
                                 <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
                                 <div class="etras" *ngIf="toggle">
-                                  <p *ngFor="let e of item.extras; let i=index">{{e}}</p>
+                                  <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
                                 </div>
                           </div>
                  
@@ -164,7 +164,7 @@
                 </div>
 
                 <div class="chats" >
-                    <div *ngFor="let chat of messages; let i=index;">
+                    <div *ngFor="let chat of messages; ">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                    <p>Home owner</p>
                        <p id="content">{{chat.chat}}</p>
