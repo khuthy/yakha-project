@@ -1,20 +1,20 @@
 page-feedback {
-  .header {
+ /*  .header {
     text-align: center;
     padding:10px;
     .img{
           width: 25%;
     }
     
-}
+} */
 
-.divtop{
+/* .divtop{
 border-radius: 0px 0px 30px 30px;
 
 height:25%; 
 background: #4D4D4D;
 
-}
+} */
 
 .con{
       display: flex;
@@ -58,7 +58,7 @@ background: #4D4D4D;
     position: relative;
      margin: 0 auto;
     background: color($colors, light);
-    
+    border: 1px solid red;
     transition-property: all;
     transition-duration: 2s;
     transition-timing-function: ease-in-out;
