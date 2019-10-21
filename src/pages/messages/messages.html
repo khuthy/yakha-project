@@ -130,13 +130,13 @@
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
                           <div class="container-request">
                             
-                            <div class="image-hold" *ngIf="toggle">
+                            <!-- <div class="image-hold" *ngIf="toggle">
                          <img src="{{item.houseImage}}" class="image">
   
                                                 </div>
                               <div class="bricks"  *ngIf="toggle">
                                   <div id="card">
-                                    <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="80%">
+                                    <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}">
                                     <p style=
                                     "text-align: center;">{{brick}}</p>
                                   </div>
@@ -162,7 +162,25 @@
                                             <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
                                             </ion-item>
                                      
+                               </div> -->
+                               <div class="house-plan" *ngIf="toggle" padding>
+                                 <img src="{{item.houseImage}}" alt="plan-{{i}}">
                                </div>
+                                <div class="info" *ngIf="toggle">
+                                  <div class="bricktype">
+                                    <img src="../../assets/imgs/{{item.brickType}}.jpg" alt="brick-{{i}}">
+                                    <p>{{item.brickType}}</p>
+                                  </div>
+                                  <div class="time">
+                                    <p>Start Date <br> {{item.startDate | date}}</p>
+                                    <p>End Date <br> {{item.endDate | date}}</p>
+                                  </div>
+                                  <div class="extras">
+                                    <p *ngFor="let e of item.extras; let i=index">
+                                      {{e}}
+                                    </p>
+                                  </div>
+                                </div> 
                           </div>
                  
                       </div>
