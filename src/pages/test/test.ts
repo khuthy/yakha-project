@@ -17,6 +17,7 @@ import { BuilderquotesPage } from '../builderquotes/builderquotes';
 export class TestPage {
   imageBuilder: string;
   dbChat = firebase.firestore().collection('chat_msg');
+  dbChatting = firebase.firestore().collection('chatting');
   uid = firebase.auth().currentUser.uid;
   chatMessage: any;
   myMsg: any;
@@ -37,7 +38,7 @@ export class TestPage {
      setTimeout(() => {
       this.getOwnerDetails();
      }, 3000);
-    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
@@ -45,7 +46,7 @@ export class TestPage {
     })
   }
   getChats() {
-    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
