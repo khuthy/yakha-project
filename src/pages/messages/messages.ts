@@ -79,7 +79,7 @@ export class MessagesPage {
     private callNumber:CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log(this.autoUid);
+    console.log('DATA=>', this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
     this.phoneNumber = this.autoUid.phone;
@@ -186,8 +186,10 @@ export class MessagesPage {
       })
       // console.log('Response message....', this.incomingRes);
     })
-    this.dbMessage.doc(this.uid).onSnapshot((res) => {
-      this.msgSent.push(res.data());
+    this.dbMessage.where('builderUID', '==', this.navParams.data.id).onSnapshot((res) => {
+      res.forEach(doc => {
+        this.msgSent.push(doc.data());
+      })
       console.log('Message sent>>>>', this.msgSent);
     })
     // this.messages.push(data);
