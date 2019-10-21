@@ -83,7 +83,7 @@ export class MessagesPage {
     private callNumber: CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log('DATA=>', this.autoUid);
+    console.log('DATA=>', this.autoUid, '', this.autoUid.img);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
     this.phoneNumber = this.autoUid.phone;
@@ -115,7 +115,7 @@ export class MessagesPage {
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
       }
-      console.log('Message...', this.messages);
+    //  console.log('Message...', this.messages);
       
     })
   }

@@ -235,9 +235,8 @@ ion-footer, ion-grid,ion-row, ion-col {
   top: 35%;
   left: 0;
   width: 100%;
-
   overflow-y: auto;
- 
+  //border: 1px solid red;
   padding-bottom: 33vh;
       .chat {
         z-index: -2;
