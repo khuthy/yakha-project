@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { BuilderquotesPage } from '../builderquotes/builderquotes';
 /**
  * Generated class for the TestPage page.
  *
@@ -61,5 +62,9 @@ export class TestPage {
   }
   getProfileImageStyle() {
     return 'url(' + this.getowners.image + ')'
+  }
+
+  createQuotes(){
+    this.navCtrl.push(BuilderquotesPage);
   }
 }
