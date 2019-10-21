@@ -1,13 +1,211 @@
-<ion-content>
+<ion-header no-border>
+  <ion-toolbar class="tools-header">
+    <ion-buttons left start>
+      <p color="dark" style="font-size: 2.8vh; font-weight: 700;">{{current | number}}/2</p>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+<!--  -->
+<form padding [formGroup]="profileForm" *ngIf="isProfile">
+
+   <ion-slides (ionSlideDidChange)="currentSlide($event)" #slides>
+    <ion-slide formGroupName="profileFormFirstSlide">
+       
+
+            <div class="image-profile-builder">
+                <img *ngIf="profileImage" src="{{profileImage}}" class="thumbnail-image" (click)="selectImage()">
+                <img *ngIf="!profileImage" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" class="holder">
+              <button class="btn-create" mini ion-fab color="light" (click)="selectImage()"><ion-icon name="create"></ion-icon></button>
+            </div>
+            <p class="error" *ngIf="!profileForm.get('profileFormFirstSlide').get('builder').value">Please Upload a profile image</p>
+
+            <ion-grid padding>
+                <ion-row align-items-center>
+                  <ion-col col-12>
+                      <ion-item no-lines>
+                          <ion-input formControlName="fullName" [(ngModel)]="builderProfile.fullName" ngDefaultControl type="text" name="fullName" placeholder="Full Name"></ion-input>
+                          </ion-item>
+               <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('fullName').hasError('required') && (profileForm.get('profileFormFirstSlide').get('fullName').dirty || profileForm.get('profileFormFirstSlide').get('fullName').touched)">Full name is required</p>
+               <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('fullName').hasError('parttern') && (profileForm.get('profileFormFirstSlide').get('fullName').dirty || profileForm.get('profileFormFirstSlide').get('fullName').touched)">Name must be at least 4 characters long.</p>
+               <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('fullName').hasError('minlength') && (profileForm.get('profileFormFirstSlide').get('fullName').dirty || profileForm.get('profileFormFirstSlide').get('fullName').touched)"></p>
+               <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('fullName').hasError('maxlength') && (profileForm.get('profileFormFirstSlide').get('fullName').dirty || profileForm.get('profileFormFirstSlide').get('fullName').touched)"></p>
+             
+                  </ion-col>
+                    
+                  <ion-col col-12>
+                      <ion-item no-lines>
+                          <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"
+                            cancelText="Dismiss">
+                            <ion-option selected="true" disabled="true" value="">Select Gender</ion-option>
+                            <ion-option value="Female">Female</ion-option>
+                            <ion-option value="Male">Male</ion-option>
+                          </ion-select>
+                        </ion-item>
+                        <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('gender').hasError('required') && (profileForm.get('profileFormFirstSlide').get('gender').dirty || profileForm.get('profileFormFirstSlide').get('gender').touched)">Gender is required</p>
+             
+                  </ion-col>
+                  <ion-col col-12>
+                      <ion-item no-lines>
+                          <ion-input formControlName="personalNumber" name="personalNumber" [(ngModel)]="builderProfile.personalNumber" ngDefaultControl type="tel" maxlength="10" placeholder="Cell phone number"></ion-input>
+                        </ion-item>
+                        <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('personalNumber').hasError('required') && (profileForm.get('profileFormFirstSlide').get('personalNumber').dirty || profileForm.get('profileFormFirstSlide').get('personalNumber').touched)">Phone number is required</p>
+                 
+                  </ion-col>
+                  <ion-col col-12>
+                 <ion-item no-lines>
+                  
+                         <input placeholder="Address" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" class="address">
+         
+                 </ion-item>
+                  <p class="error" *ngIf="profileForm.get('profileFormFirstSlide').get('address').hasError('required') && (profileForm.get('profileFormFirstSlide').get('address').dirty || profileForm.get('profileFormFirstSlide').get('address').touched)">Address is required</p>
+                 
+                  </ion-col>
+
+                  
+                </ion-row>
+                <ion-row align-items-center>
+                    <ion-col>
+                        <button class="next" round ion-button color="dark" [disabled]="this.profileForm.get('profileFormFirstSlide').invalid"  (click)="nextslides()">Next</button>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+            
+          
+            
+       
+       
+             
+       
+     
+    </ion-slide>
+
+    <ion-slide formGroupName="profileFormSecondSlide">
+
+         <ion-grid padding>
+            <ion-row align-items-center>
+                <ion-col col-12>
+                  <h2 text-center>Builder's Details</h2>
+                  <p text-center><small>Almost Done</small></p>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-item no-lines>
+                        <ion-input type="tel"  maxLength="7" formControlName="price" name="price" [(ngModel)]="builderProfile.price" placeholder="Price per square meter (p/&#13217;)"></ion-input>
+                        </ion-item>
+                        <p class="error" *ngIf="profileForm.get('profileFormSecondSlide').get('price').hasError('required') && (profileForm.get('profileFormSecondSlide').get('price').dirty || profileForm.get('profileFormSecondSlide').get('price').touched)">Please specify the price per square meter</p>
+                </ion-col>
+           
+
+              <ion-col col-12>
+                  <ion-item no-lines>
+                      <ion-input formControlName="experience" name="experience" [(ngModel)]="builderProfile.experiences" type="text" placeholder="Experience" name="experience" placeholder="Experience (e.g 3 years) "></ion-input>
+                    </ion-item>
+                    <p class="error" *ngIf="profileForm.get('profileFormSecondSlide').get('experience').hasError('required')  && (profileForm.get('profileFormSecondSlide').get('experience').dirty || profileForm.get('profileFormSecondSlide').get('experience').touched)">Experience is required</p>
+              </ion-col>
+              <ion-col col-12>
+                  <ion-item no-lines>
+                      <ion-label color="dark" left>Price include roofing?</ion-label>
+                      <ion-checkbox color="dark" formControlName="roof" name="roof" [(ngModel)]="builderProfile.roof" cancelText="Dismiss"></ion-checkbox>
+                    </ion-item>
+              </ion-col>
+              <ion-col col-12>
+                    <ion-item no-lines>
+                        <ion-label  color="dark">Are you certified?</ion-label>
+                        <ion-checkbox color="dark"  formControlName="certified" name="certified" [(ngModel)]="builderProfile.certified"></ion-checkbox>
+                      </ion-item>
+              </ion-col>
+              <ion-col col-12 [style.display]="!profileForm.get('profileFormSecondSlide').get('certified').value ? 'none' : 'block'">
+                  <ion-item no-lines>
+                      <ion-input formControlName="regNo" placeholder="Registration Number" [(ngModel)]="builderProfile.regNo"></ion-input>
+                    </ion-item>
+                    <p class="error" *ngIf="regNo.invalid || regNo.touched">Registration Number is required</p>
+                    
+              </ion-col>
+              
+            </ion-row>
+            <ion-row align-items-center>
+                <ion-col>
+                    <button class="next" round ion-button color="dark"  (click)="createprofile(profileForm)">Done</button>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</form>
+
+<!-- View PProfile -->
+<!-- <div id="pro" class="profiles" *ngIf="isProfile">
+    <div class="header">
+       <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+        
+           <div class="group-button" (click)="SignOut()">
+          <p>Logout</p>
+          <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
+      </div>
+  
+  <div class="propic">
+    <img *ngIf="builderProfile.image" src="{{builderProfile.image}}" class="thumbavatar" >
+    <img *ngIf="!builderProfile.image" src="../../assets/imgs/team-avatar.jpg" class="thumbavatar" >
+    <div class="names">
+   <h4>{{builderProfile.fullName}}</h4>
+   <p id="adres">{{builderProfile.address}}</p>
+ </div>
+ 
+   
+</div>
+
+<div class="infocontent">
+  <div class="certify" *ngIf="builderProfile.certified">
+      <h3>PROFILE</h3>
+    <p><img src="../../assets/icon/Path 123.svg" height="100%">
+    <span id="certy" style="font-size: 3vh; font-weight: 600;">C</span>
+    </p>
+
+ </div>
+
+
+  <p>Gender</p>
+  <h5>{{builderProfile.gender}}</h5>
+
+  <p>Experience</p>
+  <h5>{{builderProfile.experiences}} years.</h5>
+
+  <p>Cost</p>
+  <h5>{{builderProfile.price | currency:'&#82;'}}(p/&#13217;)</h5>
+
+  <p>Roofing</p>
+  <h5 *ngIf="builderProfile.roof">Including roofing</h5>
+  <h5 *ngIf="!builderProfile.roof">Do not include roofing</h5>
+  </div>
+
+  
+  <div class="button">
+      <div class="group-button" (click)="editProfile()">
+        <p>Edit Profile</p>
+        <button ion-fab mini><ion-icon name="arrow-forward" style="color:black;" ></ion-icon></button>
+      
+      </div>
+    </div>
+  
+
+  
+
+  </div> -->
+ 
+
+
+   
+</ion-content>
+<ion-footer no-border>
+    <ion-toolbar class="tools-footer">
+      </ion-toolbar>
+</ion-footer>
+<!-- <ion-content>
   <div class="status" *ngIf="status">
     <div class="container" *ngIf="!isProfile">
 
- <div  class="nextbutton"  class="btn">
-            <p>Next</p>
-            <div class="nextFab">
-            <button ion-fab><ion-icon name="arrow-forward"></ion-icon></button>
-          </div>
-          </div> 
+
           
           <div  class="steps">
            <p>Step 1/2</p>
@@ -21,19 +219,17 @@
             <ion-slides #slides>
               <ion-slide >
                 <ion-list no-lines style="background: transparent">
-<!--                     <h4 style="text-align: center; color: #000;">lets get to know you a little.</h4>
- -->                  <div class="image"><!-- image starts here -->
+                  <div class="image">
              
                     <div class="thumb">
                       <img *ngIf="profileImage" src="{{profileImage}}" class="thumb" (click)="selectImage()">
                       <img *ngIf="!profileImage" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" class="thumb">
-<!--                         <button class="thumb" ion-fab color="dark" class="btn-upload" mini (click)="selectImage()"><ion-icon name="{{icon}}"></ion-icon></button> 
- -->                     </div>
-                  </div><!-- end of image -->
-<!-- inputs for the form goes here -->
+           </div>
+                        <p class="error" *ngIf="!this.profileForm.get('builder').value">Please Upload your profile picture</p>
+                  </div>
 
                   <div class="inputs">
-
+ 
                    
                      <input formControlName="fullName" name="fullName" [(ngModel)]="builderProfile.fullName"
                      ngDefaultControl type="text" placeholder="Fullname" name="Fullname">
@@ -42,10 +238,10 @@
                           *ngIf="profileForm.get('fullName').hasError(validate.type) && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">
                           {{validate.message}}
                         </div>
-                      </div><!-- end of validation for fullname -->
+                      </div>
 
                  
-                        <!-- <input  type="text" placeholder="Gender" name="email"> -->
+               
                         <ion-item>
                             <ion-label >Gender</ion-label>
                             <ion-select formControlName="gender" name="gender" [(ngModel)]="builderProfile.gender"
@@ -78,19 +274,11 @@
                   </div>
           
                 </ion-list>
-                <!-- <ion-item class="item">
-                  <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" 
-                  style="border: none; width: 100%"/>
-                </ion-item>
-                <ion-label class="error" *ngFor="let validate of validation_messages.address">
-                 <p class="messages" *ngIf="profileForm.get('address').hasError(validate.type) && (profileForm.get('address').dirty || profileForm.get('address').touched)">
-                   {{validate.message}}
-                 </p>
-                 </ion-label>  -->
+         
                 
               </ion-slide>
 
-              <!-- slide two starts here -->
+         
               <ion-slide id="slide2" >
                 
                   <h3>Builder's Details </h3>
@@ -103,12 +291,12 @@
                         *ngIf="profileForm.get('price').hasError(validate.type) && (profileForm.get('price').dirty || profileForm.get('price').touched)">
                         {{validate.message}}
                       </div>
-                    </div><!-- end of validation for price -->
+                    </div>
 
                   <input  formControlName="experience" name="experience" [(ngModel)]="builderProfile.experiences"
                   cancelText="Dismiss" style="margin-top:3%"  type="text" placeholder="Experience" name="experience">
                
-                  <!-- checkbox starts here -->
+               
                   <ion-list style="margin-top:3%">
                     
               <ion-item >
@@ -120,7 +308,7 @@
                       *ngIf="profileForm.get('roof').hasError(validate.type) && (profileForm.get('roof').dirty || profileForm.get('roof').touched)">
                       {{validate.message}}
                     </div>
-                  </div><!-- end of validation for price include roofing -->
+                  </div>
               
                 <ion-item >
                   <ion-label>Are you certified?</ion-label>
@@ -131,27 +319,27 @@
                       *ngIf="profileForm.get('certified').hasError(validate.type) && (profileForm.get('certified').dirty || profileForm.get('certified').touched)">
                       {{validate.message}}
                     </div>
-                  </div><!-- end of validation for certified -->
+                  </div>
                   </ion-list>
 
                   <input class="input-field" type="text" placeholder="Please include your registration no." name="Fullname">
 
-                    <!-- <button ion-button large clear full center type="submit" [disabled]="!isuploaded"  (click)="createUser()">Done</button> -->
+                  
               <button id="skip" (click)="createprofile(profileForm)" block type="submit"
               color="secondary"  ion-button>Done </button>
  
                 </ion-slide>
-                <!-- slide two ends here -->
+     
             </ion-slides>
           </form>
           
-    </div><!-- end of container -->
+    </div>
 
 
-     <!-- profile for builder starts here view and edit -->
+     
     <div id="pro" class="profiles" *ngIf="isProfile">
         <div class="header">
-           <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+           <button style="margin-left:8px;margin-top:5px" ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
             
                <div class="group-button" (click)="SignOut()">
               <p>Logout</p>
@@ -196,8 +384,8 @@
 
       
       <div class="button">
-          <div class="btn" (click)="editProfile()">
-            <p>Edit</p>
+          <div class="group-button" (click)="editProfile()">
+            <p>Edit Profile</p>
             <button ion-fab mini><ion-icon name="arrow-forward" style="color:black;" ></ion-icon></button>
           
           </div>
@@ -206,13 +394,12 @@
 
       
 
-      </div><!--  profile for builder ends here -->
+      </div>
      
 
     </div> 
 
 
-<!-- approval page starts here -->
   <div class="statusApproval" *ngIf="!status">
     <div class="top">
       <img src="../../assets/imgs/logo.png" width="35%">
@@ -221,5 +408,5 @@
       Please wait while we process your application.
       This might take up to 24 hours.</h5>
     <div class="bottom"></div>
-  </div><!-- approval page ends here -->
-</ion-content>
+  </div>
+</ion-content> -->

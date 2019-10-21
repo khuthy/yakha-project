@@ -89,7 +89,7 @@ export class LoginPage {
   }
   checkKeyboard(data) {
   //  this.keyBoard.onKeyboardHide
-    console.log(data);
+  //  console.log(data);
     if (data =='open') {
       this.hid='value';
     } else {

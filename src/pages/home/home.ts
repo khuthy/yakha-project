@@ -8,6 +8,7 @@ import { ProfileComponent } from '../../components/profile/profile';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { QuotationFormPage } from '../quotation-form/quotation-form';
+import { TestPage } from '../test/test';
 declare var google;
 @Component({
   selector: 'page-home',
@@ -22,6 +23,7 @@ export class HomePage {
   db = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
   dbFeeback = firebase.firestore().collection('Feedback');
+  dbChat = firebase.firestore().collection('chat_msg');
   items: any;
   info = false;
   builder = [];
@@ -76,7 +78,7 @@ export class HomePage {
 
   ionViewDidLoad() {
     setTimeout(() => {
-      
+
       this.loaderAnimate = false
     }, 2000);
     this.db.doc(this.uid).onSnapshot((res) => {
@@ -174,86 +176,86 @@ export class HomePage {
     let arr = [];
     let avgSum = 0
     let avgTotal = []
-    let data = {builder:{}, rate:{average: null}}
+    let data = { builder: {}, rate: { average: null } }
 
     //>>>>>>> get the builder
     await this.db.where('builder', '==', true).onSnapshot(async (res) => {
       this.builder = [];
-      let info = { rate: {} ,builder: {}};
+      let info = { rate: {}, builder: {} };
 
       //>>>>>>> get the reviews made for this builder
       res.forEach(async (doc) => {
-        console.log('All builders............',doc.data().lat);
-        
-        if (doc.data().address!="") {
-           data.builder = doc.data()
-        this.builder.push(doc.data())
-        // data.builder
-       
-        // this.errorMessage('User found',doc.id)
+        //  console.log('All builders............', doc.data().lat);
 
-        // console.log('>>>>>>>>>>>>>>>',doc.data());
-       
-        let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
-        let marker = new google.maps.Marker({
-          position: myLatLng,
-          map: this.map,
-          title: 'Hello World!',
-          icon: "https://img.icons8.com/color/40/000000/worker-male--v2.png"
-        });
-        google.maps.event.addListener(marker, 'click', (resp) => {
-          this.viewBuilderInfo(doc.data());
-        })
-        // data = {builder: doc.data()}
+        if (doc.data().address != "") {
+          data.builder = doc.data()
+          this.builder.push(doc.data())
+          // data.builder
 
-        //>>>>>>>>>> push for display
-        // console.log('DOC DISPLAY >>>>>>>>>', data);
-        // this.builder.push(data);
+          // this.errorMessage('User found',doc.id)
 
-        // clear the stores
-        avgSum = 0
-        avgTotal.length = 0
-        // data.builder = {}
-        data.rate.average = null
-        
+          // console.log('>>>>>>>>>>>>>>>',doc.data());
+
+          let myLatLng = new google.maps.LatLng(doc.data().lat, doc.data().lng)
+          let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: this.map,
+            title: 'Hello World!',
+            icon: "https://img.icons8.com/color/40/000000/worker-male--v2.png"
+          });
+          google.maps.event.addListener(marker, 'click', (resp) => {
+            this.viewBuilderInfo(doc.data());
+          })
+          // data = {builder: doc.data()}
+
+          //>>>>>>>>>> push for display
+          // console.log('DOC DISPLAY >>>>>>>>>', data);
+          // this.builder.push(data);
+
+          // clear the stores
+          avgSum = 0
+          avgTotal.length = 0
+          // data.builder = {}
+          data.rate.average = null
+
         }
-       
-        
+
+
       })
-   //   console.log('Loop 2 done');
-      
-     // console.log(this.builder);
+      //   console.log('Loop 2 done');
+
+      // console.log(this.builder);
       this.calcAvg()
     })
   }
- async calcAvg() {
-   let avgTotal = []
-   let avgSum = 0;
-   let Average = 0;
+  async calcAvg() {
+    let avgTotal = []
+    let avgSum = 0;
+    let Average = 0;
 
-   let arrBuild = [];
-   let build = {
-     uid: '',
-     avg: null
-   }
+    let arrBuild = [];
+    let build = {
+      uid: '',
+      avg: null
+    }
     for (let i = 0; i < this.builder.length; i++) {
       await this.dbFeeback.where('builder', '==', this.builder[i].uid).get().then((res1) => {
         if (!res1.empty) {
           res1.forEach((doc) => {
 
-              //>>>>>>> store the total number of reviews made
-              avgTotal.push(doc.data())
+            //>>>>>>> store the total number of reviews made
+            avgTotal.push(doc.data())
 
-              //>>>>>>> store the sum of the ratings given by the user
-              avgSum = avgSum + doc.data().rating;
-              
-              // this.ratingArr.push(doc.data().rating);
-              // this.avgRate = this.sumRated / this.ratingArr.length;     
-              build.uid = this.builder[i].uid
+            //>>>>>>> store the sum of the ratings given by the user
+            avgSum = avgSum + doc.data().rating;
 
-            
+            // this.ratingArr.push(doc.data().rating);
+            // this.avgRate = this.sumRated / this.ratingArr.length;     
+            build.uid = this.builder[i].uid
+
+
           })
-        //  console.log('Loop 1 done');
+          //  console.log('Loop 1 done');
           //>>>>>>> calculate the average
           Average = avgSum / avgTotal.length;
           build.avg = Average
@@ -268,11 +270,11 @@ export class HomePage {
         } else {
           this.noReviews;
         }
-        
+
       })
-      
-        //  console.log('AVG CALCULATION >>>>>>>>>',this.buildesAverage);
-      
+
+      //  console.log('AVG CALCULATION >>>>>>>>>',this.buildesAverage);
+
     }
 
   }
@@ -608,51 +610,29 @@ export class HomePage {
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
   }
-  viewRequest(user) {
-    this.navCtrl.push(ViewmessagePage, user);
+  viewRequest(docID, uid) {
+    this.navCtrl.push(TestPage, { docID, uid });
     //console.log(user);
-
   }
-  requestForm(){
+  requestForm() {
     this.navCtrl.push(QuotationFormPage)
   }
   rShortcut(uid) {
     this.navCtrl.push(QuotationFormPage, uid);
   }
   getRequests() {
-    // this.request = true;
-    let data = {
-      builder: {},
-      owner: {}
-    }
-
-    //  document.getElementById('map').style.display = "block";
-    this.builder = [];
-    this.dbRequest.where('builderUID', '==', firebase.auth().currentUser.uid).onSnapshot((res) => {
-
-      document.getElementById('req').style.display = "flex";
-      document.getElementById('map').style.display = "none";
-      this.owner = [];
-      res.forEach((doc) => {
-        this.db.doc(doc.data().hOwnerUid).onSnapshot((res) => {
-          data.owner = res.data();
-          data.builder = doc.data();
-
-          this.owner.push(data);
-          console.log(this.owner);
-          data = {
-            builder: {},
-            owner: {}
-          }
+    this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
+      for (let i = 0; i < res.docs.length; i++) {
+        this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
+            firebase.firestore().collection('Users').doc(res.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
+              this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
+            })
         })
-      })
+      }
     })
+    this.builder = [];
   }
 
-  // showmap(){
-  //   document.getElementById('hidemap').style.display = "flex"
-
-  // }
 }
 
 

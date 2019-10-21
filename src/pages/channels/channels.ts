@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MessagesPage } from '../messages/messages';
 import * as firebase from 'firebase'
 
-/**
- * Generated class for the ChannelsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,36 +12,38 @@ import * as firebase from 'firebase'
 export class ChannelsPage {
   dbRequest = firebase.firestore().collection('Request');
   dbUser = firebase.firestore().collection('Users');
+  dbChat = firebase.firestore().collection('chat_msg');
   uid = firebase.auth().currentUser.uid;
   dat = {} as builderProfile;
   builder;
   respond = [];
   user;
   docID;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    /*  this.dat = this.navParams.data; */
-
-    // console.log('Document ', this.respond);
-
-
   }
 
   ionViewDidLoad() {
-   firebase.firestore().collectionGroup('Request').where('fullName', '==', 'ysvBbHJI9FMcHQV').onSnapshot((res)=>{
-   //  console.log(res.docs);
-     
-   })
-    this.dbRequest.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
-        for (let i = 0; i < res.docs.length; i++) {
-          this.dbUser.doc(res.docs[i].data().builderUID).onSnapshot((result) => {
-           this.respond.push({user:result.data(), id:res.docs[i].id});
+    this.dbRequest.doc(this.uid).onSnapshot((res) => {
+      let data = {id:{}, data:{}, user:{}}
+      this.dbChat.doc(this.uid).collection(res.data().builderUID).onSnapshot((result) => {
+        for (let i = 0; i < result.docs.length; i++) {
+          data.id = result.docs[i].id;
+          data.data = result.docs[i].data();
+          this.dbUser.doc(res.data().builderUID).onSnapshot((userDoc) => {
+            data.user = userDoc.data();
+            
           })
         }
       })
+      this.respond.push(data);
+     // data = {id:{}, data:{}, user:{}}
+    })
+    
+    console.log('Info>>>>>>', this.respond);
   }
   gotoMessages(id, name, img) {
-    this.navCtrl.push(MessagesPage, {id,name,img});
-   // console.log(id);
+    this.navCtrl.push(MessagesPage, { id, name, img });
   }
 
 

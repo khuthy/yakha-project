@@ -53,7 +53,8 @@ export class BaccountSetupPage {
     lat: null,
     email: firebase.auth().currentUser.email,
     date: Date(),
-    tokenID: ''
+    tokenID: '',
+    regNo: null
   }
   @ViewChild('slides') slides: Slides;
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
@@ -64,7 +65,11 @@ export class BaccountSetupPage {
     }
   }
   location: string;
+  current: number = 1;
   
+  get regNo() {
+    return this.profileForm.get('profileFormSecondSlide').get('regNo');
+  }
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -81,16 +86,35 @@ export class BaccountSetupPage {
   ) {
     this.authUser.setUser(firebase.auth().currentUser.uid);
     this.profileForm = this.formBuilder.group({
-      fullName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
-      gender: new FormControl('', Validators.compose([Validators.required])),
-      personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
-      certified: new FormControl('', Validators.compose([Validators.required])),
-      experience: new FormControl('', Validators.compose([Validators.required])),
-      roof: new FormControl('', Validators.compose([Validators.required])),
-      address: new FormControl('', Validators.compose([Validators.required])),
-      price: new FormControl('', Validators.compose([Validators.required])),
+         profileFormFirstSlide: this.formBuilder.group({
+          fullName: new FormControl('', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.minLength(4), Validators.maxLength(30)])),
+          gender: new FormControl('', Validators.compose([Validators.required])),
+          personalNumber: new  FormControl('', Validators.compose([Validators.required, Validators.maxLength(10)])),
+          address: new FormControl('', Validators.compose([Validators.required])),
+          builder: ['']
+      }),
+      profileFormSecondSlide: this.formBuilder.group({
+          certified: [false],
+          experience: new FormControl('', Validators.compose([Validators.required])),
+          roof: new FormControl(false, Validators.compose([Validators.required])),
+          price: new FormControl('', Validators.compose([Validators.required])),
+          regNo: ['']
+      })
+     
      /*   this.slides.lockSwipes(true); */
     });
+
+    this.profileForm.get('profileFormSecondSlide').get('roof').clearValidators();
+
+     this.profileForm.get('profileFormSecondSlide').get('certified').valueChanges.subscribe((checkedValue) => {
+       const regNo = this.profileForm.get('profileFormSecondSlide').get('regNo');
+       if(checkedValue == true){
+         regNo.setValidators(Validators.required);
+       }else {
+        regNo.clearValidators();
+        
+       }
+     });
    
     // when the page loads
     
@@ -106,16 +130,21 @@ export class BaccountSetupPage {
     this.getProfile();
     console.log(this.builderProfile.price);
     console.log(this.slides.getActiveIndex);
-   // this.slides.lockSwipes(true);
+    this.slides.lockSwipes(true);
    
   }
 
+  currentSlide() {
+      this.current = this.slides.getActiveIndex() + 1;
+      if(this.current >= 3) {
+        this.current = 2;
+      }
+  }
+
   nextslides(){
-  //  this.slides.lockSwipes(true);
-    this.slides.slideNext();
-    console.log('Clicked');
-    
-   // this.slides.lockSwipes(true);
+   this.slides.lockSwipes(false);
+   this.slides.slideNext(1);
+   this.slides.lockSwipes(true);
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
@@ -156,6 +185,7 @@ export class BaccountSetupPage {
         upload.snapshot.ref.getDownloadURL().then(downUrl => {
           this.builderProfile.image = downUrl;
           this.profileImage = downUrl;
+          this.profileForm.patchValue({builder : downUrl});
           console.log('Image downUrl', downUrl);
           this.isuploaded = true;
         })
@@ -286,9 +316,13 @@ export class BaccountSetupPage {
           this.builderProfile.roof = doc.data().roof;
           this.builderProfile.experiences = doc.data().experiences;
           this.builderProfile.address = doc.data().address;
-          this.profileForm.patchValue({ address: doc.data().address });
+          this.profileForm.get('profileFormFirstSlide').patchValue({ address: doc.data().address });
           this.builderProfile.price = doc.data().price;
           // this.builderProfile.location  = doc.data().location
+
+          this.profileForm.get('profileFormFirstSlide').patchValue({
+            builder: doc.data().image
+          })
           this.isProfile = true;
           this.icon = 'create';
         }

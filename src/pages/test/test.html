@@ -17,14 +17,154 @@
 </ion-header>
 
 <ion-content fullscreen>
-<!-- 
-  <div id="top-div">
 
-  </div> -->
+  <ion-header [style.backgroundImage]="getProfileImageStyle()" class="head"  no-border align-title="center">
+    <!--    <img src="../../assets/imgs/common-burnt-clay-bricks.jpg" width="100%" height="100"> -->
+      <ion-navbar color="primary">
+      <ion-toolbar color="dark">
+           
+          </ion-toolbar>
+       </ion-navbar>
+        <p>Home Owner Name
+            <ion-buttons style="background:red">
+                <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  clear> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
+              </ion-buttons>
+        </p> </ion-header>
+      <!-- -->
+    <ion-content fullscreen>
+    
+      <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}">
+     
+        <div class="imageholder" *ngIf="toggle">
+          <img src="../../assets/imgs/Plaster.png" class="image"><!-- House plan -->
+    
+        </div>
+    
+        <!-- bricks -->
+        <div class="bricks"  *ngIf="toggle">
+          <div id="card">
+            <img src="../../assets/imgs/Burnt-clay brick.jpg" alt="{{brick}}" height="80%"> <!-- brick image -->
+            <p style=
+            "text-align: center;">brick name</p>
+          </div>
+          <div *ngIf="toggle">
+            <ion-item no-lines>
+              <ion-label stacked>Start date</ion-label>
+              <ion-label stacked>2019/09/09</ion-label>
+            </ion-item>
+    
+            <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
+              <ion-label stacked>End date</ion-label>
+              <ion-label>2019/09/09</ion-label>
+            
+            </ion-item>
+          </div>
+        </div>
+    
+        <!-- wall type and extraz-->
+        <div class="extras" *ngIf="toggle">
+    <!--  <p>Wall type :  {{item.sent.wallType}}<p>  -->
+    
+            <h5>Extras</h5>
+              <!-- <ion-list id="hide-div" *ngIf="!hid" class="hidelist" style="height:5px;" > -->
+                  <ion-item no-lines class="gray" style="background: whitesmoke;">
+                    <ion-label>Doors</ion-label>
+                    <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
+                    </ion-item>
+             
+       </div>
+       
+      </div>
+    
+      <div class="chats" >
+        <div>
+    
+    
+          <!--the responce card that has quotation in it should have buttons for accept and decline -->
+           <div class="chat left" id="outgoing">
+             <ion-buttons  id="quotation">
+               <button>Quotation 004</button>
+               <ion-icon name="arrow-round-down"></ion-icon>
+             </ion-buttons>
+    
+            <!--  <div id="buttons">
+                <ion-buttons  >
+                    <button style="background:green">Accept</button>
+                  </ion-buttons>
+      
+                  <ion-buttons >
+                      <button style="background:red;">Decline</button>
+                    </ion-buttons>
+             </div> -->
+             <P>!This quotation has been accepted</P>
+             <p id="date">Hi! </p>
+    
+           
+            </div>
+    
+     <!--the responce card that does not have quotation in it should not have buttons for accept and decline -->
+     <div class="chat right" *ngFor="let msg of messages">
+      <p id="content">{{msg.chat}}</p>
+      <p id="date">{{msg.date | date}}</p>
+    
+      
+     </div>
+        </div>
+         
+    
+      </div>
+    
+    <!--  
+      <div class="messages" *ngFor="let item of messages">
+          <div class="message homeowner">
+              <div class="homeOwnerDiv">
+                 <div class="time">
+                   <h5>{{item.user?.fullName}}</h5>  
+                  <P>{{item.sent.date | date}}</P>
+                </div> 
+                <div class="project">
+                  <h6>Project Details</h6>
+                  <p>From {{item.sent.startDate}} to {{item.sent.endDate}}</p>
+                  <p>{{item.sent.wallType}}</p>
+                  <p>{{item.sent.brickType}}</p>
+                  <h6> Extras:</h6>
+                  <p> {{item.sent.extras}}</p>
+                </div>
+              </div>
+          </div>
+          <div class="message homebuilder" *ngIf="item.incoming">
+             <div class="homeBuilderDiv">
+              <div class="time">
+                 <h4>{{item.builder?.fullName}}</h4>  
+                <P>{{item.incoming.dateCreated | date}}</P>
+              </div>
+              <div class="info">
+              
+                
+            <span>View The Quote:</span>  <button ion-button small clear (click)=" downloadPDF(item.incoming.pdfLink)">Quotation.pdf</button>
+                <div class="accept" *ngIf="!item.incoming.msgStatus"><p><button ion-button color="primary" (click)="acceptQoute(item.incomingID, item.incoming.uid)">Accept</button> <button ion-button color="danger" (click)="declineQoute(item.incomingID, item.incoming.uid)">Decline</button></p></div>
+              </div>
+            </div>
+          </div>
+          <div class="message homebuilder" *ngIf="!item.incoming" [style.display]="'none'">
+         </div>
+      </div> -->
+     </ion-content>
+             <!--  -->      
+             <ion-footer [style.display]="footer ? 'none': 'block'">
+              <ion-toolbar>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-9 class="message-box-textarea">
+                      <ion-textarea placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-textarea>
+                    </ion-col>
+                    <ion-col col-3 class="message-box-textarea">
+                      <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats()">
+                          <ion-icon name="send"></ion-icon>
+                      </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-toolbar>
+            </ion-footer>
 
-  <div id="bottom-div">
-      <textarea rows='1' placeholder='Auto-Expanding Textarea'></textarea>
-
-  </div>
-
-</ion-content> 

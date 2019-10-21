@@ -8,6 +8,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { OneSignal } from '@ionic-native/onesignal';
 import { PopoverPage } from '../popover/popover';
+import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the MessagesPage page.
@@ -27,6 +28,8 @@ export class MessagesPage {
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
   dbFeed = firebase.firestore().collection('Feedback');
+  dbChat = firebase.firestore().collection('chat_msg');
+  uid = firebase.auth().currentUser.uid;
   hideRev;
   slidesPerView: number = 1;
   messages = [];
@@ -56,34 +59,51 @@ export class MessagesPage {
   }
   imageBuilder;
   builderName = '';
+  msgSent = [];
   footer: boolean;
+  chatMessage: string;
+  myMsg = '';
+  manageUser: boolean;
+  chatting = [];
   //imageBuilder;
+  chat: number = Date.now();
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
     public elementref: ElementRef,
     public renderer: Renderer2,
     public authServes: AuthServiceProvider,
-    public oneSignal: OneSignal, public popoverCtrl: PopoverController
+    public oneSignal: OneSignal,
+    public popoverCtrl: PopoverController,
+    private callNumber:CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log(this.autoUid);
+    console.log('DATA=>', this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
+
   }
 
   open() {
-    if(this.toggle == true) {
+    if (this.toggle == true) {
       this.toggle = false;
-      this.icon = 'arrow-dropdown';
+      this.icon = 'ios-arrow-down';
       this.footer = false;
-    }else {
-      this.icon = 'arrow-dropup';
+    } else {
+      this.icon = 'ios-arrow-up';
       this.toggle = true;
       this.footer = true;
     }
 
   }
+  /* Tesing if chats works */
+  chats = [];
+
+
+
+
+
+  /* Ends here */
   acceptQoute(data, uid) {
     //  console.log('doc id.................', data);
 
@@ -122,19 +142,66 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
-    let data = { incoming: {}, sent: {} }
+     //this.dbMessage.doc(this.uid).onSnapshot((res) => {
+      //for (let i = 0; i < res.docs.length; i++) {
+        // this.dbChat.doc(this.uid).collection(this.navParams.data.id).onSnapshot((result) => {
+        //   for (let j = 0; j < result.docs.length; j++) {
+        //     this.messages.push(result.docs[j].data())
+        //       console.log('Res messages...', result.docs[j].data());
+        //   } 
 
-    this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
-      data.sent = res.data();
-      data.incoming = {};
-    })
+        // })
+     // }
 
-    this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
-      data.incoming = doc.data();
+   // }) 
+    
+   this.dbChat.doc(this.uid).collection(this.navParams.data.id).orderBy('date').onSnapshot((res) => {
+    this.messages=[];
+    for (let i = 0; i < res.docs.length; i++) {
+      this.messages.push(res.docs[i].data())
+    }
+    console.log('Messagess.....', this.messages);
+    
+  })
+
+    /* builder loggedin??? */
+    this.manageUser = this.authServes.manageUsers();
+  /*   let data = { incoming: {}, sent: {} }
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).onSnapshot((resChat) => {
+      this.messages = [];
+      resChat.forEach((doc) => {
+        // console.log('>>>>>>>>>>>>>>>>>>>>>', doc.data());
+        data.sent = doc.data();
+        this.messages.push(data.sent);
+
+      })
+      //console.log('All messages sent...', this.messages);
+    }) */
+    this.dbChat.doc(this.autoUid.id).collection(this.uid).onSnapshot((res) => {
+      this.incomingRes = [];
+      res.forEach((doc) => {
+        this.incomingRes.push(doc.data());
+      })
+      // console.log('Response message....', this.incomingRes);
     })
-    this.messages = [];
-    this.messages.push(data);
-    console.log('messages',this.messages);
+    this.dbMessage.where('builderUID', '==', this.navParams.data.id).onSnapshot((res) => {
+      res.forEach(doc => {
+        this.msgSent.push(doc.data());
+      })
+      console.log('Message sent>>>>', this.msgSent);
+    })
+    // this.messages.push(data);
+    // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
+    //   data.sent = res.data();
+
+    //   data.incoming = {};
+    // })
+
+    // this.dbIncoming.doc(this.autoUid.id).onSnapshot((doc) => {
+    //   data.incoming = doc.data();
+    // })
+
+
 
     // data = { incoming: {}, sent: {}}
     //   this.homebuilder = this.authServes.manageUsers(); //testing if the css is working
@@ -186,21 +253,34 @@ export class MessagesPage {
 
   }
   brick = 'Engineering brick' //demo
+  getChats() {
+    this.dbChat.doc(this.uid).collection(this.autoUid.id).add({ chat: this.chatMessage, date: Date(), builder: false }).then((res) => {
+      res.onSnapshot((doc) => {
+        this.chatMessage = '';
+        this.myMsg = doc.data().chat
+      //  console.log('This is what I sent now...', doc.data());
+        //  this.chatMessage = doc.data().chat
+      })
 
+    })
+  }
   presentPopover(uid) {
     const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
     popover.present();
   }
   downloadPDF(file) {
     this.fileOpener.open(file, 'application/pdf')
-    .then(() => console.log('File is opened'))
-    .catch(e => console.log('Error opening file', e)); 
-   // console.log(file);
-    
-}
-getProfileImageStyle() {
-   return 'url(' + this.imageBuilder  + ')'
-}
+      .then(() => console.log('File is opened'))
+      .catch(e => console.log('Error opening file', e));
+    // console.log(file);
+
+  }
+  getProfileImageStyle() {
+    return 'url('+ this.imageBuilder +')';
+  }
+  callJoint(phoneNumber) {
+    this.callNumber.callNumber(phoneNumber, true);
+  }
 
 
   // viewMessages() {

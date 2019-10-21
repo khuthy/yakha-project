@@ -49,9 +49,7 @@ export class MyApp {
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-  this.statusBar.backgroundColorByHexString('#203550');
-  
-    
+    this.statusBar.backgroundColorByHexString('#203550');
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
     this.db =firebase.firestore();
@@ -92,8 +90,6 @@ export class MyApp {
           if (profile.exists) {
             firebase.firestore().collection('Respond').where('viewed','==', false).onSnapshot( res => {
               this.messages = res.size;
-               
-      
     })
             
          //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
@@ -147,12 +143,10 @@ export class MyApp {
   }
   setupPush(){
     
-    this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
-   
-       this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+      this.oneSignal.startInit(this.signal_app_id, this.firebase_id);
+      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
       this.oneSignal.handleNotificationReceived().subscribe((res) => {
-    
-      })
+    })
       this.oneSignal.handleNotificationOpened().subscribe((res) => {
       
       })

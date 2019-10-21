@@ -88,6 +88,9 @@ page-account-setup {
    .info-profile {
     height: 100%;
     width: 100%;
+    display: flex;
+  flex-wrap: wrap;
+    overflow-y: auto;
   
      .topdeco {
          height: 15%;
@@ -100,9 +103,6 @@ page-account-setup {
      .info-profile {
          height: 70%;
          width: 100%;
-        
-
-
          .image-holder {
              height: 30%;
              width: 100%;
@@ -205,6 +205,8 @@ page-account-setup {
    }
 
      /* Create profile ends here */
+
+     
     /* View owner profile css code */
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
    .ViewContainer {
@@ -346,7 +348,7 @@ page-account-setup {
                 flex-direction: column;
                 justify-content: flex-end;
                 text-align: center;
-                box-shadow: 0 1px 2px #818181;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.13);
                 background: #ffffff;
                 border-radius: 10px;
                 //border: 1px solid #ddd;
@@ -361,6 +363,13 @@ page-account-setup {
                     height: 60%;
                     top: -30%;
 
+                }
+
+                p {
+                    font-size:4vw;
+                    //border: 1px solid red;
+                    text-align: center;
+                    letter-spacing: 1px;;
                 }
               
             }
