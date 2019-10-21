@@ -29,7 +29,7 @@ export class TestPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TestPage', docID: , uid:);
     
-    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
+    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy('date').onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
