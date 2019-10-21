@@ -1,20 +1,4 @@
-<!--
-  Generated template for the TestPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>test-page</ion-title>
-  </ion-navbar>
-</ion-header> -->
-
-<ion-header no-border>
-  <ion-navbar color="primary">
-    <ion-title>version</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content fullscreen>
 
@@ -26,14 +10,14 @@
           </ion-toolbar>
        </ion-navbar>
         <p>Home Owner Name
-            <ion-buttons style="background:red">
+            <ion-buttons>
                 <button class="btn-drop-down" ion-button small icon-only  (click)="open()"  clear> <ion-icon style="font-size:35px" name="ios-{{icon}}"></ion-icon></button>
               </ion-buttons>
         </p> </ion-header>
       <!-- -->
-    <ion-content fullscreen>
+  
     
-      <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}">
+      <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
      
         <div class="imageholder" *ngIf="toggle">
           <img src="../../assets/imgs/Plaster.png" class="image"><!-- House plan -->
@@ -43,7 +27,7 @@
         <!-- bricks -->
         <div class="bricks"  *ngIf="toggle">
           <div id="card">
-            <img src="../../assets/imgs/Burnt-clay brick.jpg" alt="{{brick}}" height="80%"> <!-- brick image -->
+            <img src="../../assets/imgs/Burnt-clay brick.jpg" alt="{{brick}}"> <!-- brick image -->
             <p style=
             "text-align: center;">brick name</p>
           </div>
@@ -77,28 +61,20 @@
       </div>
     
       <div class="chats" >
-        <div *ngFor="let chat of messages; ">
-     <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-       <p>Home owner</p>
-           <p id="content">{{chat.chat}}</p>
-           <p id="date">{{chat.date | date}} </p>
-         
-           
-          </div>
-    
-        <div class="chat right" id="outgoing" *ngIf="chat.builder">
-    
-             <p>Builder</p>
+          <div *ngFor="let chat of messages; ">
+       <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
+         <p>Home owner</p>
              <p id="content">{{chat.chat}}</p>
-             <p id="date">{{chat.date | date}} </p>
-            
-           
+             <p id="date">{{chat.date |date:"hh:mm"}} </p>
             </div>
-     </div>
-         
-    
-      </div> 
-    
+          <div class="chat right" id="outgoing" *ngIf="chat.builder">
+               <p>Builder</p>
+               <p id="content">{{chat.chat}}</p>
+               <p id="date">{{chat.date |date:"hh:mm"}} </p>
+              </div>
+       </div>
+       
+      </div>
     <!--  
       <div class="messages" *ngFor="let item of messages">
           <div class="message homeowner">
@@ -140,10 +116,15 @@
               <ion-toolbar>
                 <ion-grid>
                   <ion-row>
-                    <ion-col col-9 class="message-box-textarea">
-                      <ion-textarea placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-textarea>
+                    <ion-col col-8 class="message-box-textarea">
+                      <ion-input placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-input>
                     </ion-col>
-                    <ion-col col-3 class="message-box-textarea">
+                    <ion-col col-2>
+                        <button ion-button icon-only clear float-right (click)="createQuotes()">
+                            <ion-icon name="attach"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-2 class="message-box-textarea">
                       <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats()">
                           <ion-icon name="send"></ion-icon>
                       </button>

@@ -22,18 +22,16 @@
                               <span>{{i + 1 | number}}</span>
                             </div>
                                 <!-- callbtn -->
-                            <ion-buttons right id="callbtn">
-                              <button ion-fab medium id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
-                            </ion-buttons>
+                         <ion-buttons right id="callbtn">
+                              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
+                            </ion-buttons> 
                           </div>
                            
                          
 
                               <!--  -->
                             <ion-title start>Quotation-Y00{{i}}</ion-title>
-                            <ion-buttons right>
-                              <button ion-fab medium color="customcall" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
-                            </ion-buttons>
+                           
                           <div class="button-drop">
                             <button ion-button clear color="light" (click)="open()"><ion-icon style="font-size:10vw" [name]="icon"></ion-icon></button>
                           </div>

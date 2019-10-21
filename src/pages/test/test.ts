@@ -26,11 +26,26 @@ export class TestPage {
     image: '',
     fullName: ''
   };
+  toggle: boolean;
+  icon: string;
+  footer: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
     this.messages = [];
    
+  }
+  open() {
+    if (this.toggle == true) {
+      this.toggle = false;
+      this.icon = 'ios-arrow-down';
+      this.footer = false;
+    } else {
+      this.icon = 'ios-arrow-up';
+      this.toggle = true;
+      this.footer = true;
+    }
+
   }
 
   ionViewDidLoad() {
