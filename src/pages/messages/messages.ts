@@ -68,6 +68,7 @@ export class MessagesPage {
   myMsg = '';
   manageUser: boolean;
   chatting = [];
+  msgRespond = [];
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
@@ -160,6 +161,12 @@ export class MessagesPage {
   }
   ionViewDidLoad() {
     //get Requests
+    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
+      res.forEach((doc)=>{
+        console.log('Response....', doc.data());
+        
+      })
+    })
     this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
