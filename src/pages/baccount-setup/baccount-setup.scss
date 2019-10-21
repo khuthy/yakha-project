@@ -1,5 +1,29 @@
 
 page-baccount-setup {
+  .group-button {
+    background: color($colors, danger);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    width: 100%;
+    border-radius: 50px 0 0 50px;
+    position: relative;
+    right: 0;
+    left: 6%;
+    button {
+      height: 6vh;
+      width: 6vh;
+    }
+    p{
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      color: #fff;
+      font-size: 2.5vh;
+    }
+    
+  }
   .tools-header {
     background: url('../../assets/imgs/BuilderShape2.svg');
     background-position: top right;
@@ -39,8 +63,8 @@ page-baccount-setup {
   }
 
     .image-profile-builder {
-      height: 20vh;
-      width: 20vh;
+      height: 100px;
+      width: 100px;
       border-radius: 50%;
       border: 2px solid color($colors, dark);
       margin: auto;
@@ -61,6 +85,8 @@ page-baccount-setup {
         position: absolute;
         bottom: 0;
         right: 0;
+        height: 30px;
+        width: 30px;
         .icon {
           font-size: 2.8vh;
         }
@@ -71,666 +97,108 @@ page-baccount-setup {
     }
 
 
-// page-baccount-setup {
+/* View Profile */
 
-//     .statusApproval {
-//         height: 100%;
-//         width: 100%;
-//       //  border: 2px solid red;
-//        // color: red;
-
-//         .top {
-//             //border: 1px solid blue;
-//             height: 226.203px;
-//             width: 100%;
-//             background-image: url(../../assets/imgs/waverotate.svg);
-//             background-size: cover;
-//             background-position: center center;
-//             background-repeat: no-repeat;
-//             img {
-//                // border: 1px solid red;
-//                 position: relative;
-//                 left: 35%;
-//                 top: 20%;
-//             }
-//         }
-// h5 {
-//     text-align: center;
-//     color: rgb(77, 75, 75);
-//     letter-spacing: 1px;
-//     font-family: 'Segoe';
-//     line-height: 1.5;
-// }
-//         .bottom {
-//             //border: 1px solid blue;
-//             height: 226.203px;
-//             width: 100%;
-//             background-image: url(../../assets/imgs/wave2.svg);
-//             background-size: cover;
-//             background-position: center center;
-//             background-repeat: no-repeat;
-//             position: absolute;
-//             bottom: 0;
-//         }
-        
-//     }//approval ends here
-
-
-//     .container {
-//      // border: 1px solid red;
-//       height: 100vh;
-//       width: 100vw;
-//     //create profile for builder starts here
-//     .steps {
-//       position: absolute;
-//       top: 10px;
-//       left: 10px;
-//       p {
-//         font-size:5vw;
-//         letter-spacing: 1px;
-//       }
-//     }
-  
-//     .topDecor {
-//       background: url(../../assets/imgs/BuilderShape2.svg);
-//       background-repeat: no-repeat;
-//       position: absolute;
-//       top: 0;
-//       right: 0;
-//       width: 50vw;
-//       height: 20vw;
-//       background-size: 100%;
-  
-//     }
-  
-//     .bottomDecor {
-//       background: url(../../assets/imgs/BuilderShapes.svg);
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       width: 50vw;
-//       height: 20vw;
-//       background-size: 100% 100%;
-//       background-position: 0vw 0px;
-//       background-repeat: no-repeat;
-//     }
-  
-//     .btn {
-//       //border:1px solid rgb(218, 28, 3);
-//       width: 40%;
-//       height:10vw;
-//       //margin-left: auto;
-//       position: absolute;
-//       right: 0;
-//       bottom: 5px;
-//       border-bottom-left-radius: 50px;
-//       border-top-left-radius: 50px;
-//       background: rgb(204, 158, 20);
-//       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  
-//       p {
-//         color: white;
-//         font-size: 4vw;
-//         letter-spacing: 1px;
-//         // border: 1px solid rgb(0, 47, 255);
-//       //   margin: 3% 0px;
-  
-//       }
-//       .nextFab {
-//           position: absolute;
-//           right: 0;
-//           top: 0;
-//           bottom: 0;
-//           height: 100%;
-//           width: 40%;
-//           // background: red;
-//           display: grid;
-//           align-content: center;
-//           padding: 0px 6px;
-//       }
-//       button {
-//         margin-left: auto;
-//         position: relative;
-//         right: 0;
-//       //   bottom: 35%;
-//         background: white;
-  
-//       }
-//     }
-
-//     //styling slides starts here
-//     form {
-//       height:74%;
-//       width:100%;
-//      // background: black;
-//     //  border: 1px solid rgb(25, 0, 255);
-//       position: absolute;
-//       top:13vh;
-
-//       ion-slides {
-//         ion-slide {
-//           border: 1px solid red;
-//          // background: rgba(255, 255, 0, 0.233);
-//          h4 {
-//           position: absolute;
-//           top:-11px;
-//           border: 1p solid red;
-//         }
-         
-//          .image {
-//            // border: 1px solid green;
-//             height:22vh;
-//             position: absolute;
-//             top:-1px;
-//             display: flex;
-//             justify-content: center;
-//             align-content: center;
-//             align-items: center;;;;
-//           }
-        
-//       .inputs {
-//        // border:1px solid blue;
-//         height: 40vh;
-//         position: absolute;
-//         top: 20vh;
-//         width:80%;
-//         .item {
-//           background: rgba(251, 251, 251, 0);;
-//           padding: 0px !important;
-//           width: 80%;
-//           margin: 3% auto 0% auto !important;
-//           border: solid 1px black;;
-//           height: 20% !important;
-//           border-radius: 200px;
-//           .label {
-//             text-align: left !important;
-//             padding-left: 3% !important;
-//             margin: 0px !important;
-//           }
-//         }
-//         input {
-//           width: 80%;
-//           height: 20%;
-//           outline:none;
-//           border:1.2px solid #262014;
-//           margin-top: 3%;
-//           border-radius: 50px;
-//           font-size:4vw;
-//           letter-spacing: 1px;
-//           padding-left: 3%;
-//          // background: rgba(128, 128, 128, 0.5);
-//           color:#262014;
-//           font-weight: 500;
-//         }
-
-//         #skip {
-//           width:60%;
-//           border-radius:50px;
-//           margin-left:20%;
-//           background: #262014;
-//           color: white;
-//           letter-spacing: 1.5px;
-//           margin-top: 5%;
-//           padding-top: 3%;
-//           padding-bottom: 3%;
-//           font-size: 5vw;
-//           font-weight:300;
-//         }
-//         .error {
-//           font-size: 3.5vw;
-//           letter-spacing: 1px;;
-//           color:red;
-//           font-weight: 400;
-//          // border:1px solid red;
-//           margin-top:-1%;
-//         }
-//       }
-   
-//         }//end of slide
-//       }
-
-//       //strat iof slide 2
-//       #slide2 {
-//       //  border:1px solid red;
-//         h3 {
-//           font-size:4vh;
-//           letter-spacing: 1px;
-//           font-weight: 300;
-//           margin-top: -1%;
-//        //   border: 1px solid black;
-//         }
-//         p {
-//           font-size:2.5vh;
-//           letter-spacing: 1px;
-//           font-weight: 300;
-//           margin-top:-5px;
-//          // border:1px solid red;
-//         }
-//         input {
-//           width: 80%;
-//           height: 8vh;
-//           outline:none;
-//           border:1.2px solid #262014;
-//         // margin-top: 3%;
-//           border-radius: 50px;
-//           font-size:4vw;
-//           letter-spacing: 1px;
-//           padding-left: 3%;
-//          // background: rgba(128, 128, 128, 0.5);
-//           color:#0e0c0b;
-//           font-weight: 400;
-
-//         }
-
-//         ion-list {
-//          height:20vh;
-//          width:80%;
-//          margin-left:5%;
-//       // border:1px solid blue;
-//             ion-item {
-//               ion-label {
-//                 text-align: left;
-//                 font-size: 4vw;
-//                 letter-spacing: 1px;
-//                 font-weight:450;
-//                 color:rgb(80, 78, 78);
-//                margin-left:-3px;
-//               }
-//             }
-//         }
-//         button {
-//           width:60%;
-//           border-radius:50px;
-//           margin-left:20%;
-//          // background: #262014;
-//           color: white;
-//           letter-spacing: 1.5px;
-//           margin-top: 5%;
-//           padding-top: 3%;
-//           padding-bottom: 3%;
-//           font-size: 5vw;
-//           font-weight:300;
-//         }
-//       }
-
-//     }
-//     }
-
-//     #pro {
-      
-//       /* create or update profile */
-//    .status{
-//     margin: 0;
-//     padding: 0;
-//         .image {
-//      width: 100%;
-//      padding-top: 25px;
-//      padding-bottom: 70px;
-//       background-image: url(../../assets/imgs/waverotate.svg);
-//       background-size: cover;
-//       background-position: center center;
-//       background-repeat: no-repeat;
-//       margin: auto;
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       justify-content: center;
-//       align-content: center;
-
-// /* h4 {
-//     position: relative;
-//     z-index: 10;
-// } */
-  
-  
-//      .thumb {
-//     height: 100px;
-//     width: 100px;
-//     border-radius: 50%;
-   
-//     object-fit: cover;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     align-content: center;
-
-//    .btn-upload {
-   
-//     align-items: center;
-//     justify-content: center;
-//     align-content: center;
-// } 
-// }
-
-// } 
-//   } 
-//   .inputs {
-//     margin: 0;
-//       padding: 0;
-//       //border: 1px solid blue;
-//       width: 80%;
-//       height: 60%;
-//       position: relative;
-//       left: 10%;
-//       top:20px;;
-//       ion-list > .item {
-//         border: 1px solid #3c7f8b;
-//         border-radius: 10px;
-//         margin-top: 3%;
-//       width: 100%;
-
-//         ion-label {
-//           color: #4D4D4D; 
-//           letter-spacing: 1px;
-//           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-//         }
-//         ion-input {
-//           color: #4D4D4D;
-//           letter-spacing: 1px;
-//           font-weight:300;
-//           border-bottom: none;
-//         }
-//         p {
-//           color: rgb(246, 22, 22);
-//           font-size: 3vw;
-//           text-align: center;
-//           margin-top:-5%;
-//         }
-//       }
-
-//   }
-   
- 
-//   /* create or update ends */
-
-
-  
-// /* view profile code */
-// #pro {
-//     //border: 3px solid rgb(47, 0, 255);
-//      height: 100%;
-//      margin: 0;
-//      padding: 0;
-//      overflow: hidden;
-//        }//end of container
-// .propic {
-// //border: 1px solid rgb(243, 30, 30);
-// height:45vh;
-// width:100%;
-// position: relative;
-// img {
-//   width: 100%;
-//   height:100%;
-//   object-fit: cover;
-//   position:relative;
-//    z-index:-2;
-// }
-
-.names {
-background: rgba(8, 8, 8, 0.555);
+.profiles {
+  height: 100%;
   left: 0;
-  right: 0;
-height:13vh;
-  bottom: 0;
-  z-index:5;
-  position: absolute;
-h4 {
-// border: 1px solid green;
-letter-spacing: 1px;
-color:white;
-padding-left:3%;
-font-size:6vw;
-margin-top:1%;
-}
- #adres {
-  //  border: 1px solid rgb(128, 0, 0);
-    color: white;
-    letter-spacing: 1px;
-    padding-left:3%;
-    font-size:3.5vw;
-    margin-top:-1%;
-    font-weight:300;
-  }
-}
-
- .infocontent {
-   margin-top:0%;
-  height:45%;
-  width:100%;
-// border: 1px solid rgb(15, 65, 231);
-.certify {
- // border: 1px solid red;
-  display: flex;
-height:12vh;
-#certy {
-  position: absolute;
-  top:47%;
-  right: 22px;
-  color: rgb(255, 255, 255);
-  font-size:8vh;
-  z-index: 2;
-}
-  p {
-   // border: 1px solid green;
-    width:40%;
-    text-align: right;
-    padding-right:10px;
-    //height:10%;
-  }
-}
-  h3 {
-    text-align: right;
-   // border: 1px solid red;
-    letter-spacing: 1px;
-    font-weight:330;
-    margin-top:1%;
-    font-size:6vw;
-    width:60%;
-  }
-  p {
-    font-size: 2.2vh;
-    color:rgb(61, 57, 57);
-    font-weight:400;
-    padding-left: 4%;
-   // border: 1px solid red;
-    letter-spacing: 1px;
-    margin-top:0%;
-  }
-  h5 {
-    padding-left: 8%;
-   //margin-top:-3%;
-   // border: 1px solid rgb(0, 47, 255);
-    letter-spacing: 1px;
-    text-align: left;
-    margin-top:-2%;
-    font-size: 4.2vw;
-    font-weight:600;
-  }
- }
-.button {
+  top: 0;
   width: 100%;
-  height:10%;
-  position:absolute;
-  bottom: 1%;
- //border:1px solid green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-
-  .btn {
-   // border:1px solid rgb(218, 28, 3);
-    width: 50%;
-    height:85%;
-    margin-left: auto;
-   // margin-bottom: 8%;
-    border-bottom-left-radius: 50px;
-    display: flex;
-    align-items: center;
-    border-top-left-radius: 50px;
-    background:#d98e04;
-
-    ion-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
+  position: absolute;
+  .propic {
+    height: 40%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
-   
- p {
-  font-weight:500;
-   color:white;
-   font-size: 5vw;
-   letter-spacing: 1px;
-   margin: auto;
- }
-}
-}
-  // border: 1px solid rgb(0, 47, 255);
+  }
+  .names {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(27, 27, 27, 0.493);
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    color: #fff;
 
-//   .group-button {
-//     background: color($colors, primary);
-//     padding: 0 0 0 2em;
-//     border-radius: 50px 0 0 50px;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     position: absolute;
-//     right: 0;
-//     bottom: 5%;
-//     &:active {
-//         background: red;
-//     }
-
-//     p {
-//         color: color($colors, light);
-//         font-size: $font-size;
-//         white-space: nowrap;
-//         margin: auto;
-//     }
-//     button {
-//         box-shadow: $fab-box-shadow;
-//         background: color($colors, light);
-//     }
-
-// }
-// }
- 
-
-// .details {
-//     //padding: 5px;
-//     background: #ddd;
-//     width: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex-direction: column;
-//     line-height: 1.9;
-//     font-size: 19px;
-//     color: grey;
-// }
-// .bio {
-  
-//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-//     //border:1px solid red;
-//     width: 90%;
-//     border-radius: 15px;
-//    /* position: relative;
-//    left: 2%;
-//    top:3%; */
-//     padding: 0px;
-//     text-align: center;
-//     letter-spacing: 2px;
-//     line-height: 1.75;
-
-// }
-// #fabby {
-//    // border: 1px solid black;
-//     padding: 10px;
-  
-//     position: fixed;
-//    left: 80%;
-//    //top: 10%; 
-// }
-
-// .image {
-//     //border: 1px solid #000;
-//     text-align: center;
-//     position: relative;
-//     width: 100%;
-//     height: 40vh;
-//     button {
-//       position: relative;
-//       bottom: 25%;
-//     }
-//     .thumb {
-//         height: 100px;
-//         width: 100px;
-//         border-radius: 50%;
-//         object-fit: cover;
-//      /*    position: relative;
-//         top: 5% */;
-//     }
-//     .btn-upload {
-//         position: absolute;
-//         bottom: 0;
-//         z-index: 4;
-//         right: 10%;
-//         bottom: 15%;
+    h4 {
+      font-size: 3.2vh;
+      margin: 0;
       
-//     }
+    }
+    p{
+      font-size: 2.5vh;
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .infocontent {
+    height: 60%;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    //border: 1px solid red;
+
+    .cert {
+      height: 15%;
+      width: 100%;
+      //background: red;
+      position: relative;
+      margin: 0 !important;
+      h3 {
+        margin-top: 0 !important;
+        text-align: center;
+      }
+      .flag {
+        width: 5vh;
+        height: 100%;
+        background: url('../../assets/icon/Path\ 123.svg');
+        background-size: cover;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: -1%;
+        right: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 2.7vh;
+        font-weight: 600;
+      }
+     
+    }
+    .infor {
+      height: 70%;
+      width: 100%;
+      //border: 1px solid red;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        font-size: 2.5vh;
+        margin: 0 !important;
+      }
+      h5 {
+        font-size: 3.2vh;
+        margin: 0 !important;
+        position: relative;
+        left: 5%;
+      }
+    }
     
-// }
-// .btn {
-//     display: flex;
-//     justify-content: center;
-// }
-// .back {
-//     position: fixed;
-//     top: 1%;
-//     left: 5%;
-//     z-index: 4;
-//     .icon {
-//         color: #fff;
-//         font-size: 20px;
-//     }
-// }
-//     }
-      
-//     .header {
-//       position: absolute;
-//       top: 1%;
-//       left: 1%;
-//       right: 0;
-//       display: flex;
-//       justify-content: space-between;
-//       z-index: 4;
-      
-//    .group-button {
-//        background: color($colors, danger);
-//        padding: 0 0 0 2em;
-//        border-radius: 50px 0 0 50px;
-//        display: flex;
-//        justify-content: space-between;
-//        align-items: center;
+  }
+}
 
-//        &:active {
-//            background: red;
-//        }
 
-//        p {
-//            color: color($colors, light);
-//            font-size: $font-size;
-//            white-space: nowrap;
-//            margin: auto;
-//        }
-//        button {
-//            box-shadow: $fab-box-shadow;
-//        }
 
-//    }
-//   }
-
-//   }
 }

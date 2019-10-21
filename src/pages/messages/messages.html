@@ -1,110 +1,4 @@
-<!-- 
 
-<ion-header class="head"  [style.backgroundImage]="getProfileImageStyle()" no-border align-title="center">
-    <ion-navbar color="red">
-        <ion-toolbar color="dark">
-           
-            </ion-toolbar>
-         </ion-navbar>
-  <ion-slides >
-
-    <ion-slide style="background: red;" >
-<h1>hello</h1>
-    </ion-slide>
-
-    <ion-slide style="background: green;" >
-<h1>fifi</h1>
-      </ion-slide>
-
-      <ion-slide style="background: blue;" >
-<h1>kaboentle</h1>
-        </ion-slide>
-  </ion-slides>
-
-
-  </ion-header>
-  
-<ion-content>
-
-  <div [ngClass]="{'content-head' : !toggle, 'info' : toggle}"   *ngFor="let item of msgSent">
- 
-  
-
-  <div class="bricks"  *ngIf="toggle">
-      <div id="card">
-        <img src="../../assets/imgs/{{brick}}.jpg" alt="{{brick}}" height="80%">
-        <p style=
-        "text-align: center;">{{brick}}</p>
-      </div>
-      <div *ngIf="toggle">
-        <ion-item no-lines>
-          <ion-label stacked>Start date</ion-label>
-          <ion-label stacked>{{item.startDate | date}}</ion-label>
-        </ion-item>
-
-        <ion-item  id="seconditem" no-lines style="margin-top:4%;padding-bottom:-9px">
-          <ion-label stacked>End date</ion-label>
-          <ion-label>{{item.endDate | date}}</ion-label>
-        
-        </ion-item>
-      </div>
-    </div>
-
-    <div class="extras" *ngIf="toggle">
-
-        <h5>Extras</h5>
-           <ion-item no-lines class="gray" style="background: whitesmoke;" *ngFor="let e of item.extras; let i=index">
-                <ion-label>{{e}}</ion-label>
-                <ion-checkbox [checked]="true"  style="border:1px solid white;"></ion-checkbox>
-                </ion-item>
-         
-   </div>
-   
-  </div>
-
-  <div class="chats" >
-    <div *ngFor="let chat of messages; let i=index;">
- <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-   <p>Home owner</p>
-       <p id="content">{{chat.chat}}</p>
-       <p id="date">{{chat.date}} </p>
-     
-       
-      </div>
-
-    <div class="chat right" id="outgoing" *ngIf="chat.builder">
-
-         <p>Builder</p>
-         <p id="content">{{chat.chat}}</p>
-         <p id="date">{{chat.date}} </p>
-
-       
-        </div>
- </div>
-     
-
-  </div> 
-
-
- </ion-content>
-    
-         <ion-footer [style.display]="footer ? 'none': 'block'">
-          <ion-toolbar>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-9 class="message-box-textarea">
-                  <ion-textarea placeholder="Enter your message..." [(ngModel)]="chatMessage"></ion-textarea>
-                </ion-col>
-                <ion-col col-3 class="message-box-textarea">
-                  <button *ngIf="chatMessage" ion-button icon-only clear float-right (click)="getChats()">
-                      <ion-icon name="send"></ion-icon>
-                  </button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-toolbar>
-        </ion-footer> 
--->
      <ion-content >
             <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
               <ion-slide  *ngFor="let item of msgSent; let i=index;">
@@ -122,7 +16,7 @@
                               </ion-buttons>
                             <ion-title start>Quotation-Y00{{i}}</ion-title>
                             <ion-buttons right>
-                              <button ion-fab mini color="secondary" (click)="callJoint(personalNumber)"><ion-icon name="call"></ion-icon></button>
+                              <button ion-fab mini color="customcall" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
                             </ion-buttons>
                           <div class="button-drop">
                             <button ion-button clear color="light" (click)="open()"><ion-icon [name]="icon"></ion-icon></button>
@@ -153,6 +47,7 @@
                                    
                                   </div>
                                 </div>
+                                <div class="walltype"><p></p></div>
                                 <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
                                 <div class="etras" *ngIf="toggle">
                                   <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
@@ -166,7 +61,7 @@
                 <div class="chats" >
                     <div *ngFor="let chat of messages; ">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-                   <p>Home owner</p>
+
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date}} </p>
                      
@@ -174,11 +69,23 @@
                       </div>
                 
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
-                
-                         <p>Builder</p>
+                        <ion-buttons  id="quotation">
+                            <button>Quotation 004</button>
+                            <ion-icon name="arrow-round-down"></ion-icon>
+                          </ion-buttons>
+                          <div id="buttons">
+                             <ion-buttons  >
+                                 <button style="background:green">Accept</button>
+                               </ion-buttons>
+                   
+                               <ion-buttons >
+                                   <button style="background:red;">Decline</button>
+                                 </ion-buttons>
+                          </div>
+                       
                          <p id="content">{{chat.chat}}</p>
                          <p id="date">{{chat.date | date}} </p>
-                        
+
                        
                         </div>
                  </div>
@@ -191,12 +98,10 @@
            <ion-footer>
               <ion-grid>
                   <ion-row>
-                    <ion-col col-9>
-                      <ion-input placeholder="Enter your message..." [(ngModel)]="chatMessage"> </ion-input>
+                    <ion-col col-10>
+                      <ion-input placeholder="Type your message..." [(ngModel)]="chatMessage"> </ion-input>
                     </ion-col>
-                    <ion-col col-1>
-                        <button ion-button clear (click)="send()"><ion-icon name="attach"></ion-icon></button>
-                      </ion-col>
+                  
                     <ion-col col-2 *ngIf="chatMessage">
                       <button ion-button clear  (click)="getChats()"><ion-icon  name="send"></ion-icon></button>
                     </ion-col>
