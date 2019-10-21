@@ -1,35 +1,22 @@
-<!-- <ion-header no-border>
-  <ion-toolbar>
-    <ion-title>Header</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-
-   <div class="top-div">
-    
-   </div>
-
-
-<ion-footer no-border>
-  <ion-toolbar>
-    <ion-title>Footer</ion-title>
-  </ion-toolbar>
-</ion-footer> -->
 
 <ion-content>
 
     <div class="container">
-        <div [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
-            <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+      
+        <div id="topnav" [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
+            <button id="bckbtn" ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
             </div>
+
             <div class="logo">
-                <img src="../../assets/icon/Group 180.svg" style="max-width: 100px; height: auto">
+                <img src="../../assets/icon/Group 180.svg" style="max-width: 70px; height: auto">
                </div>
+
                <div class="inform">
         
                 <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
-                    <div class="aboutus" (click)="activate('about')">
-                        <h4 text-center>about us</h4>
+                    <div  class="aboutus" (click)="activate('about')">
+                        <h4 text-center>About us</h4>
                           </div>
                           <p> yakha application is a platform where homeOwners and Builders meet.
                           The homeOwner  create a request quotation to the homeBuilder Off their choice that they will find registered in the application,

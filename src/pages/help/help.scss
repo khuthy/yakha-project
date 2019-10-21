@@ -1,92 +1,87 @@
-
-
-
 page-help {
-
-    .header {
-        text-align: center;
-        padding: 10px;
-        .img{
-              width: 25%;
-        }
-        
-  }
-  
-  .divtop{
-   border-radius: 0px 0px 30px 30px;
-  
-   height: 25%; 
-   background: #4D4D4D;
-   
-  }
-  
-    .con{
-          display: flex;
-          flex-direction: column;
-          margin:  5 auto;
-    }
-    .aboutus1 {
+margin: 0 !important;
+padding: 0 !important;
+   /*  .aboutus1 {
         height: auto;
-        border: solid linear-gradient(#4D4D4D, #4D4D4D);
+        border: solid red;
         overflow: hidden;
-        margin:  5px auto;
-        width: 70%; 
-        }
+       // margin:  5px auto;
+        //width: 90%; 
+        } */
     .aboutus2 {
         height: 60px;
         border: black;
         overflow: hidden;
-        margin:  5px auto;
-        width: 70%;
-        border-radius: 10px 10px 10px 10px;
+       // margin:  5px auto;
+        width: 90%;
+        border-radius: 5px;
+        margin-left: 5%;
         }
         .aboutus{
-              height: 40px;
-                border: #4D4D4D;
+              height: 60px;
+           // border: 1px solid white;
               width: 100%;
-              border-radius: 10px 10px 10px 10px; 
-              background: #4D4D4D;
+              border-radius: 5px; 
+              background: #203959    ;
+              margin-TOP: 3%;
+display: flex;;
+justify-content: center;
+align-content: center;
+align-items: center;
+              h4 {
+               font-size: 6vw;
+                //  border:1px solid blue;
+                  letter-spacing: 1px;
+                  font-weight: 300;
+                  font-family:'Pass Through';
+              }
         }
         .inform{
-        height: 90%;
-        background:linear-gradient(rgb(255, 255, 255),rgba(255, 255, 255, 0)),url('../../assets/dims\ \(1\).jpg');
-          background-size: 100% auto;
-          background-repeat:no-repeat;
-          background-position:center 45vh ;
+         // background:green;
+       width:90%;
+      overflow-y: auto;
+      margin-top:3%;
+      margin-left:5%;
+      P {
+        letter-spacing: 1PX;;
+        padding-left: 3%;
+      }
+
        }
         h4{
               color: white;
         }
     .container {
+      margin: 0 !important;
+padding: 0 !important;
         height: 100%;
+        width: 100%;
+       // border: 4px solid red;
         position: relative;
-         margin: 0 auto;
-        background: color($colors, light);
-        
-        transition-property: all;
+         transition-property: all;
         transition-duration: 2s;
         transition-timing-function: ease-in-out;
         -o-transition-timing-function: ease-in-out;
         -moz-transition-timing-function: ease-in-out;
-        .header { 
-            width:100%;
-            height:13%;
-            background-position: top right;
-            background-repeat: no-repeat;
-            background-size: 50%;
-            border: none;
-
-            
+#topnav {
+//border: 1px solid rgb(0, 0, 0);
+width: 100%;
+height:13%;
+background-repeat: no-repeat;
+background-size: 50%;
+background-image:url(../../assets/imgs/ownerShape.svg);
+background-position: right;
+margin-top:-1%;
+       //  left: -6%;
+}
+        #bckbtn {
+            background: #d98e04;
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
-        .headerOwner { 
-            background:url(../../assets/imgs/ownerShape.svg); 
-            width:100%;
-            height:13%;
-            background-position: top right;
-            background-repeat: no-repeat;
-            background-size: 50%;
-            border: none;
-        }
+       
+       
         .logo {
 
             
@@ -100,21 +95,17 @@ page-help {
             align-items: center;
             justify-content: center;
             align-content: center;
+           // border: 1px solid rgb(0, 60, 255);
     }
 
-        h1 {
+        /* h1 {
             color:#216D7B;
             font-family:'Segoe UI';
             font-size: 4vh;
             letter-spacing: 1px;
-        }
+        } */
 
-        .form {
-            //border: 1px solid yellow;
-            width:90%;
-            position: relative;
-            left:5%;
-        }
+       
         h3 {//border:1px solid red;
             text-align:center;
             //margin-top:100px;
@@ -124,7 +115,7 @@ page-help {
            // border:1px solid green;
             text-align:center;
         }
-        ion-list > .item {
+      /*   ion-list > .item {
             // box-shadow: 0 4px 8px 0 rgba(168, 165, 165, 0.2), 0 6px 20px 0 rgba(150, 144, 144, 0.19);
             border-radius: 10px;
             margin-top: 3%;
@@ -147,82 +138,16 @@ page-help {
               text-align: center;
               //margin-top:-15%;
             }
-          }
-    /*     .box {
-            margin: 0 auto;
-            max-width: 100%;
-            display: flex;
-            justify-content: center;
-        .card {
-            width: 85%;
-            margin: 1%;
-            display: flex;
-            align-items: center;
-            height: 8vh;
-            border-radius: 5px;
-                .icon {
-                font-size: 20px;
-                width: 30px;
-                color:#216D7B;
-               
-            }
-            p{
-                font-weight: 600;
-                white-space: nowrap;
-                text-align: left;
-           
-                font-size: 2vh;
-                font-family:'Segoe UI';
-                color:white;
-                letter-spacing: 1px;
-            }
-        }
-        .accordia {
-            border: 1px solid #216D7B;
-            padding: 20px;
-        }
-        .hide {
-            display: none;
-            transition: 700ms;
-        }
-        .show {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-            overflow-y: scroll;
-            height: 90%;
-            color: #fff;
-          
-           
-           
-            background: rgba(36, 35, 35, 0.925);
-            padding: 1em;
-           
-            .close {
-                display: flex;
-                justify-content: flex-end;
-              //  border:1pz solid rgb(0, 255, 55);
-                button {
-                    background: rgba(36, 35, 35, 0.925);
-                    text-align: center; 
-                    .icon {
-                        font-size: 500%;
-                    }
-                }
-            }
-        }
-    } */
+          } */
+  
     .box {
         position: relative;
         margin: 0 auto;
         width: 85%;
-        
+      //  border: 5px solid red;
      
 
-        .card {
+       /*  .card {
             border-radius: 10px;
             margin: 2%;
            .card-header {
@@ -232,6 +157,7 @@ page-help {
            }
            .card-info {
                padding: 10px;
+               background: blue;;
            }
            .show {
                display: block;
@@ -239,8 +165,8 @@ page-help {
            .hide {
                display: none;
            } 
-        }
-        .cardBuilder  {
+        } */
+      /*   .cardBuilder  {
             margin: 2%;
             border-radius: 10px;
             .card-header {
@@ -257,11 +183,11 @@ page-help {
             .hide {
                 display: none;
             }
-        }
+        } */
     }
     }
-    .bottomdeco {
-        // border:1px solid red;
+   /*  .bottomdeco {
+        border:1px solid red;
          background:url(../../assets/imgs/BuilderShapes.svg); 
          background-position: left;
          background-repeat: no-repeat;
@@ -271,21 +197,21 @@ page-help {
          background-repeat: no-repeat;
          background-size: 50%;
          position: absolute;
-         bottom:0;
+         bottom:-1px;
          left: -1px;
-       }
+       } */
        .bottomdecoOwner {
-        // border:1px solid red;
+    //  border:1px solid red;
          background:url(../../assets/icon/Yakha-assets/OwnerShapes.svg); 
          background-position: left;
          background-repeat: no-repeat;
          width:100%;
-         height:35%;
+         height:12%;
          background-position: bottom left;
          background-repeat: no-repeat;
          background-size: 50%;
-         position: absolute;
-         bottom:0;
+         position: fixed;
+         bottom:-2PX;
          left: -6%;
        }
  

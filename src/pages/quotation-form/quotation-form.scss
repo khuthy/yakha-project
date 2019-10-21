@@ -26,8 +26,9 @@ page-quotation-form {
 
   } */
   .toolbar {
+    //border: 3px solid green;
     .toolbar-background {
-      background: transparent;
+    background: transparent;
       
     }
  .back-button {
@@ -43,6 +44,13 @@ page-quotation-form {
        font-size: 2.5vh;
        
      }
+   }
+   ion-title {
+     //border: 1px solid blue;
+    // position: absolute;
+   
+     width: 70%;
+     z-index: 6;
    }
   } 
 
@@ -138,7 +146,7 @@ page-quotation-form {
       //border:2px solid green;
       position: absolute;
       top: 12vh;
-      bottom: 10vh;
+      bottom: 13vh;
       width: 100%;
       overflow-y: scroll;
    // height: 79%;
@@ -300,6 +308,10 @@ img {
                       z-index: 10;
                       top: 5px;
                       right: 5px;
+                      ion-icon {
+                      
+                        font-size:4vh;
+                      }
                   }
                   p {
                       font-size: 3vw;
@@ -327,12 +339,17 @@ img {
                     width: 30px;
                     height: 30px;
                     position: absolute;
-                    background: rgb(221, 218, 218);
+                   
                     color: black;
                     border-radius: 200px;
                     z-index: 10;
                     top: 5px;
                     right: 5px;
+
+                    ion-icon {
+                         font-size: 7vw;
+                   
+                    } 
                 }
                 p {
                     font-size: 3vw;
@@ -341,7 +358,8 @@ img {
             }
           }
           .cards:hover .brickName {
-            background: orange;
+            background:  rgb(204, 158, 20);
+            color: white;
           }
       }
       .walltype {
@@ -729,12 +747,20 @@ div {
   }
  }
 
-//next button
+ .footer {
+   background:transparent;
+    position: fixed;
+    bottom: 0;;
+    width:100%;
+    height: 13%;
+  //  border: 4px solid red;
 .button-group {
-  margin-top: 30px;
+ // border: 1px solid red;
+  //margin-top: 30px;
   position: absolute;
-  bottom: 2%;
+  bottom: 5px;
   right: 0;
+
   background: #cc9e14;
   padding-left: 15px;
   display: flex;
@@ -760,6 +786,8 @@ div {
 
 
 }//close next button
+ }
+
 
 //edit quote before submit buttton
 .edit {

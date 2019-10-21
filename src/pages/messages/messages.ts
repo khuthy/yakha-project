@@ -84,10 +84,10 @@ export class MessagesPage {
   open() {
     if (this.toggle == true) {
       this.toggle = false;
-      this.icon = 'arrow-dropdown';
+      this.icon = 'ios-arrow-down';
       this.footer = false;
     } else {
-      this.icon = 'arrow-dropup';
+      this.icon = 'ios-arrow-up';
       this.toggle = true;
       this.footer = true;
     }
@@ -183,7 +183,7 @@ export class MessagesPage {
     })
     this.dbMessage.doc(this.uid).onSnapshot((res) => {
       this.msgSent.push(res.data());
-      //  console.log('Message sent>>>>', this.msgSent);
+      console.log('Message sent>>>>', this.msgSent);
     })
     // this.messages.push(data);
     // this.dbMessage.doc(this.autoUid.id).onSnapshot((res) => {
@@ -271,7 +271,7 @@ export class MessagesPage {
 
   }
   getProfileImageStyle() {
-    return 'url(' + this.imageBuilder + ')'
+    return 'url('+ this.imageBuilder +')';
   }
 
 

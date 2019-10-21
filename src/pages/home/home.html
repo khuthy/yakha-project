@@ -12,10 +12,9 @@
      <img src="../../assets/icon/Yakha-assets/BuilderShape2.svg" alt="" class="fixed-image"> 
   
     <div class="title">
-      <!-- <div class="button" >
-         <ion-icon menuToggle name="menu"></ion-icon>
-         <button ion-button (click)="gotwst()">gotest</button> 
-      </div> -->
+      <div class="button" >
+         <button ion-button clear menuToggle> <ion-icon  name="menu"></ion-icon></button> 
+      </div> 
       <div class="titlecase"><h3 style="font-size: 3.5vh;">REQUESTS</h3></div>
       <p></p>
     </div>
@@ -36,7 +35,7 @@
             <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
           </div>
         </div>
-        <p *ngIf="!data">You have no requests yet</p>
+        <p *ngIf="!owner" style="text-align: center;">You have no requests yet</p>
         </div>
     <div #map id="map">
  
@@ -69,7 +68,7 @@
 </div> -->
  <div class="slider" *ngIf="!header">
     <div class="searchRange">
-        <button class="btn1" ion-fab mini (click)="getPosition()"><ion-icon name="pin"></ion-icon></button>
+        <button class="btn1" ion-fab mini (click)="getPosition()"><ion-icon name="pin" style="color:#203959"></ion-icon></button>
       <ion-item no-lines *ngIf="range">
         <ion-range pin=true min="0" max="1000" [(ngModel)]="price" (ionChange)="setPriceRange(price)">
         
@@ -77,7 +76,7 @@
          <ion-label range-right color="primary">{{1000 | currency:'&#82;'}}</ion-label>
         </ion-range>
         </ion-item>
-        <p *ngIf="!range" style="font-size: 1.6vh; color: #000;">These are the builders we found around this location</p> 
+        <p *ngIf="!range" style="font-size: 1.6vh;letter-spacing: 0.2px; color: #0c1624;">These are the builders we found around this location</p> 
         <button class="btn2" ion-fab (click)="RangeSearch()"><img src="../../assets/icon/filter-solid.svg" alt=""></button>
 </div>
     <div class="main-slide">
@@ -111,7 +110,7 @@
           </div>
           
              
-          <div class="button-group" (click)="rShortcut(b.uid)">
+          <div class="button-group-l" (click)="rShortcut(b.uid)">
               <p>Request</p>   
               <button ion-fab mini color="light" ><ion-icon name="arrow-forward"></ion-icon></button>
          
