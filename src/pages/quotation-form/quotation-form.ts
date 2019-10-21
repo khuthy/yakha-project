@@ -59,6 +59,7 @@ export class QuotationFormPage {
     date: Date(),
     view: false,
     builderUID: '',
+    docID : ''
   };
   docID;
   date: any;
@@ -257,17 +258,7 @@ export class QuotationFormPage {
 
 
     } else if (this.steps == 'steptwo') {
-      if(this.quotationForm.get('secondValid').invalid) {
-        console.log(this.steps, 'goog');
-        console.log('error first run');
-        let firstSlide = this.alertCtrl.create({
-      title: 'You cannot do that',
-      message: 'please fill the form',
-      buttons: ['Ok'] 
-          });
-      firstSlide.present();
-      
-      }else {
+      if(this.quotationForm.get('secondValid')) {
         document.getElementById('step3').style.overflow="auto";
         // document.getElementById('step2').style.display="none";
         this.steps = 'stepthree';
@@ -466,7 +457,8 @@ export class QuotationFormPage {
             buttons: ['Try again']
           }).present()
         } else {
-         this.db.collection('Request').doc(this.uid).set(this.HomeOwnerQuotation).then(()=>{
+         this.db.collection('Request').add(this.HomeOwnerQuotation).then((res)=>{
+           res.update({docID : res.id});
           this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res)=>{
             console.log('Chat >>>>-----',res.id);
             this.HomeOwnerQuotation.extras.forEach((item) => {

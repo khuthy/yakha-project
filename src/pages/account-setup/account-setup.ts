@@ -107,20 +107,23 @@ export class AccountSetupPage {
   //select image for the salon
   async selectImage() {
     const actionSheet = await this.actionSheetCtrl.create({
-      title: "Select Image source",
+      title: "Select your image",
       buttons: [{
-        text: 'Load from Library',
+        icon: 'images',
+        text: 'Gallery',
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
         }
       },
       {
-        text: 'Use Camera',
+        icon: 'camera',
+        text: 'Camera',
         handler: () => {
-          this.takePic()
+          this.takePicture(this.camera.PictureSourceType.CAMERA)
         }
       },
       {
+        icon:'close',
         text: 'Cancel',
         role: 'cancel'
       }
@@ -231,15 +234,17 @@ export class AccountSetupPage {
       // Handle error
     });
   }
-  takePicture(sourcetype: PictureSourceType) {
+  async takePicture(sourcetype: PictureSourceType) {
     const options: CameraOptions = {
-      quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: sourcetype
+      quality: 100,
+      sourceType: sourcetype,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
     };
-    this.camera.getPicture(options).then(res => {
+   await this.camera.getPicture(options).then(res => {
       let base64Image = 'data:image/jpeg;base64,' + res;
       this.profileImage = base64Image;
       let file = 'HomeOwner-Profile/' + this.authUser.getUser() + '.jpg';
