@@ -59,6 +59,7 @@ export class QuotationFormPage {
     date: Date(),
     view: false,
     builderUID: '',
+    docID : ''
   };
   docID;
   date: any;
@@ -451,7 +452,8 @@ export class QuotationFormPage {
             buttons: ['Try again']
           }).present()
         } else {
-         this.db.collection('Request').doc(this.uid).set(this.HomeOwnerQuotation).then(()=>{
+         this.db.collection('Request').add(this.HomeOwnerQuotation).then((res)=>{
+           res.update({docID : res.id});
           this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res)=>{
             console.log('Chat >>>>-----',res.id);
             this.HomeOwnerQuotation.extras.forEach((item) => {

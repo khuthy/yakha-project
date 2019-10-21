@@ -107,60 +107,31 @@ export class AccountSetupPage {
   //select image for the salon
   async selectImage() {
     const actionSheet = await this.actionSheetCtrl.create({
-      title: "Select Image source",
+      title: "Select image",
       buttons: [{
-        text: 'Load from Library',
+        icon: 'images',
+        text: 'Gallery',
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
         }
       },
       {
-        text: 'Use Camera',
+        icon: 'camera',
+        text: 'Camera',
         handler: () => {
-          this.takePic()
+          this.takePicture(this.camera.PictureSourceType.CAMERA)
         }
       },
       {
+        icon:'close',
         text: 'Cancel',
         role: 'cancel'
       }
       ]
     });
     await actionSheet.present();
-    /*   let option: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: true,
-        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-      }
-      await this.camera.getPicture(option).then(res => {
-        console.log(res);
-        const image =`data:image/jpeg;base64,${res}` ;
-        this.profileImage = image;
-        let file = 'HomeOwner-Profile/' + this.authUser.getUser() + '.jpg';
-        const UserImage = this.storage.child(file);
-        const upload = UserImage.putString(image, 'data_url');
-        upload.on('state_changed', snapshot => {
-          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          this.uploadprogress = progress;
-          if (progress == 100) {
-            this.isuploading = false;
-          }
-        }, err => {
-        }, () => {
-          upload.snapshot.ref.getDownloadURL().then(downUrl => {
-            this.HomeOwnerProfile.image = downUrl;
-            console.log('Image downUrl', downUrl);
-            this.isuploaded = true;
-          })
-        })
-      }, err => {
-        console.log("Something went wrong: ", err);
-      })
-      this.imageSelected = true;
     }
+     
    async createprofile(profileForm: FormGroup): Promise<void> {
       if (!profileForm.valid) {
         console.log(
@@ -194,52 +165,20 @@ export class AccountSetupPage {
           this.isProfile = false;
           load.dismiss();
         })
-        } */
-
-  }
-  takePic() {
-    const options: CameraOptions = {
-      quality: 70,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.profileImage = base64Image;
-      let file = 'HomeOwner-Profile/' + this.authUser.getUser() + '.jpg';
-      const UserImage = this.storage.child(file);
-      const upload = UserImage.putString(base64Image, 'data_url');
-      upload.on('state_changed', snapshot => {
-        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        this.uploadprogress = progress;
-        console.log('Uploading image..', progress);
-
-        if (progress == 100) {
-          this.isuploading = false;
         }
-      }, err => {
-      }, () => {
-        upload.snapshot.ref.getDownloadURL().then(downUrl => {
-          this.HomeOwnerProfile.image = downUrl;
-          console.log('Image downUrl.............', this.HomeOwnerProfile.image);
-          this.isuploaded = true;
-        })
-      })
-    }, (err) => {
-      // Handle error
-    });
+
   }
-  takePicture(sourcetype: PictureSourceType) {
+  async takePicture(sourcetype: PictureSourceType) {
     const options: CameraOptions = {
-      quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      sourceType: sourcetype
+      quality: 100,
+      sourceType: sourcetype,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
     };
-    this.camera.getPicture(options).then(res => {
+   await this.camera.getPicture(options).then(res => {
       let base64Image = 'data:image/jpeg;base64,' + res;
       this.profileImage = base64Image;
       let file = 'HomeOwner-Profile/' + this.authUser.getUser() + '.jpg';
