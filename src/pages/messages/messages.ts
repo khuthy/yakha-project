@@ -78,7 +78,7 @@ export class MessagesPage {
     private callNumber:CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log(this.autoUid);
+    console.log('DATA=>', this.autoUid);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
 
