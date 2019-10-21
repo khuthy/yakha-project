@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { BuilderquotesPage } from '../builderquotes/builderquotes';
 /**
  * Generated class for the TestPage page.
  *
@@ -17,7 +16,6 @@ import { BuilderquotesPage } from '../builderquotes/builderquotes';
 export class TestPage {
   imageBuilder: string;
   dbChat = firebase.firestore().collection('chat_msg');
-  dbChatting = firebase.firestore().collection('chatting');
   uid = firebase.auth().currentUser.uid;
   chatMessage: any;
   myMsg: any;
@@ -26,26 +24,11 @@ export class TestPage {
     image: '',
     fullName: ''
   };
-  toggle: boolean;
-  icon: string;
-  footer: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
     this.messages = [];
    
-  }
-  open() {
-    if (this.toggle == true) {
-      this.toggle = false;
-      this.icon = 'ios-arrow-down';
-      this.footer = false;
-    } else {
-      this.icon = 'ios-arrow-up';
-      this.toggle = true;
-      this.footer = true;
-    }
-
   }
 
   ionViewDidLoad() {
@@ -53,7 +36,7 @@ export class TestPage {
      setTimeout(() => {
       this.getOwnerDetails();
      }, 3000);
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
+    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
@@ -61,7 +44,7 @@ export class TestPage {
     })
   }
   getChats() {
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
+    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
@@ -78,9 +61,5 @@ export class TestPage {
   }
   getProfileImageStyle() {
     return 'url(' + this.getowners.image + ')'
-  }
-
-  createQuotes(){
-    this.navCtrl.push(BuilderquotesPage);
   }
 }
