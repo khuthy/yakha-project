@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { NavController, MenuController, Platform, Slides, PopoverController, AlertController, NavParams, LoadingController } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { BuilderProfileviewPage } from '../builder-profileview/builder-profileview';
@@ -25,6 +25,7 @@ export class HomePage {
   dbFeeback = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
   autoCompSearch = document.getElementsByClassName('searchbar-input');
+  hideCard = document.getElementsByClassName('yakha-search');
   items: any;
   info = false;
   builder = [];
@@ -72,9 +73,17 @@ export class HomePage {
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
-    public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+    public alertCtrl: AlertController, public loadingCtrl: LoadingController,public renderer: Renderer2) {
 
 
+  }
+  checkKeyboard(data) {
+    if (data =='open') {
+      //this.hid='value';
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(30vh)')
+    } else {
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+    }
   }
   AutoComplete(){
    
