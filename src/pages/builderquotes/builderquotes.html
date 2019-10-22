@@ -4,7 +4,7 @@
       <ion-title>
         Making a quote for <br>
         {{quotes.ownerName}} <br>
-        <p style="color: #FFD787;">Cost: {{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</p> </ion-title>
+        <p style="color: #FFD787;">Cost:{{((quotes.price * quotes.meter) - (quotes.price * quotes.meter) * (quotes.discount/100)) + (value - (value * quotes.discountAmount/100)) | currency:'&#82;'}}</p> </ion-title>
 
     </ion-toolbar>
   </ion-navbar>
@@ -33,7 +33,7 @@
           </span>
           </p>
         <ion-item no-lines>
-          <ion-input placeholder="Price per square meter" class="price" disabled value="{{quotes.price  | currency:'&#82;'}}"> </ion-input>
+          <ion-input class="price" disabled value="{{quotes.price  | currency:'&#82;'}}"> </ion-input>
         </ion-item>
         <br>
         <ion-item no-lines>
