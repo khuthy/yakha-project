@@ -16,10 +16,10 @@
         
                 <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
                     <div  class="aboutus" (click)="activate('about')">
-                        <h4 text-center>Looking for a Homebuilder?</h4>
-                        <p>Type of house is key to your search</p>
+                        <h4 text-center>Type of house is key to your search</h4>
+                        <p style="font-size:2vh"></p>
                           </div>
-                          <p> Builders may specialize in tract, spec or custom homes so learn the differences and figure out which one is right for you and your home-buying budget.</p>
+                          <p style=""> Builders may specialize in tract, spec or custom homes so learn the differences and figure out which one is right for you and your home-buying budget.</p>
                   
                 </div>
                
@@ -28,7 +28,7 @@
                         <h4 text-center>10 Tricks for the beginner handyman</h4>
                           </div>
                     
-                    <p>Being handy with tools is more than showing off. Being “that guy” in your circle of friends is nice—if not a little tiring, what with all the requests to fix everything—but for those of you who want to become the guy who knows how to fix little problems here and there, there’s usually one obstacle.
+                    <p style="border:2px solid #203959">Being handy with tools is more than showing off. Being “that guy” in your circle of friends is nice—if not a little tiring, what with all the requests to fix everything—but for those of you who want to become the guy who knows how to fix little problems here and there, there’s usually one obstacle.
 
                         How the hell do you learn? Watch reruns of Bob Vila on TV? (Who was not available, very unfortunately, for this piece.).
                         
@@ -51,34 +51,7 @@
                         5. Know Your Homemade Cleaning Solutions
                         Before you go mixing all the industrial-strength chemicals you have under your sink to create a Frankenstein mega cleaner, know a few things about what you’re mixing first—you could go Walter Whiting yourself without realizing it.</p>
                 </div>
-              <!--   <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
-                    <div class="aboutus" (click)="activate('contact')">
-                        <h4 text-center>Contact</h4>
-                          </div>
-                          <p>Contact us: (015)-610-6358</p>
-            
-                </div> -->
-             <!--    <div [ngClass]="{'aboutus1': tsProperty=='disclaimer' , 'aboutus2': tsProperty!='disclaimer'}">
-                    <div class="aboutus" (click)="activate('disclaimer')">
-                        <h4 text-center> Disclaimer</h4>
-                          </div>
-                    
-                          <p>
-                            Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
-                            A few require that we include their licence Agreements within our product.
-                        </p>
-                </div> -->
-              <!--   <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
-                    <div class="aboutus" (click)="activate('safety')">
-                        <h4 text-center>safety information</h4>
-                          </div>
-                    
-                    <p>We keep your personal information private and safe and put you in control</p>
-                </div> -->
-            
-      
-      
-      <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
+<div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
       
         </div>
       
