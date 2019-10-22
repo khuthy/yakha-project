@@ -26,7 +26,8 @@ export class TestPage {
   messages = [];
   getowners = {
     image: '',
-    fullName: ''
+    fullName: '',
+    personalNumber:'',
   };
   currentUid: any;
   incomingMsg = [];
@@ -83,6 +84,7 @@ export class TestPage {
     firebase.firestore().collection('Users').doc(this.navParams.data.uid).get().then(owners => {
        this.getowners.image = owners.data().image;
       this.getowners.fullName = owners.data().fullName;
+      this.getowners.personalNumber= owners.data().personalNumber;
     })
   }
   getProfileImageStyle() {

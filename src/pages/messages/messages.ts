@@ -60,9 +60,10 @@ export class MessagesPage {
 
   }
   imageBuilder;
-  phoneNumber ='';
+  personalNumber ='';
   builderName = '';
   msgSent = [];
+  builder = [];
   footer: boolean;
   chatMessage: string;
   myMsg = '';
@@ -86,7 +87,7 @@ export class MessagesPage {
     console.log('DATA=>', this.autoUid, '', this.autoUid.img);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
-    this.phoneNumber = this.autoUid.phone;
+    this. personalNumber = this.autoUid. personalNumber;
 
   }
 
@@ -104,6 +105,19 @@ export class MessagesPage {
   }
   /* Tesing if chats works */
   chats = [];
+slideChanged() {
+    let currentIndex = this.slides.getActiveIndex();
+    this.currentUid = this.msgSent[currentIndex].id;
+   // let curr = this.messages[currentIndex];
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
+      this.messages=[];
+      for (let i = 0; i < res.docs.length; i++) {
+        this.messages.push(res.docs[i].data())
+      }
+      console.log('Message...', this.messages);
+      
+    })
+  }
 
 
   slideChanged() {
@@ -202,7 +216,9 @@ export class MessagesPage {
     return 'url(' + this.imageBuilder + ')';
   }
   callJoint(personalNumber) {
-    this.callNumber.callNumber(personalNumber, true);
+    console.log(personalNumber);
+    
+    // this.callNumber.callNumber(personalNumber, true);
   }
 
 

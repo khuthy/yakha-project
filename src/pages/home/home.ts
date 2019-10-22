@@ -117,8 +117,6 @@ export class HomePage {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-
-
       }
       if (res.data().builder == true) {
         this.getRequests();
@@ -662,6 +660,13 @@ export class HomePage {
          })
          console.log('Owner details', this.owner);
       }
+     
+     // data.info.forEach((item)=>{
+         
+     // }) 
+      
+      
+     
     })
 
     // this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {

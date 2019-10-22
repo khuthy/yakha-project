@@ -47,6 +47,7 @@
 
                         </ion-navbar>
                       </ion-header>
+
                 <div class="container">
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
                           <div class="container-request" *ngIf="toggle" padding>
@@ -86,9 +87,7 @@
                     <div *ngFor="let chat of messages; ">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
-                       <p id="date">{{chat.date | date}} </p>
-                     
-                       
+                       <p id="date">{{chat.date | date:"hh:mm"}} </p>
                       </div>
                 
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
