@@ -25,7 +25,7 @@ export class HomePage {
   dbFeeback = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
   autoCompSearch = document.getElementsByClassName('searchbar-input');
-  hideCard = document.getElementsByClassName('yakha-search');
+  hideCard = document.getElementsByClassName('slider');
   items: any;
   info = false;
   builder = [];
@@ -80,10 +80,12 @@ export class HomePage {
   checkKeyboard(data) {
     if (data =='open') {
       //this.hid='value';
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(30vh)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(40vh)')
     } else {
       this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
     }
+   // console.log(data);
+    
   }
   AutoComplete(){
    
@@ -494,6 +496,9 @@ export class HomePage {
         }
       ]
     });
+    google.maps.event.addDomListener(this.map, 'click', () => {
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+    });
     this.getBuilders();
 
 
@@ -642,7 +647,7 @@ export class HomePage {
   viewRequest(docID, uid) {
 
     this.navCtrl.push(TestPage, { docID, uid });
-    console.log("checking user details");
+  //  console.log('Doc id>>>>',docID,'user id===', uid);
   }
 
   requestForm() {

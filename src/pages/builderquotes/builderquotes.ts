@@ -146,8 +146,7 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    this.dbChat.doc(this.navParams.data.uid).collection(this.userUID).doc(this.navParams.data.docID).collection('extras').onSnapshot((res) => {
-      // console.log(res.docs);
+    this.dbRequest.doc(this.navParams.data.docID).collection('extras').onSnapshot((res) => {
       res.forEach((doc) => {
         console.log(doc.data())
         this.extras.push({ item: doc.id, data: doc.data() });
@@ -162,7 +161,7 @@ export class BuilderquotesPage {
     //     console.log(this.extras);
     //   })
     // })
-    this.dbRequest.doc(this.navParams.data.uid).onSnapshot((res) => {
+    this.dbRequest.doc(this.navParams.data.docID).onSnapshot((res) => {
       this.quotes.hOwnerUID = res.data().hOwnerUid;
       this.dbUsers.doc(res.data().hOwnerUid).onSnapshot((res) => {
         if (res.data().builder == false) {
@@ -399,29 +398,25 @@ export class BuilderquotesPage {
   saveData() {
     this.downloadUrl();
     this.quotes.pdfLink = this.pdfDoc;
-    this.dbRespond.doc(this.uid).set(this.quotes).then((resReq) => {
+    this.dbRespond.add(this.quotes).then((resDoc)=>{
       this.dbChat.doc(this.uid).collection(this.navParams.data.uid).add(this.quotes).then(()=>{
         this.navCtrl.setRoot(SuccessPage);
-      })
-      /* .then((resDoc)=>{
-        resDoc.onSnapshot((doc)=>{
-          this.dbUsers.doc(doc.data().hOwnerUid).onSnapshot((resUser) => {
-            if (resUser.data().tokenID) {
-              var notificationObj = {
-                contents: { en: "Hey " + resUser.data().fullName + " ," + "the builder has responded to your qoutation" },
-                include_player_ids: [resUser.data().tokenID],
-              };
-              this.oneSignal.postNotification(notificationObj).then(res => {
-              });
-            }
-    
-          });
-        })
-      }); */
-      //if (resReq.data().hOwnerUid) {
-    
-      // })
     })
+      resDoc.onSnapshot((doc)=>{
+        this.dbUsers.doc(doc.data().hOwnerUid).onSnapshot((resUser) => {
+          if (resUser.data().tokenID) {
+            var notificationObj = {
+              contents: { en: "Hey " + resUser.data().fullName + " ," + "the builder has responded to your qoutation" },
+              include_player_ids: [resUser.data().tokenID],
+            };
+            this.oneSignal.postNotification(notificationObj).then(res => {
+            });
+          }
+  
+        });
+      })
+    })
+    
   }
   
 }

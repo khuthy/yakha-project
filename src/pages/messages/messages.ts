@@ -85,7 +85,7 @@ export class MessagesPage {
     private callNumber: CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log('DATA=>', this.autoUid, '', this.autoUid.img);
+    console.log('DATA=>', this.autoUid, 'hhh', this.autoUid.img);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
     this. personalNumber = this.autoUid. personalNumber;
@@ -106,7 +106,10 @@ export class MessagesPage {
   }
   /* Tesing if chats works */
   chats = [];
-slideChanged() {
+
+
+
+  slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.currentUid = this.msgSent[currentIndex].id;
    // let curr = this.messages[currentIndex];
@@ -115,25 +118,10 @@ slideChanged() {
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
       }
-      console.log('Message...', this.messages);
+    //  console.log('Message...', this.messages);
       
     })
   }
-
-
-  // slideChanged() {
-  //   let currentIndex = this.slides.getActiveIndex();
-  //   this.currentUid = this.msgSent[currentIndex].id;
-  //  // let curr = this.messages[currentIndex];
-  //   this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
-  //     this.messages=[];
-  //     for (let i = 0; i < res.docs.length; i++) {
-  //       this.messages.push(res.docs[i].data())
-  //     }
-  //   //  console.log('Message...', this.messages);
-      
-  //   })
-  // }
 
 
   /* Ends here */
@@ -176,7 +164,7 @@ slideChanged() {
   }
   ionViewDidLoad() {
     //get Requests
-    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
+    this.dbIncoming.where('hOwnerUid','==',this.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
         console.log('Response....', doc.data());
         

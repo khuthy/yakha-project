@@ -1,12 +1,12 @@
 
      <ion-content >
         <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
-          <ion-slide *ngFor="let item of incomingMsg; let i=index;">
+          <ion-slide *ngFor="let item of msgSent; let i=index;">
          <ion-header  no-border >
                     <ion-navbar>
                       <!-- background image of the builder -->
                       <div class="pickimage">
-                         <img src="../../assets/imgs/builders.png" class="img-header" alt="">
+                         <img src="{{item.data.houseImage}}" class="img-header" alt="">
                       </div>
                      
                    
@@ -19,7 +19,7 @@
 
                              <!-- counter for quotaions -->
                       <div class="countQoutes">
-                          <span>{{ 1 | number}}</span>
+                          <span>{{ i + 1 | number}}</span>
                         </div>
                             <!-- callbtn -->
                      <ion-buttons right id="callbtn">
@@ -30,7 +30,7 @@
                      
 
                           <!--  -->
-                        <ion-title start>Quotation-Y00{{3}}</ion-title>
+                        <ion-title start>Quotation-Y00{{i + 1 | number}}</ion-title>
                        
                       <div class="button-drop">
                         <button ion-button clear color="light" (click)="open()"><ion-icon style="font-size:10vw" [name]="icon"></ion-icon></button>
@@ -40,23 +40,23 @@
                   </ion-header>
             <div class="container">
                 <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
-                      <div class="container-request" padding>
-                            <div class="house-plan" *ngIf="toggle">
+                      <div class="container-request" padding *ngIf="toggle">
+                            <div class="house-plan" >
                                 <img src="../../assets/imgs/builder1.svg" alt="plan-{{1}}"><!-- House plan -->
                             </div>
-                            <div class="brick-time" *ngIf="toggle">
+                            <div class="brick-time" >
                               <div class="card">
                                 <img src="../../assets/imgs/Burnt clay brick.jpg" class="img-brick" alt="">
-                                <p style="font-size: 2.5vh;">Burnt clay brick</p>
+                                <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
                               </div>
                               <div class="time">
                                 <article>
                                    <p><strong>Start Date</strong></p>
-                                <p>2019-09-09</p>
+                                <p>{{item.data.startDate}}</p>
                                 </article>
                                 <article>
                                    <p><strong>End Date</strong></p>
-                                  <p>2020-09-09</p>
+                                  <p>{{item.data.endDate}}</p>
                                 </article>
                                
                                
@@ -64,16 +64,17 @@
                             </div>
                             <div class="walltype"><p></p></div>
                             <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
-                            <div class="etras" *ngIf="toggle">
-                              <p>Doors</p><!--  *ngFor="let e of item.data.extras; let i=index" -->
+                            <div class="etras">
+                              <p>{{item.data.extras}}</p><!--  *ngFor="let e of item.data.extras; let i=index" -->
                             </div>
                       </div>
              
                   </div>
                  
             </div>
-            <div  class="chats">
-            <div *ngFor="let chat of msgInfo; ">
+              <div class="chats">
+
+            <div  *ngFor="let chat of msgInfo; ">
             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date}} </p>
@@ -90,6 +91,7 @@
                        
                         </div>
               </div> 
+              
             </div>
           </ion-slide>
         </ion-slides>
@@ -97,10 +99,12 @@
        <ion-footer>
           <ion-grid>
               <ion-row>
-                <ion-col col-10>
+                <ion-col col-9>
                   <ion-input placeholder="Type your message..." [(ngModel)]="chatMessage"> </ion-input>
                 </ion-col>
-              
+               <ion-col col-1>
+                  <button ion-button clear (click)="respond()"><ion-icon  name="attach"></ion-icon></button>
+                </ion-col> 
                 <ion-col col-2 *ngIf="chatMessage">
                   <button ion-button clear  (click)="getChats()"><ion-icon  name="send"></ion-icon></button>
                 </ion-col>
