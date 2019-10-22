@@ -130,14 +130,12 @@ export class MessagesPage {
 
 
   /* Ends here */
-  acceptQoute(data, uid) {
-    //  console.log('doc id.................', data);
-
-    this.dbIncoming.doc(data).update({ msgStatus: "Accepted" }).then((res) => {
-      document.getElementById('accept').style.display = "none";
+  acceptQoute() {
+    this.dbIncoming.doc(this.navParams.data.id).update({ msgStatus: "Accepted" }).then((res) => {
+      document.getElementById('outgoing').style.display = "none";
       // this.messages = [];
       //  console.log('Updated document results',res);
-      this.dbProfile.doc(uid).onSnapshot((msg) => {
+      /* this.dbProfile.doc(uid).onSnapshot((msg) => {
         var notificationObj = {
           contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been accepted" },
           include_player_ids: [msg.data().tokenID],
@@ -146,16 +144,16 @@ export class MessagesPage {
           // console.log('After push notifcation sent: ' +res);
 
         });
-      })
+      }) */
     });
   }
-  declineQoute(data, uid) {
+  declineQoute() {
     //console.log('data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data);
 
-    this.dbIncoming.doc(data).update({ msgStatus: "Declined" }).then((res) => {
+    this.dbIncoming.doc(this.navParams.data.id).update({ msgStatus: "Declined" }).then((res) => {
       // this.messages = [];
       // console.log('Declined document results',res) 
-      this.dbProfile.doc(uid).onSnapshot((msg) => {
+  /*     this.dbProfile.doc(uid).onSnapshot((msg) => {
         var notificationObj = {
           contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been declined" },
           include_player_ids: [msg.data().tokenID],
@@ -164,7 +162,7 @@ export class MessagesPage {
           // console.log('After push notifcation sent: ' +res);
 
         });
-      })
+      }) */
     });
   }
   ionViewDidLoad() {
