@@ -45,8 +45,8 @@
 <div class="searchLocation">
   <div class="yakha-search">
    
-    <button ion-fab small menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-searchbar placeholder="Search by location" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')">
+    <button *ngIf="menuShow" ion-fab small menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-searchbar class="input-bar-search" placeholder="Search by location" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')">
   </ion-searchbar>
 </div> 
 </div> 

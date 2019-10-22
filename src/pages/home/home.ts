@@ -51,6 +51,7 @@ export class HomePage {
   message = '';
   isBuilder;
   input = '';
+  menuShow: boolean = true;
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
   geoData = {
@@ -80,9 +81,12 @@ export class HomePage {
   checkKeyboard(data) {
     if (data =='open') {
       //this.hid='value';
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(40vh)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(40vh)');
+      this.menuShow = false;
+
     } else {
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)');
+      this.menuShow = true
     }
    // console.log(data);
     
