@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { CallNumber } from '@ionic-native/call-number';
 import { BuilderquotesPage } from '../builderquotes/builderquotes';
 /**
  * Generated class for the TestPage page.
@@ -20,11 +21,13 @@ export class TestPage {
   dbChat = firebase.firestore().collection('chat_msg');
   dbChatting = firebase.firestore().collection('chatting');
   dbIncoming = firebase.firestore().collection('Request');
+  dbProfile = firebase.firestore().collection('Users');
   dbSent = firebase.firestore().collection('Respond');
   uid = firebase.auth().currentUser.uid;
   chatMessage: any;
   myMsg: any;
   messages = [];
+  msgSent = [];
   getowners = {
     image: '',
     fullName: '',
@@ -33,12 +36,15 @@ export class TestPage {
   currentUid: any;
   incomingMsg = [];
   msgInfo = [];
-  chat = []
-  msgSent = []
+  chat = [];
+ 
   toggle: boolean = false;
   icon: string = 'ios-arrow-down';
   extras=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  number: any;
+  constructor(public navCtrl: NavController, 
+    private callNumber:CallNumber,
+    public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
     this.messages = [];
@@ -78,6 +84,7 @@ export class TestPage {
     this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
+        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((response)=>{ this.number = response.data().personalNumber})
         this.msgSent.push({data:doc.data(), id: doc.id})
       })
 
@@ -123,5 +130,11 @@ export class TestPage {
   }
   getProfileImageStyle() {
     return 'url(' + this.getowners.image + ')'
+  }
+  callJoint() {
+    
+    console.log('number',this.number);
+    
+    this.callNumber.callNumber(this.number, true);
   }
 }

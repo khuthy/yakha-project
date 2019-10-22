@@ -36,7 +36,7 @@
         </div>
         <div class="list">
             <div class="box" *ngFor="let p of pages;" menuClose (click)="openPage(p)">
-                <ion-badge *ngIf="p.title == 'Messages'" class="move" color="danger">{{messages | number}}</ion-badge>
+                <span *ngIf="p.title == 'Messages'" class="badge move">{{messages | number}}</span>
                 <ion-icon [name]="p.icon"></ion-icon>
                 <p>{{p.title | uppercase}}</p>
             </div>
