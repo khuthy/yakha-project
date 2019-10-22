@@ -81,6 +81,7 @@ export class TestPage {
     this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
+        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((response)=>{ this.number = response.data().personalNumber})
         this.msgSent.push({data:doc.data(), id: doc.id})
       })
 
