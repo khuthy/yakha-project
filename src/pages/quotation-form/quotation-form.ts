@@ -229,9 +229,6 @@ export class QuotationFormPage {
   }
 
   slideState() {
-
-
-
     if (this.steps == 'stepone') {
       if (this.quotationForm.get('firstCountValid').invalid || (this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.brickType == '')) {
 
@@ -272,7 +269,15 @@ export class QuotationFormPage {
     this.HomeOwnerQuotation.extras.push(event);
     // console.log(this.HomeOwnerQuotation.extras);
   }
-
+  backSlide() {
+    this.steps ='stepone'
+    setTimeout(()=>{
+      this.nextslide()
+    },300)
+  }
+  popForm() {
+    this.navCtrl.pop()
+  }
   nextslide() {
     switch (this.steps) {
       case 'stepone':
@@ -370,7 +375,7 @@ export class QuotationFormPage {
 
         this.selectedBrick = event.path[i].children[1].innerText
 
-        this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
+        this.renderer.setStyle(event.path[i].children[1], 'background', '#cc9e14');
         //console.log(event.path[i].children[1].innerText);
         // console.log(event.path[i].children);
       }
