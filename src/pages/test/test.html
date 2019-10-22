@@ -23,8 +23,8 @@
                         </div>
                             <!-- callbtn -->
                      <ion-buttons right id="callbtn">
-                          <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
-                        </ion-buttons> 
+                          <button ion-fab medium color="customcall" id="callbtn" (click)="callJoint()"><ion-icon name="call"></ion-icon></button>
+                    </ion-buttons> 
                       </div>
                        
                      
@@ -72,8 +72,8 @@
                   </div>
                  
             </div>
-
-            <div class="chats" *ngFor="let chat of msgInfo; ">
+            <div  class="chats">
+            <div *ngFor="let chat of msgInfo; ">
             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date}} </p>
@@ -90,6 +90,7 @@
                        
                         </div>
               </div> 
+            </div>
           </ion-slide>
         </ion-slides>
        </ion-content>
