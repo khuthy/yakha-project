@@ -24,7 +24,7 @@ export class ChannelsPage {
   }
 
   ionViewDidLoad() {
-    this.dbRequest.doc(this.uid).onSnapshot((res) => {
+/*     this.dbRequest.doc(this.uid).onSnapshot((res) => {
       let data = {id:{}, data:{}, user:{}}
       this.dbChat.doc(this.uid).collection(res.data().builderUID).onSnapshot((result) => {
         for (let i = 0; i < result.docs.length; i++) {
@@ -38,12 +38,29 @@ export class ChannelsPage {
       })
       this.respond.push(data);
      // data = {id:{}, data:{}, user:{}}
+    }) */
+    this.dbRequest.where('hOwnerUid','==',this.uid).onSnapshot((res)=>{
+      for (let j = 0; j < res.docs.length; j++) {
+        let data = {id:{}, data:{}, user:{}}
+        this.dbChat.doc(this.uid).collection(res.docs[j].data().builderUID).onSnapshot((result) => {
+          for (let i = 0; i < result.docs.length; i++) {
+            data.id = result.docs[i].id;
+            data.data = result.docs[i].data();
+            this.dbUser.doc(res.docs[j].data().builderUID).onSnapshot((userDoc) => {
+              data.user = userDoc.data();
+            })
+          }
+        })
+        this.respond.push(data);
+     
+        
+       // data = {id:{}, data:{}, user:{}}
+      }
     })
-    
     console.log('Info>>>>>>', this.respond);
   }
-  gotoMessages(id, name, img) {
-    this.navCtrl.push(MessagesPage, { id, name, img });
+  gotoMessages(id, name) {
+    this.navCtrl.push(MessagesPage, { id, name });
   }
 
 

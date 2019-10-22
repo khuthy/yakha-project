@@ -18,13 +18,15 @@ import { CallNumber } from '@ionic-native/call-number';
 export class TestPage {
   imageBuilder: string;
   dbChat = firebase.firestore().collection('chat_msg');
+  dbChatting = firebase.firestore().collection('chatting');
   uid = firebase.auth().currentUser.uid;
   chatMessage: any;
   myMsg: any;
   messages = [];
   getowners = {
     image: '',
-    fullName: ''
+    fullName: '',
+    personalNumber:'',
   };
   constructor(
     public navCtrl: NavController, 
@@ -41,7 +43,7 @@ export class TestPage {
      setTimeout(() => {
       this.getOwnerDetails();
      }, 3000);
-    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
         this.messages.push(res.docs[i].data())
@@ -49,7 +51,7 @@ export class TestPage {
     })
   }
   getChats() {
-    this.dbChat.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
@@ -62,6 +64,7 @@ export class TestPage {
     firebase.firestore().collection('Users').doc(this.navParams.data.uid).get().then(owners => {
        this.getowners.image = owners.data().image;
       this.getowners.fullName = owners.data().fullName;
+      this.getowners.personalNumber= owners.data().personalNumber;
     })
   }
   getProfileImageStyle() {
@@ -71,8 +74,8 @@ export class TestPage {
   createQuotes(){
     this.navCtrl.push(BuilderquotesPage);
   }
-  callJoint(personalNumber) {
-    this.callNumber.callNumber(`0815884639`, true)
+  callJoint() {
+    this.callNumber.callNumber(`personalNumber`, true)
     .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
   }
