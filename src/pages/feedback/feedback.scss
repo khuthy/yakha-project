@@ -1,6 +1,7 @@
 page-feedback {
     margin: 0 !important;
     padding: 0 !important;
+    overflow: hidden;
        /*  .aboutus1 {
             height: auto;
             border: solid red;
@@ -29,7 +30,7 @@ page-feedback {
     align-content: center;
     align-items: center;
                   h4 {
-                   font-size: 2vw;
+                   font-size: 4vw;
                     //  border:1px solid blue;
                       letter-spacing: 1px;
                       font-weight: 300;
@@ -39,21 +40,30 @@ page-feedback {
             .inform{
              // background:green;
            width:90%;
+           height: 70%;
           overflow-y: auto;
           margin-top:3%;
           margin-left:5%;
           P {
             letter-spacing: 1PX;;
             padding-left: 3%;
+            color:#203959;
+            font-size: 4vw;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border:1.5px solid #203959;
+            padding: 2%;
           }
     
            }
             h4{
                   color: white;
+                  font-size: 4vw;
             }
         .container {
+          overflow: hidden;
           margin: 0 !important;
-    padding: 0 !important;
+           padding: 0 !important;
             height: 100%;
             width: 100%;
            // border: 4px solid red;
