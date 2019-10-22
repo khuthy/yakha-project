@@ -37,7 +37,7 @@
         </div> 
         <p *ngIf="!owner" style="text-align: center;">You have no requests yet</p>
         </div>
-    <div #map id="map">
+    <div #map id="map" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')">
  
       </div>
       
