@@ -44,7 +44,7 @@ export class ChannelsPage {
         let data = {id:{}, data:{}, user:{}}
         this.dbChat.doc(this.uid).collection(res.docs[j].data().builderUID).onSnapshot((result) => {
           for (let i = 0; i < result.docs.length; i++) {
-            data.id = result.docs[i].id;
+            data.id = res.docs[i].id;
             data.data = result.docs[i].data();
             this.dbUser.doc(res.docs[j].data().builderUID).onSnapshot((userDoc) => {
               data.user = userDoc.data();
