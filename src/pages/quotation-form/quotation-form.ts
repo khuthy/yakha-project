@@ -607,5 +607,24 @@ export class QuotationFormPage {
       ev: myEvent
     });
   }
+  editQuotes() {
+    this.steps = 'steptwo';
+    this.setData();
+    setTimeout(() => {
+        this.nextslide();
+    }, 500);
+  }
+
+  setData() {
+    this.quotationForm.get('secondValid').patchValue({
+      comment: this.HomeOwnerQuotation.comment
+    });
+    this.quotationForm.get('firstCountValid').patchValue({
+      startDate: this.HomeOwnerQuotation.startDate,
+      endDate: this.HomeOwnerQuotation.endDate,
+      wallType: this.HomeOwnerQuotation.wallType
+    })
+    
+  }
 
 }
