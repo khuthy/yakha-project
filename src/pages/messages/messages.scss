@@ -237,7 +237,7 @@ ion-footer, ion-grid,ion-row, ion-col {
   //border: 1px solid red;
   padding-bottom: 33vh;
       .chat {
-        z-index: -2;
+       
         width: 85%;
       //height: 75px;
      margin: 5% auto;
@@ -246,6 +246,7 @@ ion-footer, ion-grid,ion-row, ion-col {
     
     }
     .left {
+      
       border-bottom-left-radius: 0;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       padding:2%;

@@ -100,17 +100,18 @@
                   <button>Quotation 004</button>
                   <ion-icon name="arrow-round-down"></ion-icon>
                 </ion-buttons>
-                <div id="buttons">
+                <div id="buttons" *ngIf="hideCard">
                   <ion-buttons>
-                    <button style="background:rgb(255, 101, 101);" (click)="acceptQoute()">Decline</button>
+                    <button style="background:rgb(255, 101, 101);" (click)="declineQoute()">Decline</button>
                   </ion-buttons>
 
                   <ion-buttons>
-                    <button style="background:rgb(91, 255, 91)">Accept</button>
+                    <button style="background:rgb(91, 255, 91)" (click)="acceptQoute()">Accept</button>
                   </ion-buttons>
-
-
                 </div>
+                <div id="buttons" *ngIf="!hideCard" >
+                   <p style="color: blue;">{{quoteStatus}}</p>
+                  </div>
 
               </div>
 
