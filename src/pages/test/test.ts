@@ -48,6 +48,8 @@ export class TestPage {
       res.forEach((doc)=>{
         this.incomingMsg.push(doc.data());
       })
+      console.log('Requests..', this.incomingMsg);
+      
     })
      setTimeout(() => {
       this.getOwnerDetails();
