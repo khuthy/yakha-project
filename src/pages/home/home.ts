@@ -645,7 +645,7 @@ export class HomePage {
   }
   viewRequest(docID, uid) {
     this.navCtrl.push(TestPage, { docID, uid });
-    //console.log(user);
+  //  console.log('Doc id>>>>',docID,'user id===', uid);
   }
   requestForm() {
     this.navCtrl.push(QuotationFormPage)

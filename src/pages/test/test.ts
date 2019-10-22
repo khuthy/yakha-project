@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { BuilderquotesPage } from '../builderquotes/builderquotes';
 /**
  * Generated class for the TestPage page.
  *
@@ -33,9 +34,10 @@ export class TestPage {
   incomingMsg = [];
   msgInfo = [];
   chat = []
-
+  msgSent = []
   toggle: boolean = false;
   icon: string = 'ios-arrow-down';
+  extras=[];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
@@ -56,31 +58,38 @@ export class TestPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad TestPage', docID: , uid:);
-    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
-      this.incomingMsg = [];
-     // console.log('Requests......', res.docs); 
+    /* this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
-        this.incomingMsg.push(doc.data());
+        console.log('Response....', doc.data());
+        
       })
-      console.log('Requests..', this.incomingMsg);
-      
+    }) */
+    this.dbIncoming.doc(this.navParams.data.docID).onSnapshot((res) => {
+      // console.log(res.docs);
+     // res.forEach((doc) => {
+     //   console.log(res.data())
+        this.extras.push(res.data().extras[0]);
+        console.log('My extras......', this.extras);
+     // })
     })
+    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res) => {
+      // console.log('This doc ', doc.data());
+      res.forEach((doc) => {
+        this.msgSent.push({data:doc.data(), id: doc.id})
+      })
+
+    })
+  
      setTimeout(() => {
       this.getOwnerDetails();
      }, 3000);
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).orderBy("date").onSnapshot((res) => {
-      this.chat=[];
-      for (let i = 0; i < res.docs.length; i++) {
-        this.chat.push(res.docs[i].data())
-      }
-    })
+
+  
   }
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
-    this.currentUid = this.incomingMsg[currentIndex].builderUID;   
-   // let curr = this.messages[currentIndex];
-     this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).where('id','==',this.chat[currentIndex].id).orderBy('date').onSnapshot((res) => {
+    this.currentUid = this.msgSent[currentIndex].id;
+     this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
       this.msgInfo=[];
       for (let i = 0; i < res.docs.length; i++) {
         this.msgInfo.push(res.docs[i].data())
@@ -89,13 +98,18 @@ export class TestPage {
     }) 
   }
   getChats() {
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true, id: this.navParams.data.docID }).then((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true, id:  this.currentUid }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
         console.log('This is what I sent now...', doc.data());
       })
     })
+  }
+  respond() {
+    this.navCtrl.push(BuilderquotesPage, {docID: this.navParams.data.docID, uid: this.navParams.data.uid});
+    //console.log('Doc ID--', this.currentUid, 'Home owner uid--', this.navParams.data.uid);
+    
   }
   getOwnerDetails() {
     firebase.firestore().collection('Users').doc(this.navParams.data.uid).get().then(owners => {
