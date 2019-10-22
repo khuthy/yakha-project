@@ -33,11 +33,26 @@ export class TestPage {
   incomingMsg = [];
   msgInfo = [];
   chat = []
+
+  toggle: boolean = false;
+  icon: string = 'ios-arrow-down';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // this.imageBuilder = this.navParams.data.img;
     console.log('Nav params', this.navParams.data);
     this.messages = [];
    
+  }
+  open() {
+    if (this.toggle == true) {
+      this.toggle = false;
+      this.icon = 'ios-arrow-down';
+      
+    } else {
+      this.icon = 'ios-arrow-up';
+      this.toggle = true;
+     
+    }
+
   }
 
   ionViewDidLoad() {
