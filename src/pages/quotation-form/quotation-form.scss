@@ -26,7 +26,7 @@ page-quotation-form {
 
   } */
   .toolbar {
-    //border: 3px solid green;
+   // border: 3px solid green;
     .toolbar-background {
     background: transparent;
       
@@ -37,6 +37,11 @@ page-quotation-form {
       border-radius: 50%;
       min-height: 45px;  
     } 
+
+    #swithback {
+      position: absolute;
+      bottom:10px;
+    }
    .title {
     
      .toolbar-title {
@@ -46,11 +51,15 @@ page-quotation-form {
      }
    }
    ion-title {
-     //border: 1px solid blue;
+    // border: 1px solid blue;
     // position: absolute;
-   
+   margin-left: -4px;
      width: 70%;
      z-index: 6;
+ margin-top:4px;
+     p{
+       padding-left: -4px;
+     }
    }
   } 
 
@@ -66,12 +75,15 @@ page-quotation-form {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50vw;
+    width: 45vw;
     height: 20vw;
     opacity: 1;
-    background-size: 100%;
+    background-size: 90%;
+    background-repeat: no-repeat;
     //border:1px solid red;
-
+    margin-left: auto;
+background-position: 100% 0%;
+  
   } 
  
 
@@ -88,7 +100,7 @@ page-quotation-form {
   }
 
   .btn {
-    border:1px solid rgb(218, 28, 3);
+    //border:1px solid rgb(218, 28, 3);
     width: 50%;
     height:8%;
     padding:0.8vh;
@@ -415,7 +427,7 @@ img {
       .secon {
         transition: 0.3s;
         width: 0%;
-        height: 100%;
+        height: 100vw;
         //overflow-y: auto;
       //  background: yellow;
         overflow-x: hidden;
@@ -608,12 +620,12 @@ div {
     background: #033b52;
     border-radius: 4px;
     padding:7px;
- 
+ margin:1%;
    }
    #headex {
 
 
-     border:1px solid green;
+    // border:1px solid green;
      font-size:3.5vh;
      color:rgb(53, 50, 50);
      font-weight: 400;
@@ -767,15 +779,29 @@ div {
     bottom: 0;;
     width:100%;
     height: 13%;
-  //  border: 4px solid red;
+    //border: 4px solid red;
+   display: flex;;
+
+   
+.names {
+ // border: 1px solid red;
+  width:45%;
+display: flex;
+flex-direction: column;
+justify-content: center;;;
+ p{
+   padding-left: 3%;
+  // border: 1px solid rgb(0, 4, 255);
+ }
+}
 .button-group {
  // border: 1px solid red;
   //margin-top: 30px;
   position: absolute;
-  bottom: 5px;
+  bottom: 15%;
   right: 0;
 
-  background: #cc9e14;
+  background: rgb(204, 158, 20);
   padding-left: 15px;
   display: flex;
   z-index: 100;
@@ -800,15 +826,16 @@ div {
 
 
 }//close next button
+
  }
 
 
 //edit quote before submit buttton
-.edit {
+#edit {
   //border:1px solid red;
   margin-top: 30px;
   position: absolute;
-  bottom: 2%;
+  bottom: 6%;
   left: 0;
   background: #cc9e14;
   padding-left: 15px;

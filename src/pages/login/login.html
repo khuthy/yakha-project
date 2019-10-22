@@ -6,7 +6,7 @@
 
 </div>
     <div class="logo" id="hide-div2">
-      <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
+      <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}" *ngIf="!hid"></div>
       
       <div id="logo" *ngIf="!hid">
         <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 100px; height: auto">
@@ -42,7 +42,7 @@
           <p id="hide-p" style="text-align: right;width:90%;" [style.color]="builder ? '#000' : '#fff'" (click)=" presentPrompt()" *ngIf="!hid">Forgot password?</p>
 
 
-          <div style="margin-top:10%" id="hide-div" >
+          <div style="margin-top:10%" id="hide-div" *ngIf="!hid">
 
             <div class="div-fab" style="padding-left: 2%;" [style.backgroundColor]="builder ?  '#A49078 ' : '#015272'" (click)="createAcc()">
 

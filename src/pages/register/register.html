@@ -71,9 +71,7 @@
    </form>
       </div>
  
-      <div  *ngIf="hid" >
-
-        </div>
+      <div id="hide-bottom" [ngClass]="{'bottomdecoBuilder' : builder, 'bottomdecoOwner': !builder }" *ngIf="!hid"></div>
     </div>
         </ion-content>
    <!--        <div class="btn" hide-on-keyboard-open style="display: flex;">

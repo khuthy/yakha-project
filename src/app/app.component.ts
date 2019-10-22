@@ -19,6 +19,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ChannelsPage } from '../pages/channels/channels';
 //import { OneSignal } from '@ionic-native/onesignal';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 @Component({
@@ -44,12 +45,12 @@ export class MyApp {
   messages = 0
   token: string;
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
+  constructor(public platform: Platform, private screenOrientation: ScreenOrientation, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
     
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-    this.statusBar.backgroundColorByHexString('#203550');
+
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
     this.db =firebase.firestore();
@@ -73,6 +74,9 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.statusBar.backgroundColorByHexString('#203550');
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
          this.setupPush();
