@@ -647,16 +647,21 @@ export class HomePage {
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
   }
+
   viewRequest(docID, uid) {
+
     this.navCtrl.push(TestPage, { docID, uid });
   //  console.log('Doc id>>>>',docID,'user id===', uid);
   }
+
   requestForm() {
     this.navCtrl.push(QuotationFormPage)
   }
+
   rShortcut(uid) {
     this.navCtrl.push(QuotationFormPage, uid);
   }
+
   getRequests() {
     //let data = {info: [], user: [], id: []}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {

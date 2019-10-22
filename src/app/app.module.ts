@@ -142,7 +142,6 @@ import { PasswordResetComponent } from '../components/password-reset/password-re
     SuccessPage,
     WelcomePage,
     ViewmessagePage,
-   
     BuilderquotesPage,
     OnboardingBuilderPage,
     ProfileComponent,

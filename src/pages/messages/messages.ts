@@ -73,6 +73,7 @@ export class MessagesPage {
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
+  number: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
@@ -172,7 +173,10 @@ export class MessagesPage {
     this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
+        // quering builder personal number
+        this.dbProfile.doc(doc.data().builderUID).onSnapshot((response)=>{ this.number = response.data().personalNumber})
         this.msgSent.push({data:doc.data(), id: doc.id})
+        //this.number = doc.data().personalNumber;
       })
 
     })
@@ -203,10 +207,11 @@ export class MessagesPage {
   getProfileImageStyle() {
     return 'url(' + this.imageBuilder + ')';
   }
-  callJoint(personalNumber) {
-    console.log(personalNumber);
+  callJoint() {
     
-    // this.callNumber.callNumber(personalNumber, true);
+    console.log('number',this.number);
+    
+    this.callNumber.callNumber(this.number, true);
   }
 
 
