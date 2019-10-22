@@ -70,9 +70,11 @@ export class MessagesPage {
   manageUser: boolean;
   chatting = [];
   msgRespond = [];
+  pdf='';
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
+  number: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
@@ -105,18 +107,25 @@ export class MessagesPage {
   }
   /* Tesing if chats works */
   chats = [];
-slideChanged() {
+
+
+
+  slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.currentUid = this.msgSent[currentIndex].id;
    // let curr = this.messages[currentIndex];
     this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
-        this.messages.push(res.docs[i].data())
+        if (!res.docs[i].data().pdfLink) {
+          
+        }
+        this.messages.push({chat:res.docs[i].data()})
       }
-      console.log('Message...', this.messages);
-      
-    })
+      console.log('Response data', this.messages);
+
+  }) 
+ 
   }
 
 
@@ -159,17 +168,26 @@ slideChanged() {
     });
   }
   ionViewDidLoad() {
+    //get Response
+  
     //get Requests
-    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
+    setTimeout(() => {
+      this.slideChanged()
+    }, 500);
+    this.dbIncoming.where('hOwnerUID','==',this.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
-        console.log('Response....', doc.data());
         
+        let pdf = doc.data().pdfLink;
+        this.pdf = pdf;
       })
     })
     this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
+        // quering builder personal number
+        this.dbProfile.doc(doc.data().builderUID).onSnapshot((response)=>{ this.number = response.data().personalNumber})
         this.msgSent.push({data:doc.data(), id: doc.id})
+        //this.number = doc.data().personalNumber;
       })
 
     })
@@ -200,10 +218,11 @@ slideChanged() {
   getProfileImageStyle() {
     return 'url(' + this.imageBuilder + ')';
   }
-  callJoint(personalNumber) {
-    console.log(personalNumber);
+  callJoint() {
     
-    // this.callNumber.callNumber(personalNumber, true);
+    console.log('number',this.number);
+    
+    this.callNumber.callNumber(this.number, true);
   }
 
 

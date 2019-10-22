@@ -528,11 +528,12 @@ export class QuotationFormPage {
         } else {
           this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
             res.update({ docID: res.id });
+            this.HomeOwnerQuotation.extras.forEach((item) => {
+              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+            });
             this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
               console.log('Chat >>>>-----', res.id);
-              this.HomeOwnerQuotation.extras.forEach((item) => {
-                res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-              });
+             
               this.navCtrl.setRoot(SuccessPage);
             })
           });

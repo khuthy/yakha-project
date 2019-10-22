@@ -5,7 +5,7 @@
                         <ion-navbar>
                           <!-- background image of the builder -->
                           <div class="pickimage">
-                             <img src="{{imageBuilder}}" class="img-header" alt="">
+                             <img src="../../assets/imgs/Plaster.png" class="img-header" alt="">
                           </div>
                          
                        
@@ -67,6 +67,9 @@
                                 <div class="etras">
                                   <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
                                 </div>
+                                <div class="downloadPDF">
+                                  <button ion-button block clear outline (click)="downloadPDF()"> <ion-icon name="file"></ion-icon>Quotation-PDF-Y00-{{i + 1}}</button>
+                                </div>
                           </div>
                  
                       </div>
@@ -75,30 +78,35 @@
 
                 <div class="chats" >
                     <div *ngFor="let chat of messages; ">
-                 <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-                       <p id="content">{{chat.chat}}</p>
-                       <p id="date">{{chat.date | date:"hh:mm"}} </p>
+                 <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
+                       <p id="content">{{chat.chat.chat}}</p>
+                       <p id="date">{{chat.chat.date | date:"hh:mm"}} </p>
                       </div>
                 
-                    <div class="chat right" id="outgoing" *ngIf="chat.builder">
-                        <ion-buttons  id="quotation">
-                            <button>Quotation 004</button>
-                            <ion-icon name="arrow-round-down"></ion-icon>
-                          </ion-buttons>
-                          <div id="buttons">
-                              <ion-buttons>
-                                  <button style="background:rgb(255, 101, 101);">Decline</button>
-                                </ion-buttons>
-                                
-                             <ion-buttons>
-                                 <button style="background:rgb(91, 255, 91)">Accept</button>
-                               </ion-buttons>
-                   
-                            
-                          </div>
-                       
-                         <p id="content">{{chat.chat}}</p>
-                         <p id="date">{{chat.date | date}} </p>
+                    <div class="chat right" id="outgoing" *ngIf="chat.chat.builder">
+                      <div *ngIf="chat.chat.pdf">
+
+                          <ion-buttons  id="quotation">
+                              <button>Quotation 004</button>
+                              <ion-icon name="arrow-round-down"></ion-icon>
+                            </ion-buttons>
+                            <div id="buttons">
+                                <ion-buttons>
+                                    <button style="background:rgb(255, 101, 101);">Decline</button>
+                                  </ion-buttons>
+                                  
+                               <ion-buttons>
+                                   <button style="background:rgb(91, 255, 91)">Accept</button>
+                                 </ion-buttons>
+                     
+                              
+                            </div>
+                         
+
+                      </div>
+                        
+                         <p id="content">{{chat.chat.chat}}</p>
+                         <p id="date">{{chat.chat.date | date}} </p>
 
                        
                         </div>

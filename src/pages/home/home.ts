@@ -25,7 +25,7 @@ export class HomePage {
   dbFeeback = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
   autoCompSearch = document.getElementsByClassName('searchbar-input');
-  hideCard = document.getElementsByClassName('yakha-search');
+  hideCard = document.getElementsByClassName('slider');
   items: any;
   info = false;
   builder = [];
@@ -51,6 +51,7 @@ export class HomePage {
   message = '';
   isBuilder;
   input = '';
+  menuShow: boolean = true;
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
   geoData = {
@@ -80,10 +81,15 @@ export class HomePage {
   checkKeyboard(data) {
     if (data =='open') {
       //this.hid='value';
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(30vh)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(40vh)');
+      this.menuShow = false;
+
     } else {
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)');
+      this.menuShow = true
     }
+   // console.log(data);
+    
   }
   AutoComplete(){
    
@@ -494,6 +500,9 @@ export class HomePage {
         }
       ]
     });
+    google.maps.event.addDomListener(this.map, 'click', () => {
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+    });
     this.getBuilders();
 
 
@@ -638,16 +647,21 @@ export class HomePage {
   viewBuilderInfo(builder) {
     this.navCtrl.push(BuilderProfileviewPage, builder);
   }
+
   viewRequest(docID, uid) {
+
     this.navCtrl.push(TestPage, { docID, uid });
-    //console.log(user);
+  //  console.log('Doc id>>>>',docID,'user id===', uid);
   }
+
   requestForm() {
     this.navCtrl.push(QuotationFormPage)
   }
+
   rShortcut(uid) {
     this.navCtrl.push(QuotationFormPage, uid);
   }
+
   getRequests() {
     //let data = {info: [], user: [], id: []}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
