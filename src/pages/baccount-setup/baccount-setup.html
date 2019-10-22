@@ -12,12 +12,13 @@
        
             <div class="group-button" (click)="SignOut()">
                 <p>Logout</p>
-                <button ion-fab color="light" (click)="signOut()"><ion-icon name="arrow-forward"></ion-icon></button>
+                <button ion-fab color="light" (click)="SignOut()"><ion-icon name="arrow-forward"></ion-icon></button>
               </div> 
         
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content fullscreen>
 <!--  -->
 <form padding [formGroup]="profileForm" *ngIf="!isProfile">

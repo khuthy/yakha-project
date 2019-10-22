@@ -25,7 +25,6 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MessagesPage {
   db = firebase.firestore();
   @ViewChild('slides') slides: Slides;
-  
   dbMessage = firebase.firestore().collection('Request');
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
@@ -70,6 +69,7 @@ export class MessagesPage {
   myMsg = '';
   manageUser: boolean;
   chatting = [];
+  msgRespond = [];
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
@@ -84,7 +84,7 @@ export class MessagesPage {
     private callNumber: CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log('DATA=>', this.autoUid);
+    console.log('DATA=>', this.autoUid, '', this.autoUid.img);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
     this. personalNumber = this.autoUid. personalNumber;
@@ -119,12 +119,17 @@ slideChanged() {
     })
   }
 
-  getData(){
-    this.dbProfile.onSnapshot(data => {
-      data.forEach(items => {
-        console.log("My phone number here is", items.data);
-        
-      })
+
+  slideChanged() {
+    let currentIndex = this.slides.getActiveIndex();
+    this.currentUid = this.msgSent[currentIndex].id;
+   // let curr = this.messages[currentIndex];
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
+      this.messages=[];
+      for (let i = 0; i < res.docs.length; i++) {
+        this.messages.push(res.docs[i].data())
+      }
+    //  console.log('Message...', this.messages);
       
     })
   }
@@ -170,6 +175,12 @@ slideChanged() {
   }
   ionViewDidLoad() {
     //get Requests
+    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
+      res.forEach((doc)=>{
+        console.log('Response....', doc.data());
+        
+      })
+    })
     this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {

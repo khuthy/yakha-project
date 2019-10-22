@@ -1,11 +1,11 @@
 import { HomePage } from './../home/home';
 import { Component, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Popover, PopoverController, Slides, MenuController, ActionSheetController } from 'ionic-angular';
 import { SuccessPage } from '../success/success';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera';
 import { MessagesPage } from '../messages/messages';
 import { Quotations, WallType, Extra, Comments } from '../../app/model/bricks';
 
@@ -59,7 +59,7 @@ export class QuotationFormPage {
     date: Date(),
     view: false,
     builderUID: '',
-    docID : ''
+    docID: ''
   };
   docID;
   date: any;
@@ -126,7 +126,7 @@ export class QuotationFormPage {
     private formBuilder: FormBuilder,
     public oneSignal: OneSignal,
     private renderer: Renderer2,
-    public menuCtrl: MenuController) {
+    public menuCtrl: MenuController, public actionSheetCtrl: ActionSheetController) {
     this.uid = firebase.auth().currentUser.uid;
     this.authUser.setUser(this.uid);
     this.HomeOwnerQuotation.hOwnerUid = this.uid;
@@ -145,14 +145,14 @@ export class QuotationFormPage {
       //   endDate: new FormControl('', Validators.compose([Validators.required])),
       // }),
 
-      
+
 
       firstCountValid: this.formBuilder.group({
         startDate: new FormControl('', Validators.compose([Validators.required])),
         endDate: new FormControl('', Validators.compose([Validators.required])),
         wallType: new FormControl('', Validators.compose([Validators.required])),
         houseimage: ['']
-       
+
       }),
       secondValid: this.formBuilder.group({
         extra: new FormControl('', Validators.compose([Validators.required])),
@@ -169,8 +169,8 @@ export class QuotationFormPage {
          this.HomeOwnerQuotation.ownerName = doc.data().fullname;
        })
      }) */
-     this.quotationForm.get('secondValid').get('extra').clearValidators();
-     this.quotationForm.get('secondValid').get('comment').clearValidators();
+    this.quotationForm.get('secondValid').get('extra').clearValidators();
+    this.quotationForm.get('secondValid').get('comment').clearValidators();
     setTimeout(() => {
       this.hideHeader = true;
     }, 2000);
@@ -205,25 +205,25 @@ export class QuotationFormPage {
     if (this.steps == 'stepone') {
       this.navCtrl.pop();
 
-    }else if(this.steps == 'steptwo') {
-      
-      document.getElementById('step1').style.overflow="auto";
+    } else if (this.steps == 'steptwo') {
+
+      document.getElementById('step1').style.overflow = "auto";
       // document.getElementById('step2').style.display="none";
       this.steps = 'stepone';
-       setTimeout(() => {
+      setTimeout(() => {
         this.nextbutton = false;
         this.nextslide()
       }, 500)
-    }else if(this.steps == 'stepthree') {
-     
-      document.getElementById('step2').style.overflow="auto";
+    } else if (this.steps == 'stepthree') {
+
+      document.getElementById('step2').style.overflow = "auto";
       // document.getElementById('step2').style.display="none";
       this.steps = 'steptwo';
-       setTimeout(() => {
+      setTimeout(() => {
         this.nextbutton = false;
         this.nextslide()
       }, 500)
-    }else {
+    } else {
       this.steps = 'stepone';
     }
   }
@@ -234,16 +234,16 @@ export class QuotationFormPage {
 
     if (this.steps == 'stepone') {
       if (this.quotationForm.get('firstCountValid').invalid || (this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.brickType == '')) {
-      
-          this.quotationForm.get('firstCountValid').get('startDate').markAsTouched();
-          this.quotationForm.get('firstCountValid').get('endDate').markAsTouched();
-          this.quotationForm.get('firstCountValid').get('wallType').markAsTouched();
-          this.houseimage = true;
-          this.brickType = true;
+
+        this.quotationForm.get('firstCountValid').get('startDate').markAsTouched();
+        this.quotationForm.get('firstCountValid').get('endDate').markAsTouched();
+        this.quotationForm.get('firstCountValid').get('wallType').markAsTouched();
+        this.houseimage = true;
+        this.brickType = true;
       } else {
         this.steps = 'steptwo';
         this.houseimage = false;
-          this.brickType = false;
+        this.brickType = false;
         document.getElementById('step2').style.display = "flex";
         // document.getElementById('step1').style.display="none";
         //this.navCtrl.push()
@@ -259,13 +259,13 @@ export class QuotationFormPage {
 
 
     } else if (this.steps == 'steptwo') {
-      document.getElementById('step3').style.overflow="auto";
-        // document.getElementById('step2').style.display="none";
-        this.steps = 'stepthree';
-        setTimeout(() => {
-          this.nextbutton = false;
-          this.nextslide()
-        }, 500)
+      document.getElementById('step3').style.overflow = "auto";
+      // document.getElementById('step2').style.display="none";
+      this.steps = 'stepthree';
+      setTimeout(() => {
+        this.nextbutton = false;
+        this.nextslide()
+      }, 500)
     }
   }
   checkClicked(event) {
@@ -383,15 +383,44 @@ export class QuotationFormPage {
   // this.extras =["roofing", "doors", "windows", "framing", "electricity", "Plumbing", "ceiling", "plaster"];
   // }
   async selectImage() {
-    let option: CameraOptions = {
-      quality: 100,
+    const actionSheet = await this.actionSheetCtrl.create({
+      title: "Select image",
+      cssClass: "class_used_to_set_icon",
+      buttons: [{
+        icon: 'images',
+        text: 'Gallery',
+
+        handler: () => {
+          this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
+        }
+      },
+      {
+        icon: 'camera',
+        text: 'Camera',
+        handler: () => {
+          this.takePicture(this.camera.PictureSourceType.CAMERA)
+        }
+      },
+      {
+        icon: 'close',
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
+  }
+  async takePicture(sourcetype: PictureSourceType) {
+    const options: CameraOptions = {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
-    await this.camera.getPicture(option).then(res => {
+      quality: 100,
+      sourceType: sourcetype,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
+    await this.camera.getPicture(options).then(res => {
       console.log(res);
       const image = `data:image/jpeg;base64,${res}`;
       this.houseImage = image;
@@ -420,7 +449,47 @@ export class QuotationFormPage {
 
     })
     this.imageSelected = true;
+    // })
   }
+  /*   async selectImage() {
+      let option: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+      }
+      await this.camera.getPicture(option).then(res => {
+        console.log(res);
+        const image = `data:image/jpeg;base64,${res}`;
+        this.houseImage = image;
+        let file = 'QuatationForm/' + this.authUser.getUser() + '.jpg';
+        const UserImage = this.storage.child(file);
+        const upload = UserImage.putString(image, 'data_url');
+        upload.on('state_changed', snapshot => {
+          let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          this.uploadprogress = progress;
+          if (progress == 100) {
+            this.isuploading = false;
+          }
+        }, err => {
+        }, () => {
+          upload.snapshot.ref.getDownloadURL().then(downUrl => {
+            this.HomeOwnerQuotation.houseImage = downUrl;
+            this.quotationForm.get('firstCountValid').get('houseimage').patchValue({
+              houseimage: downUrl
+            })
+            console.log('Image downUrl', downUrl);
+            this.isUploaded = true;
+          })
+        })
+      }, err => {
+        console.log("Something went wrong: ", err);
+  
+      })
+      this.imageSelected = true;
+    } */
   alertContrl() {
     return this.alertCtrl.create({
       title: 'Empty field',
@@ -452,17 +521,17 @@ export class QuotationFormPage {
             buttons: ['Try again']
           }).present()
         } else {
-         this.db.collection('Request').add(this.HomeOwnerQuotation).then((res)=>{
-           res.update({docID : res.id});
-          this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res)=>{
-            console.log('Chat >>>>-----',res.id);
-            this.HomeOwnerQuotation.extras.forEach((item) => {
-              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-            });
-            this.navCtrl.setRoot(SuccessPage);
-          })
-         });
-           
+          this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
+            res.update({ docID: res.id });
+            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
+              console.log('Chat >>>>-----', res.id);
+              this.HomeOwnerQuotation.extras.forEach((item) => {
+                res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+              });
+              this.navCtrl.setRoot(SuccessPage);
+            })
+          });
+
           // upon success...
           // user.then((response) => {
 
@@ -485,7 +554,7 @@ export class QuotationFormPage {
           //       })
           //     }
           //   })
-          
+
 
 
           //   this.navCtrl.setRoot(SuccessPage)
@@ -501,10 +570,10 @@ export class QuotationFormPage {
           //     message: 'Error submitting Quotation.',
           //     duration: 2000
           //   }).present();
-            this.isProfile = false;
-            // load.dismiss();
-         // })
-          
+          this.isProfile = false;
+          // load.dismiss();
+          // })
+
         }
 
       }

@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController, PopoverController,Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController, MenuController, PopoverController,Slides, ActionSheetController } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 //import { BricklayerlandingPage } from '../bricklayerlanding/bricklayerlanding';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
@@ -81,7 +81,7 @@ export class BaccountSetupPage {
     private formBuilder: FormBuilder,
     private menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
-    public oneSignal: OneSignal,
+    public oneSignal: OneSignal, public actionSheetCtrl: ActionSheetController,
    /*  public Slides: Slides */
   ) {
     this.authUser.setUser(firebase.auth().currentUser.uid);
@@ -159,6 +159,74 @@ export class BaccountSetupPage {
     //console.log(this.location)
   }
   async selectImage() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      title: "Select image",
+      cssClass: "class_used_to_set_icon",
+      buttons: [{
+        icon: 'images',
+        text: 'Gallery',
+       
+        handler: () => {
+          this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
+        }
+      },
+      {
+        icon: 'camera',
+        text: 'Camera',
+        handler: () => {
+          this.takePicture(this.camera.PictureSourceType.CAMERA)
+        }
+      },
+      {
+        icon:'close',
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
+    }
+    async takePicture(sourcetype: PictureSourceType) {
+      const options: CameraOptions = {
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        quality: 100,
+        sourceType: sourcetype,
+        saveToPhotoAlbum: false,
+        correctOrientation: true
+      };
+     await this.camera.getPicture(options).then(res => {
+      console.log('images', res);
+      const image = `data:image/jpeg;base64,${res}`;
+      this.profileImage = image;
+      let file = 'builder-Profile/' + this.authUser.getUser() + '.jpg';
+      const UserImage = this.storage.child(file);
+      const upload = UserImage.putString(image, 'data_url');
+      upload.on('state_changed', snapshot => {
+        let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.uploadprogress = progress;
+        if (progress == 100) {
+          this.isuploading = false;
+        }
+      }, err => {
+      }, () => {
+        upload.snapshot.ref.getDownloadURL().then(downUrl => {
+          this.builderProfile.image = downUrl;
+          this.profileImage = downUrl;
+          this.profileForm.patchValue({builder : downUrl});
+          console.log('Image downUrl', downUrl);
+          this.isuploaded = true;
+        })
+      })
+    }, err => {
+      console.log("Something went wrong: ", err);
+
+    })
+    this.imageSelected = true;
+      // })
+    }
+ /*  async selectImage() {
     let option: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -195,7 +263,7 @@ export class BaccountSetupPage {
 
     })
     this.imageSelected = true;
-  }
+  } */
   async createprofile(profileForm: FormGroup): Promise<void> {
 
     if(!profileForm.valid || this.builderProfile.address==""){

@@ -52,8 +52,6 @@ export class ChannelsPage {
           }
         })
         this.respond.push(data);
-     
-        
        // data = {id:{}, data:{}, user:{}}
       }
     })

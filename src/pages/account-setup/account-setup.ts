@@ -108,9 +108,11 @@ export class AccountSetupPage {
   async selectImage() {
     const actionSheet = await this.actionSheetCtrl.create({
       title: "Select image",
+      cssClass: "class_used_to_set_icon",
       buttons: [{
         icon: 'images',
         text: 'Gallery',
+       
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY)
         }

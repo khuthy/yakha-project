@@ -1,5 +1,40 @@
 page-messages {  
+  ion-navbar {
+    //border: 1px solid red;
+
+    .buttons {
+      //border: 1px solid blue;
+      display: flex;
+      position: absolute;
+      top: 0%;
+      
+      width: 97%;
+      height: 35%;
+
+       button {
+        min-height: 45px;
+      width:45px;
+      } 
+    }
+    #backbtn {
+     // border: 1px solid green;
+     margin-top:7px;
+#callbtn {
+  color: red; 
+}
+    }
+
+    #callbtn {
+      //border: 1px solid green;
+      margin-left: auto;
+      margin-top:7px;
+      ion-fab {
+        background: red;
+      }
+    }
+  }
   .pickimage {
+    //border: 1px solid red;
     position: absolute;
     top: 0;
     left: 0;
@@ -22,14 +57,14 @@ border-radius: 0 0 50px 50px;
 } 
 .toolbar {
  height: 30vh;
- background-position: center;
+ background-position: 50% 35%;
  background-repeat: no-repeat;
  background-size: cover;
  .button-drop {
      position: absolute;
-     //background: red;
+    // background: red;
      bottom: 5%;
-     right: 0%;
+     right: 3%;
      border-radius: 50px;
  }
  .toolbar-background {
@@ -43,7 +78,9 @@ border-radius: 0 0 50px 50px;
      .toolbar-title {
          color: #fff;
          text-align: center;
-        font-weight: lighter;
+        font-weight: bold;
+        font-size:5vw;
+        letter-spacing: 1px;;
      }
  }
  .countQoutes {
@@ -194,20 +231,19 @@ ion-footer, ion-grid,ion-row, ion-col {
  .chats {
   //border: 1px solid red;
   height: 100%;
-  
+  position: fixed;
   top: 35%;
   left: 0;
   width: 100%;
-
   overflow-y: auto;
- 
+  //border: 1px solid red;
   padding-bottom: 33vh;
       .chat {
         z-index: -2;
-        width: 80%;
+        width: 85%;
       //height: 75px;
      margin: 5% auto;
-      border-radius: 5px;
+      border-radius: 10px;
       position: relative;
     
     }
@@ -221,13 +257,14 @@ ion-footer, ion-grid,ion-row, ion-col {
       justify-self: flex-end;
       text-align: left;
       #content {
-        font-size:4vw;
+        font-size:3.5vw;
         letter-spacing: 1px;
+        color: whitesmoke;
       }
   
       #date {
-        color:rgb(206, 206, 206);
-        font-size:3vw;
+        color:rgb(231, 226, 226);
+        font-size:2vw;
         letter-spacing: 1px;
         text-align: right;
        // border: 1px solid red;
@@ -240,17 +277,17 @@ ion-footer, ion-grid,ion-row, ion-col {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
       padding:2%;
       padding-left:2%;
-    
+     text-align: left;
       background: rgb(206, 206, 206);
      
        p {
-          font-size:4vw;
+          font-size:3.5vw;
       letter-spacing: 1px;
       color:white;
        }
        #date {
         color:rgb(100, 98, 98);
-        font-size:3vw;
+        font-size:2vw;
         letter-spacing: 1px;
         text-align: right;
        // border: 1px solid red;

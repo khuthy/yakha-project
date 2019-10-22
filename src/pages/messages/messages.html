@@ -1,37 +1,60 @@
+<ion-content>
+  <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
+    <ion-slide *ngFor="let item of msgSent; let i=index;">
+      <ion-header no-border>
+        <ion-navbar>
+          <!-- background image of the builder -->
+          <div class="pickimage">
+            <img src="{{imageBuilder}}" class="img-header" alt="">
+          </div>
 
      <ion-content >
             <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
               <ion-slide  *ngFor="let item of msgSent; let i=index;">
              <ion-header  no-border>
                         <ion-navbar>
+                          <!-- background image of the builder -->
                           <div class="pickimage">
-                             <img src="{{imageBuilder}}" class="img-header" alt="">
+                             <img src="{{item.image}}" class="img-header" alt="">
                           </div>
                          
-                          <div class="countQoutes">
-                            <span>{{i + 1 | number}}</span>
-                          </div>
-                            <ion-buttons left>
-                                <button icon-only ion-button color="light" (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
+                       
+
+                          <div class="buttons">
+                             <!-- backbutton -->
+                            <ion-buttons left top id="backbtn">
+                                <button ion-fab medium  (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
                               </ion-buttons>
 
-                            <ion-title start>Quotation-Y00{{i}}</ion-title>
-                            <ion-buttons right>
-                              <button ion-fab mini color="customcall" (click)="callJoint(item)"><ion-icon name="call"></ion-icon></button>
-                            </ion-buttons>
-                          <div class="button-drop">
-                            <button ion-button clear color="light" (click)="open()"><ion-icon [name]="icon"></ion-icon></button>
+                                 <!-- counter for quotaions -->
+                          <div class="countQoutes">
+                              <span>{{i + 1 | number}}</span>
+                            </div>
+                                <!-- callbtn -->
+                         <ion-buttons right id="callbtn">
+                              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
+                            </ion-buttons> 
                           </div>
+                           
+                         
+
+                              <!--  -->
+                            <ion-title start>Quotation-Y00{{i}}</ion-title>
+                           
+                          <div class="button-drop">
+                            <button ion-button clear color="light" (click)="open()"><ion-icon style="font-size:10vw" [name]="icon"></ion-icon></button>
+                          </div>
+
                         </ion-navbar>
                       </ion-header>
 
                 <div class="container">
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
-                          <div class="container-request" padding>
-                                <div class="house-plan" *ngIf="toggle">
+                          <div class="container-request" *ngIf="toggle" padding>
+                                <div class="house-plan">
                                     <img src="{{item.data.houseImage}}" alt="plan-{{i}}">
                                 </div>
-                                <div class="brick-time" *ngIf="toggle">
+                                <div class="brick-time" >
                                   <div class="card">
                                     <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
                                     <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
@@ -51,7 +74,7 @@
                                 </div>
                                 <div class="walltype"><p></p></div>
                                 <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
-                                <div class="etras" *ngIf="toggle">
+                                <div class="etras">
                                   <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
                                 </div>
                           </div>
@@ -63,7 +86,6 @@
                 <div class="chats" >
                     <div *ngFor="let chat of messages; ">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date:"hh:mm"}} </p>
                       </div>
@@ -74,16 +96,18 @@
                             <ion-icon name="arrow-round-down"></ion-icon>
                           </ion-buttons>
                           <div id="buttons">
+                              <ion-buttons >
+                                  <button style="background:rgb(245, 96, 96);">Decline</button>
+                                </ion-buttons>
                              <ion-buttons  >
-                                 <button style="background:green">Accept</button>
+                                 <button style="background:rgb(116, 250, 116)">Accept</button>
                                </ion-buttons>
                    
-                               <ion-buttons >
-                                   <button style="background:red;">Decline</button>
-                                 </ion-buttons>
+                            
                           </div>
+                       
                          <p id="content">{{chat.chat}}</p>
-                         <p id="date">{{chat.date | date:"hh:mm"}} </p>
+                         <p id="date">{{chat.date | date}} </p>
 
                        
                         </div>

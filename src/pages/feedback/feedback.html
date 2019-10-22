@@ -1,153 +1,97 @@
-<!--
-  Generated template for the FeedbackPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header >
-  <ion-navbar  color="primary">
-    <ion-title>feedback</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content>
-  <div class="container">
 
-
-  <div class="logo">
-    <img src="../../assets/imgs/logo.png" height="100">
-  </div>
-  <div class="content" *ngIf="!rateValue">
-      <h3>Having a great experience with Yakha?</h3>
-      <h3>Rate Us</h3>
-      <ionic3-star-rating #rating id="ratings" 
-      activeIcon = "ios-star"
-      defaultIcon = "ios-star-outline"
-      activeColor = "#3c7f8b" 
-      defaultColor = "#3c7f8b"
-      readonly="false"
-      rating="1"
-      fontSize = "32px"
-      (ratingChanged)="logRatingChange($event)">
-    </ionic3-star-rating>
-  </div>
-
-  <div class="content" *ngIf="rateValue">
-      <h3></h3>
-      <h3>You've rated</h3>
-      <ionic3-star-rating #rating id="ratings" 
-      activeIcon = "ios-star"
-      defaultIcon = "ios-star-outline"
-      activeColor = "#3c7f8b" 
-      defaultColor = "#3c7f8b"
-      readonly="true"
-      rating="{{rateValue}}"
-      fontSize = "32px"
-       >
-    </ionic3-star-rating>
-  </div>
-
-  <div class="content" *ngIf="!rateBuilderNow">
-      <h3>Please wait until you recieve from builder</h3>
-  </div>
-
-<div class="wave">
-
- </div>
-</div>
-</ion-content> -->
-<ion-content>
-
-  <div class="container">
-      <div [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
-          <button ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
-          </div>
-          <!-- <div class="logo">
-              <img src="../../assets/icon/Group 180.svg" style="max-width: 100px; height: auto">
-             </div> -->
-             <div class="inform">
+    <div class="container">
       
-              <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
-                  <div class="aboutus" (click)="activate('about')">
-                      <h4 text-center>Looking for a Homebuilder?</h4>
-                        </div>
-                        <p> Builders may specialize in tract, spec or custom homes so learn the differences and figure out which one is right for you and your home-buying budget.
-                          </p>
-                
-              </div>
-             
-              <div [ngClass]="{'aboutus1': tsProperty=='terms' , 'aboutus2': tsProperty!='terms'}">
-                  <div class="aboutus" (click)="activate('terms')">
-                      <h4 text-center>5 Tips to Hire a Builder for Your Dream Home</h4>
-                        </div>
+        <div id="topnav" [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
+            <button id="bckbtn" ion-fab (click)="navCtrl.pop()"><ion-icon color="light" name="arrow-back"></ion-icon></button>
+            </div>
+
+            <div class="logo">
+                <img src="../../assets/icon/Group 180.svg" style="max-width: 70px; height: auto">
+               </div>
+
+               <div class="inform">
+        
+                <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
+                    <div  class="aboutus" (click)="activate('about')">
+                        <h4 text-center>Looking for a Homebuilder?</h4>
+                        <p>Type of house is key to your search</p>
+                          </div>
+                          <p> Builders may specialize in tract, spec or custom homes so learn the differences and figure out which one is right for you and your home-buying budget.</p>
                   
-                  <p>As you prepare to launch on the biggest investment of your life, it's vital to move one step at a time. 
-                    Your relationship with your homebuilder will last months and months, maybe even a year or more. When you build your dream home,
-                     you want someone who communicates well, listens and understands your vision, has a stellar reputation and a trail of happy clients with beautiful homes.</p>
+                </div>
+               
+                <div [ngClass]="{'aboutus1': tsProperty=='terms' , 'aboutus2': tsProperty!='terms'}">
+                    <div class="aboutus" (click)="activate('terms')">
+                        <h4 text-center>10 Tricks for the beginner handyman</h4>
+                          </div>
+                    
+                    <p>Being handy with tools is more than showing off. Being “that guy” in your circle of friends is nice—if not a little tiring, what with all the requests to fix everything—but for those of you who want to become the guy who knows how to fix little problems here and there, there’s usually one obstacle.
 
-                    <p>1. Ask friends and family to recommend homebuilders
-                    Start by asking around for recommendations. Inquire among friends, family, and co-workers.
-                     Get the names of builders from your local home builders association. When you have some names to begin with, 
-                     check to ensure the builders have a permanent business address and actual business location.</p>
+                        How the hell do you learn? Watch reruns of Bob Vila on TV? (Who was not available, very unfortunately, for this piece.).
+                        
+                        1. Pull the Ole Nintendo on Your Garbage Disposal
+                        Before you begin, make sure you get under the sink and unplug the disposal unit itself (Many sinks have an outlet underneath them, just open the door and poke around for it.). If you can’t find that, flip the circuit breaker that gives power to the disposal. Seriously. You can’t skip this step because, if for some reason it turns on while you’re removing any stuck-on food in there, you will regret it..
+                        
+                        2. Stop a Toilet that Doesn’t Stop Running
+                        That sound.  It’s a torturous sound that can keep a guy up at night. Sure, the severity varies (there was once a toilet in the basement of the apartment building in which I was living that blew something so hard – it was spraying water up with enough force that it hit the ceiling – and shook the floors of my first-floor apartment), but a toilet’s importance can never be understated.
+                        
+                        3. Hammer a Nail—Not Your Hand
+                        There’s nothing like hammering a nail perfectly. There’s an art to it. Hitting the nail square on the head.
+                        
+                        The problem is, it might not happen all the time—just like the idiom suggests.
+                        
+                        To assuage your fear of bashing your fingertips while driving a nail into a harder material that requires some force, set the nail in place and hold the rod with pliers as you hammer away..
+                        
+                        4. Fix a Clogged Drain
+                        Many clogs can be fixed with liquid or gel drain cleaners, but if you’re facing something that’s got the whole thing backed up, get ready for a potentially messy fix.
+                        
+                        5. Know Your Homemade Cleaning Solutions
+                        Before you go mixing all the industrial-strength chemicals you have under your sink to create a Frankenstein mega cleaner, know a few things about what you’re mixing first—you could go Walter Whiting yourself without realizing it.</p>
+                </div>
+              <!--   <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
+                    <div class="aboutus" (click)="activate('contact')">
+                        <h4 text-center>Contact</h4>
+                          </div>
+                          <p>Contact us: (015)-610-6358</p>
+            
+                </div> -->
+             <!--    <div [ngClass]="{'aboutus1': tsProperty=='disclaimer' , 'aboutus2': tsProperty!='disclaimer'}">
+                    <div class="aboutus" (click)="activate('disclaimer')">
+                        <h4 text-center> Disclaimer</h4>
+                          </div>
                     
-                     <p> 2. Do a little research on local homebuilders
-                    Check the contractor's rating on Angie's List. Then check with the Better Business Bureau to make sure no complaints have been filed.
-                     Investigate their standing with the state contractors board.</p>
+                          <p>
+                            Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
+                            A few require that we include their licence Agreements within our product.
+                        </p>
+                </div> -->
+              <!--   <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
+                    <div class="aboutus" (click)="activate('safety')">
+                        <h4 text-center>safety information</h4>
+                          </div>
                     
-                     <p>3. Vet homebuilders through references and past work
-                    Delve into their work and interview prior clients. Ask to see a portfolio of the builder's projects.
-                     Go look at finished homes in person. Look closely at the workmanship.</p>
-                    
-                     <p>4. Consider the communication factor when building a home
-                    Because of the scope of building a home, you want to feel comfort in knowing you can communicate effectively with your builder.
-                     Is the builder readily available when you call, text, or email? Does he explain the process thoroughly, listen attentively to your thoughts and concerns, 
-                     and understand the details of your vision?
-                     Another aspect of communication is getting a complete written contract that details the procedure, process and milestones.</p>
-                    <p> 5. Look for red flags from the homebuilder
-                    If the builder asks for a large deposit up front, think twice. And if he isn't able to pay for materials as he goes along,
-                     you might want to jump ship.</p>
-              </div>
-              <!-- <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
-                  <div class="aboutus" (click)="activate('contact')">
-                      <h4 text-center>Contact</h4>
-                        </div>
-                        <p>Contact us: (015)-610-6358</p>
-          
-              </div> -->
-              <!-- <div [ngClass]="{'aboutus1': tsProperty=='disclaimer' , 'aboutus2': tsProperty!='disclaimer'}">
-                  <div class="aboutus" (click)="activate('disclaimer')">
-                      <h4 text-center> Disclaimer</h4>
-                        </div>
-                  
-                        <p>
-                          Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
-                          A few require that we include their licence Agreements within our product.
-                      </p>
-              </div> -->
-              <!-- <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
-                  <div class="aboutus" (click)="activate('safety')">
-                      <h4 text-center>safety information</h4>
-                        </div>
-                  
-                  <p>We keep your personal information private and safe and put you in control</p>
-              </div> -->
-          
-    
-    
-    <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
-    
-      </div>
-    
-    </div>
+                    <p>We keep your personal information private and safe and put you in control</p>
+                </div> -->
+            
       
       
+      <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
       
-      
-          
-      
+        </div>
       
       </div>
-    
+        
+        
+        
+        
+            
+        
+        
+        </div>
       
-    
+        
+      
 </ion-content>

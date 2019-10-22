@@ -24,6 +24,7 @@ export class HomePage {
   dbRequest = firebase.firestore().collection('Request');
   dbFeeback = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
+  autoCompSearch = document.getElementsByClassName('searchbar-input');
   items: any;
   info = false;
   builder = [];
@@ -64,6 +65,7 @@ export class HomePage {
   userImg = '';
   // sumRate=0;
   noReviews = 'No reviews yet';
+  autocom: any;
   constructor(public navCtrl: NavController,
     public geolocation: Geolocation,
     public navParams: NavParams,
@@ -72,13 +74,30 @@ export class HomePage {
     public elementref: ElementRef,
     public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
-  }
 
+  }
+  AutoComplete(){
+   
+      this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
+      this.autocom.addListener('place_changed', ()=>{
+        let place = this.autocom.getPlace();
+        console.log(place);
+        let latLng = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        }
+       this.map.panTo(latLng);
+      });
+    
+   }
   RangeSearch() {
     this.range = !this.range;
   }
 
   ionViewDidLoad() {
+    setTimeout(() => {
+      this.AutoComplete()
+    }, 1000);
     setTimeout(() => {
 
       this.loaderAnimate = false
@@ -621,15 +640,14 @@ export class HomePage {
     this.navCtrl.push(QuotationFormPage, uid);
   }
   getRequests() {
-    let data = {info: [], user: []}
+    //let data = {info: [], user: [], id: []}
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
       this.owner = [];
-     
       for (let j = 0; j < res.docs.length; j++) {
-        data.info.push(res.docs[j].data());
+    
         this.db.doc(res.docs[j].data().hOwnerUid).onSnapshot((doc)=>{
-          data.user.push(doc.data())
-          this.owner.push({info: res.docs[j].data(), user: doc.data()})
+
+          this.owner.push({info: res.docs[j].data(), user: doc.data(), id: res.docs[j].id})
          })
          console.log('Owner details', this.owner);
       }
