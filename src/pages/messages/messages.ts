@@ -120,6 +120,21 @@ slideChanged() {
   }
 
 
+  // slideChanged() {
+  //   let currentIndex = this.slides.getActiveIndex();
+  //   this.currentUid = this.msgSent[currentIndex].id;
+  //  // let curr = this.messages[currentIndex];
+  //   this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
+  //     this.messages=[];
+  //     for (let i = 0; i < res.docs.length; i++) {
+  //       this.messages.push(res.docs[i].data())
+  //     }
+  //   //  console.log('Message...', this.messages);
+      
+  //   })
+  // }
+
+
   /* Ends here */
   acceptQoute(data, uid) {
     //  console.log('doc id.................', data);
