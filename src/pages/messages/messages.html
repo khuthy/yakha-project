@@ -15,9 +15,6 @@
                                 <button icon-only ion-button color="light" (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
                               </ion-buttons>
 
-                             
-
-
                             <ion-title start>Quotation-Y00{{i}}</ion-title>
                             <ion-buttons right>
                               <button ion-fab mini color="customcall" (click)="callJoint(item)"><ion-icon name="call"></ion-icon></button>
@@ -28,8 +25,6 @@
                         </ion-navbar>
                       </ion-header>
 
-                     
-                      
                 <div class="container">
                     <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
                           <div class="container-request" padding>
@@ -71,8 +66,6 @@
 
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date:"hh:mm"}} </p>
-                     
-                       
                       </div>
                 
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
@@ -89,7 +82,6 @@
                                    <button style="background:red;">Decline</button>
                                  </ion-buttons>
                           </div>
-                       
                          <p id="content">{{chat.chat}}</p>
                          <p id="date">{{chat.date | date:"hh:mm"}} </p>
 

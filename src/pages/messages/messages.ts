@@ -105,9 +105,7 @@ export class MessagesPage {
   }
   /* Tesing if chats works */
   chats = [];
-
-
-  slideChanged() {
+slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.currentUid = this.msgSent[currentIndex].id;
    // let curr = this.messages[currentIndex];

@@ -89,8 +89,6 @@ export class HomePage {
         //document.getElementById('header').style.display = "none";
         this.loadMap();
         this.getPosition();
-
-
       }
       if (res.data().builder == true) {
         this.getRequests();

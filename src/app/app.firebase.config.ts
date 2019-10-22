@@ -1,12 +1,13 @@
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyAz4is7gSpyBXtXr9FxwAjRqiiA2K3rwHU",
-    authDomain: "yakha-bda91.firebaseapp.com",
-    databaseURL: "https://yakha-bda91.firebaseio.com",
-    projectId: "yakha-bda91",
-    storageBucket: "yakha-bda91.appspot.com",
-    messagingSenderId: "27383344134",
-    appId: "1:27383344134:web:b0d24fa7e5f8a9de"
+    apiKey: "AIzaSyAH_4qSdZUBa_dL39kA2HDeWN8GYIDqIrk",
+  authDomain: "yakha-eccb9.firebaseapp.com",
+  databaseURL: "https://yakha-eccb9.firebaseio.com",
+  projectId: "yakha-eccb9",
+  storageBucket: "yakha-eccb9.appspot.com",
+  messagingSenderId: "1001029779379",
+  appId: "1:1001029779379:web:5ddca013a311b59a2dd5c6",
+  measurementId: "G-G57RNJ3DMG"
   }
 
 
