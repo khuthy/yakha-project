@@ -70,6 +70,7 @@ export class MessagesPage {
   manageUser: boolean;
   chatting = [];
   msgRespond = [];
+  pdf='';
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
@@ -115,11 +116,15 @@ export class MessagesPage {
     this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
       this.messages=[];
       for (let i = 0; i < res.docs.length; i++) {
-        this.messages.push(res.docs[i].data())
+        if (!res.docs[i].data().pdfLink) {
+          
+        }
+        this.messages.push({chat:res.docs[i].data()})
       }
-    //  console.log('Message...', this.messages);
-      
-    })
+      console.log('Response data', this.messages);
+
+  }) 
+ 
   }
 
 
@@ -162,11 +167,17 @@ export class MessagesPage {
     });
   }
   ionViewDidLoad() {
+    //get Response
+  
     //get Requests
-    this.dbIncoming.where('hOwnerUid','==',this.uid).onSnapshot((res)=>{
+    setTimeout(() => {
+      this.slideChanged()
+    }, 500);
+    this.dbIncoming.where('hOwnerUID','==',this.uid).onSnapshot((res)=>{
       res.forEach((doc)=>{
-        console.log('Response....', doc.data());
         
+        let pdf = doc.data().pdfLink;
+        this.pdf = pdf;
       })
     })
     this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {

@@ -64,6 +64,9 @@ export class TestPage {
         
       })
     }) */
+    setTimeout(() => {
+      this.slideChanged()
+    }, 500);
     this.dbIncoming.doc(this.navParams.data.docID).onSnapshot((res) => {
       // console.log(res.docs);
      // res.forEach((doc) => {
