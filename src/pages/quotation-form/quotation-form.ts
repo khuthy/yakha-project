@@ -370,7 +370,7 @@ export class QuotationFormPage {
 
         this.selectedBrick = event.path[i].children[1].innerText
 
-        this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
+        this.renderer.setStyle(event.path[i].children[1], 'background', '#cc9e14');
         //console.log(event.path[i].children[1].innerText);
         // console.log(event.path[i].children);
       }

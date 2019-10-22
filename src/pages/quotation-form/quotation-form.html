@@ -11,9 +11,9 @@
  
 
 <ion-content fullscreen>
-<div class="topDecor"></div>
+<div class="topDecor"  *ngIf="!hid"></div>
    
-<div class="footer">
+<div class="footer"  *ngIf="!hid">
     <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
         <p>Next step</p>
          <button class="send-quotes" ion-fab color="light">
@@ -29,49 +29,7 @@
         </button>
       </div>
 </div>
-   
-  
-      
- <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
-    <p>Next</p>
-    <div class="nextFab">
-      <button ion-fab mini>
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </div>
- 
-  </div>  -->
-<!--   <ion-footer >
-    <ion-toolbar >
-     
-      <div *ngIf="nextbutton" class="btn" (click)="slideState()" >
-         <p style="border:2px solid blue;width:60%;height:100%">next</p> 
-        <div style="border:2px solid yellow;width:40%;margin-left: auto">
-           <button ion-fab mini >
-          <ion-icon name="arrow-forward"  ></ion-icon>
-        </button>
-        </div>
-       
-      </div>
-    </ion-toolbar>
-   </ion-footer> -->
 
- <!--  <div style="background:transparent" *ngIf="!nextbutton" class="nextbutton"  class="btn">
-      <p>Submit</p>
-      <div class="nextFab">
-        <button ion-fab>
-          <ion-icon name="arrow-forward" (click)="createQuations()"></ion-icon>
-        </button>
-      </div>
-    </div> -->
-
-  <!-- <div *ngIf="backButton" (click)="gohome()" class="backButton">
-    <button ion-fab>Back</button>
-  </div> -->
-<!--   <div class="topDecor">
-
-  </div> -->
-  <!-- next button -->
  
   <form class="information" [formGroup]="quotationForm">
 
@@ -117,7 +75,7 @@
             <!-- <p>{{n.description}}</p> -->
           </div>
           <div class="brickName">
-            <p style="font-size:5vw" id="brickName"><small>{{n.name}}</small></p>
+            <p style="font-size:5vw;" id="brickName"><small>{{n.name}}</small></p>
           </div>
           <div id="imageDiv">
             <img src="{{n.image}}">
@@ -151,14 +109,14 @@
       <div class="extrawork"  >
         <!-- hide this whole div when the keyboard opens -->
         <div  id="extrajob" class="hidethis">
-          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:5vw;margin-top:2%;padding-bottom: 6px;text-align:center">Would you like to include the
+          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara">Would you like to include the
           following?</h2>
 
-        <ion-list id="hide-div"  *ngIf="!hid" class="hidelist" style="height:5px;">
+        <ion-list   style="height:5px;"  *ngIf="!hid">
 
           <ion-item class="gray"  style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
             <ion-label>{{e.service}}</ion-label>
-            <ion-checkbox id="hide-div"  *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+            <ion-checkbox   *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
                 " (click)="checkClicked(e.service)"></ion-checkbox>
           </ion-item>
       </ion-list>

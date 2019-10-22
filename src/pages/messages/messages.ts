@@ -119,7 +119,7 @@ slideChanged() {
     })
   }
 
-
+/* 
   slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.currentUid = this.msgSent[currentIndex].id;
@@ -132,7 +132,7 @@ slideChanged() {
     //  console.log('Message...', this.messages);
       
     })
-  }
+  } */
 
 
   /* Ends here */
