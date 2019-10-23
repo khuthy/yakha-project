@@ -35,7 +35,7 @@
 <!-- edit buttton -->
       <div class="button-group" id="edit" *ngIf="!nextbutton">
         <p>Edit</p>
-         <button class="send-quotes" ion-fab color="light">
+         <button class="send-quotes"  ion-fab color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
@@ -56,7 +56,7 @@
        
       <div class="imageCont">
         
-        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
+        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image" (click)="selectImage()">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center"
           (click)="selectImage()" name="cloud-upload"></ion-icon>
         <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!quotationForm.get('firstCountValid').get('houseimage').value">Please upload your house plan here</p>

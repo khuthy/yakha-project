@@ -501,7 +501,8 @@ export class HomePage {
       ]
     });
     google.maps.event.addDomListener(this.map, 'click', () => {
-      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)')
+      this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)');
+      this.menuShow = true;
     });
     this.getBuilders();
 
