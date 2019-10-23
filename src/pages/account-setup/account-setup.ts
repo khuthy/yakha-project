@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -59,7 +59,12 @@ export class AccountSetupPage {
       country: ['ZA']
     }
   }
+<<<<<<< HEAD
 
+=======
+  loaderAnimate = true;
+  back: boolean;
+>>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -74,6 +79,11 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
+<<<<<<< HEAD
+=======
+    public keyBoard: Keyboard,
+    public plt: Platform
+>>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -88,7 +98,9 @@ export class AccountSetupPage {
     });
     oneSignal.getIds().then((res) => {
       this.HomeOwnerProfile.tokenID = res.userId;
-    })
+    });
+
+    this.backButton()
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
@@ -99,7 +111,22 @@ export class AccountSetupPage {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
+<<<<<<< HEAD
 
+=======
+    firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res) => {
+      if(res.data().isProfile == true) {
+        this.back = true;
+      }else {
+        this.back = false;
+      }
+    })
+    setTimeout(() => {
+     this.loaderAnimate = false;
+      //  this.hide12='';
+      //this.HomeOwnerQuotation.extras = [];
+    }, 2000);
+>>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
 
     this.getProfile();
   }
@@ -283,6 +310,10 @@ export class AccountSetupPage {
     this.isProfile = false;
     this.icon = 'create';
   }
+  cancelProfile() {
+    this.isProfile = true;
+    this.icon = 'create';
+  }
 
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
@@ -297,8 +328,18 @@ export class AccountSetupPage {
   getProfileImageStyle() {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
+  backButton() {
+    this.plt.registerBackButtonAction(() => {
+      if(this.back == true) {
+         this.isProfile = true;
+      }else {
+        this.isProfile = false;
+      }
+       
+    })
+  }
   SignOut() {
-    let alert = this.alertCtrl.create({
+     this.alertCtrl.create({
       title: 'Are you sure you want to logout?',
       buttons: [
         {
@@ -319,8 +360,7 @@ export class AccountSetupPage {
           }
         }
       ]
-    })
-    alert.present();
+    }).present();
   }
   viewHouse(myEvent) {
     console.log('image', myEvent);
