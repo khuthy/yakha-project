@@ -29,7 +29,7 @@ import { SMS } from '@ionic-native/sms';
   templateUrl: 'builderquotes.html',
 })
 export class BuilderquotesPage {
-  pdfDoc;
+ // pdfDoc='';
   length;
   height;
   width;
@@ -109,6 +109,7 @@ export class BuilderquotesPage {
   }
   userUID = firebase.auth().currentUser.uid;
   chatMessage: string;
+  loaderAnimate: boolean;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -241,7 +242,7 @@ export class BuilderquotesPage {
 
   createPdf() {
     /* calculations */
-
+  
     /* discount amount of extras */
     this.quotes.overallHouse = ((this.quotes.price * this.quotes.meter) - ((this.quotes.price * this.quotes.meter) * (this.quotes.discount / 100)));
     this.quotes.subtotal = this.value - (this.value * this.quotes.discountAmount / 100)
@@ -367,8 +368,8 @@ export class BuilderquotesPage {
     };
     this.pdfObj = pdfMake.createPdf(docDefinition);
     //console.log(this.pdfObj);
-    this.saveData();
-    
+    this.downloadUrl();
+  
   }
 
   downloadUrl() {
@@ -383,10 +384,11 @@ export class BuilderquotesPage {
         // results.downloadURL
         firebase.storage().ref('Quotations/').child(results.metadata.name).getDownloadURL().then((url) => {
           // console.log(results);
-          this.pdfDoc = url;
-          // this.quotes.pdfLink = this.pdfDoc;
-          console.log('pdf link from storage............:', this.pdfDoc);
-          // console.log('pdf link............:', this.quotes.pdfLink);
+         // this.pdfDoc = url;
+           this.quotes.pdfLink = url;
+           this.saveData();
+          //console.log('pdf link from storage............:', this.pdfDoc);
+          
         
         })
       })
@@ -394,14 +396,20 @@ export class BuilderquotesPage {
         this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
       })
     });
+    
     this.pdfObj.download();
   }
 
   saveData() {
-    this.downloadUrl();
-    this.quotes.pdfLink = this.pdfDoc;
+    this.loaderAnimate = true;
+    setTimeout(() => {
+      this.loaderAnimate = false;
+    }, 2000);
+    //console.log('pdf link............:', this.pdfDoc);
     this.dbRespond.doc(this.navParams.data.docID).set(this.quotes).then(()=>{
+     // this.quotes.pdfLink = this.pdfDoc;
       this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: 'Quotation file', pdf: this.quotes.pdfLink, date: Date(), builder: true, id:this.navParams.data.docID }).then((res) => {
+        this.navCtrl.setRoot(SuccessPage);
       })
       this.dbChat.doc(this.uid).collection(this.navParams.data.uid).add(this.quotes).then((resDoc)=>{
         this.quotes = {
@@ -440,7 +448,7 @@ export class BuilderquotesPage {
     
           });
         })
-        this.navCtrl.setRoot(SuccessPage);
+      
     })
    
     })
