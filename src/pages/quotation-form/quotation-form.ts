@@ -534,14 +534,24 @@ export class QuotationFormPage {
           }).present()
         } else {
           this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
+            res.onSnapshot((doc)=>{
+              this.db.collection('Users').doc(doc.data().builderUID).onSnapshot((user)=>{
+                if (user.data().tokenID) {
+                  var notificationObj = {
+                    contents: { en: "Hey " + user.data().fullName + " ," + "you have new request" },
+                    include_player_ids: [user.data().tokenID],
+                  };
+                  this.oneSignal.postNotification(notificationObj).then(res => {
+                  });
+                }
+              })
+            })
             res.update({ docID: res.id });
+            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).doc(res.id).set(this.HomeOwnerQuotation).then((res) => {
+            })
             this.HomeOwnerQuotation.extras.forEach((item) => {
               res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
             });
-
-          });
-          this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
-            console.log('Chat >>>>-----', res.id);
             this.HomeOwnerQuotation = {
               hOwnerUid: '',
               startDate: '',
@@ -557,49 +567,8 @@ export class QuotationFormPage {
               docID: ''
             };
             this.navCtrl.setRoot(SuccessPage);
-          })
-          // upon success...
-          // user.then((response) => {
-
-          //   response.update({ docID: response.id });
-          //   response.onSnapshot((resBuilder) => {
-          //     this.db.collection('chat_msg').doc(this.uid).collection(resBuilder.data().builderUID).add(this.HomeOwnerQuotation)
-          //     // resBuilder.data()
-          //     if (resBuilder.data().builderUID) {
-          //       this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
-          //         if (out.data().tokenID) {
-          //           var notificationObj = {
-          //             contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
-          //             include_player_ids: [out.data().tokenID],
-          //           };
-          //           this.oneSignal.postNotification(notificationObj).then(res => {
-          //             // console.log('After push notifcation sent: ' +res);
-          //           });
-
-          //         }
-          //       })
-          //     }
-          //   })
-
-
-
-          //   this.navCtrl.setRoot(SuccessPage)
-          //   this.toastCtrl.create({
-          //     message: '  Quotation submitted.',
-          //     duration: 2000,
-          //   }).present();
-          //   // ...get the profile that just got created...
-          //   //load.dismiss();
-          //   // catch any errors.
-          // }).catch(err => {
-          //   this.toastCtrl.create({
-          //     message: 'Error submitting Quotation.',
-          //     duration: 2000
-          //   }).present();
+          });
           this.isProfile = false;
-          // load.dismiss();
-          // })
-
         }
 
       }

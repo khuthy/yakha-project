@@ -75,9 +75,6 @@ export class TestPage {
       this.slideChanged()
     }, 500);
     this.dbIncoming.doc(this.navParams.data.docID).onSnapshot((res) => {
-      // console.log(res.docs);
-     // res.forEach((doc) => {
-     //   console.log(res.data())
         this.extras.push(res.data().extras[0]);
         console.log('My extras......', this.extras);
      // })

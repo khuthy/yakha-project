@@ -81,15 +81,15 @@
             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
-                       <p  id="content" *ngIf="quoteStatus">
-                      Your quote has been {{quoteStatus}}
-                       </p>
+                    
                       
                       </div>
                      
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
                       
-                         <p id="content">{{chat.chat}} </p>
+                         <p id="content">{{chat.chat}}     <p style="font-size: 12px; font-style: italic; font-weight: bold;" *ngIf="quoteStatus">
+                            Your quote has been {{quoteStatus}}
+                             </p></p>
                          <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
 
                        
