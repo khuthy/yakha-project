@@ -114,14 +114,14 @@ export class HomePage {
       this.AutoComplete()
     }, 1000);
     setTimeout(() => {
-      this.getPosition();
+  
       this.loaderAnimate = false
     }, 2000);
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
         //document.getElementById('header').style.display = "none";
-        
+        this.getPosition();
         this.loadMap();
       
       }
