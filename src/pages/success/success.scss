@@ -233,62 +233,42 @@ padding:0;
         transition: 0.4s;
         transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
         .maploader {
-          .lds-heart {
+          .lds-facebook {
             display: inline-block;
             position: relative;
             width: 64px;
             height: 64px;
-            transform: rotate(45deg);
-            transform-origin: 32px 32px;
           }
-          .lds-heart div {
-            top: 23px;
-            left: 19px;
+          .lds-facebook div {
+            display: inline-block;
             position: absolute;
-            width: 26px;
-            height: 26px;
+            left: 6px;
+            width: 13px;
             background: #fff;
-            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+            animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
           }
-          .lds-heart div:after,
-          .lds-heart div:before {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 26px;
-            height: 26px;
-            background: #fff;
+          .lds-facebook div:nth-child(1) {
+            left: 6px;
+            animation-delay: -0.24s;
           }
-          .lds-heart div:before {
-            left: -17px;
-            border-radius: 50% 0 0 50%;
+          .lds-facebook div:nth-child(2) {
+            left: 26px;
+            animation-delay: -0.12s;
           }
-          .lds-heart div:after {
-            top: -17px;
-            border-radius: 50% 50% 0 0;
+          .lds-facebook div:nth-child(3) {
+            left: 45px;
+            animation-delay: 0;
           }
-          @keyframes lds-heart {
+          @keyframes lds-facebook {
             0% {
-              transform: scale(0.95);
+              top: 6px;
+              height: 51px;
             }
-            5% {
-              transform: scale(1.1);
-            }
-            39% {
-              transform: scale(0.85);
-            }
-            45% {
-              transform: scale(1);
-            }
-            60% {
-              transform: scale(0.95);
-            }
-            100% {
-              transform: scale(0.9);
+            50%, 100% {
+              top: 19px;
+              height: 26px;
             }
           }
-          
-          
         }
        }
        @keyframes maploader {

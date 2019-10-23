@@ -70,7 +70,7 @@ export class BaccountSetupPage {
   get regNo() {
     return this.profileForm.get('profileFormSecondSlide').get('regNo');
   }
-
+  loaderAnimate = true;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -122,6 +122,11 @@ export class BaccountSetupPage {
     
   }
   ionViewDidLoad() {
+    setTimeout(() => {
+      this.loaderAnimate = false;
+       //  this.hide12='';
+       //this.HomeOwnerQuotation.extras = [];
+     }, 2000);
    //this.slides.lockSwipes(true) // when the page loads
     this.oneSignal.getIds().then((res) => {
       this.builderProfile.tokenID = res.userId;
@@ -193,7 +198,9 @@ export class BaccountSetupPage {
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
-        quality: 100,
+        quality: 90,
+        targetHeight: 600,
+        targetWidth: 600,
         sourceType: sourcetype,
         saveToPhotoAlbum: false,
         correctOrientation: true

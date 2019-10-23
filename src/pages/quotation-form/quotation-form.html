@@ -1,5 +1,5 @@
  <ion-header *ngIf="steps=='steone'"  [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
-  <ion-navbar color="primary">
+  <ion-navbar>
 <!--     <ion-title> <p style="border:1px solid gold;margin-left: -5px;margin-top:5px;"> {{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)<br>{{homeBuilderName}}</p></ion-title>
  -->   
 
@@ -200,10 +200,10 @@
   
   <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
       <div class="maploader">
-          <div class="lds-hourglass"></div>
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
       </div>
       <div class="loading-text">
-        <p>Loading Map</p>
+        
       </div>
     </div>
 

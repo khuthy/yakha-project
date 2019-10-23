@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Slides, LoadingController } from 'ionic-angular';
 import { ViewmessagePage } from '../viewmessage/viewmessage';
 import * as firebase from 'firebase';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -9,7 +9,9 @@ import { BuilderquotesPage } from '../builderquotes/builderquotes';
 import { OneSignal } from '@ionic-native/onesignal';
 import { PopoverPage } from '../popover/popover';
 import { CallNumber } from '@ionic-native/call-number';
-
+import { File } from '@ionic-native/file';
+import pdfMake from 'pdfmake/build/pdfmake';
+import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader';
 /**
  * Generated class for the MessagesPage page.
  *
@@ -25,6 +27,7 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MessagesPage {
   db = firebase.firestore();
   @ViewChild('slides') slides: Slides;
+  pdfObj = null;
   dbMessage = firebase.firestore().collection('Request');
   dbIncoming = firebase.firestore().collection('Respond');
   dbProfile = firebase.firestore().collection('Users');
@@ -85,7 +88,10 @@ export class MessagesPage {
     public authServes: AuthServiceProvider,
     public oneSignal: OneSignal,
     public popoverCtrl: PopoverController,
-    private callNumber: CallNumber
+    private callNumber: CallNumber,
+    private file: File,
+    private downloader: Downloader,
+    public loader : LoadingController
   ) {
     this.autoUid = this.navParams.data;
     this.builderName = this.autoUid.name;
@@ -178,7 +184,7 @@ export class MessagesPage {
     //get Requests
     setTimeout(() => {
       this.slideChanged()
-    }, 500);
+    }, 100);
     this.dbIncoming.where('hOwnerUID', '==', this.uid).onSnapshot((res) => {
       res.forEach((doc) => {
         let pdf = doc.data().pdfLink;
@@ -197,6 +203,13 @@ export class MessagesPage {
     })
 
   }
+/*   viewQuotes() {
+   
+      this.file.writeFile(this.file.dataDirectory, 'quotation.pdf', blob, { replace: true }).then(fileEntry => {
+        this.fileOpener.open(this.file.dataDirectory + 'quotation.pdf', 'application/pdf');
+      })
+   
+  } */
   brick = 'Engineering brick' //demo
   getChats() {
     this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).add({ chat: this.chatMessage, date: Date(), builder: false, id: this.currentUid }).then((res) => {
@@ -212,21 +225,42 @@ export class MessagesPage {
     const popover = this.popoverCtrl.create(PopoverPage, { key1: uid });
     popover.present();
   }
-  downloadPDF(file) {
-    this.fileOpener.open(file, 'application/pdf')
-      .then(() => console.log('File is opened'))
-      .catch(e => console.log('Error opening file', e));
-    // console.log(file);
-
+  downloadPDF(pdf) {
+    this.loader.create({
+      content: "Downloading...",
+      duration: 3000
+    }).present();
+    console.log('PDF link..', pdf);
+    let request: DownloadRequest = {
+      uri: pdf,
+      title: 'Yakha quote' + new Date().toLocaleString,
+      description: '',
+      mimeType: '',
+      visibleInDownloadsUi: true,
+      notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+      destinationInExternalFilesDir: {
+          dirType: 'Downloads',
+          subPath: 'yakha'
+      }
+  };
+  this.downloader.download(request)
+              .then((location: string) => console.log('File downloaded at:'+location))
+              .catch((error: any) => console.error(error));
+  //  this.pdfObj = pdfMake.createPdf();
+   // this.pdfObj.getBuffer((buffer) => {
+  /*   this.file.writeFile(this.file.dataDirectory, pdf+'.pdf', 'application/pdf', { replace: true }).then(fileEntry => {
+      this.fileOpener.open(this.file.dataDirectory +  pdf+'.pdf', 'application/pdf');
+    }) */
+ // });
   }
   getProfileImageStyle() {
     return 'url(' + this.imageBuilder + ')';
   }
-  callJoint() {
+  callJoint(number) {
 
-    console.log('number', this.number);
+  //  console.log('number', this.number);
 
-    this.callNumber.callNumber(this.number, true);
+    this.callNumber.callNumber(number, true);
   }
 
 
