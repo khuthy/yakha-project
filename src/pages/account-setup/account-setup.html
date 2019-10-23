@@ -1,56 +1,132 @@
 
 <ion-content>
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+          <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+        <div class="loading-text">
+      
+        </div>
+      </div>
   <div class="info-profile" *ngIf="!isProfile">
      <!-- original form for homeowner to create profile -->
   <div class="topdeco">
   </div>
   <form  [formGroup]="profileForm"> 
+<ion-header no-border *ngIf="!isProfile">
+  <ion-toolbar class="toolbar-header"></ion-toolbar>
+</ion-header>
+<ion-content fullscreen >
+  <form  [formGroup]="profileForm" *ngIf="!isProfile" padding>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-12>
+              <div class="thumb" id="hide-div" *ngIf="!hid">
+                <img *ngIf="profileImage"  src="{{profileImage}}">
+                <img *ngIf="!profileImage" width="2vh" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" >
+                <button color="light" ion-fab mini class="upload-image" (click)="selectImage()"><ion-icon name="create"></ion-icon></button>
+              </div> 
+          </ion-col>
+          
+          <ion-col col-12 align-self-center>
+             <ion-item no-lines>
+               <ion-input type="text" placeholder="Full Name"  formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl></ion-input>
+             </ion-item>
+             <p class="error"  *ngIf="profileForm.get('fullName').hasError('required') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name is required.</p>
+             <p class="error"  *ngIf="profileForm.get('fullName').hasError('minlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name must be at least 4 characters long.</p>
+             <p class="error"  *ngIf="profileForm.get('fullName').hasError('maxlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)"> Name cannot be more than 25 characters long.</p>
+             <p class="error"  *ngIf="profileForm.get('fullName').hasError('pattern') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Your Name must not contain numbers and special characters. </p>
+          
+          </ion-col>
+          <ion-col col-12 align-self-center>
+              <ion-item no-lines>
+                      <ion-select  placeholder="Gender" formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
+                    <ion-option value="Female">Female</ion-option>
+                    <ion-option value="Male">Male</ion-option>
+                    </ion-select>
+                </ion-item>
+                <p class="error" *ngIf="profileForm.get('gender').hasError('required') && (profileForm.get('gender').dirty || profileForm.get('gender').touched)">Gender is required. </p>
+          </ion-col>
+          <ion-col col-12 align-self-center>
+              <ion-item no-lines>
+                  <ion-input type="text" placeholder="Cell Phone Number" maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl></ion-input>
+                </ion-item>
+                <p class="error" *ngIf="profileForm.get('personalNumber').hasError('required') && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">Cell number is required.</p>
+          </ion-col>
+          <ion-col col-12 align-self-center>
+              <ion-item no-lines>
+                  <input class="address" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+                </ion-item>
+                <p class="error" *ngIf="profileForm.get('address').hasError('required') && (profileForm.get('address').dirty || profileForm.get('address').touched)"> Please specify your Address.</p>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+            <ion-col align-self-center>
+                <button class="next" block round ion-button color="dark"  (click)="createprofile(profileForm)" [disabled]="!profileForm.valid">Done</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </form>
+  
+      
+ 
+ <!--  <div class="info-profile" *ngIf="!isProfile"> -->
+   <!-- original form for homeowner to create profile -->
+ <!-- <div class="topdeco" id="hide-div" *ngIf="!hid">
+  </div> 
+    <form  [formGroup]="profileForm"> 
     <div class="image-holder">
-        <div class="thumb">
+ <div class="thumb" id="hide-div" *ngIf="!hid">
             <img *ngIf="profileImage"  src="{{profileImage}}">
             <img *ngIf="!profileImage" width="2vh" src="../../assets/icon/Yakha-assets/_ionicons_svg_ios-person.svg" >
             <button color="light" ion-fab mini class="upload-image" (click)="selectImage()"><ion-icon name="create"></ion-icon></button>
-          </div>
+          </div> 
     </div>
-    <div class="inputs-profile">
-        <div class="form-group">
-          <input type="text" placeholder="Name" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl>
+    <div class="inputs-profile" >
+         <div class="form-group">
+          <ion-input type="text" placeholder="Name" (onfocus)="checkKeyboard('open')" (onblur)="checkKeyboard('close')" formControlName="fullName" [(ngModel)]="HomeOwnerProfile.fullName" ngDefaultControl>
             <p class="error"  *ngIf="profileForm.get('fullName').hasError('required') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name is required.</p>
             <p class="error"  *ngIf="profileForm.get('fullName').hasError('minlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Name must be at least 4 characters long.</p>
             <p class="error"  *ngIf="profileForm.get('fullName').hasError('maxlength') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)"> Name cannot be more than 25 characters long.</p>
             <p class="error"  *ngIf="profileForm.get('fullName').hasError('pattern') && (profileForm.get('fullName').dirty || profileForm.get('fullName').touched)">Your Name must not contain numbers and special characters. </p>
+          </ion-input>
           </div>
+
           <div class="form-group">
-            <ion-list >
-              <ion-item style="border: 1px solid gray">
+        
+              <ion-item style="border: 1px solid gray;margin-top: 2%">
              <ion-select  placeholder="Gender" formControlName="gender" name="gender" [(ngModel)]="HomeOwnerProfile.gender"  cancelText="Dismiss">
-           <ion-option style="font-size: 2.6vh;"  value="Female">Female</ion-option>
+           <ion-option style="font-size: 2.6vh;padding-left:10px"  value="Female">Female</ion-option>
            <ion-option style="font-size: 2.6vh;" value="Male">Male</ion-option>
            </ion-select>
            </ion-item>
-            </ion-list>
+         
            
             <p class="error" *ngIf="profileForm.get('gender').hasError('required') && (profileForm.get('gender').dirty || profileForm.get('gender').touched)">Gender is required. </p>
           </div>
 
-          <div class="form-group"style="margin-top:2%">
-              <input type="Tel" placeholder="Cell Number"  maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl>
+          <div style="margin-top: -5px" class="form-group"style="margin-top:2%">
+              <input (onfocus)="checkKeyboard('open')"
+              (onblur)="checkKeyboard('close')" type="Tel" placeholder="Cell Number"  maxlength="10" formControlName="personalNumber"  [(ngModel)]="HomeOwnerProfile.personalNumber" ngDefaultControl>
               <p class="error" *ngIf="profileForm.get('personalNumber').hasError('required') && (profileForm.get('personalNumber').dirty || profileForm.get('personalNumber').touched)">Cell number is required.</p>
           </div>
-          <div class="form-group">
+          
+          <div style="margin-top: 2%" class="form-group">
             <input formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
             <p class="error" *ngIf="profileForm.get('address').hasError('required') && (profileForm.get('address').dirty || profileForm.get('address').touched)"> Please specify your Address.</p>
-           </div>
-         
-    </div>
-    <div class="btn-profile">
+           </div> 
+
+           <div class="btn-profile">
         <button round class="btn-profile-x" ion-button (click)="createprofile(profileForm)" [disabled]="!profileForm.valid"> Done </button>
     </div>
+    </div>
+ 
   </form>
+
   <div class="bottomdeco">
     
-  </div>
-  </div>
+  </div>  -->
+<!--   </div> -->
  
 <!-- homeowner views profile here and the fab will take them to edit profile -->
 <div class="ViewContainer" *ngIf="isProfile">
@@ -86,6 +162,7 @@
   </div>
   
 </div>
-<!-- profile -->
-
 </ion-content>
+<ion-footer no-border *ngIf="!isProfile">
+    <ion-toolbar class="toolbar-footer"></ion-toolbar>
+</ion-footer>

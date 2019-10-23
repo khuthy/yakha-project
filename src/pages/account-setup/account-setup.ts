@@ -12,6 +12,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { LoginPage } from '../login/login';
 import { text } from '@angular/core/src/render3/instructions';
 import { File, FileEntry } from '@ionic-native/file';
+import { Keyboard } from '@ionic-native/keyboard';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -53,12 +54,19 @@ export class AccountSetupPage {
   
   }
 
-   
+  //divs that will hide 
+ // password = true;
+ // bottomdeco = true;
+ // buttons = true;
+  isKeyOpen: boolean = false;
+  hid='';
+
   options = {
     componentRestrictions: {
       country: ['ZA']
     }
   }
+  loaderAnimate = true;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -73,6 +81,7 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
+    public keyBoard: Keyboard
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -98,10 +107,26 @@ export class AccountSetupPage {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
-
+    setTimeout(() => {
+     this.loaderAnimate = false;
+      //  this.hide12='';
+      //this.HomeOwnerQuotation.extras = [];
+    }, 2000);
 
     this.getProfile();
   }
+
+  /* method that will hide the keyboard */
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+    //  console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
+
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
   }
@@ -179,7 +204,9 @@ export class AccountSetupPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      quality: 100,
+      quality: 90,
+      targetHeight: 600,
+      targetWidth: 600,
       sourceType: sourcetype,
       saveToPhotoAlbum: false,
       correctOrientation: true
@@ -232,12 +259,7 @@ export class AccountSetupPage {
     'address': [{ type: 'required', message: 'Address is required.' }]
   };
   getProfile() {
-    // load the process
-    let load = this.loadingCtrl.create({
-      content: 'Just a sec...',
-      spinner: 'bubbles'
-    });
-    load.present();
+
     // create a reference to the collection of HomeOwnerProfile...
 
 
@@ -273,12 +295,12 @@ export class AccountSetupPage {
         this.icon = 'image';
       }
       // dismiss the loading
-      load.dismiss();
+
     }).catch(err => {
       // catch any errors that occur with the query.
       console.log("Query Results: ", err);
       // dismiss the loading
-      load.dismiss();
+    
     })
   }
   editProfile() {

@@ -60,11 +60,20 @@ margin-bottom: auto;
           height: 65%;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          //justify-content: space-between;
           align-content: center;
           align-items: center; 
+
+          img {
+           // border: 2px solid red;
+            margin-bottom: 0;;
+            height: 80%;
+          }
           p {
-            font-size: 19px;
+            letter-spacing: 1px;;
+            font-size: 6vw;
+           // border: 2px solid white;
+  margin-top: -12px;
           }
         }
       }
@@ -74,7 +83,7 @@ margin-bottom: auto;
         padding: 0;
       //  border: 1px solid blue;
         width: 100%;
-        height:50%;
+        height:52%;
         /*   height: 50%;
           position: relative;
           left: 10%; */
@@ -89,7 +98,7 @@ margin-bottom: auto;
   }
   .itemBuilder {
           background:color($colors, dark);
-          margin-top: 20px;
+          margin-top: 10px;
   }
   ion-item {
     width:90%;
@@ -110,11 +119,11 @@ margin-bottom: auto;
     
       .bottomdecoOwner {
         background:url(../../assets/imgs/ownerShapes.svg); 
-       
-        height: 12%;
+      // border: 1px solid white;
+        height: 10%;
          background-position: bottom left;
         background-repeat: no-repeat;
-        background-size: 40%;
+        background-size: 30%;
         position: relative;
         bottom:0;
         z-index: -1;
@@ -133,16 +142,19 @@ margin-bottom: auto;
 
      .div-fab{
       border-radius: 0px 30px 30px 0px;
+    //  border: 5px solid white;
+      width: 40px;
      // display: inline;
      }
       .btn {
-      //  border:1px solid rgb(255, 255, 255);
+       // border:1px solid rgb(255, 255, 255);
            width: 100%;
            height:49px;
            margin:0 !important;
            padding:0 !important;
        
            button {
+             border: 1px solid red;
              width:40%;
              height:80%;
              font-weight:300;
@@ -157,12 +169,7 @@ margin-bottom: auto;
           flex-direction: row;
         //  margin-top: 15%;
          }
-         #hide-div2{
-        /*   display: flex;
-         justify-content: space-between;
-         flex-direction: row; */
-       //  margin-top: 15%;
-        }
+       
          #hide-div > div {
           // background-color: #586B83;
            // flex: 1;
@@ -181,6 +188,7 @@ margin-bottom: auto;
            flex-direction: row;
            justify-content: space-evenly;
            align-items: center;
+
            //justify-content: center;
          }
          .div-fab> p{
@@ -196,7 +204,10 @@ margin-bottom: auto;
         .message-error {
           max-width: 80%;
           margin: auto;
-         
+       //  border: 1px solid white;
+         font-size: 4vw;
+         letter-spacing: 1px;
+         font-weight: 400;
         }
         .loader {
           position: absolute;
