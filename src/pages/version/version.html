@@ -1,19 +1,74 @@
-<ion-header>
-    <ion-navbar color="primary">
-      <ion-title>version</ion-title>
-    </ion-navbar>
-  </ion-header>
+<<ion-content>
 
-<ion-content>
-<div class="container">
-  <div class="logo">
-    <img src="../../assets/imgs/logo.svg" width="60%">
-<div class="content">
-      <p>Version 1.0</p>
-	&copy;   <span>2019 Yakha.</span>
-<p id="licence">LICENCES</p>
-</div>
+  <div class="container">
+
+    <div id="topnav" [ngClass]="{'header' : builder, 'headerOwner' : !builder}">
+      <button id="bckbtn" ion-fab (click)="navCtrl.pop()">
+        <ion-icon color="light" name="arrow-back"></ion-icon>
+      </button>
+    </div>
+
+    <div class="logo">
+      <img src="../../assets/icon/Group 180.svg" style="max-width: 70px; height: auto">
+    </div>
+    <div class="inform">
+
+
+
+      <div [ngClass]="{'aboutus1': tsProperty=='about' , 'aboutus2': tsProperty!='about'}">
+        <div class="aboutus" (click)="activate('about')">
+          <h4 text-center>About us</h4>
+        </div>
+        <p> yakha application is a platform where homeOwners and Builders meet.
+          The homeOwner create a request quotation to the homeBuilder Off their choice that they will find registered in
+          the application,
+          The homeBuilder will receive request form from homeOwner and respond to the requested quotation in form off
+          pdf.
+        </p>
+
+      </div>
+
+      <div [ngClass]="{'aboutus1': tsProperty=='terms' , 'aboutus2': tsProperty!='terms'}">
+        <div class="aboutus" (click)="activate('terms')">
+          <h4 text-center>Terms of use</h4>
+        </div>
+
+        <p>You need to accept our terms Once you have access to our Application,
+          you are required to abide by our policies and regulations and include our Privacy Policy.</p>
+      </div>
+      <div [ngClass]="{'aboutus1': tsProperty=='contact' , 'aboutus2': tsProperty!='contact'}">
+        <div class="aboutus" (click)="activate('contact')">
+          <h4 text-center>Contact</h4>
+        </div>
+        <p>Contact us: (015)-610-6358</p>
+
+      </div>
+      <div [ngClass]="{'aboutus1': tsProperty=='disclaimer' , 'aboutus2': tsProperty!='disclaimer'}">
+        <div class="aboutus" (click)="activate('disclaimer')">
+          <h4 text-center> Disclaimer</h4>
+        </div>
+
+        <p>
+          Several fantastic pieces of free and open-source software have really helped get Spotify to where it is today.
+          A few require that we include their licence Agreements within our product.
+        </p>
+      </div>
+      <div [ngClass]="{'aboutus1': tsProperty=='safety' , 'aboutus2': tsProperty!='safety'}">
+        <div class="aboutus" (click)="activate('safety')">
+          <h4 text-center>Safety Information</h4>
+        </div>
+
+        <p>We keep your personal information private and safe and put you in control</p>
+      </div>
+
+
+
+      <div id="hide-bottom" [ngClass]="{'bottomdeco' : builder, 'bottomdecoOwner' : !builder}">
+
+      </div>
+
+    </div>
 
   </div>
-</div>
-</ion-content>
+
+  </ion-content>

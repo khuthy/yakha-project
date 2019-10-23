@@ -1,124 +1,134 @@
-     <ion-content >
-            <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
-              <ion-slide  *ngFor="let item of msgSent; let i=index;">
-             <ion-header  no-border>
-                        <ion-navbar>
-                          <!-- background image of the builder -->
-                          <div class="pickimage">
-                             <img src="{{imageBuilder}}" class="img-header" alt="">
-                          </div>
-                         
-                       
+     <ion-content>
+       <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
+         <ion-slide *ngFor="let item of msgSent; let i=index;">
+           <ion-header no-border>
+             <ion-navbar>
+               <!-- background image of the builder -->
+               <div class="pickimage">
+                 <img src="{{imageBuilder}}" class="img-header" alt="">
+               </div>
 
-                          <div class="buttons">
-                             <!-- backbutton -->
-                            <ion-buttons left top id="backbtn">
-                                <button ion-fab medium  (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
-                              </ion-buttons>
 
-                                 <!-- counter for quotaions -->
-                          <div class="countQoutes">
-                              <span>{{i + 1 | number}}</span>
-                            </div>
-                                <!-- callbtn -->
-                         <ion-buttons right id="callbtn">
-                              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
-                            </ion-buttons> 
-                          </div>
-                           
-                         
 
-                              <!--  -->
-                            <ion-title start>Quotation-Y00{{i}}</ion-title>
-                           
-                          <div class="button-drop">
-                            <button ion-button clear color="light" (click)="open()"><ion-icon style="font-size:10vw" [name]="icon"></ion-icon></button>
-                          </div>
+               <div class="buttons">
+                 <!-- backbutton -->
+                 <ion-buttons left top id="backbtn">
+                   <button ion-fab medium (click)="navCtrl.pop()">
+                     <ion-icon name="arrow-back"></ion-icon>
+                   </button>
+                 </ion-buttons>
 
-                        </ion-navbar>
-                      </ion-header>
-
-                <div class="container">
-                    <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
-                          <div class="container-request" *ngIf="toggle" padding>
-                                <div class="house-plan">
-                                    <img src="{{item.data.houseImage}}" alt="plan-{{i}}">
-                                </div>
-                                <div class="brick-time" >
-                                  <div class="card">
-                                    <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
-                                    <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
-                                  </div>
-                                  <div class="time">
-                                    <article>
-                                       <p><strong>Start Date</strong></p>
-                                    <p>{{item.data.endDate | date: 'shortDate'}}</p>
-                                    </article>
-                                    <article>
-                                       <p><strong>Start Date</strong></p>
-                                      <p>{{item.data.startDate | date: 'shortDate'}}</p>
-                                    </article>
-                                   
-                                   
-                                  </div>
-                                </div>
-                                <div class="walltype"><p></p></div>
-                                <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
-                                <div class="etras">
-                                  <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
-                                </div>
-                          </div>
-                 
-                      </div>
-                     
-                </div>
-
-                <div class="chats" >
-                    <div *ngFor="let chat of messages; ">
-                 <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
-                       <p id="content">{{chat.chat}}</p>
-                       <p id="date">{{chat.date | date:"hh:mm"}} </p>
-                      </div>
-                
-                    <div class="chat right" id="outgoing" *ngIf="chat.builder">
-                        <ion-buttons  id="quotation">
-                            <button>Quotation 004</button>
-                            <ion-icon name="arrow-round-down"></ion-icon>
-                          </ion-buttons>
-                          <div id="buttons">
-                              <ion-buttons>
-                                  <button style="background:rgb(255, 101, 101);">Decline</button>
-                                </ion-buttons>
-                                
-                             <ion-buttons>
-                                 <button style="background:rgb(91, 255, 91)">Accept</button>
-                               </ion-buttons>
-                   
-                            
-                          </div>
-                       
-                         <p id="content">{{chat.chat}}</p>
-                         <p id="date">{{chat.date | date}} </p>
-
-                       
-                        </div>
+                 <!-- counter for quotaions -->
+                 <div class="countQoutes">
+                   <span>{{i + 1 | number}}</span>
                  </div>
-                     
-                
-                  </div> 
-              </ion-slide>
-            </ion-slides>
-           </ion-content>
-           <ion-footer>
-              <ion-grid>
-                  <ion-row>
-                    <ion-col col-10>
-                      <ion-input placeholder="Type your message..." [(ngModel)]="chatMessage"> </ion-input>
-                    </ion-col>
-                  
-                    <ion-col col-2 *ngIf="chatMessage">
-                      <button ion-button clear  (click)="getChats()"><ion-icon  name="send"></ion-icon></button>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-           </ion-footer>
+                 <!-- callbtn -->
+                 <ion-buttons right id="callbtn">
+                   <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)">
+                     <ion-icon name="call"></ion-icon>
+                   </button>
+                 </ion-buttons>
+               </div>
+
+
+
+               <!--  -->
+               <ion-title start>Quotation-Y00{{i}}</ion-title>
+
+               <div class="button-drop">
+                 <button ion-button clear color="light" (click)="open()">
+                   <ion-icon style="font-size:10vw" [name]="icon"></ion-icon>
+                 </button>
+               </div>
+
+             </ion-navbar>
+           </ion-header>
+
+           <div class="container">
+             <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
+               <div class="container-request" *ngIf="toggle" padding>
+                 <div class="house-plan">
+                   <img src="{{item.data.houseImage}}" alt="plan-{{i}}">
+                 </div>
+                 <div class="brick-time">
+                   <div class="card">
+                     <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
+                     <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
+                   </div>
+                   <div class="time">
+                     <article>
+                       <p><strong>Start Date</strong></p>
+                       <p>{{item.data.endDate | date: 'shortDate'}}</p>
+                     </article>
+                     <article>
+                       <p><strong>Start Date</strong></p>
+                       <p>{{item.data.startDate | date: 'shortDate'}}</p>
+                     </article>
+
+
+                   </div>
+                 </div>
+                 <div class="walltype">
+                   <p></p>
+                 </div>
+                 <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
+                 <div class="etras">
+                   <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
+                 </div>
+               </div>
+
+             </div>
+
+           </div>
+
+           <div class="chats">
+             <div *ngFor="let chat of messages; ">
+               <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
+                 <p id="content">{{chat.chat}}</p>
+                 <p id="date">{{chat.date | date:"hh:mm"}} </p>
+               </div>
+
+               <div class="chat right" id="outgoing" *ngIf="chat.builder">
+                 <ion-buttons id="quotation">
+                   <button>Quotation 004</button>
+                   <ion-icon name="arrow-round-down"></ion-icon>
+                 </ion-buttons>
+                 <div id="buttons">
+                   <ion-buttons>
+                     <button style="background:rgb(255, 101, 101);">Decline</button>
+                   </ion-buttons>
+
+                   <ion-buttons>
+                     <button style="background:rgb(91, 255, 91)">Accept</button>
+                   </ion-buttons>
+
+
+                 </div>
+
+                 <p id="content">{{chat.chat}}</p>
+                 <p id="date">{{chat.date | date}} </p>
+
+
+               </div>
+             </div>
+
+
+           </div>
+         </ion-slide>
+       </ion-slides>
+     </ion-content>
+     <ion-footer>
+       <ion-grid>
+         <ion-row>
+           <ion-col col-10>
+             <ion-input placeholder="Type your message..." [(ngModel)]="chatMessage"> </ion-input>
+           </ion-col>
+
+           <ion-col col-2 *ngIf="chatMessage">
+             <button ion-button clear (click)="getChats()">
+               <ion-icon name="send"></ion-icon>
+             </button>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+     </ion-footer>

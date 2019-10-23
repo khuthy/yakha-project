@@ -213,12 +213,7 @@ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
 transition: 500ms;
 z-index: 2;
 }
-.chats {
 
- //background: lemonchiffon;
-
-// border: 1px solid red;
-}
 .swiper-pagination
 {
  top: 25% !important;
@@ -238,6 +233,9 @@ ion-footer, ion-grid,ion-row, ion-col {
   overflow-y: auto;
   //border: 1px solid red;
   padding-bottom: 33vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
       .chat {
         z-index: -2;
         width: 85%;
