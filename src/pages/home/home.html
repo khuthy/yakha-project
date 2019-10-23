@@ -24,35 +24,29 @@
   </div>
 
   <div class="homebuilder" id="req">
-      <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.id, o.user.uid)">
-           <div class="images">
-            <img *ngIf="o.user.image" src="{{o.user.image}}" class="thumb-home-builder" (click)="viewProfile(o.user.image)" alt="profile">
-            <img *ngIf="!o.user.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
-          </div>
-          <div class="informative" >
-            <h6 style="font-size: 2.5vh;">{{o.user.fullName}} </h6>
-            <!-- <p style="font-size: 2vh;">{{o.builder.date | date}}</p> -->
-          </div>
-          <div class="button-group-name">
-            <p style="text-align: center; color: #fff;">View</p>
-            <button ion-fab mini color="light"><ion-icon name="arrow-forward"></ion-icon></button>
-          </div>
-        </div> 
-        <p *ngIf="!owner" style="text-align: center;">You have no requests yet</p>
-        </div>
-    <div #map id="map" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')">
- 
+    <div class="cards" *ngFor="let o of owner" (click)="viewRequest(o.id, o.user.uid)">
+      <div class="images">
+        <img *ngIf="o.user.image" src="{{o.user.image}}" class="thumb-home-builder" (click)="viewProfile(o.user.image)"
+          alt="profile">
+        <img *ngIf="!o.user.image" src="../../assets/imgs/team-avatar.jpg" class="thumb-home-builder" alt="profile">
       </div>
-      
-     
-<div class="searchLocation">
-  <div class="yakha-search">
-   
-    <button *ngIf="menuShow" ion-fab small menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-searchbar class="input-bar-search" placeholder="Search by location" (ionFocus)="checkKeyboard('open')" (ionBlur)="checkKeyboard('close')">
-  </ion-searchbar>
-</div> 
-</div> 
+      <div class="informative">
+        <h6 style="font-size: 2.5vh;">{{o.user.fullName}} </h6>
+        <!-- <p style="font-size: 2vh;">{{o.builder.date | date}}</p> -->
+      </div>
+      <div class="button-group-name">
+        <p style="text-align: center; color: #fff;">View</p>
+        <button ion-fab mini color="light">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <p *ngIf="!owner" style="text-align: center;">You have no requests yet</p>
+  </div>
+  <div #map id="map"></div>
+
+  <div class="searchLocation">
+    <div class="yakha-search">
 
       <button ion-fab small menuToggle>
         <ion-icon name="menu"></ion-icon>
