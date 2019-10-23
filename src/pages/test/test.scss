@@ -142,16 +142,16 @@ overflow: auto;
           position: absolute;
           left: 0;
           top: 0;
-          margin: 4%;
+         
         }
         p{
           position: absolute;
           width: 100%;
           left: 0;
-          bottom: -11px;
+          bottom: 0;
           border-radius: 0 0 12px 12px;
           background: #fff;
-          margin: 4%;
+          
         }
       }
       .time {
@@ -178,11 +178,9 @@ overflow: auto;
       height: 30%;
       width: 100%;
       //border: 1px solid #000;
-      display: flex;
-      flex-wrap: wrap;
       
       p {
-          //flex-basis: 30%;
+        display: inline-block;
           padding: .2em;
           background: color($colors, dark);
           color: color($colors, light);
