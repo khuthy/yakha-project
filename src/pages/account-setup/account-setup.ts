@@ -241,7 +241,11 @@ export class AccountSetupPage {
     this.imageSelected = true;
     // })
   }
-
+ backButton() {
+   this.plt.registerBackButtonAction(() => {
+     
+   })
+ }
 
   validation_messages = {
     'fullName': [

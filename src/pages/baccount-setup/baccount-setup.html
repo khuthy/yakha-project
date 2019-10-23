@@ -22,7 +22,7 @@
 
 <ion-content fullscreen>
 <!--  -->
-<form padding [formGroup]="profileForm" *ngIf="!isProfile">
+<form padding [style.display]="status ? 'block' : 'none'" [formGroup]="profileForm" *ngIf="!isProfile">
 
    <ion-slides (ionSlideDidChange)="currentSlide($event)" #slides>
     <ion-slide formGroupName="profileFormFirstSlide">
@@ -147,7 +147,7 @@
   </ion-slides>
 </form>
  
- <div id="pro" class="profiles" *ngIf="isProfile">
+ <div id="pro" [style.display]="status ? 'block' : 'none'" class="profiles" *ngIf="isProfile">
    
   
   <div class="propic">
@@ -198,9 +198,9 @@
 
 <div class="statusApproval" *ngIf="!status">
 <div class="top">
-  <img src="../../assets/imgs/logo.png" width="35%">
+  <img src="../../assets/icon/Yakha-assets/LogoOnSpash.svg">
 </div>
-<h5>Thank you for requesting an account with us.
+<h5 style="text-align: center;">Thank you for requesting an account with us.
   Please wait while we process your application.
   This might take up to 24 hours.</h5>
 <div class="bottom"></div>
