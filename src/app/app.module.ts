@@ -7,12 +7,11 @@ import { PlacePage } from './../pages/place/place';
 //import { AddBricklayerPage } from './../pages/add-bricklayer/add-bricklayer';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
-
+import { Downloader } from '@ionic-native/downloader';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
-
 
 import { FeedbackPage } from './../pages/feedback/feedback';
 import { HelpPage } from './../pages/help/help';
@@ -168,6 +167,7 @@ import { PasswordResetComponent } from '../components/password-reset/password-re
     DocumentViewer,
     Base64ToGallery,
     SMS,
+    Downloader,
    // Firebase
    StatusBar
   ]

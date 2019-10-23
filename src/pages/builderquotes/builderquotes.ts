@@ -13,6 +13,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { SMS } from '@ionic-native/sms';
+import { Downloader } from '@ionic-native/downloader';
 
 
 
@@ -122,7 +123,8 @@ export class BuilderquotesPage {
     private cdRef: ChangeDetectorRef,
     public toastCtrl: ToastController,
     public oneSignal: OneSignal,
-    private sms: SMS
+    private sms: SMS,
+
   ) {
     this.userMsg = this.navParams.data;
     console.log('data =>', this.userMsg);
