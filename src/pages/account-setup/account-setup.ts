@@ -66,6 +66,7 @@ export class AccountSetupPage {
       country: ['ZA']
     }
   }
+  loaderAnimate = true;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -106,7 +107,11 @@ export class AccountSetupPage {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
-
+    setTimeout(() => {
+     this.loaderAnimate = false;
+      //  this.hide12='';
+      //this.HomeOwnerQuotation.extras = [];
+    }, 2000);
 
     this.getProfile();
   }
@@ -199,7 +204,9 @@ export class AccountSetupPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      quality: 100,
+      quality: 90,
+      targetHeight: 600,
+      targetWidth: 600,
       sourceType: sourcetype,
       saveToPhotoAlbum: false,
       correctOrientation: true
@@ -252,12 +259,7 @@ export class AccountSetupPage {
     'address': [{ type: 'required', message: 'Address is required.' }]
   };
   getProfile() {
-    // load the process
-    let load = this.loadingCtrl.create({
-      content: 'Just a sec...',
-      spinner: 'bubbles'
-    });
-    load.present();
+
     // create a reference to the collection of HomeOwnerProfile...
 
 
@@ -293,12 +295,12 @@ export class AccountSetupPage {
         this.icon = 'image';
       }
       // dismiss the loading
-      load.dismiss();
+
     }).catch(err => {
       // catch any errors that occur with the query.
       console.log("Query Results: ", err);
       // dismiss the loading
-      load.dismiss();
+    
     })
   }
   editProfile() {
