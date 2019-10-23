@@ -89,7 +89,7 @@
           <div *ngFor="let chat of messages; ">
        <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
              <p id="content">{{chat.chat.chat | titlecase}}</p>
-             <p id="date">{{chat.chat.date | date:'h:mm a z'}} </p>
+             <p id="date">{{chat.chat.date | date:'hh:mm'}} </p>
             </div>
             <div class="clear"></div>
           <div class="chat right" id="outgoing" *ngIf="chat.chat.builder">
@@ -97,12 +97,12 @@
 
                 <div class="pdf">
                   <p></p>
-                  <p>Quotation</p>
-                  <button ion-fab color="dark" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
+                  <p>Quotation-Y00{{i}}</p>
+                  <button ion-fab color="dark" [style.backgroundColor]="quoteStatus == 'Accepted' ? 'green' : 'red'" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
                 </div>
                 
                   <div id="buttons" *ngIf="quoteStatus">
-                     {{quoteStatus}}
+                   <p style="text-align: center; width: 100%;" [style.color]="quoteStatus == 'Accepted' ? 'green' : 'red'">{{quoteStatus}}</p>  
                   </div>
                   <div id="buttons" *ngIf="!quoteStatus">
                     <button ion-button small clear  color="danger" (click)="declineQoute()" round>Decline</button>
@@ -112,7 +112,7 @@
             </div>
               
                <p id="content">{{chat.chat.chat | titlecase}}</p>
-               <p id="date">{{chat.chat.date | date:'h:mm a z'}} </p>
+               <p id="date">{{chat.chat.date | date:'hh:mm'}} </p>
 
              
               </div>
