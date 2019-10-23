@@ -1,4 +1,12 @@
 <ion-header no-border>
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+          <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+        <div class="loading-text">
+      
+        </div>
+      </div>
   <ion-toolbar class="tools-header" *ngIf="!isProfile">
     <ion-buttons left start>
       <p color="dark" style="font-size: 22px; font-weight: 700;">{{current | number}}/2</p>

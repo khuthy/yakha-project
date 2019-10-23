@@ -184,7 +184,7 @@ export class MessagesPage {
     //get Requests
     setTimeout(() => {
       this.slideChanged()
-    }, 500);
+    }, 100);
     this.dbIncoming.where('hOwnerUID', '==', this.uid).onSnapshot((res) => {
       res.forEach((doc) => {
         let pdf = doc.data().pdfLink;

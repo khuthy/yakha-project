@@ -425,7 +425,9 @@ export class QuotationFormPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      quality: 100,
+      quality: 90,
+      targetHeight: 600,
+      targetWidth: 600,
       sourceType: sourcetype,
       saveToPhotoAlbum: false,
       correctOrientation: true

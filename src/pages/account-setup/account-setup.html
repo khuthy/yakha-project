@@ -1,5 +1,13 @@
 
 <ion-content>
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+          <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+        <div class="loading-text">
+      
+        </div>
+      </div>
   <div class="info-profile" *ngIf="!isProfile">
      <!-- original form for homeowner to create profile -->
   <div class="topdeco">
