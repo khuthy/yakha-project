@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -54,19 +54,15 @@ export class AccountSetupPage {
   
   }
 
-  //divs that will hide 
- // password = true;
- // bottomdeco = true;
- // buttons = true;
-  isKeyOpen: boolean = false;
-  hid='';
-
+   
   options = {
     componentRestrictions: {
       country: ['ZA']
     }
   }
   loaderAnimate = true;
+  back: boolean;
+  hid: string = '';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -81,7 +77,8 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
-    public keyBoard: Keyboard
+    public keyBoard: Keyboard,
+    public plt: Platform
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -96,7 +93,9 @@ export class AccountSetupPage {
     });
     oneSignal.getIds().then((res) => {
       this.HomeOwnerProfile.tokenID = res.userId;
-    })
+    });
+
+  
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
@@ -107,6 +106,13 @@ export class AccountSetupPage {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
+    firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res) => {
+      if(res.data().isProfile == true) {
+        this.back = true;
+      }else {
+        this.back = false;
+      }
+    })
     setTimeout(() => {
      this.loaderAnimate = false;
       //  this.hide12='';
@@ -116,7 +122,6 @@ export class AccountSetupPage {
     this.getProfile();
   }
 
-  /* method that will hide the keyboard */
   checkKeyboard(data) {
     //  this.keyBoard.onKeyboardHide
     //  console.log(data);
@@ -126,7 +131,6 @@ export class AccountSetupPage {
         this.hid=''
       }
     }
-
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
   }
@@ -307,6 +311,10 @@ export class AccountSetupPage {
     this.isProfile = false;
     this.icon = 'create';
   }
+  cancelProfile() {
+    this.isProfile = true;
+    this.icon = 'create';
+  }
 
   callJoint(phoneNumber) {
     this.callNumber.callNumber(phoneNumber, true);
@@ -321,8 +329,9 @@ export class AccountSetupPage {
   getProfileImageStyle() {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
+ 
   SignOut() {
-    let alert = this.alertCtrl.create({
+     this.alertCtrl.create({
       title: 'Are you sure you want to logout?',
       buttons: [
         {
@@ -343,8 +352,7 @@ export class AccountSetupPage {
           }
         }
       ]
-    })
-    alert.present();
+    }).present();
   }
   viewHouse(myEvent) {
     console.log('image', myEvent);

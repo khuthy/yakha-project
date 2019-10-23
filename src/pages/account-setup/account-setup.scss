@@ -1,4 +1,15 @@
 page-account-setup {
+  .address {
+    min-width: 90%;
+    border-radius: 50px;
+    margin: 0 auto;
+    border: none;
+    color: #333;
+    padding: 15px;
+    position: relative;
+    left: 5%;
+    border: 1px solid #ddd;
+  }
 
 #hide-div{
     display: flex;
@@ -18,20 +29,45 @@ page-account-setup {
     width: 35% ;
     
    }
+   .group-button {
+    background: color($colors, danger);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    width: 100%;
+    border-radius: 50px 0 0 50px;
+    position: relative;
+    right: 0;
+    left: 5.5%;
+    button {
+      height: 6vh;
+      width: 6vh;
+    }
+    p{
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      color: #fff;
+      font-size: 2.5vh;
+    }
+    
+  }
 
-   .toolbar-header {
+   .tools-header {
     background:url(../../assets/imgs/ownerShape.svg);            
     background-position: top right;
     background-repeat: no-repeat;
     background-size: 40%;
+
    }
-   .toolbar-footer {
+   .tools-footer {
     background:url(../../assets/imgs/ownerShapes.svg);            
     background-position: bottom left;
     background-repeat: no-repeat;
     background-size: 35%;
    }
-
+  
    .item {
        .input, .select {
            border-radius: 50px;
@@ -47,26 +83,24 @@ page-account-setup {
       }
      
    }
-   .address {
-    min-width: 100%;
-    border-radius: 50px;
-    margin: 0;
-    border: none;
-    color: #333;
-    padding: 15px;
-    border: 1px solid #ddd;
-  }
+ 
    .thumb {
        height: 100px;
        width: 100px;
        border-radius: 50%;
        border: 1px solid #ddd;
        margin: 0 auto;
+       position: relative;
        img {
            height: 100px;
            width: 100px;
            border-radius: 50%;
            object-fit: cover;
+       }
+       .upload-image {
+         position: absolute;
+         right: 0;
+         bottom: 0;
        }
    }
    .next {
@@ -74,169 +108,159 @@ page-account-setup {
        margin: 0 auto;
    }
   
-// #switchback {
-//    // border: 3px solid green;
-//     position: absolute;
-//     left: 10%;
-// }
-//      .info-profile {
-//          height: 100%;
-//          width: 100%;
-//          border: 2px solid rgb(255, 0, 170);
+#switchback {
+   // border: 3px solid green;
+    position: absolute;
+    left: 10%;
+}
+     .info-profile {
+         height: 100vw;
+         width: 100%;
+        // border: 2px solid rgb(255, 0, 170);
        
-//          .topdeco {
-//            //border: 2px solid rgb(14, 13, 13);
-//              height: 11%;
-//              width: 100%;
-//              background:url(../../assets/imgs/ownerShape.svg); 
-//              background-position: top right;
-//              background-repeat: no-repeat;
-//              background-size: 40%;
-//              position: absolute;
-//              top: 0;;
-//          }
-//          form {
-//             border: 3px solid gray;
-//              height: 78%;
-//              position: relative;
-//              top: 11%;
+         .topdeco {
+           //border: 2px solid rgb(14, 13, 13);
+             height: 11%;
+             width: 100%;
+             background:url(../../assets/imgs/ownerShape.svg); 
+             background-position: top right;
+             background-repeat: no-repeat;
+             background-size: 40%;
+             position: absolute;
+             top: 0;;
+         }
+         form {
+           // border: 3px solid gray;
+             height: 78%;
+             position: relative;
+             top: 11%;
 
-//              .image-holder {
-//                 height: 27%;
-//                 width: 100%;
-//           border: 1px solid red;
-//                 display: flex;
-//                 justify-content: center;
-//                 .thumb {
-//                     height: 20vh;
-//                     width: 20vh;
-//                     border-radius: 50%;
-//                     background: ddd;
-//                    // border: 2px solid rgb(98, 95, 95);
-//                     position: relative;
-//                     background:rgba(194, 187, 187, 0.952) ;
-//                     img {
-//                         width: 100%;
-//                         height: 100%;
-//                         border-radius: 50%;
-//                         object-fit: cover;
+             .image-holder {
+                height: 27%;
+                width: 100%;
+         // border: 1px solid red;
+                display: flex;
+                justify-content: center;
+                .thumb {
+                    height: 20vh;
+                    width: 20vh;
+                    border-radius: 50%;
+                    background: ddd;
+                   // border: 2px solid rgb(98, 95, 95);
+                    position: relative;
+                    background:rgba(194, 187, 187, 0.952) ;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
    
-//                     }
+                    }
                     
-//                     .upload-image {
-//                        position: absolute;
-//                        bottom: 0;
-//                        right: 0;
-//                        height: 5vh;
-//                        width: 5vh;
-//                        .icon {
-//                            font-size: 2.5vh;
-//                        }
+                    .upload-image {
+                       position: absolute;
+                       bottom: 0;
+                       right: 0;
+                       height: 5vh;
+                       width: 5vh;
+                       .icon {
+                           font-size: 2.5vh;
+                       }
    
-//                     }
-//                 }
-//             }
-//          }
+                    }
+                }
+            }
+         }
       
-//          .inputs-profile{
-//              margin-top: 4%;
-//              height: 70%;
-//              width: 100%;
-//         //  background: blue;;
-         
-//                  .form-group {
-//                     //  height: 20%;
-//                     //  max-width: 80%;
-//                     //  margin: 0 auto;
-//                      //flex: 1;
-//                      //border:2px solid red;
-//                      margin-top: 0 !important;
-//                     margin-top: 5px;
-//                      input {
-//                          width: 80%;
-//                          padding: 12px;
-//                          border-radius: 50px;
-//                          border: none;
-//                          padding-left: 20px;
-//                          font-size: 5vw;
-//                          margin-left: 10%;
-//                          margin-top: 6px;
-//                          //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
-//                          border: 1px solid rgb(168, 162, 162);
-//                      }
-// div {
+         .inputs-profile{
+             margin-top: 4%;
+             height: 100%;
+             width: 100%;
+          // background: blue;;
+           position: relative;
+           top: 20%;
+                 .form-group {
+                     height: 20%;
+                     max-width: 80%;
+                     margin: 0 auto;
+                     //flex: 1;
+                     //border:2px solid red;
+                     input {
+                         width: 100%;
+                         padding: 10px;
+                         border-radius: 50px;
+                         border: none;
+                         padding-left: 30px;
+                         font-size: 2.6vh;
+                         //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
+                         border: 1px solid rgb(168, 162, 162);
+                     }
 
-//   margin:0 !important;
-//   padding: 0 !important;;
-
-  
-// }
                     
-//                      .item {
-//                         width: 80%;
-//                         padding: 0;
-//                         margin-left: 10%;
-//                        /*  background: #ddd; */
-//                         //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
-//                         border: 1px solid #ddd;
-//                         border-radius: 50px;
+                     .item {
+                        width: 100%;
+                        padding: 0;
+                       /*  background: #ddd; */
+                        //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
+                        border: 1px solid #ddd;
+                        border-radius: 50px;
 
-//                         box-shadow: none;
-
-                        
-//                        .select {
-//                            width: 100%;
-//                            .select-icon {
-//                                left: 5% !important;
-//                            }
+                        box-shadow: none;
+                       .select {
+                           width: 100%;
+                           .select-icon {
+                               left: 5% !important;
+                           }
                            
-//                        }
-//                   }
+                       }
+                  }
                      
-//                  }
+                 }
              
-//          }
-//          .btn-profile{
-//             height: 25%;
-//             width: 100%;
-//             border: 1px solid rgb(185, 140, 17);
-//             display: flex;
-//             justify-content: center;
-//             align-items: center;
-//             .btn-profile-x {
-//                 width: 60%;
-//                 height: 55%;
-//                 box-shadow: none;
-//                 letter-spacing: 1px;;
-//             //  margin-top: 15%;
-//                 //border: 2px solid blue;
-//             }
-//          }
+         }
+         .btn-profile{
+            height: 10%;
+            width: 100%;
+           // border: 1px solid rgb(185, 140, 17);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .btn-profile-x {
+                width: 60%;
+                box-shadow: none;
+              margin-top: 10%;
+
+            }
+         }
         
-//      }
+     }
     
    
-//    .bottomdeco {
-//     height: 11%;
-//      width: 100%;
-//    // border: 2px solid rgb(25, 0, 255);
-//     background:url(../../assets/imgs/OwnerShapes.svg); 
-//    background-position: bottom left;
-//    background-repeat: no-repeat;
-//    background-size: 30%;
-//    position: absolute;
-//    bottom: 0;;
-// }
+   .bottomdeco {
+    height: 11%;
+     width: 100%;
+   // border: 2px solid rgb(25, 0, 255);
+    background:url(../../assets/imgs/OwnerShapes.svg); 
+   background-position: bottom left;
+   background-repeat: no-repeat;
+   background-size: 35%;
+   position: absolute;
+   bottom: 0;;
+}
      /* Create profile ends here */
 
      
     /* View owner profile css code */
+
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+ 
    .ViewContainer {
        height: 100%;
-       max-width: 100%;
-       position: relative;
-        margin: 0 auto;
+      
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
        background: color($colors, light);
        transition-property: all;
        transition-duration: 2s;
@@ -244,39 +268,7 @@ page-account-setup {
        -o-transition-timing-function: ease-in-out;
        -moz-transition-timing-function: ease-in-out;
         
-       .header {
-           position: absolute;
-           top: 1%;
-           left: 1%;
-           right: 0;
-           display: flex;
-           justify-content: space-between;
-           z-index: 4;
-           
-        .group-button {
-            background: color($colors, danger);
-            padding: 0 0 0 2em;
-            border-radius: 50px 0 0 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2%;
-            &:active {
-                background: red;
-            }
-
-            p {
-                color: color($colors, light);
-                font-size: $font-size;
-                white-space: nowrap;
-                margin: auto;
-            }
-            button {
-                box-shadow: $fab-box-shadow;
-            }
-
-        }
-       }
+    
        .wrapper {
            display: flex;
            height: 100%;
@@ -287,6 +279,9 @@ page-account-setup {
           .wrap {
            height: 50%;
            width: 100%;
+           position: absolute;
+           top: 0;
+           left: 0;
            background-position: center;
            background-size: cover;
            //background-color: #0000001f;
@@ -317,7 +312,9 @@ page-account-setup {
             height: 50%;
             width: 100%;
             background: #FFFFFF;
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -371,7 +368,7 @@ page-account-setup {
                 flex-direction: column;
                 justify-content: flex-end;
                 text-align: center;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.13);
+                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.144);
                 background: #ffffff;
                 border-radius: 10px;
                 //border: 1px solid #ddd;
@@ -411,161 +408,6 @@ page-account-setup {
             
        } 
        }
-       .loader {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #203959;
-        background-repeat: repeat-x;
-        transform: scale(1);
-        overflow: hidden;
-        transition: 0.4s;
-        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-        animation: backgroundmover 30s linear infinite;
-        .maploader {
-          .lds-heart {
-            display: inline-block;
-            position: relative;
-            width: 64px;
-            height: 64px;
-            transform: rotate(45deg);
-            transform-origin: 32px 32px;
-          }
-          .lds-heart div {
-            top: 23px;
-            left: 19px;
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            background: #fff;
-            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-          }
-          .lds-heart div:after,
-          .lds-heart div:before {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 26px;
-            height: 26px;
-            background: #fff;
-          }
-          .lds-heart div:before {
-            left: -17px;
-            border-radius: 50% 0 0 50%;
-          }
-          .lds-heart div:after {
-            top: -17px;
-            border-radius: 50% 50% 0 0;
-          }
-          @keyframes lds-heart {
-            0% {
-              transform: scale(0.95);
-            }
-            5% {
-              transform: scale(1.1);
-            }
-            39% {
-              transform: scale(0.85);
-            }
-            45% {
-              transform: scale(1);
-            }
-            60% {
-              transform: scale(0.95);
-            }
-            100% {
-              transform: scale(0.9);
-            }
-          }
-          
-          
-        }
-       }
-       .loading-text {
-        // color: yellow;
-        position: absolute;
-        bottom: 50vh;
-        left: 0px;
-        width: 100vw;
-        text-align: center;
-        // background: red;
-        height: 50vh;
-        z-index: 50;
-       }
-       .loader-hide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 20;
-        background: rgb(255, 255, 255);
-        transform: scale(0);
-        overflow: hidden;
-        transition: 0.4s;
-        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-        .maploader {
-          .lds-facebook {
-            display: inline-block;
-            position: relative;
-            width: 64px;
-            height: 64px;
-          }
-          .lds-facebook div {
-            display: inline-block;
-            position: absolute;
-            left: 6px;
-            width: 13px;
-            background: #fff;
-            animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-          }
-          .lds-facebook div:nth-child(1) {
-            left: 6px;
-            animation-delay: -0.24s;
-          }
-          .lds-facebook div:nth-child(2) {
-            left: 26px;
-            animation-delay: -0.12s;
-          }
-          .lds-facebook div:nth-child(3) {
-            left: 45px;
-            animation-delay: 0;
-          }
-          @keyframes lds-facebook {
-            0% {
-              top: 6px;
-              height: 51px;
-            }
-            50%, 100% {
-              top: 19px;
-              height: 26px;
-            }
-          }
-        }
-       }
-       @keyframes maploader {
-        0% {
-          // transform: rotate(0deg);
-          border-color: rgb(182, 70, 95);
-          // background: rgb(255, 192, 192);
-        }
-        50% {
-          // background: rgb(206, 206, 255);
-          // transform: rotate(360deg);
-          border-color: rgb(42, 50, 75);
-        }
-        100% {
-          border-color: rgb(250, 182, 43);
-          // background: rgb(255, 167, 167);
-          // transform: rotate(360deg);
-        }
-       }  
+   }   
        
    }
-}

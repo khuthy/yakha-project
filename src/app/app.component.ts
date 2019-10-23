@@ -80,19 +80,20 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#203550');
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-         this.setupPush();
-      
+         this.setupPush()
         
     }
     this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
      
       if (user) {
+       
         firebase.firestore().collection('Users').doc(user.uid).onSnapshot((profile) => {
           
           
           
           if (profile.exists) {
+            firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
               if(!request.empty) {
                 request.forEach(list => {

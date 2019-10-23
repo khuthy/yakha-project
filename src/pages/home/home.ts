@@ -114,15 +114,16 @@ export class HomePage {
       this.AutoComplete()
     }, 1000);
     setTimeout(() => {
-
+  
       this.loaderAnimate = false
     }, 2000);
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
         //document.getElementById('header').style.display = "none";
-        this.loadMap();
         this.getPosition();
+        this.loadMap();
+      
       }
       if (res.data().builder == true) {
         this.getRequests();
@@ -665,12 +666,11 @@ export class HomePage {
 
   getRequests() {
     //let data = {info: [], user: [], id: []}
+    this.owner = [];
     this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
       this.owner = [];
       for (let j = 0; j < res.docs.length; j++) {
-    
         this.db.doc(res.docs[j].data().hOwnerUid).onSnapshot((doc)=>{
-
           this.owner.push({info: res.docs[j].data(), user: doc.data(), id: res.docs[j].id})
          })
          console.log('Owner details', this.owner);
