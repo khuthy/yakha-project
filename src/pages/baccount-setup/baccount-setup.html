@@ -131,7 +131,7 @@
                   <ion-item no-lines>
                       <ion-input formControlName="regNo" placeholder="Registration Number" [(ngModel)]="builderProfile.regNo"></ion-input>
                     </ion-item>
-                    <p class="error" *ngIf="regNo.invalid || regNo.touched">Registration Number is required</p>
+                    <p class="error" *ngIf="regNo.hasError('required')">Registration Number is required</p>
                     
               </ion-col>
               

@@ -266,7 +266,12 @@ export class QuotationFormPage {
     }
   }
   checkClicked(event) {
-    this.HomeOwnerQuotation.extras.push(event);
+    if(event) {
+      this.HomeOwnerQuotation.extras.push(event);
+    }else {
+      this.HomeOwnerQuotation.extras.splice(event, 1);
+    }
+
     // console.log(this.HomeOwnerQuotation.extras);
   }
   backSlide() {
