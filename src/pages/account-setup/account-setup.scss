@@ -1,4 +1,79 @@
+page-account-setup {
+  .address {
+    min-width: 100%;
+    border-radius: 50px;
+    margin: 0;
+    border: none;
+    color: #333;
+    padding: 15px;
+    border: 1px solid #ddd;
+  }
 
+#hide-div{
+    display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+ //  margin-top: 15%;
+  }
+  #hide-div > div {
+    // background-color: #586B83;
+     // flex: 1;
+      width: 150px;
+      //height: 10vh;
+   }
+   #hide-div > .div-fab{
+   // background-color: antiquewhite;
+    height: 7vh;
+    width: 35% ;
+    
+   }
+
+   .toolbar-header {
+    background:url(../../assets/imgs/ownerShape.svg);            
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 40%;
+   }
+   .toolbar-footer {
+    background:url(../../assets/imgs/ownerShapes.svg);            
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 35%;
+   }
+
+   .item {
+       .input, .select {
+           border-radius: 50px;
+           border: 1px solid #ddd;
+       }
+       .select {
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        min-width: 100%;
+        .select-icon {
+          right: 5% !important;
+        }
+      }
+     
+   }
+ 
+   .thumb {
+       height: 100px;
+       width: 100px;
+       border-radius: 50%;
+       border: 1px solid #ddd;
+       margin: 0 auto;
+       img {
+           height: 100px;
+           width: 100px;
+           border-radius: 50%;
+           object-fit: cover;
+       }
+   }
+   .next {
+       max-width: 60%;
+       margin: 0 auto;
+   }
   
 #switchback {
    // border: 3px solid green;

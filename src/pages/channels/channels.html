@@ -5,15 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar  color="primary">
-      <ion-title>Messages</ion-title>
-    </ion-navbar>
+      <ion-navbar>
+        <ion-toolbar class="channels">
+        <ion-title>Messages</ion-title>
+      </ion-toolbar>
+      </ion-navbar>
+      
   </ion-header>
  
 
 
 
-<ion-content padding>
+<ion-content padding fullscreen>
   <div class="homebuilder">
     <div class="cards" *ngFor =" let b of respond"> <!-- Put a forloop here -->
          <div class="images">
@@ -32,3 +35,7 @@
    <!--    <p *ngIf="!owner">You have no requests yet</p> -->
       </div>
 </ion-content>
+<ion-footer no-border>
+    <ion-toolbar class="tools-footer">
+      </ion-toolbar>
+</ion-footer>
