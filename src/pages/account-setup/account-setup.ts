@@ -62,6 +62,7 @@ export class AccountSetupPage {
   }
   loaderAnimate = true;
   back: boolean;
+  hid: string = '';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -94,7 +95,7 @@ export class AccountSetupPage {
       this.HomeOwnerProfile.tokenID = res.userId;
     });
 
-    this.backButton()
+  
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
@@ -120,6 +121,16 @@ export class AccountSetupPage {
 
     this.getProfile();
   }
+
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+    //  console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
   }
@@ -318,16 +329,7 @@ export class AccountSetupPage {
   getProfileImageStyle() {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
-  backButton() {
-    this.plt.registerBackButtonAction(() => {
-      if(this.back == true) {
-         this.isProfile = true;
-      }else {
-        this.isProfile = false;
-      }
-       
-    })
-  }
+ 
   SignOut() {
      this.alertCtrl.create({
       title: 'Are you sure you want to logout?',
