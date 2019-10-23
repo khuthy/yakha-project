@@ -54,7 +54,7 @@ export class QuotationFormPage {
     extras: [],
     wallType: '',
     brickType: '',
-    houseImage: '',
+    houseImage: 'https://firebasestorage.googleapis.com/v0/b/yakha-bda91.appspot.com/o/QuatationForm%2FNa18VBBzV5aSuOEh7eARHj6jYeD2.jpg?alt=media&token=c7067285-2117-4db3-8d08-279f97d58d29',
     comment: '',
     date: Date(),
     view: false,
@@ -265,12 +265,22 @@ export class QuotationFormPage {
       }, 500)
     }
   }
-  checkClicked(event) {
-    if(event) {
-      this.HomeOwnerQuotation.extras.push(event);
+  checkClicked(extra, event) {
+    // console.log(event);
+    
+    if(event.checked) {
+      this.HomeOwnerQuotation.extras.push(extra);
     }else {
-      this.HomeOwnerQuotation.extras.splice(event, 1);
+      var filtered = this.HomeOwnerQuotation.extras.filter((value, index, arr)=>{
+
+       return value !== extra;
+    
+    });
+    this.HomeOwnerQuotation.extras = filtered
+    console.log(this.HomeOwnerQuotation.extras);
+    
     }
+// console.log(this.HomeOwnerQuotation.extras);
 
     // console.log(this.HomeOwnerQuotation.extras);
   }
