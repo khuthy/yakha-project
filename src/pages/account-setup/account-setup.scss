@@ -1,144 +1,217 @@
+page-account-setup {
+
+#hide-div{
+    display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+ //  margin-top: 15%;
+  }
+  #hide-div > div {
+    // background-color: #586B83;
+     // flex: 1;
+      width: 150px;
+      //height: 10vh;
+   }
+   #hide-div > .div-fab{
+   // background-color: antiquewhite;
+    height: 7vh;
+    width: 35% ;
+    
+   }
+
+   .toolbar-header {
+    background:url(../../assets/imgs/ownerShape.svg);            
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 40%;
+   }
+   .toolbar-footer {
+    background:url(../../assets/imgs/ownerShapes.svg);            
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 35%;
+   }
+
+   .item {
+       .input, .select {
+           border-radius: 50px;
+           border: 1px solid #ddd;
+       }
+       .select {
+           min-width: 100%;
+       }
+   }
+   .thumb {
+       height: 100px;
+       width: 100px;
+       border-radius: 50%;
+       border: 1px solid #ddd;
+       margin: 0 auto;
+       img {
+           height: 100px;
+           width: 100px;
+           border-radius: 50%;
+           object-fit: cover;
+       }
+   }
+   .next {
+       max-width: 60%;
+       margin: 0 auto;
+   }
+  
+// #switchback {
+//    // border: 3px solid green;
+//     position: absolute;
+//     left: 10%;
+// }
+//      .info-profile {
+//          height: 100%;
+//          width: 100%;
+//          border: 2px solid rgb(255, 0, 170);
+       
+//          .topdeco {
+//            //border: 2px solid rgb(14, 13, 13);
+//              height: 11%;
+//              width: 100%;
+//              background:url(../../assets/imgs/ownerShape.svg); 
+//              background-position: top right;
+//              background-repeat: no-repeat;
+//              background-size: 40%;
+//              position: absolute;
+//              top: 0;;
+//          }
+//          form {
+//             border: 3px solid gray;
+//              height: 78%;
+//              position: relative;
+//              top: 11%;
+
+//              .image-holder {
+//                 height: 27%;
+//                 width: 100%;
+//           border: 1px solid red;
+//                 display: flex;
+//                 justify-content: center;
+//                 .thumb {
+//                     height: 20vh;
+//                     width: 20vh;
+//                     border-radius: 50%;
+//                     background: ddd;
+//                    // border: 2px solid rgb(98, 95, 95);
+//                     position: relative;
+//                     background:rgba(194, 187, 187, 0.952) ;
+//                     img {
+//                         width: 100%;
+//                         height: 100%;
+//                         border-radius: 50%;
+//                         object-fit: cover;
+   
+//                     }
+                    
+//                     .upload-image {
+//                        position: absolute;
+//                        bottom: 0;
+//                        right: 0;
+//                        height: 5vh;
+//                        width: 5vh;
+//                        .icon {
+//                            font-size: 2.5vh;
+//                        }
+   
+//                     }
+//                 }
+//             }
+//          }
+      
+//          .inputs-profile{
+//              margin-top: 4%;
+//              height: 70%;
+//              width: 100%;
+//         //  background: blue;;
+         
+//                  .form-group {
+//                     //  height: 20%;
+//                     //  max-width: 80%;
+//                     //  margin: 0 auto;
+//                      //flex: 1;
+//                      //border:2px solid red;
+//                      margin-top: 0 !important;
+//                     margin-top: 5px;
+//                      input {
+//                          width: 80%;
+//                          padding: 12px;
+//                          border-radius: 50px;
+//                          border: none;
+//                          padding-left: 20px;
+//                          font-size: 5vw;
+//                          margin-left: 10%;
+//                          margin-top: 6px;
+//                          //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
+//                          border: 1px solid rgb(168, 162, 162);
+//                      }
+// div {
+
+//   margin:0 !important;
+//   padding: 0 !important;;
 
   
-#switchback {
-   // border: 3px solid green;
-    position: absolute;
-    left: 10%;
-}
-     .info-profile {
-         height: 100vw;
-         width: 100%;
-        // border: 2px solid rgb(255, 0, 170);
-       
-         .topdeco {
-           //border: 2px solid rgb(14, 13, 13);
-             height: 11%;
-             width: 100%;
-             background:url(../../assets/imgs/ownerShape.svg); 
-             background-position: top right;
-             background-repeat: no-repeat;
-             background-size: 40%;
-             position: absolute;
-             top: 0;;
-         }
-         form {
-           // border: 3px solid gray;
-             height: 78%;
-             position: relative;
-             top: 11%;
-
-             .image-holder {
-                height: 27%;
-                width: 100%;
-         // border: 1px solid red;
-                display: flex;
-                justify-content: center;
-                .thumb {
-                    height: 20vh;
-                    width: 20vh;
-                    border-radius: 50%;
-                    background: ddd;
-                   // border: 2px solid rgb(98, 95, 95);
-                    position: relative;
-                    background:rgba(194, 187, 187, 0.952) ;
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                        object-fit: cover;
-   
-                    }
+// }
                     
-                    .upload-image {
-                       position: absolute;
-                       bottom: 0;
-                       right: 0;
-                       height: 5vh;
-                       width: 5vh;
-                       .icon {
-                           font-size: 2.5vh;
-                       }
-   
-                    }
-                }
-            }
-         }
-      
-         .inputs-profile{
-             margin-top: 4%;
-             height: 100%;
-             width: 100%;
-          // background: blue;;
-           position: relative;
-           top: 20%;
-                 .form-group {
-                     height: 20%;
-                     max-width: 80%;
-                     margin: 0 auto;
-                     //flex: 1;
-                     //border:2px solid red;
-                     input {
-                         width: 100%;
-                         padding: 10px;
-                         border-radius: 50px;
-                         border: none;
-                         padding-left: 30px;
-                         font-size: 2.6vh;
-                         //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
-                         border: 1px solid rgb(168, 162, 162);
-                     }
+//                      .item {
+//                         width: 80%;
+//                         padding: 0;
+//                         margin-left: 10%;
+//                        /*  background: #ddd; */
+//                         //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
+//                         border: 1px solid #ddd;
+//                         border-radius: 50px;
 
-                    
-                     .item {
-                        width: 100%;
-                        padding: 0;
-                       /*  background: #ddd; */
-                        //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.167);
-                        border: 1px solid #ddd;
-                        border-radius: 50px;
+//                         box-shadow: none;
 
-                        box-shadow: none;
-                       .select {
-                           width: 100%;
-                           .select-icon {
-                               left: 5% !important;
-                           }
+                        
+//                        .select {
+//                            width: 100%;
+//                            .select-icon {
+//                                left: 5% !important;
+//                            }
                            
-                       }
-                  }
+//                        }
+//                   }
                      
-                 }
+//                  }
              
-         }
-         .btn-profile{
-            height: 10%;
-            width: 100%;
-           // border: 1px solid rgb(185, 140, 17);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .btn-profile-x {
-                width: 60%;
-                box-shadow: none;
-              margin-top: 10%;
-
-            }
-         }
+//          }
+//          .btn-profile{
+//             height: 25%;
+//             width: 100%;
+//             border: 1px solid rgb(185, 140, 17);
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             .btn-profile-x {
+//                 width: 60%;
+//                 height: 55%;
+//                 box-shadow: none;
+//                 letter-spacing: 1px;;
+//             //  margin-top: 15%;
+//                 //border: 2px solid blue;
+//             }
+//          }
         
-     }
+//      }
     
    
-   .bottomdeco {
-    height: 11%;
-     width: 100%;
-   // border: 2px solid rgb(25, 0, 255);
-    background:url(../../assets/imgs/OwnerShapes.svg); 
-   background-position: bottom left;
-   background-repeat: no-repeat;
-   background-size: 35%;
-   position: absolute;
-   bottom: 0;;
-}
+//    .bottomdeco {
+//     height: 11%;
+//      width: 100%;
+//    // border: 2px solid rgb(25, 0, 255);
+//     background:url(../../assets/imgs/OwnerShapes.svg); 
+//    background-position: bottom left;
+//    background-repeat: no-repeat;
+//    background-size: 30%;
+//    position: absolute;
+//    bottom: 0;;
+// }
      /* Create profile ends here */
 
      
@@ -326,3 +399,4 @@
        
        
    }
+}

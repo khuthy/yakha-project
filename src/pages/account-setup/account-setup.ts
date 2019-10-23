@@ -12,6 +12,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { LoginPage } from '../login/login';
 import { text } from '@angular/core/src/render3/instructions';
 import { File, FileEntry } from '@ionic-native/file';
+import { Keyboard } from '@ionic-native/keyboard';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -53,7 +54,13 @@ export class AccountSetupPage {
   
   }
 
-   
+  //divs that will hide 
+ // password = true;
+ // bottomdeco = true;
+ // buttons = true;
+  isKeyOpen: boolean = false;
+  hid='';
+
   options = {
     componentRestrictions: {
       country: ['ZA']
@@ -73,6 +80,7 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
+    public keyBoard: Keyboard
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -102,6 +110,18 @@ export class AccountSetupPage {
 
     this.getProfile();
   }
+
+  /* method that will hide the keyboard */
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+    //  console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
+
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
   }
