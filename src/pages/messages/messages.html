@@ -1,9 +1,9 @@
-     <ion-content >
+     <ion-content class="background">
             <ion-slides pager #slides (ionSlideTap)="slideChanged($event)" (ionSlideDidChange)="slideChanged($event)">
               <ion-slide  *ngFor="let item of msgSent; let i=index;">
              <ion-header  no-border>
                         <ion-navbar>
-                          <!-- background image of the builder -->
+                         
                           <div class="pickimage">
                              <img src="../../assets/imgs/Plaster.png" class="img-header" alt="">
                           </div>
@@ -11,19 +11,19 @@
                        
 
                           <div class="buttons">
-                             <!-- backbutton -->
+                            
                             <ion-buttons left top id="backbtn">
                                 <button ion-fab medium  (click)="navCtrl.pop()"><ion-icon name="arrow-back"></ion-icon></button>
                               </ion-buttons>
 
-                                 <!-- counter for quotaions -->
+                                
                           <div class="countQoutes">
                               <span>{{i + 1 | number}}</span>
                             </div>
-                                <!-- callbtn -->
-                         <ion-buttons right id="callbtn">
-                              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
-                            </ion-buttons> 
+                          <ion-buttons right id="callbtn">
+                              <button ion-fab medium color="customcall" id="callbtn" (click)="callJoint(item.personalNumber)"><ion-icon name="call"></ion-icon></button>
+                        </ion-buttons> 
+                      
                           </div>
                            
                          
@@ -76,44 +76,40 @@
                      
                 </div>
 
-                <div class="chats" >
+                <div class="chats" padding>
                     <div *ngFor="let chat of messages; ">
                  <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
-                       <p id="content">{{chat.chat.chat}}</p>
+                       <p id="content">{{chat.chat.chat | titlecase}}</p>
                        <p id="date">{{chat.chat.date | date:"hh:mm"}} </p>
                       </div>
-                
+                      <div class="clear"></div>
                     <div class="chat right" id="outgoing" *ngIf="chat.chat.builder">
                       <div *ngIf="chat.chat.pdf">
 
-                          <ion-buttons  id="quotation">
-                              <button>Quotation 004</button>
-                              <ion-icon name="arrow-round-down"></ion-icon>
-                            </ion-buttons>
+                          <div class="pdf">
+                            <p></p>
+                            <p>Quotation</p>
+                            <button ion-fab color="dark" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
+                          </div>
+                          
                             <div id="buttons">
-                                <ion-buttons>
-                                    <button style="background:rgb(255, 101, 101);">Decline</button>
-                                  </ion-buttons>
-                                  
-                               <ion-buttons>
-                                   <button style="background:rgb(91, 255, 91)">Accept</button>
-                                 </ion-buttons>
-                     
-                              
+                               <button ion-button small clear  color="danger" round>Decline</button>
+                               <button ion-button small color="customcall" round>Accept</button>
                             </div>
                          
 
                       </div>
                         
-                         <p id="content">{{chat.chat.chat}}</p>
-                         <p id="date">{{chat.chat.date | date}} </p>
+                         <p id="content">{{chat.chat.chat | titlecase}}</p>
+                         <p id="date">{{chat.chat.date | date:"shortTime": "GMT+2"}} </p>
 
                        
                         </div>
                  </div>
                      
-                
+              
                   </div> 
+                 
               </ion-slide>
             </ion-slides>
            </ion-content>
