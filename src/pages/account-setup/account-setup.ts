@@ -48,8 +48,12 @@ export class AccountSetupPage {
     About: '',
     date: Date(),
     ownerAddress: '',
-    tokenID: ''
+    tokenID: '',
+
+  
   }
+
+   
   options = {
     componentRestrictions: {
       country: ['ZA']
