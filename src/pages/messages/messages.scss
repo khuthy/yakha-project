@@ -191,12 +191,11 @@ overflow: auto;
       height: 30%;
       width: 100%;
       //border: 1px solid #000;
-      display: flex;
-      flex-wrap: wrap;
+      display: inline-block;
       
       p {
-          flex-basis: 30%;
-          padding: .2em;
+          display: inline-block;
+          padding: .3em;
           background: color($colors, dark);
           color: color($colors, light);
           align-self: flex-start;
@@ -264,7 +263,7 @@ ion-footer, ion-grid,ion-row, ion-col {
       #content {
         font-size:3vh;
         letter-spacing: 1px;
-        color: #fff;
+        color: #000;
         font-weight: 400;
       }
      
