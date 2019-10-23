@@ -52,12 +52,21 @@ export class ChannelsPage {
           }
         })
         this.respond.push(data);
+
+        console.log()
        // data = {id:{}, data:{}, user:{}}
       }
     })
     console.log('Info>>>>>>', this.respond);
   }
   gotoMessages(id, name) {
+    console.log(id);
+
+  firebase.firestore().collection('Respond').doc(id).update('viewed',true).then(val=>{
+  console.log(val);
+})
+
+
     this.navCtrl.push(MessagesPage, { id, name });
   }
 

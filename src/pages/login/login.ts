@@ -185,18 +185,17 @@ export class LoginPage {
             //loading.dismiss();
           }
         })
-      }).catch(error => {
-        this.alertCtrl.create({
-          title: error.code,
-          subTitle: error.message,
-          buttons: ['Try again']
-        }).present();
+      }).catch( async (error) => {
+        const alert = await this.alertCtrl.create({
+          message: 'User does not exist.',
+          buttons: [{ text: 'Ok', role: 'cancel' }]
+        });
+        await alert.present();
       })
-
+      
     }
   }
 }
-
 
 
 

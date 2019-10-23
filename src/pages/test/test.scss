@@ -36,7 +36,7 @@ page-test {
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(255, 255, 255, 0.219), rgba(29, 29, 29, 0.767));
-    border-radius: 0 0 50px 50px;
+    border-radius: 0 0 25px 25px;
   }
 .img-header {
 position: absolute;
@@ -46,7 +46,7 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 z-index: -10;
-border-radius: 0 0 50px 50px;
+border-radius: 0 0 25px 25px;
 
 
 } 
@@ -66,8 +66,8 @@ border-radius: 0 0 50px 50px;
 
      height: 100%;
    
-     border-bottom-right-radius: 50px;
-     border-bottom-left-radius:  50px;
+     border-bottom-right-radius: 25px;
+     border-bottom-left-radius:  25px;
  }
  .title {
      .toolbar-title {
@@ -95,104 +95,122 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: color($colors, light);
-border-radius: 0 0 50px 50px;
+background: color($colors, secondary);
+border-radius: 0 0 25px 25px;
 transition: 500ms;
 z-index: 2;
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
 .container-request {
-position: absolute;
-top: 35%;
-left: 0;
-width: 100%;
-height: 65%;
-border-radius: 0 0 50px 50px;
-overflow: auto;
-//border: 1px solid red;
-    .house-plan {
-      height: 35%;
-      width: 100%;
-      margin-bottom: 5%;
-      //border: 1px solid rgb(179, 25, 25);
-      img {
-        height: 100%;
+  position: absolute;
+  top: 35%;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  border-radius: 0 0 25px 25px;
+  overflow: auto;
+  //border: 1px solid red;
+      .house-plan {
+        height: 35%;
         width: 100%;
-        object-fit: cover;
-        border-radius: 12px;
-      }
-    }
-    .brick-time {
-      height: 35%;
-      width: 100%;
-      margin-bottom: 5%;
-     // border: 1px solid rgb(104, 39, 39);
-      display: flex;
-      justify-content: space-between;
-
-      .card {
-        height: 100%;
-        width: 50%;
-    
-        position: relative;
-        .img-brick {
-          width: 50vh;
-           height: 35vh;
-           object-fit: cover;
-           border-radius: 12px;
-          position: absolute;
-          left: 0;
-          top: 0;
-          margin: 4%;
-        }
-        p{
-          position: absolute;
+        margin-bottom: 5%;
+       box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.247);
+       border-radius: 5px;
+        img {
+          height: 100%;
           width: 100%;
-          left: 0;
-          bottom: -11px;
-          border-radius: 0 0 12px 12px;
-          background: #fff;
-          margin: 4%;
+          object-fit: cover;
+          border-radius: 5px;
         }
       }
-      .time {
-        height: 100%;
-        width: 45%;
-        //background: rgb(35, 10, 68);
-        font-size: 2.5vh;
+      .brick-time {
+        height: 35%;
+        width: 100%;
+        margin-bottom: 5%;
+       // border: 1px solid rgb(104, 39, 39);
         display: flex;
-        flex-direction: column;
-
-        article {
-          height: 50%;
-         background: #fff;
-         border-radius: 12px;
-         margin: 2%;
-         padding: .3em;
+        justify-content: space-between;
+  
+        .card {
+          height: 100%;
+          width: 50%;
+          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.341);
+          position: relative;
+          border-radius: 5px;
+          .img-brick {
+            width: 50vh;
+             height: 35vh;
+             object-fit: cover;
+             border-radius: 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+           
+          }
+          p{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            border-radius: 0 0 5px 5px;
+            background: rgba(49, 49, 49, 0.63);;
+            color: rgb(241, 241, 241);
+          }
+        }
+        .time {
+          height: 100%;
+          width: 45%;
+          background: rgba(214, 214, 214, 0.144);
           font-size: 2.5vh;
-          line-height: 1;
-          color: rgb(44, 44, 44);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          border-radius: 5px;
+          article {
+            height: 50%;
+           background: rgb(0, 0, 0);
+           border-radius: 5px;
+           margin: 2%;
+           padding: .3em;
+            font-size: 2.5vh;
+            line-height: 1;
+            display: flex;
+            flex-wrap: wrap;
+    
+            p{
+              margin: auto;
+              color: rgb(241, 241, 241);
+            }
+          }
         }
       }
-    }
-    .etras {
-      height: 30%;
-      width: 100%;
-      //border: 1px solid #000;
-      display: flex;
-      flex-wrap: wrap;
-      
-      p {
-          flex-basis: 30%;
-          padding: .2em;
-          background: color($colors, dark);
-          color: color($colors, light);
-          align-self: flex-start;
-          margin: 1%;
-          border-radius: 6px;
+      .walltype {
+        padding: .3em;
+        width: 100%;
+        background: rgb(78, 64, 64);
+        color: color($colors, light);
+        p{
+          margin: 0 !important;
           font-size: 2.5vh;
+        }
       }
-    }
-}
+      .etras {
+        height: 30%;
+        width: 100%;
+        //border: 1px solid #000;
+      
+        
+        p {
+            display: inline-block;
+            padding: .3em;
+            background: rgb(78, 64, 64);
+            color: color($colors, light);
+            align-self: flex-start;
+            margin: 1%;
+            border-radius: 6px;
+            font-size: 2.5vh;
+        }
+      }
+  }
 }
 .pull-up {
 position: absolute;
