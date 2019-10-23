@@ -75,14 +75,14 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
 
-    /*   this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.statusBar.backgroundColorByHexString('#203550');
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
          this.setupPush();
       
         
-    } */
+    }
     this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
      
