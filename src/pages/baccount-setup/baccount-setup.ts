@@ -54,7 +54,7 @@ export class BaccountSetupPage {
     email: firebase.auth().currentUser.email,
     date: Date(),
     tokenID: '',
-    regNo: null
+    regNo: ''
   }
   @ViewChild('slides') slides: Slides;
   @ViewChild("placesRef") placesRef: GooglePlaceDirective;
@@ -108,12 +108,14 @@ export class BaccountSetupPage {
 
      this.profileForm.get('profileFormSecondSlide').get('certified').valueChanges.subscribe((checkedValue) => {
        const regNo = this.profileForm.get('profileFormSecondSlide').get('regNo');
-       if(checkedValue == true){
+       if(checkedValue){
          regNo.setValidators(Validators.required);
        }else {
         regNo.clearValidators();
         
        }
+       regNo.updateValueAndValidity();
+       
      });
    
     // when the page loads

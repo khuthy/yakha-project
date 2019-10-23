@@ -6,7 +6,7 @@
                     <ion-navbar>
                       <!-- background image of the builder -->
                       <div class="pickimage">
-                         <img src="{{item.data.houseImage}}" class="img-header" alt="">
+                         <img src="{{item.user.image}}" class="img-header" alt="">
                       </div>
                      
                    
@@ -23,7 +23,7 @@
                         </div>
                             <!-- callbtn -->
                      <ion-buttons right id="callbtn">
-                          <button ion-fab medium color="customcall" id="callbtn" (click)="callJoint()"><ion-icon name="call"></ion-icon></button>
+                          <button ion-fab medium color="customcall" id="callbtn" (click)="callJoint(item.user.personalNumber)"><ion-icon name="call"></ion-icon></button>
                     </ion-buttons> 
                       </div>
                        
@@ -42,11 +42,11 @@
                 <div [ngClass]="{'pull-up' : !toggle, 'drop-down' : toggle}">
                       <div class="container-request" padding *ngIf="toggle">
                             <div class="house-plan" >
-                                <img src="../../assets/imgs/builder1.svg" alt="plan-{{1}}"><!-- House plan -->
+                                <img src="{{item.data.houseImage}}" alt="plan-{{1}}"><!-- House plan -->
                             </div>
                             <div class="brick-time" >
                               <div class="card">
-                                <img src="../../assets/imgs/Burnt clay brick.jpg" class="img-brick" alt="">
+                                <img src="../../assets/imgs/{{item.data.brickType}}.jpg" class="img-brick" alt="">
                                 <p style="font-size: 2.5vh;">{{item.data.brickType}}</p>
                               </div>
                               <div class="time">
@@ -61,6 +61,9 @@
                                
                                
                               </div>
+                            </div>
+                            <div class="walltype">
+                              <p>Wall Type: {{item.data.wallType}}</p>
                             </div>
                             <div class="walltype"><p></p></div>
                             <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
@@ -78,14 +81,15 @@
             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
                        <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
-                     
-                       
+                       <p  id="content" *ngIf="quoteStatus">
+                      Your quote has been {{quoteStatus}}
+                       </p>
+                      
                       </div>
-                
+                     
                     <div class="chat right" id="outgoing" *ngIf="chat.builder">
                       
-                       
-                         <p id="content">{{chat.chat}}</p>
+                         <p id="content">{{chat.chat}} </p>
                          <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
 
                        

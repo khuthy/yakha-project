@@ -266,14 +266,19 @@ export class QuotationFormPage {
     }
   }
   checkClicked(event) {
-    this.HomeOwnerQuotation.extras.push(event);
+    if(event) {
+      this.HomeOwnerQuotation.extras.push(event);
+    }else {
+      this.HomeOwnerQuotation.extras.splice(event, 1);
+    }
+
     // console.log(this.HomeOwnerQuotation.extras);
   }
   backSlide() {
-    this.steps ='stepone'
-    setTimeout(()=>{
+    this.steps = 'stepone'
+    setTimeout(() => {
       this.nextslide()
-    },300)
+    }, 300)
   }
   popForm() {
     this.navCtrl.pop()
@@ -531,13 +536,26 @@ export class QuotationFormPage {
             this.HomeOwnerQuotation.extras.forEach((item) => {
               res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
             });
-            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
-              console.log('Chat >>>>-----', res.id);
-             
-              this.navCtrl.setRoot(SuccessPage);
-            })
-          });
 
+          });
+          this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
+            console.log('Chat >>>>-----', res.id);
+            this.HomeOwnerQuotation = {
+              hOwnerUid: '',
+              startDate: '',
+              endDate: '',
+              extras: [],
+              wallType: '',
+              brickType: '',
+              houseImage: '',
+              comment: '',
+              date: Date(),
+              view: false,
+              builderUID: '',
+              docID: ''
+            };
+            this.navCtrl.setRoot(SuccessPage);
+          })
           // upon success...
           // user.then((response) => {
 
@@ -611,7 +629,7 @@ export class QuotationFormPage {
     this.steps = 'steptwo';
     this.setData();
     setTimeout(() => {
-        this.nextslide();
+      this.nextslide();
     }, 500);
   }
 
@@ -624,7 +642,7 @@ export class QuotationFormPage {
       endDate: this.HomeOwnerQuotation.endDate,
       wallType: this.HomeOwnerQuotation.wallType
     })
-    
+
   }
 
 }

@@ -42,6 +42,7 @@ export class TestPage {
   icon: string = 'ios-arrow-down';
   extras=[];
   number: any;
+  quoteStatus: any;
   constructor(public navCtrl: NavController, 
     private callNumber:CallNumber,
     public navParams: NavParams) {
@@ -81,13 +82,13 @@ export class TestPage {
         console.log('My extras......', this.extras);
      // })
     })
-    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res) => {
+    this.dbIncoming.where('builderUID','==',this.uid).where('hOwnerUid','==',this.navParams.data.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
-        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((response)=>{ this.number = response.data().personalNumber})
-        this.msgSent.push({data:doc.data(), id: doc.id})
+        this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((response)=>{
+        this.msgSent.push({data:doc.data(), id: doc.id, user: response.data()})
       })
-
+    })
     })
   
      setTimeout(() => {
@@ -104,8 +105,15 @@ export class TestPage {
       for (let i = 0; i < res.docs.length; i++) {
         this.msgInfo.push(res.docs[i].data())
       }
-      console.log('Message...', this.msgInfo);  
+    //  console.log('Message...', this.msgInfo);  
     }) 
+    this.dbSent.doc(this.currentUid).onSnapshot((doc)=>{
+      if (doc.data().msgStatus!=="") {
+     ///  this.hideCard = '';
+       this.quoteStatus = doc.data().msgStatus;
+      // console.log('Status............................', this.quoteStatus);
+      } 
+    })
   }
   getChats() {
     this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true, id:  this.currentUid }).then((res) => {
@@ -131,10 +139,7 @@ export class TestPage {
   getProfileImageStyle() {
     return 'url(' + this.getowners.image + ')'
   }
-  callJoint() {
-    
-    console.log('number',this.number);
-    
-    this.callNumber.callNumber(this.number, true);
+  callJoint(number) {
+    this.callNumber.callNumber(number, true);
   }
 }

@@ -320,14 +320,29 @@ export class AccountSetupPage {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
   SignOut() {
-    firebase.auth().signOut().then(() => {
-      console.log('Signed Out');
-      this.navCtrl.setRoot(LoginPage);
-
-    }).catch((err) => {
-      console.log('error occured while signing out');
-
+    let alert = this.alertCtrl.create({
+      title: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role:'cancel'
+        },
+        {
+          text: 'Okay',
+          handler: data => {
+            firebase.auth().signOut().then(() => {
+              console.log('Signed Out');
+              this.navCtrl.setRoot(LoginPage);
+        
+            }).catch((err) => {
+              console.log('error occured while signing out');
+        
+            })
+          }
+        }
+      ]
     })
+    alert.present();
   }
   viewHouse(myEvent) {
     console.log('image', myEvent);

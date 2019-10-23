@@ -5,7 +5,7 @@
         <ion-navbar>
           <!-- background image of the builder -->
           <div class="pickimage">
-            <img src="../../assets/imgs/Plaster.png" class="img-header" alt="">
+            <img src="{{item.user.image}}" class="img-header" alt="">
           </div>
 
 
@@ -24,7 +24,7 @@
             </div>
             <!-- callbtn -->
             <ion-buttons right id="callbtn">
-              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)">
+              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.user.personalNumber)">
                 <ion-icon name="call"></ion-icon>
               </button>
             </ion-buttons>
@@ -69,16 +69,11 @@
               </div>
             </div>
             <div class="walltype">
-              <p></p>
+              <p>Wall Type: {{item.data.wallType}}</p>
             </div>
             <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
             <div class="etras">
               <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
-            </div>
-            <div class="downloadPDF">
-              <button ion-button block clear outline (click)="downloadPDF()">
-                <ion-icon name="file"></ion-icon>Quotation-PDF-Y00-{{i + 1}}
-              </button>
             </div>
           </div>
 
@@ -89,7 +84,7 @@
           <div *ngFor="let chat of messages; ">
        <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
              <p id="content">{{chat.chat.chat | titlecase}}</p>
-             <p id="date">{{chat.chat.date | date:'h:mm a z'}} </p>
+             <p id="date">{{chat.chat.date | date:'hh:mm'}} </p>
             </div>
             <div class="clear"></div>
           <div class="chat right" id="outgoing" *ngIf="chat.chat.builder">
@@ -97,12 +92,12 @@
 
                 <div class="pdf">
                   <p></p>
-                  <p>Quotation</p>
-                  <button ion-fab color="dark" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
+                  <p>Quotation-Y00{{i}}</p>
+                  <button ion-fab color="dark" [style.backgroundColor]="quoteStatus == 'Accepted' ? 'green' : 'red'" mini (click)="downloadPDF(chat.chat.pdf)"><ion-icon name="download"></ion-icon></button>
                 </div>
                 
                   <div id="buttons" *ngIf="quoteStatus">
-                     {{quoteStatus}}
+                   <p style="text-align: center; width: 100%;" [style.color]="quoteStatus == 'Accepted' ? 'green' : 'red'">{{quoteStatus}}</p>  
                   </div>
                   <div id="buttons" *ngIf="!quoteStatus">
                     <button ion-button small clear  color="danger" (click)="declineQoute()" round>Decline</button>
@@ -112,7 +107,7 @@
             </div>
               
                <p id="content">{{chat.chat.chat | titlecase}}</p>
-               <p id="date">{{chat.chat.date | date:'h:mm a z'}} </p>
+               <p id="date">{{chat.chat.date | date:'hh:mm'}} </p>
 
              
               </div>
