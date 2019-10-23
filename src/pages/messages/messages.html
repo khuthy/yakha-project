@@ -69,16 +69,11 @@
               </div>
             </div>
             <div class="walltype">
-              <p></p>
+              <p>Wall Type: {{item.data.wallType}}</p>
             </div>
             <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
             <div class="etras">
               <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
-            </div>
-            <div class="downloadPDF">
-              <button ion-button block clear outline (click)="downloadPDF()">
-                <ion-icon name="file"></ion-icon>Quotation-PDF-Y00-{{i + 1}}
-              </button>
             </div>
           </div>
 
