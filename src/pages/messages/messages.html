@@ -85,49 +85,39 @@
         </div>
 
       </div>
-
-      <div class="chats">
-        <div *ngFor="let chat of messages; ">
-          <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
-            <p id="content">{{chat.chat.chat}}</p>
-            <p id="date">{{chat.chat.date | date:"hh:mm"}} </p>
-          </div>
-
+      <div class="chats" padding>
+          <div *ngFor="let chat of messages; ">
+       <div class="chat left" id="incomingMessages " *ngIf="!chat.chat.builder">
+             <p id="content">{{chat.chat.chat | titlecase}}</p>
+             <p id="date">{{chat.chat.date | date:"hh:mm"}} </p>
+            </div>
+            <div class="clear"></div>
           <div class="chat right" id="outgoing" *ngIf="chat.chat.builder">
             <div *ngIf="chat.chat.pdf">
-              <div id="accept">
-                <ion-buttons id="quotation">
-                  <button>Quotation 004</button>
-                  <ion-icon name="arrow-round-down"></ion-icon>
-                </ion-buttons>
-                <div id="buttons" *ngIf="hideCard">
-                  <ion-buttons>
-                    <button style="background:rgb(255, 101, 101);" (click)="declineQoute()">Decline</button>
-                  </ion-buttons>
 
-                  <ion-buttons>
-                    <button style="background:rgb(91, 255, 91)" (click)="acceptQoute()">Accept</button>
-                  </ion-buttons>
+                <div class="pdf">
+                  <p></p>
+                  <p>Quotation</p>
+                  <button ion-fab color="dark" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
                 </div>
-                <div id="buttons" *ngIf="!hideCard" >
-                   <p style="color: blue;">{{quoteStatus}}</p>
+                
+                  <div id="buttons">
+                     <button ion-button small clear  color="danger" (click)="declineQoute()" round>Decline</button>
+                     <button ion-button small color="customcall" (click)="acceptQoute()" round>Accept</button>
                   </div>
-
-              </div>
-
-
+               
 
             </div>
+              
+               <p id="content">{{chat.chat.chat | titlecase}}</p>
+               <p id="date">{{chat.chat.date | date:"shortTime": "GMT+2"}} </p>
 
-            <p id="content">{{chat.chat.chat}}</p>
-            <p id="date">{{chat.chat.date | date}} </p>
-
-
-          </div>
-        </div>
-
-
-      </div>
+             
+              </div>
+       </div>
+           
+    
+        </div> 
     </ion-slide>
   </ion-slides>
 </ion-content>
