@@ -1,5 +1,36 @@
 page-channels {
+  .back-button {
+  
+    background: #cc9e14;
+    border-radius: 50px;
+    min-height: 45px; 
+   
+  } 
+  .channels {
     
+      background: url('../../assets/imgs/OwnerShape.svg');
+      background-position: top right;
+      background-size: 50%;
+      background-repeat: no-repeat;
+      
+
+
+    .title {
+      .toolbar-title {
+        color: color($colors, dark);
+        font-weight: 100;
+      }
+    }
+    
+    
+  }
+  .tools-footer {
+    background: url('../../assets/imgs/OwnerShapes.svg');
+    background-position: bottom left;
+    background-size: 40%;
+    background-repeat: no-repeat;
+  }
+ 
     
     .homebuilder {
         
@@ -68,25 +99,4 @@ page-channels {
         
       }
       
-      .toolbar {
-        .toolbar-background {
-          background: transparent;
-          
-        }
-        .title {
-          .toolbar-title {
-            color: color($colors, dark);
-            font-weight: 100;
-          }
-        }
-        .back-button {
-      
-          background: #cc9e14;
-          border-radius: 50px;
-          min-height: 45px; 
-         
-        } 
-        
-       
-      } 
 }
