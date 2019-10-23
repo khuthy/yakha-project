@@ -38,9 +38,24 @@ page-account-setup {
            border: 1px solid #ddd;
        }
        .select {
-           min-width: 100%;
-       }
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        min-width: 100%;
+        .select-icon {
+          right: 5% !important;
+        }
+      }
+     
    }
+   .address {
+    min-width: 100%;
+    border-radius: 50px;
+    margin: 0;
+    border: none;
+    color: #333;
+    padding: 15px;
+    border: 1px solid #ddd;
+  }
    .thumb {
        height: 100px;
        width: 100px;

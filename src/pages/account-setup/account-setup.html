@@ -41,7 +41,7 @@
           </ion-col>
           <ion-col col-12 align-self-center>
               <ion-item no-lines>
-                  <input class="input input-md" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+                  <input class="address" formControlName="address" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
                 </ion-item>
                 <p class="error" *ngIf="profileForm.get('address').hasError('required') && (profileForm.get('address').dirty || profileForm.get('address').touched)"> Please specify your Address.</p>
           </ion-col>
