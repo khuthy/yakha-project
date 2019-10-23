@@ -94,6 +94,7 @@ export class MyApp {
           
           if (profile.exists) {
             firebase.firestore().collection('Respond').where('viewed','==', false).onSnapshot( res => {
+              console.log("what is here >",res)
               this.messages = res.size;
     })
             
