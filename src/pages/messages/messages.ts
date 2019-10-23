@@ -130,7 +130,7 @@ export class MessagesPage {
       if (doc.data().msgStatus!=="") {
        this.hideCard = '';
        this.quoteStatus = doc.data().msgStatus;
-      // console.log('Status............................', this.quoteStatus);
+       console.log('Status............................', this.quoteStatus);
       } 
     })
 
