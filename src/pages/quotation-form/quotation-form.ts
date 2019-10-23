@@ -229,9 +229,6 @@ export class QuotationFormPage {
   }
 
   slideState() {
-
-
-
     if (this.steps == 'stepone') {
       if (this.quotationForm.get('firstCountValid').invalid || (this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.brickType == '')) {
 
@@ -269,10 +266,23 @@ export class QuotationFormPage {
     }
   }
   checkClicked(event) {
-    this.HomeOwnerQuotation.extras.push(event);
+    if(event) {
+      this.HomeOwnerQuotation.extras.push(event);
+    }else {
+      this.HomeOwnerQuotation.extras.splice(event, 1);
+    }
+
     // console.log(this.HomeOwnerQuotation.extras);
   }
-
+  backSlide() {
+    this.steps ='stepone'
+    setTimeout(()=>{
+      this.nextslide()
+    },300)
+  }
+  popForm() {
+    this.navCtrl.pop()
+  }
   nextslide() {
     switch (this.steps) {
       case 'stepone':
@@ -370,7 +380,7 @@ export class QuotationFormPage {
 
         this.selectedBrick = event.path[i].children[1].innerText
 
-        this.renderer.setStyle(event.path[i].children[1], 'background', 'orange');
+        this.renderer.setStyle(event.path[i].children[1], 'background', '#cc9e14');
         //console.log(event.path[i].children[1].innerText);
         // console.log(event.path[i].children);
       }
@@ -523,11 +533,12 @@ export class QuotationFormPage {
         } else {
           this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
             res.update({ docID: res.id });
+            this.HomeOwnerQuotation.extras.forEach((item) => {
+              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+            });
             this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
               console.log('Chat >>>>-----', res.id);
-              this.HomeOwnerQuotation.extras.forEach((item) => {
-                res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-              });
+             
               this.navCtrl.setRoot(SuccessPage);
             })
           });
@@ -600,6 +611,25 @@ export class QuotationFormPage {
     popover.present({
       ev: myEvent
     });
+  }
+  editQuotes() {
+    this.steps = 'steptwo';
+    this.setData();
+    setTimeout(() => {
+        this.nextslide();
+    }, 500);
+  }
+
+  setData() {
+    this.quotationForm.get('secondValid').patchValue({
+      comment: this.HomeOwnerQuotation.comment
+    });
+    this.quotationForm.get('firstCountValid').patchValue({
+      startDate: this.HomeOwnerQuotation.startDate,
+      endDate: this.HomeOwnerQuotation.endDate,
+      wallType: this.HomeOwnerQuotation.wallType
+    })
+    
   }
 
 }

@@ -1,80 +1,54 @@
- <ion-header [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
+ <ion-header *ngIf="steps=='steone'"  [style.display]="!hideHeader ? 'none' : 'block' " no-border style="background: transparent;">
   <ion-navbar color="primary">
 <!--     <ion-title> <p style="border:1px solid gold;margin-left: -5px;margin-top:5px;"> {{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)<br>{{homeBuilderName}}</p></ion-title>
  -->   
- <ion-title><p style="color:rgb(204, 158, 20)">{{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p></ion-title>
- <ion-title><p style="letter-spacing: 1px;font-family:'impact'">{{homeBuilderName}}</p></ion-title>
-  </ion-navbar>
-  
+
+</ion-navbar>
 </ion-header>
 
  
 
 <ion-content fullscreen>
-<div class="topDecor"></div>
-   
-<div class="footer">
-    <div class="button-group"  *ngIf="nextbutton" (click)="slideState()">
+    <button (click)="popForm()" *ngIf="steps=='stepone'"  id="switchback" style="border:none;background: rgb(204, 158, 20);position:absolute;top:10px;left:10px;min-height:45px;width:45px;z-index:5"  ion-fab ><ion-icon color="light" name="arrow-back"></ion-icon></button>
+   <button (click)="backSlide()" *ngIf="steps=='steptwo'"  id="switchback" style="border:none;background: rgb(204, 158, 20);position:absolute;top:10px;left:10px;min-height:45px;width:45px;z-index:5"  ion-fab ><ion-icon color="light" name="arrow-back"></ion-icon></button>
+    
+<div class="topDecor">
+
+</div>
+
+<div class="footer"  *ngIf="!hid">
+    <div class="button-group"  *ngIf="steps=='steptwo'||steps=='stepone'" (click)="slideState()">
         <p>Next step</p>
          <button class="send-quotes" ion-fab color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
       </div>
-      <div class="button-group"  *ngIf="!nextbutton" (click)="createQuations()">
+
+      <div class="button-group"  *ngIf="steps=='stepthree'" (click)="createQuations()">
         <p>Submit</p>
          <button class="send-quotes" ion-fab color="light">
           <ion-icon name="arrow-forward"></ion-icon>
          
         </button>
       </div>
+<!-- edit buttton -->
+      <div class="button-group" id="edit" *ngIf="steps=='stepthree'" >
+        <p>Edit</p>
+         <button class="send-quotes" (click)="editQuotes()" ion-fab color="light">
+          <ion-icon name="arrow-back"></ion-icon>
+         
+        </button>
+      </div>
+<div class="names">
+  <p style="color:rgb(204, 158, 20);margin-top:4px;">{{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p>
+  <p style="letter-spacing: 1px;font-family:'impact'">{{homeBuilderName}}</p>
 </div>
-   
-  
-      
- <!--   <div *ngIf="nextbutton" class="nextbutton" (click)="slideState()" class="btn">
-    <p>Next</p>
-    <div class="nextFab">
-      <button ion-fab mini>
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </div>
- 
-  </div>  -->
-<!--   <ion-footer >
-    <ion-toolbar >
-     
-      <div *ngIf="nextbutton" class="btn" (click)="slideState()" >
-         <p style="border:2px solid blue;width:60%;height:100%">next</p> 
-        <div style="border:2px solid yellow;width:40%;margin-left: auto">
-           <button ion-fab mini >
-          <ion-icon name="arrow-forward"  ></ion-icon>
-        </button>
-        </div>
-       
-      </div>
-    </ion-toolbar>
-   </ion-footer> -->
 
- <!--  <div style="background:transparent" *ngIf="!nextbutton" class="nextbutton"  class="btn">
-      <p>Submit</p>
-      <div class="nextFab">
-        <button ion-fab>
-          <ion-icon name="arrow-forward" (click)="createQuations()"></ion-icon>
-        </button>
-      </div>
-    </div> -->
+</div>
 
-  <!-- <div *ngIf="backButton" (click)="gohome()" class="backButton">
-    <button ion-fab>Back</button>
-  </div> -->
-<!--   <div class="topDecor">
-
-  </div> -->
-  <!-- next button -->
  
   <form class="information" [formGroup]="quotationForm">
-
   
 
     <!-- slide one starts here -->
@@ -82,9 +56,9 @@
        
       <div class="imageCont">
         
-        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image">
+        <img *ngIf="HomeOwnerQuotation.houseImage" src="{{HomeOwnerQuotation.houseImage}}" class="image" (click)="selectImage()">
         <ion-icon *ngIf="!HomeOwnerQuotation.houseImage" style="color:gray; font-size:8vh;text-align: center"
-          (click)="selectImage()" name="cloud-download"></ion-icon>
+          (click)="selectImage()" name="cloud-upload"></ion-icon>
         <p [class]="houseimage ? 'error' : 'normal'" *ngIf="!quotationForm.get('firstCountValid').get('houseimage').value">Please upload your house plan here</p>
       </div>
       <div class="dates">
@@ -117,7 +91,7 @@
             <!-- <p>{{n.description}}</p> -->
           </div>
           <div class="brickName">
-            <p style="font-size:5vw" id="brickName"><small>{{n.name}}</small></p>
+            <p style="font-size:5vw;" id="brickName"><small>{{n.name}}</small></p>
           </div>
           <div id="imageDiv">
             <img src="{{n.image}}">
@@ -149,29 +123,31 @@
     <!-- start of info2  slide -->
     <div class="secon" scroll id="step2" formGroupName="secondValid">
       <div class="extrawork"  >
-        <!-- hide this whole div when the keyboard opens -->
-        <div  id="extrajob" class="hidethis">
-          <h2 id="hide-div" *ngIf="!hid" class="hidelist"  class="hidepara" style="font-size:5vw;margin-top:2%;padding-bottom: 6px;text-align:center">Would you like to include the
-          following?</h2>
-
-        <ion-list id="hide-div"  *ngIf="!hid" class="hidelist" style="height:5px;">
-
-          <ion-item class="gray"  style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
-            <ion-label>{{e.service}}</ion-label>
-            <ion-checkbox id="hide-div"  *ngIf="!hid" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
-                " (click)="checkClicked(e.service)"></ion-checkbox>
-          </ion-item>
-      </ion-list>
+<div class="eForm">
+          <!-- hide this whole div when the keyboard opens -->
+          <div  id="extrajob">
+            <h2 id="hide-div" class="hidelist"  class="hidepara">Would you like to include the
+            following?</h2>
+  
+          <ion-list>
+  
+            <ion-item class="gray"  style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
+              <ion-label>{{e.service}}</ion-label>
+              <ion-checkbox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
+                  "(click)="checkClicked(e.service)"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+          </div>
+  
+       
+  <div class="textarea">
+       <!-- textarea -->
+          <ion-textarea  (ionFocus)="checkKeyboard('open')"
+          (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
+        <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
         </div>
-
-     
-<div class="textarea">
-     <!-- textarea -->
-        <ion-textarea  (ionFocus)="checkKeyboard('open')"
-        (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
-      <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
-      </div>
-     
+       
+</div>
         
       </div>
 

@@ -1,9 +1,16 @@
 page-messages {  
+  .background {
+    background: color($colors, light);
+  }
+  .clear {
+    clear: left;
+    width: 100%;
+  }
   ion-navbar {
     //border: 1px solid red;
 
     .buttons {
-      //border: 1px solid blue;
+     // border: 1px solid blue;
       display: flex;
       position: absolute;
       top: 0%;
@@ -19,19 +26,18 @@ page-messages {
     #backbtn {
      // border: 1px solid green;
      margin-top:7px;
-#callbtn {
-  color: red; 
-}
-    }
 
+    }
     #callbtn {
       //border: 1px solid green;
       margin-left: auto;
-      margin-top:7px;
+      margin-top:3px;
       ion-fab {
         background: red;
       }
     }
+
+    
   }
   .pickimage {
     //border: 1px solid red;
@@ -40,8 +46,8 @@ page-messages {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(255, 255, 255, 0.219), rgba(29, 29, 29, 0.767));
-    border-radius: 0 0 50px 50px;
+    background: linear-gradient(rgba(255, 255, 255, 0.119), rgba(29, 29, 29, 0.967));
+    border-radius: 0 0 25px 25px;
   }
 .img-header {
 position: absolute;
@@ -51,7 +57,7 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 z-index: -10;
-border-radius: 0 0 50px 50px;
+border-radius: 0 0 25px 25px;
 
 
 } 
@@ -71,8 +77,8 @@ border-radius: 0 0 50px 50px;
 
      height: 100%;
    
-     border-bottom-right-radius: 50px;
-     border-bottom-left-radius:  50px;
+     border-bottom-right-radius: 25px;
+     border-bottom-left-radius:  25px;
  }
  .title {
      .toolbar-title {
@@ -102,8 +108,8 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: color($colors, light);
-border-radius: 0 0 50px 50px;
+background: color($colors, secondary);
+border-radius: 0 0 25px 25px;
 transition: 500ms;
 z-index: 2;
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
@@ -113,19 +119,20 @@ top: 35%;
 left: 0;
 width: 100%;
 height: 65%;
-border-radius: 0 0 50px 50px;
+border-radius: 0 0 25px 25px;
 overflow: auto;
 //border: 1px solid red;
     .house-plan {
       height: 35%;
       width: 100%;
       margin-bottom: 5%;
-      //border: 1px solid rgb(179, 25, 25);
+     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.247);
+     border-radius: 5px;
       img {
         height: 100%;
         width: 100%;
         object-fit: cover;
-        border-radius: 12px;
+        border-radius: 5px;
       }
     }
     .brick-time {
@@ -139,59 +146,76 @@ overflow: auto;
       .card {
         height: 100%;
         width: 50%;
-    
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.341);
         position: relative;
+        border-radius: 5px;
         .img-brick {
           width: 50vh;
            height: 35vh;
            object-fit: cover;
-           border-radius: 12px;
+           border-radius: 5px;
           position: absolute;
           left: 0;
           top: 0;
-          margin: 4%;
+         
         }
         p{
           position: absolute;
           width: 100%;
           left: 0;
-          bottom: -11px;
-          border-radius: 0 0 12px 12px;
-          background: #fff;
-          margin: 4%;
+          bottom: 0;
+          border-radius: 0 0 5px 5px;
+          background: rgba(49, 49, 49, 0.63);;
+          color: rgb(241, 241, 241);
         }
       }
       .time {
         height: 100%;
         width: 45%;
-        //background: rgb(35, 10, 68);
+        background: rgba(214, 214, 214, 0.144);
         font-size: 2.5vh;
         display: flex;
         flex-direction: column;
-
+        justify-content: space-between;
+        border-radius: 5px;
         article {
           height: 50%;
-         background: #fff;
-         border-radius: 12px;
+         background: rgb(0, 0, 0);
+         border-radius: 5px;
          margin: 2%;
          padding: .3em;
           font-size: 2.5vh;
           line-height: 1;
-          color: rgb(44, 44, 44);
+          display: flex;
+          flex-wrap: wrap;
+  
+          p{
+            margin: auto;
+            color: rgb(241, 241, 241);
+          }
         }
+      }
+    }
+    .walltype {
+      padding: .3em;
+      width: 100%;
+      background: rgb(78, 64, 64);
+      color: color($colors, light);
+      p{
+        margin: 0 !important;
+        font-size: 2.5vh;
       }
     }
     .etras {
       height: 30%;
       width: 100%;
       //border: 1px solid #000;
-      display: flex;
-      flex-wrap: wrap;
+    
       
       p {
-          flex-basis: 30%;
-          padding: .2em;
-          background: color($colors, dark);
+          display: inline-block;
+          padding: .3em;
+          background: rgb(78, 64, 64);
           color: color($colors, light);
           align-self: flex-start;
           margin: 1%;
@@ -206,10 +230,10 @@ position: absolute;
 top: 0;
 left: 0;
 width: 100%;
-height: 35%;
-background: color($colors, light);
+height: 30%;
+//background: color($colors, light);
 border-radius: 0 0 50px 50px;
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
+//box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
 transition: 500ms;
 z-index: 2;
 }
@@ -225,44 +249,50 @@ ion-footer, ion-grid,ion-row, ion-col {
  //styling for chat boxes
  .chats {
   //border: 1px solid red;
-  height: 100%;
-  position: fixed;
-  top: 35%;
+  height: 66%;
+ 
+  position: absolute;
+  top: 33%;
   left: 0;
   width: 100%;
-  overflow-y: auto;
+  overflow: scroll;
+ 
   //border: 1px solid red;
   padding-bottom: 33vh;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
       .chat {
-        z-index: -2;
-        width: 85%;
-      //height: 75px;
-     margin: 5% auto;
-      border-radius: 10px;
-      position: relative;
-    
+
+      min-width: 60%;
+      max-width: 90%;
+     
+      margin: 2%;
+      border-radius: 15px;
+     
+      
     }
     .left {
-      border-bottom-left-radius: 0;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      border-bottom-right-radius: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.203);
       padding:2%;
       padding-left:2%;
-      background: #7FB7CE;
-      align-self: flex-end;
-      justify-self: flex-end;
+      background: rgb(255, 221, 109);
+
+
       text-align: left;
+      float: right;
       #content {
-        font-size:3.5vw;
+        font-size:3vh;
         letter-spacing: 1px;
-        color: whitesmoke;
+        color: #000;
+        font-weight: 400;
       }
+     
   
       #date {
-        color:rgb(231, 226, 226);
-        font-size:2vw;
+        color:grey;
+        font-size:2.5vh;
         letter-spacing: 1px;
         text-align: right;
        // border: 1px solid red;
@@ -271,21 +301,21 @@ ion-footer, ion-grid,ion-row, ion-col {
     }
     //outgoing chats styling starts here
     .right {
-      border-bottom-right-radius: 0; 
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.082);
+      border-bottom-left-radius: 0; 
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.103);
       padding:2%;
       padding-left:2%;
      text-align: left;
-      background: rgb(206, 206, 206);
-     
+      background: #fff;
+      float: left;
        p {
-          font-size:3.5vw;
+        font-size:2.5vh;
       letter-spacing: 1px;
-      color:white;
+      color:#000;
        }
        #date {
-        color:rgb(100, 98, 98);
-        font-size:2vw;
+        color:grey;
+        font-size:2.5vh;
         letter-spacing: 1px;
         text-align: right;
        // border: 1px solid red;
@@ -293,14 +323,25 @@ ion-footer, ion-grid,ion-row, ion-col {
       }
      //buttons
   
-     #quotation {
-       //border: 1px solid red;
-       margin-bottom: 3%;
-     background: #dddddd;
-      // margin-left:5%;
-     border-radius: 5px;
-          display: flex;
-   button {
+     .pdf {
+
+      background: rgb(238, 238, 238);
+      //box-shadow: 0 2px 6px #ddd;
+      border: 1px solid rgb(175, 175, 175);
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+        button {
+          height: 5vh;
+          width: 5vh;
+        }
+        .icon {
+          font-size: 2.5vh;
+        }
+  /*  button {
         width: 70%;
         height: 100%;
         padding:5%;
@@ -309,8 +350,8 @@ ion-footer, ion-grid,ion-row, ion-col {
         letter-spacing: 1px;
          border-radius: 4px;
       
-       }
-       ion-icon {
+       } */
+      /*  ion-icon {
         width: 30%;
          //border: 1px solid green;
          font-size: 8vw;
@@ -319,35 +360,19 @@ ion-footer, ion-grid,ion-row, ion-col {
          align-items: center;
          align-content:center;
   
-       }
+       } */
       
      }
      #buttons {
        //border: 1px solid red;
        display: flex;
-       justify-content: space-evenly;
-       margin-bottom : 2%;
-       ion-buttons {
-         //border: 1px solid green;
-         width: 40%;
-         border-radius: 5px;
-       
-         button{
-  //background: blue;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  padding:8%;
-  color: white;
-  font-size:3vw;
-  letter-spacing: 1px;
-         }
-       }
+       justify-content: space-between;
+      
   
      }
   
     }
-    .chat::after {
+    /* .chat::after {
       content: '';
       width: 1.5em;
       height: 1.5em;
@@ -363,7 +388,7 @@ ion-footer, ion-grid,ion-row, ion-col {
       right: 0;
       transform: translateX(100%);
       background: radial-gradient(circle at 100% 0, transparent, transparent 72%, rgb(206, 206, 206) 72%);
-    }
+    } */
     }
 
    

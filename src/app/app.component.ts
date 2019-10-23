@@ -2,7 +2,7 @@ import { HomePage } from './../pages/home/home';
 import { TestPage } from './../pages/test/test';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import * as firebase from 'firebase/app';
@@ -19,6 +19,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { OneSignal } from '@ionic-native/onesignal';
 import { ChannelsPage } from '../pages/channels/channels';
 //import { OneSignal } from '@ionic-native/onesignal';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 @Component({
@@ -44,12 +45,13 @@ export class MyApp {
   messages = 0
   token: string;
 
-  constructor(public platform: Platform, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal) {
+  constructor(public platform: Platform, private screenOrientation: ScreenOrientation, public splashScreen: SplashScreen, private statusBar: StatusBar,public oneSignal: OneSignal,
+    public alert: AlertController) {
     
       this.statusBar.overlaysWebView(false); 
   
       // set status bar to white
-    this.statusBar.backgroundColorByHexString('#203550');
+
     this.initializeApp();
     firebase.initializeApp(firebaseConfig);
     this.db =firebase.firestore();
@@ -73,6 +75,9 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.statusBar.backgroundColorByHexString('#203550');
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
          this.setupPush();
@@ -88,9 +93,21 @@ export class MyApp {
           
           
           if (profile.exists) {
-            firebase.firestore().collection('Respond').where('viewed','==', false).onSnapshot( res => {
-              this.messages = res.size;
-    })
+            firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
+              if(!request.empty) {
+                request.forEach(list => {
+                  firebase.firestore().collection('Respond').doc(list.id).onSnapshot(res => {
+                    if(res.exists) {
+                      if(res.data().viewed == false) {
+                        this.messages = res.data.length;
+                      }
+                     
+                    }
+                    })
+                });
+              }
+            })
+      
             
          //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
             if (profile.data().isProfile == true && profile.data().status == true) {
@@ -141,6 +158,23 @@ export class MyApp {
     });
     });
   }
+  exit(){
+    let alert = this.alert.create({
+      title: 'Confirm',
+      message: 'Do you want to exit?',
+      buttons: [{
+        text: "Exit",
+        handler: () => { this.exitApp() }
+      }, {
+        text: "Cancel",
+        role: 'cancel'
+      }]
+    })
+    alert.present();
+}
+exitApp(){
+  this.platform.exitApp();
+}
   setupPush(){
     
       this.oneSignal.startInit(this.signal_app_id, this.firebase_id);

@@ -31,6 +31,7 @@ export class MessagesPage {
   dbFeed = firebase.firestore().collection('Feedback');
   dbChat = firebase.firestore().collection('chat_msg');
   dbChatting = firebase.firestore().collection('chatting');
+  hideCard = 'qeqw43453rwerf453efste45tergft';
   uid = firebase.auth().currentUser.uid;
   hideRev;
   slidesPerView: number = 1;
@@ -60,7 +61,7 @@ export class MessagesPage {
 
   }
   imageBuilder;
-  personalNumber ='';
+  personalNumber = '';
   builderName = '';
   msgSent = [];
   builder = [];
@@ -70,9 +71,12 @@ export class MessagesPage {
   manageUser: boolean;
   chatting = [];
   msgRespond = [];
+  pdf = '';
   //imageBuilder;
   currentUid = '';
   chat: number = Date.now();
+  number: any;
+  quoteStatus: string='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private fileOpener: FileOpener,
@@ -84,10 +88,9 @@ export class MessagesPage {
     private callNumber: CallNumber
   ) {
     this.autoUid = this.navParams.data;
-    console.log('DATA=>', this.autoUid, '', this.autoUid.img);
     this.builderName = this.autoUid.name;
     this.imageBuilder = this.autoUid.img;
-    this. personalNumber = this.autoUid. personalNumber;
+    this.personalNumber = this.autoUid.personalNumber;
 
   }
 
@@ -105,32 +108,42 @@ export class MessagesPage {
   }
   /* Tesing if chats works */
   chats = [];
-slideChanged() {
+
+
+
+  slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     this.currentUid = this.msgSent[currentIndex].id;
-   // let curr = this.messages[currentIndex];
-    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id','==',this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
-      this.messages=[];
+    // let curr = this.messages[currentIndex];
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).where('id', '==', this.msgSent[currentIndex].id).orderBy('date').onSnapshot((res) => {
+      this.messages = [];
       for (let i = 0; i < res.docs.length; i++) {
-        this.messages.push(res.docs[i].data())
+        if (!res.docs[i].data().pdfLink) {
+
+        }
+        this.messages.push({ chat: res.docs[i].data() })
       }
-      console.log('Message...', this.messages);
-      
+     // console.log('Response data', this.messages);
+
     })
+    this.dbIncoming.doc(this.currentUid).onSnapshot((doc)=>{
+      if (doc.data().msgStatus!=="") {
+       this.hideCard = '';
+       this.quoteStatus = doc.data().msgStatus;
+       console.log('Status............................', this.quoteStatus);
+      } 
+    })
+
   }
 
 
-
-
   /* Ends here */
-  acceptQoute(data, uid) {
-    //  console.log('doc id.................', data);
-
-    this.dbIncoming.doc(data).update({ msgStatus: "Accepted" }).then((res) => {
-      document.getElementById('accept').style.display = "none";
+  acceptQoute() {
+    this.dbIncoming.doc(this.currentUid).update({ msgStatus: "Accepted" }).then((res) => {
+     
       // this.messages = [];
       //  console.log('Updated document results',res);
-      this.dbProfile.doc(uid).onSnapshot((msg) => {
+      /* this.dbProfile.doc(uid).onSnapshot((msg) => {
         var notificationObj = {
           contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been accepted" },
           include_player_ids: [msg.data().tokenID],
@@ -139,43 +152,51 @@ slideChanged() {
           // console.log('After push notifcation sent: ' +res);
 
         });
-      })
+      }) */
     });
   }
-  declineQoute(data, uid) {
-    //console.log('data>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',data);
-
-    this.dbIncoming.doc(data).update({ msgStatus: "Declined" }).then((res) => {
+  declineQoute() {
+  
+    this.dbIncoming.doc(this.currentUid).update({ msgStatus: "Declined" }).then((res) => {
       // this.messages = [];
       // console.log('Declined document results',res) 
-      this.dbProfile.doc(uid).onSnapshot((msg) => {
-        var notificationObj = {
-          contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been declined" },
-          include_player_ids: [msg.data().tokenID],
-        };
-        this.oneSignal.postNotification(notificationObj).then(res => {
-          // console.log('After push notifcation sent: ' +res);
-
-        });
-      })
+      /*     this.dbProfile.doc(uid).onSnapshot((msg) => {
+            var notificationObj = {
+              contents: { en: "Hey " + msg.data().fullName + " ," + "your qoutation response has been declined" },
+              include_player_ids: [msg.data().tokenID],
+            };
+            this.oneSignal.postNotification(notificationObj).then(res => {
+              // console.log('After push notifcation sent: ' +res);
+    
+            });
+          }) */
     });
   }
   ionViewDidLoad() {
+    //get Response
+
     //get Requests
-    this.dbIncoming.where('builderUID','==',this.uid).onSnapshot((res)=>{
-      res.forEach((doc)=>{
-        console.log('Response....', doc.data());
-        
+    setTimeout(() => {
+      this.slideChanged()
+    }, 500);
+    this.dbIncoming.where('hOwnerUID', '==', this.uid).onSnapshot((res) => {
+      res.forEach((doc) => {
+
+        let pdf = doc.data().pdfLink;
+        this.pdf = pdf;
       })
     })
-    this.dbMessage.where('hOwnerUid','==',this.uid).onSnapshot((res) => {
+    this.dbMessage.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
-        this.msgSent.push({data:doc.data(), id: doc.id})
+        // quering builder personal number
+        this.dbProfile.doc(doc.data().builderUID).onSnapshot((response) => { this.number = response.data().personalNumber })
+        this.msgSent.push({ data: doc.data(), id: doc.id })
+        //this.number = doc.data().personalNumber;
       })
 
     })
-  
+
   }
   brick = 'Engineering brick' //demo
   getChats() {
@@ -202,10 +223,11 @@ slideChanged() {
   getProfileImageStyle() {
     return 'url(' + this.imageBuilder + ')';
   }
-  callJoint(personalNumber) {
-    console.log(personalNumber);
-    
-    // this.callNumber.callNumber(personalNumber, true);
+  callJoint() {
+
+    console.log('number', this.number);
+
+    this.callNumber.callNumber(this.number, true);
   }
 
 

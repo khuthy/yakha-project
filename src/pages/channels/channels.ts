@@ -44,7 +44,7 @@ export class ChannelsPage {
         let data = {id:{}, data:{}, user:{}}
         this.dbChat.doc(this.uid).collection(res.docs[j].data().builderUID).onSnapshot((result) => {
           for (let i = 0; i < result.docs.length; i++) {
-            data.id = result.docs[i].id;
+            data.id = res.docs[i].id;
             data.data = result.docs[i].data();
             this.dbUser.doc(res.docs[j].data().builderUID).onSnapshot((userDoc) => {
               data.user = userDoc.data();
@@ -52,12 +52,21 @@ export class ChannelsPage {
           }
         })
         this.respond.push(data);
+
+        console.log()
        // data = {id:{}, data:{}, user:{}}
       }
     })
     console.log('Info>>>>>>', this.respond);
   }
   gotoMessages(id, name) {
+    console.log(id);
+
+  firebase.firestore().collection('Respond').doc(id).update('viewed',true).then(val=>{
+  console.log(val);
+})
+
+
     this.navCtrl.push(MessagesPage, { id, name });
   }
 

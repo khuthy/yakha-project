@@ -77,6 +77,7 @@ export class BuilderquotesPage {
   }
   meter = 2;
   pdfObj = null;
+  dbChatting = firebase.firestore().collection('chatting');
   dbRespond = firebase.firestore().collection('Respond'); //sdk
   dbUsers = firebase.firestore().collection('Users');
   dbRequest = firebase.firestore().collection('Request');
@@ -107,6 +108,7 @@ export class BuilderquotesPage {
 
   }
   userUID = firebase.auth().currentUser.uid;
+  chatMessage: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -146,8 +148,7 @@ export class BuilderquotesPage {
   }
 
   ionViewDidLoad() {
-    this.dbChat.doc(this.navParams.data.uid).collection(this.userUID).doc(this.navParams.data.docID).collection('extras').onSnapshot((res) => {
-      // console.log(res.docs);
+    this.dbRequest.doc(this.navParams.data.docID).collection('extras').onSnapshot((res) => {
       res.forEach((doc) => {
         console.log(doc.data())
         this.extras.push({ item: doc.id, data: doc.data() });
@@ -162,7 +163,7 @@ export class BuilderquotesPage {
     //     console.log(this.extras);
     //   })
     // })
-    this.dbRequest.doc(this.navParams.data.uid).onSnapshot((res) => {
+    this.dbRequest.doc(this.navParams.data.docID).onSnapshot((res) => {
       this.quotes.hOwnerUID = res.data().hOwnerUid;
       this.dbUsers.doc(res.data().hOwnerUid).onSnapshot((res) => {
         if (res.data().builder == false) {
@@ -399,11 +400,33 @@ export class BuilderquotesPage {
   saveData() {
     this.downloadUrl();
     this.quotes.pdfLink = this.pdfDoc;
-    this.dbRespond.doc(this.uid).set(this.quotes).then((resReq) => {
-      this.dbChat.doc(this.uid).collection(this.navParams.data.uid).add(this.quotes).then(()=>{
-        this.navCtrl.setRoot(SuccessPage);
+    this.dbRespond.doc(this.navParams.data.docID).set(this.quotes).then(()=>{
+      this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: 'Quotation file', pdf: this.quotes.pdfLink, date: Date(), builder: true, id:this.navParams.data.docID }).then((res) => {
       })
-      /* .then((resDoc)=>{
+      this.dbChat.doc(this.uid).collection(this.navParams.data.uid).add(this.quotes).then((resDoc)=>{
+        this.quotes = {
+          ownerName: '',
+          overallHouse: 0,
+          ownerAddress: '',
+          fullName: '',
+          expiry: '',
+          address: '',
+          dimension: '',
+          total: 0,
+          price: 0,
+          uid: '',
+          pdfLink: null,
+          meter: 0,
+          discount: 0,
+          discountAmount: 0,
+          discountPrice: 0,
+          //ownerUID: null,
+          hOwnerUID: null,
+          subtotal: 0,
+          dateCreated: null,
+          viewed: false,
+          msgStatus: ''
+        } 
         resDoc.onSnapshot((doc)=>{
           this.dbUsers.doc(doc.data().hOwnerUid).onSnapshot((resUser) => {
             if (resUser.data().tokenID) {
@@ -417,11 +440,11 @@ export class BuilderquotesPage {
     
           });
         })
-      }); */
-      //if (resReq.data().hOwnerUid) {
-    
-      // })
+        this.navCtrl.setRoot(SuccessPage);
     })
+   
+    })
+    
   }
   
 }

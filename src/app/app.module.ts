@@ -8,6 +8,7 @@ import { PlacePage } from './../pages/place/place';
 import { StatusBar } from '@ionic-native/status-bar';
 import { BaccountSetupPage } from './../pages/baccount-setup/baccount-setup';
 
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { BuilderProfileviewPage } from './../pages/builder-profileview/builder-profileview';
 import { ForgotPasswordPage } from './../pages/forgot-password/forgot-password';
 import { VersionPage } from './../pages/version/version';
@@ -142,7 +143,6 @@ import { PasswordResetComponent } from '../components/password-reset/password-re
     SuccessPage,
     WelcomePage,
     ViewmessagePage,
-   
     BuilderquotesPage,
     OnboardingBuilderPage,
     ProfileComponent,
@@ -155,6 +155,7 @@ import { PasswordResetComponent } from '../components/password-reset/password-re
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     
     AuthServiceProvider,
+    ScreenOrientation,
     Camera,
     Geolocation,
     File,

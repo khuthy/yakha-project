@@ -1,12 +1,21 @@
 <ion-content [style.backgroundColor]="builder ? '#f2f2f2': '#203959'">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+      <div class="maploader">
+          <div class="lds-hourglass"></div>
+      </div>
+      <div class="loading-text">
+        <p color="light">Loading</p>
+      </div>
+    </div>
     <div class="container">
+<div class="topdeco">
 
+</div>
     <div class="logo" id="hide-div2">
-      <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}"></div>
+      <div [ngClass]="{'builderTopShape': builder, 'ownerTopShape': !builder}" *ngIf="!hid"></div>
       
-      <div id="logo">
+      <div id="logo" *ngIf="!hid">
         <img *ngIf="!builder" src="../../assets/icon/Group 462.svg" style="max-width: 100px; height: auto">
         <img *ngIf="builder"  src="../../assets/icon/Yakha-assets/Group 180.svg" style="max-width: 100px; height: auto">
       <p class="check" [style.color]="builder ? '#000': '#f2f2f2'">{{getUser}}</p>
@@ -70,7 +79,7 @@
     </div><!-- end of inputs -->
 
     <div id="hide-bottom" [ngClass]="{'bottomdecoBuilder' : builder, 'bottomdecoOwner': !builder }" *ngIf="!hid">
-     <!--    <img src="../../assets/imgs/OwnerShapes.svg" height="55%" > -->
+    
       </div>
   </div>
 </ion-content>
