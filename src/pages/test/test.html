@@ -65,19 +65,19 @@
                             <div class="walltype"><p></p></div>
                             <p style="font-size: 2.5vh;"><strong>Extras</strong></p>
                             <div class="etras">
-                              <p>{{item.data.extras}}</p><!--  *ngFor="let e of item.data.extras; let i=index" -->
+                              <p *ngFor="let e of item.data.extras; let i=index">{{e}}</p>
                             </div>
                       </div>
              
                   </div>
                  
             </div>
-              <div class="chats">
+              <div class="chats" padding>
 
             <div  *ngFor="let chat of msgInfo; ">
             <div class="chat left" id="incomingMessages " *ngIf="!chat.builder">
                        <p id="content">{{chat.chat}}</p>
-                       <p id="date">{{chat.date | date}} </p>
+                       <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
                      
                        
                       </div>
@@ -86,7 +86,7 @@
                       
                        
                          <p id="content">{{chat.chat}}</p>
-                         <p id="date">{{chat.date | date}} </p>
+                         <p id="date">{{chat.date | date: "shortTime" : "GMT+2"}} </p>
 
                        
                         </div>
