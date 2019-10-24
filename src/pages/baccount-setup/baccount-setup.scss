@@ -1,5 +1,19 @@
 
 page-baccount-setup {
+  .statusApproval {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .top {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .group-button {
     background: color($colors, danger);
     display: flex;
