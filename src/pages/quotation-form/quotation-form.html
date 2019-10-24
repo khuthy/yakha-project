@@ -34,11 +34,12 @@
       </div>
 <!-- edit buttton -->
       <div class="button-group" id="edit" *ngIf="steps=='stepthree'" >
+          <button class="send-quotes" (click)="editQuotes()" ion-fab color="light">
+              <ion-icon name="arrow-back"></ion-icon>
+             
+            </button>
         <p>Edit</p>
-         <button class="send-quotes" (click)="editQuotes()" ion-fab color="light">
-          <ion-icon name="arrow-back"></ion-icon>
          
-        </button>
       </div>
 <div class="names">
   <p style="color:rgb(204, 158, 20);margin-top:4px;">{{homeBuilderPrice | currency: '&#82;'}}(p/&#13217;)</p>
@@ -129,22 +130,22 @@
             <h2 id="hide-div" class="hidelist"  class="hidepara">Would you like to include the
             following?</h2>
   
-          <ion-list>
+          <ion-list no-lines>
   
             <ion-item class="gray"  style="background: whitesmoke;" *ngFor="let e of extras; let i=index">
               <ion-label>{{e.service}}</ion-label>
-              <ion-checkbox style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border:1px solid white;
-                  "(click)="checkClicked(e.service)"></ion-checkbox>
+              <ion-checkbox style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);border-radius:2px;
+                  "(ionChange)="checkClicked(e.service, $event, i)"></ion-checkbox>
             </ion-item>
         </ion-list>
+        <ion-textarea  (ionFocus)="checkKeyboard('open')"
+          (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment" cols="50" rows="5"></ion-textarea>
+        <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
           </div>
-  
-       
+
   <div class="textarea">
        <!-- textarea -->
-          <ion-textarea  (ionFocus)="checkKeyboard('open')"
-          (ionBlur)="checkKeyboard('close')"  placeholder="Type message here" formControlName="comment"  name="comment" [(ngModel)]="HomeOwnerQuotation.comment" class="comment"></ion-textarea>
-        <p *ngIf="quotationForm.get('secondValid').get('comment').hasError('required') && (quotationForm.get('secondValid').get('comment').dirty || quotationForm.get('secondValid').get('comment').touched)"></p>
+          
         </div>
        
 </div>
@@ -156,13 +157,15 @@
 
     <!-- slide three starts here -->
     <div class="confirm" style="overflow:auto" id="step3">
-      <h4>CONFIRM</h4>
-      <P>Please confirm if everything is <br> as you need it to be.</P>
+      <div class="title">
+          <h4>CONFIRM</h4>
+          <p>Please confirm if everything is <br> as you need it to be.</p>
+      </div>
 
       <!-- div containing houseplan and details -->
       <div class="plan">
         <!-- houseplan -->
-        <div class="houseplan">
+        <div class="houseplan" style="margin: 0px 3px 0px 0px;">
           <img src="{{HomeOwnerQuotation.houseImage}}" class="image">
         </div>
 
@@ -171,16 +174,16 @@
           <h4>Request Details</h4>
           <h5>Project Duration</h5>
 
-         
+         <p>{{HomeOwnerQuotation.startDate | date}} to {{HomeOwnerQuotation.endDate | date}} </p>
 
-          <p>WallType</p>
-          <h3>{{HomeOwnerQuotation.wallType}}</h3>
+          <h5>WallType</h5>
+          <p>{{HomeOwnerQuotation.wallType}}</p>
 
-          <p>BrickType</p>
-          <h3>{{HomeOwnerQuotation.brickType}}</h3>
+          <h5>BrickType</h5>
+          <p>{{HomeOwnerQuotation.brickType}}</p>
 
-          <p>Your message</p>
-          <h3 style="overflow:auto;height:13vh;font-size:3vw;font-weight:300">{{HomeOwnerQuotation.comment}}</h3> 
+          <h5>Your message</h5>
+          <p>{{HomeOwnerQuotation.comment}}</p> 
 
         </div>
       </div> 
