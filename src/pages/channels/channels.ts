@@ -24,26 +24,24 @@ export class ChannelsPage {
   }
 
   ionViewDidLoad() {
-    this.dbRequest.where('hOwnerUid','==',this.uid).onSnapshot((res)=>{
-      for (let j = 0; j < res.docs.length; j++) {
+    this.dbRequest.doc(this.uid).onSnapshot((res)=>{
+      this.respond = [];
         let data = {id:{}, data:{}, user:{}}
-        this.dbChat.doc(this.uid).collection(res.docs[j].data().builderUID).onSnapshot((result) => {
+        this.dbChat.doc(this.uid).collection(res.data().builderUID).onSnapshot((result) => {
           for (let i = 0; i < result.docs.length; i++) {
-            data.id = res.docs[i].id;
+            data.id = res.id;
             data.data = result.docs[i].data();
-            this.dbUser.doc(res.docs[j].data().builderUID).onSnapshot((userDoc) => {
+            this.dbUser.doc(res.data().builderUID).onSnapshot((userDoc) => {
               data.user = userDoc.data();
             })
           }
         })
         this.respond.push(data);
-      }
     })
   }
   gotoMessages(id, name) {
-  firebase.firestore().collection('Respond').doc(id).update('viewed',true).then(val=>{
-})
-
+ /*  firebase.firestore().collection('Respond').doc(id).update('viewed',true).then(val=>{
+}) */
     this.navCtrl.push(MessagesPage, { id, name });
   }
 

@@ -125,7 +125,6 @@ export class MessagesPage {
       this.messages = [];
       for (let i = 0; i < res.docs.length; i++) {
         if (!res.docs[i].data().pdfLink) {
-
         }
         this.messages.push({ chat: res.docs[i].data() })
       }
@@ -180,7 +179,8 @@ export class MessagesPage {
   }
   ionViewDidLoad() {
     //get Response
-
+    console.log('Nav params......',this.navParams.data);
+    
     //get Requests
     setTimeout(() => {
       this.slideChanged()
@@ -191,8 +191,9 @@ export class MessagesPage {
         this.pdf = pdf;
       })
     })
-    this.dbMessage.where('hOwnerUid', '==', this.uid).where('builderUID','==',this.navParams.data.name.builderUID).onSnapshot((res) => {
+    this.dbChat.doc(this.uid).collection(this.navParams.data.id).where('hOwnerUid', '==', this.uid).where('builderUID','==',this.navParams.data.id).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
+      this.msgSent = [];
       res.forEach((doc) => {
         // quering builder personal number
           this.dbProfile.doc(doc.data().builderUID).onSnapshot((response)=>{
@@ -201,7 +202,6 @@ export class MessagesPage {
       })
     })
     })
-
   }
 /*   viewQuotes() {
    

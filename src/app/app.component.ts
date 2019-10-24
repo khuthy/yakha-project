@@ -93,8 +93,8 @@ export class MyApp {
           
           
           if (profile.exists) {
-            firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
-            firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
+           // firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
+     /*        firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
               if(!request.empty) {
                 request.forEach(list => {
                   firebase.firestore().collection('Respond').doc(list.id).onSnapshot(res => {
@@ -107,7 +107,7 @@ export class MyApp {
                     })
                 });
               }
-            })
+            }) */
       
             
          //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})

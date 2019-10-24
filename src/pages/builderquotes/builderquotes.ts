@@ -406,7 +406,7 @@ export class BuilderquotesPage {
     this.loaderAnimate = true;
     setTimeout(() => {
       this.loaderAnimate = false;
-    }, 2000);
+    }, 3000);
     //console.log('pdf link............:', this.pdfDoc);
     this.dbRespond.doc(this.navParams.data.docID).set(this.quotes).then(()=>{
      // this.quotes.pdfLink = this.pdfDoc;

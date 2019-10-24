@@ -520,6 +520,7 @@ export class QuotationFormPage {
     }).present()
   }
   createQuations() {
+    this.loaderAnimate = true;
     if (this.HomeOwnerQuotation.startDate == '' || this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.endDate == '' || this.HomeOwnerQuotation.brickType == '' || this.HomeOwnerQuotation.wallType == ''
       || this.HomeOwnerQuotation.comment == '') {
       this.alertContrl();
@@ -530,38 +531,18 @@ export class QuotationFormPage {
           message: 'House plan is required',
           duration: 2000
         }).present();
-
       }
       else {
-        // load the profile creation process
-
-        //load.present();
-        if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
-          this.alertCtrl.create({
-            title: 'Invalid dates',
-            subTitle: 'Please check your dates',
-            buttons: ['Try again']
-          }).present()
-        } else {
-          this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
-            res.onSnapshot((doc)=>{
-              this.db.collection('Users').doc(doc.data().builderUID).onSnapshot((user)=>{
-                if (user.data().tokenID) {
-                  var notificationObj = {
-                    contents: { en: "Hey " + user.data().fullName + " ," + "you have new request" },
-                    include_player_ids: [user.data().tokenID],
-                  };
-                  this.oneSignal.postNotification(notificationObj).then(res => {
-                  });
-                }
-              })
+        
+          this.db.collection('Request').doc(this.uid).set(this.HomeOwnerQuotation).then((res) => {
+            setTimeout(() => {
+              this.hideHeader = true;
+            }, 2000);
+            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
+              this.HomeOwnerQuotation.extras.forEach((item) => {
+                res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+              });
             })
-            res.update({ docID: res.id });
-            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).doc(res.id).set(this.HomeOwnerQuotation).then((res) => {
-            })
-            this.HomeOwnerQuotation.extras.forEach((item) => {
-              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-            });
             this.HomeOwnerQuotation = {
               hOwnerUid: '',
               startDate: '',
@@ -579,7 +560,7 @@ export class QuotationFormPage {
             this.navCtrl.setRoot(SuccessPage);
           });
           this.isProfile = false;
-        }
+        
 
       }
     }
