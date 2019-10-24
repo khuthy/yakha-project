@@ -94,7 +94,7 @@ export class AccountSetupPage {
       this.HomeOwnerProfile.tokenID = res.userId;
     });
 
-    this.backButton()
+  
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
@@ -318,16 +318,7 @@ export class AccountSetupPage {
   getProfileImageStyle() {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
-  backButton() {
-    this.plt.registerBackButtonAction(() => {
-      if(this.back == true) {
-         this.isProfile = true;
-      }else {
-        this.isProfile = false;
-      }
-       
-    })
-  }
+ 
   SignOut() {
      this.alertCtrl.create({
       title: 'Are you sure you want to logout?',
