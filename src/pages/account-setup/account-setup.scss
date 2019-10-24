@@ -1,11 +1,13 @@
 page-account-setup {
   .address {
-    min-width: 100%;
+    min-width: 90%;
     border-radius: 50px;
-    margin: 0;
+    margin: 0 auto;
     border: none;
     color: #333;
     padding: 15px;
+    position: relative;
+    left: 5%;
     border: 1px solid #ddd;
   }
 
@@ -65,7 +67,7 @@ page-account-setup {
     background-repeat: no-repeat;
     background-size: 35%;
    }
-
+  
    .item {
        .input, .select {
            border-radius: 50px;
@@ -88,11 +90,17 @@ page-account-setup {
        border-radius: 50%;
        border: 1px solid #ddd;
        margin: 0 auto;
+       position: relative;
        img {
            height: 100px;
            width: 100px;
            border-radius: 50%;
            object-fit: cover;
+       }
+       .upload-image {
+         position: absolute;
+         right: 0;
+         bottom: 0;
        }
    }
    .next {
