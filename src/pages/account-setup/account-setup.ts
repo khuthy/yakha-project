@@ -99,8 +99,6 @@ export class AccountSetupPage {
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
-
-    console.log(this.HomeOwnerProfile.ownerAddress)
   }
   ionViewDidLoad() {
     console.log(this.uid)

@@ -212,7 +212,7 @@ export class MessagesPage {
   } */
   brick = 'Engineering brick' //demo
   getChats() {
-    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).add({ chat: this.chatMessage, date: Date(), builder: false, id: this.currentUid }).then((res) => {
+    this.dbChatting.doc(this.uid).collection(this.navParams.data.name.builderUID).add({ chat: this.chatMessage, date: Date.now(), builder: false, id: this.currentUid }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
