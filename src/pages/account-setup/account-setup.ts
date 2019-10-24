@@ -12,6 +12,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { LoginPage } from '../login/login';
 import { text } from '@angular/core/src/render3/instructions';
 import { File, FileEntry } from '@ionic-native/file';
+import { Keyboard } from '@ionic-native/keyboard';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -59,12 +60,8 @@ export class AccountSetupPage {
       country: ['ZA']
     }
   }
-<<<<<<< HEAD
-
-=======
   loaderAnimate = true;
   back: boolean;
->>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -79,11 +76,8 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
-<<<<<<< HEAD
-=======
     public keyBoard: Keyboard,
     public plt: Platform
->>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -111,9 +105,6 @@ export class AccountSetupPage {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
-<<<<<<< HEAD
-
-=======
     firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res) => {
       if(res.data().isProfile == true) {
         this.back = true;
@@ -126,7 +117,6 @@ export class AccountSetupPage {
       //  this.hide12='';
       //this.HomeOwnerQuotation.extras = [];
     }, 2000);
->>>>>>> 02a60aef78ef0ad0952439dddf556545b46f349a
 
     this.getProfile();
   }
