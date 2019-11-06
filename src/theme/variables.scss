@@ -78,9 +78,25 @@ $alert-md-list-border-bottom: 0px;
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-
-
+// font-family: 'Raleway', sans-serif;
+// font-family: 'Open Sans Condensed', sans-serif;
+// font-family: 'Dosis', sans-serif;
+ p {
+  font-family: 'Raleway', sans-serif !important;
+ }
+h1, h2,h3,h4,h5 {
+  font-family: 'Open Sans Condensed', sans-serif !important;
+  font-size: 5vw !important;
+}
+span, a {
+  font-family: 'Dosis', sans-serif !important;
+}
+ion-label {
+  font-family: 'Dosis', sans-serif !important;
+}
+::placeholder {
+  font-family: 'Raleway', sans-serif !important;
+}
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can

@@ -1,4 +1,113 @@
+page-account-setup {
+  .address {
+    min-width: 93%;
+    border-radius: 50px;
+    margin: 0 auto;
+    border: none;
+    color: #333;
+    padding: 15px;
+    position: relative;
+    left: 5%;
+    border: 1px solid #ddd;
+  }
 
+#hide-div{
+    display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+ //  margin-top: 15%;
+  }
+  #hide-div > div {
+    // background-color: #586B83;
+     // flex: 1;
+      width: 150px;
+      //height: 10vh;
+   }
+   #hide-div > .div-fab{
+   // background-color: antiquewhite;
+    height: 7vh;
+    width: 35% ;
+    
+   }
+   .group-button {
+    background: color($colors, danger);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+    width: 100%;
+    border-radius: 50px 0 0 50px;
+    position: relative;
+    right: 0;
+    left: 5.5%;
+    button {
+      height: 6vh;
+      width: 6vh;
+    }
+    p{
+      margin: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      color: #fff;
+      font-size: 2.5vh;
+    }
+    
+  }
+
+   .tools-header {
+    background:url(../../assets/imgs/ownerShape.svg);            
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 38%;
+
+   }
+  
+   .tools-footer {
+    background:url(../../assets/imgs/ownerShapes.svg);            
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 30%;
+   }
+  
+   .item {
+       .input, .select {
+           border-radius: 50px;
+           border: 1px solid #ddd;
+       }
+       .select {
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        min-width: 100%;
+        .select-icon {
+          right: 5% !important;
+        }
+      }
+     
+   }
+ 
+   .thumb {
+       height: 100px;
+       width: 100px;
+       border-radius: 50%;
+       border: 1px solid #ddd;
+       margin: 0 auto;
+       position: relative;
+       img {
+           height: 100px;
+           width: 100px;
+           border-radius: 50%;
+           object-fit: cover;
+       }
+       .upload-image {
+         position: absolute;
+         right: 0;
+         bottom: 0;
+       }
+   }
+   .next {
+       max-width: 60%;
+       margin: 0 auto;
+   }
   
 #switchback {
    // border: 3px solid green;
@@ -143,12 +252,16 @@
 
      
     /* View owner profile css code */
+
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+ 
    .ViewContainer {
        height: 100%;
-       max-width: 100%;
-       position: relative;
-        margin: 0 auto;
+      
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
        background: color($colors, light);
        transition-property: all;
        transition-duration: 2s;
@@ -156,39 +269,7 @@
        -o-transition-timing-function: ease-in-out;
        -moz-transition-timing-function: ease-in-out;
         
-       .header {
-           position: absolute;
-           top: 1%;
-           left: 1%;
-           right: 0;
-           display: flex;
-           justify-content: space-between;
-           z-index: 4;
-           
-        .group-button {
-            background: color($colors, danger);
-            padding: 0 0 0 2em;
-            border-radius: 50px 0 0 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 2%;
-            &:active {
-                background: red;
-            }
-
-            p {
-                color: color($colors, light);
-                font-size: $font-size;
-                white-space: nowrap;
-                margin: auto;
-            }
-            button {
-                box-shadow: $fab-box-shadow;
-            }
-
-        }
-       }
+    
        .wrapper {
            display: flex;
            height: 100%;
@@ -199,6 +280,9 @@
           .wrap {
            height: 50%;
            width: 100%;
+           position: absolute;
+           top: 0;
+           left: 0;
            background-position: center;
            background-size: cover;
            //background-color: #0000001f;
@@ -229,7 +313,9 @@
             height: 50%;
             width: 100%;
             background: #FFFFFF;
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -283,7 +369,7 @@
                 flex-direction: column;
                 justify-content: flex-end;
                 text-align: center;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 6px 0 rgba(0, 0, 0, 0.13);
+                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.144);
                 background: #ffffff;
                 border-radius: 10px;
                 //border: 1px solid #ddd;
@@ -323,6 +409,6 @@
             
        } 
        }
-       
+   }   
        
    }

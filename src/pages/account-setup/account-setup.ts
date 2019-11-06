@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, MenuController, PopoverController, ActionSheetController, Platform } from 'ionic-angular';
 import * as firebase from 'firebase'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -12,6 +12,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { LoginPage } from '../login/login';
 import { text } from '@angular/core/src/render3/instructions';
 import { File, FileEntry } from '@ionic-native/file';
+import { Keyboard } from '@ionic-native/keyboard';
 
 /**
  * Generated class for the AccountSetupPage page.
@@ -59,6 +60,9 @@ export class AccountSetupPage {
       country: ['ZA']
     }
   }
+  loaderAnimate = true;
+  back: boolean;
+  hid: string = '';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authUser: AuthServiceProvider,
@@ -73,6 +77,8 @@ export class AccountSetupPage {
     oneSignal: OneSignal,
     public actionSheetCtrl: ActionSheetController,
     public file: File,
+    public keyBoard: Keyboard,
+    public plt: Platform
     // public readFile : FileReader
   ) {
     this.uid = firebase.auth().currentUser.uid;
@@ -87,21 +93,42 @@ export class AccountSetupPage {
     });
     oneSignal.getIds().then((res) => {
       this.HomeOwnerProfile.tokenID = res.userId;
-    })
+    });
+
+  
   }
   public handleAddressChange(addr: Address) {
     this.HomeOwnerProfile.ownerAddress = addr.formatted_address;
-
-    console.log(this.HomeOwnerProfile.ownerAddress)
   }
   ionViewDidLoad() {
     console.log(this.uid)
     console.log(this.authUser.getUser());
     console.log(this.navParams.data);
-
+    firebase.firestore().collection('Users').doc(firebase.auth().currentUser.uid).onSnapshot((res) => {
+      if(res.data().isProfile == true) {
+        this.back = true;
+      }else {
+        this.back = false;
+      }
+    })
+    setTimeout(() => {
+     this.loaderAnimate = false;
+      //  this.hide12='';
+      //this.HomeOwnerQuotation.extras = [];
+    }, 2000);
 
     this.getProfile();
   }
+
+  checkKeyboard(data) {
+    //  this.keyBoard.onKeyboardHide
+    //  console.log(data);
+      if (data =='open') {
+        this.hid='value';
+      } else {
+        this.hid=''
+      }
+    }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
   }
@@ -179,7 +206,9 @@ export class AccountSetupPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      quality: 100,
+      quality: 90,
+      targetHeight: 600,
+      targetWidth: 600,
       sourceType: sourcetype,
       saveToPhotoAlbum: false,
       correctOrientation: true
@@ -212,7 +241,11 @@ export class AccountSetupPage {
     this.imageSelected = true;
     // })
   }
-
+ backButton() {
+   this.plt.registerBackButtonAction(() => {
+     
+   })
+ }
 
   validation_messages = {
     'fullName': [
@@ -232,12 +265,7 @@ export class AccountSetupPage {
     'address': [{ type: 'required', message: 'Address is required.' }]
   };
   getProfile() {
-    // load the process
-    let load = this.loadingCtrl.create({
-      content: 'Just a sec...',
-      spinner: 'bubbles'
-    });
-    load.present();
+
     // create a reference to the collection of HomeOwnerProfile...
 
 
@@ -273,16 +301,20 @@ export class AccountSetupPage {
         this.icon = 'image';
       }
       // dismiss the loading
-      load.dismiss();
+
     }).catch(err => {
       // catch any errors that occur with the query.
       console.log("Query Results: ", err);
       // dismiss the loading
-      load.dismiss();
+    
     })
   }
   editProfile() {
     this.isProfile = false;
+    this.icon = 'create';
+  }
+  cancelProfile() {
+    this.isProfile = true;
     this.icon = 'create';
   }
 
@@ -299,15 +331,30 @@ export class AccountSetupPage {
   getProfileImageStyle() {
     return 'url(' + this.HomeOwnerProfile.image + ')'
   }
+ 
   SignOut() {
-    firebase.auth().signOut().then(() => {
-      console.log('Signed Out');
-      this.navCtrl.setRoot(LoginPage);
-
-    }).catch((err) => {
-      console.log('error occured while signing out');
-
-    })
+     this.alertCtrl.create({
+      title: 'Are you sure you want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role:'cancel'
+        },
+        {
+          text: 'Okay',
+          handler: data => {
+            firebase.auth().signOut().then(() => {
+              console.log('Signed Out');
+              this.navCtrl.setRoot(LoginPage);
+        
+            }).catch((err) => {
+              console.log('error occured while signing out');
+        
+            })
+          }
+        }
+      ]
+    }).present();
   }
   viewHouse(myEvent) {
     console.log('image', myEvent);

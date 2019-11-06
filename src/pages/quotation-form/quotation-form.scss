@@ -473,105 +473,91 @@ page-quotation-form {
       height: 100vw;
       //overflow-y: auto;
       //  background: yellow;
-      overflow-x: hidden;
-      overflow-y: hidden;
-      margin-top: 2%;
+        overflow-x: hidden;
+         overflow-y: hidden;
+       margin-top:2%;
+       height: 100%;
+        .extrawork {
+          overflow-y:auto;
+            position: relative;
+            top: -2px;
+            width:100vw;
+            height: 100vh;
+            .eForm {
+              position:absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: 100%;
+              overflow-y: auto;
+            }
+            //background: rgb(77, 0, 128);
+            #extrajob {
+        //  background: green;
+              width: 100%;
+              height: 100%;
+              overflow-y: auto;
+              h2 {
+              //  border: 1px solid black;
+                font-size: 4vw;
+                padding:2%;
+                text-align: center;
+              }
+            }
 
-      .extrawork {
-        overflow-y: auto;
-        position: relative;
-        top: -2px;
-        width: 100vw;
-        height: 100%;
-
-        .eForm {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
-          overflow-y: auto;
-        }
-
-        //background: rgb(77, 0, 128);
-        #extrajob {
-          //  background: green;
-          width: 100%;
-          height: 75vw;
-          overflow-y: auto;
-
-          h2 {
-            //  border: 1px solid black;
-            font-size: 4vw;
-            padding: 2%;
-            text-align: center;
-            font-family: 'Century Gothic';
+            .textarea {
+             // border: 1px solid red;
+              width:100%;
+              height:25vw;
+              margin-top:3%;
+             ion-textarea {
+                width:90%;
+                background:#f5f5f5;
+                border-radius: 5px;
+                height:40vw;
+                width: 90%;
+                margin-left:5%;
+                padding:5px;
+                font-size: 4vw;
+                letter-spacing:1px;
+              }
+            }
+            h2 {
+              font-size: 2vw;
+              letter-spacing: 1px;
+            }
+            ion-item {
+              ion-label {
+                text-align: left;
+                font-size: 4vw;
+                letter-spacing: 1px;
+                font-weight:450;
+                color:rgb(197, 189, 189);
+               
+              }
+            }
+            .list .item-block:nth-child(even) {
+           
+              background: #fff!important;
           }
-        }
-
-        .textarea {
-          // border: 1px solid red;
-          width: 100%;
-          height: 25vw;
-          margin-top: 3%;
-
-          ion-textarea {
-            width: 90%;
-            background: #f5f5f5;
-            border-radius: 5px;
-            height: 80%;
-            width: 90%;
-            margin-left: 5%;
-            padding: 5px;
-            font-size: 4vw;
-            letter-spacing: 1px;
-          }
-        }
-
-        h2 {
-          font-size: 2vw;
-          letter-spacing: 1px; 
-          font-family: 'Century Gothic';
-
-        }
-
-        ion-item {
-          ion-label {
-            text-align: left;
-            font-size: 4vw;
-            letter-spacing: 1px;
-            font-weight: 450;
-            color: rgb(197, 189, 189);
-
-          }
-        }
-
-        .list .item-block:nth-child(even) {
-
-          background: #fff !important;
-        }
-
-        .gray {
-          background: rgb(219, 219, 219);
-          margin-top: -12px;
-          margin-bottom: -12px;
-
-          ion-label {
-            color: black;
-          }
-        }
-
-        .white {
-          background: #ffffff;
-
-          ion-label {
-            color: black;
-          }
-        }
-
-        /* ion-textarea {
+            .gray {
+              background:rgb(219, 219, 219);
+              // margin-top: -12px;
+              // margin-bottom: -12px;
+              ion-label {
+                color:black;
+              }
+            }
+            .white {
+              background:#ffffff;
+              ion-label {
+                color:black;
+              }
+            }
+        
+            /* ion-textarea {
               background:whitesmoke;
             width:90%;
             border-radius: 10px;
@@ -585,159 +571,171 @@ page-quotation-form {
             bottom:5%;
            
           } */
-
-      }
-
-      //extra work ends here
-
-
-
-    }
-
-    //end of informationstyle
-    .confirm {
-      transition: 0.3s;
-      //background:black;
-      // height:100%;
-      width: 0%;
-
-      //overflow: hidden;
-      //  position: absolute;
-      //  top: -1px;
-      // margin-top:0!important;
+          
+          }//extra work ends here
+      
+  
+      
+  }//end of informationstyle
+  .confirm {
+    transition: 0.3s;
+    //background:black;
+    // height:100%;
+     width: 0%;
+     //overflow: hidden;
+    //  position: absolute;
+    //  top: -1px;
+    // margin-top:0!important;
+     .title {
       h4 {
         // border: 1px solid red;
         // margin-top:-0px;
-        letter-spacing: 1px;
-        font-size: 5vh;
+        letter-spacing: 3px;
+        font-size: 6vw;
         font-weight: 350;
         text-align: center;
-        font-family: 'Century Gothic';
-      }
-
-      p {
+        margin: 0px;
+       }
+       p {
         text-align: center;
-        margin-top: -8px;
-        letter-spacing: 1px;
-        font-size: 2.5vh;
-        font-weight: 350;
-        font-family: 'Century Gothic';
-        border: 1px solid rgb(255, 255, 255);
+         margin: 5px 0px;
+         letter-spacing: 1px;
+         font-size: 3vw;
+         font-weight: 350;
+         border: 1px solid rgb(255, 255, 255);
+       }
+     }
+ .plan {
+  //  background: whitesmoke;
+   width:100%;
+   height: 45vh;
+   display:flex;
+ 
+   .houseplan {
+    // border: 1px solid green;
+     width:40vw;
+     img {
+       object-fit: cover;
+       width: 100%;
+       height: 100%;
+     }
+   }
+ 
+   .details {
+    //  border: 1px solid rgb(255, 255, 255);
+     width:60vw;
+     height: 100%;
+     overflow-y: auto;
+    h5{
+      font-size: 4vw !important;
+    }
+    p {
+      font-size: 3vw !important;
+    }
+   }
+ }
+ 
+ .extraz {
+ //  border: 1px solid red;
+   //height:15vh;
+
+margin:2px;
+h4 {
+  font-size:3vh;
+  margin:2px 0px;
+}
+div {
+   display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  // justify-content: space-evenly; 
+}
+   p {
+  
+  color:white;
+    background: #033b52;
+    border-radius: 4px;
+    padding:7px;
+ margin-top: 4px;
+ margin-left: 4px;
+   }
+   #headex {
+
+
+    // border:1px solid green;
+     font-size:3.5vh;
+     color:rgb(53, 50, 50);
+     font-weight: 400;
+     letter-spacing: 1px;
+     padding:5px 0px;
+   }
+ }
+ 
+ .confirm2 {
+   //background: yellow;
+   height:5vh;
+   position: absolute;
+   top:-44vh;
+   left:10vh;
+ }
+   }
+
+
+}
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#203959;
+  background-repeat: repeat-x;
+  transform: scale(1);
+  overflow: hidden;
+  transition: 0.4s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: backgroundmover 30s linear infinite;
+  .maploader {
+    .lds-facebook {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-facebook div {
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      width: 13px;
+      background: #fff;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    .lds-facebook div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
+    .lds-facebook div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
+    .lds-facebook div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0;
+    }
+    @keyframes lds-facebook {
+      0% {
+        top: 6px;
+        height: 51px;
       }
-
-      .plan {
-        background: whitesmoke;
-        width: 100%;
-        height: 45vh;
-        display: flex;
-
-        .houseplan {
-          // border: 1px solid green;
-          width: 40vw;
-
-          img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
-        }
-
-        .details {
-          border: 1px solid rgb(255, 255, 255);
-          width: 60vw;
-
-          h5 {
-            text-align: center;
-            font-weight: 300;
-            letter-spacing: 1px;
-            font-size: 4vw;
-            margin-top: -6px;
-            font-family: 'Century Gothic';
-
-          }
-
-          h4 {
-            font-size: 5vw;
-            font-weight: 400;
-            font-family: 'Century Gothic';
-
-          }
-
-          p {
-            font-weight: 300;
-            letter-spacing: 1px;
-            font-size: 4vw;
-            text-align: left;
-            width: 100%;
-            padding-left: 6px;
-            font-family: 'Century Gothic';
-          }
-
-          h3 {
-            font-weight: 300;
-            letter-spacing: 1px;
-            font-size: 4.5vw;
-            font-weight: 400;
-            text-align: left;
-            //width:100%;
-            padding-left: 12px;
-            margin-top: -4px;
-            font-family: 'Century Gothic';
-            // border: 1px solid red;
-          }
-        }
-      }
-
-      .extraz {
-        //  border: 1px solid red;
-        //height:15vh;
-
-        margin: 2px;
-
-        h4 {
-          font-size: 3vh;
-          font-family: 'Century Gothic';
-          margin-top: -2px;
-        }
-
-        div {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-evenly;
-        }
-
-        p {
-          font-family: 'Century Gothic';
-          color: white;
-          background: #033b52;
-          border-radius: 4px;
-          padding: 7px;
-          margin: 1%;
-        }
-
-        #headex {
-
-
-          // border:1px solid green;
-          font-size: 3.5vh;
-          color: rgb(53, 50, 50);
-          font-weight: 400;
-          letter-spacing: 1px;
-          padding-top: 3px;
-        }
-      }
-
-      .confirm2 {
-        //background: yellow;
-        height: 5vh;
-        position: absolute;
-        top: -44vh;
-        left: 10vh;
+      50%, 100% {
+        top: 19px;
+        height: 26px;
       }
     }
-
-
   }
 
   .loader {
@@ -891,72 +889,74 @@ page-quotation-form {
     width: 100%;
     height: 13%;
     //border: 4px solid red;
-    display: flex;
-    font-family: 'Century Gothic';
-    ;
+   display: flex;;
 
+   
+.names {
+ // border: 1px solid red;
+  width:45%;
+display: flex;
+flex-direction: column;
+justify-content: center;;;
+ p{
+   padding-left: 3%;
+  // border: 1px solid rgb(0, 4, 255);
+ }
+}
+.button-group {
+ // border: 1px solid red;
+  //margin-top: 30px;
+  position: absolute;
+  bottom: 15%;
+  right: 0;
 
-    .names {
-      // border: 1px solid red;
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      ;
-      ;
-
-      p {
-        padding-left: 3%;
-        font-family: 'Century Gothic';
-        // border: 1px solid rgb(0, 4, 255);
-      }
-    }
-
-    .button-group {
-      // border: 1px solid red;
-      //margin-top: 30px;
-      position: absolute;
-      bottom: 15%;
-      right: 0;
-
-      background: rgb(204, 158, 20);
-      padding-left: 15px;
-      display: flex;
-      z-index: 100;
-      justify-content: space-between;
-      align-items: center;
-      height: 45px;
-      width: 45%;
-      float: right;
-      border-radius: 50px 0 0 50px;
-
-      p {
-        margin: auto;
-        color: #fff;
-        padding: 2px;
-        padding-right: 5px;
-        font-family: 'Century Gothic';
-      }
-
-      button {
-        margin-right: 5px;
-        font-family: 'Century Gothic';
-      }
-
-      &:active {
-        background: #cc9e14;
-      }
-
-
-    }
-
-    //close next button
-
+  background: rgb(204, 158, 20);
+  padding-left: 5px;
+  display: flex;
+  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  width: 45%;
+  float: right;
+  border-radius: 50px 0 0 50px;
+  p {
+      margin: auto;
+      color: #fff;
+      padding: 2px;
+      padding-right:5px;
+  }
+  button {
+    margin-right:5px;
+  }
+  &:active {
+      background:#cc9e14;
   }
 
 
-  //edit quote before submit buttton
-  #edit {
+}//close next button
+
+ }
+
+
+//edit quote before submit buttton
+#edit {
+  //border:1px solid red;
+  margin-top: 30px;
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  background: #cc9e14;
+  // padding-left: 15px;
+  display: flex;
+  z-index: 100;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  float: right;
+  width: 45%;
+  border-radius:0 50px 50px 0;
+  p {
     //border:1px solid red;
     margin-top: 30px;
     position: absolute;
@@ -998,4 +998,6 @@ page-quotation-form {
 
 
   }
+}
+}
 }

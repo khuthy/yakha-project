@@ -32,8 +32,8 @@ export class MyApp {
   db: any;
   predefined: string;
   pages: Array<{ title: string, component: any, icon: string }>;
-  signal_app_id: string = '66cc58ae-d53f-44a3-992d-749efc2cd702';
-  firebase_id: string = '27383344134';
+  signal_app_id: string = 'e144f8b8-2305-4546-85dc-9b565d716dd2';
+  firebase_id: string = '587617081134';
   userLoggedinNow = {
     fullname: '',
     email: '',
@@ -80,20 +80,21 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString('#203550');
       this.splashScreen.hide();
          if (this.platform.is('cordova')) {
-         this.setupPush();
-      
+         this.setupPush()
         
     }
     this.db.collection('Users');
     firebase.auth().onAuthStateChanged((user) => {
      
       if (user) {
+       
         firebase.firestore().collection('Users').doc(user.uid).onSnapshot((profile) => {
           
           
           
           if (profile.exists) {
-            firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
+           // firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})
+     /*        firebase.firestore().collection('Request').where('hOwnerUid', '==', firebase.auth().currentUser.uid).onSnapshot((request)=>{
               if(!request.empty) {
                 request.forEach(list => {
                   firebase.firestore().collection('Respond').doc(list.id).onSnapshot(res => {
@@ -106,7 +107,7 @@ export class MyApp {
                     })
                 });
               }
-            })
+            }) */
       
             
          //   firebase.firestore().collection('Users').doc(user.uid).update({tokenID: this.token})

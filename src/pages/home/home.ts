@@ -63,7 +63,7 @@ export class HomePage {
   avgRate: number;
   ratingArr = [];
   sumRated = 0;
-  fullName='';
+  fullName = '';
   userImg = '';
   // sumRate=0;
   noReviews = 'No reviews yet';
@@ -74,12 +74,12 @@ export class HomePage {
     public platform: Platform,
     public popoverCtrl: PopoverController,
     public elementref: ElementRef,
-    public alertCtrl: AlertController, public loadingCtrl: LoadingController,public renderer: Renderer2) {
+    public alertCtrl: AlertController, public loadingCtrl: LoadingController, public renderer: Renderer2) {
 
 
   }
   checkKeyboard(data) {
-    if (data =='open') {
+    if (data == 'open') {
       //this.hid='value';
       this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(40vh)');
       this.menuShow = false;
@@ -88,23 +88,23 @@ export class HomePage {
       this.renderer.setStyle(this.hideCard[0], 'transform', 'translateY(0)');
       this.menuShow = true
     }
-   // console.log(data);
-    
+    // console.log(data);
+
   }
-  AutoComplete(){
-   
-      this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], {types: ['geocode']});
-      this.autocom.addListener('place_changed', ()=>{
-        let place = this.autocom.getPlace();
-        console.log(place);
-        let latLng = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng(),
-        }
-       this.map.panTo(latLng);
-      });
-    
-   }
+  AutoComplete() {
+
+    this.autocom = new google.maps.places.Autocomplete(this.autoCompSearch[0], { types: ['geocode'] });
+    this.autocom.addListener('place_changed', () => {
+      let place = this.autocom.getPlace();
+      console.log(place);
+      let latLng = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      }
+      this.map.panTo(latLng);
+    });
+
+  }
   RangeSearch() {
     this.range = !this.range;
   }
@@ -114,19 +114,18 @@ export class HomePage {
       this.AutoComplete()
     }, 1000);
     setTimeout(() => {
-
       this.loaderAnimate = false
     }, 2000);
     this.db.doc(this.uid).onSnapshot((res) => {
       if (res.data().builder == false) {
         //this.loadCtrl();
         //document.getElementById('header').style.display = "none";
-        this.loadMap();
         this.getPosition();
+        this.loadMap();
+
       }
       if (res.data().builder == true) {
         this.getRequests();
-
       }
     })
 
@@ -652,7 +651,7 @@ export class HomePage {
   viewRequest(docID, uid) {
 
     this.navCtrl.push(TestPage, { docID, uid });
-  //  console.log('Doc id>>>>',docID,'user id===', uid);
+    //  console.log('Doc id>>>>',docID,'user id===', uid);
   }
 
   requestForm() {
@@ -663,39 +662,21 @@ export class HomePage {
     this.navCtrl.push(QuotationFormPage, uid);
   }
 
+ 
+
   getRequests() {
-    //let data = {info: [], user: [], id: []}
-    this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
+    let data = {info: {}, user: {}, id: {}}
+    this.dbRequest.where('builderUID', '==', this.uid).onSnapshot(res => {
       this.owner = [];
-      for (let j = 0; j < res.docs.length; j++) {
-    
-        this.db.doc(res.docs[j].data().hOwnerUid).onSnapshot((doc)=>{
-
-          this.owner.push({info: res.docs[j].data(), user: doc.data(), id: res.docs[j].id})
-         })
-         console.log('Owner details', this.owner);
-      }
-     
-     // data.info.forEach((item)=>{
-         
-     // }) 
-      
-      
-     
+      res.forEach((doc) => {
+        data.info = doc.data(); 
+        data.id = doc.id;
+        this.db.doc(doc.data().hOwnerUid).onSnapshot((res) => {
+          data.user = res.data();
+        })
+        this.owner.push(data)
+      }) 
     })
-
-    // this.dbRequest.where('builderUID', '==', this.uid).onSnapshot((res) => {
-    //   console.log('Incoming requests', res.docs);
-    //    for (let i = 0; i < res.docs.length; i++) {
-    //      console.log('Request doc----', res.docs[i].data());
-
-    //  /*    this.dbChat.doc(res.docs[i].data().hOwnerUid).collection(this.uid).onSnapshot((result) => {
-    //         firebase.firestore().collection('Users').doc(res.docs[i].data().hOwnerUid).onSnapshot((userDoc) => {
-    //           this.owner.push({ id: result.docs[i].id, data: result.docs[i].data(), user: userDoc.data() })
-    //         })
-    //     }) */
-    //   } 
-    // })
     this.builder = [];
   }
 

@@ -54,7 +54,7 @@ export class QuotationFormPage {
     extras: [],
     wallType: '',
     brickType: '',
-    houseImage: '',
+    houseImage: 'https://firebasestorage.googleapis.com/v0/b/yakha-bda91.appspot.com/o/QuatationForm%2FNa18VBBzV5aSuOEh7eARHj6jYeD2.jpg?alt=media&token=c7067285-2117-4db3-8d08-279f97d58d29',
     comment: '',
     date: Date(),
     view: false,
@@ -265,12 +265,22 @@ export class QuotationFormPage {
       }, 500)
     }
   }
-  checkClicked(event) {
-    if(event) {
-      this.HomeOwnerQuotation.extras.push(event);
+  checkClicked(extra, event) {
+    // console.log(event);
+    
+    if(event.checked) {
+      this.HomeOwnerQuotation.extras.push(extra);
     }else {
-      this.HomeOwnerQuotation.extras.splice(event, 1);
+      var filtered = this.HomeOwnerQuotation.extras.filter((value, index, arr)=>{
+
+       return value !== extra;
+    
+    });
+    this.HomeOwnerQuotation.extras = filtered
+    console.log(this.HomeOwnerQuotation.extras);
+    
     }
+// console.log(this.HomeOwnerQuotation.extras);
 
     // console.log(this.HomeOwnerQuotation.extras);
   }
@@ -425,7 +435,9 @@ export class QuotationFormPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      quality: 100,
+      quality: 90,
+      targetHeight: 600,
+      targetWidth: 600,
       sourceType: sourcetype,
       saveToPhotoAlbum: false,
       correctOrientation: true
@@ -508,6 +520,7 @@ export class QuotationFormPage {
     }).present()
   }
   createQuations() {
+    this.loaderAnimate = true;
     if (this.HomeOwnerQuotation.startDate == '' || this.HomeOwnerQuotation.houseImage == '' || this.HomeOwnerQuotation.endDate == '' || this.HomeOwnerQuotation.brickType == '' || this.HomeOwnerQuotation.wallType == ''
       || this.HomeOwnerQuotation.comment == '') {
       this.alertContrl();
@@ -518,28 +531,18 @@ export class QuotationFormPage {
           message: 'House plan is required',
           duration: 2000
         }).present();
-
       }
       else {
-        // load the profile creation process
-
-        //load.present();
-        if (this.HomeOwnerQuotation.startDate.toString().substring(8, 11) < this.formatDate(Date()).toString().substring(8, 11) || this.HomeOwnerQuotation.startDate.toString().substring(8, 11) > this.HomeOwnerQuotation.endDate.toString().substring(8, 11)) {
-          this.alertCtrl.create({
-            title: 'Invalid dates',
-            subTitle: 'Please check your dates',
-            buttons: ['Try again']
-          }).present()
-        } else {
-          this.db.collection('Request').add(this.HomeOwnerQuotation).then((res) => {
-            res.update({ docID: res.id });
-            this.HomeOwnerQuotation.extras.forEach((item) => {
-              res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
-            });
-
-          });
-          this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
-            console.log('Chat >>>>-----', res.id);
+        
+          this.db.collection('Request').doc(this.uid).set(this.HomeOwnerQuotation).then((res) => {
+            setTimeout(() => {
+              this.hideHeader = true;
+            }, 2000);
+            this.db.collection('chat_msg').doc(this.uid).collection(this.HomeOwnerQuotation.builderUID).add(this.HomeOwnerQuotation).then((res) => {
+              this.HomeOwnerQuotation.extras.forEach((item) => {
+                res.collection('extras').doc(item).set({ price: 0, quantity: 0 });
+              });
+            })
             this.HomeOwnerQuotation = {
               hOwnerUid: '',
               startDate: '',
@@ -555,50 +558,9 @@ export class QuotationFormPage {
               docID: ''
             };
             this.navCtrl.setRoot(SuccessPage);
-          })
-          // upon success...
-          // user.then((response) => {
-
-          //   response.update({ docID: response.id });
-          //   response.onSnapshot((resBuilder) => {
-          //     this.db.collection('chat_msg').doc(this.uid).collection(resBuilder.data().builderUID).add(this.HomeOwnerQuotation)
-          //     // resBuilder.data()
-          //     if (resBuilder.data().builderUID) {
-          //       this.db.collection('Users').doc(resBuilder.data().builderUID).onSnapshot((out) => {
-          //         if (out.data().tokenID) {
-          //           var notificationObj = {
-          //             contents: { en: "Hey " + out.data().fullName + " ," + "you have new request" },
-          //             include_player_ids: [out.data().tokenID],
-          //           };
-          //           this.oneSignal.postNotification(notificationObj).then(res => {
-          //             // console.log('After push notifcation sent: ' +res);
-          //           });
-
-          //         }
-          //       })
-          //     }
-          //   })
-
-
-
-          //   this.navCtrl.setRoot(SuccessPage)
-          //   this.toastCtrl.create({
-          //     message: '  Quotation submitted.',
-          //     duration: 2000,
-          //   }).present();
-          //   // ...get the profile that just got created...
-          //   //load.dismiss();
-          //   // catch any errors.
-          // }).catch(err => {
-          //   this.toastCtrl.create({
-          //     message: 'Error submitting Quotation.',
-          //     duration: 2000
-          //   }).present();
+          });
           this.isProfile = false;
-          // load.dismiss();
-          // })
-
-        }
+        
 
       }
     }

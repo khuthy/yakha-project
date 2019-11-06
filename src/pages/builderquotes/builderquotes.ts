@@ -13,6 +13,7 @@ import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { OneSignal } from '@ionic-native/onesignal';
 import { SMS } from '@ionic-native/sms';
+import { Downloader } from '@ionic-native/downloader';
 
 
 
@@ -64,10 +65,10 @@ export class BuilderquotesPage {
     price: 0,
     uid: '',
     pdfLink: null,
-    meter: 0,
-    discount: 0,
-    discountAmount: 0,
-    discountPrice: 0,
+    meter: null,
+    discount: null,
+    discountAmount: null,
+    discountPrice: null,
     //ownerUID: null,
     hOwnerUID: null,
     subtotal: 0,
@@ -122,7 +123,8 @@ export class BuilderquotesPage {
     private cdRef: ChangeDetectorRef,
     public toastCtrl: ToastController,
     public oneSignal: OneSignal,
-    private sms: SMS
+    private sms: SMS,
+
   ) {
     this.userMsg = this.navParams.data;
     console.log('data =>', this.userMsg);
@@ -404,7 +406,7 @@ export class BuilderquotesPage {
     this.loaderAnimate = true;
     setTimeout(() => {
       this.loaderAnimate = false;
-    }, 2000);
+    }, 3000);
     //console.log('pdf link............:', this.pdfDoc);
     this.dbRespond.doc(this.navParams.data.docID).set(this.quotes).then(()=>{
      // this.quotes.pdfLink = this.pdfDoc;

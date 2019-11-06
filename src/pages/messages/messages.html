@@ -57,7 +57,7 @@
               </div>
               <div class="time">
                 <article>
-                  <p><strong>Start Date</strong></p>
+                  <p><strong>End Date</strong></p>
                   <p>{{item.data.endDate | date: 'shortDate'}}</p>
                 </article>
                 <article>
@@ -93,16 +93,16 @@
                 <div class="pdf">
                   <p></p>
                   <p>Quotation-Y00{{i}}</p>
-                  <button ion-fab color="dark" [style.backgroundColor]="quoteStatus == 'Accepted' ? 'green' : 'red'" mini (click)="viewQuotes()"><ion-icon name="download"></ion-icon></button>
+                  <button ion-fab color="dark" [style.backgroundColor]="quoteStatus == 'Accepted' ? 'green' : 'red'" mini (click)="downloadPDF(chat.chat.pdf)"><ion-icon name="download"></ion-icon></button>
                 </div>
                 
-                  <div id="buttons" *ngIf="quoteStatus">
+                  <!-- <div id="buttons" *ngIf="quoteStatus">
                    <p style="text-align: center; width: 100%;" [style.color]="quoteStatus == 'Accepted' ? 'green' : 'red'">{{quoteStatus}}</p>  
                   </div>
                   <div id="buttons" *ngIf="!quoteStatus">
                     <button ion-button small clear  color="danger" (click)="declineQoute()" round>Decline</button>
                     <button ion-button small color="customcall" (click)="acceptQoute()" round>Accept</button>
-                 </div>
+                 </div> -->
 
             </div>
               

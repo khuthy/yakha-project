@@ -74,15 +74,12 @@ export class TestPage {
     setTimeout(() => {
       this.slideChanged()
     }, 500);
-    this.dbIncoming.doc(this.navParams.data.docID).onSnapshot((res) => {
-      // console.log(res.docs);
-     // res.forEach((doc) => {
-     //   console.log(res.data())
+ /*    this.dbChat.doc(this.navParams.data.docID).collection(this.uid).onSnapshot((res) => {
         this.extras.push(res.data().extras[0]);
         console.log('My extras......', this.extras);
      // })
-    })
-    this.dbIncoming.where('builderUID','==',this.uid).where('hOwnerUid','==',this.navParams.data.uid).onSnapshot((res) => {
+    }) */
+    this.dbChat.doc(this.navParams.data.docID).collection(this.uid).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
         this.dbProfile.doc(doc.data().hOwnerUid).onSnapshot((response)=>{
@@ -116,7 +113,7 @@ export class TestPage {
     })
   }
   getChats() {
-    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date(), builder: true, id:  this.currentUid }).then((res) => {
+    this.dbChatting.doc(this.navParams.data.uid).collection(this.uid).add({ chat: this.chatMessage, date: Date.now(), builder: true, id:  this.currentUid }).then((res) => {
       res.onSnapshot((doc) => {
         this.chatMessage = '';
         this.myMsg = doc.data().chat
@@ -125,12 +122,10 @@ export class TestPage {
     })
   }
   respond() {
-    this.navCtrl.push(BuilderquotesPage, {docID: this.navParams.data.docID, uid: this.navParams.data.uid});
-    //console.log('Doc ID--', this.currentUid, 'Home owner uid--', this.navParams.data.uid);
-    
+    this.navCtrl.push(BuilderquotesPage, {docID: this.currentUid, uid: this.navParams.data.uid});
   }
   getOwnerDetails() {
-    firebase.firestore().collection('Users').doc(this.navParams.data.uid).get().then(owners => {
+    this.dbProfile.doc(this.navParams.data.uid).onSnapshot(owners => {
        this.getowners.image = owners.data().image;
       this.getowners.fullName = owners.data().fullName;
       this.getowners.personalNumber= owners.data().personalNumber;

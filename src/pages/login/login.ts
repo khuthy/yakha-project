@@ -161,7 +161,7 @@ export class LoginPage {
     } else {
       setTimeout(() => {
         this.loaderAnimate = false;
-      }, 3000);
+      }, 2000);
       let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
    
       signIn.then((getUid) => {
