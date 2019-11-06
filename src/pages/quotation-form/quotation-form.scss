@@ -11,7 +11,7 @@ page-quotation-form {
     position: absolute;
     top: 0;
   }
-   
+
   #bottom-div {
     background: turquoise;
     height: 50%;
@@ -19,58 +19,64 @@ page-quotation-form {
     bottom: 0;
   }
 
- /*  .backButton {
+  /*  .backButton {
     position: absolute;
     top: 10px;
     left: 10px;
 
   } */
   .toolbar {
-   // border: 3px solid green;
+
+    // border: 3px solid green;
     .toolbar-background {
-    background: transparent;
-      
+      background: transparent;
+
     }
- .back-button {
-    
+
+    .back-button {
+
       background: rgb(204, 158, 20);
       border-radius: 50%;
-      min-height: 45px;  
-    } 
+      min-height: 45px;
+    }
 
     #swithback {
       position: absolute;
-      bottom:10px;
+      bottom: 10px;
     }
-   .title {
-    
-     .toolbar-title {
-       color: color($colors, dark);
-       font-size: 2.5vh;
-       
-     }
-   }
-   ion-title {
-    // border: 1px solid blue;
-    // position: absolute;
-   margin-left: -4px;
-     width: 70%;
-     z-index: 6;
- margin-top:4px;
-     p{
-       padding-left: -4px;
-     }
-   }
-  } 
 
-  #hide-div{
-    //display: flex;
-   justify-content: space-between;
-   flex-direction: row;
- //  margin-top: 15%;
- z-index:-2;
+    .title {
+
+      .toolbar-title {
+        color: color($colors, dark);
+        font-size: 2.5vh;
+
+      }
+    }
+
+    ion-title {
+      // border: 1px solid blue;
+      // position: absolute;
+      margin-left: -4px;
+      width: 70%;
+      z-index: 6;
+      margin-top: 4px;
+
+      p {
+        padding-left: -4px;
+      }
+    }
   }
-   .topDecor {
+
+  #hide-div {
+    //display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    //  margin-top: 15%;
+    z-index: -2;
+  }
+
+  .topDecor {
     background: url(../../assets/imgs/ownerShape.svg);
     position: absolute;
     top: 0;
@@ -82,10 +88,10 @@ page-quotation-form {
     background-repeat: no-repeat;
     //border:1px solid red;
     margin-left: auto;
-background-position: 100% 0%;
-  
-  } 
- 
+    background-position: 100% 0%;
+
+  }
+
 
   .bottomDecor {
     background: url(../../assets/imgs/OwnerShapes.svg);
@@ -102,8 +108,8 @@ background-position: 100% 0%;
   .btn {
     //border:1px solid rgb(218, 28, 3);
     width: 50%;
-    height:8%;
-    padding:0.8vh;
+    height: 8%;
+    padding: 0.8vh;
     //margin-left: auto;
     position: fixed;
     right: 0;
@@ -117,65 +123,68 @@ background-position: 100% 0%;
       color: black;
       font-size: 5vw;
       letter-spacing: 1px;
-       //border: 1px solid rgb(0, 47, 255);
-       text-align:center;
-       margin-bottom:5px;
-     // margin: 3% 0px;
-     border-radius: 50px;
-      width:60%;
-      height:100%;
+      //border: 1px solid rgb(0, 47, 255);
+      text-align: center;
+      margin-bottom: 5px;
+      // margin: 3% 0px;
+      border-radius: 50px;
+      width: 60%;
+      height: 100%;
       display: flex;
-      justify-content:center;
-     align-items:center;
-     font-weight:400;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+      font-family: 'Century Gothic';
+    }
 
-    }
-   
     .nextFab {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        height: 100%;
-        width: 40%;
-       
-        display: flex;
-        justify-content:center;
-        align-content: center;
-        align-items:center;
-        padding: 0px 6px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 40%;
+
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      padding: 0px 6px;
     }
+
     button {
-      background:  rgb(204, 158, 20);
+      background: rgb(204, 158, 20);
       height: 7vh;
       width: 7vh;
+
       .icon {
         font-size: 4.4vh;
       }
     }
   }
-  .information {
-      //border:2px solid green;
-      position: absolute;
-      top: 12vh;
-      bottom: 13vh;
-      width: 100%;
-      overflow-y: scroll;
-   // height: 79%;
-      background: white;
-      overflow-x: auto;
-      overflow-y: hidden;
-      display: flex;
-     
-      .slideone {
-        transition: 0.3s;
-        width: 100%;
-        //height: 100%;
-     //border: 1px solid red;
-        overflow: hidden;
-        overflow-y: scroll;
 
-       /*  button {
+  .information {
+    //border:2px solid green;
+    position: absolute;
+    top: 12vh;
+    bottom: 13vh;
+    width: 100%;
+    overflow-y: scroll;
+    // height: 79%;
+    background: white;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+
+    .slideone {
+      transition: 0.3s;
+      width: 100%;
+      //height: 100%;
+      //border: 1px solid red;
+      overflow: hidden;
+      overflow-y: scroll;
+
+      /*  button {
          height:5%;
          background: red;
       margin:0 !important;
@@ -186,334 +195,383 @@ background-position: 100% 0%;
          }
           
         } */
-        .buildersInfo {
-          position: fixed;
+      .buildersInfo {
+        position: fixed;
+        width: 100%;
+        background: #f2f2f2;
+        z-index: 100;
+        height: auto;
+        text-align: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+      }
+
+      .imageCont {
+        width: 90%;
+        height: 35%;
+        overflow: hidden;
+        margin: 10px auto;
+        border: dashed 2px rgb(109, 105, 105);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          object-fit: cover;
           width: 100%;
-          background: #f2f2f2;
-          z-index: 100;
-          height: auto;
-          text-align: center;
-          align-items: center;
-          margin-bottom: 20px;
+          height: 100%;
+        }
+
+        p {
+          //  text-align: center;
+          font-size: 3.5vw;
+          letter-spacing: 1px;
+          font-family: 'Century Gothic';
+          //border:1px solid red;
+        }
+      }
+
+      .dates {
+        // background: red;
+        text-align: center;
+        //  background: #F5F5F5;
+        padding: 5px 0px;
+
+        p {
+          margin: 0;
+          padding: 3px 0px;
+          font-size: 4vw;
+          letter-spacing: 1px; 
+          font-family: 'Century Gothic';
 
         }
-        .imageCont {
-          width: 90%;
-          height: 35%;
-          overflow: hidden;
-          margin: 10px auto;
-          border: dashed 2px rgb(109, 105, 105);
-          border-radius:10px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-img {
-    object-fit: cover;
-    width:100%;
-    height:100%;
-}
-          p {
-         //  text-align: center;
-            font-size: 3.5vw;
-            letter-spacing: 1px;  
-            //border:1px solid red;
-          }
-      }
-      .dates {
-         // background: red;
-          text-align: center;
-        //  background: #F5F5F5;
-          padding: 5px 0px;
-          p{
-              margin: 0;
-              padding: 3px 0px;
-              font-size: 4vw;
-              letter-spacing: 1px;
-          }
-          .item  {
-              background: rgba(230, 227, 227, 0.637) !important;
-              
-              border-radius: 200px;
-              padding: 0 !important;
-             
-              margin: 2px auto;
-              width: 80vw;
-           
-              ion-label {
-                  text-align: left;
-                 margin-left:10px;
-                  letter-spacing: 1px;
-                  color:rgb(36, 35, 35);
-                
-              }
-              ion-datetime {
-                  letter-spacing: 1px;
-                  font-size:3.5vw;
-                  
-              }
-          }
-      }
-      .bricks {
-          width: 100%;
-        //   background: blue;
-          overflow-x: auto;
-          display: flex;
-          .cards {
-            box-shadow: 0 2px 6px  rgba(0, 0, 0, 0.233);
-              min-width: 40vw;
-              max-width: 40vw;
-              height: 45vw;
-              //background: red;
-              border-radius: 5px;
-              overflow: hidden;
-              margin: 7px;
-              position: relative;
-              #imageDiv {
-                width: 100%;
-                height: 100%;;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  border-radius: 5px;
-              }
-              }
-              
-              .brickName {
-                  position: absolute;
-                  bottom: 0;
-                  left: 0;
-                  right: 0;
-                  background: rgba(255, 255, 255, 0.938);
-                  color: black;
-                  text-align: center;
-                  z-index: 2;
-                  p {
-                      margin: 0;
-                      padding: 5px;
-                  }
-              }
-              .details {
-                transition: 0.3s;
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  overflow-y: auto;
-                  padding: 10px 5px;
-                  opacity: 1;
-                  z-index: 5;
-                  border-radius: 20px;
-                  // pointer-events: none;
-                  .closeB {
-                      display: grid;
-                      align-items: center;
-                      text-align: center;
-                      width: 30px;
-                      height: 30px;
-                      position: absolute;
-                      background: white;
-                      color: black;
-                      border-radius: 200px;
-                      z-index: 10;
-                      top: 5px;
-                      right: 5px;
-                      ion-icon {
-                      
-                        font-size:4vh;
-                      }
-                  }
-                  p {
-                      font-size: 3vw;
-                      padding: 0;
-                  }
-              }
-              .details-inactive {
-                transition: 0.3s;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                overflow-y: auto;
-                padding: 10px 5px;
-                opacity: 1;
-                z-index: 5;
-                border-radius: 20px;
-                // pointer-events: none;
-               //background:red;
-                .closeB {
-                    display: grid;
-                    align-items: center;
-                    text-align: center;
-                    width: 30px;
-                    height: 30px;
-                    position: absolute;
-                   
-                    color: black;
-                    border-radius: 200px;
-                    z-index: 10;
-                    top: 5px;
-                    right: 5px;
 
-                    ion-icon {
-                         font-size: 7vw;
-                   
-                    } 
-                }
-                p {
-                    font-size: 3vw;
-                    padding: 0;
-                }
+        .item {
+          background: rgba(230, 227, 227, 0.637) !important;
+
+          border-radius: 200px;
+          padding: 0 !important;
+
+          margin: 2px auto;
+          width: 80vw;
+
+          ion-label {
+            text-align: left;
+            margin-left: 10px;
+            letter-spacing: 1px;
+            color: rgb(36, 35, 35);
+
+          }
+
+          ion-datetime {
+            letter-spacing: 1px;
+            font-size: 3.5vw;
+
+          }
+        }
+      }
+
+      .bricks {
+        width: 100%;
+        //   background: blue;
+        overflow-x: auto;
+        display: flex;
+
+        .cards {
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.233);
+          min-width: 40vw;
+          max-width: 40vw;
+          height: 45vw;
+          //background: red;
+          border-radius: 5px;
+          overflow: hidden;
+          margin: 7px;
+          position: relative;
+
+          #imageDiv {
+            width: 100%;
+            height: 100%;
+            ;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 5px;
             }
           }
 
-          .brickName:hover {
-            p{
-               background:  rgb(204, 158, 20);
+          .brickName {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.938);
+            color: black;
+            text-align: center;
+            z-index: 2;
+
+            p {
+              margin: 0;
+              padding: 5px;
+              font-family: 'Century Gothic';
+            }
+          }
+
+          .details {
+            transition: 0.3s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 10px 5px;
+            opacity: 1;
+            z-index: 5;
+            border-radius: 20px;
+
+            // pointer-events: none;
+            .closeB {
+              display: grid;
+              align-items: center;
+              text-align: center;
+              width: 30px;
+              height: 30px;
+              position: absolute;
+              background: white;
+              color: black;
+              border-radius: 200px;
+              z-index: 10;
+              top: 5px;
+              right: 5px;
+
+              ion-icon {
+
+                font-size: 4vh;
+              }
+            }
+
+            p {
+              font-size: 3vw;
+              padding: 0;
+              font-family: 'Century Gothic';
+            }
+          }
+
+          .details-inactive {
+            transition: 0.3s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            padding: 10px 5px;
+            opacity: 1;
+            z-index: 5;
+            border-radius: 20px;
+
+            // pointer-events: none;
+            //background:red;
+            .closeB {
+              display: grid;
+              align-items: center;
+              text-align: center;
+              width: 30px;
+              height: 30px;
+              position: absolute;
+
+              color: black;
+              border-radius: 200px;
+              z-index: 10;
+              top: 5px;
+              right: 5px;
+
+              ion-icon {
+                font-size: 7vw;
+
+              }
+            }
+
+            p {
+              font-size: 3vw;
+              padding: 0;
+              font-family: 'Century Gothic';
+            }
+          }
+        }
+
+        .brickName:hover {
+          p {
+            background: rgb(204, 158, 20);
             color: white;
             border-bottom-left-radius: 5px;
             border-bottom-left-radius: 5px;
-            }
-           
-          }  
-      }
-      .walltype {
-       // background: cadetblue;
-        margin-top:3%;
-          p {
-            margin-top: 0;
-            padding: 5px 0px;
-            font-size:4vw;
-            letter-spacing: 1px;
-            text-align: center;
-
+            font-family: 'Century Gothic';
           }
-          .inputs {
-            display: flex;
-              flex-direction: row;
-               
-           
-      
 
-                 // width: 50%;
-                 // background: rgb(110, 95, 160);
-                .item {
-                    width: 100%;
-                    flex: 1;
-                    ion-label {
-                      color:black;
-                        font-weight: 400;
-                        letter-spacing: 0.5px;
-                       // padding-top:-7px;
-                       // border:1px solid red;
-                    }
-                  /*   .radio { 
+        }
+      }
+
+      .walltype {
+        // background: cadetblue;
+        margin-top: 3%;
+
+        p {
+          margin-top: 0;
+          padding: 5px 0px;
+          font-size: 4vw;
+          letter-spacing: 1px;
+          text-align: center;
+          font-family: 'Century Gothic';
+        }
+
+        .inputs {
+          display: flex;
+          flex-direction: row;
+
+
+
+
+          // width: 50%;
+          // background: rgb(110, 95, 160);
+          .item {
+            width: 100%;
+            flex: 1;
+
+            ion-label {
+              color: black;
+              font-weight: 400;
+              letter-spacing: 0.5px;
+              // padding-top:-7px;
+              // border:1px solid red;
+            }
+
+            /*   .radio { 
                         width: 20px;
                         height: 20px;
                     } */
-                }
-              
           }
 
-          .nextbutton {
-            //background:yellow;
-            height:5px;
-          }
+        }
+
+        .nextbutton {
+          //background:yellow;
+          height: 5px;
+        }
       }
-      }//end of slide one
-      .secon {
-        transition: 0.3s;
-        width: 0%;
-        height: 100vw;
-        //overflow-y: auto;
-      //  background: yellow;
-        overflow-x: hidden;
-         overflow-y: hidden;
-       margin-top:2%;
-        .extrawork {
-          overflow-y:auto;
-            position: relative;
-            top: -2px;
-            width:100vw;
-            height: 100%;
-            .eForm {
-              position:absolute;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              width: 100%;
-              height: 100%;
-              overflow-y: auto;
-            }
-            //background: rgb(77, 0, 128);
-            #extrajob {
-        //  background: green;
-              width: 100%;
-              height: 75vw;
-              overflow-y: auto;
-              h2 {
-              //  border: 1px solid black;
-                font-size: 4vw;
-                padding:2%;
-                text-align: center;
-              }
-            }
+    }
 
-            .textarea {
-             // border: 1px solid red;
-              width:100%;
-              height:25vw;
-              margin-top:3%;
-             ion-textarea {
-                width:90%;
-                background:#f5f5f5;
-                border-radius: 5px;
-                height:80%;
-                width: 90%;
-                margin-left:5%;
-                padding:5px;
-                font-size: 4vw;
-                letter-spacing:1px;
-              }
-            }
-            h2 {
-              font-size: 2vw;
-              letter-spacing: 1px;
-            }
-            ion-item {
-              ion-label {
-                text-align: left;
-                font-size: 4vw;
-                letter-spacing: 1px;
-                font-weight:450;
-                color:rgb(197, 189, 189);
-               
-              }
-            }
-            .list .item-block:nth-child(even) {
-           
-              background: #fff!important;
+    //end of slide one
+    .secon {
+      transition: 0.3s;
+      width: 0%;
+      height: 100vw;
+      //overflow-y: auto;
+      //  background: yellow;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      margin-top: 2%;
+
+      .extrawork {
+        overflow-y: auto;
+        position: relative;
+        top: -2px;
+        width: 100vw;
+        height: 100%;
+
+        .eForm {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          overflow-y: auto;
+        }
+
+        //background: rgb(77, 0, 128);
+        #extrajob {
+          //  background: green;
+          width: 100%;
+          height: 75vw;
+          overflow-y: auto;
+
+          h2 {
+            //  border: 1px solid black;
+            font-size: 4vw;
+            padding: 2%;
+            text-align: center;
+            font-family: 'Century Gothic';
           }
-            .gray {
-              background:rgb(219, 219, 219);
-              margin-top: -12px;
-              margin-bottom: -12px;
-              ion-label {
-                color:black;
-              }
-            }
-            .white {
-              background:#ffffff;
-              ion-label {
-                color:black;
-              }
-            }
-        
-            /* ion-textarea {
+        }
+
+        .textarea {
+          // border: 1px solid red;
+          width: 100%;
+          height: 25vw;
+          margin-top: 3%;
+
+          ion-textarea {
+            width: 90%;
+            background: #f5f5f5;
+            border-radius: 5px;
+            height: 80%;
+            width: 90%;
+            margin-left: 5%;
+            padding: 5px;
+            font-size: 4vw;
+            letter-spacing: 1px;
+          }
+        }
+
+        h2 {
+          font-size: 2vw;
+          letter-spacing: 1px; 
+          font-family: 'Century Gothic';
+
+        }
+
+        ion-item {
+          ion-label {
+            text-align: left;
+            font-size: 4vw;
+            letter-spacing: 1px;
+            font-weight: 450;
+            color: rgb(197, 189, 189);
+
+          }
+        }
+
+        .list .item-block:nth-child(even) {
+
+          background: #fff !important;
+        }
+
+        .gray {
+          background: rgb(219, 219, 219);
+          margin-top: -12px;
+          margin-bottom: -12px;
+
+          ion-label {
+            color: black;
+          }
+        }
+
+        .white {
+          background: #ffffff;
+
+          ion-label {
+            color: black;
+          }
+        }
+
+        /* ion-textarea {
               background:whitesmoke;
             width:90%;
             border-radius: 10px;
@@ -527,356 +585,417 @@ img {
             bottom:5%;
            
           } */
-          
-          }//extra work ends here
-      
-  
-      
-  }//end of informationstyle
-  .confirm {
-    transition: 0.3s;
-    //background:black;
-    // height:100%;
-     width: 0%;
-     //overflow: hidden;
-    //  position: absolute;
-    //  top: -1px;
-    // margin-top:0!important;
-     h4 {
-      // border: 1px solid red;
-      // margin-top:-0px;
-      letter-spacing: 1px;
-      font-size: 5vh;
-      font-weight: 350;
-      text-align: center;
-     }
-     p {
-      text-align: center;
-       margin-top:-8px;
-       letter-spacing: 1px;
-       font-size: 2.5vh;
-       font-weight: 350;
-       border: 1px solid rgb(255, 255, 255);
-     }
- .plan {
-   background: whitesmoke;
-   width:100%;
-   height: 45vh;
-   display:flex;
- 
-   .houseplan {
-    // border: 1px solid green;
-     width:40vw;
-     img {
-       object-fit: cover;
-       width: 100%;
-       height: 100%;
-     }
-   }
- 
-   .details {
-     border: 1px solid rgb(255, 255, 255);
-     width:60vw;
-     h5 {
-       text-align:center;
-       font-weight: 300;
-       letter-spacing: 1px;
-       font-size: 4vw;
-       margin-top:-6px;
-     }
-     h4 {
-      font-size: 5vw;
-      font-weight: 400;
-     }
-     p {
-       font-weight: 300;
-       letter-spacing: 1px;
-       font-size: 4vw;
-       text-align: left;
-       width:100%;
-       padding-left:6px;
-     }
-  h3 {
-    font-weight: 300;
-    letter-spacing: 1px;
-    font-size: 4.5vw;
-    font-weight:400;
-    text-align: left;
-    //width:100%;
-    padding-left:12px;
-    margin-top:-4px;
-   // border: 1px solid red;
-  }
-   }
- }
- 
- .extraz {
- //  border: 1px solid red;
-   //height:15vh;
 
-margin:2px;
-h4 {
-  font-size:3vh;
-  margin-top:-2px;
-}
-div {
-   display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  justify-content: space-evenly; 
-}
-   p {
-  
-  color:white;
-    background: #033b52;
-    border-radius: 4px;
-    padding:7px;
- margin:1%;
-   }
-   #headex {
+      }
+
+      //extra work ends here
 
 
-    // border:1px solid green;
-     font-size:3.5vh;
-     color:rgb(53, 50, 50);
-     font-weight: 400;
-     letter-spacing: 1px;
-     padding-top:3px;
-   }
- }
- 
- .confirm2 {
-   //background: yellow;
-   height:5vh;
-   position: absolute;
-   top:-44vh;
-   left:10vh;
- }
-   }
+
+    }
+
+    //end of informationstyle
+    .confirm {
+      transition: 0.3s;
+      //background:black;
+      // height:100%;
+      width: 0%;
+
+      //overflow: hidden;
+      //  position: absolute;
+      //  top: -1px;
+      // margin-top:0!important;
+      h4 {
+        // border: 1px solid red;
+        // margin-top:-0px;
+        letter-spacing: 1px;
+        font-size: 5vh;
+        font-weight: 350;
+        text-align: center;
+        font-family: 'Century Gothic';
+      }
+
+      p {
+        text-align: center;
+        margin-top: -8px;
+        letter-spacing: 1px;
+        font-size: 2.5vh;
+        font-weight: 350;
+        font-family: 'Century Gothic';
+        border: 1px solid rgb(255, 255, 255);
+      }
+
+      .plan {
+        background: whitesmoke;
+        width: 100%;
+        height: 45vh;
+        display: flex;
+
+        .houseplan {
+          // border: 1px solid green;
+          width: 40vw;
+
+          img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .details {
+          border: 1px solid rgb(255, 255, 255);
+          width: 60vw;
+
+          h5 {
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 4vw;
+            margin-top: -6px;
+            font-family: 'Century Gothic';
+
+          }
+
+          h4 {
+            font-size: 5vw;
+            font-weight: 400;
+            font-family: 'Century Gothic';
+
+          }
+
+          p {
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 4vw;
+            text-align: left;
+            width: 100%;
+            padding-left: 6px;
+            font-family: 'Century Gothic';
+          }
+
+          h3 {
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 4.5vw;
+            font-weight: 400;
+            text-align: left;
+            //width:100%;
+            padding-left: 12px;
+            margin-top: -4px;
+            font-family: 'Century Gothic';
+            // border: 1px solid red;
+          }
+        }
+      }
+
+      .extraz {
+        //  border: 1px solid red;
+        //height:15vh;
+
+        margin: 2px;
+
+        h4 {
+          font-size: 3vh;
+          font-family: 'Century Gothic';
+          margin-top: -2px;
+        }
+
+        div {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+        }
+
+        p {
+          font-family: 'Century Gothic';
+          color: white;
+          background: #033b52;
+          border-radius: 4px;
+          padding: 7px;
+          margin: 1%;
+        }
+
+        #headex {
 
 
-}
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgb(22, 13, 0);
-  background-repeat: repeat-x;
-  transform: scale(1);
-  overflow: hidden;
-  transition: 0.4s;
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  animation: backgroundmover 30s linear infinite;
-  .maploader {
-    .lds-hourglass {
-      display: inline-block;
-      position: relative;
-      width: 64px;
-      height: 64px;
-    }
-    .lds-hourglass:after {
-      content: " ";
-      display: block;
-      border-radius: 50%;
-      width: 0;
-      height: 0;
-      margin: 6px;
-      box-sizing: border-box;
-      border: 26px solid #fff;
-      border-color: #fff transparent #fff transparent;
-      animation: lds-hourglass 1.2s infinite;
-    }
-    @keyframes lds-hourglass {
-      0% {
-        transform: rotate(0);
-        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          // border:1px solid green;
+          font-size: 3.5vh;
+          color: rgb(53, 50, 50);
+          font-weight: 400;
+          letter-spacing: 1px;
+          padding-top: 3px;
+        }
       }
-      50% {
-        transform: rotate(900deg);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      }
-      100% {
-        transform: rotate(1800deg);
-      }
-    }
-    
-  }
- }
- .loading-text {
-  // color: yellow;
-  position: absolute;
-  bottom: 50vh;
-  left: 0px;
-  width: 100vw;
-  text-align: center;
-  // background: red;
-  height: 50vh;
-  z-index: 50;
- }
- .loader-hide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 20;
-  background: rgb(255, 255, 255);
-  transform: scale(0);
-  overflow: hidden;
-  transition: 0.4s;
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  .maploader {
-    .lds-hourglass {
-      display: inline-block;
-      position: relative;
-      width: 64px;
-      height: 64px;
-    }
-    .lds-hourglass:after {
-      content: " ";
-      display: block;
-      border-radius: 50%;
-      width: 0;
-      height: 0;
-      margin: 6px;
-      box-sizing: border-box;
-      border: 26px solid #fff;
-      border-color: #fff transparent #fff transparent;
-      animation: lds-hourglass 1.2s infinite;
-    }
-    @keyframes lds-hourglass {
-      0% {
-        transform: rotate(0);
-        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-      }
-      50% {
-        transform: rotate(900deg);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      }
-      100% {
-        transform: rotate(1800deg);
-      }
-    }
-    
-  }
- }
- @keyframes maploader {
-  0% {
-    // transform: rotate(0deg);
-    border-color: rgb(182, 70, 95);
-    // background: rgb(255, 192, 192);
-  }
-  50% {
-    // background: rgb(206, 206, 255);
-    // transform: rotate(360deg);
-    border-color: rgb(42, 50, 75);
-  }
-  100% {
-    border-color: rgb(250, 182, 43);
-    // background: rgb(255, 167, 167);
-    // transform: rotate(360deg);
-  }
- }
 
- .footer {
-   background:transparent;
+      .confirm2 {
+        //background: yellow;
+        height: 5vh;
+        position: absolute;
+        top: -44vh;
+        left: 10vh;
+      }
+    }
+
+
+  }
+
+  .loader {
     position: fixed;
-    bottom: 0;;
-    width:100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(22, 13, 0);
+    background-repeat: repeat-x;
+    transform: scale(1);
+    overflow: hidden;
+    transition: 0.4s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: backgroundmover 30s linear infinite;
+
+    .maploader {
+      .lds-hourglass {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+      }
+
+      .lds-hourglass:after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        margin: 6px;
+        box-sizing: border-box;
+        border: 26px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-hourglass 1.2s infinite;
+      }
+
+      @keyframes lds-hourglass {
+        0% {
+          transform: rotate(0);
+          animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        50% {
+          transform: rotate(900deg);
+          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        100% {
+          transform: rotate(1800deg);
+        }
+      }
+
+    }
+  }
+
+  .loading-text {
+    // color: yellow;
+    position: absolute;
+    bottom: 50vh;
+    left: 0px;
+    width: 100vw;
+    text-align: center;
+    // background: red;
+    height: 50vh;
+    z-index: 50;
+  }
+
+  .loader-hide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    background: rgb(255, 255, 255);
+    transform: scale(0);
+    overflow: hidden;
+    transition: 0.4s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    .maploader {
+      .lds-hourglass {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+      }
+
+      .lds-hourglass:after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        margin: 6px;
+        box-sizing: border-box;
+        border: 26px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-hourglass 1.2s infinite;
+      }
+
+      @keyframes lds-hourglass {
+        0% {
+          transform: rotate(0);
+          animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        50% {
+          transform: rotate(900deg);
+          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        100% {
+          transform: rotate(1800deg);
+        }
+      }
+
+    }
+  }
+
+  @keyframes maploader {
+    0% {
+      // transform: rotate(0deg);
+      border-color: rgb(182, 70, 95);
+      // background: rgb(255, 192, 192);
+    }
+
+    50% {
+      // background: rgb(206, 206, 255);
+      // transform: rotate(360deg);
+      border-color: rgb(42, 50, 75);
+    }
+
+    100% {
+      border-color: rgb(250, 182, 43);
+      // background: rgb(255, 167, 167);
+      // transform: rotate(360deg);
+    }
+  }
+
+  .footer {
+    background: transparent;
+    position: fixed;
+    bottom: 0;
+    ;
+    width: 100%;
     height: 13%;
     //border: 4px solid red;
-   display: flex;;
-
-   
-.names {
- // border: 1px solid red;
-  width:45%;
-display: flex;
-flex-direction: column;
-justify-content: center;;;
- p{
-   padding-left: 3%;
-  // border: 1px solid rgb(0, 4, 255);
- }
-}
-.button-group {
- // border: 1px solid red;
-  //margin-top: 30px;
-  position: absolute;
-  bottom: 15%;
-  right: 0;
-
-  background: rgb(204, 158, 20);
-  padding-left: 15px;
-  display: flex;
-  z-index: 100;
-  justify-content: space-between;
-  align-items: center;
-  height: 45px;
-  width: 45%;
-  float: right;
-  border-radius: 50px 0 0 50px;
-  p {
-      margin: auto;
-      color: #fff;
-      padding: 2px;
-      padding-right:5px;
-  }
-  button {
-    margin-right:5px;
-  }
-  &:active {
-      background:#cc9e14;
-  }
+    display: flex;
+    font-family: 'Century Gothic';
+    ;
 
 
-}//close next button
+    .names {
+      // border: 1px solid red;
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      ;
+      ;
 
- }
-
-
-//edit quote before submit buttton
-#edit {
-  //border:1px solid red;
-  margin-top: 30px;
-  position: absolute;
-  bottom: 15%;
-  left: 0;
-  background: #cc9e14;
-  padding-left: 15px;
-  display: flex;
-  z-index: 100;
-  justify-content: space-between;
-  align-items: center;
-  height: 45px;
-  float: right;
-  width: 45%;
-  border-radius:0 50px 50px 0;
-  p {
-    //border:1px solid red;
-      margin: auto;
-      color: #fff;
-      padding: 2px;
-      margin-left:4%;
-     text-align:center;
-  }
-  button {
-    //margin-right:5px;
-    background:white;
-    ion-icon {
-      color:black;
+      p {
+        padding-left: 3%;
+        font-family: 'Century Gothic';
+        // border: 1px solid rgb(0, 4, 255);
+      }
     }
-  }
-  &:active {
-      background:#cc9e14;
+
+    .button-group {
+      // border: 1px solid red;
+      //margin-top: 30px;
+      position: absolute;
+      bottom: 15%;
+      right: 0;
+
+      background: rgb(204, 158, 20);
+      padding-left: 15px;
+      display: flex;
+      z-index: 100;
+      justify-content: space-between;
+      align-items: center;
+      height: 45px;
+      width: 45%;
+      float: right;
+      border-radius: 50px 0 0 50px;
+
+      p {
+        margin: auto;
+        color: #fff;
+        padding: 2px;
+        padding-right: 5px;
+        font-family: 'Century Gothic';
+      }
+
+      button {
+        margin-right: 5px;
+        font-family: 'Century Gothic';
+      }
+
+      &:active {
+        background: #cc9e14;
+      }
+
+
+    }
+
+    //close next button
+
   }
 
 
-}
+  //edit quote before submit buttton
+  #edit {
+    //border:1px solid red;
+    margin-top: 30px;
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    background: #cc9e14;
+    padding-left: 15px;
+    display: flex;
+    z-index: 100;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    float: right;
+    width: 45%;
+    border-radius: 0 50px 50px 0;
+
+    p {
+      //border:1px solid red;
+      margin: auto;
+      color: #fff;
+      padding: 2px;
+      margin-left: 4%;
+      text-align: center;
+      font-family: 'Century Gothic';
+    }
+
+    button {
+      //margin-right:5px;
+      background: white;
+
+      ion-icon {
+        color: black;
+      }
+    }
+
+    &:active {
+      background: #cc9e14;
+    }
+
+
+  }
 }

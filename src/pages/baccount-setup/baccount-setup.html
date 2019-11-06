@@ -111,13 +111,6 @@
           </ion-row>
         </ion-grid>
 
-
-
-
-
-
-
-
       </ion-slide>
 
       <ion-slide formGroupName="profileFormSecondSlide">
@@ -200,7 +193,7 @@
 
     <div class="infocontent">
       <div class="cert">
-        <h3>PROFILE</h3>
+        <h3 style="padding: 20px;   font-family: 'Century Gothic';">PROFILE</h3>
         <div class="flag" *ngIf="builderProfile.certified">
           <span>C</span>
         </div>
@@ -244,7 +237,7 @@
   <ion-toolbar *ngIf="isProfile">
     <ion-buttons right>
 
-      <div style="background: #D98E04;" class="group-button" (click)="editProfile()">
+      <div style="background: #D98E04; font-family: 'Century Gothic';" class="group-button" (click)="editProfile()">
         <p>Edit Profile</p>
         <button ion-fab color="light" (click)="editProfile()">
           <ion-icon name="arrow-forward"></ion-icon>

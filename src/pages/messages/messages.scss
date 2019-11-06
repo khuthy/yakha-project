@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Century+Gothic');
 page-messages {  
+
+  *{
+    font-family: 'Century Gothic';
+  }
   .background {
     background: color($colors, light);
   }
@@ -114,6 +119,7 @@ transition: 500ms;
 z-index: 2;
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.164);
 .container-request {
+
 position: absolute;
 top: 35%;
 left: 0;
