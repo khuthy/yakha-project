@@ -181,20 +181,19 @@ export class MessagesPage {
     }, 500);
     this.dbIncoming.where('hOwnerUID', '==', this.uid).onSnapshot((res) => {
       res.forEach((doc) => {
-
         let pdf = doc.data().pdfLink;
         this.pdf = pdf;
       })
     })
-    this.dbMessage.where('hOwnerUid', '==', this.uid).onSnapshot((res) => {
+    this.dbMessage.where('hOwnerUid', '==', this.uid).where('builderUID','==',this.navParams.data.name.builderUID).onSnapshot((res) => {
       // console.log('This doc ', doc.data());
       res.forEach((doc) => {
         // quering builder personal number
-        this.dbProfile.doc(doc.data().builderUID).onSnapshot((response) => { this.number = response.data().personalNumber })
-        this.msgSent.push({ data: doc.data(), id: doc.id })
+          this.dbProfile.doc(doc.data().builderUID).onSnapshot((response)=>{
+        this.msgSent.push({data:doc.data(), id: doc.id, user: response.data()})
         //this.number = doc.data().personalNumber;
       })
-
+    })
     })
 
   }

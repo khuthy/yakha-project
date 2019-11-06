@@ -57,6 +57,7 @@ export class LoginPage {
   buttons = true;
   isKeyOpen: boolean = false;
   hid='';
+  loaderAnimate: boolean;
  // loadAnimate = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,6 +77,7 @@ export class LoginPage {
 
   }
   ionViewDidLoad() {
+    
    this.builder = this.authService.manageUsers();
    console.log(this.builder, 'builder info');
    
@@ -149,6 +151,7 @@ export class LoginPage {
   }
 
   loginUser() {
+    this.loaderAnimate = true;
     if (!this.loginForm.valid) {
       this.alertCtrl.create({
         title: 'Incorrect entry!',
@@ -156,7 +159,9 @@ export class LoginPage {
         buttons: ['Ok']
       }).present();
     } else {
-
+      setTimeout(() => {
+        this.loaderAnimate = false;
+      }, 3000);
       let signIn = this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
    
       signIn.then((getUid) => {

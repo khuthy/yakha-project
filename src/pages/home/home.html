@@ -1,12 +1,13 @@
-<ion-content>
-  <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
-    <div class="maploader">
-      <div class="lds-hourglass"></div>
-    </div>
-    <div class="loading-text">
-      <p color="light">Loading Map</p>
-    </div>
-  </div>
+
+<ion-content >
+    <div [ngClass]="{'loader': loaderAnimate, 'loader-hide': !loaderAnimate}">
+        <div class="maploader">
+          <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
+       <!--  <div class="loading-text">
+          <p>Loading Map</p>
+        </div> -->
+      </div>
   <div class="header" *ngIf="header">
     <img src="../../assets/icon/Yakha-assets/BuilderShape2.svg" alt="" class="fixed-image">
 

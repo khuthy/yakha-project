@@ -5,7 +5,7 @@
         <ion-navbar>
           <!-- background image of the builder -->
           <div class="pickimage">
-            <img src="../../assets/imgs/Plaster.png" class="img-header" alt="">
+            <img src="{{item.user.image}}" class="img-header" alt="">
           </div>
 
 
@@ -24,7 +24,7 @@
             </div>
             <!-- callbtn -->
             <ion-buttons right id="callbtn">
-              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.personalNumber)">
+              <button ion-fab medium color="customcall" id="callbtn" (click)=" callJoint(item.user.personalNumber)">
                 <ion-icon name="call"></ion-icon>
               </button>
             </ion-buttons>
